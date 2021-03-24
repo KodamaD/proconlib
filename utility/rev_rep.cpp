@@ -7,7 +7,7 @@ class revrep {
         usize itr;
         constexpr Iter(const usize pos) noexcept: itr(pos) { }
         constexpr void operator ++ () noexcept { --itr; }
-        constexpr bool operator != (const Iter &other) const noexcept { return itr != other.itr; }
+        constexpr bool operator != (const Iter& other) const noexcept { return itr != other.itr; }
         constexpr usize operator * () const noexcept { return itr; }
     };
     const Iter first, last;
