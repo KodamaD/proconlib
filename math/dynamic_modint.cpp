@@ -26,7 +26,7 @@ template <usize ID>
 class DynamicModint {
     using Mint = DynamicModint;
     using Barret = dynamic_modint_internal::Barret;
-    static inline Barret bt = Barret(1);
+    static inline auto bt = Barret(1);
     u32 v;
 public:
     static u32 mod() noexcept { return bt.mod; }

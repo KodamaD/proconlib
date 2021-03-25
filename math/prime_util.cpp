@@ -30,7 +30,7 @@ struct PrimeUtil {
         assert(x > 0);
         std::vector<std::pair<T, usize>> ret;
         while (x != 1) {
-            const auto p = min_prime[x];
+            const usize p = min_prime[x];
             ret.emplace_back((T) p, 0);
             while (min_prime[x] == p) {
                 ret.back().second++;
