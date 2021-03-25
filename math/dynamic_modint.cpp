@@ -30,8 +30,7 @@ class DynamicModint {
 public:
     static u32 mod() noexcept { return bt.mod; }
     static void set_mod(const u32 mod) noexcept {
-        assert((u32) 1 <= mod);
-        assert(mod <= (u32) 1 << 31);
+        assert((u32) 1 <= mod and mod <= ((u32) 1 << 31));
         bt = Barret(mod);
     }
 
