@@ -42,6 +42,6 @@ struct ModintUtil {
     }
     static M homo(const usize n, const usize k) {
         if (n == 0 && k == 0) return M(1);
-        return binom(n + k - 1, n);
+        return binom(n + k - 1, k);
     }
 };
