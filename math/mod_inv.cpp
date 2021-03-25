@@ -1,5 +1,6 @@
 #pragma once
 #include "inv_gcd.cpp"
+#include <cassert>
 
 template <class T>
 constexpr T mod_inv(const T& a, const T& mod) {

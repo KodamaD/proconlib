@@ -4,6 +4,7 @@
 #include "mod_inv.cpp"
 #include <type_traits>
 #include <ostream>
+#include <cassert>
 
 namespace dynamic_modint_internal {
 
@@ -51,7 +52,9 @@ public:
 
     u32 get() const noexcept { return v; }
     Mint neg() const noexcept { return raw(v == 0 ? 0 : mod() - v); }
+    Mint operator - () const noexcept { return neg(); }
     Mint inv() const noexcept { return raw(mod_inv(v, mod())); }
+    Mint operator ~ () const noexcept { return inv(); }
     Mint pow(u64 exp) const noexcept {
         Mint ret(1), mult(*this);
         for (; exp > 0; exp >>= 1) {

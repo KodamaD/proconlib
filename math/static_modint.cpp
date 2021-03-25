@@ -45,7 +45,9 @@ public:
 
     constexpr u32 get() const noexcept { return v; }
     constexpr Mint neg() const noexcept { return raw(v == 0 ? 0 : MOD - v); }
+    constexpr Mint operator - () const noexcept { return neg(); }
     constexpr Mint inv() const noexcept { return pow(PHI - 1); }
+    constexpr Mint operator ~ () const noexcept { return inv(); }
     constexpr Mint pow(u64 exp) const noexcept {
         Mint ret(1), mult(*this);
         for (; exp > 0; exp >>= 1) {
