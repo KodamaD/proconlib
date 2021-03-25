@@ -10,8 +10,8 @@ class AutoRealloc {
     F func;
     std::vector<R> data;
 public:
-    explicit AutoRealloc(F &&func): func(std::forward<F>(func)), data() { }
-    explicit AutoRealloc(F &&func, const usize capacity): func(std::forward<F>(func)) { reserve(capacity); }
+    explicit AutoRealloc(F&& func): func(std::forward<F>(func)), data() { }
+    explicit AutoRealloc(F&& func, const usize capacity): func(std::forward<F>(func)) { reserve(capacity); }
     void reserve(const usize size) {
         if (data.size() < size) {
             const usize pow2 = ((usize) 1 << ceil_log2(size));

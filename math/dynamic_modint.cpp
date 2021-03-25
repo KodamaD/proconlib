@@ -83,7 +83,7 @@ public:
     }
     bool operator == (const Mint& rhs) const noexcept { return v == rhs.v; }
     bool operator != (const Mint& rhs) const noexcept { return v != rhs.v; }
-    friend std::ostream& operator << (std::ostream &stream, const Mint &rhs) { 
+    friend std::ostream& operator << (std::ostream& stream, const Mint& rhs) { 
         return stream << rhs.v;
     }
 };
