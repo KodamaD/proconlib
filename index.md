@@ -32,17 +32,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/static_modint.cpp
       title: math/static_modint.cpp
-  - name: tools
-    pages:
-    - icon: ':warning:'
-      path: tools/new.py
-      title: tools/new.py
-    - icon: ':warning:'
-      path: tools/submit.py
-      title: tools/submit.py
-    - icon: ':warning:'
-      path: tools/verify.py
-      title: tools/verify.py
   - name: utility
     pages:
     - icon: ':heavy_check_mark:'
