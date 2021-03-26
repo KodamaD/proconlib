@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/divisors_from_factors.cpp
+    title: math/divisors_from_factors.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
@@ -21,7 +24,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: utility/rec_lambda.cpp
-  requiredBy: []
+  requiredBy:
+  - math/divisors_from_factors.cpp
   timestamp: '2021-03-25 15:38:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

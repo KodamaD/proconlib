@@ -6,9 +6,15 @@ data:
     title: utility/int_alias.cpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: container/lazy_segment_tree.cpp
+    title: container/lazy_segment_tree.cpp
+  - icon: ':heavy_check_mark:'
+    path: container/segment_tree.cpp
+    title: container/segment_tree.cpp
+  - icon: ':heavy_check_mark:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_util.cpp
     title: math/prime_util.cpp
   - icon: ':heavy_check_mark:'
@@ -16,8 +22,17 @@ data:
     title: utility/auto_realloc.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/lazy_segment_tree.test.cpp
+    title: test/lazy_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/prime_util.test.cpp
+    title: test/prime_util.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/segment_tree.test.cpp
+    title: test/segment_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -40,9 +55,14 @@ data:
   - utility/auto_realloc.cpp
   - math/modint_util.cpp
   - math/prime_util.cpp
+  - container/lazy_segment_tree.cpp
+  - container/segment_tree.cpp
   timestamp: '2021-03-25 12:45:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/prime_util.test.cpp
+  - test/lazy_segment_tree.test.cpp
+  - test/segment_tree.test.cpp
   - test/modint_util.test.cpp
 documentation_of: bit/ceil_log2.cpp
 layout: document

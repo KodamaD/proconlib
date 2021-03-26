@@ -11,13 +11,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_util.cpp
     title: math/prime_util.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/prime_util.test.cpp
+    title: test/prime_util.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -59,6 +62,7 @@ data:
   timestamp: '2021-03-25 15:38:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/prime_util.test.cpp
   - test/modint_util.test.cpp
 documentation_of: utility/auto_realloc.cpp
 layout: document

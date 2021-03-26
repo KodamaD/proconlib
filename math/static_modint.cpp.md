@@ -10,8 +10,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/lazy_segment_tree.test.cpp
+    title: test/lazy_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/segment_tree.test.cpp
+    title: test/segment_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -111,6 +117,8 @@ data:
   timestamp: '2021-03-25 16:47:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/lazy_segment_tree.test.cpp
+  - test/segment_tree.test.cpp
   - test/modint_util.test.cpp
 documentation_of: math/static_modint.cpp
 layout: document
