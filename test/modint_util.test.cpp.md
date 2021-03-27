@@ -112,7 +112,7 @@ data:
     \ usize k) {\n        assert(k <= n);\n        return fact[n] * inv_fact[n - k]\
     \ * inv_fact[k];\n    }\n    static M factpow(const usize n, const usize k) {\n\
     \        assert(k <= n);\n        return fact[n] * inv_fact[n - k];\n    }\n \
-    \   static M homo(const usize n, const usize k) {\n        if (n == 0 && k ==\
+    \   static M homo(const usize n, const usize k) {\n        if (n == 0 and k ==\
     \ 0) return M(1);\n        return binom(n + k - 1, k);\n    }\n};\n#line 5 \"\
     test/modint_util.test.cpp\"\n#include <iostream>\n\nusing Fp = StaticModint<1000000007>;\n\
     using FpUtil = ModintUtil<Fp>;\n\nint main() {\n    usize T;\n    std::cin >>\
@@ -147,7 +147,7 @@ data:
   isVerificationFile: true
   path: test/modint_util.test.cpp
   requiredBy: []
-  timestamp: '2021-03-25 20:46:49+09:00'
+  timestamp: '2021-03-27 12:51:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/modint_util.test.cpp

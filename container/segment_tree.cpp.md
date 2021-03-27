@@ -75,12 +75,12 @@ data:
     \    }\n\n    template <class F>\n    usize min_left(usize r, const F& f) const\
     \ {\n        assert(r <= internal_size);\n        assert(f(M::zero()));\n    \
     \    if (r == 0) return 0;\n        r += size;\n        M sum = M::zero();\n \
-    \       do {\n            r -= 1;\n            while (r > 1 && (r & 1)) r >>=\
+    \       do {\n            r -= 1;\n            while (r > 1 and (r & 1)) r >>=\
     \ 1;\n            if (!f(data[r] + sum)) {\n                while (r < size) {\n\
     \                    r = 2 * r + 1;\n                    if (f(data[r] + sum))\
     \ sum = data[r--] + sum;\n                }\n                return r + 1 - size;\n\
     \            }\n            sum = data[r] + sum;\n        } while ((r & -r) !=\
-    \ r);\n    }\n};\n"
+    \ r);\n        return 0;\n    }\n};\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\
     \n#include \"../utility/revrep.cpp\"\n#include \"../bit/ceil_log2.cpp\"\n#include\
     \ <vector>\n#include <cassert>\n\ntemplate <class Monoid>\nclass SegmentTree {\n\
@@ -112,12 +112,12 @@ data:
     \    }\n\n    template <class F>\n    usize min_left(usize r, const F& f) const\
     \ {\n        assert(r <= internal_size);\n        assert(f(M::zero()));\n    \
     \    if (r == 0) return 0;\n        r += size;\n        M sum = M::zero();\n \
-    \       do {\n            r -= 1;\n            while (r > 1 && (r & 1)) r >>=\
+    \       do {\n            r -= 1;\n            while (r > 1 and (r & 1)) r >>=\
     \ 1;\n            if (!f(data[r] + sum)) {\n                while (r < size) {\n\
     \                    r = 2 * r + 1;\n                    if (f(data[r] + sum))\
     \ sum = data[r--] + sum;\n                }\n                return r + 1 - size;\n\
     \            }\n            sum = data[r] + sum;\n        } while ((r & -r) !=\
-    \ r);\n    }\n};\n"
+    \ r);\n        return 0;\n    }\n};\n"
   dependsOn:
   - utility/int_alias.cpp
   - utility/rep.cpp
@@ -126,7 +126,7 @@ data:
   isVerificationFile: false
   path: container/segment_tree.cpp
   requiredBy: []
-  timestamp: '2021-03-26 16:54:44+09:00'
+  timestamp: '2021-03-27 12:51:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segment_tree.test.cpp

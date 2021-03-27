@@ -60,7 +60,7 @@ data:
     \ usize k) {\n        assert(k <= n);\n        return fact[n] * inv_fact[n - k]\
     \ * inv_fact[k];\n    }\n    static M factpow(const usize n, const usize k) {\n\
     \        assert(k <= n);\n        return fact[n] * inv_fact[n - k];\n    }\n \
-    \   static M homo(const usize n, const usize k) {\n        if (n == 0 && k ==\
+    \   static M homo(const usize n, const usize k) {\n        if (n == 0 and k ==\
     \ 0) return M(1);\n        return binom(n + k - 1, k);\n    }\n};\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\
     \n#include \"../utility/auto_realloc.cpp\"\n#include <vector>\n#include <cassert>\n\
@@ -78,8 +78,8 @@ data:
     \        assert(k <= n);\n        return fact[n] * inv_fact[n - k] * inv_fact[k];\n\
     \    }\n    static M factpow(const usize n, const usize k) {\n        assert(k\
     \ <= n);\n        return fact[n] * inv_fact[n - k];\n    }\n    static M homo(const\
-    \ usize n, const usize k) {\n        if (n == 0 && k == 0) return M(1);\n    \
-    \    return binom(n + k - 1, k);\n    }\n};\n"
+    \ usize n, const usize k) {\n        if (n == 0 and k == 0) return M(1);\n   \
+    \     return binom(n + k - 1, k);\n    }\n};\n"
   dependsOn:
   - utility/int_alias.cpp
   - utility/rep.cpp
@@ -88,7 +88,7 @@ data:
   isVerificationFile: false
   path: math/modint_util.cpp
   requiredBy: []
-  timestamp: '2021-03-25 20:46:23+09:00'
+  timestamp: '2021-03-27 12:51:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_util.test.cpp

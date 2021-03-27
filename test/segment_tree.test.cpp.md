@@ -126,27 +126,28 @@ data:
     \        return internal_size;\n    }\n\n    template <class F>\n    usize min_left(usize\
     \ r, const F& f) const {\n        assert(r <= internal_size);\n        assert(f(M::zero()));\n\
     \        if (r == 0) return 0;\n        r += size;\n        M sum = M::zero();\n\
-    \        do {\n            r -= 1;\n            while (r > 1 && (r & 1)) r >>=\
+    \        do {\n            r -= 1;\n            while (r > 1 and (r & 1)) r >>=\
     \ 1;\n            if (!f(data[r] + sum)) {\n                while (r < size) {\n\
     \                    r = 2 * r + 1;\n                    if (f(data[r] + sum))\
     \ sum = data[r--] + sum;\n                }\n                return r + 1 - size;\n\
     \            }\n            sum = data[r] + sum;\n        } while ((r & -r) !=\
-    \ r);\n    }\n};\n#line 6 \"test/segment_tree.test.cpp\"\n#include <iostream>\n\
-    \nusing Fp = StaticModint<998244353>;\n\nstruct Monoid {\n    static constexpr\
-    \ Monoid zero() {\n        return { Fp::raw(1), Fp::raw(0) };\n    }\n    Fp a,\
-    \ b;\n    constexpr Monoid operator + (const Monoid& other) const {\n        return\
-    \ Monoid { other.a * a, other.a * b + other.b };\n    }\n    constexpr Fp get(const\
-    \ Fp& x) const {\n        return a * x + b;\n    }\n};\n\nint main() {\n    usize\
-    \ N, Q;\n    std::cin >> N >> Q;\n    std::vector<Monoid> initial(N, Monoid::zero());\n\
-    \    for (const usize i: rep(0, N)) {\n        u32 a, b;\n        std::cin >>\
-    \ a >> b;\n        initial[i].a = Fp::raw(a);\n        initial[i].b = Fp::raw(b);\n\
-    \    }\n    SegmentTree<Monoid> seg(initial);\n    while (Q--) {\n        usize\
-    \ t;\n        std::cin >> t;\n        if (t == 0) {\n            usize p;\n  \
-    \          std::cin >> p;\n            u32 c, d;\n            std::cin >> c >>\
-    \ d;\n            seg.assign(p, Monoid { Fp::raw(c), Fp::raw(d) });\n        }\n\
-    \        else {\n            usize l, r;\n            std::cin >> l >> r;\n  \
-    \          u32 x;\n            std::cin >> x;\n            std::cout << seg.fold(l,\
-    \ r).get(Fp::raw(x)) << '\\n';\n        }\n    }\n    return 0;\n}\n"
+    \ r);\n        return 0;\n    }\n};\n#line 6 \"test/segment_tree.test.cpp\"\n\
+    #include <iostream>\n\nusing Fp = StaticModint<998244353>;\n\nstruct Monoid {\n\
+    \    static constexpr Monoid zero() {\n        return { Fp::raw(1), Fp::raw(0)\
+    \ };\n    }\n    Fp a, b;\n    constexpr Monoid operator + (const Monoid& other)\
+    \ const {\n        return Monoid { other.a * a, other.a * b + other.b };\n   \
+    \ }\n    constexpr Fp get(const Fp& x) const {\n        return a * x + b;\n  \
+    \  }\n};\n\nint main() {\n    usize N, Q;\n    std::cin >> N >> Q;\n    std::vector<Monoid>\
+    \ initial(N, Monoid::zero());\n    for (const usize i: rep(0, N)) {\n        u32\
+    \ a, b;\n        std::cin >> a >> b;\n        initial[i].a = Fp::raw(a);\n   \
+    \     initial[i].b = Fp::raw(b);\n    }\n    SegmentTree<Monoid> seg(initial);\n\
+    \    while (Q--) {\n        usize t;\n        std::cin >> t;\n        if (t ==\
+    \ 0) {\n            usize p;\n            std::cin >> p;\n            u32 c, d;\n\
+    \            std::cin >> c >> d;\n            seg.assign(p, Monoid { Fp::raw(c),\
+    \ Fp::raw(d) });\n        }\n        else {\n            usize l, r;\n       \
+    \     std::cin >> l >> r;\n            u32 x;\n            std::cin >> x;\n  \
+    \          std::cout << seg.fold(l, r).get(Fp::raw(x)) << '\\n';\n        }\n\
+    \    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
     \n#include \"../math/static_modint.cpp\"\n#include \"../container/segment_tree.cpp\"\
     \n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n#include\
@@ -177,7 +178,7 @@ data:
   isVerificationFile: true
   path: test/segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-03-26 16:54:44+09:00'
+  timestamp: '2021-03-27 12:51:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segment_tree.test.cpp

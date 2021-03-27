@@ -71,12 +71,12 @@ data:
     \    assert(i < internal_size);\n        i += size;\n        for (const usize\
     \ d: revrep(1, logn + 1)) flush(i >> d);\n        data[i] = value;\n        for\
     \ (const usize d: rep(1, logn + 1)) fetch(i >> d);\n    }\n    void operate(usize\
-    \ l, usize r, const E& e) {\n        assert(l <= r && r <= internal_size);\n \
-    \       l += size; r += size;\n        push(l); push(r);\n        for (usize l0\
-    \ = l, r0 = r; l0 < r0; l0 >>= 1, r0 >>= 1) {\n            if (l0 & 1) apply(l0++,\
+    \ l, usize r, const E& e) {\n        assert(l <= r and r <= internal_size);\n\
+    \        l += size; r += size;\n        push(l); push(r);\n        for (usize\
+    \ l0 = l, r0 = r; l0 < r0; l0 >>= 1, r0 >>= 1) {\n            if (l0 & 1) apply(l0++,\
     \ e);\n            if (r0 & 1) apply(--r0, e);\n        }\n        pull(l); pull(r);\n\
     \    }\n    \n    M fold() const { return data[1]; }\n    M fold(usize l, usize\
-    \ r) {\n        assert(l <= r && r <= internal_size);\n        l += size; r +=\
+    \ r) {\n        assert(l <= r and r <= internal_size);\n        l += size; r +=\
     \ size;\n        push(l); push(r);\n        M ret_l = M::zero(), ret_r = M::zero();\n\
     \        while (l < r) {\n            if (l & 1) ret_l = ret_l + data[l++];\n\
     \            if (r & 1) ret_r = data[--r] + ret_r;\n            l >>= 1;\n   \
@@ -94,10 +94,10 @@ data:
     \ <= internal_size);\n        assert(f(M::zero()));\n        if (r == 0) return\
     \ 0;\n        r += size;\n        for (const usize d: revrep(1, logn + 1)) flush((r\
     \ - 1) >> d);\n        M sum = M::zero();\n        do {\n            r -= 1;\n\
-    \            while (r > 1 && (r & 1)) r >>= 1;\n            if (f(data[r] + sum))\
-    \ {\n                while (r < size) {\n                    flush(r);\n     \
-    \               r = 2 * r + 1;\n                    if (f(data[r] + sum)) sum\
-    \ = data[r--] + sum;\n                }\n                return r + 1 - size;\n\
+    \            while (r > 1 and (r & 1)) r >>= 1;\n            if (!f(data[r] +\
+    \ sum)) {\n                while (r < size) {\n                    flush(r);\n\
+    \                    r = 2 * r + 1;\n                    if (f(data[r] + sum))\
+    \ sum = data[r--] + sum;\n                }\n                return r + 1 - size;\n\
     \            }\n            sum = data[r] + sum;\n        } while ((r & -r) !=\
     \ r);\n        return 0;\n    }\n};\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\
@@ -123,16 +123,16 @@ data:
     \        i += size;\n        for (const usize d: revrep(1, logn + 1)) flush(i\
     \ >> d);\n        data[i] = value;\n        for (const usize d: rep(1, logn +\
     \ 1)) fetch(i >> d);\n    }\n    void operate(usize l, usize r, const E& e) {\n\
-    \        assert(l <= r && r <= internal_size);\n        l += size; r += size;\n\
+    \        assert(l <= r and r <= internal_size);\n        l += size; r += size;\n\
     \        push(l); push(r);\n        for (usize l0 = l, r0 = r; l0 < r0; l0 >>=\
     \ 1, r0 >>= 1) {\n            if (l0 & 1) apply(l0++, e);\n            if (r0\
     \ & 1) apply(--r0, e);\n        }\n        pull(l); pull(r);\n    }\n    \n  \
     \  M fold() const { return data[1]; }\n    M fold(usize l, usize r) {\n      \
-    \  assert(l <= r && r <= internal_size);\n        l += size; r += size;\n    \
-    \    push(l); push(r);\n        M ret_l = M::zero(), ret_r = M::zero();\n    \
-    \    while (l < r) {\n            if (l & 1) ret_l = ret_l + data[l++];\n    \
-    \        if (r & 1) ret_r = data[--r] + ret_r;\n            l >>= 1;\n       \
-    \     r >>= 1;\n        }\n        return ret_l + ret_r;\n    }\n\n    template\
+    \  assert(l <= r and r <= internal_size);\n        l += size; r += size;\n   \
+    \     push(l); push(r);\n        M ret_l = M::zero(), ret_r = M::zero();\n   \
+    \     while (l < r) {\n            if (l & 1) ret_l = ret_l + data[l++];\n   \
+    \         if (r & 1) ret_r = data[--r] + ret_r;\n            l >>= 1;\n      \
+    \      r >>= 1;\n        }\n        return ret_l + ret_r;\n    }\n\n    template\
     \ <class F>\n    usize max_right(usize l, const F& f) {\n        assert(l <= internal_size);\n\
     \        assert(f(M::zero()));\n        if (l == internal_size) return internal_size;\n\
     \        l += size;\n        for (const usize d: revrep(1, logn + 1)) flush(l\
@@ -146,10 +146,10 @@ data:
     \ <= internal_size);\n        assert(f(M::zero()));\n        if (r == 0) return\
     \ 0;\n        r += size;\n        for (const usize d: revrep(1, logn + 1)) flush((r\
     \ - 1) >> d);\n        M sum = M::zero();\n        do {\n            r -= 1;\n\
-    \            while (r > 1 && (r & 1)) r >>= 1;\n            if (f(data[r] + sum))\
-    \ {\n                while (r < size) {\n                    flush(r);\n     \
-    \               r = 2 * r + 1;\n                    if (f(data[r] + sum)) sum\
-    \ = data[r--] + sum;\n                }\n                return r + 1 - size;\n\
+    \            while (r > 1 and (r & 1)) r >>= 1;\n            if (!f(data[r] +\
+    \ sum)) {\n                while (r < size) {\n                    flush(r);\n\
+    \                    r = 2 * r + 1;\n                    if (f(data[r] + sum))\
+    \ sum = data[r--] + sum;\n                }\n                return r + 1 - size;\n\
     \            }\n            sum = data[r] + sum;\n        } while ((r & -r) !=\
     \ r);\n        return 0;\n    }\n};\n"
   dependsOn:
@@ -161,7 +161,7 @@ data:
   isVerificationFile: false
   path: container/lazy_segment_tree.cpp
   requiredBy: []
-  timestamp: '2021-03-26 16:54:44+09:00'
+  timestamp: '2021-03-27 12:51:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lazy_segment_tree.test.cpp
