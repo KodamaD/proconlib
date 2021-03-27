@@ -50,7 +50,7 @@ public:
         for (const usize d: rep(1, logn + 1)) fetch(i >> d);
     }
     void operate(usize l, usize r, const E& e) {
-        assert(l <= r && r <= internal_size);
+        assert(l <= r and r <= internal_size);
         l += size; r += size;
         push(l); push(r);
         for (usize l0 = l, r0 = r; l0 < r0; l0 >>= 1, r0 >>= 1) {
@@ -62,7 +62,7 @@ public:
     
     M fold() const { return data[1]; }
     M fold(usize l, usize r) {
-        assert(l <= r && r <= internal_size);
+        assert(l <= r and r <= internal_size);
         l += size; r += size;
         push(l); push(r);
         M ret_l = M::zero(), ret_r = M::zero();
@@ -108,8 +108,8 @@ public:
         M sum = M::zero();
         do {
             r -= 1;
-            while (r > 1 && (r & 1)) r >>= 1;
-            if (f(data[r] + sum)) {
+            while (r > 1 and (r & 1)) r >>= 1;
+            if (!f(data[r] + sum)) {
                 while (r < size) {
                     flush(r);
                     r = 2 * r + 1;

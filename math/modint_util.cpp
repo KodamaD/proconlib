@@ -41,7 +41,7 @@ struct ModintUtil {
         return fact[n] * inv_fact[n - k];
     }
     static M homo(const usize n, const usize k) {
-        if (n == 0 && k == 0) return M(1);
+        if (n == 0 and k == 0) return M(1);
         return binom(n + k - 1, k);
     }
 };

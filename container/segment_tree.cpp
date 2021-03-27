@@ -81,7 +81,7 @@ public:
         M sum = M::zero();
         do {
             r -= 1;
-            while (r > 1 && (r & 1)) r >>= 1;
+            while (r > 1 and (r & 1)) r >>= 1;
             if (!f(data[r] + sum)) {
                 while (r < size) {
                     r = 2 * r + 1;
@@ -91,5 +91,6 @@ public:
             }
             sum = data[r] + sum;
         } while ((r & -r) != r);
+        return 0;
     }
 };
