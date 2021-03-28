@@ -36,7 +36,7 @@ public:
     }
 
     template <class T, std::enable_if_t<std::is_signed_v<T> and std::is_integral_v<T>>* = nullptr>
-    static T normalize(const T x) noexcept { return rem_euclid<i64>(x, mod()); }
+    static T normalize(const T x) noexcept { return rem_euclid<std::common_type_t<T, i64>>(x, mod()); }
     template <class T, std::enable_if_t<std::is_unsigned_v<T> and std::is_integral_v<T>>* = nullptr>
     static T normalize(const T x) noexcept { return x % mod(); }
 

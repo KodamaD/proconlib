@@ -29,7 +29,7 @@ public:
     static constexpr u32 mod() noexcept { return MOD; }
 
     template <class T, std::enable_if_t<std::is_signed_v<T> and std::is_integral_v<T>>* = nullptr>
-    static constexpr T normalize(const T x) noexcept { return rem_euclid<i64>(x, MOD); }
+    static constexpr T normalize(const T x) noexcept { return rem_euclid<std::common_type_t<T, i64>>(x, MOD); }
     template <class T, std::enable_if_t<std::is_unsigned_v<T> and std::is_integral_v<T>>* = nullptr>
     static constexpr T normalize(const T x) noexcept { return x % MOD; }
 
