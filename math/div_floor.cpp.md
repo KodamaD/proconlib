@@ -13,8 +13,8 @@ data:
     links: []
   bundledCode: "#line 2 \"math/rem_euclid.cpp\"\n\ntemplate <class T>\nconstexpr T\
     \ rem_euclid(T value, const T& mod) {\n    return (value %= mod) >= 0 ? value\
-    \ : mod;\n}\n#line 3 \"math/div_floor.cpp\"\n\ntemplate <class T>\nconstexpr T\
-    \ div_floor(const T& x, const T& y) {\n    return (x - rem_euclid(x, y)) / y;\n\
+    \ : value + mod;\n}\n#line 3 \"math/div_floor.cpp\"\n\ntemplate <class T>\nconstexpr\
+    \ T div_floor(const T& x, const T& y) {\n    return (x - rem_euclid(x, y)) / y;\n\
     }\n"
   code: "#pragma once\n#include \"rem_euclid.cpp\"\n\ntemplate <class T>\nconstexpr\
     \ T div_floor(const T& x, const T& y) {\n    return (x - rem_euclid(x, y)) / y;\n\
@@ -24,7 +24,7 @@ data:
   isVerificationFile: false
   path: math/div_floor.cpp
   requiredBy: []
-  timestamp: '2021-03-24 22:27:32+09:00'
+  timestamp: '2021-03-28 15:26:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/div_floor.cpp

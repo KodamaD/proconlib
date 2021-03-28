@@ -28,9 +28,9 @@ data:
     links: []
   bundledCode: "#line 2 \"math/rem_euclid.cpp\"\n\ntemplate <class T>\nconstexpr T\
     \ rem_euclid(T value, const T& mod) {\n    return (value %= mod) >= 0 ? value\
-    \ : mod;\n}\n"
+    \ : value + mod;\n}\n"
   code: "#pragma once\n\ntemplate <class T>\nconstexpr T rem_euclid(T value, const\
-    \ T& mod) {\n    return (value %= mod) >= 0 ? value : mod;\n}\n"
+    \ T& mod) {\n    return (value %= mod) >= 0 ? value : value + mod;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: math/rem_euclid.cpp
@@ -38,7 +38,7 @@ data:
   - math/static_modint.cpp
   - math/dynamic_modint.cpp
   - math/div_floor.cpp
-  timestamp: '2021-03-24 22:27:32+09:00'
+  timestamp: '2021-03-28 15:26:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lazy_segment_tree.test.cpp
