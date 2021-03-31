@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   - icon: ':warning:'
@@ -26,7 +26,7 @@ data:
     \ntemplate <class T>\nstd::vector<T> divisors_from_factors(const std::vector<std::pair<T,\
     \ usize>>& factors, const bool sort = true) {\n    usize size = 1;\n    for (const\
     \ std::pair<T, usize>& f: factors) size *= f.second;\n    std::vector<T> ret;\n\
-    \    ret.reserve(size);\n    RecLambda([&](auto &&dfs, const usize i, T x) ->\
+    \    ret.reserve(size);\n    RecLambda([&](auto&& dfs, const usize i, T x) ->\
     \ void {\n        if (i == factors.size()) {\n            ret.push_back(x);\n\
     \            return;\n        }\n        dfs(i + 1, x);\n        const T p = factors[i].first;\n\
     \        usize e = factors[i].second;\n        while (e--) {\n            x *=\
@@ -37,7 +37,7 @@ data:
     \ divisors_from_factors(const std::vector<std::pair<T, usize>>& factors, const\
     \ bool sort = true) {\n    usize size = 1;\n    for (const std::pair<T, usize>&\
     \ f: factors) size *= f.second;\n    std::vector<T> ret;\n    ret.reserve(size);\n\
-    \    RecLambda([&](auto &&dfs, const usize i, T x) -> void {\n        if (i ==\
+    \    RecLambda([&](auto&& dfs, const usize i, T x) -> void {\n        if (i ==\
     \ factors.size()) {\n            ret.push_back(x);\n            return;\n    \
     \    }\n        dfs(i + 1, x);\n        const T p = factors[i].first;\n      \
     \  usize e = factors[i].second;\n        while (e--) {\n            x *= p;\n\
@@ -49,7 +49,7 @@ data:
   isVerificationFile: false
   path: math/divisors_from_factors.cpp
   requiredBy: []
-  timestamp: '2021-03-26 16:54:27+09:00'
+  timestamp: '2021-03-31 11:13:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/divisors_from_factors.cpp

@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: bit/bit_rzeros.cpp
     title: bit/bit_rzeros.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
   - icon: ':heavy_check_mark:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedRequiredBy: []
@@ -104,74 +104,75 @@ data:
     \ x == 0 ? 64 : __builtin_ctzll(x);\n}\n#line 7 \"container/lazy_segment_tree.cpp\"\
     \n#include <vector>\n#include <cassert>\n\ntemplate <class Monoid, class Effector>\n\
     struct LazySegmentTree {\n    using M = Monoid;\n    using E = Effector;\n   \
-    \ usize internal_size, logn, size;\n    std::vector<M> data;\n    std::vector<E>\
+    \ usize internal_size, logn, seg_size;\n    std::vector<M> data;\n    std::vector<E>\
     \ lazy;\n\n    void fetch(const usize k) { data[k] = data[2 * k] + data[2 * k\
     \ + 1]; }\n    void apply(const usize k, const E& e) {\n        data[k] = data[k]\
-    \ * e;\n        if (k < size) lazy[k] = lazy[k] * e;\n    }\n    void flush(const\
+    \ * e;\n        if (k < seg_size) lazy[k] = lazy[k] * e;\n    }\n    void flush(const\
     \ usize k) {\n        apply(2 * k, lazy[k]);\n        apply(2 * k + 1, lazy[k]);\n\
     \        lazy[k] = E::one();\n    }\n\n    void push(const usize k) { for (const\
     \ usize d: revrep(bit_rzeros(k) + 1, logn + 1)) flush(k >> d); }\n    void pull(usize\
-    \ k) { for (k >>= bit_rzeros(k); k > 1;) fetch(k >>= 1); }\n\npublic:\n    LazySegmentTree()\
-    \ = default;\n    explicit LazySegmentTree(const usize size, const M& value =\
-    \ M::zero()):\n        LazySegmentTree(std::vector<M>(size, value)) { }\n    explicit\
-    \ LazySegmentTree(const std::vector<M>& vec): internal_size(vec.size()) {\n  \
-    \      logn = ceil_log2(internal_size);\n        size = 1 << logn;\n        data\
-    \ = std::vector<M>(2 * size, M::zero());\n        lazy = std::vector<E>(size,\
-    \ E::one());\n        for (const usize i: rep(0, internal_size)) data[size + i]\
-    \ = vec[i];\n        for (const usize i: revrep(1, size)) fetch(i);\n    }\n\n\
-    \    void assign(usize i, const M& value) {\n        assert(i < internal_size);\n\
-    \        i += size;\n        for (const usize d: revrep(1, logn + 1)) flush(i\
-    \ >> d);\n        data[i] = value;\n        for (const usize d: rep(1, logn +\
-    \ 1)) fetch(i >> d);\n    }\n    void operate(usize l, usize r, const E& e) {\n\
-    \        assert(l <= r and r <= internal_size);\n        l += size; r += size;\n\
-    \        push(l); push(r);\n        for (usize l0 = l, r0 = r; l0 < r0; l0 >>=\
-    \ 1, r0 >>= 1) {\n            if (l0 & 1) apply(l0++, e);\n            if (r0\
-    \ & 1) apply(--r0, e);\n        }\n        pull(l); pull(r);\n    }\n    \n  \
-    \  M fold() const { return data[1]; }\n    M fold(usize l, usize r) {\n      \
-    \  assert(l <= r and r <= internal_size);\n        l += size; r += size;\n   \
-    \     push(l); push(r);\n        M ret_l = M::zero(), ret_r = M::zero();\n   \
-    \     while (l < r) {\n            if (l & 1) ret_l = ret_l + data[l++];\n   \
-    \         if (r & 1) ret_r = data[--r] + ret_r;\n            l >>= 1;\n      \
-    \      r >>= 1;\n        }\n        return ret_l + ret_r;\n    }\n\n    template\
-    \ <class F>\n    usize max_right(usize l, const F& f) {\n        assert(l <= internal_size);\n\
-    \        assert(f(M::zero()));\n        if (l == internal_size) return internal_size;\n\
-    \        l += size;\n        for (const usize d: revrep(1, logn + 1)) flush(l\
-    \ >> d);\n        M sum = M::zero();\n        do {\n            while (!(l & 1))\
-    \ l >>= 1;\n            if (!f(sum + data[l])) {\n                while (l < size)\
-    \ {\n                    flush(l);\n                    l = 2 * l;\n         \
-    \           if (f(sum + data[l])) sum = sum + data[l++];\n                }\n\
-    \                return l - size;\n            }\n            sum = sum + data[l++];\n\
-    \        } while ((l & -l) != l);\n        return internal_size;\n    }\n\n  \
-    \  template <class F>\n    usize min_left(usize r, const F& f) {\n        assert(r\
-    \ <= internal_size);\n        assert(f(M::zero()));\n        if (r == 0) return\
-    \ 0;\n        r += size;\n        for (const usize d: revrep(1, logn + 1)) flush((r\
-    \ - 1) >> d);\n        M sum = M::zero();\n        do {\n            r -= 1;\n\
-    \            while (r > 1 and (r & 1)) r >>= 1;\n            if (!f(data[r] +\
-    \ sum)) {\n                while (r < size) {\n                    flush(r);\n\
-    \                    r = 2 * r + 1;\n                    if (f(data[r] + sum))\
-    \ sum = data[r--] + sum;\n                }\n                return r + 1 - size;\n\
-    \            }\n            sum = data[r] + sum;\n        } while ((r & -r) !=\
-    \ r);\n        return 0;\n    }\n};\n#line 6 \"test/lazy_segment_tree.test.cpp\"\
-    \n#include <iostream>\n\nusing Fp = StaticModint<998244353>;\n\nstruct Monoid\
-    \ {\n    static constexpr Monoid zero() {\n        return Monoid { Fp::raw(0),\
-    \ 0 };\n    }\n    Fp sum;\n    usize size;\n    constexpr Monoid operator + (const\
-    \ Monoid& other) const {\n        return Monoid { sum + other.sum, size + other.size\
-    \ };\n    }\n};\n\nstruct Effector {\n    static constexpr Effector one() {\n\
-    \        return Effector { Fp::raw(1), Fp::raw(0) };\n    }\n    Fp a, b;\n  \
-    \  constexpr Effector operator * (const Effector& other) const {\n        return\
-    \ Effector { other.a * a, other.a * b + other.b };\n    }\n};\n\nconstexpr Monoid\
-    \ operator * (const Monoid& m, const Effector& e) {\n    return Monoid { e.a *\
-    \ m.sum + e.b * Fp::raw(m.size), m.size };\n}\n\nint main() {\n    usize N, Q;\n\
-    \    std::cin >> N >> Q;\n    std::vector<Monoid> initial(N, Monoid::zero());\n\
-    \    for (const usize i: rep(0, N)) {\n        u32 a;\n        std::cin >> a;\n\
-    \        initial[i].sum = Fp::raw(a);\n        initial[i].size = 1;\n    }\n \
-    \   LazySegmentTree<Monoid, Effector> seg(initial);\n    while (Q--) {\n     \
-    \   usize t;\n        std::cin >> t;\n        if (t == 0) {\n            usize\
-    \ l, r;\n            std::cin >> l >> r;\n            u32 b, c;\n            std::cin\
-    \ >> b >> c;\n            seg.operate(l, r, Effector { Fp::raw(b), Fp::raw(c)\
-    \ });\n        }\n        else {\n            usize l, r;\n            std::cin\
-    \ >> l >> r;\n            std::cout << seg.fold(l, r).sum << '\\n';\n        }\n\
-    \    }\n    return 0;\n}\n"
+    \ k) { for (k >>= bit_rzeros(k); k > 1;) fetch(k >>= 1); }\n\npublic:\n    explicit\
+    \ LazySegmentTree(const usize size = 0, const M& value = M::zero()):\n       \
+    \ LazySegmentTree(std::vector<M>(size, value)) { }\n    explicit LazySegmentTree(const\
+    \ std::vector<M>& vec): internal_size(vec.size()) {\n        logn = ceil_log2(internal_size);\n\
+    \        seg_size = 1 << logn;\n        data = std::vector<M>(2 * seg_size, M::zero());\n\
+    \        lazy = std::vector<E>(seg_size, E::one());\n        for (const usize\
+    \ i: rep(0, internal_size)) data[seg_size + i] = vec[i];\n        for (const usize\
+    \ i: revrep(1, seg_size)) fetch(i);\n    }\n\n    usize size() const { return\
+    \ internal_size; }\n\n    void assign(usize i, const M& value) {\n        assert(i\
+    \ < internal_size);\n        i += seg_size;\n        for (const usize d: revrep(1,\
+    \ logn + 1)) flush(i >> d);\n        data[i] = value;\n        for (const usize\
+    \ d: rep(1, logn + 1)) fetch(i >> d);\n    }\n    void operate(usize l, usize\
+    \ r, const E& e) {\n        assert(l <= r and r <= internal_size);\n        l\
+    \ += seg_size; r += seg_size;\n        push(l); push(r);\n        for (usize l0\
+    \ = l, r0 = r; l0 < r0; l0 >>= 1, r0 >>= 1) {\n            if (l0 & 1) apply(l0++,\
+    \ e);\n            if (r0 & 1) apply(--r0, e);\n        }\n        pull(l); pull(r);\n\
+    \    }\n    \n    M fold() const { return data[1]; }\n    M fold(usize l, usize\
+    \ r) {\n        assert(l <= r and r <= internal_size);\n        l += seg_size;\
+    \ r += seg_size;\n        push(l); push(r);\n        M ret_l = M::zero(), ret_r\
+    \ = M::zero();\n        while (l < r) {\n            if (l & 1) ret_l = ret_l\
+    \ + data[l++];\n            if (r & 1) ret_r = data[--r] + ret_r;\n          \
+    \  l >>= 1;\n            r >>= 1;\n        }\n        return ret_l + ret_r;\n\
+    \    }\n\n    template <class F>\n    usize max_right(usize l, const F& f) {\n\
+    \        assert(l <= internal_size);\n        assert(f(M::zero()));\n        if\
+    \ (l == internal_size) return internal_size;\n        l += seg_size;\n       \
+    \ for (const usize d: revrep(1, logn + 1)) flush(l >> d);\n        M sum = M::zero();\n\
+    \        do {\n            while (!(l & 1)) l >>= 1;\n            if (!f(sum +\
+    \ data[l])) {\n                while (l < seg_size) {\n                    flush(l);\n\
+    \                    l = 2 * l;\n                    if (f(sum + data[l])) sum\
+    \ = sum + data[l++];\n                }\n                return l - seg_size;\n\
+    \            }\n            sum = sum + data[l++];\n        } while ((l & -l)\
+    \ != l);\n        return internal_size;\n    }\n\n    template <class F>\n   \
+    \ usize min_left(usize r, const F& f) {\n        assert(r <= internal_size);\n\
+    \        assert(f(M::zero()));\n        if (r == 0) return 0;\n        r += seg_size;\n\
+    \        for (const usize d: revrep(1, logn + 1)) flush((r - 1) >> d);\n     \
+    \   M sum = M::zero();\n        do {\n            r -= 1;\n            while (r\
+    \ > 1 and (r & 1)) r >>= 1;\n            if (!f(data[r] + sum)) {\n          \
+    \      while (r < seg_size) {\n                    flush(r);\n               \
+    \     r = 2 * r + 1;\n                    if (f(data[r] + sum)) sum = data[r--]\
+    \ + sum;\n                }\n                return r + 1 - seg_size;\n      \
+    \      }\n            sum = data[r] + sum;\n        } while ((r & -r) != r);\n\
+    \        return 0;\n    }\n};\n#line 6 \"test/lazy_segment_tree.test.cpp\"\n#include\
+    \ <iostream>\n\nusing Fp = StaticModint<998244353>;\n\nstruct Monoid {\n    static\
+    \ constexpr Monoid zero() {\n        return Monoid { Fp::raw(0), 0 };\n    }\n\
+    \    Fp sum;\n    usize size;\n    constexpr Monoid operator + (const Monoid&\
+    \ other) const {\n        return Monoid { sum + other.sum, size + other.size };\n\
+    \    }\n};\n\nstruct Effector {\n    static constexpr Effector one() {\n     \
+    \   return Effector { Fp::raw(1), Fp::raw(0) };\n    }\n    Fp a, b;\n    constexpr\
+    \ Effector operator * (const Effector& other) const {\n        return Effector\
+    \ { other.a * a, other.a * b + other.b };\n    }\n};\n\nconstexpr Monoid operator\
+    \ * (const Monoid& m, const Effector& e) {\n    return Monoid { e.a * m.sum +\
+    \ e.b * Fp::raw(m.size), m.size };\n}\n\nint main() {\n    usize N, Q;\n    std::cin\
+    \ >> N >> Q;\n    std::vector<Monoid> initial(N, Monoid::zero());\n    for (const\
+    \ usize i: rep(0, N)) {\n        u32 a;\n        std::cin >> a;\n        initial[i].sum\
+    \ = Fp::raw(a);\n        initial[i].size = 1;\n    }\n    LazySegmentTree<Monoid,\
+    \ Effector> seg(initial);\n    while (Q--) {\n        usize t;\n        std::cin\
+    \ >> t;\n        if (t == 0) {\n            usize l, r;\n            std::cin\
+    \ >> l >> r;\n            u32 b, c;\n            std::cin >> b >> c;\n       \
+    \     seg.operate(l, r, Effector { Fp::raw(b), Fp::raw(c) });\n        }\n   \
+    \     else {\n            usize l, r;\n            std::cin >> l >> r;\n     \
+    \       std::cout << seg.fold(l, r).sum << '\\n';\n        }\n    }\n    return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \n#include \"../math/static_modint.cpp\"\n#include \"../container/lazy_segment_tree.cpp\"\
     \n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n#include\
@@ -207,7 +208,7 @@ data:
   isVerificationFile: true
   path: test/lazy_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-03-28 15:33:30+09:00'
+  timestamp: '2021-03-31 11:12:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lazy_segment_tree.test.cpp

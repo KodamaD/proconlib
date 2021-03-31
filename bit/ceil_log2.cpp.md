@@ -1,14 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: container/dual_segment_tree.cpp
+    title: container/dual_segment_tree.cpp
+  - icon: ':heavy_check_mark:'
+    path: container/fenwick_tree.cpp
+    title: container/fenwick_tree.cpp
+  - icon: ':heavy_check_mark:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -22,6 +28,12 @@ data:
     title: utility/auto_realloc.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/dual_segment_tree.test.cpp
+    title: test/dual_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fenwick_tree.test.cpp
+    title: test/fenwick_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,12 +42,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/prime_util.test.cpp
     title: test/prime_util.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
@@ -56,10 +68,14 @@ data:
   - math/modint_util.cpp
   - math/prime_util.cpp
   - container/lazy_segment_tree.cpp
+  - container/fenwick_tree.cpp
   - container/segment_tree.cpp
+  - container/dual_segment_tree.cpp
   timestamp: '2021-03-25 12:45:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/fenwick_tree.test.cpp
+  - test/dual_segment_tree.test.cpp
   - test/prime_util.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/segment_tree.test.cpp

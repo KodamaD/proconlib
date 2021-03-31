@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/factorize.cpp
     title: math/factorize.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
@@ -32,20 +32,20 @@ data:
     \ <iostream>\n\nint main() {\n    u32 n;\n    std::cin >> n;\n    std::cout <<\
     \ n << ':';\n    for (auto [p, e]: factorize(n)) {\n        while (e--) {\n  \
     \          std::cout << ' ' << p;\n        }\n    }\n    std::cout << '\\n';\n\
-    }\n"
+    \    return 0;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A\"\
     \n#include \"../math/factorize.cpp\"\n#include \"../utility/int_alias.cpp\"\n\
     #include <iostream>\n\nint main() {\n    u32 n;\n    std::cin >> n;\n    std::cout\
     \ << n << ':';\n    for (auto [p, e]: factorize(n)) {\n        while (e--) {\n\
     \            std::cout << ' ' << p;\n        }\n    }\n    std::cout << '\\n';\n\
-    }"
+    \    return 0;\n}"
   dependsOn:
   - math/factorize.cpp
   - utility/int_alias.cpp
   isVerificationFile: true
   path: test/factorize.test.cpp
   requiredBy: []
-  timestamp: '2021-03-26 16:54:27+09:00'
+  timestamp: '2021-03-31 11:13:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/factorize.test.cpp

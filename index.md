@@ -12,7 +12,7 @@ data:
     - icon: ':warning:'
       path: bit/bit_width.cpp
       title: bit/bit_width.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: bit/ceil_log2.cpp
       title: bit/ceil_log2.cpp
     - icon: ':warning:'
@@ -21,9 +21,15 @@ data:
   - name: container
     pages:
     - icon: ':heavy_check_mark:'
+      path: container/dual_segment_tree.cpp
+      title: container/dual_segment_tree.cpp
+    - icon: ':heavy_check_mark:'
+      path: container/fenwick_tree.cpp
+      title: container/fenwick_tree.cpp
+    - icon: ':heavy_check_mark:'
       path: container/lazy_segment_tree.cpp
       title: container/lazy_segment_tree.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: container/segment_tree.cpp
       title: container/segment_tree.cpp
   - name: math
@@ -55,10 +61,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/prime_util.cpp
       title: math/prime_util.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/rem_euclid.cpp
       title: math/rem_euclid.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/static_modint.cpp
       title: math/static_modint.cpp
   - name: utility
@@ -69,16 +75,16 @@ data:
     - icon: ':warning:'
       path: utility/infty.cpp
       title: utility/infty.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
     - icon: ':warning:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/rep.cpp
       title: utility/rep.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/revrep.cpp
       title: utility/revrep.cpp
     - icon: ':warning:'
@@ -91,11 +97,17 @@ data:
   - name: test
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/dual_segment_tree.test.cpp
+      title: test/dual_segment_tree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/example.test.cpp
       title: test/example.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/factorize.test.cpp
       title: test/factorize.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/fenwick_tree.test.cpp
+      title: test/fenwick_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/lazy_segment_tree.test.cpp
       title: test/lazy_segment_tree.test.cpp
@@ -105,7 +117,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/prime_util.test.cpp
       title: test/prime_util.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/segment_tree.test.cpp
       title: test/segment_tree.test.cpp
 layout: toppage

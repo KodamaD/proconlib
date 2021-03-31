@@ -11,16 +11,22 @@ data:
   - icon: ':warning:'
     path: bit/bit_width.cpp
     title: bit/bit_width.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
   - icon: ':warning:'
     path: bit/popcount.cpp
     title: bit/popcount.cpp
   - icon: ':heavy_check_mark:'
+    path: container/dual_segment_tree.cpp
+    title: container/dual_segment_tree.cpp
+  - icon: ':heavy_check_mark:'
+    path: container/fenwick_tree.cpp
+    title: container/fenwick_tree.cpp
+  - icon: ':heavy_check_mark:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
   - icon: ':warning:'
@@ -38,22 +44,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/prime_util.cpp
     title: math/prime_util.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   - icon: ':heavy_check_mark:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/dual_segment_tree.test.cpp
+    title: test/dual_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fenwick_tree.test.cpp
+    title: test/fenwick_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
@@ -63,12 +75,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/prime_util.test.cpp
     title: test/prime_util.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 2 "utility/int_alias.cpp"
@@ -138,10 +150,14 @@ data:
   - bit/ceil_log2.cpp
   - bit/bit_lzeros.cpp
   - container/lazy_segment_tree.cpp
+  - container/fenwick_tree.cpp
   - container/segment_tree.cpp
+  - container/dual_segment_tree.cpp
   timestamp: '2021-03-24 22:26:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/fenwick_tree.test.cpp
+  - test/dual_segment_tree.test.cpp
   - test/prime_util.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/segment_tree.test.cpp
