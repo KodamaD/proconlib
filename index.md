@@ -12,7 +12,7 @@ data:
     - icon: ':warning:'
       path: bit/bit_width.cpp
       title: bit/bit_width.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bit/ceil_log2.cpp
       title: bit/ceil_log2.cpp
     - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: container/lazy_segment_tree.cpp
       title: container/lazy_segment_tree.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: container/segment_tree.cpp
       title: container/segment_tree.cpp
   - name: math
@@ -61,10 +61,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/prime_util.cpp
       title: math/prime_util.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/rem_euclid.cpp
       title: math/rem_euclid.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/static_modint.cpp
       title: math/static_modint.cpp
   - name: utility
@@ -75,16 +75,16 @@ data:
     - icon: ':warning:'
       path: utility/infty.cpp
       title: utility/infty.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
     - icon: ':warning:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/rep.cpp
       title: utility/rep.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/revrep.cpp
       title: utility/revrep.cpp
     - icon: ':warning:'
@@ -117,7 +117,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/prime_util.test.cpp
       title: test/prime_util.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/segment_tree.test.cpp
       title: test/segment_tree.test.cpp
 layout: toppage

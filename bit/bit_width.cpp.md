@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: bit/bit_lzeros.cpp
     title: bit/bit_lzeros.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []

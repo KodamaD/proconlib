@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
@@ -53,34 +53,34 @@ data:
     \ value = M::zero()): \n        SegmentTree(std::vector<M>(size, value)) { }\n\
     \    explicit SegmentTree(const std::vector<M>& vec): internal_size(vec.size())\
     \ {\n        seg_size = 1 << ceil_log2(internal_size);\n        data = std::vector<M>(2\
-    \ * size, M::zero());\n        for (const usize i: rep(0, internal_size)) data[seg_size\
-    \ + i] = vec[i];\n        for (const usize i: revrep(1, seg_size)) fetch(i);\n\
-    \    }\n\n    usize size() const { return internal_size; }\n\n    void assign(usize\
-    \ i, const M& value) {\n        assert(i < internal_size);\n        i += seg_size;\n\
-    \        data[i] = value;\n        while (i > 1) {\n            i >>= 1;\n   \
-    \         fetch(i);\n        }\n    }\n\n    M fold() const { return data[1];\
-    \ }\n    M fold(usize l, usize r) const {\n        assert(l <= r and r <= internal_size);\n\
-    \        l += seg_size; r += seg_size;\n        M ret_l = M::zero(), ret_r = M::zero();\n\
-    \        while (l < r) {\n            if (l & 1) ret_l = ret_l + data[l++];\n\
-    \            if (r & 1) ret_r = data[--r] + ret_r;\n            l >>= 1;\n   \
-    \         r >>= 1;\n        }\n        return ret_l + ret_r;\n    }\n\n    template\
-    \ <class F>\n    usize max_right(usize l, const F& f) const {\n        assert(l\
-    \ <= internal_size);\n        assert(f(M::zero()));\n        if (l == internal_size)\
-    \ return internal_size;\n        l += seg_size;\n        M sum = M::zero();\n\
-    \        do {\n            while (!(l & 1)) l >>= 1;\n            if (!f(sum +\
-    \ data[l])) {\n                while (l < seg_size) {\n                    l =\
-    \ 2 * l;\n                    if (f(sum + data[l])) sum = sum + data[l++];\n \
-    \               }\n                return l - seg_size;\n            }\n     \
-    \       sum = sum + data[l++];\n        } while ((l & -l) != l);\n        return\
-    \ internal_size;\n    }\n\n    template <class F>\n    usize min_left(usize r,\
-    \ const F& f) const {\n        assert(r <= internal_size);\n        assert(f(M::zero()));\n\
-    \        if (r == 0) return 0;\n        r += seg_size;\n        M sum = M::zero();\n\
-    \        do {\n            r -= 1;\n            while (r > 1 and (r & 1)) r >>=\
-    \ 1;\n            if (!f(data[r] + sum)) {\n                while (r < seg_size)\
-    \ {\n                    r = 2 * r + 1;\n                    if (f(data[r] + sum))\
-    \ sum = data[r--] + sum;\n                }\n                return r + 1 - seg_size;\n\
-    \            }\n            sum = data[r] + sum;\n        } while ((r & -r) !=\
-    \ r);\n        return 0;\n    }\n};\n"
+    \ * seg_size, M::zero());\n        for (const usize i: rep(0, internal_size))\
+    \ data[seg_size + i] = vec[i];\n        for (const usize i: revrep(1, seg_size))\
+    \ fetch(i);\n    }\n\n    usize size() const { return internal_size; }\n\n   \
+    \ void assign(usize i, const M& value) {\n        assert(i < internal_size);\n\
+    \        i += seg_size;\n        data[i] = value;\n        while (i > 1) {\n \
+    \           i >>= 1;\n            fetch(i);\n        }\n    }\n\n    M fold()\
+    \ const { return data[1]; }\n    M fold(usize l, usize r) const {\n        assert(l\
+    \ <= r and r <= internal_size);\n        l += seg_size; r += seg_size;\n     \
+    \   M ret_l = M::zero(), ret_r = M::zero();\n        while (l < r) {\n       \
+    \     if (l & 1) ret_l = ret_l + data[l++];\n            if (r & 1) ret_r = data[--r]\
+    \ + ret_r;\n            l >>= 1;\n            r >>= 1;\n        }\n        return\
+    \ ret_l + ret_r;\n    }\n\n    template <class F>\n    usize max_right(usize l,\
+    \ const F& f) const {\n        assert(l <= internal_size);\n        assert(f(M::zero()));\n\
+    \        if (l == internal_size) return internal_size;\n        l += seg_size;\n\
+    \        M sum = M::zero();\n        do {\n            while (!(l & 1)) l >>=\
+    \ 1;\n            if (!f(sum + data[l])) {\n                while (l < seg_size)\
+    \ {\n                    l = 2 * l;\n                    if (f(sum + data[l]))\
+    \ sum = sum + data[l++];\n                }\n                return l - seg_size;\n\
+    \            }\n            sum = sum + data[l++];\n        } while ((l & -l)\
+    \ != l);\n        return internal_size;\n    }\n\n    template <class F>\n   \
+    \ usize min_left(usize r, const F& f) const {\n        assert(r <= internal_size);\n\
+    \        assert(f(M::zero()));\n        if (r == 0) return 0;\n        r += seg_size;\n\
+    \        M sum = M::zero();\n        do {\n            r -= 1;\n            while\
+    \ (r > 1 and (r & 1)) r >>= 1;\n            if (!f(data[r] + sum)) {\n       \
+    \         while (r < seg_size) {\n                    r = 2 * r + 1;\n       \
+    \             if (f(data[r] + sum)) sum = data[r--] + sum;\n                }\n\
+    \                return r + 1 - seg_size;\n            }\n            sum = data[r]\
+    \ + sum;\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\
     \n#include \"../utility/revrep.cpp\"\n#include \"../bit/ceil_log2.cpp\"\n#include\
     \ <vector>\n#include <cassert>\n\ntemplate <class Monoid>\nclass SegmentTree {\n\
@@ -90,34 +90,34 @@ data:
     \ value = M::zero()): \n        SegmentTree(std::vector<M>(size, value)) { }\n\
     \    explicit SegmentTree(const std::vector<M>& vec): internal_size(vec.size())\
     \ {\n        seg_size = 1 << ceil_log2(internal_size);\n        data = std::vector<M>(2\
-    \ * size, M::zero());\n        for (const usize i: rep(0, internal_size)) data[seg_size\
-    \ + i] = vec[i];\n        for (const usize i: revrep(1, seg_size)) fetch(i);\n\
-    \    }\n\n    usize size() const { return internal_size; }\n\n    void assign(usize\
-    \ i, const M& value) {\n        assert(i < internal_size);\n        i += seg_size;\n\
-    \        data[i] = value;\n        while (i > 1) {\n            i >>= 1;\n   \
-    \         fetch(i);\n        }\n    }\n\n    M fold() const { return data[1];\
-    \ }\n    M fold(usize l, usize r) const {\n        assert(l <= r and r <= internal_size);\n\
-    \        l += seg_size; r += seg_size;\n        M ret_l = M::zero(), ret_r = M::zero();\n\
-    \        while (l < r) {\n            if (l & 1) ret_l = ret_l + data[l++];\n\
-    \            if (r & 1) ret_r = data[--r] + ret_r;\n            l >>= 1;\n   \
-    \         r >>= 1;\n        }\n        return ret_l + ret_r;\n    }\n\n    template\
-    \ <class F>\n    usize max_right(usize l, const F& f) const {\n        assert(l\
-    \ <= internal_size);\n        assert(f(M::zero()));\n        if (l == internal_size)\
-    \ return internal_size;\n        l += seg_size;\n        M sum = M::zero();\n\
-    \        do {\n            while (!(l & 1)) l >>= 1;\n            if (!f(sum +\
-    \ data[l])) {\n                while (l < seg_size) {\n                    l =\
-    \ 2 * l;\n                    if (f(sum + data[l])) sum = sum + data[l++];\n \
-    \               }\n                return l - seg_size;\n            }\n     \
-    \       sum = sum + data[l++];\n        } while ((l & -l) != l);\n        return\
-    \ internal_size;\n    }\n\n    template <class F>\n    usize min_left(usize r,\
-    \ const F& f) const {\n        assert(r <= internal_size);\n        assert(f(M::zero()));\n\
-    \        if (r == 0) return 0;\n        r += seg_size;\n        M sum = M::zero();\n\
-    \        do {\n            r -= 1;\n            while (r > 1 and (r & 1)) r >>=\
-    \ 1;\n            if (!f(data[r] + sum)) {\n                while (r < seg_size)\
-    \ {\n                    r = 2 * r + 1;\n                    if (f(data[r] + sum))\
-    \ sum = data[r--] + sum;\n                }\n                return r + 1 - seg_size;\n\
-    \            }\n            sum = data[r] + sum;\n        } while ((r & -r) !=\
-    \ r);\n        return 0;\n    }\n};\n"
+    \ * seg_size, M::zero());\n        for (const usize i: rep(0, internal_size))\
+    \ data[seg_size + i] = vec[i];\n        for (const usize i: revrep(1, seg_size))\
+    \ fetch(i);\n    }\n\n    usize size() const { return internal_size; }\n\n   \
+    \ void assign(usize i, const M& value) {\n        assert(i < internal_size);\n\
+    \        i += seg_size;\n        data[i] = value;\n        while (i > 1) {\n \
+    \           i >>= 1;\n            fetch(i);\n        }\n    }\n\n    M fold()\
+    \ const { return data[1]; }\n    M fold(usize l, usize r) const {\n        assert(l\
+    \ <= r and r <= internal_size);\n        l += seg_size; r += seg_size;\n     \
+    \   M ret_l = M::zero(), ret_r = M::zero();\n        while (l < r) {\n       \
+    \     if (l & 1) ret_l = ret_l + data[l++];\n            if (r & 1) ret_r = data[--r]\
+    \ + ret_r;\n            l >>= 1;\n            r >>= 1;\n        }\n        return\
+    \ ret_l + ret_r;\n    }\n\n    template <class F>\n    usize max_right(usize l,\
+    \ const F& f) const {\n        assert(l <= internal_size);\n        assert(f(M::zero()));\n\
+    \        if (l == internal_size) return internal_size;\n        l += seg_size;\n\
+    \        M sum = M::zero();\n        do {\n            while (!(l & 1)) l >>=\
+    \ 1;\n            if (!f(sum + data[l])) {\n                while (l < seg_size)\
+    \ {\n                    l = 2 * l;\n                    if (f(sum + data[l]))\
+    \ sum = sum + data[l++];\n                }\n                return l - seg_size;\n\
+    \            }\n            sum = sum + data[l++];\n        } while ((l & -l)\
+    \ != l);\n        return internal_size;\n    }\n\n    template <class F>\n   \
+    \ usize min_left(usize r, const F& f) const {\n        assert(r <= internal_size);\n\
+    \        assert(f(M::zero()));\n        if (r == 0) return 0;\n        r += seg_size;\n\
+    \        M sum = M::zero();\n        do {\n            r -= 1;\n            while\
+    \ (r > 1 and (r & 1)) r >>= 1;\n            if (!f(data[r] + sum)) {\n       \
+    \         while (r < seg_size) {\n                    r = 2 * r + 1;\n       \
+    \             if (f(data[r] + sum)) sum = data[r--] + sum;\n                }\n\
+    \                return r + 1 - seg_size;\n            }\n            sum = data[r]\
+    \ + sum;\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n"
   dependsOn:
   - utility/int_alias.cpp
   - utility/rep.cpp
@@ -126,8 +126,8 @@ data:
   isVerificationFile: false
   path: container/segment_tree.cpp
   requiredBy: []
-  timestamp: '2021-03-31 11:12:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-03-31 14:58:46+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segment_tree.test.cpp
 documentation_of: container/segment_tree.cpp
