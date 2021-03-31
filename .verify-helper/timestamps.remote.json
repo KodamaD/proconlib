@@ -5,5 +5,6 @@
 "test/fenwick_tree.test.cpp": "2021-03-31 11:12:27 +0900",
 "test/lazy_segment_tree.test.cpp": "2021-03-31 11:12:27 +0900",
 "test/modint_util.test.cpp": "2021-03-28 15:33:30 +0900",
-"test/prime_util.test.cpp": "2021-03-26 16:54:27 +0900"
+"test/prime_util.test.cpp": "2021-03-26 16:54:27 +0900",
+"test/segment_tree.test.cpp": "2021-03-31 14:58:46 +0900"
 }
