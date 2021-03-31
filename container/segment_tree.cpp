@@ -19,7 +19,7 @@ public:
         SegmentTree(std::vector<M>(size, value)) { }
     explicit SegmentTree(const std::vector<M>& vec): internal_size(vec.size()) {
         seg_size = 1 << ceil_log2(internal_size);
-        data = std::vector<M>(2 * size, M::zero());
+        data = std::vector<M>(2 * seg_size, M::zero());
         for (const usize i: rep(0, internal_size)) data[seg_size + i] = vec[i];
         for (const usize i: revrep(1, seg_size)) fetch(i);
     }
