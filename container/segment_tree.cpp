@@ -9,26 +9,26 @@
 template <class Monoid>
 class SegmentTree {
     using M = Monoid;
-    usize internal_size, logn, size;
+    usize internal_size, seg_size;
     std::vector<M> data;
 
     void fetch(const usize k) { data[k] = data[2 * k] + data[2 * k + 1]; }
 
 public:
-    SegmentTree() = default;
-    explicit SegmentTree(const usize size, const M& value = M::zero()): 
+    explicit SegmentTree(const usize size = 0, const M& value = M::zero()): 
         SegmentTree(std::vector<M>(size, value)) { }
     explicit SegmentTree(const std::vector<M>& vec): internal_size(vec.size()) {
-        logn = ceil_log2(internal_size);
-        size = 1 << logn;
+        seg_size = 1 << ceil_log2(internal_size);
         data = std::vector<M>(2 * size, M::zero());
-        for (const usize i: rep(0, internal_size)) data[size + i] = vec[i];
-        for (const usize i: revrep(1, size)) fetch(i);
+        for (const usize i: rep(0, internal_size)) data[seg_size + i] = vec[i];
+        for (const usize i: revrep(1, seg_size)) fetch(i);
     }
+
+    usize size() const { return internal_size; }
 
     void assign(usize i, const M& value) {
         assert(i < internal_size);
-        i += size;
+        i += seg_size;
         data[i] = value;
         while (i > 1) {
             i >>= 1;
@@ -39,8 +39,7 @@ public:
     M fold() const { return data[1]; }
     M fold(usize l, usize r) const {
         assert(l <= r and r <= internal_size);
-        l += size;
-        r += size;
+        l += seg_size; r += seg_size;
         M ret_l = M::zero(), ret_r = M::zero();
         while (l < r) {
             if (l & 1) ret_l = ret_l + data[l++];
@@ -56,16 +55,16 @@ public:
         assert(l <= internal_size);
         assert(f(M::zero()));
         if (l == internal_size) return internal_size;
-        l += size;
+        l += seg_size;
         M sum = M::zero();
         do {
             while (!(l & 1)) l >>= 1;
             if (!f(sum + data[l])) {
-                while (l < size) {
+                while (l < seg_size) {
                     l = 2 * l;
                     if (f(sum + data[l])) sum = sum + data[l++];
                 }
-                return l - size;
+                return l - seg_size;
             }
             sum = sum + data[l++];
         } while ((l & -l) != l);
@@ -77,17 +76,17 @@ public:
         assert(r <= internal_size);
         assert(f(M::zero()));
         if (r == 0) return 0;
-        r += size;
+        r += seg_size;
         M sum = M::zero();
         do {
             r -= 1;
             while (r > 1 and (r & 1)) r >>= 1;
             if (!f(data[r] + sum)) {
-                while (r < size) {
+                while (r < seg_size) {
                     r = 2 * r + 1;
                     if (f(data[r] + sum)) sum = data[r--] + sum;
                 }
-                return r + 1 - size;
+                return r + 1 - seg_size;
             }
             sum = data[r] + sum;
         } while ((r & -r) != r);
