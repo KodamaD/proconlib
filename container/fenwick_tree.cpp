@@ -11,7 +11,7 @@ class FenwickTree {
 public:
     explicit FenwickTree(const usize size = 0) {
         logn = ceil_log2(size + 1) - 1;
-        data = std::vector<T>(size + 1, T{});
+        data = std::vector<T>(size + 1, T(0));
     }
 
     usize size() const { return data.size() - 1; }
@@ -35,7 +35,7 @@ public:
 
     T fold(usize l, usize r) const {
         assert(l <= r and r <= size());
-        T ret{};
+        T ret(0);
         while (l < r) {
             ret += data[r];
             r -= r & -r;
@@ -49,9 +49,9 @@ public:
 
     template <class F>
     usize max_right(const F &f) const {
-        assert(f(T{}));
+        assert(f(T(0)));
         usize i = 0;
-        T sum{};
+        T sum(0);
         for (usize k = (1 << logn); k > 0; k >>= 1) {
             if (i + k <= size() && f(sum + data[i + k])) {
                 i += k;
