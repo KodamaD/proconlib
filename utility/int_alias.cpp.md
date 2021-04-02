@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: bit/bit_lzeros.cpp
     title: bit/bit_lzeros.cpp
   - icon: ':heavy_check_mark:'
     path: bit/bit_rzeros.cpp
     title: bit/bit_rzeros.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: bit/bit_width.cpp
     title: bit/bit_width.cpp
   - icon: ':heavy_check_mark:'
@@ -29,6 +29,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
+  - icon: ':heavy_check_mark:'
+    path: container/sparse_table.cpp
+    title: container/sparse_table.cpp
   - icon: ':warning:'
     path: math/divisors_from_factors.cpp
     title: math/divisors_from_factors.cpp
@@ -78,6 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/sparse_table.test.cpp
+    title: test/sparse_table.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -135,34 +141,36 @@ data:
   isVerificationFile: false
   path: utility/int_alias.cpp
   requiredBy:
-  - utility/auto_realloc.cpp
-  - utility/rep.cpp
   - utility/revrep.cpp
-  - math/modint_util.cpp
-  - math/divisors_from_factors.cpp
+  - utility/rep.cpp
+  - utility/auto_realloc.cpp
+  - container/segment_tree.cpp
+  - container/sparse_table.cpp
+  - container/fenwick_tree.cpp
+  - container/dual_segment_tree.cpp
+  - container/lazy_segment_tree.cpp
+  - math/factorize.cpp
   - math/static_modint.cpp
   - math/dynamic_modint.cpp
-  - math/factorize.cpp
+  - math/divisors_from_factors.cpp
   - math/prime_util.cpp
-  - bit/popcount.cpp
-  - bit/bit_rzeros.cpp
+  - math/modint_util.cpp
+  - bit/bit_lzeros.cpp
   - bit/bit_width.cpp
   - bit/ceil_log2.cpp
-  - bit/bit_lzeros.cpp
-  - container/lazy_segment_tree.cpp
-  - container/fenwick_tree.cpp
-  - container/segment_tree.cpp
-  - container/dual_segment_tree.cpp
+  - bit/bit_rzeros.cpp
+  - bit/popcount.cpp
   timestamp: '2021-03-24 22:26:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fenwick_tree.test.cpp
-  - test/dual_segment_tree.test.cpp
+  - test/factorize.test.cpp
+  - test/sparse_table.test.cpp
   - test/prime_util.test.cpp
+  - test/modint_util.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/segment_tree.test.cpp
-  - test/modint_util.test.cpp
-  - test/factorize.test.cpp
+  - test/dual_segment_tree.test.cpp
 documentation_of: utility/int_alias.cpp
 layout: document
 redirect_from:

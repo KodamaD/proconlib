@@ -65,21 +65,21 @@ data:
   path: bit/ceil_log2.cpp
   requiredBy:
   - utility/auto_realloc.cpp
-  - math/modint_util.cpp
-  - math/prime_util.cpp
-  - container/lazy_segment_tree.cpp
-  - container/fenwick_tree.cpp
   - container/segment_tree.cpp
+  - container/fenwick_tree.cpp
   - container/dual_segment_tree.cpp
+  - container/lazy_segment_tree.cpp
+  - math/prime_util.cpp
+  - math/modint_util.cpp
   timestamp: '2021-03-25 12:45:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fenwick_tree.test.cpp
-  - test/dual_segment_tree.test.cpp
   - test/prime_util.test.cpp
+  - test/modint_util.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/segment_tree.test.cpp
-  - test/modint_util.test.cpp
+  - test/dual_segment_tree.test.cpp
 documentation_of: bit/ceil_log2.cpp
 layout: document
 redirect_from:

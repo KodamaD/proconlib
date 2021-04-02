@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/sparse_table.test.cpp
+    title: test/sparse_table.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: '#line 2 "utility/infty.cpp"
@@ -33,8 +36,9 @@ data:
   path: utility/infty.cpp
   requiredBy: []
   timestamp: '2021-03-24 22:26:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/sparse_table.test.cpp
 documentation_of: utility/infty.cpp
 layout: document
 redirect_from:

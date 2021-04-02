@@ -34,8 +34,8 @@ data:
   isVerificationFile: false
   path: math/inv_gcd.cpp
   requiredBy:
-  - math/dynamic_modint.cpp
   - math/mod_inv.cpp
+  - math/dynamic_modint.cpp
   timestamp: '2021-03-24 22:27:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

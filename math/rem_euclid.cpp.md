@@ -41,9 +41,9 @@ data:
   timestamp: '2021-03-28 15:26:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/modint_util.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/segment_tree.test.cpp
-  - test/modint_util.test.cpp
 documentation_of: math/rem_euclid.cpp
 layout: document
 redirect_from:

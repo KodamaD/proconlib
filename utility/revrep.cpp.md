@@ -57,15 +57,15 @@ data:
   isVerificationFile: false
   path: utility/revrep.cpp
   requiredBy:
-  - container/lazy_segment_tree.cpp
   - container/segment_tree.cpp
   - container/dual_segment_tree.cpp
+  - container/lazy_segment_tree.cpp
   timestamp: '2021-03-26 16:46:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/dual_segment_tree.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/segment_tree.test.cpp
+  - test/dual_segment_tree.test.cpp
 documentation_of: utility/revrep.cpp
 layout: document
 redirect_from:

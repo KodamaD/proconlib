@@ -15,6 +15,9 @@ data:
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
   - icon: ':heavy_check_mark:'
+    path: container/sparse_table.cpp
+    title: container/sparse_table.cpp
+  - icon: ':heavy_check_mark:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
   - icon: ':heavy_check_mark:'
@@ -39,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/sparse_table.test.cpp
+    title: test/sparse_table.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -71,20 +77,22 @@ data:
   isVerificationFile: false
   path: utility/rep.cpp
   requiredBy:
-  - math/modint_util.cpp
-  - math/prime_util.cpp
-  - container/lazy_segment_tree.cpp
   - container/segment_tree.cpp
+  - container/sparse_table.cpp
   - container/dual_segment_tree.cpp
+  - container/lazy_segment_tree.cpp
+  - math/prime_util.cpp
+  - math/modint_util.cpp
   timestamp: '2021-03-24 22:26:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fenwick_tree.test.cpp
-  - test/dual_segment_tree.test.cpp
+  - test/sparse_table.test.cpp
   - test/prime_util.test.cpp
+  - test/modint_util.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/segment_tree.test.cpp
-  - test/modint_util.test.cpp
+  - test/dual_segment_tree.test.cpp
 documentation_of: utility/rep.cpp
 layout: document
 redirect_from:

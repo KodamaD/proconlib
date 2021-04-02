@@ -36,13 +36,13 @@ data:
   isVerificationFile: false
   path: bit/bit_rzeros.cpp
   requiredBy:
-  - container/lazy_segment_tree.cpp
   - container/dual_segment_tree.cpp
+  - container/lazy_segment_tree.cpp
   timestamp: '2021-03-26 16:52:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/dual_segment_tree.test.cpp
   - test/lazy_segment_tree.test.cpp
+  - test/dual_segment_tree.test.cpp
 documentation_of: bit/bit_rzeros.cpp
 layout: document
 redirect_from:

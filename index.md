@@ -3,13 +3,13 @@ data:
   libraryCategories:
   - name: bit
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: bit/bit_lzeros.cpp
       title: bit/bit_lzeros.cpp
     - icon: ':heavy_check_mark:'
       path: bit/bit_rzeros.cpp
       title: bit/bit_rzeros.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: bit/bit_width.cpp
       title: bit/bit_width.cpp
     - icon: ':heavy_check_mark:'
@@ -32,6 +32,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: container/segment_tree.cpp
       title: container/segment_tree.cpp
+    - icon: ':heavy_check_mark:'
+      path: container/sparse_table.cpp
+      title: container/sparse_table.cpp
   - name: math
     pages:
     - icon: ':warning:'
@@ -72,7 +75,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/auto_realloc.cpp
       title: utility/auto_realloc.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: utility/infty.cpp
       title: utility/infty.cpp
     - icon: ':heavy_check_mark:'
@@ -120,5 +123,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/segment_tree.test.cpp
       title: test/segment_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/sparse_table.test.cpp
+      title: test/sparse_table.test.cpp
 layout: toppage
 ---

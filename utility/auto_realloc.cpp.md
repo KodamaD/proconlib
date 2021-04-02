@@ -57,8 +57,8 @@ data:
   isVerificationFile: false
   path: utility/auto_realloc.cpp
   requiredBy:
-  - math/modint_util.cpp
   - math/prime_util.cpp
+  - math/modint_util.cpp
   timestamp: '2021-03-25 15:38:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

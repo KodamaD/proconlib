@@ -1,17 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: bit/bit_lzeros.cpp
     title: bit/bit_lzeros.cpp
   - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: container/sparse_table.cpp
+    title: container/sparse_table.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/sparse_table.test.cpp
+    title: test/sparse_table.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
@@ -28,10 +34,12 @@ data:
   - bit/bit_lzeros.cpp
   isVerificationFile: false
   path: bit/bit_width.cpp
-  requiredBy: []
+  requiredBy:
+  - container/sparse_table.cpp
   timestamp: '2021-03-26 16:52:30+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/sparse_table.test.cpp
 documentation_of: bit/bit_width.cpp
 layout: document
 redirect_from:
