@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -17,13 +17,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
   - icon: ':heavy_check_mark:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
   _extendedVerifiedWith:
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/prime_sieve.test.cpp
     title: test/prime_sieve.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,12 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
@@ -91,7 +91,7 @@ data:
   - math/prime_sieve.cpp
   - graph/union_find.cpp
   timestamp: '2021-03-24 22:26:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fenwick_tree.test.cpp
   - test/sparse_table.test.cpp

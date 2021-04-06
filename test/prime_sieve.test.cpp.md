@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/843
@@ -67,16 +67,16 @@ data:
     \n#include <iostream>\n\nint main() {\n    u32 N;\n    std::cin >> N;\n    if\
     \ (N == 1) {\n        std::cout << 0 << '\\n';\n        return 0;\n    }\n   \
     \ u32 ans = 1;\n    for (const u32 r: rep(3, N + 1)) {\n        if (r * r - 2\
-    \ > N) break;\n        if (PrimeUtil::is_prime(r) && PrimeUtil::is_prime(r * r\
-    \ - 2)) {\n            ans += 2;\n        }\n    }\n    std::cout << ans << '\\\
-    n';\n    return 0;\n}\n"
+    \ > N) break;\n        if (PrimeSieve::is_prime(r) && PrimeSieve::is_prime(r *\
+    \ r - 2)) {\n            ans += 2;\n        }\n    }\n    std::cout << ans <<\
+    \ '\\n';\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/843\"\n#include \"../math/prime_sieve.cpp\"\
     \n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n#include\
     \ <iostream>\n\nint main() {\n    u32 N;\n    std::cin >> N;\n    if (N == 1)\
     \ {\n        std::cout << 0 << '\\n';\n        return 0;\n    }\n    u32 ans =\
     \ 1;\n    for (const u32 r: rep(3, N + 1)) {\n        if (r * r - 2 > N) break;\n\
-    \        if (PrimeUtil::is_prime(r) && PrimeUtil::is_prime(r * r - 2)) {\n   \
-    \         ans += 2;\n        }\n    }\n    std::cout << ans << '\\n';\n    return\
+    \        if (PrimeSieve::is_prime(r) && PrimeSieve::is_prime(r * r - 2)) {\n \
+    \           ans += 2;\n        }\n    }\n    std::cout << ans << '\\n';\n    return\
     \ 0;\n}"
   dependsOn:
   - math/prime_sieve.cpp
@@ -87,8 +87,8 @@ data:
   isVerificationFile: true
   path: test/prime_sieve.test.cpp
   requiredBy: []
-  timestamp: '2021-04-06 09:36:02+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-04-06 12:39:01+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/prime_sieve.test.cpp
 layout: document

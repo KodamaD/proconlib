@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: 'https:'
+    PROBLEM: https://judge.yosupo.jp/problem/unionfind
     links:
     - https://judge.yosupo.jp/problem/unionfind
-  bundledCode: "#line 1 \"test/union_find.test.cpp\"\n#define PROBLEM https://judge.yosupo.jp/problem/unionfind\n\
-    #line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\n\
+  bundledCode: "#line 1 \"test/union_find.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\
+    \n#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\n\
     using i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
     using u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
     using isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 3 \"utility/rep.cpp\"\
@@ -58,12 +58,13 @@ data:
     \ (t == 0) {\n            dsu.merge(u, v);\n        }\n        else {\n      \
     \      std::cout << dsu.same(u, v) << '\\n';\n        }\n    }\n    return 0;\n\
     }\n"
-  code: "#define PROBLEM https://judge.yosupo.jp/problem/unionfind\n#include \"../utility/int_alias.cpp\"\
-    \n#include \"../graph/union_find.cpp\"\n#include <iostream>\n\nint main() {\n\
-    \    usize N, Q;\n    std::cin >> N >> Q;\n    UnionFind dsu(N);\n    while (Q--)\
-    \ {\n        usize t, u, v;\n        std::cin >> t >> u >> v;\n        if (t ==\
-    \ 0) {\n            dsu.merge(u, v);\n        }\n        else {\n            std::cout\
-    \ << dsu.same(u, v) << '\\n';\n        }\n    }\n    return 0;\n}"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#include \"\
+    ../utility/int_alias.cpp\"\n#include \"../graph/union_find.cpp\"\n#include <iostream>\n\
+    \nint main() {\n    usize N, Q;\n    std::cin >> N >> Q;\n    UnionFind dsu(N);\n\
+    \    while (Q--) {\n        usize t, u, v;\n        std::cin >> t >> u >> v;\n\
+    \        if (t == 0) {\n            dsu.merge(u, v);\n        }\n        else\
+    \ {\n            std::cout << dsu.same(u, v) << '\\n';\n        }\n    }\n   \
+    \ return 0;\n}"
   dependsOn:
   - utility/int_alias.cpp
   - graph/union_find.cpp
@@ -71,8 +72,8 @@ data:
   isVerificationFile: true
   path: test/union_find.test.cpp
   requiredBy: []
-  timestamp: '2021-04-06 09:36:02+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-04-06 12:39:01+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/union_find.test.cpp
 layout: document

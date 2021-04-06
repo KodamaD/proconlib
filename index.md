@@ -12,7 +12,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: bit/bit_width.cpp
       title: bit/bit_width.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bit/ceil_log2.cpp
       title: bit/ceil_log2.cpp
     - icon: ':warning:'
@@ -37,7 +37,7 @@ data:
       title: container/sparse_table.cpp
   - name: graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/union_find.cpp
       title: graph/union_find.cpp
   - name: math
@@ -66,7 +66,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/modint_util.cpp
       title: math/modint_util.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/prime_sieve.cpp
       title: math/prime_sieve.cpp
     - icon: ':heavy_check_mark:'
@@ -77,19 +77,19 @@ data:
       title: math/static_modint.cpp
   - name: utility
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/auto_realloc.cpp
       title: utility/auto_realloc.cpp
     - icon: ':heavy_check_mark:'
       path: utility/infty.cpp
       title: utility/infty.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
     - icon: ':warning:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/rep.cpp
       title: utility/rep.cpp
     - icon: ':heavy_check_mark:'
@@ -122,7 +122,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/modint_util.test.cpp
       title: test/modint_util.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/prime_sieve.test.cpp
       title: test/prime_sieve.test.cpp
     - icon: ':heavy_check_mark:'
@@ -131,7 +131,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/sparse_table.test.cpp
       title: test/sparse_table.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/union_find.test.cpp
       title: test/union_find.test.cpp
 layout: toppage
