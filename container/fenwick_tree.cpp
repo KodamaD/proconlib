@@ -8,6 +8,7 @@ template <class T>
 class FenwickTree {
     usize logn;
     std::vector<T> data;
+    
 public:
     explicit FenwickTree(const usize size = 0) {
         logn = ceil_log2(size + 1) - 1;

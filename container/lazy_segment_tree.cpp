@@ -8,7 +8,7 @@
 #include <cassert>
 
 template <class Monoid, class Effector>
-struct LazySegmentTree {
+class LazySegmentTree {
     using M = Monoid;
     using E = Effector;
     usize internal_size, logn, seg_size;

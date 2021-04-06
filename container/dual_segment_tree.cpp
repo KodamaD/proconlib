@@ -8,7 +8,7 @@
 #include <cassert>
 
 template <class Effector>
-struct DualSegmentTree {
+class DualSegmentTree {
     using E = Effector;
     usize internal_size, logn;
     std::vector<E> lazy;
