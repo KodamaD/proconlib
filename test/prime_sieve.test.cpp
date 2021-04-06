@@ -1,5 +1,5 @@
 #define PROBLEM "https://yukicoder.me/problems/no/843"
-#include "../math/prime_util.cpp"
+#include "../math/prime_sieve.cpp"
 #include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
 #include <iostream>
