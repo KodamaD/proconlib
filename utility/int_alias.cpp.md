@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: bit/bit_width.cpp
     title: bit/bit_width.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
   - icon: ':warning:'
@@ -32,6 +32,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
+  - icon: ':x:'
+    path: graph/union_find.cpp
+    title: graph/union_find.cpp
   - icon: ':warning:'
     path: math/divisors_from_factors.cpp
     title: math/divisors_from_factors.cpp
@@ -44,16 +47,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
-  - icon: ':heavy_check_mark:'
-    path: math/prime_util.cpp
-    title: math/prime_util.cpp
+  - icon: ':x:'
+    path: math/prime_sieve.cpp
+    title: math/prime_sieve.cpp
   - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -75,18 +78,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/prime_util.test.cpp
-    title: test/prime_util.test.cpp
+  - icon: ':x:'
+    path: test/prime_sieve.test.cpp
+    title: test/prime_sieve.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/union_find.test.cpp
+    title: test/union_find.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 2 "utility/int_alias.cpp"
@@ -153,24 +159,26 @@ data:
   - math/static_modint.cpp
   - math/dynamic_modint.cpp
   - math/divisors_from_factors.cpp
-  - math/prime_util.cpp
   - math/modint_util.cpp
+  - math/prime_sieve.cpp
+  - graph/union_find.cpp
   - bit/bit_lzeros.cpp
   - bit/bit_width.cpp
   - bit/ceil_log2.cpp
   - bit/bit_rzeros.cpp
   - bit/popcount.cpp
   timestamp: '2021-03-24 22:26:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/fenwick_tree.test.cpp
   - test/factorize.test.cpp
   - test/sparse_table.test.cpp
-  - test/prime_util.test.cpp
   - test/modint_util.test.cpp
   - test/lazy_segment_tree.test.cpp
+  - test/union_find.test.cpp
   - test/segment_tree.test.cpp
   - test/dual_segment_tree.test.cpp
+  - test/prime_sieve.test.cpp
 documentation_of: utility/int_alias.cpp
 layout: document
 redirect_from:

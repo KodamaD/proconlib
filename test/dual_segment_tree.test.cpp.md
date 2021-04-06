@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: bit/bit_rzeros.cpp
     title: bit/bit_rzeros.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
   - icon: ':heavy_check_mark:'
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -55,7 +55,7 @@ data:
     \ 1 << e) < x) ++e;\n    return e;\n}\n#line 3 \"bit/bit_rzeros.cpp\"\n\nconstexpr\
     \ u64 bit_rzeros(const u64 x) {\n    return x == 0 ? 64 : __builtin_ctzll(x);\n\
     }\n#line 7 \"container/dual_segment_tree.cpp\"\n#include <vector>\n#include <cassert>\n\
-    \ntemplate <class Effector>\nstruct DualSegmentTree {\n    using E = Effector;\n\
+    \ntemplate <class Effector>\nclass DualSegmentTree {\n    using E = Effector;\n\
     \    usize internal_size, logn;\n    std::vector<E> lazy;\n\n    void apply(const\
     \ usize k, const E& e) { lazy[k] = lazy[k] * e; }\n    void flush(const usize\
     \ k) {\n        apply(2 * k, lazy[k]);\n        apply(2 * k + 1, lazy[k]);\n \
@@ -116,7 +116,7 @@ data:
   isVerificationFile: true
   path: test/dual_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-03-31 11:12:27+09:00'
+  timestamp: '2021-04-06 09:35:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/dual_segment_tree.test.cpp

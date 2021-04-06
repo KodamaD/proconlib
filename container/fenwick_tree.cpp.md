@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
@@ -24,7 +24,7 @@ data:
     \n\nconstexpr u64 ceil_log2(const u64 x) {\n    u64 e = 0;\n    while (((u64)\
     \ 1 << e) < x) ++e;\n    return e;\n}\n#line 4 \"container/fenwick_tree.cpp\"\n\
     #include <vector>\n#include <cassert>\n\ntemplate <class T>\nclass FenwickTree\
-    \ {\n    usize logn;\n    std::vector<T> data;\npublic:\n    explicit FenwickTree(const\
+    \ {\n    usize logn;\n    std::vector<T> data;\n    \npublic:\n    explicit FenwickTree(const\
     \ usize size = 0) {\n        logn = ceil_log2(size + 1) - 1;\n        data = std::vector<T>(size\
     \ + 1, T(0));\n    }\n\n    usize size() const { return data.size() - 1; }\n\n\
     \    void add(usize i, const T& x) { \n        assert(i < size());\n        i\
@@ -43,7 +43,7 @@ data:
     \        }\n        return i;\n    }\n};\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"../bit/ceil_log2.cpp\"\
     \n#include <vector>\n#include <cassert>\n\ntemplate <class T>\nclass FenwickTree\
-    \ {\n    usize logn;\n    std::vector<T> data;\npublic:\n    explicit FenwickTree(const\
+    \ {\n    usize logn;\n    std::vector<T> data;\n    \npublic:\n    explicit FenwickTree(const\
     \ usize size = 0) {\n        logn = ceil_log2(size + 1) - 1;\n        data = std::vector<T>(size\
     \ + 1, T(0));\n    }\n\n    usize size() const { return data.size() - 1; }\n\n\
     \    void add(usize i, const T& x) { \n        assert(i < size());\n        i\
@@ -66,7 +66,7 @@ data:
   isVerificationFile: false
   path: container/fenwick_tree.cpp
   requiredBy: []
-  timestamp: '2021-04-02 12:34:15+09:00'
+  timestamp: '2021-04-06 09:35:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fenwick_tree.test.cpp

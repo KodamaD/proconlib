@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: bit/bit_rzeros.cpp
     title: bit/bit_rzeros.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
   - icon: ':heavy_check_mark:'
@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -103,8 +103,8 @@ data:
     \ 3 \"bit/bit_rzeros.cpp\"\n\nconstexpr u64 bit_rzeros(const u64 x) {\n    return\
     \ x == 0 ? 64 : __builtin_ctzll(x);\n}\n#line 7 \"container/lazy_segment_tree.cpp\"\
     \n#include <vector>\n#include <cassert>\n\ntemplate <class Monoid, class Effector>\n\
-    struct LazySegmentTree {\n    using M = Monoid;\n    using E = Effector;\n   \
-    \ usize internal_size, logn, seg_size;\n    std::vector<M> data;\n    std::vector<E>\
+    class LazySegmentTree {\n    using M = Monoid;\n    using E = Effector;\n    usize\
+    \ internal_size, logn, seg_size;\n    std::vector<M> data;\n    std::vector<E>\
     \ lazy;\n\n    void fetch(const usize k) { data[k] = data[2 * k] + data[2 * k\
     \ + 1]; }\n    void apply(const usize k, const E& e) {\n        data[k] = data[k]\
     \ * e;\n        if (k < seg_size) lazy[k] = lazy[k] * e;\n    }\n    void flush(const\
@@ -208,7 +208,7 @@ data:
   isVerificationFile: true
   path: test/lazy_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-04-02 12:34:38+09:00'
+  timestamp: '2021-04-06 09:35:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lazy_segment_tree.test.cpp

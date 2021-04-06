@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: bit/bit_rzeros.cpp
     title: bit/bit_rzeros.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -51,7 +51,7 @@ data:
     \ 1 << e) < x) ++e;\n    return e;\n}\n#line 3 \"bit/bit_rzeros.cpp\"\n\nconstexpr\
     \ u64 bit_rzeros(const u64 x) {\n    return x == 0 ? 64 : __builtin_ctzll(x);\n\
     }\n#line 7 \"container/lazy_segment_tree.cpp\"\n#include <vector>\n#include <cassert>\n\
-    \ntemplate <class Monoid, class Effector>\nstruct LazySegmentTree {\n    using\
+    \ntemplate <class Monoid, class Effector>\nclass LazySegmentTree {\n    using\
     \ M = Monoid;\n    using E = Effector;\n    usize internal_size, logn, seg_size;\n\
     \    std::vector<M> data;\n    std::vector<E> lazy;\n\n    void fetch(const usize\
     \ k) { data[k] = data[2 * k] + data[2 * k + 1]; }\n    void apply(const usize\
@@ -104,7 +104,7 @@ data:
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\
     \n#include \"../utility/revrep.cpp\"\n#include \"../bit/ceil_log2.cpp\"\n#include\
     \ \"../bit/bit_rzeros.cpp\"\n#include <vector>\n#include <cassert>\n\ntemplate\
-    \ <class Monoid, class Effector>\nstruct LazySegmentTree {\n    using M = Monoid;\n\
+    \ <class Monoid, class Effector>\nclass LazySegmentTree {\n    using M = Monoid;\n\
     \    using E = Effector;\n    usize internal_size, logn, seg_size;\n    std::vector<M>\
     \ data;\n    std::vector<E> lazy;\n\n    void fetch(const usize k) { data[k] =\
     \ data[2 * k] + data[2 * k + 1]; }\n    void apply(const usize k, const E& e)\
@@ -163,7 +163,7 @@ data:
   isVerificationFile: false
   path: container/lazy_segment_tree.cpp
   requiredBy: []
-  timestamp: '2021-03-31 11:12:27+09:00'
+  timestamp: '2021-04-06 09:35:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lazy_segment_tree.test.cpp

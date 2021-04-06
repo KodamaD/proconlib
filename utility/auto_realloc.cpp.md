@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
-  - icon: ':heavy_check_mark:'
-    path: math/prime_util.cpp
-    title: math/prime_util.cpp
+  - icon: ':x:'
+    path: math/prime_sieve.cpp
+    title: math/prime_sieve.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/prime_util.test.cpp
-    title: test/prime_util.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/prime_sieve.test.cpp
+    title: test/prime_sieve.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
@@ -57,13 +57,13 @@ data:
   isVerificationFile: false
   path: utility/auto_realloc.cpp
   requiredBy:
-  - math/prime_util.cpp
   - math/modint_util.cpp
+  - math/prime_sieve.cpp
   timestamp: '2021-03-25 15:38:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/prime_util.test.cpp
   - test/modint_util.test.cpp
+  - test/prime_sieve.test.cpp
 documentation_of: utility/auto_realloc.cpp
 layout: document
 redirect_from:

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/prime_util.test.cpp
-    title: test/prime_util.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/prime_sieve.test.cpp
+    title: test/prime_sieve.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
@@ -45,8 +45,8 @@ data:
     \ }\n    void reserve(const usize size) {\n        if (data.size() < size) {\n\
     \            const usize pow2 = ((usize) 1 << ceil_log2(size));\n            data\
     \ = func(pow2);\n        }\n    }\n    R operator [] (const usize i) {\n     \
-    \   reserve(i + 1);\n        return data[i];\n    }\n};\n#line 7 \"math/prime_util.cpp\"\
-    \n#include <numeric>\n#include <cassert>\n\nstruct PrimeUtil {\n    static inline\
+    \   reserve(i + 1);\n        return data[i];\n    }\n};\n#line 7 \"math/prime_sieve.cpp\"\
+    \n#include <numeric>\n#include <cassert>\n\nstruct PrimeSieve {\n    static inline\
     \ auto min_prime = AutoRealloc([](const usize n) {\n        std::vector<usize>\
     \ ret(n);\n        std::iota(ret.begin(), ret.end(), (usize) 0);\n        std::vector<usize>\
     \ list;\n        for (const usize i: rep(2, n)) {\n            if (ret[i] == i)\
@@ -62,7 +62,7 @@ data:
     \   }\n        }\n        return ret;\n    }\n};\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\
     \n#include \"../utility/auto_realloc.cpp\"\n#include <vector>\n#include <utility>\n\
-    #include <numeric>\n#include <cassert>\n\nstruct PrimeUtil {\n    static inline\
+    #include <numeric>\n#include <cassert>\n\nstruct PrimeSieve {\n    static inline\
     \ auto min_prime = AutoRealloc([](const usize n) {\n        std::vector<usize>\
     \ ret(n);\n        std::iota(ret.begin(), ret.end(), (usize) 0);\n        std::vector<usize>\
     \ list;\n        for (const usize i: rep(2, n)) {\n            if (ret[i] == i)\
@@ -82,16 +82,16 @@ data:
   - utility/auto_realloc.cpp
   - bit/ceil_log2.cpp
   isVerificationFile: false
-  path: math/prime_util.cpp
+  path: math/prime_sieve.cpp
   requiredBy: []
-  timestamp: '2021-03-25 20:05:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-04-06 09:36:02+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/prime_util.test.cpp
-documentation_of: math/prime_util.cpp
+  - test/prime_sieve.test.cpp
+documentation_of: math/prime_sieve.cpp
 layout: document
 redirect_from:
-- /library/math/prime_util.cpp
-- /library/math/prime_util.cpp.html
-title: math/prime_util.cpp
+- /library/math/prime_sieve.cpp
+- /library/math/prime_sieve.cpp.html
+title: math/prime_sieve.cpp
 ---
