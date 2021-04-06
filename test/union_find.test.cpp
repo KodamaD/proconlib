@@ -1,4 +1,4 @@
-#define PROBLEM https://judge.yosupo.jp/problem/unionfind
+#define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 #include "../utility/int_alias.cpp"
 #include "../graph/union_find.cpp"
 #include <iostream>

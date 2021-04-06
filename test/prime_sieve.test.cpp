@@ -14,7 +14,7 @@ int main() {
     u32 ans = 1;
     for (const u32 r: rep(3, N + 1)) {
         if (r * r - 2 > N) break;
-        if (PrimeUtil::is_prime(r) && PrimeUtil::is_prime(r * r - 2)) {
+        if (PrimeSieve::is_prime(r) && PrimeSieve::is_prime(r * r - 2)) {
             ans += 2;
         }
     }
