@@ -25,4 +25,4 @@ public:
 };
 
 template <class G>
-AutoRealloc(G&&, usize) -> AutoRealloc<std::decay_t<G>>;
+AutoRealloc(G&&, usize = 0) -> AutoRealloc<std::decay_t<G>>;
