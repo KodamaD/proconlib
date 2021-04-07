@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/prime_sieve.test.cpp
     title: test/prime_sieve.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
@@ -40,7 +40,7 @@ data:
     \ < size) {\n            const usize pow2 = ((usize) 1 << ceil_log2(size));\n\
     \            data = func(pow2);\n        }\n    }\n    R operator [] (const usize\
     \ i) {\n        reserve(i + 1);\n        return data[i];\n    }\n};\n\ntemplate\
-    \ <class G>\nAutoRealloc(G&&, usize) -> AutoRealloc<std::decay_t<G>>;\n"
+    \ <class G>\nAutoRealloc(G&&, usize = 0) -> AutoRealloc<std::decay_t<G>>;\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"../bit/ceil_log2.cpp\"\
     \n#include <utility>\n#include <vector>\n\ntemplate <class F>\nclass AutoRealloc\
     \ {\n    using R = typename decltype(std::declval<F>()((usize) 0))::value_type;\n\
@@ -50,7 +50,7 @@ data:
     \ < size) {\n            const usize pow2 = ((usize) 1 << ceil_log2(size));\n\
     \            data = func(pow2);\n        }\n    }\n    R operator [] (const usize\
     \ i) {\n        reserve(i + 1);\n        return data[i];\n    }\n};\n\ntemplate\
-    \ <class G>\nAutoRealloc(G&&, usize) -> AutoRealloc<std::decay_t<G>>;\n"
+    \ <class G>\nAutoRealloc(G&&, usize = 0) -> AutoRealloc<std::decay_t<G>>;\n"
   dependsOn:
   - utility/int_alias.cpp
   - bit/ceil_log2.cpp
@@ -59,8 +59,8 @@ data:
   requiredBy:
   - math/modint_util.cpp
   - math/prime_sieve.cpp
-  timestamp: '2021-04-07 12:02:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-04-07 13:24:35+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_util.test.cpp
   - test/prime_sieve.test.cpp

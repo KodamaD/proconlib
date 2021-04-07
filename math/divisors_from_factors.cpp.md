@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   - icon: ':warning:'

@@ -20,7 +20,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: bit/bit_width.cpp
       title: bit/bit_width.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bit/ceil_log2.cpp
       title: bit/ceil_log2.cpp
     - icon: ':warning:'
@@ -71,16 +71,16 @@ data:
     - icon: ':warning:'
       path: math/mod_inv.cpp
       title: math/mod_inv.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/modint_util.cpp
       title: math/modint_util.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/prime_sieve.cpp
       title: math/prime_sieve.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/rem_euclid.cpp
       title: math/rem_euclid.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/static_modint.cpp
       title: math/static_modint.cpp
   - name: utility
@@ -88,19 +88,19 @@ data:
     - icon: ':warning:'
       path: utility/auto_memoize.cpp
       title: utility/auto_memoize.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: utility/auto_realloc.cpp
       title: utility/auto_realloc.cpp
     - icon: ':heavy_check_mark:'
       path: utility/infty.cpp
       title: utility/infty.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
     - icon: ':warning:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/rep.cpp
       title: utility/rep.cpp
     - icon: ':heavy_check_mark:'
@@ -130,10 +130,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lazy_segment_tree.test.cpp
       title: test/lazy_segment_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/modint_util.test.cpp
       title: test/modint_util.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/prime_sieve.test.cpp
       title: test/prime_sieve.test.cpp
     - icon: ':heavy_check_mark:'

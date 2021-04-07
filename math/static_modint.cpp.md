@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
@@ -12,15 +12,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
@@ -115,7 +115,7 @@ data:
   path: math/static_modint.cpp
   requiredBy: []
   timestamp: '2021-04-02 12:34:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_util.test.cpp
   - test/lazy_segment_tree.test.cpp

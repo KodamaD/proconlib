@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/843
@@ -49,20 +49,20 @@ data:
     \  if (data.size() < size) {\n            const usize pow2 = ((usize) 1 << ceil_log2(size));\n\
     \            data = func(pow2);\n        }\n    }\n    R operator [] (const usize\
     \ i) {\n        reserve(i + 1);\n        return data[i];\n    }\n};\n\ntemplate\
-    \ <class G>\nAutoRealloc(G&&, usize) -> AutoRealloc<std::decay_t<G>>;\n#line 7\
-    \ \"math/prime_sieve.cpp\"\n#include <numeric>\n#include <cassert>\n\nstruct PrimeSieve\
-    \ {\n    static inline auto min_prime = AutoRealloc([](const usize n) {\n    \
-    \    std::vector<usize> ret(n);\n        std::iota(ret.begin(), ret.end(), (usize)\
-    \ 0);\n        std::vector<usize> list;\n        for (const usize i: rep(2, n))\
-    \ {\n            if (ret[i] == i) list.push_back(i);\n            for (const usize\
-    \ p: list) {\n                if (p * i >= n || p > ret[i]) break;\n         \
-    \       ret[p * i] = p;\n            }\n        }\n        return ret;\n    });\n\
-    \    static bool is_prime(const usize n) {\n        if (n <= 1) return false;\n\
-    \        return min_prime[n] == n;\n    }\n    template <class T>\n    static\
-    \ std::vector<std::pair<T, usize>> factorize(T x) {\n        assert(x > 0);\n\
-    \        std::vector<std::pair<T, usize>> ret;\n        while (x != 1) {\n   \
-    \         const usize p = min_prime[x];\n            ret.emplace_back((T) p, 0);\n\
-    \            while (min_prime[x] == p) {\n                ret.back().second++;\n\
+    \ <class G>\nAutoRealloc(G&&, usize = 0) -> AutoRealloc<std::decay_t<G>>;\n#line\
+    \ 7 \"math/prime_sieve.cpp\"\n#include <numeric>\n#include <cassert>\n\nstruct\
+    \ PrimeSieve {\n    static inline auto min_prime = AutoRealloc([](const usize\
+    \ n) {\n        std::vector<usize> ret(n);\n        std::iota(ret.begin(), ret.end(),\
+    \ (usize) 0);\n        std::vector<usize> list;\n        for (const usize i: rep(2,\
+    \ n)) {\n            if (ret[i] == i) list.push_back(i);\n            for (const\
+    \ usize p: list) {\n                if (p * i >= n || p > ret[i]) break;\n   \
+    \             ret[p * i] = p;\n            }\n        }\n        return ret;\n\
+    \    });\n    static bool is_prime(const usize n) {\n        if (n <= 1) return\
+    \ false;\n        return min_prime[n] == n;\n    }\n    template <class T>\n \
+    \   static std::vector<std::pair<T, usize>> factorize(T x) {\n        assert(x\
+    \ > 0);\n        std::vector<std::pair<T, usize>> ret;\n        while (x != 1)\
+    \ {\n            const usize p = min_prime[x];\n            ret.emplace_back((T)\
+    \ p, 0);\n            while (min_prime[x] == p) {\n                ret.back().second++;\n\
     \                x /= p;\n            }\n        }\n        return ret;\n    }\n\
     };\n#line 5 \"test/prime_sieve.test.cpp\"\n#include <iostream>\n\nint main() {\n\
     \    u32 N;\n    std::cin >> N;\n    if (N == 1) {\n        std::cout << 0 <<\
@@ -87,8 +87,8 @@ data:
   isVerificationFile: true
   path: test/prime_sieve.test.cpp
   requiredBy: []
-  timestamp: '2021-04-07 12:02:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-04-07 13:24:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/prime_sieve.test.cpp
 layout: document

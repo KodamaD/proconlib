@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
@@ -45,23 +45,24 @@ data:
     \  if (data.size() < size) {\n            const usize pow2 = ((usize) 1 << ceil_log2(size));\n\
     \            data = func(pow2);\n        }\n    }\n    R operator [] (const usize\
     \ i) {\n        reserve(i + 1);\n        return data[i];\n    }\n};\n\ntemplate\
-    \ <class G>\nAutoRealloc(G&&, usize) -> AutoRealloc<std::decay_t<G>>;\n#line 6\
-    \ \"math/modint_util.cpp\"\n#include <cassert>\n\ntemplate <class M>\nstruct ModintUtil\
-    \ {\n    static inline auto fact = AutoRealloc([](const usize n) {\n        std::vector<M>\
-    \ ret(n);\n        ret[0] = M(1);\n        for (const usize i: rep(1, n)) {\n\
-    \            ret[i] = ret[i - 1] * M(i);\n        }\n        return ret;\n   \
-    \ });\n    static inline auto inv = AutoRealloc([](const usize n) {\n        std::vector<M>\
-    \ ret(n);\n        if (n == 1) return ret;\n        ret[1] = M(1);\n        for\
-    \ (const usize i: rep(2, n)) {\n            ret[i] = -M(M::mod() / i) * ret[M::mod()\
-    \ % i];\n        }\n        return ret;\n    });\n    static inline auto inv_fact\
-    \ = AutoRealloc([](const usize n) {\n        std::vector<M> ret(n);\n        ret[0]\
-    \ = M(1);\n        for (const usize i: rep(1, n)) {\n            ret[i] = ret[i\
-    \ - 1] * inv[i];\n        }\n        return ret;\n    });\n    static M binom(const\
-    \ usize n, const usize k) {\n        assert(k <= n);\n        return fact[n] *\
-    \ inv_fact[n - k] * inv_fact[k];\n    }\n    static M factpow(const usize n, const\
-    \ usize k) {\n        assert(k <= n);\n        return fact[n] * inv_fact[n - k];\n\
-    \    }\n    static M homo(const usize n, const usize k) {\n        if (n == 0\
-    \ and k == 0) return M(1);\n        return binom(n + k - 1, k);\n    }\n};\n"
+    \ <class G>\nAutoRealloc(G&&, usize = 0) -> AutoRealloc<std::decay_t<G>>;\n#line\
+    \ 6 \"math/modint_util.cpp\"\n#include <cassert>\n\ntemplate <class M>\nstruct\
+    \ ModintUtil {\n    static inline auto fact = AutoRealloc([](const usize n) {\n\
+    \        std::vector<M> ret(n);\n        ret[0] = M(1);\n        for (const usize\
+    \ i: rep(1, n)) {\n            ret[i] = ret[i - 1] * M(i);\n        }\n      \
+    \  return ret;\n    });\n    static inline auto inv = AutoRealloc([](const usize\
+    \ n) {\n        std::vector<M> ret(n);\n        if (n == 1) return ret;\n    \
+    \    ret[1] = M(1);\n        for (const usize i: rep(2, n)) {\n            ret[i]\
+    \ = -M(M::mod() / i) * ret[M::mod() % i];\n        }\n        return ret;\n  \
+    \  });\n    static inline auto inv_fact = AutoRealloc([](const usize n) {\n  \
+    \      std::vector<M> ret(n);\n        ret[0] = M(1);\n        for (const usize\
+    \ i: rep(1, n)) {\n            ret[i] = ret[i - 1] * inv[i];\n        }\n    \
+    \    return ret;\n    });\n    static M binom(const usize n, const usize k) {\n\
+    \        assert(k <= n);\n        return fact[n] * inv_fact[n - k] * inv_fact[k];\n\
+    \    }\n    static M factpow(const usize n, const usize k) {\n        assert(k\
+    \ <= n);\n        return fact[n] * inv_fact[n - k];\n    }\n    static M homo(const\
+    \ usize n, const usize k) {\n        if (n == 0 and k == 0) return M(1);\n   \
+    \     return binom(n + k - 1, k);\n    }\n};\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\
     \n#include \"../utility/auto_realloc.cpp\"\n#include <vector>\n#include <cassert>\n\
     \ntemplate <class M>\nstruct ModintUtil {\n    static inline auto fact = AutoRealloc([](const\
@@ -88,8 +89,8 @@ data:
   isVerificationFile: false
   path: math/modint_util.cpp
   requiredBy: []
-  timestamp: '2021-04-07 12:02:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-04-07 13:24:35+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_util.test.cpp
 documentation_of: math/modint_util.cpp

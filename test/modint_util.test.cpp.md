@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/117
@@ -97,33 +97,34 @@ data:
     \ < size) {\n            const usize pow2 = ((usize) 1 << ceil_log2(size));\n\
     \            data = func(pow2);\n        }\n    }\n    R operator [] (const usize\
     \ i) {\n        reserve(i + 1);\n        return data[i];\n    }\n};\n\ntemplate\
-    \ <class G>\nAutoRealloc(G&&, usize) -> AutoRealloc<std::decay_t<G>>;\n#line 6\
-    \ \"math/modint_util.cpp\"\n#include <cassert>\n\ntemplate <class M>\nstruct ModintUtil\
-    \ {\n    static inline auto fact = AutoRealloc([](const usize n) {\n        std::vector<M>\
-    \ ret(n);\n        ret[0] = M(1);\n        for (const usize i: rep(1, n)) {\n\
-    \            ret[i] = ret[i - 1] * M(i);\n        }\n        return ret;\n   \
-    \ });\n    static inline auto inv = AutoRealloc([](const usize n) {\n        std::vector<M>\
-    \ ret(n);\n        if (n == 1) return ret;\n        ret[1] = M(1);\n        for\
-    \ (const usize i: rep(2, n)) {\n            ret[i] = -M(M::mod() / i) * ret[M::mod()\
-    \ % i];\n        }\n        return ret;\n    });\n    static inline auto inv_fact\
-    \ = AutoRealloc([](const usize n) {\n        std::vector<M> ret(n);\n        ret[0]\
-    \ = M(1);\n        for (const usize i: rep(1, n)) {\n            ret[i] = ret[i\
-    \ - 1] * inv[i];\n        }\n        return ret;\n    });\n    static M binom(const\
-    \ usize n, const usize k) {\n        assert(k <= n);\n        return fact[n] *\
-    \ inv_fact[n - k] * inv_fact[k];\n    }\n    static M factpow(const usize n, const\
-    \ usize k) {\n        assert(k <= n);\n        return fact[n] * inv_fact[n - k];\n\
-    \    }\n    static M homo(const usize n, const usize k) {\n        if (n == 0\
-    \ and k == 0) return M(1);\n        return binom(n + k - 1, k);\n    }\n};\n#line\
-    \ 5 \"test/modint_util.test.cpp\"\n#include <iostream>\n\nusing Fp = StaticModint<1000000007>;\n\
-    using FpUtil = ModintUtil<Fp>;\n\nint main() {\n    usize T;\n    std::cin >>\
-    \ T;\n    while (T--) {\n        char type, dust;\n        usize N, K;\n     \
-    \   std::cin >> type >> dust >> N >> dust >> K >> dust;\n        if (type == 'C')\
-    \ {\n            if (N < K) std::cout << 0 << '\\n';\n            else std::cout\
-    \ << FpUtil::binom(N, K) << '\\n';\n        }\n        if (type == 'P') {\n  \
-    \          if (N < K) std::cout << 0 << '\\n';\n            else std::cout <<\
-    \ FpUtil::factpow(N, K) << '\\n';\n        }\n        if (type == 'H') {\n   \
-    \         if (N == 0 && K > 0) std::cout << 0 << '\\n';\n            else std::cout\
-    \ << FpUtil::homo(N, K) << '\\n';\n        }\n    }\n    return 0;\n}\n"
+    \ <class G>\nAutoRealloc(G&&, usize = 0) -> AutoRealloc<std::decay_t<G>>;\n#line\
+    \ 6 \"math/modint_util.cpp\"\n#include <cassert>\n\ntemplate <class M>\nstruct\
+    \ ModintUtil {\n    static inline auto fact = AutoRealloc([](const usize n) {\n\
+    \        std::vector<M> ret(n);\n        ret[0] = M(1);\n        for (const usize\
+    \ i: rep(1, n)) {\n            ret[i] = ret[i - 1] * M(i);\n        }\n      \
+    \  return ret;\n    });\n    static inline auto inv = AutoRealloc([](const usize\
+    \ n) {\n        std::vector<M> ret(n);\n        if (n == 1) return ret;\n    \
+    \    ret[1] = M(1);\n        for (const usize i: rep(2, n)) {\n            ret[i]\
+    \ = -M(M::mod() / i) * ret[M::mod() % i];\n        }\n        return ret;\n  \
+    \  });\n    static inline auto inv_fact = AutoRealloc([](const usize n) {\n  \
+    \      std::vector<M> ret(n);\n        ret[0] = M(1);\n        for (const usize\
+    \ i: rep(1, n)) {\n            ret[i] = ret[i - 1] * inv[i];\n        }\n    \
+    \    return ret;\n    });\n    static M binom(const usize n, const usize k) {\n\
+    \        assert(k <= n);\n        return fact[n] * inv_fact[n - k] * inv_fact[k];\n\
+    \    }\n    static M factpow(const usize n, const usize k) {\n        assert(k\
+    \ <= n);\n        return fact[n] * inv_fact[n - k];\n    }\n    static M homo(const\
+    \ usize n, const usize k) {\n        if (n == 0 and k == 0) return M(1);\n   \
+    \     return binom(n + k - 1, k);\n    }\n};\n#line 5 \"test/modint_util.test.cpp\"\
+    \n#include <iostream>\n\nusing Fp = StaticModint<1000000007>;\nusing FpUtil =\
+    \ ModintUtil<Fp>;\n\nint main() {\n    usize T;\n    std::cin >> T;\n    while\
+    \ (T--) {\n        char type, dust;\n        usize N, K;\n        std::cin >>\
+    \ type >> dust >> N >> dust >> K >> dust;\n        if (type == 'C') {\n      \
+    \      if (N < K) std::cout << 0 << '\\n';\n            else std::cout << FpUtil::binom(N,\
+    \ K) << '\\n';\n        }\n        if (type == 'P') {\n            if (N < K)\
+    \ std::cout << 0 << '\\n';\n            else std::cout << FpUtil::factpow(N, K)\
+    \ << '\\n';\n        }\n        if (type == 'H') {\n            if (N == 0 &&\
+    \ K > 0) std::cout << 0 << '\\n';\n            else std::cout << FpUtil::homo(N,\
+    \ K) << '\\n';\n        }\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/117\"\n#include \"../math/static_modint.cpp\"\
     \n#include \"../math/modint_util.cpp\"\n#include \"../utility/int_alias.cpp\"\n\
     #include <iostream>\n\nusing Fp = StaticModint<1000000007>;\nusing FpUtil = ModintUtil<Fp>;\n\
@@ -147,8 +148,8 @@ data:
   isVerificationFile: true
   path: test/modint_util.test.cpp
   requiredBy: []
-  timestamp: '2021-04-07 12:02:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-04-07 13:24:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/modint_util.test.cpp
 layout: document
