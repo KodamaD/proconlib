@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   - icon: ':warning:'
@@ -18,11 +18,12 @@ data:
     \nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
     using u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
     using isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 2 \"utility/rec_lambda.cpp\"\
-    \n#include <utility>\n\ntemplate <class F>\nstruct RecLambda: private F {\n  \
-    \  explicit constexpr RecLambda(F&& f): F(std::forward<F>(f)) { }\n    template\
-    \ <class... Args>\n    constexpr decltype(auto) operator () (Args&&... args) const\
-    \ {\n        return F::operator()(*this, std::forward<Args>(args)...);\n    }\n\
-    };\n#line 4 \"math/divisors_from_factors.cpp\"\n#include <vector>\n#include <algorithm>\n\
+    \n#include <utility>\n#include <type_traits>\n\ntemplate <class F>\nstruct RecLambda:\
+    \ private F {\n    template <class G>\n    explicit constexpr RecLambda(G&& g):\
+    \ F(std::forward<G>(g)) { }\n    template <class... Args>\n    constexpr decltype(auto)\
+    \ operator () (Args&&... args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
+    \    }\n};\n\ntemplate <class G>\nRecLambda(G&&) -> RecLambda<std::decay_t<G>>;\n\
+    #line 4 \"math/divisors_from_factors.cpp\"\n#include <vector>\n#include <algorithm>\n\
     \ntemplate <class T>\nstd::vector<T> divisors_from_factors(const std::vector<std::pair<T,\
     \ usize>>& factors, const bool sort = true) {\n    usize size = 1;\n    for (const\
     \ std::pair<T, usize>& f: factors) size *= f.second;\n    std::vector<T> ret;\n\
@@ -49,7 +50,7 @@ data:
   isVerificationFile: false
   path: math/divisors_from_factors.cpp
   requiredBy: []
-  timestamp: '2021-03-31 11:13:07+09:00'
+  timestamp: '2021-04-07 12:02:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/divisors_from_factors.cpp

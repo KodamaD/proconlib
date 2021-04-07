@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: algorithm/monotone_minima.cpp
+    title: algorithm/monotone_minima.cpp
+  - icon: ':warning:'
+    path: algorithm/smawk.cpp
+    title: algorithm/smawk.cpp
   - icon: ':heavy_check_mark:'
     path: bit/bit_lzeros.cpp
     title: bit/bit_lzeros.cpp
@@ -11,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: bit/bit_width.cpp
     title: bit/bit_width.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
   - icon: ':warning:'
@@ -44,19 +50,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/factorize.cpp
     title: math/factorize.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: utility/auto_memoize.cpp
+    title: utility/auto_memoize.cpp
+  - icon: ':x:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -75,10 +84,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/prime_sieve.test.cpp
     title: test/prime_sieve.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,9 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 2 "utility/int_alias.cpp"
@@ -150,6 +159,7 @@ data:
   - utility/revrep.cpp
   - utility/rep.cpp
   - utility/auto_realloc.cpp
+  - utility/auto_memoize.cpp
   - container/segment_tree.cpp
   - container/sparse_table.cpp
   - container/fenwick_tree.cpp
@@ -162,13 +172,15 @@ data:
   - math/modint_util.cpp
   - math/prime_sieve.cpp
   - graph/union_find.cpp
+  - algorithm/monotone_minima.cpp
+  - algorithm/smawk.cpp
   - bit/bit_lzeros.cpp
   - bit/bit_width.cpp
   - bit/ceil_log2.cpp
   - bit/bit_rzeros.cpp
   - bit/popcount.cpp
   timestamp: '2021-03-24 22:26:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/fenwick_tree.test.cpp
   - test/factorize.test.cpp

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/843
@@ -42,34 +42,34 @@ data:
     \ { return last; }\n};\n#line 3 \"bit/ceil_log2.cpp\"\n\nconstexpr u64 ceil_log2(const\
     \ u64 x) {\n    u64 e = 0;\n    while (((u64) 1 << e) < x) ++e;\n    return e;\n\
     }\n#line 4 \"utility/auto_realloc.cpp\"\n#include <utility>\n#include <vector>\n\
-    \ntemplate <class F>\nclass AutoRealloc {\n    using R = typename decltype(std::declval<F>().operator()(std::declval<usize>()))::value_type;\n\
-    \    F func;\n    std::vector<R> data;\npublic:\n    explicit AutoRealloc(F&&\
-    \ func): func(std::forward<F>(func)), data() { }\n    explicit AutoRealloc(F&&\
-    \ func, const usize capacity): func(std::forward<F>(func)) { reserve(capacity);\
-    \ }\n    void reserve(const usize size) {\n        if (data.size() < size) {\n\
-    \            const usize pow2 = ((usize) 1 << ceil_log2(size));\n            data\
-    \ = func(pow2);\n        }\n    }\n    R operator [] (const usize i) {\n     \
-    \   reserve(i + 1);\n        return data[i];\n    }\n};\n#line 7 \"math/prime_sieve.cpp\"\
-    \n#include <numeric>\n#include <cassert>\n\nstruct PrimeSieve {\n    static inline\
-    \ auto min_prime = AutoRealloc([](const usize n) {\n        std::vector<usize>\
-    \ ret(n);\n        std::iota(ret.begin(), ret.end(), (usize) 0);\n        std::vector<usize>\
-    \ list;\n        for (const usize i: rep(2, n)) {\n            if (ret[i] == i)\
-    \ list.push_back(i);\n            for (const usize p: list) {\n              \
-    \  if (p * i >= n || p > ret[i]) break;\n                ret[p * i] = p;\n   \
-    \         }\n        }\n        return ret;\n    });\n    static bool is_prime(const\
-    \ usize n) {\n        if (n <= 1) return false;\n        return min_prime[n] ==\
-    \ n;\n    }\n    template <class T>\n    static std::vector<std::pair<T, usize>>\
-    \ factorize(T x) {\n        assert(x > 0);\n        std::vector<std::pair<T, usize>>\
-    \ ret;\n        while (x != 1) {\n            const usize p = min_prime[x];\n\
-    \            ret.emplace_back((T) p, 0);\n            while (min_prime[x] == p)\
-    \ {\n                ret.back().second++;\n                x /= p;\n         \
-    \   }\n        }\n        return ret;\n    }\n};\n#line 5 \"test/prime_sieve.test.cpp\"\
-    \n#include <iostream>\n\nint main() {\n    u32 N;\n    std::cin >> N;\n    if\
-    \ (N == 1) {\n        std::cout << 0 << '\\n';\n        return 0;\n    }\n   \
-    \ u32 ans = 1;\n    for (const u32 r: rep(3, N + 1)) {\n        if (r * r - 2\
-    \ > N) break;\n        if (PrimeSieve::is_prime(r) && PrimeSieve::is_prime(r *\
-    \ r - 2)) {\n            ans += 2;\n        }\n    }\n    std::cout << ans <<\
-    \ '\\n';\n    return 0;\n}\n"
+    \ntemplate <class F>\nclass AutoRealloc {\n    using R = typename decltype(std::declval<F>()((usize)\
+    \ 0))::value_type;\n    F func;\n    std::vector<R> data;\npublic:\n    template\
+    \ <class G>\n    explicit AutoRealloc(G&& g, const usize capacity = 0): func(std::forward<G>(g)),\
+    \ data() { reserve(capacity); }\n    void reserve(const usize size) {\n      \
+    \  if (data.size() < size) {\n            const usize pow2 = ((usize) 1 << ceil_log2(size));\n\
+    \            data = func(pow2);\n        }\n    }\n    R operator [] (const usize\
+    \ i) {\n        reserve(i + 1);\n        return data[i];\n    }\n};\n\ntemplate\
+    \ <class G>\nAutoRealloc(G&&, usize) -> AutoRealloc<std::decay_t<G>>;\n#line 7\
+    \ \"math/prime_sieve.cpp\"\n#include <numeric>\n#include <cassert>\n\nstruct PrimeSieve\
+    \ {\n    static inline auto min_prime = AutoRealloc([](const usize n) {\n    \
+    \    std::vector<usize> ret(n);\n        std::iota(ret.begin(), ret.end(), (usize)\
+    \ 0);\n        std::vector<usize> list;\n        for (const usize i: rep(2, n))\
+    \ {\n            if (ret[i] == i) list.push_back(i);\n            for (const usize\
+    \ p: list) {\n                if (p * i >= n || p > ret[i]) break;\n         \
+    \       ret[p * i] = p;\n            }\n        }\n        return ret;\n    });\n\
+    \    static bool is_prime(const usize n) {\n        if (n <= 1) return false;\n\
+    \        return min_prime[n] == n;\n    }\n    template <class T>\n    static\
+    \ std::vector<std::pair<T, usize>> factorize(T x) {\n        assert(x > 0);\n\
+    \        std::vector<std::pair<T, usize>> ret;\n        while (x != 1) {\n   \
+    \         const usize p = min_prime[x];\n            ret.emplace_back((T) p, 0);\n\
+    \            while (min_prime[x] == p) {\n                ret.back().second++;\n\
+    \                x /= p;\n            }\n        }\n        return ret;\n    }\n\
+    };\n#line 5 \"test/prime_sieve.test.cpp\"\n#include <iostream>\n\nint main() {\n\
+    \    u32 N;\n    std::cin >> N;\n    if (N == 1) {\n        std::cout << 0 <<\
+    \ '\\n';\n        return 0;\n    }\n    u32 ans = 1;\n    for (const u32 r: rep(3,\
+    \ N + 1)) {\n        if (r * r - 2 > N) break;\n        if (PrimeSieve::is_prime(r)\
+    \ && PrimeSieve::is_prime(r * r - 2)) {\n            ans += 2;\n        }\n  \
+    \  }\n    std::cout << ans << '\\n';\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/843\"\n#include \"../math/prime_sieve.cpp\"\
     \n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n#include\
     \ <iostream>\n\nint main() {\n    u32 N;\n    std::cin >> N;\n    if (N == 1)\
@@ -87,8 +87,8 @@ data:
   isVerificationFile: true
   path: test/prime_sieve.test.cpp
   requiredBy: []
-  timestamp: '2021-04-06 12:39:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-04-07 12:02:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/prime_sieve.test.cpp
 layout: document

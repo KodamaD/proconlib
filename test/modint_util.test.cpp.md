@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/117
@@ -90,31 +90,31 @@ data:
     \n\nconstexpr u64 ceil_log2(const u64 x) {\n    u64 e = 0;\n    while (((u64)\
     \ 1 << e) < x) ++e;\n    return e;\n}\n#line 4 \"utility/auto_realloc.cpp\"\n\
     #include <utility>\n#include <vector>\n\ntemplate <class F>\nclass AutoRealloc\
-    \ {\n    using R = typename decltype(std::declval<F>().operator()(std::declval<usize>()))::value_type;\n\
-    \    F func;\n    std::vector<R> data;\npublic:\n    explicit AutoRealloc(F&&\
-    \ func): func(std::forward<F>(func)), data() { }\n    explicit AutoRealloc(F&&\
-    \ func, const usize capacity): func(std::forward<F>(func)) { reserve(capacity);\
-    \ }\n    void reserve(const usize size) {\n        if (data.size() < size) {\n\
-    \            const usize pow2 = ((usize) 1 << ceil_log2(size));\n            data\
-    \ = func(pow2);\n        }\n    }\n    R operator [] (const usize i) {\n     \
-    \   reserve(i + 1);\n        return data[i];\n    }\n};\n#line 6 \"math/modint_util.cpp\"\
-    \n#include <cassert>\n\ntemplate <class M>\nstruct ModintUtil {\n    static inline\
-    \ auto fact = AutoRealloc([](const usize n) {\n        std::vector<M> ret(n);\n\
-    \        ret[0] = M(1);\n        for (const usize i: rep(1, n)) {\n          \
-    \  ret[i] = ret[i - 1] * M(i);\n        }\n        return ret;\n    });\n    static\
-    \ inline auto inv = AutoRealloc([](const usize n) {\n        std::vector<M> ret(n);\n\
-    \        if (n == 1) return ret;\n        ret[1] = M(1);\n        for (const usize\
-    \ i: rep(2, n)) {\n            ret[i] = -M(M::mod() / i) * ret[M::mod() % i];\n\
-    \        }\n        return ret;\n    });\n    static inline auto inv_fact = AutoRealloc([](const\
-    \ usize n) {\n        std::vector<M> ret(n);\n        ret[0] = M(1);\n       \
-    \ for (const usize i: rep(1, n)) {\n            ret[i] = ret[i - 1] * inv[i];\n\
-    \        }\n        return ret;\n    });\n    static M binom(const usize n, const\
-    \ usize k) {\n        assert(k <= n);\n        return fact[n] * inv_fact[n - k]\
-    \ * inv_fact[k];\n    }\n    static M factpow(const usize n, const usize k) {\n\
-    \        assert(k <= n);\n        return fact[n] * inv_fact[n - k];\n    }\n \
-    \   static M homo(const usize n, const usize k) {\n        if (n == 0 and k ==\
-    \ 0) return M(1);\n        return binom(n + k - 1, k);\n    }\n};\n#line 5 \"\
-    test/modint_util.test.cpp\"\n#include <iostream>\n\nusing Fp = StaticModint<1000000007>;\n\
+    \ {\n    using R = typename decltype(std::declval<F>()((usize) 0))::value_type;\n\
+    \    F func;\n    std::vector<R> data;\npublic:\n    template <class G>\n    explicit\
+    \ AutoRealloc(G&& g, const usize capacity = 0): func(std::forward<G>(g)), data()\
+    \ { reserve(capacity); }\n    void reserve(const usize size) {\n        if (data.size()\
+    \ < size) {\n            const usize pow2 = ((usize) 1 << ceil_log2(size));\n\
+    \            data = func(pow2);\n        }\n    }\n    R operator [] (const usize\
+    \ i) {\n        reserve(i + 1);\n        return data[i];\n    }\n};\n\ntemplate\
+    \ <class G>\nAutoRealloc(G&&, usize) -> AutoRealloc<std::decay_t<G>>;\n#line 6\
+    \ \"math/modint_util.cpp\"\n#include <cassert>\n\ntemplate <class M>\nstruct ModintUtil\
+    \ {\n    static inline auto fact = AutoRealloc([](const usize n) {\n        std::vector<M>\
+    \ ret(n);\n        ret[0] = M(1);\n        for (const usize i: rep(1, n)) {\n\
+    \            ret[i] = ret[i - 1] * M(i);\n        }\n        return ret;\n   \
+    \ });\n    static inline auto inv = AutoRealloc([](const usize n) {\n        std::vector<M>\
+    \ ret(n);\n        if (n == 1) return ret;\n        ret[1] = M(1);\n        for\
+    \ (const usize i: rep(2, n)) {\n            ret[i] = -M(M::mod() / i) * ret[M::mod()\
+    \ % i];\n        }\n        return ret;\n    });\n    static inline auto inv_fact\
+    \ = AutoRealloc([](const usize n) {\n        std::vector<M> ret(n);\n        ret[0]\
+    \ = M(1);\n        for (const usize i: rep(1, n)) {\n            ret[i] = ret[i\
+    \ - 1] * inv[i];\n        }\n        return ret;\n    });\n    static M binom(const\
+    \ usize n, const usize k) {\n        assert(k <= n);\n        return fact[n] *\
+    \ inv_fact[n - k] * inv_fact[k];\n    }\n    static M factpow(const usize n, const\
+    \ usize k) {\n        assert(k <= n);\n        return fact[n] * inv_fact[n - k];\n\
+    \    }\n    static M homo(const usize n, const usize k) {\n        if (n == 0\
+    \ and k == 0) return M(1);\n        return binom(n + k - 1, k);\n    }\n};\n#line\
+    \ 5 \"test/modint_util.test.cpp\"\n#include <iostream>\n\nusing Fp = StaticModint<1000000007>;\n\
     using FpUtil = ModintUtil<Fp>;\n\nint main() {\n    usize T;\n    std::cin >>\
     \ T;\n    while (T--) {\n        char type, dust;\n        usize N, K;\n     \
     \   std::cin >> type >> dust >> N >> dust >> K >> dust;\n        if (type == 'C')\
@@ -147,8 +147,8 @@ data:
   isVerificationFile: true
   path: test/modint_util.test.cpp
   requiredBy: []
-  timestamp: '2021-04-02 12:34:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-04-07 12:02:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/modint_util.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -17,13 +17,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
   _extendedVerifiedWith:
@@ -36,18 +36,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/prime_sieve.test.cpp
     title: test/prime_sieve.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
@@ -72,7 +72,7 @@ data:
   - math/modint_util.cpp
   - math/prime_sieve.cpp
   timestamp: '2021-03-25 12:45:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/fenwick_tree.test.cpp
   - test/modint_util.test.cpp

@@ -1,10 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: algorithm/monotone_minima.cpp
+    title: algorithm/monotone_minima.cpp
+  - icon: ':warning:'
+    path: algorithm/smawk.cpp
+    title: algorithm/smawk.cpp
   - icon: ':heavy_check_mark:'
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
@@ -20,10 +26,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
   _extendedVerifiedWith:
@@ -36,10 +42,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/prime_sieve.test.cpp
     title: test/prime_sieve.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,9 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
@@ -90,8 +96,10 @@ data:
   - math/modint_util.cpp
   - math/prime_sieve.cpp
   - graph/union_find.cpp
+  - algorithm/monotone_minima.cpp
+  - algorithm/smawk.cpp
   timestamp: '2021-03-24 22:26:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/fenwick_tree.test.cpp
   - test/sparse_table.test.cpp
