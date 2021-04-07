@@ -6,12 +6,12 @@
 
 template <class F>
 class AutoRealloc {
-    using R = typename decltype(std::declval<F>().operator()(std::declval<usize>()))::value_type;
+    using R = typename decltype(std::declval<F>()((usize) 0))::value_type;
     F func;
     std::vector<R> data;
 public:
-    explicit AutoRealloc(F&& func): func(std::forward<F>(func)), data() { }
-    explicit AutoRealloc(F&& func, const usize capacity): func(std::forward<F>(func)) { reserve(capacity); }
+    template <class G>
+    explicit AutoRealloc(G&& g, const usize capacity = 0): func(std::forward<G>(g)), data() { reserve(capacity); }
     void reserve(const usize size) {
         if (data.size() < size) {
             const usize pow2 = ((usize) 1 << ceil_log2(size));
@@ -23,3 +23,6 @@ public:
         return data[i];
     }
 };
+
+template <class G>
+AutoRealloc(G&&, usize) -> AutoRealloc<std::decay_t<G>>;
