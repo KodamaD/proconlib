@@ -11,7 +11,7 @@ class AutoRealloc {
     std::vector<R> data;
 public:
     template <class G>
-    explicit AutoRealloc(G&& g, const usize capacity = 0): func(std::forward<G>(g)), data() { reserve(capacity); }
+    explicit AutoRealloc(G&& g): func(std::forward<G>(g)), data() { }
     void reserve(const usize size) {
         if (data.size() < size) {
             const usize pow2 = ((usize) 1 << ceil_log2(size));
@@ -25,4 +25,4 @@ public:
 };
 
 template <class G>
-AutoRealloc(G&&, usize = 0) -> AutoRealloc<std::decay_t<G>>;
+explicit AutoRealloc(G&&) -> AutoRealloc<std::decay_t<G>>;

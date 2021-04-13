@@ -8,9 +8,9 @@
 template <class F>
 class AutoMemoize {
     template <class> 
-    class GetSig;
+    struct GetSig;
     template <class T, class R, class S, class... Args>
-    class GetSig<R (T::*)(S, Args...) const> {
+    struct GetSig<R (T::*)(S, Args...) const> {
         using Ret = R;
         using Tuple = std::tuple<Args...>;
     };
@@ -29,7 +29,7 @@ class AutoMemoize {
 
 public:
     template <class G>
-    explicit AutoMemoize(G&& g): F(std::forward<G>(g)) { }
+    explicit AutoMemoize(G&& g): func(std::forward<G>(g)) { }
 
     template <class... Args>
     R operator () (Args&&... args) {
@@ -43,4 +43,4 @@ public:
 };
 
 template <class G>
-AutoMemoize(G&&) -> AutoMemoize<std::decay_t<G>>;
+explicit AutoMemoize(G&&) -> AutoMemoize<std::decay_t<G>>;

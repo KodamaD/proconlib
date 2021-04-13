@@ -13,4 +13,4 @@ struct RecLambda: private F {
 };
 
 template <class G>
-RecLambda(G&&) -> RecLambda<std::decay_t<G>>;
+explicit RecLambda(G&&) -> RecLambda<std::decay_t<G>>;
