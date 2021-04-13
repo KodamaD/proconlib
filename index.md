@@ -83,6 +83,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/static_modint.cpp
       title: math/static_modint.cpp
+  - name: random
+    pages:
+    - icon: ':warning:'
+      path: random/rand_int.cpp
+      title: random/rand_int.cpp
+    - icon: ':warning:'
+      path: random/xorshift.cpp
+      title: random/xorshift.cpp
   - name: utility
     pages:
     - icon: ':warning:'

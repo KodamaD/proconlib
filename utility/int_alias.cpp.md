@@ -60,6 +60,12 @@ data:
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   - icon: ':warning:'
+    path: random/rand_int.cpp
+    title: random/rand_int.cpp
+  - icon: ':warning:'
+    path: random/xorshift.cpp
+    title: random/xorshift.cpp
+  - icon: ':warning:'
     path: utility/auto_memoize.cpp
     title: utility/auto_memoize.cpp
   - icon: ':heavy_check_mark:'
@@ -165,6 +171,8 @@ data:
   - container/fenwick_tree.cpp
   - container/dual_segment_tree.cpp
   - container/lazy_segment_tree.cpp
+  - random/xorshift.cpp
+  - random/rand_int.cpp
   - math/factorize.cpp
   - math/static_modint.cpp
   - math/dynamic_modint.cpp

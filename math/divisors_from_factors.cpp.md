@@ -22,7 +22,7 @@ data:
     \ private F {\n    template <class G>\n    explicit constexpr RecLambda(G&& g):\
     \ F(std::forward<G>(g)) { }\n    template <class... Args>\n    constexpr decltype(auto)\
     \ operator () (Args&&... args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate <class G>\nRecLambda(G&&) -> RecLambda<std::decay_t<G>>;\n\
+    \    }\n};\n\ntemplate <class G>\nexplicit RecLambda(G&&) -> RecLambda<std::decay_t<G>>;\n\
     #line 4 \"math/divisors_from_factors.cpp\"\n#include <vector>\n#include <algorithm>\n\
     \ntemplate <class T>\nstd::vector<T> divisors_from_factors(const std::vector<std::pair<T,\
     \ usize>>& factors, const bool sort = true) {\n    usize size = 1;\n    for (const\
@@ -50,7 +50,7 @@ data:
   isVerificationFile: false
   path: math/divisors_from_factors.cpp
   requiredBy: []
-  timestamp: '2021-04-07 12:02:46+09:00'
+  timestamp: '2021-04-13 21:27:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/divisors_from_factors.cpp
