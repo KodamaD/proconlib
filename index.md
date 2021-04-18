@@ -41,6 +41,9 @@ data:
       path: container/segment_tree.cpp
       title: container/segment_tree.cpp
     - icon: ':heavy_check_mark:'
+      path: container/segment_tree_beats.cpp
+      title: container/segment_tree_beats.cpp
+    - icon: ':heavy_check_mark:'
       path: container/sparse_table.cpp
       title: container/sparse_table.cpp
   - name: graph
@@ -147,6 +150,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/segment_tree.test.cpp
       title: test/segment_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/segment_tree_beats.test.cpp
+      title: test/segment_tree_beats.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/sparse_table.test.cpp
       title: test/sparse_table.test.cpp

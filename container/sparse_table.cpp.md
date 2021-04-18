@@ -42,31 +42,29 @@ data:
     \ntemplate <class IdempotentMonoid>\nclass SparseTable {\n    using M = IdempotentMonoid;\n\
     \    std::vector<std::vector<M>> table;\n\npublic:\n    SparseTable(): SparseTable(std::vector<M>())\
     \ { }\n    explicit SparseTable(const std::vector<M>& vec) {\n        const auto\
-    \ size = vec.size();\n        const auto height = bit_width(size); // 4: 3, 7:\
-    \ 3, 8: 4\n        table.reserve(height);\n        table.push_back(vec);\n   \
-    \     for (const usize d: rep(1, height)) {\n            table.push_back(std::vector<M>(size\
-    \ - (1 << d) + 1, M::zero()));\n            for (const usize i: rep(0, table[d].size()))\
-    \ {\n                table[d][i] = table[d - 1][i] + table[d - 1][i + (1 << (d\
-    \ - 1))];\n            }\n        }\n    }\n\n    usize size() const { return\
-    \ table[0].size(); }\n\n    M fold(const usize l, const usize r) const {\n   \
-    \     if (l == r) return M::zero();\n        assert(l < r);\n        const auto\
-    \ d = bit_width(r - l) - 1;\n        return table[d][l] + table[d][r - (1 << d)];\n\
-    \    }\n};\n"
+    \ size = vec.size();\n        const auto height = bit_width(size);\n        table.reserve(height);\n\
+    \        table.push_back(vec);\n        for (const usize d: rep(1, height)) {\n\
+    \            table.push_back(std::vector<M>(size - (1 << d) + 1, M::zero()));\n\
+    \            for (const usize i: rep(0, table[d].size())) {\n                table[d][i]\
+    \ = table[d - 1][i] + table[d - 1][i + (1 << (d - 1))];\n            }\n     \
+    \   }\n    }\n\n    usize size() const { return table[0].size(); }\n\n    M fold(const\
+    \ usize l, const usize r) const {\n        if (l == r) return M::zero();\n   \
+    \     assert(l < r);\n        const auto d = bit_width(r - l) - 1;\n        return\
+    \ table[d][l] + table[d][r - (1 << d)];\n    }\n};\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\
     \n#include \"../bit/bit_width.cpp\"\n#include <vector>\n#include <cassert>\n\n\
     template <class IdempotentMonoid>\nclass SparseTable {\n    using M = IdempotentMonoid;\n\
     \    std::vector<std::vector<M>> table;\n\npublic:\n    SparseTable(): SparseTable(std::vector<M>())\
     \ { }\n    explicit SparseTable(const std::vector<M>& vec) {\n        const auto\
-    \ size = vec.size();\n        const auto height = bit_width(size); // 4: 3, 7:\
-    \ 3, 8: 4\n        table.reserve(height);\n        table.push_back(vec);\n   \
-    \     for (const usize d: rep(1, height)) {\n            table.push_back(std::vector<M>(size\
-    \ - (1 << d) + 1, M::zero()));\n            for (const usize i: rep(0, table[d].size()))\
-    \ {\n                table[d][i] = table[d - 1][i] + table[d - 1][i + (1 << (d\
-    \ - 1))];\n            }\n        }\n    }\n\n    usize size() const { return\
-    \ table[0].size(); }\n\n    M fold(const usize l, const usize r) const {\n   \
-    \     if (l == r) return M::zero();\n        assert(l < r);\n        const auto\
-    \ d = bit_width(r - l) - 1;\n        return table[d][l] + table[d][r - (1 << d)];\n\
-    \    }\n};\n"
+    \ size = vec.size();\n        const auto height = bit_width(size);\n        table.reserve(height);\n\
+    \        table.push_back(vec);\n        for (const usize d: rep(1, height)) {\n\
+    \            table.push_back(std::vector<M>(size - (1 << d) + 1, M::zero()));\n\
+    \            for (const usize i: rep(0, table[d].size())) {\n                table[d][i]\
+    \ = table[d - 1][i] + table[d - 1][i + (1 << (d - 1))];\n            }\n     \
+    \   }\n    }\n\n    usize size() const { return table[0].size(); }\n\n    M fold(const\
+    \ usize l, const usize r) const {\n        if (l == r) return M::zero();\n   \
+    \     assert(l < r);\n        const auto d = bit_width(r - l) - 1;\n        return\
+    \ table[d][l] + table[d][r - (1 << d)];\n    }\n};\n"
   dependsOn:
   - utility/int_alias.cpp
   - utility/rep.cpp
@@ -75,7 +73,7 @@ data:
   isVerificationFile: false
   path: container/sparse_table.cpp
   requiredBy: []
-  timestamp: '2021-04-02 12:34:15+09:00'
+  timestamp: '2021-04-18 14:01:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sparse_table.test.cpp

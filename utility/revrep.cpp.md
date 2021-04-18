@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
+  - icon: ':heavy_check_mark:'
+    path: container/segment_tree_beats.cpp
+    title: container/segment_tree_beats.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/dual_segment_tree.test.cpp
@@ -24,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/segment_tree_beats.test.cpp
+    title: test/segment_tree_beats.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -58,11 +64,13 @@ data:
   path: utility/revrep.cpp
   requiredBy:
   - container/segment_tree.cpp
+  - container/segment_tree_beats.cpp
   - container/dual_segment_tree.cpp
   - container/lazy_segment_tree.cpp
   timestamp: '2021-03-26 16:46:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/segment_tree_beats.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/segment_tree.test.cpp
   - test/dual_segment_tree.test.cpp

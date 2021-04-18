@@ -18,6 +18,9 @@ data:
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
   - icon: ':heavy_check_mark:'
+    path: container/segment_tree_beats.cpp
+    title: container/segment_tree_beats.cpp
+  - icon: ':heavy_check_mark:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
   - icon: ':heavy_check_mark:'
@@ -45,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/segment_tree_beats.test.cpp
+    title: test/segment_tree_beats.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -66,6 +72,7 @@ data:
   requiredBy:
   - utility/auto_realloc.cpp
   - container/segment_tree.cpp
+  - container/segment_tree_beats.cpp
   - container/fenwick_tree.cpp
   - container/dual_segment_tree.cpp
   - container/lazy_segment_tree.cpp
@@ -75,6 +82,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fenwick_tree.test.cpp
+  - test/segment_tree_beats.test.cpp
   - test/modint_util.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/segment_tree.test.cpp

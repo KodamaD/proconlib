@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
+  - icon: ':heavy_check_mark:'
+    path: container/segment_tree_beats.cpp
+    title: container/segment_tree_beats.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/dual_segment_tree.test.cpp
@@ -18,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/segment_tree_beats.test.cpp
+    title: test/segment_tree_beats.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -36,11 +42,13 @@ data:
   isVerificationFile: false
   path: bit/bit_rzeros.cpp
   requiredBy:
+  - container/segment_tree_beats.cpp
   - container/dual_segment_tree.cpp
   - container/lazy_segment_tree.cpp
   timestamp: '2021-03-26 16:52:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/segment_tree_beats.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/dual_segment_tree.test.cpp
 documentation_of: bit/bit_rzeros.cpp
