@@ -14,7 +14,7 @@ public:
     SparseTable(): SparseTable(std::vector<M>()) { }
     explicit SparseTable(const std::vector<M>& vec) {
         const auto size = vec.size();
-        const auto height = bit_width(size); // 4: 3, 7: 3, 8: 4
+        const auto height = bit_width(size);
         table.reserve(height);
         table.push_back(vec);
         for (const usize d: rep(1, height)) {
