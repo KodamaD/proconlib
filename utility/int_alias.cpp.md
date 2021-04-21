@@ -72,6 +72,9 @@ data:
     path: random/xorshift.cpp
     title: random/xorshift.cpp
   - icon: ':warning:'
+    path: test/totient.cpp
+    title: test/totient.cpp
+  - icon: ':heavy_check_mark:'
     path: utility/auto_memoize.cpp
     title: utility/auto_memoize.cpp
   - icon: ':heavy_check_mark:'
@@ -84,6 +87,9 @@ data:
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/auto_memoize.test.cpp
+    title: test/auto_memoize.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/dual_segment_tree.test.cpp
     title: test/dual_segment_tree.test.cpp
@@ -197,6 +203,7 @@ data:
   - container/fenwick_tree.cpp
   - container/sparse_table.cpp
   - container/segment_tree.cpp
+  - test/totient.cpp
   - algorithm/monotone_minima.cpp
   - algorithm/smawk.cpp
   - graph/union_find.cpp
@@ -208,6 +215,7 @@ data:
   - test/sparse_table.test.cpp
   - test/fenwick_tree.test.cpp
   - test/prime_sieve.test.cpp
+  - test/auto_memoize.test.cpp
   - test/dual_segment_tree.test.cpp
   - test/segment_tree_beats.test.cpp
   - test/segment_tree.test.cpp

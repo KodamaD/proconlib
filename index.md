@@ -89,6 +89,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/static_modint.cpp
       title: math/static_modint.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/totient.cpp
+      title: math/totient.cpp
   - name: random
     pages:
     - icon: ':warning:'
@@ -97,9 +100,14 @@ data:
     - icon: ':warning:'
       path: random/xorshift.cpp
       title: random/xorshift.cpp
-  - name: utility
+  - name: test
     pages:
     - icon: ':warning:'
+      path: test/totient.cpp
+      title: test/totient.cpp
+  - name: utility
+    pages:
+    - icon: ':heavy_check_mark:'
       path: utility/auto_memoize.cpp
       title: utility/auto_memoize.cpp
     - icon: ':heavy_check_mark:'
@@ -129,6 +137,9 @@ data:
   verificationCategories:
   - name: test
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/auto_memoize.test.cpp
+      title: test/auto_memoize.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/dual_segment_tree.test.cpp
       title: test/dual_segment_tree.test.cpp

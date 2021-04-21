@@ -17,6 +17,9 @@ data:
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   - icon: ':heavy_check_mark:'
+    path: math/totient.cpp
+    title: math/totient.cpp
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   - icon: ':heavy_check_mark:'
@@ -43,18 +46,18 @@ data:
     \n#include <cstdint>\n#include <cstddef>\n\nusing i32 = std::int32_t;\nusing u32\
     \ = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\nusing\
     \ i128 = __int128_t;\nusing u128 = __uint128_t;\nusing isize = std::ptrdiff_t;\n\
-    using usize = std::size_t;\n#line 2 \"math/rem_euclid.cpp\"\n\ntemplate <class\
-    \ T>\nconstexpr T rem_euclid(T value, const T& mod) {\n    return (value %= mod)\
-    \ >= 0 ? value : value + mod;\n}\n#line 4 \"math/static_modint.cpp\"\n#include\
-    \ <type_traits>\n#include <ostream>\n\ntemplate <u32 MOD, std::enable_if_t<((u32)\
+    using usize = std::size_t;\n#line 2 \"math/totient.cpp\"\n\ntemplate <class T>\n\
+    constexpr T totient(T x) {\n    T ret = x;\n    for (T i = 2; i * i <= x; ++i)\
+    \ {\n        if (x % i == 0) {\n            ret /= i; ret *= i - 1;\n        \
+    \    while (x % i == 0) x /= i;\n        }\n    }\n    if (x > 1) { ret /= x;\
+    \ ret *= x - 1; }\n    return ret;\n}\n#line 2 \"math/rem_euclid.cpp\"\n\ntemplate\
+    \ <class T>\nconstexpr T rem_euclid(T value, const T& mod) {\n    return (value\
+    \ %= mod) >= 0 ? value : value + mod;\n}\n#line 5 \"math/static_modint.cpp\"\n\
+    #include <type_traits>\n#include <ostream>\n\ntemplate <u32 MOD, std::enable_if_t<((u32)\
     \ 1 <= MOD and MOD <= ((u32) 1 << 31))>* = nullptr>\nclass StaticModint {\n  \
-    \  using Mint = StaticModint;\n    \n    static inline constexpr u32 PHI = []\
-    \ {\n        u32 x = MOD, ret = MOD;\n        for (u32 i = 2; i * i <= x; ++i)\
-    \ {\n            if (x % i == 0) {\n                ret /= i; ret *= i - 1;\n\
-    \                while (x % i == 0) x /= i;\n            }\n        }\n      \
-    \  if (x > 1) { ret /= x; ret *= x - 1; }\n        return ret;\n    }();\n\n \
-    \   u32 v;\n\npublic:\n    static constexpr u32 mod() noexcept { return MOD; }\n\
-    \n    template <class T, std::enable_if_t<std::is_signed_v<T> and std::is_integral_v<T>>*\
+    \  using Mint = StaticModint;\n    \n    static inline constexpr u32 PHI = totient(MOD);\n\
+    \    u32 v;\n\npublic:\n    static constexpr u32 mod() noexcept { return MOD;\
+    \ }\n\n    template <class T, std::enable_if_t<std::is_signed_v<T> and std::is_integral_v<T>>*\
     \ = nullptr>\n    static constexpr T normalize(const T x) noexcept { return rem_euclid<std::common_type_t<T,\
     \ i64>>(x, MOD); }\n    template <class T, std::enable_if_t<std::is_unsigned_v<T>\
     \ and std::is_integral_v<T>>* = nullptr>\n    static constexpr T normalize(const\
@@ -253,6 +256,7 @@ data:
   dependsOn:
   - utility/int_alias.cpp
   - math/static_modint.cpp
+  - math/totient.cpp
   - math/rem_euclid.cpp
   - container/segment_tree.cpp
   - utility/rep.cpp
@@ -263,7 +267,7 @@ data:
   isVerificationFile: true
   path: test/heavy_light_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2021-04-21 21:38:52+09:00'
+  timestamp: '2021-04-21 22:08:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/heavy_light_decomposition.test.cpp

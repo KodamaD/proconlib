@@ -5,10 +5,13 @@ data:
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/auto_memoize.test.cpp
+    title: test/auto_memoize.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
@@ -21,15 +24,16 @@ data:
     \ (T::*)(S, Args...) const> {\n        using Ret = R;\n        using Tuple = std::tuple<Args...>;\n\
     \    };\n\n    using Sig = GetSig<decltype(&F::template operator()<AutoMemoize<F>&>)>;\n\
     \    using R = typename Sig::Ret;\n    using Tuple = typename Sig::Tuple;\n\n\
-    \    F func;\n    std::map<Tuple, R> data;\n\n    template <usize... I>\n    R\
-    \ apply(const Tuple& args_tuple, std::index_sequence<I...>) {\n        return\
-    \ func(*this, std::get<I>(args_tuple)...);\n    }\n\npublic:\n    template <class\
-    \ G>\n    explicit AutoMemoize(G&& g): func(std::forward<G>(g)) { }\n\n    template\
-    \ <class... Args>\n    R operator () (Args&&... args) {\n        Tuple tup(std::forward<Args>(args)...);\n\
-    \        const auto itr = data.find(tup);\n        if (itr != data.end()) return\
-    \ itr -> second;\n        R ret = apply(tup, std::make_index_sequence<std::tuple_size_v<Tuple>>());\n\
-    \        data.emplace(std::move(tup), ret);\n        return ret;\n    }\n};\n\n\
-    template <class G>\nexplicit AutoMemoize(G&&) -> AutoMemoize<std::decay_t<G>>;\n"
+    \    F func;\n    mutable std::map<Tuple, R> data;\n\n    template <usize... I>\n\
+    \    R apply(const Tuple& args_tuple, std::index_sequence<I...>) const {\n   \
+    \     return func(*this, std::get<I>(args_tuple)...);\n    }\n\npublic:\n    template\
+    \ <class G>\n    explicit AutoMemoize(G&& g): func(std::forward<G>(g)) { }\n\n\
+    \    template <class... Args>\n    R operator () (Args&&... args) const {\n  \
+    \      Tuple tup(std::forward<Args>(args)...);\n        const auto itr = data.find(tup);\n\
+    \        if (itr != data.end()) return itr -> second;\n        R ret = apply(tup,\
+    \ std::make_index_sequence<std::tuple_size_v<Tuple>>());\n        data.emplace(std::move(tup),\
+    \ ret);\n        return ret;\n    }\n};\n\ntemplate <class G>\nexplicit AutoMemoize(G&&)\
+    \ -> AutoMemoize<std::decay_t<G>>;\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include <tuple>\n#include\
     \ <type_traits>\n#include <utility>\n#include <map>\n\ntemplate <class F>\nclass\
     \ AutoMemoize {\n    template <class> \n    struct GetSig;\n    template <class\
@@ -37,23 +41,25 @@ data:
     \ const> {\n        using Ret = R;\n        using Tuple = std::tuple<Args...>;\n\
     \    };\n\n    using Sig = GetSig<decltype(&F::template operator()<AutoMemoize<F>&>)>;\n\
     \    using R = typename Sig::Ret;\n    using Tuple = typename Sig::Tuple;\n\n\
-    \    F func;\n    std::map<Tuple, R> data;\n\n    template <usize... I>\n    R\
-    \ apply(const Tuple& args_tuple, std::index_sequence<I...>) {\n        return\
-    \ func(*this, std::get<I>(args_tuple)...);\n    }\n\npublic:\n    template <class\
-    \ G>\n    explicit AutoMemoize(G&& g): func(std::forward<G>(g)) { }\n\n    template\
-    \ <class... Args>\n    R operator () (Args&&... args) {\n        Tuple tup(std::forward<Args>(args)...);\n\
-    \        const auto itr = data.find(tup);\n        if (itr != data.end()) return\
-    \ itr -> second;\n        R ret = apply(tup, std::make_index_sequence<std::tuple_size_v<Tuple>>());\n\
-    \        data.emplace(std::move(tup), ret);\n        return ret;\n    }\n};\n\n\
-    template <class G>\nexplicit AutoMemoize(G&&) -> AutoMemoize<std::decay_t<G>>;\n"
+    \    F func;\n    mutable std::map<Tuple, R> data;\n\n    template <usize... I>\n\
+    \    R apply(const Tuple& args_tuple, std::index_sequence<I...>) const {\n   \
+    \     return func(*this, std::get<I>(args_tuple)...);\n    }\n\npublic:\n    template\
+    \ <class G>\n    explicit AutoMemoize(G&& g): func(std::forward<G>(g)) { }\n\n\
+    \    template <class... Args>\n    R operator () (Args&&... args) const {\n  \
+    \      Tuple tup(std::forward<Args>(args)...);\n        const auto itr = data.find(tup);\n\
+    \        if (itr != data.end()) return itr -> second;\n        R ret = apply(tup,\
+    \ std::make_index_sequence<std::tuple_size_v<Tuple>>());\n        data.emplace(std::move(tup),\
+    \ ret);\n        return ret;\n    }\n};\n\ntemplate <class G>\nexplicit AutoMemoize(G&&)\
+    \ -> AutoMemoize<std::decay_t<G>>;\n"
   dependsOn:
   - utility/int_alias.cpp
   isVerificationFile: false
   path: utility/auto_memoize.cpp
   requiredBy: []
-  timestamp: '2021-04-13 21:27:20+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-04-21 22:08:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/auto_memoize.test.cpp
 documentation_of: utility/auto_memoize.cpp
 layout: document
 redirect_from:
