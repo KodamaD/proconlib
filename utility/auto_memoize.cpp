@@ -20,10 +20,10 @@ class AutoMemoize {
     using Tuple = typename Sig::Tuple;
 
     F func;
-    std::map<Tuple, R> data;
+    mutable std::map<Tuple, R> data;
 
     template <usize... I>
-    R apply(const Tuple& args_tuple, std::index_sequence<I...>) {
+    R apply(const Tuple& args_tuple, std::index_sequence<I...>) const {
         return func(*this, std::get<I>(args_tuple)...);
     }
 
@@ -32,7 +32,7 @@ public:
     explicit AutoMemoize(G&& g): func(std::forward<G>(g)) { }
 
     template <class... Args>
-    R operator () (Args&&... args) {
+    R operator () (Args&&... args) const {
         Tuple tup(std::forward<Args>(args)...);
         const auto itr = data.find(tup);
         if (itr != data.end()) return itr -> second;

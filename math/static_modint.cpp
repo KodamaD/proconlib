@@ -1,5 +1,6 @@
 #pragma once
 #include "../utility/int_alias.cpp"
+#include "../math/totient.cpp"
 #include "rem_euclid.cpp"
 #include <type_traits>
 #include <ostream>
@@ -8,18 +9,7 @@ template <u32 MOD, std::enable_if_t<((u32) 1 <= MOD and MOD <= ((u32) 1 << 31))>
 class StaticModint {
     using Mint = StaticModint;
     
-    static inline constexpr u32 PHI = [] {
-        u32 x = MOD, ret = MOD;
-        for (u32 i = 2; i * i <= x; ++i) {
-            if (x % i == 0) {
-                ret /= i; ret *= i - 1;
-                while (x % i == 0) x /= i;
-            }
-        }
-        if (x > 1) { ret /= x; ret *= x - 1; }
-        return ret;
-    }();
-
+    static inline constexpr u32 PHI = totient(MOD);
     u32 v;
 
 public:
