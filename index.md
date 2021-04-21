@@ -49,6 +49,9 @@ data:
   - name: graph
     pages:
     - icon: ':heavy_check_mark:'
+      path: graph/heavy_light_decomposition.cpp
+      title: graph/heavy_light_decomposition.cpp
+    - icon: ':heavy_check_mark:'
       path: graph/union_find.cpp
       title: graph/union_find.cpp
   - name: math
@@ -108,7 +111,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
     - icon: ':heavy_check_mark:'
@@ -138,6 +141,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fenwick_tree.test.cpp
       title: test/fenwick_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/heavy_light_decomposition.test.cpp
+      title: test/heavy_light_decomposition.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/lazy_segment_tree.test.cpp
       title: test/lazy_segment_tree.test.cpp

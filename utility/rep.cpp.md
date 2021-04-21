@@ -27,6 +27,9 @@ data:
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
   - icon: ':heavy_check_mark:'
+    path: graph/heavy_light_decomposition.cpp
+    title: graph/heavy_light_decomposition.cpp
+  - icon: ':heavy_check_mark:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
   - icon: ':heavy_check_mark:'
@@ -42,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fenwick_tree.test.cpp
     title: test/fenwick_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/heavy_light_decomposition.test.cpp
+    title: test/heavy_light_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
@@ -95,28 +101,30 @@ data:
   isVerificationFile: false
   path: utility/rep.cpp
   requiredBy:
-  - container/segment_tree.cpp
-  - container/segment_tree_beats.cpp
-  - container/sparse_table.cpp
-  - container/dual_segment_tree.cpp
-  - container/lazy_segment_tree.cpp
   - math/modint_util.cpp
   - math/prime_sieve.cpp
-  - graph/union_find.cpp
+  - container/lazy_segment_tree.cpp
+  - container/dual_segment_tree.cpp
+  - container/segment_tree_beats.cpp
+  - container/sparse_table.cpp
+  - container/segment_tree.cpp
   - algorithm/monotone_minima.cpp
   - algorithm/smawk.cpp
+  - graph/union_find.cpp
+  - graph/heavy_light_decomposition.cpp
   timestamp: '2021-03-24 22:26:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fenwick_tree.test.cpp
-  - test/segment_tree_beats.test.cpp
-  - test/sparse_table.test.cpp
-  - test/modint_util.test.cpp
   - test/lazy_segment_tree.test.cpp
-  - test/union_find.test.cpp
-  - test/segment_tree.test.cpp
-  - test/dual_segment_tree.test.cpp
+  - test/sparse_table.test.cpp
+  - test/fenwick_tree.test.cpp
   - test/prime_sieve.test.cpp
+  - test/dual_segment_tree.test.cpp
+  - test/segment_tree_beats.test.cpp
+  - test/segment_tree.test.cpp
+  - test/modint_util.test.cpp
+  - test/union_find.test.cpp
+  - test/heavy_light_decomposition.test.cpp
 documentation_of: utility/rep.cpp
 layout: document
 redirect_from:

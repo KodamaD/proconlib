@@ -22,6 +22,9 @@ data:
     path: test/dual_segment_tree.test.cpp
     title: test/dual_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/heavy_light_decomposition.test.cpp
+    title: test/heavy_light_decomposition.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,17 +66,18 @@ data:
   isVerificationFile: false
   path: utility/revrep.cpp
   requiredBy:
-  - container/segment_tree.cpp
-  - container/segment_tree_beats.cpp
-  - container/dual_segment_tree.cpp
   - container/lazy_segment_tree.cpp
+  - container/dual_segment_tree.cpp
+  - container/segment_tree_beats.cpp
+  - container/segment_tree.cpp
   timestamp: '2021-03-26 16:46:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/segment_tree_beats.test.cpp
   - test/lazy_segment_tree.test.cpp
-  - test/segment_tree.test.cpp
   - test/dual_segment_tree.test.cpp
+  - test/segment_tree_beats.test.cpp
+  - test/segment_tree.test.cpp
+  - test/heavy_light_decomposition.test.cpp
 documentation_of: utility/revrep.cpp
 layout: document
 redirect_from:

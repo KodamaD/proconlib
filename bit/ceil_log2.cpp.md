@@ -37,6 +37,9 @@ data:
     path: test/fenwick_tree.test.cpp
     title: test/fenwick_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/heavy_light_decomposition.test.cpp
+    title: test/heavy_light_decomposition.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -70,24 +73,25 @@ data:
   isVerificationFile: false
   path: bit/ceil_log2.cpp
   requiredBy:
-  - utility/auto_realloc.cpp
-  - container/segment_tree.cpp
-  - container/segment_tree_beats.cpp
-  - container/fenwick_tree.cpp
-  - container/dual_segment_tree.cpp
-  - container/lazy_segment_tree.cpp
   - math/modint_util.cpp
   - math/prime_sieve.cpp
+  - utility/auto_realloc.cpp
+  - container/lazy_segment_tree.cpp
+  - container/dual_segment_tree.cpp
+  - container/segment_tree_beats.cpp
+  - container/fenwick_tree.cpp
+  - container/segment_tree.cpp
   timestamp: '2021-03-25 12:45:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fenwick_tree.test.cpp
-  - test/segment_tree_beats.test.cpp
-  - test/modint_util.test.cpp
   - test/lazy_segment_tree.test.cpp
-  - test/segment_tree.test.cpp
-  - test/dual_segment_tree.test.cpp
+  - test/fenwick_tree.test.cpp
   - test/prime_sieve.test.cpp
+  - test/dual_segment_tree.test.cpp
+  - test/segment_tree_beats.test.cpp
+  - test/segment_tree.test.cpp
+  - test/modint_util.test.cpp
+  - test/heavy_light_decomposition.test.cpp
 documentation_of: bit/ceil_log2.cpp
 layout: document
 redirect_from:

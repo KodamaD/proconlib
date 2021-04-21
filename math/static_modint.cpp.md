@@ -10,6 +10,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/heavy_light_decomposition.test.cpp
+    title: test/heavy_light_decomposition.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,32 +45,33 @@ data:
     \ i64>>(x, MOD); }\n    template <class T, std::enable_if_t<std::is_unsigned_v<T>\
     \ and std::is_integral_v<T>>* = nullptr>\n    static constexpr T normalize(const\
     \ T x) noexcept { return x % MOD; }\n\n    constexpr StaticModint() noexcept:\
-    \ v(0) { }\n    template <class T>\n    explicit constexpr StaticModint(const\
-    \ T x) noexcept: v(normalize(x)) { }\n    template <class T>\n    static constexpr\
-    \ Mint raw(const T x) noexcept {\n        Mint ret;\n        ret.v = x;\n    \
-    \    return ret;\n    }\n\n    constexpr u32 get() const noexcept { return v;\
-    \ }\n    constexpr Mint neg() const noexcept { return raw(v == 0 ? 0 : MOD - v);\
-    \ }\n    constexpr Mint inv() const noexcept { return pow(PHI - 1); }\n    constexpr\
-    \ Mint pow(u64 exp) const noexcept {\n        Mint ret(1), mult(*this);\n    \
-    \    for (; exp > 0; exp >>= 1) {\n            if (exp & 1) ret *= mult;\n   \
-    \         mult *= mult;\n        }\n        return ret;\n    }\n    \n    constexpr\
-    \ Mint operator - () const noexcept { return neg(); }\n    constexpr Mint operator\
-    \ ~ () const noexcept { return inv(); }\n\n    constexpr Mint operator + (const\
-    \ Mint& rhs) const noexcept { return Mint(*this) += rhs; }\n    constexpr Mint&\
-    \ operator += (const Mint& rhs) noexcept {\n        if ((v += rhs.v) >= MOD) v\
-    \ -= MOD;\n        return *this;\n    }\n    \n    constexpr Mint operator - (const\
-    \ Mint& rhs) const noexcept { return Mint(*this) -= rhs; }\n    constexpr Mint&\
-    \ operator -= (const Mint& rhs) noexcept {\n        if (v < rhs.v) v += MOD;\n\
-    \        v -= rhs.v;\n        return *this;\n    }\n\n    constexpr Mint operator\
-    \ * (const Mint& rhs) const noexcept { return Mint(*this) *= rhs; }\n    constexpr\
-    \ Mint& operator *= (const Mint& rhs) noexcept {\n        v = (u64) v * rhs.v\
-    \ % MOD;\n        return *this;\n    }\n\n    constexpr Mint operator / (const\
-    \ Mint& rhs) const noexcept { return Mint(*this) /= rhs; }\n    constexpr Mint&\
-    \ operator /= (const Mint& rhs) noexcept { \n        return *this *= rhs.inv();\n\
-    \    }\n\n    constexpr bool operator == (const Mint& rhs) const noexcept { return\
-    \ v == rhs.v; }\n    constexpr bool operator != (const Mint& rhs) const noexcept\
-    \ { return v != rhs.v; }\n    friend std::ostream& operator << (std::ostream&\
-    \ stream, const Mint& rhs) { \n        return stream << rhs.v;\n    }\n};\n"
+    \ v(0) { }\n    template <class T>\n    constexpr StaticModint(const T x) noexcept:\
+    \ v(normalize(x)) { }\n    template <class T>\n    static constexpr Mint raw(const\
+    \ T x) noexcept {\n        Mint ret;\n        ret.v = x;\n        return ret;\n\
+    \    }\n\n    constexpr u32 get() const noexcept { return v; }\n    constexpr\
+    \ Mint neg() const noexcept { return raw(v == 0 ? 0 : MOD - v); }\n    constexpr\
+    \ Mint inv() const noexcept { return pow(PHI - 1); }\n    constexpr Mint pow(u64\
+    \ exp) const noexcept {\n        Mint ret(1), mult(*this);\n        for (; exp\
+    \ > 0; exp >>= 1) {\n            if (exp & 1) ret *= mult;\n            mult *=\
+    \ mult;\n        }\n        return ret;\n    }\n    \n    constexpr Mint operator\
+    \ - () const noexcept { return neg(); }\n    constexpr Mint operator ~ () const\
+    \ noexcept { return inv(); }\n\n    constexpr Mint operator + (const Mint& rhs)\
+    \ const noexcept { return Mint(*this) += rhs; }\n    constexpr Mint& operator\
+    \ += (const Mint& rhs) noexcept {\n        if ((v += rhs.v) >= MOD) v -= MOD;\n\
+    \        return *this;\n    }\n    \n    constexpr Mint operator - (const Mint&\
+    \ rhs) const noexcept { return Mint(*this) -= rhs; }\n    constexpr Mint& operator\
+    \ -= (const Mint& rhs) noexcept {\n        if (v < rhs.v) v += MOD;\n        v\
+    \ -= rhs.v;\n        return *this;\n    }\n\n    constexpr Mint operator * (const\
+    \ Mint& rhs) const noexcept { return Mint(*this) *= rhs; }\n    constexpr Mint&\
+    \ operator *= (const Mint& rhs) noexcept {\n        v = (u64) v * rhs.v % MOD;\n\
+    \        return *this;\n    }\n\n    constexpr Mint operator / (const Mint& rhs)\
+    \ const noexcept { return Mint(*this) /= rhs; }\n    constexpr Mint& operator\
+    \ /= (const Mint& rhs) noexcept { \n        return *this *= rhs.inv();\n    }\n\
+    \n    constexpr bool operator == (const Mint& rhs) const noexcept { return v ==\
+    \ rhs.v; }\n    constexpr bool operator != (const Mint& rhs) const noexcept {\
+    \ return v != rhs.v; }\n    friend std::ostream& operator << (std::ostream& stream,\
+    \ const Mint& rhs) { \n        return stream << rhs.v;\n    }\n};\n\nusing Modint1000000007\
+    \ = StaticModint<1000000007>;\nusing Modint998244353 = StaticModint<998244353>;\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"rem_euclid.cpp\"\
     \n#include <type_traits>\n#include <ostream>\n\ntemplate <u32 MOD, std::enable_if_t<((u32)\
     \ 1 <= MOD and MOD <= ((u32) 1 << 31))>* = nullptr>\nclass StaticModint {\n  \
@@ -82,44 +86,46 @@ data:
     \ i64>>(x, MOD); }\n    template <class T, std::enable_if_t<std::is_unsigned_v<T>\
     \ and std::is_integral_v<T>>* = nullptr>\n    static constexpr T normalize(const\
     \ T x) noexcept { return x % MOD; }\n\n    constexpr StaticModint() noexcept:\
-    \ v(0) { }\n    template <class T>\n    explicit constexpr StaticModint(const\
-    \ T x) noexcept: v(normalize(x)) { }\n    template <class T>\n    static constexpr\
-    \ Mint raw(const T x) noexcept {\n        Mint ret;\n        ret.v = x;\n    \
-    \    return ret;\n    }\n\n    constexpr u32 get() const noexcept { return v;\
-    \ }\n    constexpr Mint neg() const noexcept { return raw(v == 0 ? 0 : MOD - v);\
-    \ }\n    constexpr Mint inv() const noexcept { return pow(PHI - 1); }\n    constexpr\
-    \ Mint pow(u64 exp) const noexcept {\n        Mint ret(1), mult(*this);\n    \
-    \    for (; exp > 0; exp >>= 1) {\n            if (exp & 1) ret *= mult;\n   \
-    \         mult *= mult;\n        }\n        return ret;\n    }\n    \n    constexpr\
-    \ Mint operator - () const noexcept { return neg(); }\n    constexpr Mint operator\
-    \ ~ () const noexcept { return inv(); }\n\n    constexpr Mint operator + (const\
-    \ Mint& rhs) const noexcept { return Mint(*this) += rhs; }\n    constexpr Mint&\
-    \ operator += (const Mint& rhs) noexcept {\n        if ((v += rhs.v) >= MOD) v\
-    \ -= MOD;\n        return *this;\n    }\n    \n    constexpr Mint operator - (const\
-    \ Mint& rhs) const noexcept { return Mint(*this) -= rhs; }\n    constexpr Mint&\
-    \ operator -= (const Mint& rhs) noexcept {\n        if (v < rhs.v) v += MOD;\n\
-    \        v -= rhs.v;\n        return *this;\n    }\n\n    constexpr Mint operator\
-    \ * (const Mint& rhs) const noexcept { return Mint(*this) *= rhs; }\n    constexpr\
-    \ Mint& operator *= (const Mint& rhs) noexcept {\n        v = (u64) v * rhs.v\
-    \ % MOD;\n        return *this;\n    }\n\n    constexpr Mint operator / (const\
-    \ Mint& rhs) const noexcept { return Mint(*this) /= rhs; }\n    constexpr Mint&\
-    \ operator /= (const Mint& rhs) noexcept { \n        return *this *= rhs.inv();\n\
-    \    }\n\n    constexpr bool operator == (const Mint& rhs) const noexcept { return\
-    \ v == rhs.v; }\n    constexpr bool operator != (const Mint& rhs) const noexcept\
-    \ { return v != rhs.v; }\n    friend std::ostream& operator << (std::ostream&\
-    \ stream, const Mint& rhs) { \n        return stream << rhs.v;\n    }\n};\n"
+    \ v(0) { }\n    template <class T>\n    constexpr StaticModint(const T x) noexcept:\
+    \ v(normalize(x)) { }\n    template <class T>\n    static constexpr Mint raw(const\
+    \ T x) noexcept {\n        Mint ret;\n        ret.v = x;\n        return ret;\n\
+    \    }\n\n    constexpr u32 get() const noexcept { return v; }\n    constexpr\
+    \ Mint neg() const noexcept { return raw(v == 0 ? 0 : MOD - v); }\n    constexpr\
+    \ Mint inv() const noexcept { return pow(PHI - 1); }\n    constexpr Mint pow(u64\
+    \ exp) const noexcept {\n        Mint ret(1), mult(*this);\n        for (; exp\
+    \ > 0; exp >>= 1) {\n            if (exp & 1) ret *= mult;\n            mult *=\
+    \ mult;\n        }\n        return ret;\n    }\n    \n    constexpr Mint operator\
+    \ - () const noexcept { return neg(); }\n    constexpr Mint operator ~ () const\
+    \ noexcept { return inv(); }\n\n    constexpr Mint operator + (const Mint& rhs)\
+    \ const noexcept { return Mint(*this) += rhs; }\n    constexpr Mint& operator\
+    \ += (const Mint& rhs) noexcept {\n        if ((v += rhs.v) >= MOD) v -= MOD;\n\
+    \        return *this;\n    }\n    \n    constexpr Mint operator - (const Mint&\
+    \ rhs) const noexcept { return Mint(*this) -= rhs; }\n    constexpr Mint& operator\
+    \ -= (const Mint& rhs) noexcept {\n        if (v < rhs.v) v += MOD;\n        v\
+    \ -= rhs.v;\n        return *this;\n    }\n\n    constexpr Mint operator * (const\
+    \ Mint& rhs) const noexcept { return Mint(*this) *= rhs; }\n    constexpr Mint&\
+    \ operator *= (const Mint& rhs) noexcept {\n        v = (u64) v * rhs.v % MOD;\n\
+    \        return *this;\n    }\n\n    constexpr Mint operator / (const Mint& rhs)\
+    \ const noexcept { return Mint(*this) /= rhs; }\n    constexpr Mint& operator\
+    \ /= (const Mint& rhs) noexcept { \n        return *this *= rhs.inv();\n    }\n\
+    \n    constexpr bool operator == (const Mint& rhs) const noexcept { return v ==\
+    \ rhs.v; }\n    constexpr bool operator != (const Mint& rhs) const noexcept {\
+    \ return v != rhs.v; }\n    friend std::ostream& operator << (std::ostream& stream,\
+    \ const Mint& rhs) { \n        return stream << rhs.v;\n    }\n};\n\nusing Modint1000000007\
+    \ = StaticModint<1000000007>;\nusing Modint998244353 = StaticModint<998244353>;\n"
   dependsOn:
   - utility/int_alias.cpp
   - math/rem_euclid.cpp
   isVerificationFile: false
   path: math/static_modint.cpp
   requiredBy: []
-  timestamp: '2021-04-02 12:34:38+09:00'
+  timestamp: '2021-04-21 21:38:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/modint_util.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/segment_tree.test.cpp
+  - test/modint_util.test.cpp
+  - test/heavy_light_decomposition.test.cpp
 documentation_of: math/static_modint.cpp
 layout: document
 redirect_from:

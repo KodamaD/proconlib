@@ -51,13 +51,13 @@ data:
     \ i64>>(x, mod()); }\n    template <class T, std::enable_if_t<std::is_unsigned_v<T>\
     \ and std::is_integral_v<T>>* = nullptr>\n    static T normalize(const T x) noexcept\
     \ { return x % mod(); }\n\n    DynamicModint() noexcept: v(0) { }\n    template\
-    \ <class T>\n    explicit DynamicModint(const T x) noexcept: v(normalize(x)) {\
-    \ }\n    template <class T>\n    static Mint raw(const T x) noexcept {\n     \
-    \   Mint ret;\n        ret.v = x;\n        return ret;\n    }\n\n    u32 get()\
-    \ const noexcept { return v; }\n    Mint neg() const noexcept { return raw(v ==\
-    \ 0 ? 0 : mod() - v); }\n    Mint inv() const noexcept { return raw(mod_inv(v,\
-    \ mod())); }\n    Mint pow(u64 exp) const noexcept {\n        Mint ret(1), mult(*this);\n\
-    \        for (; exp > 0; exp >>= 1) {\n            if (exp & 1) ret *= mult;\n\
+    \ <class T>\n    DynamicModint(const T x) noexcept: v(normalize(x)) { }\n    template\
+    \ <class T>\n    static Mint raw(const T x) noexcept {\n        Mint ret;\n  \
+    \      ret.v = x;\n        return ret;\n    }\n\n    u32 get() const noexcept\
+    \ { return v; }\n    Mint neg() const noexcept { return raw(v == 0 ? 0 : mod()\
+    \ - v); }\n    Mint inv() const noexcept { return raw(mod_inv(v, mod())); }\n\
+    \    Mint pow(u64 exp) const noexcept {\n        Mint ret(1), mult(*this);\n \
+    \       for (; exp > 0; exp >>= 1) {\n            if (exp & 1) ret *= mult;\n\
     \            mult *= mult;\n        }\n        return ret;\n    }\n\n    Mint\
     \ operator - () const noexcept { return neg(); }\n    Mint operator ~ () const\
     \ noexcept { return inv(); }\n\n    Mint operator + (const Mint& rhs) const noexcept\
@@ -74,7 +74,7 @@ data:
     \ operator == (const Mint& rhs) const noexcept { return v == rhs.v; }\n    bool\
     \ operator != (const Mint& rhs) const noexcept { return v != rhs.v; }\n    friend\
     \ std::ostream& operator << (std::ostream& stream, const Mint& rhs) { \n     \
-    \   return stream << rhs.v;\n    }\n};\n"
+    \   return stream << rhs.v;\n    }\n};\n\nusing Modint = DynamicModint<__COUNTER__>;\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"rem_euclid.cpp\"\
     \n#include \"mod_inv.cpp\"\n#include <type_traits>\n#include <ostream>\n#include\
     \ <cassert>\n\ntemplate <usize ID>\nclass DynamicModint {\n    using Mint = DynamicModint;\n\
@@ -91,30 +91,30 @@ data:
     \ { return rem_euclid<std::common_type_t<T, i64>>(x, mod()); }\n    template <class\
     \ T, std::enable_if_t<std::is_unsigned_v<T> and std::is_integral_v<T>>* = nullptr>\n\
     \    static T normalize(const T x) noexcept { return x % mod(); }\n\n    DynamicModint()\
-    \ noexcept: v(0) { }\n    template <class T>\n    explicit DynamicModint(const\
-    \ T x) noexcept: v(normalize(x)) { }\n    template <class T>\n    static Mint\
-    \ raw(const T x) noexcept {\n        Mint ret;\n        ret.v = x;\n        return\
-    \ ret;\n    }\n\n    u32 get() const noexcept { return v; }\n    Mint neg() const\
-    \ noexcept { return raw(v == 0 ? 0 : mod() - v); }\n    Mint inv() const noexcept\
-    \ { return raw(mod_inv(v, mod())); }\n    Mint pow(u64 exp) const noexcept {\n\
-    \        Mint ret(1), mult(*this);\n        for (; exp > 0; exp >>= 1) {\n   \
-    \         if (exp & 1) ret *= mult;\n            mult *= mult;\n        }\n  \
-    \      return ret;\n    }\n\n    Mint operator - () const noexcept { return neg();\
-    \ }\n    Mint operator ~ () const noexcept { return inv(); }\n\n    Mint operator\
-    \ + (const Mint& rhs) const noexcept { return Mint(*this) += rhs; }\n    Mint&\
-    \ operator += (const Mint& rhs) noexcept {\n        if ((v += rhs.v) >= mod())\
-    \ v -= mod();\n        return *this;\n    }\n    \n    Mint operator - (const\
-    \ Mint& rhs) const noexcept { return Mint(*this) -= rhs; }\n    Mint& operator\
-    \ -= (const Mint& rhs) noexcept {\n        if (v < rhs.v) v += mod();\n      \
-    \  v -= rhs.v;\n        return *this;\n    }\n\n    Mint operator * (const Mint&\
-    \ rhs) const noexcept { return Mint(*this) *= rhs; }\n    Mint& operator *= (const\
-    \ Mint& rhs) noexcept {\n        v = bt.product(v, rhs.v);\n        return *this;\n\
-    \    }\n\n    Mint operator / (const Mint& rhs) const noexcept { return Mint(*this)\
-    \ /= rhs; }\n    Mint& operator /= (const Mint& rhs) noexcept { \n        return\
-    \ *this *= rhs.inv();\n    }\n\n    bool operator == (const Mint& rhs) const noexcept\
-    \ { return v == rhs.v; }\n    bool operator != (const Mint& rhs) const noexcept\
-    \ { return v != rhs.v; }\n    friend std::ostream& operator << (std::ostream&\
-    \ stream, const Mint& rhs) { \n        return stream << rhs.v;\n    }\n};\n"
+    \ noexcept: v(0) { }\n    template <class T>\n    DynamicModint(const T x) noexcept:\
+    \ v(normalize(x)) { }\n    template <class T>\n    static Mint raw(const T x)\
+    \ noexcept {\n        Mint ret;\n        ret.v = x;\n        return ret;\n   \
+    \ }\n\n    u32 get() const noexcept { return v; }\n    Mint neg() const noexcept\
+    \ { return raw(v == 0 ? 0 : mod() - v); }\n    Mint inv() const noexcept { return\
+    \ raw(mod_inv(v, mod())); }\n    Mint pow(u64 exp) const noexcept {\n        Mint\
+    \ ret(1), mult(*this);\n        for (; exp > 0; exp >>= 1) {\n            if (exp\
+    \ & 1) ret *= mult;\n            mult *= mult;\n        }\n        return ret;\n\
+    \    }\n\n    Mint operator - () const noexcept { return neg(); }\n    Mint operator\
+    \ ~ () const noexcept { return inv(); }\n\n    Mint operator + (const Mint& rhs)\
+    \ const noexcept { return Mint(*this) += rhs; }\n    Mint& operator += (const\
+    \ Mint& rhs) noexcept {\n        if ((v += rhs.v) >= mod()) v -= mod();\n    \
+    \    return *this;\n    }\n    \n    Mint operator - (const Mint& rhs) const noexcept\
+    \ { return Mint(*this) -= rhs; }\n    Mint& operator -= (const Mint& rhs) noexcept\
+    \ {\n        if (v < rhs.v) v += mod();\n        v -= rhs.v;\n        return *this;\n\
+    \    }\n\n    Mint operator * (const Mint& rhs) const noexcept { return Mint(*this)\
+    \ *= rhs; }\n    Mint& operator *= (const Mint& rhs) noexcept {\n        v = bt.product(v,\
+    \ rhs.v);\n        return *this;\n    }\n\n    Mint operator / (const Mint& rhs)\
+    \ const noexcept { return Mint(*this) /= rhs; }\n    Mint& operator /= (const\
+    \ Mint& rhs) noexcept { \n        return *this *= rhs.inv();\n    }\n\n    bool\
+    \ operator == (const Mint& rhs) const noexcept { return v == rhs.v; }\n    bool\
+    \ operator != (const Mint& rhs) const noexcept { return v != rhs.v; }\n    friend\
+    \ std::ostream& operator << (std::ostream& stream, const Mint& rhs) { \n     \
+    \   return stream << rhs.v;\n    }\n};\n\nusing Modint = DynamicModint<__COUNTER__>;\n"
   dependsOn:
   - utility/int_alias.cpp
   - math/rem_euclid.cpp
@@ -123,7 +123,7 @@ data:
   isVerificationFile: false
   path: math/dynamic_modint.cpp
   requiredBy: []
-  timestamp: '2021-04-02 12:34:38+09:00'
+  timestamp: '2021-04-21 21:38:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/dynamic_modint.cpp

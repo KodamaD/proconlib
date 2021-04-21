@@ -62,8 +62,8 @@ data:
   timestamp: '2021-04-13 21:27:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/modint_util.test.cpp
   - test/prime_sieve.test.cpp
+  - test/modint_util.test.cpp
 documentation_of: utility/auto_realloc.cpp
 layout: document
 redirect_from:
