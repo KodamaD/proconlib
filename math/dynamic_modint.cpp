@@ -39,7 +39,7 @@ public:
 
     DynamicModint() noexcept: v(0) { }
     template <class T>
-    explicit DynamicModint(const T x) noexcept: v(normalize(x)) { }
+    DynamicModint(const T x) noexcept: v(normalize(x)) { }
     template <class T>
     static Mint raw(const T x) noexcept {
         Mint ret;
@@ -92,3 +92,5 @@ public:
         return stream << rhs.v;
     }
 };
+
+using Modint = DynamicModint<__COUNTER__>;

@@ -32,7 +32,7 @@ public:
 
     constexpr StaticModint() noexcept: v(0) { }
     template <class T>
-    explicit constexpr StaticModint(const T x) noexcept: v(normalize(x)) { }
+    constexpr StaticModint(const T x) noexcept: v(normalize(x)) { }
     template <class T>
     static constexpr Mint raw(const T x) noexcept {
         Mint ret;
@@ -85,3 +85,6 @@ public:
         return stream << rhs.v;
     }
 };
+
+using Modint1000000007 = StaticModint<1000000007>;
+using Modint998244353 = StaticModint<998244353>;
