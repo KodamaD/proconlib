@@ -119,6 +119,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
+    - icon: ':warning:'
+      path: utility/multi_array.cpp
+      title: utility/multi_array.cpp
+    - icon: ':warning:'
+      path: utility/multi_vec.cpp
+      title: utility/multi_vec.cpp
     - icon: ':heavy_check_mark:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp

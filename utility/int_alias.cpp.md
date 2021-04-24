@@ -80,6 +80,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
+  - icon: ':warning:'
+    path: utility/multi_array.cpp
+    title: utility/multi_array.cpp
+  - icon: ':warning:'
+    path: utility/multi_vec.cpp
+    title: utility/multi_vec.cpp
   - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
@@ -187,6 +193,8 @@ data:
   - math/dynamic_modint.cpp
   - math/divisors_from_factors.cpp
   - utility/auto_memoize.cpp
+  - utility/multi_vec.cpp
+  - utility/multi_array.cpp
   - utility/revrep.cpp
   - utility/auto_realloc.cpp
   - utility/rep.cpp
