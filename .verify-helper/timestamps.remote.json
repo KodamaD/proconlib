@@ -11,5 +11,6 @@
 "test/segment_tree.test.cpp": "2021-04-21 22:08:59 +0900",
 "test/segment_tree_beats.test.cpp": "2021-04-18 14:01:02 +0900",
 "test/sparse_table.test.cpp": "2021-04-18 14:01:02 +0900",
-"test/union_find.test.cpp": "2021-04-06 12:39:01 +0900"
+"test/union_find.test.cpp": "2021-04-06 12:39:01 +0900",
+"test/union_find_rollback.test.cpp": "2021-04-28 16:45:02 +0900"
 }
