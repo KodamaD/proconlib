@@ -47,6 +47,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
+  - icon: ':heavy_check_mark:'
+    path: graph/union_find_rollback.cpp
+    title: graph/union_find_rollback.cpp
   - icon: ':warning:'
     path: math/divisors_from_factors.cpp
     title: math/divisors_from_factors.cpp
@@ -129,6 +132,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/union_find_rollback.test.cpp
+    title: test/union_find_rollback.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -216,11 +222,13 @@ data:
   - algorithm/smawk.cpp
   - graph/union_find.cpp
   - graph/heavy_light_decomposition.cpp
+  - graph/union_find_rollback.cpp
   timestamp: '2021-03-24 22:26:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lazy_segment_tree.test.cpp
   - test/sparse_table.test.cpp
+  - test/union_find_rollback.test.cpp
   - test/fenwick_tree.test.cpp
   - test/prime_sieve.test.cpp
   - test/auto_memoize.test.cpp

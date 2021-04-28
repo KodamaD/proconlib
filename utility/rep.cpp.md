@@ -69,6 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/union_find_rollback.test.cpp
+    title: test/union_find_rollback.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -117,6 +120,7 @@ data:
   verifiedWith:
   - test/lazy_segment_tree.test.cpp
   - test/sparse_table.test.cpp
+  - test/union_find_rollback.test.cpp
   - test/fenwick_tree.test.cpp
   - test/prime_sieve.test.cpp
   - test/dual_segment_tree.test.cpp

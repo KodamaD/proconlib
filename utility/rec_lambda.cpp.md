@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/union_find_rollback.test.cpp
+    title: test/union_find_rollback.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -38,6 +41,7 @@ data:
   timestamp: '2021-04-13 21:27:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/union_find_rollback.test.cpp
   - test/heavy_light_decomposition.test.cpp
 documentation_of: utility/rec_lambda.cpp
 layout: document

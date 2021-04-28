@@ -54,6 +54,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/union_find.cpp
       title: graph/union_find.cpp
+    - icon: ':heavy_check_mark:'
+      path: graph/union_find_rollback.cpp
+      title: graph/union_find_rollback.cpp
   - name: math
     pages:
     - icon: ':warning:'
@@ -182,5 +185,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/union_find.test.cpp
       title: test/union_find.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/union_find_rollback.test.cpp
+      title: test/union_find_rollback.test.cpp
 layout: toppage
 ---
