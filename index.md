@@ -51,12 +51,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/heavy_light_decomposition.cpp
       title: graph/heavy_light_decomposition.cpp
+    - icon: ':warning:'
+      path: graph/rollback_union_find.cpp
+      title: graph/rollback_union_find.cpp
     - icon: ':heavy_check_mark:'
       path: graph/union_find.cpp
       title: graph/union_find.cpp
-    - icon: ':heavy_check_mark:'
-      path: graph/union_find_rollback.cpp
-      title: graph/union_find_rollback.cpp
   - name: math
     pages:
     - icon: ':warning:'
@@ -90,6 +90,9 @@ data:
       path: math/rem_euclid.cpp
       title: math/rem_euclid.cpp
     - icon: ':heavy_check_mark:'
+      path: math/semiring_matrix.cpp
+      title: math/semiring_matrix.cpp
+    - icon: ':heavy_check_mark:'
       path: math/static_modint.cpp
       title: math/static_modint.cpp
     - icon: ':heavy_check_mark:'
@@ -105,6 +108,9 @@ data:
       title: random/xorshift.cpp
   - name: test
     pages:
+    - icon: ':warning:'
+      path: test/rollback_union_find.cpp
+      title: test/rollback_union_find.cpp
     - icon: ':warning:'
       path: test/totient.cpp
       title: test/totient.cpp
@@ -128,6 +134,9 @@ data:
     - icon: ':warning:'
       path: utility/multi_vec.cpp
       title: utility/multi_vec.cpp
+    - icon: ':heavy_check_mark:'
+      path: utility/num_semiring.cpp
+      title: utility/num_semiring.cpp
     - icon: ':heavy_check_mark:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
@@ -180,13 +189,13 @@ data:
       path: test/segment_tree_beats.test.cpp
       title: test/segment_tree_beats.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/semiring_matrix.test.cpp
+      title: test/semiring_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/sparse_table.test.cpp
       title: test/sparse_table.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/union_find.test.cpp
       title: test/union_find.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/union_find_rollback.test.cpp
-      title: test/union_find_rollback.test.cpp
 layout: toppage
 ---

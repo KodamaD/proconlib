@@ -44,12 +44,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/heavy_light_decomposition.cpp
     title: graph/heavy_light_decomposition.cpp
+  - icon: ':warning:'
+    path: graph/rollback_union_find.cpp
+    title: graph/rollback_union_find.cpp
   - icon: ':heavy_check_mark:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
-  - icon: ':heavy_check_mark:'
-    path: graph/union_find_rollback.cpp
-    title: graph/union_find_rollback.cpp
   - icon: ':warning:'
     path: math/divisors_from_factors.cpp
     title: math/divisors_from_factors.cpp
@@ -66,6 +66,9 @@ data:
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
   - icon: ':heavy_check_mark:'
+    path: math/semiring_matrix.cpp
+    title: math/semiring_matrix.cpp
+  - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   - icon: ':warning:'
@@ -74,6 +77,9 @@ data:
   - icon: ':warning:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
+  - icon: ':warning:'
+    path: test/rollback_union_find.cpp
+    title: test/rollback_union_find.cpp
   - icon: ':warning:'
     path: test/totient.cpp
     title: test/totient.cpp
@@ -127,14 +133,14 @@ data:
     path: test/segment_tree_beats.test.cpp
     title: test/segment_tree_beats.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/semiring_matrix.test.cpp
+    title: test/semiring_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/union_find_rollback.test.cpp
-    title: test/union_find_rollback.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -197,6 +203,7 @@ data:
   - math/prime_sieve.cpp
   - math/factorize.cpp
   - math/dynamic_modint.cpp
+  - math/semiring_matrix.cpp
   - math/divisors_from_factors.cpp
   - utility/auto_memoize.cpp
   - utility/multi_vec.cpp
@@ -218,22 +225,23 @@ data:
   - container/sparse_table.cpp
   - container/segment_tree.cpp
   - test/totient.cpp
+  - test/rollback_union_find.cpp
   - algorithm/monotone_minima.cpp
   - algorithm/smawk.cpp
   - graph/union_find.cpp
+  - graph/rollback_union_find.cpp
   - graph/heavy_light_decomposition.cpp
-  - graph/union_find_rollback.cpp
   timestamp: '2021-03-24 22:26:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lazy_segment_tree.test.cpp
   - test/sparse_table.test.cpp
-  - test/union_find_rollback.test.cpp
   - test/fenwick_tree.test.cpp
   - test/prime_sieve.test.cpp
   - test/auto_memoize.test.cpp
   - test/dual_segment_tree.test.cpp
   - test/segment_tree_beats.test.cpp
+  - test/semiring_matrix.test.cpp
   - test/segment_tree.test.cpp
   - test/modint_util.test.cpp
   - test/factorize.test.cpp

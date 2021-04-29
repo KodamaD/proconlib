@@ -4,23 +4,23 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/union_find_rollback.test.cpp
-    title: test/union_find_rollback.test.cpp
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/rollback_union_find.cpp
+    title: test/rollback_union_find.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
     \nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
     using u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
-    using isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 3 \"graph/union_find_rollback.cpp\"\
+    using isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 3 \"graph/rollback_union_find.cpp\"\
     \n#include <vector>\n#include <stack>\n#include <utility>\n#include <cassert>\n\
-    \nclass UnionFindRollback {\n    std::vector<usize> data;\n    std::stack<std::pair<usize,\
-    \ usize>> history;\n\npublic:\n    explicit UnionFindRollback(const usize size\
+    \nclass RollbackUnionFind {\n    std::vector<usize> data;\n    std::stack<std::pair<usize,\
+    \ usize>> history;\n\npublic:\n    explicit RollbackUnionFind(const usize size\
     \ = 0): data(size, -1), history() { }\n\n    usize size() const { return data.size();\
     \ }\n\n    usize leader(usize u) const {\n        assert(u < size());\n      \
     \  while (data[u] < size()) u = data[u];\n        return u;\n    }\n\n    usize\
@@ -37,9 +37,9 @@ data:
     \ i = 2 * steps; i > 0; --i) {\n            const auto [k, x] = history.top();\n\
     \            history.pop();\n            data[k] = x;\n        }\n    }\n};\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include <vector>\n\
-    #include <stack>\n#include <utility>\n#include <cassert>\n\nclass UnionFindRollback\
+    #include <stack>\n#include <utility>\n#include <cassert>\n\nclass RollbackUnionFind\
     \ {\n    std::vector<usize> data;\n    std::stack<std::pair<usize, usize>> history;\n\
-    \npublic:\n    explicit UnionFindRollback(const usize size = 0): data(size, -1),\
+    \npublic:\n    explicit RollbackUnionFind(const usize size = 0): data(size, -1),\
     \ history() { }\n\n    usize size() const { return data.size(); }\n\n    usize\
     \ leader(usize u) const {\n        assert(u < size());\n        while (data[u]\
     \ < size()) u = data[u];\n        return u;\n    }\n\n    usize size(const usize\
@@ -58,16 +58,16 @@ data:
   dependsOn:
   - utility/int_alias.cpp
   isVerificationFile: false
-  path: graph/union_find_rollback.cpp
-  requiredBy: []
-  timestamp: '2021-04-28 16:45:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/union_find_rollback.test.cpp
-documentation_of: graph/union_find_rollback.cpp
+  path: graph/rollback_union_find.cpp
+  requiredBy:
+  - test/rollback_union_find.cpp
+  timestamp: '2021-04-29 10:19:25+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/rollback_union_find.cpp
 layout: document
 redirect_from:
-- /library/graph/union_find_rollback.cpp
-- /library/graph/union_find_rollback.cpp.html
-title: graph/union_find_rollback.cpp
+- /library/graph/rollback_union_find.cpp
+- /library/graph/rollback_union_find.cpp.html
+title: graph/rollback_union_find.cpp
 ---

@@ -38,6 +38,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
+  - icon: ':heavy_check_mark:'
+    path: math/semiring_matrix.cpp
+    title: math/semiring_matrix.cpp
+  - icon: ':warning:'
+    path: test/rollback_union_find.cpp
+    title: test/rollback_union_find.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/dual_segment_tree.test.cpp
@@ -64,14 +70,14 @@ data:
     path: test/segment_tree_beats.test.cpp
     title: test/segment_tree_beats.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/semiring_matrix.test.cpp
+    title: test/semiring_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/union_find_rollback.test.cpp
-    title: test/union_find_rollback.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -106,11 +112,13 @@ data:
   requiredBy:
   - math/modint_util.cpp
   - math/prime_sieve.cpp
+  - math/semiring_matrix.cpp
   - container/lazy_segment_tree.cpp
   - container/dual_segment_tree.cpp
   - container/segment_tree_beats.cpp
   - container/sparse_table.cpp
   - container/segment_tree.cpp
+  - test/rollback_union_find.cpp
   - algorithm/monotone_minima.cpp
   - algorithm/smawk.cpp
   - graph/union_find.cpp
@@ -120,11 +128,11 @@ data:
   verifiedWith:
   - test/lazy_segment_tree.test.cpp
   - test/sparse_table.test.cpp
-  - test/union_find_rollback.test.cpp
   - test/fenwick_tree.test.cpp
   - test/prime_sieve.test.cpp
   - test/dual_segment_tree.test.cpp
   - test/segment_tree_beats.test.cpp
+  - test/semiring_matrix.test.cpp
   - test/segment_tree.test.cpp
   - test/modint_util.test.cpp
   - test/union_find.test.cpp
