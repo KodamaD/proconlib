@@ -33,13 +33,15 @@ public:
     usize height() const { return data.size(); }
     usize width() const { return data.empty() ? 0 : data[0].size(); }
 
-    std::vector<SemiRing>& operator [] (const usize i) {
+    SemiRing& operator () (const usize i, const usize j) {
         assert(i < height());
-        return data[i];
+        assert(j < width());
+        return data[i][j];
     }
-    const std::vector<SemiRing>& operator [] (const usize i) const {
+    const SemiRing& operator () (const usize i, const usize j) const {
         assert(i < height());
-        return data[i];
+        assert(j < width());
+        return data[i][j];
     }
 
     Self operator + (const Self& other) const { return Self(*this) += other; }
@@ -48,7 +50,7 @@ public:
         assert(width() == other.width());
         for (const usize i: rep(0, height())) {
             for (const usize j: rep(0, width())) {
-                data[i][j] = data[i][j] + other[i][j];
+                data[i][j] = data[i][j] + other.data[i][j];
             }
         }
         return *this;
@@ -60,7 +62,7 @@ public:
         for (const usize i: rep(0, height())) {
             for (const usize k: rep(0, width())) {
                 for (const usize j: rep(0, other.width())) {
-                    ret[i][j] = ret[i][j] + data[i][k] * other[k][j];
+                    ret.data[i][j] = ret.data[i][j] + data[i][k] * other.data[k][j];
                 }
             }
         }
@@ -80,7 +82,7 @@ public:
         assert(height() == width());
         Self ret(height(), width(), SemiRing::zero()), mult(*this);
         for (const usize i: rep(0, height())) {
-            ret[i][i] = SemiRing::one();
+            ret.data[i][i] = SemiRing::one();
         }
         for (; exp > 0; exp >>= 1) {
             if (exp & 1) ret = ret * mult;

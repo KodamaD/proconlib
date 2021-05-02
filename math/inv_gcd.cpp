@@ -1,4 +1,5 @@
 #pragma once
+#include "../math/rem_euclid.cpp"
 #include <utility>
 #include <type_traits>
 

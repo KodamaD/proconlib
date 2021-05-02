@@ -33,7 +33,7 @@ int main() {
     const auto C = Matrix(A) * Matrix(B);
     for (const auto i: rep(0, N)) {
         for (const auto j: rep(0, K)) {
-            std::cout << C[i][j].val << " \n"[j + 1 == K];
+            std::cout << C(i, j).val << " \n"[j + 1 == K];
         }
     }
 }

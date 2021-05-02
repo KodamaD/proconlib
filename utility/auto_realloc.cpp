@@ -7,18 +7,18 @@
 template <class F>
 class AutoRealloc {
     using R = typename decltype(std::declval<F>()((usize) 0))::value_type;
+    
     F func;
-    std::vector<R> data;
+    mutable std::vector<R> data;
+
 public:
     template <class G>
     explicit AutoRealloc(G&& g): func(std::forward<G>(g)), data() { }
-    void reserve(const usize size) {
-        if (data.size() < size) {
-            const usize pow2 = ((usize) 1 << ceil_log2(size));
-            data = func(pow2);
-        }
+    
+    void reserve(const usize size) const {
+        if (data.size() < size) data = func(((usize) 1 << ceil_log2(size)));
     }
-    R operator [] (const usize i) {
+    R operator [] (const usize i) const {
         reserve(i + 1);
         return data[i];
     }

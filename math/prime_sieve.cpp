@@ -8,7 +8,7 @@
 #include <cassert>
 
 struct PrimeSieve {
-    static inline auto min_prime = AutoRealloc([](const usize n) {
+    static inline const auto min_prime = AutoRealloc([](const usize n) {
         std::vector<usize> ret(n);
         std::iota(ret.begin(), ret.end(), (usize) 0);
         std::vector<usize> list;
