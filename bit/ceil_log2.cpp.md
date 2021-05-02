@@ -15,6 +15,9 @@ data:
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
   - icon: ':heavy_check_mark:'
+    path: container/polynomial_hash.cpp
+    title: container/polynomial_hash.cpp
+  - icon: ':heavy_check_mark:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -45,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/polynomial_hash.test.cpp
+    title: test/polynomial_hash.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/prime_sieve.test.cpp
     title: test/prime_sieve.test.cpp
@@ -80,6 +86,7 @@ data:
   - container/dual_segment_tree.cpp
   - container/segment_tree_beats.cpp
   - container/fenwick_tree.cpp
+  - container/polynomial_hash.cpp
   - container/segment_tree.cpp
   timestamp: '2021-03-25 12:45:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -91,6 +98,7 @@ data:
   - test/segment_tree_beats.test.cpp
   - test/segment_tree.test.cpp
   - test/modint_util.test.cpp
+  - test/polynomial_hash.test.cpp
   - test/heavy_light_decomposition.test.cpp
 documentation_of: bit/ceil_log2.cpp
 layout: document

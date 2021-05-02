@@ -5,13 +5,19 @@ data:
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: container/polynomial_hash.cpp
+    title: container/polynomial_hash.cpp
+  - icon: ':heavy_check_mark:'
     path: random/rand_int.cpp
     title: random/rand_int.cpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/polynomial_hash.test.cpp
+    title: test/polynomial_hash.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
@@ -30,9 +36,11 @@ data:
   path: random/xorshift.cpp
   requiredBy:
   - random/rand_int.cpp
+  - container/polynomial_hash.cpp
   timestamp: '2021-04-13 21:27:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/polynomial_hash.test.cpp
 documentation_of: random/xorshift.cpp
 layout: document
 redirect_from:

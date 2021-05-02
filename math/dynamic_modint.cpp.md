@@ -25,7 +25,7 @@ data:
     using u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
     using isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 2 \"math/rem_euclid.cpp\"\
     \n\ntemplate <class T>\nconstexpr T rem_euclid(T value, const T& mod) {\n    return\
-    \ (value %= mod) >= 0 ? value : value + mod;\n}\n#line 2 \"math/inv_gcd.cpp\"\n\
+    \ (value %= mod) >= 0 ? value : value + mod;\n}\n#line 3 \"math/inv_gcd.cpp\"\n\
     #include <utility>\n#include <type_traits>\n\ntemplate <class T>\nconstexpr std::pair<T,\
     \ T> inv_gcd(const T& a, const T& b) {\n    using U = std::make_signed_t<T>;\n\
     \    U t = rem_euclid(a, b);\n    if (t == 0) return { b, 0 };\n    U s = b, m0\
@@ -123,7 +123,7 @@ data:
   isVerificationFile: false
   path: math/dynamic_modint.cpp
   requiredBy: []
-  timestamp: '2021-04-21 21:38:52+09:00'
+  timestamp: '2021-05-02 18:39:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/dynamic_modint.cpp

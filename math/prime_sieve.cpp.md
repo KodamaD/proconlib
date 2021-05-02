@@ -39,31 +39,31 @@ data:
     \ u64 x) {\n    u64 e = 0;\n    while (((u64) 1 << e) < x) ++e;\n    return e;\n\
     }\n#line 4 \"utility/auto_realloc.cpp\"\n#include <utility>\n#include <vector>\n\
     \ntemplate <class F>\nclass AutoRealloc {\n    using R = typename decltype(std::declval<F>()((usize)\
-    \ 0))::value_type;\n    F func;\n    std::vector<R> data;\npublic:\n    template\
-    \ <class G>\n    explicit AutoRealloc(G&& g): func(std::forward<G>(g)), data()\
-    \ { }\n    void reserve(const usize size) {\n        if (data.size() < size) {\n\
-    \            const usize pow2 = ((usize) 1 << ceil_log2(size));\n            data\
-    \ = func(pow2);\n        }\n    }\n    R operator [] (const usize i) {\n     \
-    \   reserve(i + 1);\n        return data[i];\n    }\n};\n\ntemplate <class G>\n\
-    explicit AutoRealloc(G&&) -> AutoRealloc<std::decay_t<G>>;\n#line 7 \"math/prime_sieve.cpp\"\
-    \n#include <numeric>\n#include <cassert>\n\nstruct PrimeSieve {\n    static inline\
-    \ auto min_prime = AutoRealloc([](const usize n) {\n        std::vector<usize>\
-    \ ret(n);\n        std::iota(ret.begin(), ret.end(), (usize) 0);\n        std::vector<usize>\
-    \ list;\n        for (const usize i: rep(2, n)) {\n            if (ret[i] == i)\
-    \ list.push_back(i);\n            for (const usize p: list) {\n              \
-    \  if (p * i >= n || p > ret[i]) break;\n                ret[p * i] = p;\n   \
-    \         }\n        }\n        return ret;\n    });\n    static bool is_prime(const\
-    \ usize n) {\n        if (n <= 1) return false;\n        return min_prime[n] ==\
-    \ n;\n    }\n    template <class T>\n    static std::vector<std::pair<T, usize>>\
-    \ factorize(T x) {\n        assert(x > 0);\n        std::vector<std::pair<T, usize>>\
-    \ ret;\n        while (x != 1) {\n            const usize p = min_prime[x];\n\
-    \            ret.emplace_back((T) p, 0);\n            while (min_prime[x] == p)\
-    \ {\n                ret.back().second++;\n                x /= p;\n         \
-    \   }\n        }\n        return ret;\n    }\n};\n"
+    \ 0))::value_type;\n    \n    F func;\n    mutable std::vector<R> data;\n\npublic:\n\
+    \    template <class G>\n    explicit AutoRealloc(G&& g): func(std::forward<G>(g)),\
+    \ data() { }\n    \n    void reserve(const usize size) const {\n        if (data.size()\
+    \ < size) data = func(((usize) 1 << ceil_log2(size)));\n    }\n    R operator\
+    \ [] (const usize i) const {\n        reserve(i + 1);\n        return data[i];\n\
+    \    }\n};\n\ntemplate <class G>\nexplicit AutoRealloc(G&&) -> AutoRealloc<std::decay_t<G>>;\n\
+    #line 7 \"math/prime_sieve.cpp\"\n#include <numeric>\n#include <cassert>\n\nstruct\
+    \ PrimeSieve {\n    static inline const auto min_prime = AutoRealloc([](const\
+    \ usize n) {\n        std::vector<usize> ret(n);\n        std::iota(ret.begin(),\
+    \ ret.end(), (usize) 0);\n        std::vector<usize> list;\n        for (const\
+    \ usize i: rep(2, n)) {\n            if (ret[i] == i) list.push_back(i);\n   \
+    \         for (const usize p: list) {\n                if (p * i >= n || p > ret[i])\
+    \ break;\n                ret[p * i] = p;\n            }\n        }\n        return\
+    \ ret;\n    });\n    static bool is_prime(const usize n) {\n        if (n <= 1)\
+    \ return false;\n        return min_prime[n] == n;\n    }\n    template <class\
+    \ T>\n    static std::vector<std::pair<T, usize>> factorize(T x) {\n        assert(x\
+    \ > 0);\n        std::vector<std::pair<T, usize>> ret;\n        while (x != 1)\
+    \ {\n            const usize p = min_prime[x];\n            ret.emplace_back((T)\
+    \ p, 0);\n            while (min_prime[x] == p) {\n                ret.back().second++;\n\
+    \                x /= p;\n            }\n        }\n        return ret;\n    }\n\
+    };\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\
     \n#include \"../utility/auto_realloc.cpp\"\n#include <vector>\n#include <utility>\n\
     #include <numeric>\n#include <cassert>\n\nstruct PrimeSieve {\n    static inline\
-    \ auto min_prime = AutoRealloc([](const usize n) {\n        std::vector<usize>\
+    \ const auto min_prime = AutoRealloc([](const usize n) {\n        std::vector<usize>\
     \ ret(n);\n        std::iota(ret.begin(), ret.end(), (usize) 0);\n        std::vector<usize>\
     \ list;\n        for (const usize i: rep(2, n)) {\n            if (ret[i] == i)\
     \ list.push_back(i);\n            for (const usize p: list) {\n              \
@@ -84,7 +84,7 @@ data:
   isVerificationFile: false
   path: math/prime_sieve.cpp
   requiredBy: []
-  timestamp: '2021-04-13 21:27:20+09:00'
+  timestamp: '2021-05-02 18:39:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/prime_sieve.test.cpp

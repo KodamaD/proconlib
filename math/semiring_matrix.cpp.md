@@ -43,30 +43,32 @@ data:
     \ W>, H>& arr) {\n        data.reserve(H);\n        for (const auto &v: arr) {\n\
     \            data.emplace_back(v.begin(), v.end());\n        }\n    }\n\n    usize\
     \ height() const { return data.size(); }\n    usize width() const { return data.empty()\
-    \ ? 0 : data[0].size(); }\n\n    std::vector<SemiRing>& operator [] (const usize\
-    \ i) {\n        assert(i < height());\n        return data[i];\n    }\n    const\
-    \ std::vector<SemiRing>& operator [] (const usize i) const {\n        assert(i\
-    \ < height());\n        return data[i];\n    }\n\n    Self operator + (const Self&\
-    \ other) const { return Self(*this) += other; }\n    Self& operator += (const\
-    \ Self& other) {\n        assert(height() == other.height());\n        assert(width()\
-    \ == other.width());\n        for (const usize i: rep(0, height())) {\n      \
-    \      for (const usize j: rep(0, width())) {\n                data[i][j] = data[i][j]\
-    \ + other[i][j];\n            }\n        }\n        return *this;\n    }\n\n \
-    \   Self operator * (const Self& other) const {\n        assert(width() == other.height());\n\
-    \        Self ret(height(), other.width(), SemiRing::zero());\n        for (const\
+    \ ? 0 : data[0].size(); }\n\n    SemiRing& operator () (const usize i, const usize\
+    \ j) {\n        assert(i < height());\n        assert(j < width());\n        return\
+    \ data[i][j];\n    }\n    const SemiRing& operator () (const usize i, const usize\
+    \ j) const {\n        assert(i < height());\n        assert(j < width());\n  \
+    \      return data[i][j];\n    }\n\n    Self operator + (const Self& other) const\
+    \ { return Self(*this) += other; }\n    Self& operator += (const Self& other)\
+    \ {\n        assert(height() == other.height());\n        assert(width() == other.width());\n\
+    \        for (const usize i: rep(0, height())) {\n            for (const usize\
+    \ j: rep(0, width())) {\n                data[i][j] = data[i][j] + other.data[i][j];\n\
+    \            }\n        }\n        return *this;\n    }\n\n    Self operator *\
+    \ (const Self& other) const {\n        assert(width() == other.height());\n  \
+    \      Self ret(height(), other.width(), SemiRing::zero());\n        for (const\
     \ usize i: rep(0, height())) {\n            for (const usize k: rep(0, width()))\
     \ {\n                for (const usize j: rep(0, other.width())) {\n          \
-    \          ret[i][j] = ret[i][j] + data[i][k] * other[k][j];\n               \
-    \ }\n            }\n        }\n        return ret;\n    }\n\n    Self operator\
-    \ * (const SemiRing& other) const { return Self(*this) *= other; }\n    Self&\
-    \ operator *= (const SemiRing& other) {\n        for (const usize i: rep(0, height()))\
-    \ {\n            for (const usize j: rep(0, width())) {\n                data[i][j]\
-    \ = data[i][j] * other;\n            }\n        }\n    }\n\n    Self pow(u64 exp)\
-    \ const {\n        assert(height() == width());\n        Self ret(height(), width(),\
-    \ SemiRing::zero()), mult(*this);\n        for (const usize i: rep(0, height()))\
-    \ {\n            ret[i][i] = SemiRing::one();\n        }\n        for (; exp >\
-    \ 0; exp >>= 1) {\n            if (exp & 1) ret = ret * mult;\n            mult\
-    \ = mult * mult;\n        }\n        return ret;\n    }\n};\n"
+    \          ret.data[i][j] = ret.data[i][j] + data[i][k] * other.data[k][j];\n\
+    \                }\n            }\n        }\n        return ret;\n    }\n\n \
+    \   Self operator * (const SemiRing& other) const { return Self(*this) *= other;\
+    \ }\n    Self& operator *= (const SemiRing& other) {\n        for (const usize\
+    \ i: rep(0, height())) {\n            for (const usize j: rep(0, width())) {\n\
+    \                data[i][j] = data[i][j] * other;\n            }\n        }\n\
+    \    }\n\n    Self pow(u64 exp) const {\n        assert(height() == width());\n\
+    \        Self ret(height(), width(), SemiRing::zero()), mult(*this);\n       \
+    \ for (const usize i: rep(0, height())) {\n            ret.data[i][i] = SemiRing::one();\n\
+    \        }\n        for (; exp > 0; exp >>= 1) {\n            if (exp & 1) ret\
+    \ = ret * mult;\n            mult = mult * mult;\n        }\n        return ret;\n\
+    \    }\n};\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\
     \n#include <vector>\n#include <array>\n#include <initializer_list>\n#include <cassert>\n\
     \ntemplate <class SemiRing>\nclass SemiRingMatrix {\n    using Self = SemiRingMatrix;\n\
@@ -81,37 +83,39 @@ data:
     \ W>, H>& arr) {\n        data.reserve(H);\n        for (const auto &v: arr) {\n\
     \            data.emplace_back(v.begin(), v.end());\n        }\n    }\n\n    usize\
     \ height() const { return data.size(); }\n    usize width() const { return data.empty()\
-    \ ? 0 : data[0].size(); }\n\n    std::vector<SemiRing>& operator [] (const usize\
-    \ i) {\n        assert(i < height());\n        return data[i];\n    }\n    const\
-    \ std::vector<SemiRing>& operator [] (const usize i) const {\n        assert(i\
-    \ < height());\n        return data[i];\n    }\n\n    Self operator + (const Self&\
-    \ other) const { return Self(*this) += other; }\n    Self& operator += (const\
-    \ Self& other) {\n        assert(height() == other.height());\n        assert(width()\
-    \ == other.width());\n        for (const usize i: rep(0, height())) {\n      \
-    \      for (const usize j: rep(0, width())) {\n                data[i][j] = data[i][j]\
-    \ + other[i][j];\n            }\n        }\n        return *this;\n    }\n\n \
-    \   Self operator * (const Self& other) const {\n        assert(width() == other.height());\n\
-    \        Self ret(height(), other.width(), SemiRing::zero());\n        for (const\
+    \ ? 0 : data[0].size(); }\n\n    SemiRing& operator () (const usize i, const usize\
+    \ j) {\n        assert(i < height());\n        assert(j < width());\n        return\
+    \ data[i][j];\n    }\n    const SemiRing& operator () (const usize i, const usize\
+    \ j) const {\n        assert(i < height());\n        assert(j < width());\n  \
+    \      return data[i][j];\n    }\n\n    Self operator + (const Self& other) const\
+    \ { return Self(*this) += other; }\n    Self& operator += (const Self& other)\
+    \ {\n        assert(height() == other.height());\n        assert(width() == other.width());\n\
+    \        for (const usize i: rep(0, height())) {\n            for (const usize\
+    \ j: rep(0, width())) {\n                data[i][j] = data[i][j] + other.data[i][j];\n\
+    \            }\n        }\n        return *this;\n    }\n\n    Self operator *\
+    \ (const Self& other) const {\n        assert(width() == other.height());\n  \
+    \      Self ret(height(), other.width(), SemiRing::zero());\n        for (const\
     \ usize i: rep(0, height())) {\n            for (const usize k: rep(0, width()))\
     \ {\n                for (const usize j: rep(0, other.width())) {\n          \
-    \          ret[i][j] = ret[i][j] + data[i][k] * other[k][j];\n               \
-    \ }\n            }\n        }\n        return ret;\n    }\n\n    Self operator\
-    \ * (const SemiRing& other) const { return Self(*this) *= other; }\n    Self&\
-    \ operator *= (const SemiRing& other) {\n        for (const usize i: rep(0, height()))\
-    \ {\n            for (const usize j: rep(0, width())) {\n                data[i][j]\
-    \ = data[i][j] * other;\n            }\n        }\n    }\n\n    Self pow(u64 exp)\
-    \ const {\n        assert(height() == width());\n        Self ret(height(), width(),\
-    \ SemiRing::zero()), mult(*this);\n        for (const usize i: rep(0, height()))\
-    \ {\n            ret[i][i] = SemiRing::one();\n        }\n        for (; exp >\
-    \ 0; exp >>= 1) {\n            if (exp & 1) ret = ret * mult;\n            mult\
-    \ = mult * mult;\n        }\n        return ret;\n    }\n};\n"
+    \          ret.data[i][j] = ret.data[i][j] + data[i][k] * other.data[k][j];\n\
+    \                }\n            }\n        }\n        return ret;\n    }\n\n \
+    \   Self operator * (const SemiRing& other) const { return Self(*this) *= other;\
+    \ }\n    Self& operator *= (const SemiRing& other) {\n        for (const usize\
+    \ i: rep(0, height())) {\n            for (const usize j: rep(0, width())) {\n\
+    \                data[i][j] = data[i][j] * other;\n            }\n        }\n\
+    \    }\n\n    Self pow(u64 exp) const {\n        assert(height() == width());\n\
+    \        Self ret(height(), width(), SemiRing::zero()), mult(*this);\n       \
+    \ for (const usize i: rep(0, height())) {\n            ret.data[i][i] = SemiRing::one();\n\
+    \        }\n        for (; exp > 0; exp >>= 1) {\n            if (exp & 1) ret\
+    \ = ret * mult;\n            mult = mult * mult;\n        }\n        return ret;\n\
+    \    }\n};\n"
   dependsOn:
   - utility/int_alias.cpp
   - utility/rep.cpp
   isVerificationFile: false
   path: math/semiring_matrix.cpp
   requiredBy: []
-  timestamp: '2021-04-29 10:20:06+09:00'
+  timestamp: '2021-05-02 18:39:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/semiring_matrix.test.cpp

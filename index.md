@@ -38,6 +38,9 @@ data:
       path: container/lazy_segment_tree.cpp
       title: container/lazy_segment_tree.cpp
     - icon: ':heavy_check_mark:'
+      path: container/polynomial_hash.cpp
+      title: container/polynomial_hash.cpp
+    - icon: ':heavy_check_mark:'
       path: container/segment_tree.cpp
       title: container/segment_tree.cpp
     - icon: ':heavy_check_mark:'
@@ -80,6 +83,9 @@ data:
     - icon: ':warning:'
       path: math/mod_inv.cpp
       title: math/mod_inv.cpp
+    - icon: ':warning:'
+      path: math/mod_pow.cpp
+      title: math/mod_pow.cpp
     - icon: ':heavy_check_mark:'
       path: math/modint_util.cpp
       title: math/modint_util.cpp
@@ -100,10 +106,10 @@ data:
       title: math/totient.cpp
   - name: random
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: random/rand_int.cpp
       title: random/rand_int.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: random/xorshift.cpp
       title: random/xorshift.cpp
   - name: test
@@ -179,6 +185,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/modint_util.test.cpp
       title: test/modint_util.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/polynomial_hash.test.cpp
+      title: test/polynomial_hash.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/prime_sieve.test.cpp
       title: test/prime_sieve.test.cpp

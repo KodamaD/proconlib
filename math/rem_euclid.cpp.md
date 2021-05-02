@@ -8,6 +8,15 @@ data:
   - icon: ':warning:'
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
+  - icon: ':warning:'
+    path: math/inv_gcd.cpp
+    title: math/inv_gcd.cpp
+  - icon: ':warning:'
+    path: math/mod_inv.cpp
+    title: math/mod_inv.cpp
+  - icon: ':warning:'
+    path: math/mod_pow.cpp
+    title: math/mod_pow.cpp
   - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
@@ -41,7 +50,10 @@ data:
   isVerificationFile: false
   path: math/rem_euclid.cpp
   requiredBy:
+  - math/mod_inv.cpp
   - math/static_modint.cpp
+  - math/mod_pow.cpp
+  - math/inv_gcd.cpp
   - math/dynamic_modint.cpp
   - math/div_floor.cpp
   timestamp: '2021-03-28 15:26:18+09:00'

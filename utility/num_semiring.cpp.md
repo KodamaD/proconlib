@@ -12,24 +12,24 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/num_semiring.cpp\"\n\ntemplate <class T>\nstruct\
-    \ NumSemiRing {\n    T val;\n    NumSemiRing() = default;\n    NumSemiRing(const\
-    \ T& val): val(val) { }\n    static constexpr NumSemiRing zero() { return T(0);\
-    \ }\n    static constexpr NumSemiRing one() { return T(1); }\n    constexpr NumSemiRing\
+    \ NumSemiRing {\n    T val;\n    constexpr NumSemiRing() = default;\n    constexpr\
+    \ NumSemiRing(const T& val): val(val) { }\n    static constexpr NumSemiRing zero()\
+    \ { return T(0); }\n    static constexpr NumSemiRing one() { return T(1); }\n\
+    \    constexpr NumSemiRing operator + (const NumSemiRing& other) const {\n   \
+    \     return val + other.val;\n    }\n    constexpr NumSemiRing operator * (const\
+    \ NumSemiRing& other) const {\n        return val * other.val;\n    }\n};\n"
+  code: "#pragma once\n\ntemplate <class T>\nstruct NumSemiRing {\n    T val;\n  \
+    \  constexpr NumSemiRing() = default;\n    constexpr NumSemiRing(const T& val):\
+    \ val(val) { }\n    static constexpr NumSemiRing zero() { return T(0); }\n   \
+    \ static constexpr NumSemiRing one() { return T(1); }\n    constexpr NumSemiRing\
     \ operator + (const NumSemiRing& other) const {\n        return val + other.val;\n\
     \    }\n    constexpr NumSemiRing operator * (const NumSemiRing& other) const\
     \ {\n        return val * other.val;\n    }\n};\n"
-  code: "#pragma once\n\ntemplate <class T>\nstruct NumSemiRing {\n    T val;\n  \
-    \  NumSemiRing() = default;\n    NumSemiRing(const T& val): val(val) { }\n   \
-    \ static constexpr NumSemiRing zero() { return T(0); }\n    static constexpr NumSemiRing\
-    \ one() { return T(1); }\n    constexpr NumSemiRing operator + (const NumSemiRing&\
-    \ other) const {\n        return val + other.val;\n    }\n    constexpr NumSemiRing\
-    \ operator * (const NumSemiRing& other) const {\n        return val * other.val;\n\
-    \    }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: utility/num_semiring.cpp
   requiredBy: []
-  timestamp: '2021-04-29 10:20:06+09:00'
+  timestamp: '2021-05-02 18:39:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/semiring_matrix.test.cpp
