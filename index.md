@@ -15,6 +15,9 @@ data:
       path: bit/bit_lzeros.cpp
       title: bit/bit_lzeros.cpp
     - icon: ':heavy_check_mark:'
+      path: bit/bit_reverse.cpp
+      title: bit/bit_reverse.cpp
+    - icon: ':heavy_check_mark:'
       path: bit/bit_rzeros.cpp
       title: bit/bit_rzeros.cpp
     - icon: ':heavy_check_mark:'
@@ -54,7 +57,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/heavy_light_decomposition.cpp
       title: graph/heavy_light_decomposition.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/rollback_union_find.cpp
       title: graph/rollback_union_find.cpp
     - icon: ':heavy_check_mark:'
@@ -62,6 +65,9 @@ data:
       title: graph/union_find.cpp
   - name: math
     pages:
+    - icon: ':heavy_check_mark:'
+      path: math/convolution.cpp
+      title: math/convolution.cpp
     - icon: ':warning:'
       path: math/div_floor.cpp
       title: math/div_floor.cpp
@@ -83,7 +89,7 @@ data:
     - icon: ':warning:'
       path: math/mod_inv.cpp
       title: math/mod_inv.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/mod_pow.cpp
       title: math/mod_pow.cpp
     - icon: ':heavy_check_mark:'
@@ -92,6 +98,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/prime_sieve.cpp
       title: math/prime_sieve.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/primitive_root.cpp
+      title: math/primitive_root.cpp
     - icon: ':heavy_check_mark:'
       path: math/rem_euclid.cpp
       title: math/rem_euclid.cpp
@@ -112,14 +121,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: random/xorshift.cpp
       title: random/xorshift.cpp
-  - name: test
-    pages:
-    - icon: ':warning:'
-      path: test/rollback_union_find.cpp
-      title: test/rollback_union_find.cpp
-    - icon: ':warning:'
-      path: test/totient.cpp
-      title: test/totient.cpp
   - name: utility
     pages:
     - icon: ':heavy_check_mark:'
@@ -165,6 +166,9 @@ data:
       path: test/auto_memoize.test.cpp
       title: test/auto_memoize.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/convolution.test.cpp
+      title: test/convolution.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/dual_segment_tree.test.cpp
       title: test/dual_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -192,6 +196,9 @@ data:
       path: test/prime_sieve.test.cpp
       title: test/prime_sieve.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/rollback_union_find.test.cpp
+      title: test/rollback_union_find.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/segment_tree.test.cpp
       title: test/segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -203,6 +210,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/sparse_table.test.cpp
       title: test/sparse_table.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/totient.test.cpp
+      title: test/totient.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/union_find.test.cpp
       title: test/union_find.test.cpp

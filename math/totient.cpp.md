@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':warning:'
-    path: test/totient.cpp
-    title: test/totient.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/convolution.test.cpp
+    title: test/convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/totient.test.cpp
+    title: test/totient.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -43,15 +46,16 @@ data:
   path: math/totient.cpp
   requiredBy:
   - math/static_modint.cpp
-  - test/totient.cpp
   timestamp: '2021-04-21 22:08:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/lazy_segment_tree.test.cpp
   - test/semiring_matrix.test.cpp
   - test/segment_tree.test.cpp
-  - test/modint_util.test.cpp
   - test/heavy_light_decomposition.test.cpp
+  - test/modint_util.test.cpp
+  - test/totient.test.cpp
+  - test/convolution.test.cpp
+  - test/lazy_segment_tree.test.cpp
 documentation_of: math/totient.cpp
 layout: document
 redirect_from:

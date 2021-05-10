@@ -38,23 +38,25 @@ data:
     using isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 3 \"bit/ceil_log2.cpp\"\
     \n\nconstexpr u64 ceil_log2(const u64 x) {\n    u64 e = 0;\n    while (((u64)\
     \ 1 << e) < x) ++e;\n    return e;\n}\n#line 4 \"utility/auto_realloc.cpp\"\n\
-    #include <utility>\n#include <vector>\n\ntemplate <class F>\nclass AutoRealloc\
+    #include <utility>\n#include <vector>\n\ntemplate <class F>\nclass AutoReallocation\
     \ {\n    using R = typename decltype(std::declval<F>()((usize) 0))::value_type;\n\
-    \    \n    F func;\n    mutable std::vector<R> data;\n\npublic:\n    template\
-    \ <class G>\n    explicit AutoRealloc(G&& g): func(std::forward<G>(g)), data()\
-    \ { }\n    \n    void reserve(const usize size) const {\n        if (data.size()\
-    \ < size) data = func(((usize) 1 << ceil_log2(size)));\n    }\n    R operator\
-    \ [] (const usize i) const {\n        reserve(i + 1);\n        return data[i];\n\
-    \    }\n};\n\ntemplate <class G>\nexplicit AutoRealloc(G&&) -> AutoRealloc<std::decay_t<G>>;\n"
+    \    \n    F func;\n    mutable std::vector<R> data;\n\npublic:\n    explicit\
+    \ AutoReallocation(F&& f): func(std::forward<F>(f)), data() { }\n    \n    void\
+    \ reserve(const usize size) const {\n        if (data.size() < size) data = func(((usize)\
+    \ 1 << ceil_log2(size)));\n    }\n    R operator [] (const usize i) const {\n\
+    \        reserve(i + 1);\n        return data[i];\n    }\n};\n\ntemplate <class\
+    \ F>\ndecltype(auto) auto_realloc(F&& f) {\n    using G = std::decay_t<F>;\n \
+    \   return AutoReallocation<G>(std::forward<G>(f));\n}\n"
   code: "#pragma once\n#include \"../utility/int_alias.cpp\"\n#include \"../bit/ceil_log2.cpp\"\
-    \n#include <utility>\n#include <vector>\n\ntemplate <class F>\nclass AutoRealloc\
+    \n#include <utility>\n#include <vector>\n\ntemplate <class F>\nclass AutoReallocation\
     \ {\n    using R = typename decltype(std::declval<F>()((usize) 0))::value_type;\n\
-    \    \n    F func;\n    mutable std::vector<R> data;\n\npublic:\n    template\
-    \ <class G>\n    explicit AutoRealloc(G&& g): func(std::forward<G>(g)), data()\
-    \ { }\n    \n    void reserve(const usize size) const {\n        if (data.size()\
-    \ < size) data = func(((usize) 1 << ceil_log2(size)));\n    }\n    R operator\
-    \ [] (const usize i) const {\n        reserve(i + 1);\n        return data[i];\n\
-    \    }\n};\n\ntemplate <class G>\nexplicit AutoRealloc(G&&) -> AutoRealloc<std::decay_t<G>>;\n"
+    \    \n    F func;\n    mutable std::vector<R> data;\n\npublic:\n    explicit\
+    \ AutoReallocation(F&& f): func(std::forward<F>(f)), data() { }\n    \n    void\
+    \ reserve(const usize size) const {\n        if (data.size() < size) data = func(((usize)\
+    \ 1 << ceil_log2(size)));\n    }\n    R operator [] (const usize i) const {\n\
+    \        reserve(i + 1);\n        return data[i];\n    }\n};\n\ntemplate <class\
+    \ F>\ndecltype(auto) auto_realloc(F&& f) {\n    using G = std::decay_t<F>;\n \
+    \   return AutoReallocation<G>(std::forward<G>(f));\n}\n"
   dependsOn:
   - utility/int_alias.cpp
   - bit/ceil_log2.cpp
@@ -64,11 +66,11 @@ data:
   - math/modint_util.cpp
   - math/prime_sieve.cpp
   - container/polynomial_hash.cpp
-  timestamp: '2021-05-02 18:39:12+09:00'
+  timestamp: '2021-05-10 19:00:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/prime_sieve.test.cpp
   - test/modint_util.test.cpp
+  - test/prime_sieve.test.cpp
   - test/polynomial_hash.test.cpp
 documentation_of: utility/auto_realloc.cpp
 layout: document

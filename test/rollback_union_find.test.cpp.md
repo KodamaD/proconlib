@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/rollback_union_find.cpp
     title: graph/rollback_union_find.cpp
   - icon: ':heavy_check_mark:'
@@ -17,30 +17,33 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
     links:
     - https://judge.yosupo.jp/problem/persistent_unionfind
-  bundledCode: "#line 1 \"test/rollback_union_find.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\
-    \n#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\n\
-    using i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
-    using u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
-    using isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 3 \"utility/rep.cpp\"\
-    \n#include <algorithm>\n\nclass rep {\n    struct Iter {\n        usize itr;\n\
-    \        constexpr Iter(const usize pos) noexcept: itr(pos) { }\n        constexpr\
-    \ void operator ++ () noexcept { ++itr; }\n        constexpr bool operator !=\
-    \ (const Iter& other) const noexcept { return itr != other.itr; }\n        constexpr\
-    \ usize operator * () const noexcept { return itr; }\n    };\n    const Iter first,\
-    \ last;\npublic:\n    explicit constexpr rep(const usize first, const usize last)\
-    \ noexcept: first(first), last(std::max(first, last)) { }\n    constexpr Iter\
-    \ begin() const noexcept { return first; }\n    constexpr Iter end() const noexcept\
-    \ { return last; }\n};\n#line 2 \"utility/rec_lambda.cpp\"\n#include <utility>\n\
-    #include <type_traits>\n\ntemplate <class F>\nstruct RecLambda: private F {\n\
-    \    template <class G>\n    explicit constexpr RecLambda(G&& g): F(std::forward<G>(g))\
+  bundledCode: "#line 1 \"test/rollback_union_find.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/persistent_unionfind\"\n#line 2 \"utility/int_alias.cpp\"\
+    \n#include <cstdint>\n#include <cstddef>\n\nusing i32 = std::int32_t;\nusing u32\
+    \ = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\nusing\
+    \ i128 = __int128_t;\nusing u128 = __uint128_t;\nusing isize = std::ptrdiff_t;\n\
+    using usize = std::size_t;\n#line 3 \"utility/rep.cpp\"\n#include <algorithm>\n\
+    \nclass rep {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const\
+    \ usize pos) noexcept: itr(pos) { }\n        constexpr void operator ++ () noexcept\
+    \ { ++itr; }\n        constexpr bool operator != (const Iter& other) const noexcept\
+    \ { return itr != other.itr; }\n        constexpr usize operator * () const noexcept\
+    \ { return itr; }\n    };\n    const Iter first, last;\npublic:\n    explicit\
+    \ constexpr rep(const usize first, const usize last) noexcept: first(first), last(std::max(first,\
+    \ last)) { }\n    constexpr Iter begin() const noexcept { return first; }\n  \
+    \  constexpr Iter end() const noexcept { return last; }\n};\n#line 2 \"utility/rec_lambda.cpp\"\
+    \n#include <utility>\n#include <type_traits>\n\ntemplate <class F>\nstruct RecursiveLambda:\
+    \ private F {\n    explicit constexpr RecursiveLambda(F&& f): F(std::forward<F>(f))\
     \ { }\n    template <class... Args>\n    constexpr decltype(auto) operator ()\
     \ (Args&&... args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate <class G>\nexplicit RecLambda(G&&) -> RecLambda<std::decay_t<G>>;\n\
-    #line 3 \"graph/rollback_union_find.cpp\"\n#include <vector>\n#include <stack>\n\
+    \    }\n};\n\ntemplate <class F>\nconstexpr decltype(auto) rec_lambda(F&& f) {\n\
+    \    using G = std::decay_t<F>;\n    return RecursiveLambda<G>(std::forward<G>(f));\n\
+    }\n#line 3 \"graph/rollback_union_find.cpp\"\n#include <vector>\n#include <stack>\n\
     #line 6 \"graph/rollback_union_find.cpp\"\n#include <cassert>\n\nclass RollbackUnionFind\
     \ {\n    std::vector<usize> data;\n    std::stack<std::pair<usize, usize>> history;\n\
     \npublic:\n    explicit RollbackUnionFind(const usize size = 0): data(size, -1),\
@@ -59,22 +62,22 @@ data:
     \ usize steps) {\n        assert(2 * steps <= history.size());\n        for (usize\
     \ i = 2 * steps; i > 0; --i) {\n            const auto [k, x] = history.top();\n\
     \            history.pop();\n            data[k] = x;\n        }\n    }\n};\n\
-    #line 6 \"test/rollback_union_find.cpp\"\n#include <iostream>\n\nint main() {\n\
-    \    usize N, Q;\n    std::cin >> N >> Q;\n    std::vector<std::pair<usize, usize>>\
-    \ connect(Q + 1);\n    std::vector<std::vector<usize>> graph(Q + 1);\n    std::vector<std::vector<std::tuple<usize,\
-    \ usize, usize>>> query(Q + 1);\n    std::vector<bool> ans(Q + 1);\n    std::vector<usize>\
-    \ output;\n    output.reserve(Q);\n    for (const auto i: rep(1, Q + 1)) {\n \
-    \       isize t, k;\n        usize u, v;\n        std::cin >> t >> k >> u >> v;\n\
-    \        k += 1;\n        if (t == 0) {\n            connect[i] = {u, v};\n  \
-    \          graph[k].push_back(i);\n        }\n        else {\n            output.push_back(i);\n\
-    \            query[k].emplace_back(i, u, v);\n        }\n    }\n    RollbackUnionFind\
-    \ dsu(N);\n    std::vector<bool> done(Q);\n    RecLambda([&](auto&& dfs, const\
-    \ usize u) -> void {\n        const auto f = dsu.merge(connect[u].first, connect[u].second).second;\n\
-    \        for (const auto [i, x, y]: query[u]) {\n            ans[i] = dsu.same(x,\
-    \ y);\n        }\n        for (const auto v: graph[u]) {\n            dfs(v);\n\
-    \        }\n        dsu.rollback(f);\n        done[u] = true;\n    })(0);\n  \
-    \  for (const auto i: output) {\n        std::cout << ans[i] << '\\n';\n    }\n\
-    }\n"
+    #line 6 \"test/rollback_union_find.test.cpp\"\n#include <iostream>\n\nint main()\
+    \ {\n    usize N, Q;\n    std::cin >> N >> Q;\n    std::vector<std::pair<usize,\
+    \ usize>> connect(Q + 1);\n    std::vector<std::vector<usize>> graph(Q + 1);\n\
+    \    std::vector<std::vector<std::tuple<usize, usize, usize>>> query(Q + 1);\n\
+    \    std::vector<bool> ans(Q + 1);\n    std::vector<usize> output;\n    output.reserve(Q);\n\
+    \    for (const auto i: rep(1, Q + 1)) {\n        isize t, k;\n        usize u,\
+    \ v;\n        std::cin >> t >> k >> u >> v;\n        k += 1;\n        if (t ==\
+    \ 0) {\n            connect[i] = {u, v};\n            graph[k].push_back(i);\n\
+    \        }\n        else {\n            output.push_back(i);\n            query[k].emplace_back(i,\
+    \ u, v);\n        }\n    }\n    RollbackUnionFind dsu(N);\n    std::vector<bool>\
+    \ done(Q);\n    rec_lambda([&](auto&& dfs, const usize u) -> void {\n        const\
+    \ auto f = dsu.merge(connect[u].first, connect[u].second).second;\n        for\
+    \ (const auto [i, x, y]: query[u]) {\n            ans[i] = dsu.same(x, y);\n \
+    \       }\n        for (const auto v: graph[u]) {\n            dfs(v);\n     \
+    \   }\n        dsu.rollback(f);\n        done[u] = true;\n    })(0);\n    for\
+    \ (const auto i: output) {\n        std::cout << ans[i] << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n\
     #include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n#include\
     \ \"../utility/rec_lambda.cpp\"\n#include \"../graph/rollback_union_find.cpp\"\
@@ -87,7 +90,7 @@ data:
     \ += 1;\n        if (t == 0) {\n            connect[i] = {u, v};\n           \
     \ graph[k].push_back(i);\n        }\n        else {\n            output.push_back(i);\n\
     \            query[k].emplace_back(i, u, v);\n        }\n    }\n    RollbackUnionFind\
-    \ dsu(N);\n    std::vector<bool> done(Q);\n    RecLambda([&](auto&& dfs, const\
+    \ dsu(N);\n    std::vector<bool> done(Q);\n    rec_lambda([&](auto&& dfs, const\
     \ usize u) -> void {\n        const auto f = dsu.merge(connect[u].first, connect[u].second).second;\n\
     \        for (const auto [i, x, y]: query[u]) {\n            ans[i] = dsu.same(x,\
     \ y);\n        }\n        for (const auto v: graph[u]) {\n            dfs(v);\n\
@@ -99,16 +102,16 @@ data:
   - utility/rep.cpp
   - utility/rec_lambda.cpp
   - graph/rollback_union_find.cpp
-  isVerificationFile: false
-  path: test/rollback_union_find.cpp
+  isVerificationFile: true
+  path: test/rollback_union_find.test.cpp
   requiredBy: []
-  timestamp: '2021-04-29 10:19:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2021-05-10 19:01:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/rollback_union_find.cpp
+documentation_of: test/rollback_union_find.test.cpp
 layout: document
 redirect_from:
-- /library/test/rollback_union_find.cpp
-- /library/test/rollback_union_find.cpp.html
-title: test/rollback_union_find.cpp
+- /verify/test/rollback_union_find.test.cpp
+- /verify/test/rollback_union_find.test.cpp.html
+title: test/rollback_union_find.test.cpp
 ---

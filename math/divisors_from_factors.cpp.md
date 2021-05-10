@@ -18,16 +18,17 @@ data:
     \nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
     using u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
     using isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 2 \"utility/rec_lambda.cpp\"\
-    \n#include <utility>\n#include <type_traits>\n\ntemplate <class F>\nstruct RecLambda:\
-    \ private F {\n    template <class G>\n    explicit constexpr RecLambda(G&& g):\
-    \ F(std::forward<G>(g)) { }\n    template <class... Args>\n    constexpr decltype(auto)\
-    \ operator () (Args&&... args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate <class G>\nexplicit RecLambda(G&&) -> RecLambda<std::decay_t<G>>;\n\
-    #line 4 \"math/divisors_from_factors.cpp\"\n#include <vector>\n#include <algorithm>\n\
+    \n#include <utility>\n#include <type_traits>\n\ntemplate <class F>\nstruct RecursiveLambda:\
+    \ private F {\n    explicit constexpr RecursiveLambda(F&& f): F(std::forward<F>(f))\
+    \ { }\n    template <class... Args>\n    constexpr decltype(auto) operator ()\
+    \ (Args&&... args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
+    \    }\n};\n\ntemplate <class F>\nconstexpr decltype(auto) rec_lambda(F&& f) {\n\
+    \    using G = std::decay_t<F>;\n    return RecursiveLambda<G>(std::forward<G>(f));\n\
+    }\n#line 4 \"math/divisors_from_factors.cpp\"\n#include <vector>\n#include <algorithm>\n\
     \ntemplate <class T>\nstd::vector<T> divisors_from_factors(const std::vector<std::pair<T,\
     \ usize>>& factors, const bool sort = true) {\n    usize size = 1;\n    for (const\
     \ std::pair<T, usize>& f: factors) size *= f.second;\n    std::vector<T> ret;\n\
-    \    ret.reserve(size);\n    RecLambda([&](auto&& dfs, const usize i, T x) ->\
+    \    ret.reserve(size);\n    rec_lambda([&](auto&& dfs, const usize i, T x) ->\
     \ void {\n        if (i == factors.size()) {\n            ret.push_back(x);\n\
     \            return;\n        }\n        dfs(i + 1, x);\n        const T p = factors[i].first;\n\
     \        usize e = factors[i].second;\n        while (e--) {\n            x *=\
@@ -38,7 +39,7 @@ data:
     \ divisors_from_factors(const std::vector<std::pair<T, usize>>& factors, const\
     \ bool sort = true) {\n    usize size = 1;\n    for (const std::pair<T, usize>&\
     \ f: factors) size *= f.second;\n    std::vector<T> ret;\n    ret.reserve(size);\n\
-    \    RecLambda([&](auto&& dfs, const usize i, T x) -> void {\n        if (i ==\
+    \    rec_lambda([&](auto&& dfs, const usize i, T x) -> void {\n        if (i ==\
     \ factors.size()) {\n            ret.push_back(x);\n            return;\n    \
     \    }\n        dfs(i + 1, x);\n        const T p = factors[i].first;\n      \
     \  usize e = factors[i].second;\n        while (e--) {\n            x *= p;\n\
@@ -50,7 +51,7 @@ data:
   isVerificationFile: false
   path: math/divisors_from_factors.cpp
   requiredBy: []
-  timestamp: '2021-04-13 21:27:20+09:00'
+  timestamp: '2021-05-10 19:00:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/divisors_from_factors.cpp

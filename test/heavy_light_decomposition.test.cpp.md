@@ -144,46 +144,46 @@ data:
     \                return r + 1 - seg_size;\n            }\n            sum = data[r]\
     \ + sum;\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n#line\
     \ 2 \"utility/rec_lambda.cpp\"\n#include <utility>\n#line 4 \"utility/rec_lambda.cpp\"\
-    \n\ntemplate <class F>\nstruct RecLambda: private F {\n    template <class G>\n\
-    \    explicit constexpr RecLambda(G&& g): F(std::forward<G>(g)) { }\n    template\
-    \ <class... Args>\n    constexpr decltype(auto) operator () (Args&&... args) const\
-    \ {\n        return F::operator()(*this, std::forward<Args>(args)...);\n    }\n\
-    };\n\ntemplate <class G>\nexplicit RecLambda(G&&) -> RecLambda<std::decay_t<G>>;\n\
-    #line 8 \"graph/heavy_light_decomposition.cpp\"\n\nclass HeavyLightDecomposition\
-    \ {\n    struct Node {\n        std::vector<usize> adjacent;\n        usize parent,\
-    \ subtree, head, enter, exit;\n        Node() = default;\n    };\n    std::vector<Node>\
-    \ node;\n\npublic:\n    explicit HeavyLightDecomposition(const std::vector<std::vector<usize>>&\
-    \ tree, const usize root = 0):\n        HeavyLightDecomposition(tree, std::vector<usize>({\
-    \ root })) { }\n    explicit HeavyLightDecomposition(const std::vector<std::vector<usize>>&\
-    \ forest, const std::vector<usize>& root): node(forest.size()) {\n        for\
-    \ (const auto i: rep(0, size())) node[i].adjacent = forest[i];\n        const\
-    \ auto setup = RecLambda([&](auto&& dfs, const usize u, const usize p) -> void\
-    \ {\n            node[u].parent = p;\n            node[u].subtree = 1;\n     \
-    \       for (const auto v: node[u].adjacent) {\n                if (v != p) {\n\
-    \                    dfs(v, u);\n                    node[u].subtree += node[v].subtree;\n\
-    \                }\n            }\n        });\n        for (const auto r: root)\
-    \ setup(r, r);\n        usize time = 0;\n        const auto decompose = RecLambda([&](auto&&\
-    \ dfs, const usize u, const usize h) -> void {\n            node[u].head = h;\n\
-    \            node[u].enter = time;\n            time += 1;\n            usize\
-    \ select = size();\n            for (const auto v: node[u].adjacent) {\n     \
-    \           if (v != node[u].parent and (select == size() or node[select].subtree\
-    \ < node[v].subtree)) {\n                    select = v;\n                }\n\
-    \            }\n            if (select != size()) {\n                dfs(select,\
-    \ h);\n                for (const auto v: node[u].adjacent) {\n              \
-    \      if (v != node[u].parent and v != select) {\n                        dfs(v,\
-    \ v);\n                    }\n                }\n            }\n            node[u].exit\
-    \ = time;\n        });\n        for (const auto r: root) decompose(r, r);\n  \
-    \  }\n\n    usize size() const { return node.size(); }\n    const Node& info(const\
-    \ usize u) const {\n        assert(u < size());\n        return node[u];\n   \
-    \ }\n\n    usize lca(usize u, usize v) const {\n        assert(u < size());\n\
-    \        assert(v < size());\n        if (node[u].enter > node[v].enter) std::swap(u,\
-    \ v);\n        while (node[u].enter < node[v].enter) {\n            if (node[u].head\
-    \ == node[v].head) return u;\n            v = node[node[v].head].parent;\n   \
-    \     }\n        return v;\n    }\n\n    std::vector<std::pair<usize, usize>>\
-    \ path(usize u, usize p) const {\n        assert(u < size());\n        assert(p\
-    \ < size());\n        assert(node[p].enter <= node[u].enter and node[u].exit <=\
-    \ node[p].exit);\n        std::vector<std::pair<usize, usize>> ret;\n        while\
-    \ (node[u].head != node[p].head) {\n            ret.emplace_back(u, node[u].head);\n\
+    \n\ntemplate <class F>\nstruct RecursiveLambda: private F {\n    explicit constexpr\
+    \ RecursiveLambda(F&& f): F(std::forward<F>(f)) { }\n    template <class... Args>\n\
+    \    constexpr decltype(auto) operator () (Args&&... args) const {\n        return\
+    \ F::operator()(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate <class\
+    \ F>\nconstexpr decltype(auto) rec_lambda(F&& f) {\n    using G = std::decay_t<F>;\n\
+    \    return RecursiveLambda<G>(std::forward<G>(f));\n}\n#line 8 \"graph/heavy_light_decomposition.cpp\"\
+    \n\nclass HeavyLightDecomposition {\n    struct Node {\n        std::vector<usize>\
+    \ adjacent;\n        usize parent, subtree, head, enter, exit;\n        Node()\
+    \ = default;\n    };\n    std::vector<Node> node;\n\npublic:\n    explicit HeavyLightDecomposition(const\
+    \ std::vector<std::vector<usize>>& tree, const usize root = 0):\n        HeavyLightDecomposition(tree,\
+    \ std::vector<usize>({ root })) { }\n    explicit HeavyLightDecomposition(const\
+    \ std::vector<std::vector<usize>>& forest, const std::vector<usize>& root): node(forest.size())\
+    \ {\n        for (const auto i: rep(0, size())) node[i].adjacent = forest[i];\n\
+    \        const auto setup = rec_lambda([&](auto&& dfs, const usize u, const usize\
+    \ p) -> void {\n            node[u].parent = p;\n            node[u].subtree =\
+    \ 1;\n            for (const auto v: node[u].adjacent) {\n                if (v\
+    \ != p) {\n                    dfs(v, u);\n                    node[u].subtree\
+    \ += node[v].subtree;\n                }\n            }\n        });\n       \
+    \ for (const auto r: root) setup(r, r);\n        usize time = 0;\n        const\
+    \ auto decompose = rec_lambda([&](auto&& dfs, const usize u, const usize h) ->\
+    \ void {\n            node[u].head = h;\n            node[u].enter = time;\n \
+    \           time += 1;\n            usize select = size();\n            for (const\
+    \ auto v: node[u].adjacent) {\n                if (v != node[u].parent and (select\
+    \ == size() or node[select].subtree < node[v].subtree)) {\n                  \
+    \  select = v;\n                }\n            }\n            if (select != size())\
+    \ {\n                dfs(select, h);\n                for (const auto v: node[u].adjacent)\
+    \ {\n                    if (v != node[u].parent and v != select) {\n        \
+    \                dfs(v, v);\n                    }\n                }\n      \
+    \      }\n            node[u].exit = time;\n        });\n        for (const auto\
+    \ r: root) decompose(r, r);\n    }\n\n    usize size() const { return node.size();\
+    \ }\n    const Node& info(const usize u) const {\n        assert(u < size());\n\
+    \        return node[u];\n    }\n\n    usize lca(usize u, usize v) const {\n \
+    \       assert(u < size());\n        assert(v < size());\n        if (node[u].enter\
+    \ > node[v].enter) std::swap(u, v);\n        while (node[u].enter < node[v].enter)\
+    \ {\n            if (node[u].head == node[v].head) return u;\n            v =\
+    \ node[node[v].head].parent;\n        }\n        return v;\n    }\n\n    std::vector<std::pair<usize,\
+    \ usize>> path(usize u, usize p) const {\n        assert(u < size());\n      \
+    \  assert(p < size());\n        assert(node[p].enter <= node[u].enter and node[u].exit\
+    \ <= node[p].exit);\n        std::vector<std::pair<usize, usize>> ret;\n     \
+    \   while (node[u].head != node[p].head) {\n            ret.emplace_back(u, node[u].head);\n\
     \            u = node[node[u].head].parent;\n        }\n        ret.emplace_back(u,\
     \ p);\n        return ret;\n    }\n};\n#line 6 \"test/heavy_light_decomposition.test.cpp\"\
     \n#include <iostream>\n\nusing Fp = Modint998244353;\n\nstruct Line {\n    Fp\
@@ -267,7 +267,7 @@ data:
   isVerificationFile: true
   path: test/heavy_light_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2021-04-21 22:08:59+09:00'
+  timestamp: '2021-05-10 19:00:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/heavy_light_decomposition.test.cpp

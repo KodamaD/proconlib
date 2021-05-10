@@ -17,7 +17,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
+  - icon: ':heavy_check_mark:'
+    path: math/convolution.cpp
+    title: math/convolution.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/convolution.test.cpp
+    title: test/convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/dual_segment_tree.test.cpp
     title: test/dual_segment_tree.test.cpp
@@ -66,18 +72,20 @@ data:
   isVerificationFile: false
   path: utility/revrep.cpp
   requiredBy:
+  - math/convolution.cpp
   - container/lazy_segment_tree.cpp
-  - container/dual_segment_tree.cpp
   - container/segment_tree_beats.cpp
+  - container/dual_segment_tree.cpp
   - container/segment_tree.cpp
   timestamp: '2021-03-26 16:46:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/lazy_segment_tree.test.cpp
-  - test/dual_segment_tree.test.cpp
-  - test/segment_tree_beats.test.cpp
   - test/segment_tree.test.cpp
   - test/heavy_light_decomposition.test.cpp
+  - test/convolution.test.cpp
+  - test/segment_tree_beats.test.cpp
+  - test/dual_segment_tree.test.cpp
+  - test/lazy_segment_tree.test.cpp
 documentation_of: utility/revrep.cpp
 layout: document
 redirect_from:

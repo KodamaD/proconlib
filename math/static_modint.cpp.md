@@ -13,6 +13,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/convolution.test.cpp
+    title: test/convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
@@ -126,11 +129,12 @@ data:
   timestamp: '2021-04-21 22:08:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/lazy_segment_tree.test.cpp
   - test/semiring_matrix.test.cpp
   - test/segment_tree.test.cpp
-  - test/modint_util.test.cpp
   - test/heavy_light_decomposition.test.cpp
+  - test/modint_util.test.cpp
+  - test/convolution.test.cpp
+  - test/lazy_segment_tree.test.cpp
 documentation_of: math/static_modint.cpp
 layout: document
 redirect_from:

@@ -4,11 +4,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/convolution.cpp
+    title: math/convolution.cpp
+  - icon: ':heavy_check_mark:'
+    path: math/primitive_root.cpp
+    title: math/primitive_root.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/convolution.test.cpp
+    title: test/convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/rem_euclid.cpp\"\n\ntemplate <class T>\nconstexpr T\
@@ -27,10 +36,13 @@ data:
   - math/rem_euclid.cpp
   isVerificationFile: false
   path: math/mod_pow.cpp
-  requiredBy: []
+  requiredBy:
+  - math/primitive_root.cpp
+  - math/convolution.cpp
   timestamp: '2021-05-02 18:39:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/convolution.test.cpp
 documentation_of: math/mod_pow.cpp
 layout: document
 redirect_from:

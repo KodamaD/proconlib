@@ -4,14 +4,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/rollback_union_find.cpp
-    title: test/rollback_union_find.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/rollback_union_find.test.cpp
+    title: test/rollback_union_find.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
@@ -59,11 +59,11 @@ data:
   - utility/int_alias.cpp
   isVerificationFile: false
   path: graph/rollback_union_find.cpp
-  requiredBy:
-  - test/rollback_union_find.cpp
+  requiredBy: []
   timestamp: '2021-04-29 10:19:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/rollback_union_find.test.cpp
 documentation_of: graph/rollback_union_find.cpp
 layout: document
 redirect_from:

@@ -36,6 +36,9 @@ data:
     path: graph/union_find.cpp
     title: graph/union_find.cpp
   - icon: ':heavy_check_mark:'
+    path: math/convolution.cpp
+    title: math/convolution.cpp
+  - icon: ':heavy_check_mark:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
   - icon: ':heavy_check_mark:'
@@ -44,10 +47,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/semiring_matrix.cpp
     title: math/semiring_matrix.cpp
-  - icon: ':warning:'
-    path: test/rollback_union_find.cpp
-    title: test/rollback_union_find.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/convolution.test.cpp
+    title: test/convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/dual_segment_tree.test.cpp
     title: test/dual_segment_tree.test.cpp
@@ -69,6 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/prime_sieve.test.cpp
     title: test/prime_sieve.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/rollback_union_find.test.cpp
+    title: test/rollback_union_find.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
@@ -117,34 +123,36 @@ data:
   path: utility/rep.cpp
   requiredBy:
   - math/modint_util.cpp
-  - math/prime_sieve.cpp
   - math/semiring_matrix.cpp
-  - container/lazy_segment_tree.cpp
-  - container/dual_segment_tree.cpp
-  - container/segment_tree_beats.cpp
-  - container/sparse_table.cpp
-  - container/polynomial_hash.cpp
-  - container/segment_tree.cpp
-  - test/rollback_union_find.cpp
+  - math/prime_sieve.cpp
+  - math/convolution.cpp
   - algorithm/monotone_minima.cpp
   - algorithm/smawk.cpp
-  - graph/union_find.cpp
+  - container/polynomial_hash.cpp
+  - container/sparse_table.cpp
+  - container/lazy_segment_tree.cpp
+  - container/segment_tree_beats.cpp
+  - container/dual_segment_tree.cpp
+  - container/segment_tree.cpp
   - graph/heavy_light_decomposition.cpp
+  - graph/union_find.cpp
   timestamp: '2021-03-24 22:26:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/lazy_segment_tree.test.cpp
-  - test/sparse_table.test.cpp
-  - test/fenwick_tree.test.cpp
-  - test/prime_sieve.test.cpp
-  - test/dual_segment_tree.test.cpp
-  - test/segment_tree_beats.test.cpp
   - test/semiring_matrix.test.cpp
   - test/segment_tree.test.cpp
-  - test/modint_util.test.cpp
-  - test/polynomial_hash.test.cpp
-  - test/union_find.test.cpp
+  - test/fenwick_tree.test.cpp
   - test/heavy_light_decomposition.test.cpp
+  - test/sparse_table.test.cpp
+  - test/modint_util.test.cpp
+  - test/prime_sieve.test.cpp
+  - test/polynomial_hash.test.cpp
+  - test/rollback_union_find.test.cpp
+  - test/union_find.test.cpp
+  - test/convolution.test.cpp
+  - test/segment_tree_beats.test.cpp
+  - test/dual_segment_tree.test.cpp
+  - test/lazy_segment_tree.test.cpp
 documentation_of: utility/rep.cpp
 layout: document
 redirect_from:

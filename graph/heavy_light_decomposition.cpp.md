@@ -33,13 +33,14 @@ data:
     \ noexcept: first(first), last(std::max(first, last)) { }\n    constexpr Iter\
     \ begin() const noexcept { return first; }\n    constexpr Iter end() const noexcept\
     \ { return last; }\n};\n#line 2 \"utility/rec_lambda.cpp\"\n#include <utility>\n\
-    #include <type_traits>\n\ntemplate <class F>\nstruct RecLambda: private F {\n\
-    \    template <class G>\n    explicit constexpr RecLambda(G&& g): F(std::forward<G>(g))\
-    \ { }\n    template <class... Args>\n    constexpr decltype(auto) operator ()\
-    \ (Args&&... args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate <class G>\nexplicit RecLambda(G&&) -> RecLambda<std::decay_t<G>>;\n\
-    #line 5 \"graph/heavy_light_decomposition.cpp\"\n#include <vector>\n#line 7 \"\
-    graph/heavy_light_decomposition.cpp\"\n#include <cassert>\n\nclass HeavyLightDecomposition\
+    #include <type_traits>\n\ntemplate <class F>\nstruct RecursiveLambda: private\
+    \ F {\n    explicit constexpr RecursiveLambda(F&& f): F(std::forward<F>(f)) {\
+    \ }\n    template <class... Args>\n    constexpr decltype(auto) operator () (Args&&...\
+    \ args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
+    \    }\n};\n\ntemplate <class F>\nconstexpr decltype(auto) rec_lambda(F&& f) {\n\
+    \    using G = std::decay_t<F>;\n    return RecursiveLambda<G>(std::forward<G>(f));\n\
+    }\n#line 5 \"graph/heavy_light_decomposition.cpp\"\n#include <vector>\n#line 7\
+    \ \"graph/heavy_light_decomposition.cpp\"\n#include <cassert>\n\nclass HeavyLightDecomposition\
     \ {\n    struct Node {\n        std::vector<usize> adjacent;\n        usize parent,\
     \ subtree, head, enter, exit;\n        Node() = default;\n    };\n    std::vector<Node>\
     \ node;\n\npublic:\n    explicit HeavyLightDecomposition(const std::vector<std::vector<usize>>&\
@@ -47,12 +48,12 @@ data:
     \ root })) { }\n    explicit HeavyLightDecomposition(const std::vector<std::vector<usize>>&\
     \ forest, const std::vector<usize>& root): node(forest.size()) {\n        for\
     \ (const auto i: rep(0, size())) node[i].adjacent = forest[i];\n        const\
-    \ auto setup = RecLambda([&](auto&& dfs, const usize u, const usize p) -> void\
+    \ auto setup = rec_lambda([&](auto&& dfs, const usize u, const usize p) -> void\
     \ {\n            node[u].parent = p;\n            node[u].subtree = 1;\n     \
     \       for (const auto v: node[u].adjacent) {\n                if (v != p) {\n\
     \                    dfs(v, u);\n                    node[u].subtree += node[v].subtree;\n\
     \                }\n            }\n        });\n        for (const auto r: root)\
-    \ setup(r, r);\n        usize time = 0;\n        const auto decompose = RecLambda([&](auto&&\
+    \ setup(r, r);\n        usize time = 0;\n        const auto decompose = rec_lambda([&](auto&&\
     \ dfs, const usize u, const usize h) -> void {\n            node[u].head = h;\n\
     \            node[u].enter = time;\n            time += 1;\n            usize\
     \ select = size();\n            for (const auto v: node[u].adjacent) {\n     \
@@ -86,12 +87,12 @@ data:
     \ root })) { }\n    explicit HeavyLightDecomposition(const std::vector<std::vector<usize>>&\
     \ forest, const std::vector<usize>& root): node(forest.size()) {\n        for\
     \ (const auto i: rep(0, size())) node[i].adjacent = forest[i];\n        const\
-    \ auto setup = RecLambda([&](auto&& dfs, const usize u, const usize p) -> void\
+    \ auto setup = rec_lambda([&](auto&& dfs, const usize u, const usize p) -> void\
     \ {\n            node[u].parent = p;\n            node[u].subtree = 1;\n     \
     \       for (const auto v: node[u].adjacent) {\n                if (v != p) {\n\
     \                    dfs(v, u);\n                    node[u].subtree += node[v].subtree;\n\
     \                }\n            }\n        });\n        for (const auto r: root)\
-    \ setup(r, r);\n        usize time = 0;\n        const auto decompose = RecLambda([&](auto&&\
+    \ setup(r, r);\n        usize time = 0;\n        const auto decompose = rec_lambda([&](auto&&\
     \ dfs, const usize u, const usize h) -> void {\n            node[u].head = h;\n\
     \            node[u].enter = time;\n            time += 1;\n            usize\
     \ select = size();\n            for (const auto v: node[u].adjacent) {\n     \
@@ -122,7 +123,7 @@ data:
   isVerificationFile: false
   path: graph/heavy_light_decomposition.cpp
   requiredBy: []
-  timestamp: '2021-04-21 21:38:52+09:00'
+  timestamp: '2021-05-10 19:00:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/heavy_light_decomposition.test.cpp

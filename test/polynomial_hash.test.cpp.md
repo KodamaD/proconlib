@@ -53,31 +53,31 @@ data:
     \ std::uniform_int_distribution<T>(min, max)(gen);\n}\n#line 3 \"bit/ceil_log2.cpp\"\
     \n\nconstexpr u64 ceil_log2(const u64 x) {\n    u64 e = 0;\n    while (((u64)\
     \ 1 << e) < x) ++e;\n    return e;\n}\n#line 4 \"utility/auto_realloc.cpp\"\n\
-    #include <utility>\n#include <vector>\n\ntemplate <class F>\nclass AutoRealloc\
+    #include <utility>\n#include <vector>\n\ntemplate <class F>\nclass AutoReallocation\
     \ {\n    using R = typename decltype(std::declval<F>()((usize) 0))::value_type;\n\
-    \    \n    F func;\n    mutable std::vector<R> data;\n\npublic:\n    template\
-    \ <class G>\n    explicit AutoRealloc(G&& g): func(std::forward<G>(g)), data()\
-    \ { }\n    \n    void reserve(const usize size) const {\n        if (data.size()\
-    \ < size) data = func(((usize) 1 << ceil_log2(size)));\n    }\n    R operator\
-    \ [] (const usize i) const {\n        reserve(i + 1);\n        return data[i];\n\
-    \    }\n};\n\ntemplate <class G>\nexplicit AutoRealloc(G&&) -> AutoRealloc<std::decay_t<G>>;\n\
-    #line 7 \"container/polynomial_hash.cpp\"\n#include <string>\n#include <type_traits>\n\
-    #include <cassert>\n\ntemplate <usize ID>\nstruct PolynomialHashHelper {\n   \
-    \ static inline constexpr u64 MOD = ((u64) 1 << 61) - 1;\n    static inline const\
-    \ u64 BASE = rand_int<u64>(0, MOD - 1);\n\n    static constexpr u64 add(u64 a,\
-    \ const u64 b) { return (a += b) >= MOD ? a - MOD : a; }\n    static constexpr\
-    \ u64 sub(u64 a, const u64 b) { return (a += MOD - b) >= MOD ? a - MOD : a; }\n\
-    \    static constexpr u64 mul(const u64 a, const u64 b) {\n        u128 ret =\
-    \ (u128) a * b;\n        ret = (ret >> 61) + (ret & MOD);\n        return ret\
-    \ >= MOD ? ret - MOD : ret;\n    }\n\n    static inline const auto BASE_POW =\
-    \ AutoRealloc([](const usize n) {\n        std::vector<u64> ret(n);\n        ret[0]\
-    \ = 1;\n        for (const usize i: rep(1, n)) {\n            ret[i] = mul(ret[i\
-    \ - 1], BASE);\n        }\n        return ret;\n    });\n};\n\ntemplate <class\
-    \ T, usize ID = 0, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\nclass\
-    \ PolynomialHash {\n    using Helper = PolynomialHashHelper<ID>;\n\n    std::vector<u64>\
-    \ hash;\n    std::vector<T> data;\n\npublic:\n    PolynomialHash(): PolynomialHash(std::vector<T>())\
-    \ { }\n    explicit PolynomialHash(const std::vector<T>& vec): data(vec) {\n \
-    \       const usize size = data.size();\n        hash = std::vector<u64>(size\
+    \    \n    F func;\n    mutable std::vector<R> data;\n\npublic:\n    explicit\
+    \ AutoReallocation(F&& f): func(std::forward<F>(f)), data() { }\n    \n    void\
+    \ reserve(const usize size) const {\n        if (data.size() < size) data = func(((usize)\
+    \ 1 << ceil_log2(size)));\n    }\n    R operator [] (const usize i) const {\n\
+    \        reserve(i + 1);\n        return data[i];\n    }\n};\n\ntemplate <class\
+    \ F>\ndecltype(auto) auto_realloc(F&& f) {\n    using G = std::decay_t<F>;\n \
+    \   return AutoReallocation<G>(std::forward<G>(f));\n}\n#line 7 \"container/polynomial_hash.cpp\"\
+    \n#include <string>\n#include <type_traits>\n#include <cassert>\n\ntemplate <usize\
+    \ ID>\nstruct PolynomialHashHelper {\n    static inline constexpr u64 MOD = ((u64)\
+    \ 1 << 61) - 1;\n    static inline const u64 BASE = rand_int<u64>(0, MOD - 1);\n\
+    \n    static constexpr u64 add(u64 a, const u64 b) { return (a += b) >= MOD ?\
+    \ a - MOD : a; }\n    static constexpr u64 sub(u64 a, const u64 b) { return (a\
+    \ += MOD - b) >= MOD ? a - MOD : a; }\n    static constexpr u64 mul(const u64\
+    \ a, const u64 b) {\n        u128 ret = (u128) a * b;\n        ret = (ret >> 61)\
+    \ + (ret & MOD);\n        return ret >= MOD ? ret - MOD : ret;\n    }\n\n    static\
+    \ inline const auto BASE_POW = auto_realloc([](const usize n) {\n        std::vector<u64>\
+    \ ret(n);\n        ret[0] = 1;\n        for (const usize i: rep(1, n)) {\n   \
+    \         ret[i] = mul(ret[i - 1], BASE);\n        }\n        return ret;\n  \
+    \  });\n};\n\ntemplate <class T, usize ID = 0, std::enable_if_t<std::is_integral_v<T>>*\
+    \ = nullptr>\nclass PolynomialHash {\n    using Helper = PolynomialHashHelper<ID>;\n\
+    \n    std::vector<u64> hash;\n    std::vector<T> data;\n\npublic:\n    PolynomialHash():\
+    \ PolynomialHash(std::vector<T>()) { }\n    explicit PolynomialHash(const std::vector<T>&\
+    \ vec): data(vec) {\n        const usize size = data.size();\n        hash = std::vector<u64>(size\
     \ + 1);\n        for (const usize i: rep(0, size)) {\n            assert(0 <=\
     \ data[i]);\n            assert((u64) data[i] < Helper::MOD);\n            hash[i\
     \ + 1] = Helper::add(Helper::mul(Helper::BASE, hash[i]), (u64) data[i]);\n   \
@@ -117,7 +117,7 @@ data:
   isVerificationFile: true
   path: test/polynomial_hash.test.cpp
   requiredBy: []
-  timestamp: '2021-05-02 18:39:12+09:00'
+  timestamp: '2021-05-10 19:00:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/polynomial_hash.test.cpp
