@@ -19,7 +19,7 @@ public:
         HeavyLightDecomposition(tree, std::vector<usize>({ root })) { }
     explicit HeavyLightDecomposition(const std::vector<std::vector<usize>>& forest, const std::vector<usize>& root): node(forest.size()) {
         for (const auto i: rep(0, size())) node[i].adjacent = forest[i];
-        const auto setup = RecLambda([&](auto&& dfs, const usize u, const usize p) -> void {
+        const auto setup = rec_lambda([&](auto&& dfs, const usize u, const usize p) -> void {
             node[u].parent = p;
             node[u].subtree = 1;
             for (const auto v: node[u].adjacent) {
@@ -31,7 +31,7 @@ public:
         });
         for (const auto r: root) setup(r, r);
         usize time = 0;
-        const auto decompose = RecLambda([&](auto&& dfs, const usize u, const usize h) -> void {
+        const auto decompose = rec_lambda([&](auto&& dfs, const usize u, const usize h) -> void {
             node[u].head = h;
             node[u].enter = time;
             time += 1;

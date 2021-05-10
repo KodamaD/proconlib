@@ -10,7 +10,7 @@ std::vector<T> divisors_from_factors(const std::vector<std::pair<T, usize>>& fac
     for (const std::pair<T, usize>& f: factors) size *= f.second;
     std::vector<T> ret;
     ret.reserve(size);
-    RecLambda([&](auto&& dfs, const usize i, T x) -> void {
+    rec_lambda([&](auto&& dfs, const usize i, T x) -> void {
         if (i == factors.size()) {
             ret.push_back(x);
             return;

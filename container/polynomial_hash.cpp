@@ -21,7 +21,7 @@ struct PolynomialHashHelper {
         return ret >= MOD ? ret - MOD : ret;
     }
 
-    static inline const auto BASE_POW = AutoRealloc([](const usize n) {
+    static inline const auto BASE_POW = auto_realloc([](const usize n) {
         std::vector<u64> ret(n);
         ret[0] = 1;
         for (const usize i: rep(1, n)) {

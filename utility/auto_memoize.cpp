@@ -6,7 +6,7 @@
 #include <map>
 
 template <class F>
-class AutoMemoize {
+class AutoMemoization {
     template <class> 
     struct GetSig;
     template <class T, class R, class S, class... Args>
@@ -15,7 +15,7 @@ class AutoMemoize {
         using Tuple = std::tuple<Args...>;
     };
 
-    using Sig = GetSig<decltype(&F::template operator()<AutoMemoize<F>&>)>;
+    using Sig = GetSig<decltype(&F::template operator()<AutoMemoization<F>&>)>;
     using R = typename Sig::Ret;
     using Tuple = typename Sig::Tuple;
 
@@ -28,8 +28,7 @@ class AutoMemoize {
     }
 
 public:
-    template <class G>
-    explicit AutoMemoize(G&& g): func(std::forward<G>(g)) { }
+    explicit AutoMemoization(F&& f): func(std::forward<F>(f)) { }
 
     template <class... Args>
     R operator () (Args&&... args) const {
@@ -42,5 +41,8 @@ public:
     }
 };
 
-template <class G>
-explicit AutoMemoize(G&&) -> AutoMemoize<std::decay_t<G>>;
+template <class F>
+decltype(auto) auto_memoize(F&& f) {
+    using G = std::decay_t<F>;
+    return AutoMemoization<G>(std::forward<G>(f));
+}

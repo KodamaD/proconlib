@@ -6,7 +6,7 @@
 int main() {
     u64 x;
     std::cin >> x;
-    std::cout << AutoMemoize([](auto&& fib, const u64 x) -> u64 {
+    std::cout << auto_memoize([](auto&& fib, const u64 x) -> u64 {
         if (x <= 1) return 1;
         return fib(x - 1) + fib(x - 2);
     })(x) << '\n';

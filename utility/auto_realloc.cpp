@@ -5,15 +5,14 @@
 #include <vector>
 
 template <class F>
-class AutoRealloc {
+class AutoReallocation {
     using R = typename decltype(std::declval<F>()((usize) 0))::value_type;
     
     F func;
     mutable std::vector<R> data;
 
 public:
-    template <class G>
-    explicit AutoRealloc(G&& g): func(std::forward<G>(g)), data() { }
+    explicit AutoReallocation(F&& f): func(std::forward<F>(f)), data() { }
     
     void reserve(const usize size) const {
         if (data.size() < size) data = func(((usize) 1 << ceil_log2(size)));
@@ -24,5 +23,8 @@ public:
     }
 };
 
-template <class G>
-explicit AutoRealloc(G&&) -> AutoRealloc<std::decay_t<G>>;
+template <class F>
+decltype(auto) auto_realloc(F&& f) {
+    using G = std::decay_t<F>;
+    return AutoReallocation<G>(std::forward<G>(f));
+}

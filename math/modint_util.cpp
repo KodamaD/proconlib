@@ -7,7 +7,7 @@
 
 template <class M>
 struct ModintUtil {
-    static inline const auto fact = AutoRealloc([](const usize n) {
+    static inline const auto fact = auto_realloc([](const usize n) {
         std::vector<M> ret(n);
         ret[0] = M(1);
         for (const usize i: rep(1, n)) {
@@ -15,7 +15,7 @@ struct ModintUtil {
         }
         return ret;
     });
-    static inline const auto inv = AutoRealloc([](const usize n) {
+    static inline const auto inv = auto_realloc([](const usize n) {
         std::vector<M> ret(n);
         if (n == 1) return ret;
         ret[1] = M(1);
@@ -24,7 +24,7 @@ struct ModintUtil {
         }
         return ret;
     });
-    static inline const auto inv_fact = AutoRealloc([](const usize n) {
+    static inline const auto inv_fact = auto_realloc([](const usize n) {
         std::vector<M> ret(n);
         ret[0] = M(1);
         for (const usize i: rep(1, n)) {

@@ -3,14 +3,16 @@
 #include <type_traits>
 
 template <class F>
-struct RecLambda: private F {
-    template <class G>
-    explicit constexpr RecLambda(G&& g): F(std::forward<G>(g)) { }
+struct RecursiveLambda: private F {
+    explicit constexpr RecursiveLambda(F&& f): F(std::forward<F>(f)) { }
     template <class... Args>
     constexpr decltype(auto) operator () (Args&&... args) const {
         return F::operator()(*this, std::forward<Args>(args)...);
     }
 };
 
-template <class G>
-explicit RecLambda(G&&) -> RecLambda<std::decay_t<G>>;
+template <class F>
+constexpr decltype(auto) rec_lambda(F&& f) {
+    using G = std::decay_t<F>;
+    return RecursiveLambda<G>(std::forward<G>(f));
+}
