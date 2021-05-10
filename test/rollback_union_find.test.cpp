@@ -30,7 +30,7 @@ int main() {
     }
     RollbackUnionFind dsu(N);
     std::vector<bool> done(Q);
-    RecLambda([&](auto&& dfs, const usize u) -> void {
+    rec_lambda([&](auto&& dfs, const usize u) -> void {
         const auto f = dsu.merge(connect[u].first, connect[u].second).second;
         for (const auto [i, x, y]: query[u]) {
             ans[i] = dsu.same(x, y);
