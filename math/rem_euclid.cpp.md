@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: math/convolution.cpp
-    title: math/convolution.cpp
   - icon: ':warning:'
     path: math/div_floor.cpp
     title: math/div_floor.cpp
@@ -17,19 +14,16 @@ data:
   - icon: ':warning:'
     path: math/mod_inv.cpp
     title: math/mod_inv.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/mod_pow.cpp
     title: math/mod_pow.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/primitive_root.cpp
     title: math/primitive_root.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/convolution.test.cpp
-    title: test/convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
@@ -39,42 +33,49 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/rem_euclid.cpp\"\n\ntemplate <class T>\nconstexpr T\
-    \ rem_euclid(T value, const T& mod) {\n    return (value %= mod) >= 0 ? value\
-    \ : value + mod;\n}\n"
-  code: "#pragma once\n\ntemplate <class T>\nconstexpr T rem_euclid(T value, const\
-    \ T& mod) {\n    return (value %= mod) >= 0 ? value : value + mod;\n}\n"
+  bundledCode: '#line 2 "math/rem_euclid.cpp"
+
+
+    template <class T> constexpr T rem_euclid(T value, const T& mod) { return (value
+    %= mod) >= 0 ? value : value + mod; }
+
+    '
+  code: '#pragma once
+
+
+    template <class T> constexpr T rem_euclid(T value, const T& mod) { return (value
+    %= mod) >= 0 ? value : value + mod; }
+
+    '
   dependsOn: []
   isVerificationFile: false
   path: math/rem_euclid.cpp
   requiredBy:
-  - math/inv_gcd.cpp
-  - math/primitive_root.cpp
   - math/dynamic_modint.cpp
-  - math/mod_pow.cpp
   - math/div_floor.cpp
-  - math/mod_inv.cpp
-  - math/convolution.cpp
   - math/static_modint.cpp
-  timestamp: '2021-03-28 15:26:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - math/primitive_root.cpp
+  - math/inv_gcd.cpp
+  - math/mod_pow.cpp
+  - math/mod_inv.cpp
+  timestamp: '2021-09-04 17:30:23+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/semiring_matrix.test.cpp
   - test/segment_tree.test.cpp
-  - test/heavy_light_decomposition.test.cpp
+  - test/semiring_matrix.test.cpp
   - test/modint_util.test.cpp
-  - test/convolution.test.cpp
+  - test/heavy_light_decomposition.test.cpp
   - test/lazy_segment_tree.test.cpp
 documentation_of: math/rem_euclid.cpp
 layout: document

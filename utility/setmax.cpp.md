@@ -8,17 +8,17 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"utility/setmax.cpp\"\n\ntemplate <class T>\nbool setmax(T&\
+  bundledCode: "#line 2 \"utility/setmax.cpp\"\n\ntemplate <class T> bool setmax(T&\
     \ lhs, const T& rhs) {\n    if (lhs < rhs) {\n        lhs = rhs;\n        return\
     \ true;\n    }\n    return false;\n}\n"
-  code: "#pragma once\n\ntemplate <class T>\nbool setmax(T& lhs, const T& rhs) {\n\
+  code: "#pragma once\n\ntemplate <class T> bool setmax(T& lhs, const T& rhs) {\n\
     \    if (lhs < rhs) {\n        lhs = rhs;\n        return true;\n    }\n    return\
     \ false;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: utility/setmax.cpp
   requiredBy: []
-  timestamp: '2021-03-25 15:37:44+09:00'
+  timestamp: '2021-09-04 17:30:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: utility/setmax.cpp

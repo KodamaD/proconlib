@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/rollback_union_find.cpp
     title: graph/rollback_union_find.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
@@ -25,36 +25,37 @@ data:
     - https://judge.yosupo.jp/problem/persistent_unionfind
   bundledCode: "#line 1 \"test/rollback_union_find.test.cpp\"\n#define PROBLEM \"\
     https://judge.yosupo.jp/problem/persistent_unionfind\"\n#line 2 \"utility/int_alias.cpp\"\
-    \n#include <cstdint>\n#include <cstddef>\n\nusing i32 = std::int32_t;\nusing u32\
+    \n#include <cstddef>\n#include <cstdint>\n\nusing i32 = std::int32_t;\nusing u32\
     \ = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\nusing\
     \ i128 = __int128_t;\nusing u128 = __uint128_t;\nusing isize = std::ptrdiff_t;\n\
-    using usize = std::size_t;\n#line 3 \"utility/rep.cpp\"\n#include <algorithm>\n\
-    \nclass rep {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const\
-    \ usize pos) noexcept: itr(pos) { }\n        constexpr void operator ++ () noexcept\
-    \ { ++itr; }\n        constexpr bool operator != (const Iter& other) const noexcept\
-    \ { return itr != other.itr; }\n        constexpr usize operator * () const noexcept\
-    \ { return itr; }\n    };\n    const Iter first, last;\npublic:\n    explicit\
-    \ constexpr rep(const usize first, const usize last) noexcept: first(first), last(std::max(first,\
-    \ last)) { }\n    constexpr Iter begin() const noexcept { return first; }\n  \
-    \  constexpr Iter end() const noexcept { return last; }\n};\n#line 2 \"utility/rec_lambda.cpp\"\
-    \n#include <utility>\n#include <type_traits>\n\ntemplate <class F>\nstruct RecursiveLambda:\
-    \ private F {\n    explicit constexpr RecursiveLambda(F&& f): F(std::forward<F>(f))\
-    \ { }\n    template <class... Args>\n    constexpr decltype(auto) operator ()\
-    \ (Args&&... args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate <class F>\nconstexpr decltype(auto) rec_lambda(F&& f) {\n\
+    using usize = std::size_t;\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\
+    #line 4 \"utility/rep.cpp\"\n\nclass rep {\n    struct Iter {\n        usize itr;\n\
+    \        constexpr Iter(const usize pos) noexcept : itr(pos) {}\n        constexpr\
+    \ void operator++() noexcept { ++itr; }\n        constexpr bool operator!=(const\
+    \ Iter& other) const noexcept { return itr != other.itr; }\n        constexpr\
+    \ usize operator*() const noexcept { return itr; }\n    };\n    const Iter first,\
+    \ last;\n\n  public:\n    explicit constexpr rep(const usize first, const usize\
+    \ last) noexcept : first(first), last(std::max(first, last)) {}\n    constexpr\
+    \ Iter begin() const noexcept { return first; }\n    constexpr Iter end() const\
+    \ noexcept { return last; }\n};\n#line 2 \"utility/rec_lambda.cpp\"\n#include\
+    \ <type_traits>\n#include <utility>\n\ntemplate <class F> struct RecursiveLambda\
+    \ : private F {\n    explicit constexpr RecursiveLambda(F&& f) : F(std::forward<F>(f))\
+    \ {}\n    template <class... Args> constexpr decltype(auto) operator()(Args&&...\
+    \ args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
+    \    }\n};\n\ntemplate <class F> constexpr decltype(auto) rec_lambda(F&& f) {\n\
     \    using G = std::decay_t<F>;\n    return RecursiveLambda<G>(std::forward<G>(f));\n\
-    }\n#line 3 \"graph/rollback_union_find.cpp\"\n#include <vector>\n#include <stack>\n\
-    #line 6 \"graph/rollback_union_find.cpp\"\n#include <cassert>\n\nclass RollbackUnionFind\
-    \ {\n    std::vector<usize> data;\n    std::stack<std::pair<usize, usize>> history;\n\
-    \npublic:\n    explicit RollbackUnionFind(const usize size = 0): data(size, -1),\
-    \ history() { }\n\n    usize size() const { return data.size(); }\n\n    usize\
-    \ leader(usize u) const {\n        assert(u < size());\n        while (data[u]\
-    \ < size()) u = data[u];\n        return u;\n    }\n\n    usize size(const usize\
-    \ u) const {\n        assert(u < size());\n        return -data[leader(u)];\n\
+    }\n#line 2 \"graph/rollback_union_find.cpp\"\n#include <cassert>\n#include <stack>\n\
+    #line 5 \"graph/rollback_union_find.cpp\"\n#include <vector>\n#line 7 \"graph/rollback_union_find.cpp\"\
+    \n\nclass RollbackUnionFind {\n    std::vector<usize> data;\n    std::stack<std::pair<usize,\
+    \ usize>> history;\n\n  public:\n    explicit RollbackUnionFind(const usize size\
+    \ = 0) : data(size, -1), history() {}\n\n    usize size() const { return data.size();\
+    \ }\n\n    usize leader(usize u) const {\n        assert(u < size());\n      \
+    \  while (data[u] < size()) u = data[u];\n        return u;\n    }\n\n    usize\
+    \ size(const usize u) const {\n        assert(u < size());\n        return -data[leader(u)];\n\
     \    }\n\n    std::pair<usize, bool> merge(usize u, usize v) {\n        assert(u\
-    \ < size());\n        assert(v < size());\n        u = leader(u); \n        v\
-    \ = leader(v);\n        if (u == v) return std::make_pair(u, false);\n       \
-    \ if (data[u] > data[v]) std::swap(u, v);\n        history.emplace(u, data[u]);\n\
+    \ < size());\n        assert(v < size());\n        u = leader(u);\n        v =\
+    \ leader(v);\n        if (u == v) return std::make_pair(u, false);\n        if\
+    \ (data[u] > data[v]) std::swap(u, v);\n        history.emplace(u, data[u]);\n\
     \        history.emplace(v, data[v]);\n        data[u] += data[v];\n        data[v]\
     \ = u;\n        return std::make_pair(u, true);\n    }\n\n    bool same(const\
     \ usize u, const usize v) const {\n        assert(u < size());\n        assert(v\
@@ -105,8 +106,8 @@ data:
   isVerificationFile: true
   path: test/rollback_union_find.test.cpp
   requiredBy: []
-  timestamp: '2021-05-10 19:01:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-09-04 17:30:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/rollback_union_find.test.cpp
 layout: document

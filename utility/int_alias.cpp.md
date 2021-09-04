@@ -8,25 +8,25 @@ data:
   - icon: ':warning:'
     path: algorithm/smawk.cpp
     title: algorithm/smawk.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bit/bit_lzeros.cpp
     title: bit/bit_lzeros.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: bit/bit_reverse.cpp
     title: bit/bit_reverse.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/bit_rzeros.cpp
     title: bit/bit_rzeros.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bit/bit_width.cpp
     title: bit/bit_width.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
   - icon: ':warning:'
     path: bit/popcount.cpp
     title: bit/popcount.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -35,64 +35,61 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/polynomial_hash.cpp
     title: container/polynomial_hash.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
   - icon: ':heavy_check_mark:'
     path: graph/heavy_light_decomposition.cpp
     title: graph/heavy_light_decomposition.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/rollback_union_find.cpp
     title: graph/rollback_union_find.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
-  - icon: ':heavy_check_mark:'
-    path: math/convolution.cpp
-    title: math/convolution.cpp
   - icon: ':warning:'
     path: math/divisors_from_factors.cpp
     title: math/divisors_from_factors.cpp
   - icon: ':warning:'
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/factorize.cpp
     title: math/factorize.cpp
   - icon: ':heavy_check_mark:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/primitive_root.cpp
     title: math/primitive_root.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/semiring_matrix.cpp
     title: math/semiring_matrix.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/rand_int.cpp
     title: random/rand_int.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: utility/auto_memoize.cpp
     title: utility/auto_memoize.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
   - icon: ':warning:'
@@ -101,23 +98,29 @@ data:
   - icon: ':warning:'
     path: utility/multi_vec.cpp
     title: utility/multi_vec.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: utility/permutations.cpp
+    title: utility/permutations.cpp
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/revrep.cpp
     title: utility/revrep.cpp
+  - icon: ':warning:'
+    path: utility/subsets.cpp
+    title: utility/subsets.cpp
+  - icon: ':warning:'
+    path: utility/vec_util.cpp
+    title: utility/vec_util.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/auto_memoize.test.cpp
     title: test/auto_memoize.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/convolution.test.cpp
-    title: test/convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/dual_segment_tree.test.cpp
     title: test/dual_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
   - icon: ':heavy_check_mark:'
@@ -132,43 +135,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/polynomial_hash.test.cpp
     title: test/polynomial_hash.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/prime_sieve.test.cpp
     title: test/prime_sieve.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/rollback_union_find.test.cpp
     title: test/rollback_union_find.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segment_tree_beats.test.cpp
     title: test/segment_tree_beats.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/totient.test.cpp
     title: test/totient.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 2 "utility/int_alias.cpp"
 
-    #include <cstdint>
-
     #include <cstddef>
+
+    #include <cstdint>
 
 
     using i32 = std::int32_t;
@@ -190,9 +193,9 @@ data:
     '
   code: '#pragma once
 
-    #include <cstdint>
-
     #include <cstddef>
+
+    #include <cstdint>
 
 
     using i32 = std::int32_t;
@@ -216,61 +219,62 @@ data:
   isVerificationFile: false
   path: utility/int_alias.cpp
   requiredBy:
-  - math/factorize.cpp
-  - math/primitive_root.cpp
-  - math/modint_util.cpp
-  - math/semiring_matrix.cpp
-  - math/dynamic_modint.cpp
-  - math/divisors_from_factors.cpp
-  - math/prime_sieve.cpp
-  - math/convolution.cpp
-  - math/static_modint.cpp
-  - algorithm/monotone_minima.cpp
-  - algorithm/smawk.cpp
+  - bit/bit_reverse.cpp
   - bit/popcount.cpp
   - bit/bit_lzeros.cpp
-  - bit/ceil_log2.cpp
   - bit/bit_rzeros.cpp
-  - bit/bit_reverse.cpp
+  - bit/ceil_log2.cpp
   - bit/bit_width.cpp
-  - container/fenwick_tree.cpp
-  - container/polynomial_hash.cpp
-  - container/sparse_table.cpp
-  - container/lazy_segment_tree.cpp
-  - container/segment_tree_beats.cpp
-  - container/dual_segment_tree.cpp
-  - container/segment_tree.cpp
-  - utility/rep.cpp
-  - utility/auto_memoize.cpp
-  - utility/multi_vec.cpp
-  - utility/revrep.cpp
-  - utility/auto_realloc.cpp
+  - utility/vec_util.cpp
   - utility/multi_array.cpp
-  - graph/heavy_light_decomposition.cpp
-  - graph/union_find.cpp
-  - graph/rollback_union_find.cpp
+  - utility/auto_memoize.cpp
+  - utility/permutations.cpp
+  - utility/revrep.cpp
+  - utility/rep.cpp
+  - utility/multi_vec.cpp
+  - utility/auto_realloc.cpp
+  - utility/subsets.cpp
   - random/rand_int.cpp
   - random/xorshift.cpp
-  timestamp: '2021-03-24 22:26:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - container/sparse_table.cpp
+  - container/segment_tree_beats.cpp
+  - container/segment_tree.cpp
+  - container/fenwick_tree.cpp
+  - container/polynomial_hash.cpp
+  - container/dual_segment_tree.cpp
+  - container/lazy_segment_tree.cpp
+  - graph/union_find.cpp
+  - graph/rollback_union_find.cpp
+  - graph/heavy_light_decomposition.cpp
+  - algorithm/smawk.cpp
+  - algorithm/monotone_minima.cpp
+  - math/dynamic_modint.cpp
+  - math/modint_util.cpp
+  - math/static_modint.cpp
+  - math/primitive_root.cpp
+  - math/prime_sieve.cpp
+  - math/factorize.cpp
+  - math/semiring_matrix.cpp
+  - math/divisors_from_factors.cpp
+  timestamp: '2021-09-04 17:30:23+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/semiring_matrix.test.cpp
-  - test/segment_tree.test.cpp
-  - test/fenwick_tree.test.cpp
-  - test/heavy_light_decomposition.test.cpp
+  - test/auto_memoize.test.cpp
+  - test/segment_tree_beats.test.cpp
+  - test/union_find.test.cpp
   - test/sparse_table.test.cpp
+  - test/dual_segment_tree.test.cpp
+  - test/fenwick_tree.test.cpp
+  - test/totient.test.cpp
+  - test/rollback_union_find.test.cpp
+  - test/segment_tree.test.cpp
+  - test/prime_sieve.test.cpp
+  - test/semiring_matrix.test.cpp
   - test/factorize.test.cpp
   - test/modint_util.test.cpp
-  - test/prime_sieve.test.cpp
   - test/polynomial_hash.test.cpp
-  - test/rollback_union_find.test.cpp
-  - test/totient.test.cpp
-  - test/union_find.test.cpp
-  - test/convolution.test.cpp
-  - test/segment_tree_beats.test.cpp
-  - test/dual_segment_tree.test.cpp
+  - test/heavy_light_decomposition.test.cpp
   - test/lazy_segment_tree.test.cpp
-  - test/auto_memoize.test.cpp
 documentation_of: utility/int_alias.cpp
 layout: document
 redirect_from:

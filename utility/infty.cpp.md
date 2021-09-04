@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: '#line 2 "utility/infty.cpp"
@@ -16,9 +16,8 @@ data:
     #include <limits>
 
 
-    template <class T, T Div = 2>
-
-    constexpr T INFTY = std::numeric_limits<T>::max() / Div;
+    template <class T, T Div = 2> constexpr T INFTY = std::numeric_limits<T>::max()
+    / Div;
 
     '
   code: '#pragma once
@@ -26,17 +25,16 @@ data:
     #include <limits>
 
 
-    template <class T, T Div = 2>
-
-    constexpr T INFTY = std::numeric_limits<T>::max() / Div;
+    template <class T, T Div = 2> constexpr T INFTY = std::numeric_limits<T>::max()
+    / Div;
 
     '
   dependsOn: []
   isVerificationFile: false
   path: utility/infty.cpp
   requiredBy: []
-  timestamp: '2021-03-24 22:26:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-09-04 17:30:23+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/sparse_table.test.cpp
 documentation_of: utility/infty.cpp

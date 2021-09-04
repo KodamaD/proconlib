@@ -1,70 +1,71 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/bit_rzeros.cpp
     title: bit/bit_rzeros.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segment_tree_beats.test.cpp
     title: test/segment_tree_beats.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n#include <cstddef>\n\
+  bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstddef>\n#include <cstdint>\n\
     \nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
     using u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
-    using isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 3 \"utility/rep.cpp\"\
-    \n#include <algorithm>\n\nclass rep {\n    struct Iter {\n        usize itr;\n\
-    \        constexpr Iter(const usize pos) noexcept: itr(pos) { }\n        constexpr\
-    \ void operator ++ () noexcept { ++itr; }\n        constexpr bool operator !=\
-    \ (const Iter& other) const noexcept { return itr != other.itr; }\n        constexpr\
-    \ usize operator * () const noexcept { return itr; }\n    };\n    const Iter first,\
-    \ last;\npublic:\n    explicit constexpr rep(const usize first, const usize last)\
-    \ noexcept: first(first), last(std::max(first, last)) { }\n    constexpr Iter\
-    \ begin() const noexcept { return first; }\n    constexpr Iter end() const noexcept\
-    \ { return last; }\n};\n#line 4 \"utility/revrep.cpp\"\n\nclass revrep {\n   \
-    \ struct Iter {\n        usize itr;\n        constexpr Iter(const usize pos) noexcept:\
-    \ itr(pos) { }\n        constexpr void operator ++ () noexcept { --itr; }\n  \
-    \      constexpr bool operator != (const Iter& other) const noexcept { return\
-    \ itr != other.itr; }\n        constexpr usize operator * () const noexcept {\
-    \ return itr; }\n    };\n    const Iter first, last;\npublic:\n    explicit constexpr\
-    \ revrep(const usize first, const usize last) noexcept: first(last - 1), last(std::min(first,\
-    \ last) - 1) { }\n    constexpr Iter begin() const noexcept { return first; }\n\
-    \    constexpr Iter end() const noexcept { return last; }\n};\n#line 3 \"bit/ceil_log2.cpp\"\
-    \n\nconstexpr u64 ceil_log2(const u64 x) {\n    u64 e = 0;\n    while (((u64)\
-    \ 1 << e) < x) ++e;\n    return e;\n}\n#line 3 \"bit/bit_rzeros.cpp\"\n\nconstexpr\
-    \ u64 bit_rzeros(const u64 x) {\n    return x == 0 ? 64 : __builtin_ctzll(x);\n\
-    }\n#line 7 \"container/segment_tree_beats.cpp\"\n#include <vector>\n#include <cassert>\n\
-    #include <optional>\n\ntemplate <class Monoid, class Effector, std::optional<Monoid>\
-    \ (*mapping) (Monoid, Effector)>\nclass SegmentTreeBeats {\n    using M = Monoid;\n\
-    \    using E = Effector;\n    usize internal_size, logn, seg_size;\n    std::vector<M>\
-    \ data;\n    std::vector<E> lazy;\n\n    void fetch(const usize k) { data[k] =\
-    \ data[2 * k] + data[2 * k + 1]; }\n    void apply(const usize k, const E& e)\
-    \ {\n        if (k >= seg_size) {\n            data[k] = mapping(data[k], e).value();\n\
-    \            return;\n        }\n        lazy[k] = lazy[k] * e;\n        const\
-    \ auto result = mapping(data[k], e);\n        if (result.has_value()) {\n    \
-    \        data[k] = result.value();\n        }\n        else { \n            flush(k);\
-    \ \n            fetch(k); \n        }\n    }\n    void flush(const usize k) {\n\
-    \        apply(2 * k, lazy[k]);\n        apply(2 * k + 1, lazy[k]);\n        lazy[k]\
-    \ = E::one();\n    }\n\n    void push(const usize k) { for (const usize d: revrep(bit_rzeros(k)\
-    \ + 1, logn + 1)) flush(k >> d); }\n    void pull(usize k) { for (k >>= bit_rzeros(k);\
-    \ k > 1;) fetch(k >>= 1); }\n\npublic:\n    explicit SegmentTreeBeats(const usize\
+    using isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 2 \"utility/rep.cpp\"\
+    \n#include <algorithm>\n#line 4 \"utility/rep.cpp\"\n\nclass rep {\n    struct\
+    \ Iter {\n        usize itr;\n        constexpr Iter(const usize pos) noexcept\
+    \ : itr(pos) {}\n        constexpr void operator++() noexcept { ++itr; }\n   \
+    \     constexpr bool operator!=(const Iter& other) const noexcept { return itr\
+    \ != other.itr; }\n        constexpr usize operator*() const noexcept { return\
+    \ itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit constexpr\
+    \ rep(const usize first, const usize last) noexcept : first(first), last(std::max(first,\
+    \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
+    \ constexpr Iter end() const noexcept { return last; }\n};\n#line 4 \"utility/revrep.cpp\"\
+    \n\nclass revrep {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const\
+    \ usize pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept\
+    \ { --itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
+    \ { return itr != other.itr; }\n        constexpr usize operator*() const noexcept\
+    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
+    \ constexpr revrep(const usize first, const usize last) noexcept\n        : first(last\
+    \ - 1), last(std::min(first, last) - 1) {}\n    constexpr Iter begin() const noexcept\
+    \ { return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
+    };\n#line 3 \"bit/ceil_log2.cpp\"\n\nconstexpr u64 ceil_log2(const u64 x) {\n\
+    \    u64 e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n}\n#line 3\
+    \ \"bit/bit_rzeros.cpp\"\n\nconstexpr u64 bit_rzeros(const u64 x) { return x ==\
+    \ 0 ? 64 : __builtin_ctzll(x); }\n#line 7 \"container/segment_tree_beats.cpp\"\
+    \n#include <vector>\n#include <cassert>\n#include <optional>\n\ntemplate <class\
+    \ Monoid, class Effector, std::optional<Monoid> (*mapping) (Monoid, Effector)>\n\
+    class SegmentTreeBeats {\n    using M = Monoid;\n    using E = Effector;\n   \
+    \ usize internal_size, logn, seg_size;\n    std::vector<M> data;\n    std::vector<E>\
+    \ lazy;\n\n    void fetch(const usize k) { data[k] = data[2 * k] + data[2 * k\
+    \ + 1]; }\n    void apply(const usize k, const E& e) {\n        if (k >= seg_size)\
+    \ {\n            data[k] = mapping(data[k], e).value();\n            return;\n\
+    \        }\n        lazy[k] = lazy[k] * e;\n        const auto result = mapping(data[k],\
+    \ e);\n        if (result.has_value()) {\n            data[k] = result.value();\n\
+    \        }\n        else { \n            flush(k); \n            fetch(k); \n\
+    \        }\n    }\n    void flush(const usize k) {\n        apply(2 * k, lazy[k]);\n\
+    \        apply(2 * k + 1, lazy[k]);\n        lazy[k] = E::one();\n    }\n\n  \
+    \  void push(const usize k) { for (const usize d: revrep(bit_rzeros(k) + 1, logn\
+    \ + 1)) flush(k >> d); }\n    void pull(usize k) { for (k >>= bit_rzeros(k); k\
+    \ > 1;) fetch(k >>= 1); }\n\npublic:\n    explicit SegmentTreeBeats(const usize\
     \ size = 0, const M& value = M::zero()):\n        SegmentTreeBeats(std::vector<M>(size,\
     \ value)) { }\n    explicit SegmentTreeBeats(const std::vector<M>& vec): internal_size(vec.size())\
     \ {\n        logn = ceil_log2(internal_size);\n        seg_size = 1 << logn;\n\
@@ -171,8 +172,8 @@ data:
   isVerificationFile: false
   path: container/segment_tree_beats.cpp
   requiredBy: []
-  timestamp: '2021-04-18 14:01:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-09-04 17:30:23+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/segment_tree_beats.test.cpp
 documentation_of: container/segment_tree_beats.cpp

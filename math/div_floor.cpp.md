@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
   _extendedRequiredBy: []
@@ -11,20 +11,34 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/rem_euclid.cpp\"\n\ntemplate <class T>\nconstexpr T\
-    \ rem_euclid(T value, const T& mod) {\n    return (value %= mod) >= 0 ? value\
-    \ : value + mod;\n}\n#line 3 \"math/div_floor.cpp\"\n\ntemplate <class T>\nconstexpr\
-    \ T div_floor(const T& x, const T& y) {\n    return (x - rem_euclid(x, y)) / y;\n\
-    }\n"
-  code: "#pragma once\n#include \"rem_euclid.cpp\"\n\ntemplate <class T>\nconstexpr\
-    \ T div_floor(const T& x, const T& y) {\n    return (x - rem_euclid(x, y)) / y;\n\
-    }\n"
+  bundledCode: '#line 2 "math/rem_euclid.cpp"
+
+
+    template <class T> constexpr T rem_euclid(T value, const T& mod) { return (value
+    %= mod) >= 0 ? value : value + mod; }
+
+    #line 3 "math/div_floor.cpp"
+
+
+    template <class T> constexpr T div_floor(const T& x, const T& y) { return (x -
+    rem_euclid(x, y)) / y; }
+
+    '
+  code: '#pragma once
+
+    #include "rem_euclid.cpp"
+
+
+    template <class T> constexpr T div_floor(const T& x, const T& y) { return (x -
+    rem_euclid(x, y)) / y; }
+
+    '
   dependsOn:
   - math/rem_euclid.cpp
   isVerificationFile: false
   path: math/div_floor.cpp
   requiredBy: []
-  timestamp: '2021-03-28 15:26:18+09:00'
+  timestamp: '2021-09-04 17:30:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/div_floor.cpp
