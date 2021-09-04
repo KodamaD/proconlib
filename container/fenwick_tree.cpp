@@ -1,15 +1,14 @@
 #pragma once
-#include "../utility/int_alias.cpp"
-#include "../bit/ceil_log2.cpp"
-#include <vector>
 #include <cassert>
+#include <vector>
+#include "../bit/ceil_log2.cpp"
+#include "../utility/int_alias.cpp"
 
-template <class T>
-class FenwickTree {
+template <class T> class FenwickTree {
     usize logn;
     std::vector<T> data;
-    
-public:
+
+  public:
     explicit FenwickTree(const usize size = 0) {
         logn = ceil_log2(size + 1) - 1;
         data = std::vector<T>(size + 1, T(0));
@@ -17,7 +16,7 @@ public:
 
     usize size() const { return data.size() - 1; }
 
-    void add(usize i, const T& x) { 
+    void add(usize i, const T& x) {
         assert(i < size());
         i += 1;
         while (i < data.size()) {
@@ -25,7 +24,7 @@ public:
             i += i & -i;
         }
     }
-    void subtract(usize i, const T& x) { 
+    void subtract(usize i, const T& x) {
         assert(i < size());
         i += 1;
         while (i < data.size()) {
@@ -49,8 +48,7 @@ public:
         return ret;
     }
 
-    template <class F>
-    usize max_right(const F &f) const {
+    template <class F> usize max_right(const F& f) const {
         assert(f(T(0)));
         usize i = 0;
         T sum(0);
