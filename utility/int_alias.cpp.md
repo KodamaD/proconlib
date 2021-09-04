@@ -142,6 +142,9 @@ data:
     path: test/prime_sieve.test.cpp
     title: test/prime_sieve.test.cpp
   - icon: ':x:'
+    path: test/queue_aggregation.test.cpp
+    title: test/queue_aggregation.test.cpp
+  - icon: ':x:'
     path: test/rollback_union_find.test.cpp
     title: test/rollback_union_find.test.cpp
   - icon: ':x:'
@@ -271,6 +274,7 @@ data:
   - test/prime_sieve.test.cpp
   - test/semiring_matrix.test.cpp
   - test/factorize.test.cpp
+  - test/queue_aggregation.test.cpp
   - test/modint_util.test.cpp
   - test/polynomial_hash.test.cpp
   - test/heavy_light_decomposition.test.cpp

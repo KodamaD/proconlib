@@ -22,6 +22,9 @@ data:
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
   - icon: ':x:'
+    path: test/queue_aggregation.test.cpp
+    title: test/queue_aggregation.test.cpp
+  - icon: ':x:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
   - icon: ':x:'
@@ -128,6 +131,7 @@ data:
   verifiedWith:
   - test/segment_tree.test.cpp
   - test/semiring_matrix.test.cpp
+  - test/queue_aggregation.test.cpp
   - test/modint_util.test.cpp
   - test/heavy_light_decomposition.test.cpp
   - test/lazy_segment_tree.test.cpp

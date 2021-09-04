@@ -44,31 +44,32 @@ data:
     \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
     \ constexpr Iter end() const noexcept { return last; }\n};\n#line 2 \"utility/infty.cpp\"\
     \n#include <limits>\n\ntemplate <class T, T Div = 2> constexpr T INFTY = std::numeric_limits<T>::max()\
-    \ / Div;\n#line 3 \"bit/bit_lzeros.cpp\"\n\nconstexpr u64 bit_lzeros(const u64\
+    \ / Div;\n#line 2 \"container/sparse_table.cpp\"\n#include <cassert>\n#include\
+    \ <vector>\n#line 3 \"bit/bit_lzeros.cpp\"\n\nconstexpr u64 bit_lzeros(const u64\
     \ x) { return x == 0 ? 64 : __builtin_clzll(x); }\n#line 4 \"bit/bit_width.cpp\"\
     \n\nconstexpr u64 bit_width(const u64 x) { return 64 - bit_lzeros(x); }\n#line\
-    \ 5 \"container/sparse_table.cpp\"\n#include <vector>\n#include <cassert>\n\n\
-    template <class IdempotentMonoid>\nclass SparseTable {\n    using M = IdempotentMonoid;\n\
-    \    std::vector<std::vector<M>> table;\n\npublic:\n    SparseTable(): SparseTable(std::vector<M>())\
-    \ { }\n    explicit SparseTable(const std::vector<M>& vec) {\n        const auto\
-    \ size = vec.size();\n        const auto height = bit_width(size);\n        table.reserve(height);\n\
-    \        table.push_back(vec);\n        for (const usize d: rep(1, height)) {\n\
+    \ 7 \"container/sparse_table.cpp\"\n\ntemplate <class IdempotentMonoid> class\
+    \ SparseTable {\n    using M = IdempotentMonoid;\n    std::vector<std::vector<M>>\
+    \ table;\n\n  public:\n    SparseTable() : SparseTable(std::vector<M>()) {}\n\
+    \    explicit SparseTable(const std::vector<M>& vec) {\n        const auto size\
+    \ = vec.size();\n        const auto height = bit_width(size);\n        table.reserve(height);\n\
+    \        table.push_back(vec);\n        for (const usize d : rep(1, height)) {\n\
     \            table.push_back(std::vector<M>(size - (1 << d) + 1, M::zero()));\n\
-    \            for (const usize i: rep(0, table[d].size())) {\n                table[d][i]\
-    \ = table[d - 1][i] + table[d - 1][i + (1 << (d - 1))];\n            }\n     \
-    \   }\n    }\n\n    usize size() const { return table[0].size(); }\n\n    M fold(const\
-    \ usize l, const usize r) const {\n        if (l == r) return M::zero();\n   \
-    \     assert(l < r);\n        const auto d = bit_width(r - l) - 1;\n        return\
-    \ table[d][l] + table[d][r - (1 << d)];\n    }\n};\n#line 6 \"test/sparse_table.test.cpp\"\
-    \n#include <iostream>\n\nstruct Monoid {\n    static constexpr Monoid zero() {\n\
-    \        return Monoid { INFTY<u32> };\n    }\n    u32 min;\n    constexpr Monoid\
-    \ operator + (const Monoid& other) const {\n        return Monoid { std::min(min,\
-    \ other.min) };\n    }\n};\n\nint main() {\n    usize N, Q;\n    std::cin >> N\
-    \ >> Q;\n    std::vector<Monoid> A(N, Monoid::zero());\n    for (const usize i:\
-    \ rep(0, N)) {\n        u32 x;\n        std::cin >> x;\n        A[i].min = x;\n\
-    \    }\n    SparseTable<Monoid> table(A);\n    while (Q--) {\n        usize l,\
-    \ r;\n        std::cin >> l >> r;\n        std::cout << table.fold(l, r).min <<\
-    \ '\\n';\n    }\n    return 0;\n}\n"
+    \            for (const usize i : rep(0, table[d].size())) {\n               \
+    \ table[d][i] = table[d - 1][i] + table[d - 1][i + (1 << (d - 1))];\n        \
+    \    }\n        }\n    }\n\n    usize size() const { return table[0].size(); }\n\
+    \n    M fold(const usize l, const usize r) const {\n        if (l == r) return\
+    \ M::zero();\n        assert(l < r);\n        const auto d = bit_width(r - l)\
+    \ - 1;\n        return table[d][l] + table[d][r - (1 << d)];\n    }\n};\n#line\
+    \ 6 \"test/sparse_table.test.cpp\"\n#include <iostream>\n\nstruct Monoid {\n \
+    \   static constexpr Monoid zero() {\n        return Monoid { INFTY<u32> };\n\
+    \    }\n    u32 min;\n    constexpr Monoid operator + (const Monoid& other) const\
+    \ {\n        return Monoid { std::min(min, other.min) };\n    }\n};\n\nint main()\
+    \ {\n    usize N, Q;\n    std::cin >> N >> Q;\n    std::vector<Monoid> A(N, Monoid::zero());\n\
+    \    for (const usize i: rep(0, N)) {\n        u32 x;\n        std::cin >> x;\n\
+    \        A[i].min = x;\n    }\n    SparseTable<Monoid> table(A);\n    while (Q--)\
+    \ {\n        usize l, r;\n        std::cin >> l >> r;\n        std::cout << table.fold(l,\
+    \ r).min << '\\n';\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     ../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n#include \"../utility/infty.cpp\"\
     \n#include \"../container/sparse_table.cpp\"\n#include <iostream>\n\nstruct Monoid\
@@ -91,7 +92,7 @@ data:
   isVerificationFile: true
   path: test/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2021-09-04 17:30:23+09:00'
+  timestamp: '2021-09-04 18:33:40+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/sparse_table.test.cpp

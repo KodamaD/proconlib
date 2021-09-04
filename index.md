@@ -43,6 +43,9 @@ data:
     - icon: ':x:'
       path: container/polynomial_hash.cpp
       title: container/polynomial_hash.cpp
+    - icon: ':x:'
+      path: container/queue_aggregation.cpp
+      title: container/queue_aggregation.cpp
     - icon: ':question:'
       path: container/segment_tree.cpp
       title: container/segment_tree.cpp
@@ -52,6 +55,9 @@ data:
     - icon: ':x:'
       path: container/sparse_table.cpp
       title: container/sparse_table.cpp
+    - icon: ':x:'
+      path: container/stack_aggregation.cpp
+      title: container/stack_aggregation.cpp
   - name: graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -66,8 +72,8 @@ data:
   - name: math
     pages:
     - icon: ':warning:'
-      path: math/div_floor.cpp
-      title: math/div_floor.cpp
+      path: math/ceil_div.cpp
+      title: math/ceil_div.cpp
     - icon: ':warning:'
       path: math/divisors.cpp
       title: math/divisors.cpp
@@ -80,6 +86,9 @@ data:
     - icon: ':x:'
       path: math/factorize.cpp
       title: math/factorize.cpp
+    - icon: ':warning:'
+      path: math/floor_div.cpp
+      title: math/floor_div.cpp
     - icon: ':warning:'
       path: math/inv_gcd.cpp
       title: math/inv_gcd.cpp
@@ -150,6 +159,9 @@ data:
     - icon: ':question:'
       path: utility/rep.cpp
       title: utility/rep.cpp
+    - icon: ':x:'
+      path: utility/reversed_monoid.cpp
+      title: utility/reversed_monoid.cpp
     - icon: ':question:'
       path: utility/revrep.cpp
       title: utility/revrep.cpp
@@ -198,6 +210,9 @@ data:
     - icon: ':x:'
       path: test/prime_sieve.test.cpp
       title: test/prime_sieve.test.cpp
+    - icon: ':x:'
+      path: test/queue_aggregation.test.cpp
+      title: test/queue_aggregation.test.cpp
     - icon: ':x:'
       path: test/rollback_union_find.test.cpp
       title: test/rollback_union_find.test.cpp
