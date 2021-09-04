@@ -1,16 +1,16 @@
 #pragma once
-#include "../utility/int_alias.cpp"
-#include <vector>
+#include <cassert>
 #include <stack>
 #include <utility>
-#include <cassert>
+#include <vector>
+#include "../utility/int_alias.cpp"
 
 class RollbackUnionFind {
     std::vector<usize> data;
     std::stack<std::pair<usize, usize>> history;
 
-public:
-    explicit RollbackUnionFind(const usize size = 0): data(size, -1), history() { }
+  public:
+    explicit RollbackUnionFind(const usize size = 0) : data(size, -1), history() {}
 
     usize size() const { return data.size(); }
 
@@ -28,7 +28,7 @@ public:
     std::pair<usize, bool> merge(usize u, usize v) {
         assert(u < size());
         assert(v < size());
-        u = leader(u); 
+        u = leader(u);
         v = leader(v);
         if (u == v) return std::make_pair(u, false);
         if (data[u] > data[v]) std::swap(u, v);

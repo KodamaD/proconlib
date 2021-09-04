@@ -1,16 +1,15 @@
 #pragma once
+#include <cassert>
+#include <vector>
+#include "../utility/auto_realloc.cpp"
 #include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
-#include "../utility/auto_realloc.cpp"
-#include <vector>
-#include <cassert>
 
-template <class M>
-struct ModintUtil {
+template <class M> struct ModintUtil {
     static inline const auto fact = auto_realloc([](const usize n) {
         std::vector<M> ret(n);
         ret[0] = M(1);
-        for (const usize i: rep(1, n)) {
+        for (const usize i : rep(1, n)) {
             ret[i] = ret[i - 1] * M(i);
         }
         return ret;
@@ -19,7 +18,7 @@ struct ModintUtil {
         std::vector<M> ret(n);
         if (n == 1) return ret;
         ret[1] = M(1);
-        for (const usize i: rep(2, n)) {
+        for (const usize i : rep(2, n)) {
             ret[i] = -M(M::mod() / i) * ret[M::mod() % i];
         }
         return ret;
@@ -27,7 +26,7 @@ struct ModintUtil {
     static inline const auto inv_fact = auto_realloc([](const usize n) {
         std::vector<M> ret(n);
         ret[0] = M(1);
-        for (const usize i: rep(1, n)) {
+        for (const usize i : rep(1, n)) {
             ret[i] = ret[i - 1] * inv[i];
         }
         return ret;

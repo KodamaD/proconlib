@@ -1,12 +1,11 @@
 #pragma once
-#include "../utility/int_alias.cpp"
-#include "../utility/rep.cpp"
-#include <vector>
 #include <queue>
 #include <tuple>
+#include <vector>
+#include "../utility/int_alias.cpp"
+#include "../utility/rep.cpp"
 
-template <class Select>
-std::vector<usize> monotone_minima(const usize row, const usize column, const Select& select) {
+template <class Select> std::vector<usize> monotone_minima(const usize row, const usize column, const Select& select) {
     std::vector<usize> ret(row);
     std::queue<std::tuple<usize, usize, usize, usize>> que;
     que.emplace(0, row, 0, column);
@@ -15,7 +14,7 @@ std::vector<usize> monotone_minima(const usize row, const usize column, const Se
         que.pop();
         const usize m = (l + r) / 2;
         ret[m] = d;
-        for (const usize i: rep(d + 1, u)) {
+        for (const usize i : rep(d + 1, u)) {
             if (select(m, ret[m], i)) {
                 ret[m] = i;
             }

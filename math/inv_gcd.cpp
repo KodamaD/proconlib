@@ -1,13 +1,12 @@
 #pragma once
-#include "../math/rem_euclid.cpp"
-#include <utility>
 #include <type_traits>
+#include <utility>
+#include "../math/rem_euclid.cpp"
 
-template <class T>
-constexpr std::pair<T, T> inv_gcd(const T& a, const T& b) {
+template <class T> constexpr std::pair<T, T> inv_gcd(const T& a, const T& b) {
     using U = std::make_signed_t<T>;
     U t = rem_euclid(a, b);
-    if (t == 0) return { b, 0 };
+    if (t == 0) return {b, 0};
     U s = b, m0 = 0, m1 = 1;
     while (t != 0) {
         const U u = s / t;
@@ -21,5 +20,5 @@ constexpr std::pair<T, T> inv_gcd(const T& a, const T& b) {
         m1 = tmp;
     }
     if (m0 < 0) m0 += b / s;
-    return { (T) s, (T) m0 };
+    return {(T)s, (T)m0};
 }

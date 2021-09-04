@@ -1,10 +1,10 @@
 #pragma once
-#include "../utility/int_alias.cpp"
-#include "../utility/rep.cpp"
-#include "../utility/rec_lambda.cpp"
-#include <vector>
-#include <utility>
 #include <cassert>
+#include <utility>
+#include <vector>
+#include "../utility/int_alias.cpp"
+#include "../utility/rec_lambda.cpp"
+#include "../utility/rep.cpp"
 
 class HeavyLightDecomposition {
     struct Node {
@@ -14,36 +14,38 @@ class HeavyLightDecomposition {
     };
     std::vector<Node> node;
 
-public:
-    explicit HeavyLightDecomposition(const std::vector<std::vector<usize>>& tree, const usize root = 0):
-        HeavyLightDecomposition(tree, std::vector<usize>({ root })) { }
-    explicit HeavyLightDecomposition(const std::vector<std::vector<usize>>& forest, const std::vector<usize>& root): node(forest.size()) {
-        for (const auto i: rep(0, size())) node[i].adjacent = forest[i];
+  public:
+    HeavyLightDecomposition() = default;
+    explicit HeavyLightDecomposition(const std::vector<std::vector<usize>>& tree, const usize root = 0)
+        : HeavyLightDecomposition(tree, std::vector<usize>({root})) {}
+    explicit HeavyLightDecomposition(const std::vector<std::vector<usize>>& forest, const std::vector<usize>& root)
+        : node(forest.size()) {
+        for (const auto i : rep(0, size())) node[i].adjacent = forest[i];
         const auto setup = rec_lambda([&](auto&& dfs, const usize u, const usize p) -> void {
             node[u].parent = p;
             node[u].subtree = 1;
-            for (const auto v: node[u].adjacent) {
+            for (const auto v : node[u].adjacent) {
                 if (v != p) {
                     dfs(v, u);
                     node[u].subtree += node[v].subtree;
                 }
             }
         });
-        for (const auto r: root) setup(r, r);
+        for (const auto r : root) setup(r, r);
         usize time = 0;
         const auto decompose = rec_lambda([&](auto&& dfs, const usize u, const usize h) -> void {
             node[u].head = h;
             node[u].enter = time;
             time += 1;
             usize select = size();
-            for (const auto v: node[u].adjacent) {
+            for (const auto v : node[u].adjacent) {
                 if (v != node[u].parent and (select == size() or node[select].subtree < node[v].subtree)) {
                     select = v;
                 }
             }
             if (select != size()) {
                 dfs(select, h);
-                for (const auto v: node[u].adjacent) {
+                for (const auto v : node[u].adjacent) {
                     if (v != node[u].parent and v != select) {
                         dfs(v, v);
                     }
@@ -51,7 +53,7 @@ public:
             }
             node[u].exit = time;
         });
-        for (const auto r: root) decompose(r, r);
+        for (const auto r : root) decompose(r, r);
     }
 
     usize size() const { return node.size(); }
@@ -81,6 +83,21 @@ public:
             u = node[node[u].head].parent;
         }
         ret.emplace_back(u, p);
+        return ret;
+    }
+
+    std::vector<std::vector<usize>> decompose() const {
+        std::vector<usize> vec(node.size());
+        for (const usize u : rep(0, node.size())) vec[node[u].enter] = u;
+        std::vector<std::vector<usize>> ret;
+        usize last = node.size();
+        for (const usize u : vec) {
+            if (last != node[u].head) {
+                ret.push_back({});
+                last = node[u].head;
+            }
+            ret.back().push_back(u);
+        }
         return ret;
     }
 };

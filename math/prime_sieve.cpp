@@ -1,20 +1,20 @@
 #pragma once
+#include <cassert>
+#include <numeric>
+#include <utility>
+#include <vector>
+#include "../utility/auto_realloc.cpp"
 #include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
-#include "../utility/auto_realloc.cpp"
-#include <vector>
-#include <utility>
-#include <numeric>
-#include <cassert>
 
 struct PrimeSieve {
     static inline const auto min_prime = auto_realloc([](const usize n) {
         std::vector<usize> ret(n);
-        std::iota(ret.begin(), ret.end(), (usize) 0);
+        std::iota(ret.begin(), ret.end(), (usize)0);
         std::vector<usize> list;
-        for (const usize i: rep(2, n)) {
+        for (const usize i : rep(2, n)) {
             if (ret[i] == i) list.push_back(i);
-            for (const usize p: list) {
+            for (const usize p : list) {
                 if (p * i >= n || p > ret[i]) break;
                 ret[p * i] = p;
             }
@@ -25,13 +25,12 @@ struct PrimeSieve {
         if (n <= 1) return false;
         return min_prime[n] == n;
     }
-    template <class T>
-    static std::vector<std::pair<T, usize>> factorize(T x) {
+    template <class T> static std::vector<std::pair<T, usize>> factorize(T x) {
         assert(x > 0);
         std::vector<std::pair<T, usize>> ret;
         while (x != 1) {
             const usize p = min_prime[x];
-            ret.emplace_back((T) p, 0);
+            ret.emplace_back((T)p, 0);
             while (min_prime[x] == p) {
                 ret.back().second++;
                 x /= p;

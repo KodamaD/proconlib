@@ -34,6 +34,7 @@ public:
         }
     }
 
+    T fold() const { return fold(0, size()); }
     T fold(usize l, usize r) const {
         assert(l <= r and r <= size());
         T ret(0);

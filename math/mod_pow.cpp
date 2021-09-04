@@ -1,9 +1,8 @@
 #pragma once
-#include "../math/rem_euclid.cpp"
 #include <cassert>
+#include "../math/rem_euclid.cpp"
 
-template <class T>
-constexpr T mod_pow(T x, u64 exp, const T& mod) {
+template <class T> constexpr T mod_pow(T x, u64 exp, const T& mod) {
     assert(mod > 0);
     T ret = T(1) % mod;
     x = rem_euclid(x, mod);

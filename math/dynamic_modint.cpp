@@ -1,22 +1,21 @@
 #pragma once
-#include "../utility/int_alias.cpp"
-#include "rem_euclid.cpp"
-#include "mod_inv.cpp"
-#include <type_traits>
-#include <ostream>
 #include <cassert>
+#include <ostream>
+#include <type_traits>
+#include "../utility/int_alias.cpp"
+#include "mod_inv.cpp"
+#include "rem_euclid.cpp"
 
-template <usize ID>
-class DynamicModint {
+template <usize ID> class DynamicModint {
     using Mint = DynamicModint;
 
     struct Barret {
         u32 mod;
         u64 near_inv;
-        explicit Barret(const u32 mod) noexcept: mod(mod), near_inv((u64) (-1) / mod + 1) { }
+        explicit Barret(const u32 mod) noexcept : mod(mod), near_inv((u64)(-1) / mod + 1) {}
         u32 product(const u32 a, const u32 b) const noexcept {
-            const u64 z = (u64) a * b;
-            const u64 x = ((u128) z * near_inv) >> 64;
+            const u64 z = (u64)a * b;
+            const u64 x = ((u128)z * near_inv) >> 64;
             const u32 v = z - x * mod;
             return v < mod ? v : v + mod;
         }
@@ -25,23 +24,25 @@ class DynamicModint {
     static inline auto bt = Barret(1);
     u32 v;
 
-public:
+  public:
     static u32 mod() noexcept { return bt.mod; }
     static void set_mod(const u32 mod) noexcept {
-        assert((u32) 1 <= mod and mod <= ((u32) 1 << 31));
+        assert((u32)1 <= mod and mod <= ((u32)1 << 31));
         bt = Barret(mod);
     }
 
     template <class T, std::enable_if_t<std::is_signed_v<T> and std::is_integral_v<T>>* = nullptr>
-    static T normalize(const T x) noexcept { return rem_euclid<std::common_type_t<T, i64>>(x, mod()); }
+    static T normalize(const T x) noexcept {
+        return rem_euclid<std::common_type_t<T, i64>>(x, mod());
+    }
     template <class T, std::enable_if_t<std::is_unsigned_v<T> and std::is_integral_v<T>>* = nullptr>
-    static T normalize(const T x) noexcept { return x % mod(); }
+    static T normalize(const T x) noexcept {
+        return x % mod();
+    }
 
-    DynamicModint() noexcept: v(0) { }
-    template <class T>
-    DynamicModint(const T x) noexcept: v(normalize(x)) { }
-    template <class T>
-    static Mint raw(const T x) noexcept {
+    DynamicModint() noexcept : v(0) {}
+    template <class T> DynamicModint(const T x) noexcept : v(normalize(x)) {}
+    template <class T> static Mint raw(const T x) noexcept {
         Mint ret;
         ret.v = x;
         return ret;
@@ -59,38 +60,34 @@ public:
         return ret;
     }
 
-    Mint operator - () const noexcept { return neg(); }
-    Mint operator ~ () const noexcept { return inv(); }
+    Mint operator-() const noexcept { return neg(); }
+    Mint operator~() const noexcept { return inv(); }
 
-    Mint operator + (const Mint& rhs) const noexcept { return Mint(*this) += rhs; }
-    Mint& operator += (const Mint& rhs) noexcept {
+    Mint operator+(const Mint& rhs) const noexcept { return Mint(*this) += rhs; }
+    Mint& operator+=(const Mint& rhs) noexcept {
         if ((v += rhs.v) >= mod()) v -= mod();
         return *this;
     }
-    
-    Mint operator - (const Mint& rhs) const noexcept { return Mint(*this) -= rhs; }
-    Mint& operator -= (const Mint& rhs) noexcept {
+
+    Mint operator-(const Mint& rhs) const noexcept { return Mint(*this) -= rhs; }
+    Mint& operator-=(const Mint& rhs) noexcept {
         if (v < rhs.v) v += mod();
         v -= rhs.v;
         return *this;
     }
 
-    Mint operator * (const Mint& rhs) const noexcept { return Mint(*this) *= rhs; }
-    Mint& operator *= (const Mint& rhs) noexcept {
+    Mint operator*(const Mint& rhs) const noexcept { return Mint(*this) *= rhs; }
+    Mint& operator*=(const Mint& rhs) noexcept {
         v = bt.product(v, rhs.v);
         return *this;
     }
 
-    Mint operator / (const Mint& rhs) const noexcept { return Mint(*this) /= rhs; }
-    Mint& operator /= (const Mint& rhs) noexcept { 
-        return *this *= rhs.inv();
-    }
+    Mint operator/(const Mint& rhs) const noexcept { return Mint(*this) /= rhs; }
+    Mint& operator/=(const Mint& rhs) noexcept { return *this *= rhs.inv(); }
 
-    bool operator == (const Mint& rhs) const noexcept { return v == rhs.v; }
-    bool operator != (const Mint& rhs) const noexcept { return v != rhs.v; }
-    friend std::ostream& operator << (std::ostream& stream, const Mint& rhs) { 
-        return stream << rhs.v;
-    }
+    bool operator==(const Mint& rhs) const noexcept { return v == rhs.v; }
+    bool operator!=(const Mint& rhs) const noexcept { return v != rhs.v; }
+    friend std::ostream& operator<<(std::ostream& stream, const Mint& rhs) { return stream << rhs.v; }
 };
 
 using Modint = DynamicModint<__COUNTER__>;

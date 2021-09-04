@@ -1,13 +1,13 @@
 #pragma once
+#include <algorithm>
+#include <vector>
 #include "../utility/int_alias.cpp"
 #include "../utility/rec_lambda.cpp"
-#include <vector>
-#include <algorithm>
 
 template <class T>
 std::vector<T> divisors_from_factors(const std::vector<std::pair<T, usize>>& factors, const bool sort = true) {
     usize size = 1;
-    for (const std::pair<T, usize>& f: factors) size *= f.second;
+    for (const std::pair<T, usize>& f : factors) size *= f.second;
     std::vector<T> ret;
     ret.reserve(size);
     rec_lambda([&](auto&& dfs, const usize i, T x) -> void {

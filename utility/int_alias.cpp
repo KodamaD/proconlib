@@ -1,6 +1,6 @@
 #pragma once
-#include <cstdint>
 #include <cstddef>
+#include <cstdint>
 
 using i32 = std::int32_t;
 using u32 = std::uint32_t;

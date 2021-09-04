@@ -1,10 +1,9 @@
 #pragma once
-#include <vector>
 #include <algorithm>
 #include <iterator>
+#include <vector>
 
-template <class T>
-std::vector<T> divisors(const T& x) {
+template <class T> std::vector<T> divisors(const T& x) {
     std::vector<T> small, big;
     for (T i = 1; i * i <= x; ++i) {
         if (x % i == 0) {
