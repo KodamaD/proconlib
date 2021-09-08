@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
   - icon: ':heavy_check_mark:'
     path: container/fenwick_tree.cpp
     title: container/fenwick_tree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
@@ -26,21 +26,21 @@ data:
   bundledCode: "#line 1 \"test/fenwick_tree.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\
     \n#line 2 \"utility/int_alias.cpp\"\n#include <cstddef>\n#include <cstdint>\n\n\
     using i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
-    using u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
-    using isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 2 \"utility/rep.cpp\"\
-    \n#include <algorithm>\n#line 4 \"utility/rep.cpp\"\n\nclass rep {\n    struct\
-    \ Iter {\n        usize itr;\n        constexpr Iter(const usize pos) noexcept\
-    \ : itr(pos) {}\n        constexpr void operator++() noexcept { ++itr; }\n   \
-    \     constexpr bool operator!=(const Iter& other) const noexcept { return itr\
-    \ != other.itr; }\n        constexpr usize operator*() const noexcept { return\
-    \ itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit constexpr\
-    \ rep(const usize first, const usize last) noexcept : first(first), last(std::max(first,\
-    \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
-    \ constexpr Iter end() const noexcept { return last; }\n};\n#line 2 \"container/fenwick_tree.cpp\"\
-    \n#include <cassert>\n#include <vector>\n#line 3 \"bit/ceil_log2.cpp\"\n\nconstexpr\
-    \ u64 ceil_log2(const u64 x) {\n    u64 e = 0;\n    while (((u64)1 << e) < x)\
-    \ ++e;\n    return e;\n}\n#line 6 \"container/fenwick_tree.cpp\"\n\ntemplate <class\
-    \ T> class FenwickTree {\n    usize logn;\n    std::vector<T> data;\n\n  public:\n\
+    using u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
+    #line 2 \"utility/rep.cpp\"\n#include <algorithm>\n#line 4 \"utility/rep.cpp\"\
+    \n\nclass rep {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const\
+    \ usize pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept\
+    \ { ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
+    \ { return itr != other.itr; }\n        constexpr usize operator*() const noexcept\
+    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
+    \ constexpr rep(const usize first, const usize last) noexcept : first(first),\
+    \ last(std::max(first, last)) {}\n    constexpr Iter begin() const noexcept {\
+    \ return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
+    };\n#line 2 \"container/fenwick_tree.cpp\"\n#include <cassert>\n#include <vector>\n\
+    #line 3 \"bit/ceil_log2.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr u64\
+    \ ceil_log2(const u64 x) {\n    u64 e = 0;\n    while (((u64)1 << e) < x) ++e;\n\
+    \    return e;\n}\n#line 6 \"container/fenwick_tree.cpp\"\n\ntemplate <class T>\
+    \ class FenwickTree {\n    usize logn;\n    std::vector<T> data;\n\n  public:\n\
     \    explicit FenwickTree(const usize size = 0) {\n        logn = ceil_log2(size\
     \ + 1) - 1;\n        data = std::vector<T>(size + 1, T(0));\n    }\n\n    usize\
     \ size() const { return data.size() - 1; }\n\n    void add(usize i, const T& x)\
@@ -84,7 +84,7 @@ data:
   isVerificationFile: true
   path: test/fenwick_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-09-04 18:33:40+09:00'
+  timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fenwick_tree.test.cpp

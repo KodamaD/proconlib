@@ -1,26 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/rollback_union_find.test.cpp
     title: test/rollback_union_find.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/rollback_union_find.cpp\"\n#include <cassert>\n#include\
     \ <stack>\n#include <utility>\n#include <vector>\n#line 2 \"utility/int_alias.cpp\"\
     \n#include <cstddef>\n#include <cstdint>\n\nusing i32 = std::int32_t;\nusing u32\
     \ = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\nusing\
-    \ i128 = __int128_t;\nusing u128 = __uint128_t;\nusing isize = std::ptrdiff_t;\n\
-    using usize = std::size_t;\n#line 7 \"graph/rollback_union_find.cpp\"\n\nclass\
-    \ RollbackUnionFind {\n    std::vector<usize> data;\n    std::stack<std::pair<usize,\
+    \ isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 7 \"graph/rollback_union_find.cpp\"\
+    \n\nclass RollbackUnionFind {\n    std::vector<usize> data;\n    std::stack<std::pair<usize,\
     \ usize>> history;\n\n  public:\n    explicit RollbackUnionFind(const usize size\
     \ = 0) : data(size, -1), history() {}\n\n    usize size() const { return data.size();\
     \ }\n\n    usize leader(usize u) const {\n        assert(u < size());\n      \
@@ -61,8 +60,8 @@ data:
   isVerificationFile: false
   path: graph/rollback_union_find.cpp
   requiredBy: []
-  timestamp: '2021-09-04 17:30:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-09-08 18:46:15+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/rollback_union_find.test.cpp
 documentation_of: graph/rollback_union_find.cpp

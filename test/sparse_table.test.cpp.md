@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bit/bit_lzeros.cpp
     title: bit/bit_lzeros.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bit/bit_width.cpp
     title: bit/bit_width.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: utility/infty.cpp
     title: utility/infty.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -32,27 +32,26 @@ data:
   bundledCode: "#line 1 \"test/sparse_table.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\
     \n#line 2 \"utility/int_alias.cpp\"\n#include <cstddef>\n#include <cstdint>\n\n\
     using i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
-    using u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
-    using isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 2 \"utility/rep.cpp\"\
-    \n#include <algorithm>\n#line 4 \"utility/rep.cpp\"\n\nclass rep {\n    struct\
-    \ Iter {\n        usize itr;\n        constexpr Iter(const usize pos) noexcept\
-    \ : itr(pos) {}\n        constexpr void operator++() noexcept { ++itr; }\n   \
-    \     constexpr bool operator!=(const Iter& other) const noexcept { return itr\
-    \ != other.itr; }\n        constexpr usize operator*() const noexcept { return\
-    \ itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit constexpr\
-    \ rep(const usize first, const usize last) noexcept : first(first), last(std::max(first,\
-    \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
-    \ constexpr Iter end() const noexcept { return last; }\n};\n#line 2 \"utility/infty.cpp\"\
-    \n#include <limits>\n\ntemplate <class T, T Div = 2> constexpr T INFTY = std::numeric_limits<T>::max()\
-    \ / Div;\n#line 2 \"container/sparse_table.cpp\"\n#include <cassert>\n#include\
-    \ <vector>\n#line 3 \"bit/bit_lzeros.cpp\"\n\nconstexpr u64 bit_lzeros(const u64\
-    \ x) { return x == 0 ? 64 : __builtin_clzll(x); }\n#line 4 \"bit/bit_width.cpp\"\
-    \n\nconstexpr u64 bit_width(const u64 x) { return 64 - bit_lzeros(x); }\n#line\
-    \ 7 \"container/sparse_table.cpp\"\n\ntemplate <class IdempotentMonoid> class\
-    \ SparseTable {\n    using M = IdempotentMonoid;\n    std::vector<std::vector<M>>\
-    \ table;\n\n  public:\n    SparseTable() : SparseTable(std::vector<M>()) {}\n\
-    \    explicit SparseTable(const std::vector<M>& vec) {\n        const auto size\
-    \ = vec.size();\n        const auto height = bit_width(size);\n        table.reserve(height);\n\
+    using u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
+    #line 2 \"utility/rep.cpp\"\n#include <algorithm>\n#line 4 \"utility/rep.cpp\"\
+    \n\nclass rep {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const\
+    \ usize pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept\
+    \ { ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
+    \ { return itr != other.itr; }\n        constexpr usize operator*() const noexcept\
+    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
+    \ constexpr rep(const usize first, const usize last) noexcept : first(first),\
+    \ last(std::max(first, last)) {}\n    constexpr Iter begin() const noexcept {\
+    \ return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
+    };\n#line 2 \"utility/infty.cpp\"\n#include <limits>\n\ntemplate <class T, T Div\
+    \ = 2> constexpr T INFTY = std::numeric_limits<T>::max() / Div;\n#line 2 \"container/sparse_table.cpp\"\
+    \n#include <cassert>\n#include <vector>\n#line 3 \"bit/bit_lzeros.cpp\"\n\n__attribute__((target(\"\
+    avx2\"))) constexpr u64 bit_lzeros(const u64 x) { return x == 0 ? 64 : __builtin_clzll(x);\
+    \ }\n#line 4 \"bit/bit_width.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr\
+    \ u64 bit_width(const u64 x) { return 64 - bit_lzeros(x); }\n#line 7 \"container/sparse_table.cpp\"\
+    \n\ntemplate <class IdempotentMonoid> class SparseTable {\n    using M = IdempotentMonoid;\n\
+    \    std::vector<std::vector<M>> table;\n\n  public:\n    SparseTable() : SparseTable(std::vector<M>())\
+    \ {}\n    explicit SparseTable(const std::vector<M>& vec) {\n        const auto\
+    \ size = vec.size();\n        const auto height = bit_width(size);\n        table.reserve(height);\n\
     \        table.push_back(vec);\n        for (const usize d : rep(1, height)) {\n\
     \            table.push_back(std::vector<M>(size - (1 << d) + 1, M::zero()));\n\
     \            for (const usize i : rep(0, table[d].size())) {\n               \
@@ -92,8 +91,8 @@ data:
   isVerificationFile: true
   path: test/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2021-09-04 18:33:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-09-08 18:46:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sparse_table.test.cpp
 layout: document

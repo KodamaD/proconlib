@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: container/queue_aggregation.cpp
     title: container/queue_aggregation.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/queue_aggregation.test.cpp
     title: test/queue_aggregation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"container/stack_aggregation.cpp\"\n#include <vector>\n#include\
@@ -39,7 +39,7 @@ data:
   requiredBy:
   - container/queue_aggregation.cpp
   timestamp: '2021-09-04 18:33:40+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/queue_aggregation.test.cpp
 documentation_of: container/stack_aggregation.cpp

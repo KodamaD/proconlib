@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
   - icon: ':heavy_check_mark:'
     path: graph/heavy_light_decomposition.cpp
     title: graph/heavy_light_decomposition.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/totient.cpp
     title: math/totient.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedRequiredBy: []
@@ -45,22 +45,22 @@ data:
     \ \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\n#line 2 \"utility/int_alias.cpp\"\
     \n#include <cstddef>\n#include <cstdint>\n\nusing i32 = std::int32_t;\nusing u32\
     \ = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\nusing\
-    \ i128 = __int128_t;\nusing u128 = __uint128_t;\nusing isize = std::ptrdiff_t;\n\
-    using usize = std::size_t;\n#line 2 \"math/static_modint.cpp\"\n#include <ostream>\n\
-    #include <type_traits>\n#line 2 \"math/totient.cpp\"\n\ntemplate <class T> constexpr\
-    \ T totient(T x) {\n    T ret = x;\n    for (T i = 2; i * i <= x; ++i) {\n   \
-    \     if (x % i == 0) {\n            ret /= i;\n            ret *= i - 1;\n  \
-    \          while (x % i == 0) x /= i;\n        }\n    }\n    if (x > 1) {\n  \
-    \      ret /= x;\n        ret *= x - 1;\n    }\n    return ret;\n}\n#line 2 \"\
-    math/rem_euclid.cpp\"\n\ntemplate <class T> constexpr T rem_euclid(T value, const\
-    \ T& mod) { return (value %= mod) >= 0 ? value : value + mod; }\n#line 7 \"math/static_modint.cpp\"\
-    \n\ntemplate <u32 MOD, std::enable_if_t<((u32)1 <= MOD and MOD <= ((u32)1 << 31))>*\
-    \ = nullptr> class StaticModint {\n    using Mint = StaticModint;\n\n    static\
-    \ inline constexpr u32 PHI = totient(MOD);\n    u32 v;\n\n  public:\n    static\
-    \ constexpr u32 mod() noexcept { return MOD; }\n\n    template <class T, std::enable_if_t<std::is_signed_v<T>\
-    \ and std::is_integral_v<T>>* = nullptr>\n    static constexpr T normalize(const\
-    \ T x) noexcept {\n        return rem_euclid<std::common_type_t<T, i64>>(x, MOD);\n\
-    \    }\n    template <class T, std::enable_if_t<std::is_unsigned_v<T> and std::is_integral_v<T>>*\
+    \ isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 2 \"math/static_modint.cpp\"\
+    \n#include <ostream>\n#include <type_traits>\n#line 2 \"math/totient.cpp\"\n\n\
+    template <class T> constexpr T totient(T x) {\n    T ret = x;\n    for (T i =\
+    \ 2; i * i <= x; ++i) {\n        if (x % i == 0) {\n            ret /= i;\n  \
+    \          ret *= i - 1;\n            while (x % i == 0) x /= i;\n        }\n\
+    \    }\n    if (x > 1) {\n        ret /= x;\n        ret *= x - 1;\n    }\n  \
+    \  return ret;\n}\n#line 2 \"math/rem_euclid.cpp\"\n\ntemplate <class T> constexpr\
+    \ T rem_euclid(T value, const T& mod) { return (value %= mod) >= 0 ? value : value\
+    \ + mod; }\n#line 7 \"math/static_modint.cpp\"\n\ntemplate <u32 MOD, std::enable_if_t<((u32)1\
+    \ <= MOD and MOD <= ((u32)1 << 31))>* = nullptr> class StaticModint {\n    using\
+    \ Mint = StaticModint;\n\n    static inline constexpr u32 PHI = totient(MOD);\n\
+    \    u32 v;\n\n  public:\n    static constexpr u32 mod() noexcept { return MOD;\
+    \ }\n\n    template <class T, std::enable_if_t<std::is_signed_v<T> and std::is_integral_v<T>>*\
+    \ = nullptr>\n    static constexpr T normalize(const T x) noexcept {\n       \
+    \ return rem_euclid<std::common_type_t<T, i64>>(x, MOD);\n    }\n    template\
+    \ <class T, std::enable_if_t<std::is_unsigned_v<T> and std::is_integral_v<T>>*\
     \ = nullptr>\n    static constexpr T normalize(const T x) noexcept {\n       \
     \ return x % MOD;\n    }\n\n    constexpr StaticModint() noexcept : v(0) {}\n\
     \    template <class T> constexpr StaticModint(const T x) noexcept : v(normalize(x))\
@@ -90,20 +90,21 @@ data:
     \ stream, const Mint& rhs) { return stream << rhs.v; }\n};\n\nusing Modint1000000007\
     \ = StaticModint<1000000007>;\nusing Modint998244353 = StaticModint<998244353>;\n\
     #line 2 \"container/segment_tree.cpp\"\n#include <cassert>\n#include <vector>\n\
-    #line 3 \"bit/ceil_log2.cpp\"\n\nconstexpr u64 ceil_log2(const u64 x) {\n    u64\
-    \ e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n}\n#line 2 \"utility/rep.cpp\"\
-    \n#include <algorithm>\n#line 4 \"utility/rep.cpp\"\n\nclass rep {\n    struct\
-    \ Iter {\n        usize itr;\n        constexpr Iter(const usize pos) noexcept\
-    \ : itr(pos) {}\n        constexpr void operator++() noexcept { ++itr; }\n   \
-    \     constexpr bool operator!=(const Iter& other) const noexcept { return itr\
-    \ != other.itr; }\n        constexpr usize operator*() const noexcept { return\
-    \ itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit constexpr\
-    \ rep(const usize first, const usize last) noexcept : first(first), last(std::max(first,\
-    \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
-    \ constexpr Iter end() const noexcept { return last; }\n};\n#line 4 \"utility/revrep.cpp\"\
-    \n\nclass revrep {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const\
-    \ usize pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept\
-    \ { --itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
+    #line 3 \"bit/ceil_log2.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr u64\
+    \ ceil_log2(const u64 x) {\n    u64 e = 0;\n    while (((u64)1 << e) < x) ++e;\n\
+    \    return e;\n}\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n#line 4\
+    \ \"utility/rep.cpp\"\n\nclass rep {\n    struct Iter {\n        usize itr;\n\
+    \        constexpr Iter(const usize pos) noexcept : itr(pos) {}\n        constexpr\
+    \ void operator++() noexcept { ++itr; }\n        constexpr bool operator!=(const\
+    \ Iter& other) const noexcept { return itr != other.itr; }\n        constexpr\
+    \ usize operator*() const noexcept { return itr; }\n    };\n    const Iter first,\
+    \ last;\n\n  public:\n    explicit constexpr rep(const usize first, const usize\
+    \ last) noexcept : first(first), last(std::max(first, last)) {}\n    constexpr\
+    \ Iter begin() const noexcept { return first; }\n    constexpr Iter end() const\
+    \ noexcept { return last; }\n};\n#line 4 \"utility/revrep.cpp\"\n\nclass revrep\
+    \ {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const usize\
+    \ pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept {\
+    \ --itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
     \ { return itr != other.itr; }\n        constexpr usize operator*() const noexcept\
     \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
     \ constexpr revrep(const usize first, const usize last) noexcept\n        : first(last\
@@ -275,7 +276,7 @@ data:
   isVerificationFile: true
   path: test/heavy_light_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2021-09-04 18:33:40+09:00'
+  timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/heavy_light_decomposition.test.cpp

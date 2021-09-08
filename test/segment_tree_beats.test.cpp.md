@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/bit_rzeros.cpp
     title: bit/bit_rzeros.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/880
@@ -33,10 +33,10 @@ data:
     \n#line 2 \"container/segment_tree_beats.cpp\"\n#include <cassert>\n#include <optional>\n\
     #include <vector>\n#line 2 \"utility/int_alias.cpp\"\n#include <cstddef>\n#include\
     \ <cstdint>\n\nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64\
-    \ = std::int64_t;\nusing u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing\
-    \ u128 = __uint128_t;\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
-    #line 3 \"bit/bit_rzeros.cpp\"\n\nconstexpr u64 bit_rzeros(const u64 x) { return\
-    \ x == 0 ? 64 : __builtin_ctzll(x); }\n#line 3 \"bit/ceil_log2.cpp\"\n\nconstexpr\
+    \ = std::int64_t;\nusing u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\n\
+    using usize = std::size_t;\n#line 3 \"bit/bit_rzeros.cpp\"\n\n__attribute__((target(\"\
+    avx2\"))) constexpr u64 bit_rzeros(const u64 x) { return x == 0 ? 64 : __builtin_ctzll(x);\
+    \ }\n#line 3 \"bit/ceil_log2.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr\
     \ u64 ceil_log2(const u64 x) {\n    u64 e = 0;\n    while (((u64)1 << e) < x)\
     \ ++e;\n    return e;\n}\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\
     #line 4 \"utility/rep.cpp\"\n\nclass rep {\n    struct Iter {\n        usize itr;\n\
@@ -178,8 +178,8 @@ data:
   isVerificationFile: true
   path: test/segment_tree_beats.test.cpp
   requiredBy: []
-  timestamp: '2021-09-04 18:33:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-09-08 18:46:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segment_tree_beats.test.cpp
 layout: document

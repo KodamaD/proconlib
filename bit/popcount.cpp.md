@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
@@ -26,10 +26,6 @@ data:
 
     using u64 = std::uint64_t;
 
-    using i128 = __int128_t;
-
-    using u128 = __uint128_t;
-
     using isize = std::ptrdiff_t;
 
     using usize = std::size_t;
@@ -37,7 +33,8 @@ data:
     #line 3 "bit/popcount.cpp"
 
 
-    constexpr u64 popcount(const u64 x) { return __builtin_popcountll(x); }
+    __attribute__((target("avx2"))) constexpr u64 popcount(const u64 x) { return __builtin_popcountll(x);
+    }
 
     '
   code: '#pragma once
@@ -45,7 +42,8 @@ data:
     #include "../utility/int_alias.cpp"
 
 
-    constexpr u64 popcount(const u64 x) { return __builtin_popcountll(x); }
+    __attribute__((target("avx2"))) constexpr u64 popcount(const u64 x) { return __builtin_popcountll(x);
+    }
 
     '
   dependsOn:
@@ -53,7 +51,7 @@ data:
   isVerificationFile: false
   path: bit/popcount.cpp
   requiredBy: []
-  timestamp: '2021-09-04 17:30:23+09:00'
+  timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: bit/popcount.cpp
