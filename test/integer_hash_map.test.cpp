@@ -1,5 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/associative_array"
-#include "../container/int_alias.cpp"
+#include "../utility/int_alias.cpp"
 #include "../container/integer_hash_map.cpp"
 #include <iostream>
 
