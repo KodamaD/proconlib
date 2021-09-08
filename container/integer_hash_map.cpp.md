@@ -8,10 +8,13 @@ data:
     path: utility/int_alias_extended.cpp
     title: utility/int_alias_extended.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/integer_hash_map.test.cpp
+    title: test/integer_hash_map.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"container/integer_hash_map.cpp\"\n#include <cstring>\n#include\
@@ -207,8 +210,9 @@ data:
   path: container/integer_hash_map.cpp
   requiredBy: []
   timestamp: '2021-09-08 18:46:15+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/integer_hash_map.test.cpp
 documentation_of: container/integer_hash_map.cpp
 layout: document
 redirect_from:

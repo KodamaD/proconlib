@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: container/integer_hash_map.cpp
     title: container/integer_hash_map.cpp
   - icon: ':heavy_check_mark:'
@@ -12,6 +12,9 @@ data:
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/integer_hash_map.test.cpp
+    title: test/integer_hash_map.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/polynomial_hash.test.cpp
     title: test/polynomial_hash.test.cpp
@@ -70,6 +73,7 @@ data:
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/integer_hash_map.test.cpp
   - test/polynomial_hash.test.cpp
 documentation_of: utility/int_alias_extended.cpp
 layout: document

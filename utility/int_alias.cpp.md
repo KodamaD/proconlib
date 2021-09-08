@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/fenwick_tree.cpp
     title: container/fenwick_tree.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: container/integer_hash_map.cpp
     title: container/integer_hash_map.cpp
   - icon: ':heavy_check_mark:'
@@ -138,6 +138,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/integer_hash_map.test.cpp
+    title: test/integer_hash_map.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
@@ -279,6 +282,7 @@ data:
   - test/semiring_matrix.test.cpp
   - test/factorize.test.cpp
   - test/queue_aggregation.test.cpp
+  - test/integer_hash_map.test.cpp
   - test/modint_util.test.cpp
   - test/polynomial_hash.test.cpp
   - test/heavy_light_decomposition.test.cpp

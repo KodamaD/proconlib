@@ -37,7 +37,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: container/fenwick_tree.cpp
       title: container/fenwick_tree.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: container/integer_hash_map.cpp
       title: container/integer_hash_map.cpp
     - icon: ':heavy_check_mark:'
@@ -210,7 +210,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/heavy_light_decomposition.test.cpp
       title: test/heavy_light_decomposition.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/integer_hash_map.test.cpp
       title: test/integer_hash_map.test.cpp
     - icon: ':heavy_check_mark:'
