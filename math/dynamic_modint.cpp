@@ -3,6 +3,7 @@
 #include <ostream>
 #include <type_traits>
 #include "../utility/int_alias.cpp"
+#include "../utility/int_alias_extended.cpp"
 #include "mod_inv.cpp"
 #include "rem_euclid.cpp"
 

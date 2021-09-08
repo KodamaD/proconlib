@@ -6,6 +6,7 @@
 #include "../random/rand_int.cpp"
 #include "../utility/auto_realloc.cpp"
 #include "../utility/int_alias.cpp"
+#include "../utility/int_alias_extended.cpp"
 #include "../utility/rep.cpp"
 
 template <usize ID> struct PolynomialHashHelper {
