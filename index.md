@@ -63,6 +63,9 @@ data:
       title: container/stack_aggregation.cpp
   - name: graph
     pages:
+    - icon: ':warning:'
+      path: graph/dinic.cpp
+      title: graph/dinic.cpp
     - icon: ':heavy_check_mark:'
       path: graph/heavy_light_decomposition.cpp
       title: graph/heavy_light_decomposition.cpp
@@ -192,6 +195,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/auto_memoize.test.cpp
       title: test/auto_memoize.test.cpp
+    - icon: ':x:'
+      path: test/bipartite_matching.test.cpp
+      title: test/bipartite_matching.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/dual_segment_tree.test.cpp
       title: test/dual_segment_tree.test.cpp

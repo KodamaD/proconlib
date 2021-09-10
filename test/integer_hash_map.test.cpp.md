@@ -32,23 +32,16 @@ data:
     \ std::enable_if_t<std::is_integral_v<Key>>* = nullptr> class IntegerHashMap {\n\
     \    using TraitsK = std::allocator_traits<std::allocator<Key>>;\n    using TraitsV\
     \ = std::allocator_traits<std::allocator<Value>>;\n    using TraitsU = std::allocator_traits<std::allocator<u8>>;\n\
-    \n    class Iter {\n        using Ref = std::pair<const Key&, Value&>;\n     \
-    \   friend class IntegerHashMap;\n\n        usize idx;\n        IntegerHashMap*\
-    \ map;\n\n        explicit Iter(const usize i, IntegerHashMap* m) : idx(i), map(m)\
-    \ { step(); }\n        void step() {\n            while (idx <= map->mask and\
-    \ map->state[idx] >= 128) idx += 1;\n        }\n\n      public:\n        bool\
-    \ operator!=(const Iter& other) const { return idx != other.idx; }\n        Ref\
-    \ operator*() { return Ref(map->keys[idx], map->values[idx]); }\n        void\
-    \ operator++() {\n            idx += 1;\n            step();\n        }\n    };\n\
     \n    usize full, del, logn, mask;\n    u8* state;\n    Key* keys;\n    Value*\
     \ values;\n    std::allocator<u8> alloc_u;\n    std::allocator<Key> alloc_k;\n\
     \    std::allocator<Value> alloc_v;\n\n    u64 hash0(u64 key) const {\n      \
-    \  if (logn == 0) return 0;\n        key ^= key >> (64 - logn);\n        return\
-    \ (key * 11400714819323198485ull) >> (64 - logn);\n    }\n    u8 hash1(u64 key)\
-    \ const {\n        key ^= key >> 57;\n        return (key * 5871781006564002453ull)\
-    \ >> 57;\n    }\n\n    usize find_key(const Key& key, usize i, const u8 id) const\
-    \ {\n        while (state[i] != 128) {\n            if (state[i] == id and keys[i]\
-    \ == key) return i;\n            i += 1;\n            i &= mask;\n        }\n\
+    \  if (__builtin_expect(logn == 0, 0)) return 0;\n        key ^= key >> (64 -\
+    \ logn);\n        return (key * 11400714819323198485ull) >> (64 - logn);\n   \
+    \ }\n    u8 hash1(u64 key) const {\n        key ^= key >> 57;\n        return\
+    \ (key * 5871781006564002453ull) >> 57;\n    }\n\n    usize find_key(const Key&\
+    \ key, usize i, const u8 id) const {\n        while (state[i] != 128) {\n    \
+    \        if (state[i] == id)\n                if (__builtin_expect(keys[i] ==\
+    \ key, 1)) return i;\n            i += 1;\n            i &= mask;\n        }\n\
     \        return i;\n    }\n    usize find_nonfull(usize i) const {\n        while\
     \ (state[i] < 128) {\n            i += 1;\n            i &= mask;\n        }\n\
     \        return i;\n    }\n\n    void resize() {\n        u8* old_state = state;\n\
@@ -115,8 +108,16 @@ data:
     \            TraitsU::deallocate(alloc_u, state, mask + 1);\n            reset_variables();\n\
     \        }\n    }\n\n    Value& operator[](const Key& key) { return *insert(key,\
     \ Value()).first; }\n    usize size() { return full; }\n    bool empty() { return\
-    \ size() == 0; }\n\n    Iter begin() { return Iter(0, this); }\n    Iter end()\
-    \ { return Iter(mask + 1, this); }\n};\n#line 4 \"test/integer_hash_map.test.cpp\"\
+    \ size() == 0; }\n\n    class Iter {\n        using Ref = std::pair<const Key&,\
+    \ Value&>;\n        friend class IntegerHashMap;\n\n        usize idx;\n     \
+    \   IntegerHashMap* map;\n\n        explicit Iter(const usize i, IntegerHashMap*\
+    \ m) : idx(i), map(m) { step(); }\n        void step() {\n            while (idx\
+    \ <= map->mask and map->state[idx] >= 128) idx += 1;\n        }\n\n      public:\n\
+    \        bool operator!=(const Iter& other) const { return idx != other.idx; }\n\
+    \        Ref operator*() { return Ref(map->keys[idx], map->values[idx]); }\n \
+    \       void operator++() {\n            idx += 1;\n            step();\n    \
+    \    }\n    };\n\n    Iter begin() { return Iter(0, this); }\n    Iter end() {\
+    \ return Iter(mask + 1, this); }\n};\n#line 4 \"test/integer_hash_map.test.cpp\"\
     \n#include <iostream>\n\nint main() {\n    usize Q;\n    std::cin >> Q;\n    IntegerHashMap<u64,\
     \ u64> map;\n    while (Q--) {\n        char c;\n        u64 k;\n        std::cin\
     \ >> c >> k;\n        if (c == '0') {\n            u64 v;\n            std::cin\
@@ -136,7 +137,7 @@ data:
   isVerificationFile: true
   path: test/integer_hash_map.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 20:06:28+09:00'
+  timestamp: '2021-09-10 20:34:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/integer_hash_map.test.cpp
