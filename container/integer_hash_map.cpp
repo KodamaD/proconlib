@@ -11,27 +11,6 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
     using TraitsV = std::allocator_traits<std::allocator<Value>>;
     using TraitsU = std::allocator_traits<std::allocator<u8>>;
 
-    class Iter {
-        using Ref = std::pair<const Key&, Value&>;
-        friend class IntegerHashMap;
-
-        usize idx;
-        IntegerHashMap* map;
-
-        explicit Iter(const usize i, IntegerHashMap* m) : idx(i), map(m) { step(); }
-        void step() {
-            while (idx <= map->mask and map->state[idx] >= 128) idx += 1;
-        }
-
-      public:
-        bool operator!=(const Iter& other) const { return idx != other.idx; }
-        Ref operator*() { return Ref(map->keys[idx], map->values[idx]); }
-        void operator++() {
-            idx += 1;
-            step();
-        }
-    };
-
     usize full, del, logn, mask;
     u8* state;
     Key* keys;
@@ -41,7 +20,7 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
     std::allocator<Value> alloc_v;
 
     u64 hash0(u64 key) const {
-        if (logn == 0) return 0;
+        if (__builtin_expect(logn == 0, 0)) return 0;
         key ^= key >> (64 - logn);
         return (key * 11400714819323198485ull) >> (64 - logn);
     }
@@ -52,7 +31,8 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
 
     usize find_key(const Key& key, usize i, const u8 id) const {
         while (state[i] != 128) {
-            if (state[i] == id and keys[i] == key) return i;
+            if (state[i] == id)
+                if (__builtin_expect(keys[i] == key, 1)) return i;
             i += 1;
             i &= mask;
         }
@@ -199,6 +179,27 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
     Value& operator[](const Key& key) { return *insert(key, Value()).first; }
     usize size() { return full; }
     bool empty() { return size() == 0; }
+
+    class Iter {
+        using Ref = std::pair<const Key&, Value&>;
+        friend class IntegerHashMap;
+
+        usize idx;
+        IntegerHashMap* map;
+
+        explicit Iter(const usize i, IntegerHashMap* m) : idx(i), map(m) { step(); }
+        void step() {
+            while (idx <= map->mask and map->state[idx] >= 128) idx += 1;
+        }
+
+      public:
+        bool operator!=(const Iter& other) const { return idx != other.idx; }
+        Ref operator*() { return Ref(map->keys[idx], map->values[idx]); }
+        void operator++() {
+            idx += 1;
+            step();
+        }
+    };
 
     Iter begin() { return Iter(0, this); }
     Iter end() { return Iter(mask + 1, this); }
