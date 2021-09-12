@@ -49,6 +49,9 @@ data:
     title: utility/fast_io.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/bipartite_matching.test.cpp
+    title: test/bipartite_matching.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/dual_segment_tree.test.cpp
     title: test/dual_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -150,6 +153,7 @@ data:
   - test/segment_tree.test.cpp
   - test/prime_sieve.test.cpp
   - test/semiring_matrix.test.cpp
+  - test/bipartite_matching.test.cpp
   - test/modint_util.test.cpp
   - test/polynomial_hash.test.cpp
   - test/heavy_light_decomposition.test.cpp

@@ -51,6 +51,9 @@ data:
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
   - icon: ':heavy_check_mark:'
+    path: graph/dinic.cpp
+    title: graph/dinic.cpp
+  - icon: ':heavy_check_mark:'
     path: graph/heavy_light_decomposition.cpp
     title: graph/heavy_light_decomposition.cpp
   - icon: ':heavy_check_mark:'
@@ -123,6 +126,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/auto_memoize.test.cpp
     title: test/auto_memoize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/bipartite_matching.test.cpp
+    title: test/bipartite_matching.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/dual_segment_tree.test.cpp
     title: test/dual_segment_tree.test.cpp
@@ -253,6 +259,7 @@ data:
   - container/dual_segment_tree.cpp
   - container/lazy_segment_tree.cpp
   - graph/union_find.cpp
+  - graph/dinic.cpp
   - graph/rollback_union_find.cpp
   - graph/heavy_light_decomposition.cpp
   - algorithm/smawk.cpp
@@ -283,6 +290,7 @@ data:
   - test/factorize.test.cpp
   - test/queue_aggregation.test.cpp
   - test/integer_hash_map.test.cpp
+  - test/bipartite_matching.test.cpp
   - test/modint_util.test.cpp
   - test/polynomial_hash.test.cpp
   - test/heavy_light_decomposition.test.cpp

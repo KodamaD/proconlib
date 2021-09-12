@@ -63,7 +63,7 @@ data:
       title: container/stack_aggregation.cpp
   - name: graph
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/dinic.cpp
       title: graph/dinic.cpp
     - icon: ':heavy_check_mark:'
@@ -195,7 +195,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/auto_memoize.test.cpp
       title: test/auto_memoize.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/bipartite_matching.test.cpp
       title: test/bipartite_matching.test.cpp
     - icon: ':heavy_check_mark:'
