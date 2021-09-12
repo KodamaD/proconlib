@@ -5,8 +5,8 @@
 #include <queue>
 #include <type_traits>
 #include <vector>
-#include "proconlib/int_alias"
-#include "proconlib/rec_lambda"
+#include "../utility/int_alias.cpp"
+#include "../utility/rec_lambda.cpp"
 
 template <class Cap, std::enable_if_t<std::is_integral_v<Cap>>* = nullptr> class Dinic {
     struct Edge {
