@@ -34,8 +34,8 @@ data:
   isVerificationFile: false
   path: random/xorshift.cpp
   requiredBy:
-  - random/rand_int.cpp
   - container/polynomial_hash.cpp
+  - random/rand_int.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -69,14 +69,14 @@ data:
   isVerificationFile: false
   path: bit/bit_rzeros.cpp
   requiredBy:
-  - container/segment_tree_beats.cpp
   - container/dual_segment_tree.cpp
+  - container/segment_tree_beats.cpp
   - container/lazy_segment_tree.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/segment_tree_beats.test.cpp
   - test/dual_segment_tree.test.cpp
+  - test/segment_tree_beats.test.cpp
   - test/lazy_segment_tree.test.cpp
 documentation_of: bit/bit_rzeros.cpp
 layout: document

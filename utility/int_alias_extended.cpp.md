@@ -73,8 +73,8 @@ data:
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/integer_hash_map.test.cpp
   - test/polynomial_hash.test.cpp
+  - test/integer_hash_map.test.cpp
 documentation_of: utility/int_alias_extended.cpp
 layout: document
 redirect_from:

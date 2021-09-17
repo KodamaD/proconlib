@@ -22,9 +22,6 @@ data:
     title: math/static_modint.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/heavy_light_decomposition.test.cpp
-    title: test/heavy_light_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -62,21 +59,20 @@ data:
   isVerificationFile: false
   path: math/rem_euclid.cpp
   requiredBy:
+  - math/mod_inv.cpp
+  - math/inv_gcd.cpp
   - math/dynamic_modint.cpp
   - math/static_modint.cpp
   - math/primitive_root.cpp
-  - math/inv_gcd.cpp
   - math/mod_pow.cpp
-  - math/mod_inv.cpp
   timestamp: '2021-09-04 17:30:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/segment_tree.test.cpp
-  - test/semiring_matrix.test.cpp
-  - test/queue_aggregation.test.cpp
   - test/modint_util.test.cpp
-  - test/heavy_light_decomposition.test.cpp
+  - test/queue_aggregation.test.cpp
   - test/lazy_segment_tree.test.cpp
+  - test/semiring_matrix.test.cpp
+  - test/segment_tree.test.cpp
 documentation_of: math/rem_euclid.cpp
 layout: document
 redirect_from:

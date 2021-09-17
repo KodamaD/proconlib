@@ -44,58 +44,59 @@ data:
     \ const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate <class F> constexpr decltype(auto) rec_lambda(F&& f) {\n\
     \    using G = std::decay_t<F>;\n    return RecursiveLambda<G>(std::forward<G>(f));\n\
-    }\n#line 10 \"graph/dinic.cpp\"\n\ntemplate <class Cap, std::enable_if_t<std::is_integral_v<Cap>>*\
+    }\n#line 10 \"graph/dinic.cpp\"\n\ntemplate <class Flow, std::enable_if_t<std::is_integral_v<Flow>>*\
     \ = nullptr> class Dinic {\n    struct Edge {\n        usize dst, rev;\n     \
-    \   Cap cap;\n    };\n\n    std::vector<std::vector<Edge>> graph;\n\n  public:\n\
-    \    Dinic() : graph() {}\n\n    class EdgePtr {\n        friend class Dinic;\n\
-    \        Dinic* self;\n        usize u, e;\n\n        explicit EdgePtr(Dinic*\
-    \ p, const usize u, const usize e) : self(p), u(u), e(e) {}\n\n        const Edge&\
-    \ edge() const { return self->graph[u][e]; }\n        const Edge& rev_edge() const\
-    \ { return self->graph[edge().dst][edge().rev]; }\n\n      public:\n        EdgePtr()\
-    \ : self(nullptr), u(0), e(0) {}\n        usize src() const { return u; }\n  \
-    \      usize dst() const { return edge().dst; }\n        Cap flow() const { return\
-    \ rev_edge().cap; }\n        Cap capacity() const { return edge().cap + rev_edge().cap;\
-    \ }\n    };\n\n    class VerList {\n        friend class Dinic;\n        usize\
-    \ offset, len;\n        explicit VerList(const usize o, const usize l) : offset(o),\
-    \ len(l) {}\n\n      public:\n        VerList() : offset(0), len(0) {}\n     \
-    \   usize operator[](const usize i) const {\n            assert(i < len);\n  \
-    \          return offset + i;\n        }\n        usize to_idx(const usize i)\
-    \ const {\n            assert(offset <= i and i < offset + len);\n           \
-    \ return i - offset;\n        }\n    };\n\n    usize size() const { return graph.size();\
-    \ }\n\n    usize add_vertex() {\n        graph.emplace_back();\n        return\
-    \ size() - 1;\n    }\n    VerList add_vertices(usize n) {\n        VerList ret{size(),\
-    \ n};\n        while (n--) graph.emplace_back();\n        return ret;\n    }\n\
-    \n    EdgePtr add_edge(const usize src, const usize dst, const Cap capacity) {\n\
-    \        assert(src < size());\n        assert(dst < size());\n        assert(capacity\
-    \ >= 0);\n        usize src_id = graph[src].size();\n        usize dst_id = graph[dst].size();\n\
-    \        if (dst == src) dst_id += 1;\n        graph[src].push_back(Edge{dst,\
-    \ dst_id, capacity});\n        graph[dst].push_back(Edge{src, src_id, 0});\n \
-    \       return EdgePtr(this, src, src_id);\n    }\n\n    Cap flow(const usize\
-    \ src, const usize dst) { return flow(src, dst, std::numeric_limits<Cap>::max());\
-    \ }\n    Cap flow(const usize src, const usize dst, const Cap flow_limit) {\n\
-    \        assert(src < size());\n        assert(dst < size());\n        assert(src\
-    \ != dst);\n        std::vector<usize> level(size()), iter(size());\n        std::queue<usize>\
-    \ que;\n        const auto bfs = [&] {\n            std::fill(level.begin(), level.end(),\
-    \ size());\n            level[src] = 0;\n            while (!que.empty()) que.pop();\n\
-    \            que.push(src);\n            while (!que.empty()) {\n            \
-    \    const usize u = que.front();\n                que.pop();\n              \
-    \  for (const Edge& e : graph[u]) {\n                    if (e.cap == 0 or level[e.dst]\
+    \   Flow cap;\n    };\n\n    std::vector<std::vector<Edge>> graph;\n\n  public:\n\
+    \    Dinic() : graph() {}\n    explicit Dinic(const usize n) : graph(n) {}\n\n\
+    \    class EdgePtr {\n        friend class Dinic;\n        Dinic* self;\n    \
+    \    usize u, e;\n\n        explicit EdgePtr(Dinic* p, const usize u, const usize\
+    \ e) : self(p), u(u), e(e) {}\n\n        const Edge& edge() const { return self->graph[u][e];\
+    \ }\n        const Edge& rev_edge() const { return self->graph[edge().dst][edge().rev];\
+    \ }\n\n      public:\n        EdgePtr() : self(nullptr), u(0), e(0) {}\n     \
+    \   usize src() const { return u; }\n        usize dst() const { return edge().dst;\
+    \ }\n        Flow flow() const { return rev_edge().cap; }\n        Flow cap()\
+    \ const { return edge().cap + rev_edge().cap; }\n    };\n\n    class Vertices\
+    \ {\n        friend class Dinic;\n        usize offset, len;\n        explicit\
+    \ Vertices(const usize o, const usize l) : offset(o), len(l) {}\n\n      public:\n\
+    \        Vertices() : offset(0), len(0) {}\n        usize operator[](const usize\
+    \ i) const {\n            assert(i < len);\n            return offset + i;\n \
+    \       }\n        usize to_idx(const usize i) const {\n            assert(offset\
+    \ <= i and i < offset + len);\n            return i - offset;\n        }\n   \
+    \ };\n\n    usize size() const { return graph.size(); }\n\n    usize add_vertex()\
+    \ {\n        graph.emplace_back();\n        return size() - 1;\n    }\n    Vertices\
+    \ add_vertices(usize n) {\n        Vertices ret{size(), n};\n        while (n--)\
+    \ graph.emplace_back();\n        return ret;\n    }\n\n    EdgePtr add_edge(const\
+    \ usize src, const usize dst, const Flow cap) {\n        assert(src < size());\n\
+    \        assert(dst < size());\n        assert(cap >= 0);\n        const usize\
+    \ src_id = graph[src].size();\n        const usize dst_id = graph[dst].size()\
+    \ + (src == dst);\n        graph[src].push_back(Edge{dst, dst_id, cap});\n   \
+    \     graph[dst].push_back(Edge{src, src_id, 0});\n        return EdgePtr(this,\
+    \ src, src_id);\n    }\n\n    Flow flow(const usize src, const usize dst) { return\
+    \ flow(src, dst, std::numeric_limits<Flow>::max()); }\n    Flow flow(const usize\
+    \ src, const usize dst, const Flow flow_limit) {\n        assert(src < size());\n\
+    \        assert(dst < size());\n        assert(src != dst);\n        std::vector<usize>\
+    \ level(size()), iter(size());\n        std::queue<usize> que;\n        const\
+    \ auto bfs = [&] {\n            std::fill(level.begin(), level.end(), size());\n\
+    \            level[src] = 0;\n            while (!que.empty()) que.pop();\n  \
+    \          que.push(src);\n            while (!que.empty()) {\n              \
+    \  const usize u = que.front();\n                que.pop();\n                for\
+    \ (const Edge& e : graph[u]) {\n                    if (e.cap == 0 or level[e.dst]\
     \ < size()) continue;\n                    level[e.dst] = level[u] + 1;\n    \
     \                if (e.dst == dst) return;\n                    que.push(e.dst);\n\
     \                }\n            }\n        };\n        const auto dfs = rec_lambda([&](auto&&\
-    \ dfs, const usize u, const Cap ub) -> Cap {\n            if (u == src) return\
-    \ ub;\n            Cap ret = 0;\n            for (usize& i = iter[u]; i < graph[u].size();\
+    \ dfs, const usize u, const Flow ub) -> Flow {\n            if (u == src) return\
+    \ ub;\n            Flow ret = 0;\n            for (usize& i = iter[u]; i < graph[u].size();\
     \ i += 1) {\n                Edge& e = graph[u][i];\n                Edge& re\
     \ = graph[e.dst][e.rev];\n                if (level[u] <= level[e.dst] or re.cap\
-    \ == 0) continue;\n                const Cap d = dfs(e.dst, std::min(ub - ret,\
+    \ == 0) continue;\n                const Flow d = dfs(e.dst, std::min(ub - ret,\
     \ re.cap));\n                if (d == 0) continue;\n                e.cap += d;\n\
     \                re.cap -= d;\n                ret += d;\n                if (ret\
     \ == ub) return ret;\n            }\n            level[u] = size();\n        \
-    \    return ret;\n        });\n        Cap ret = 0;\n        while (ret < flow_limit)\
+    \    return ret;\n        });\n        Flow ret = 0;\n        while (ret < flow_limit)\
     \ {\n            bfs();\n            if (level[dst] == size()) break;\n      \
-    \      std::fill(iter.begin(), iter.end(), (usize)0);\n            const Cap f\
-    \ = dfs(dst, flow_limit - ret);\n            if (f == 0) break;\n            ret\
-    \ += f;\n        }\n        return ret;\n    }\n};\n#line 5 \"test/bipartite_matching.test.cpp\"\
+    \      std::fill(iter.begin(), iter.end(), (usize)0);\n            const Flow\
+    \ f = dfs(dst, flow_limit - ret);\n            if (f == 0) break;\n          \
+    \  ret += f;\n        }\n        return ret;\n    }\n};\n#line 5 \"test/bipartite_matching.test.cpp\"\
     \n#include <iostream>\n#line 7 \"test/bipartite_matching.test.cpp\"\n\nint main()\
     \ {\n    usize L, R, M;\n    std::cin >> L >> R >> M;\n    Dinic<usize> dinic;\n\
     \    const auto src = dinic.add_vertex();\n    const auto dst = dinic.add_vertex();\n\
@@ -131,7 +132,7 @@ data:
   isVerificationFile: true
   path: test/bipartite_matching.test.cpp
   requiredBy: []
-  timestamp: '2021-09-12 12:07:33+09:00'
+  timestamp: '2021-09-17 22:43:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/bipartite_matching.test.cpp

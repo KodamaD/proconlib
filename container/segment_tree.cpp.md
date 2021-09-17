@@ -16,9 +16,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/heavy_light_decomposition.test.cpp
-    title: test/heavy_light_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
   _isVerificationFailed: false
@@ -134,7 +131,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segment_tree.test.cpp
-  - test/heavy_light_decomposition.test.cpp
 documentation_of: container/segment_tree.cpp
 layout: document
 redirect_from:

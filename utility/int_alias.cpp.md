@@ -54,9 +54,6 @@ data:
     path: graph/dinic.cpp
     title: graph/dinic.cpp
   - icon: ':heavy_check_mark:'
-    path: graph/heavy_light_decomposition.cpp
-    title: graph/heavy_light_decomposition.cpp
-  - icon: ':heavy_check_mark:'
     path: graph/rollback_union_find.cpp
     title: graph/rollback_union_find.cpp
   - icon: ':heavy_check_mark:'
@@ -98,6 +95,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
+  - icon: ':warning:'
+    path: utility/binary_search.cpp
+    title: utility/binary_search.cpp
   - icon: ':heavy_check_mark:'
     path: utility/fast_io.cpp
     title: utility/fast_io.cpp
@@ -141,9 +141,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fenwick_tree.test.cpp
     title: test/fenwick_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/heavy_light_decomposition.test.cpp
-    title: test/heavy_light_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/integer_hash_map.test.cpp
     title: test/integer_hash_map.test.cpp
@@ -232,69 +229,68 @@ data:
   isVerificationFile: false
   path: utility/int_alias.cpp
   requiredBy:
-  - bit/bit_reverse.cpp
-  - bit/popcount.cpp
-  - bit/bit_lzeros.cpp
-  - bit/bit_rzeros.cpp
-  - bit/ceil_log2.cpp
-  - bit/bit_width.cpp
-  - utility/vec_util.cpp
   - utility/multi_array.cpp
+  - utility/vec_util.cpp
+  - utility/revrep.cpp
+  - utility/multi_vec.cpp
+  - utility/binary_search.cpp
+  - utility/subsets.cpp
+  - utility/auto_realloc.cpp
+  - utility/rep.cpp
+  - utility/fast_io.cpp
   - utility/auto_memoize.cpp
   - utility/permutations.cpp
-  - utility/revrep.cpp
-  - utility/rep.cpp
-  - utility/multi_vec.cpp
-  - utility/auto_realloc.cpp
-  - utility/fast_io.cpp
-  - utility/subsets.cpp
-  - random/rand_int.cpp
-  - random/xorshift.cpp
-  - container/integer_hash_map.cpp
-  - container/sparse_table.cpp
-  - container/segment_tree_beats.cpp
-  - container/segment_tree.cpp
-  - container/fenwick_tree.cpp
-  - container/polynomial_hash.cpp
-  - container/dual_segment_tree.cpp
-  - container/lazy_segment_tree.cpp
+  - graph/rollback_union_find.cpp
   - graph/union_find.cpp
   - graph/dinic.cpp
-  - graph/rollback_union_find.cpp
-  - graph/heavy_light_decomposition.cpp
-  - algorithm/smawk.cpp
+  - bit/bit_rzeros.cpp
+  - bit/bit_width.cpp
+  - bit/ceil_log2.cpp
+  - bit/bit_reverse.cpp
+  - bit/bit_lzeros.cpp
+  - bit/popcount.cpp
+  - container/fenwick_tree.cpp
+  - container/dual_segment_tree.cpp
+  - container/sparse_table.cpp
+  - container/segment_tree_beats.cpp
+  - container/integer_hash_map.cpp
+  - container/polynomial_hash.cpp
+  - container/lazy_segment_tree.cpp
+  - container/segment_tree.cpp
   - algorithm/monotone_minima.cpp
+  - algorithm/smawk.cpp
+  - random/rand_int.cpp
+  - random/xorshift.cpp
+  - math/factorize.cpp
   - math/dynamic_modint.cpp
-  - math/modint_util.cpp
+  - math/prime_sieve.cpp
   - math/static_modint.cpp
   - math/primitive_root.cpp
-  - math/prime_sieve.cpp
-  - math/factorize.cpp
+  - math/modint_util.cpp
   - math/semiring_matrix.cpp
   - math/divisors_from_factors.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/auto_memoize.test.cpp
-  - test/segment_tree_beats.test.cpp
-  - test/union_find.test.cpp
-  - test/sparse_table.test.cpp
+  - test/bipartite_matching.test.cpp
   - test/dual_segment_tree.test.cpp
-  - test/fenwick_tree.test.cpp
+  - test/auto_memoize.test.cpp
+  - test/prime_sieve.test.cpp
+  - test/segment_tree_beats.test.cpp
+  - test/modint_util.test.cpp
   - test/totient.test.cpp
-  - test/fast_io.test.cpp
+  - test/queue_aggregation.test.cpp
+  - test/factorize.test.cpp
+  - test/polynomial_hash.test.cpp
+  - test/lazy_segment_tree.test.cpp
+  - test/semiring_matrix.test.cpp
+  - test/union_find.test.cpp
   - test/rollback_union_find.test.cpp
   - test/segment_tree.test.cpp
-  - test/prime_sieve.test.cpp
-  - test/semiring_matrix.test.cpp
-  - test/factorize.test.cpp
-  - test/queue_aggregation.test.cpp
+  - test/fenwick_tree.test.cpp
+  - test/sparse_table.test.cpp
   - test/integer_hash_map.test.cpp
-  - test/bipartite_matching.test.cpp
-  - test/modint_util.test.cpp
-  - test/polynomial_hash.test.cpp
-  - test/heavy_light_decomposition.test.cpp
-  - test/lazy_segment_tree.test.cpp
+  - test/fast_io.test.cpp
 documentation_of: utility/int_alias.cpp
 layout: document
 redirect_from:

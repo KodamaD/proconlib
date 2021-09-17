@@ -67,9 +67,6 @@ data:
       path: graph/dinic.cpp
       title: graph/dinic.cpp
     - icon: ':heavy_check_mark:'
-      path: graph/heavy_light_decomposition.cpp
-      title: graph/heavy_light_decomposition.cpp
-    - icon: ':heavy_check_mark:'
       path: graph/rollback_union_find.cpp
       title: graph/rollback_union_find.cpp
     - icon: ':heavy_check_mark:'
@@ -141,6 +138,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/auto_realloc.cpp
       title: utility/auto_realloc.cpp
+    - icon: ':warning:'
+      path: utility/binary_search.cpp
+      title: utility/binary_search.cpp
     - icon: ':heavy_check_mark:'
       path: utility/fast_io.cpp
       title: utility/fast_io.cpp
@@ -213,9 +213,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fenwick_tree.test.cpp
       title: test/fenwick_tree.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/heavy_light_decomposition.test.cpp
-      title: test/heavy_light_decomposition.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/integer_hash_map.test.cpp
       title: test/integer_hash_map.test.cpp

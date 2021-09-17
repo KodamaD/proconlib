@@ -64,8 +64,8 @@ data:
   path: utility/auto_realloc.cpp
   requiredBy:
   - container/polynomial_hash.cpp
-  - math/modint_util.cpp
   - math/prime_sieve.cpp
+  - math/modint_util.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
