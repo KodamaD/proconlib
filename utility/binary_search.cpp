@@ -14,7 +14,7 @@ T binary_search(T ok, T ng, const F& f) {
         }
     } else {
         while (ng + 1 != ok) {
-            const T md = ok + T((U(ok) - U(ng)) >> 1);
+            const T md = ng + T((U(ok) - U(ng)) >> 1);
             (f(md) ? ok : ng) = md;
         }
     }
