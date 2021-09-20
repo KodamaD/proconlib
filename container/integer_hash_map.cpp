@@ -157,7 +157,7 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
         return false;
     }
 
-    Value* find(const Key& key) {
+    Value* find(const Key& key) const {
         if (empty()) return nullptr;
         const usize pos = hash0(static_cast<u64>(key));
         const u8 id = hash1(static_cast<u64>(key));
@@ -177,8 +177,8 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
     }
 
     Value& operator[](const Key& key) { return *insert(key, Value()).first; }
-    usize size() { return full; }
-    bool empty() { return size() == 0; }
+    usize size() const { return full; }
+    bool empty() const { return size() == 0; }
 
     class Iter {
         using Ref = std::pair<const Key&, Value&>;
