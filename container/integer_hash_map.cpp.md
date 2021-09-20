@@ -93,8 +93,8 @@ data:
     \ id);\n        if (state[i] != 128) {\n            full -= 1;\n            del\
     \ += 1;\n            state[i] = 129;\n            TraitsV::destroy(alloc_v, values\
     \ + i);\n            if (8 * full <= mask) resize();\n            return true;\n\
-    \        }\n        return false;\n    }\n\n    Value* find(const Key& key) {\n\
-    \        if (empty()) return nullptr;\n        const usize pos = hash0(static_cast<u64>(key));\n\
+    \        }\n        return false;\n    }\n\n    Value* find(const Key& key) const\
+    \ {\n        if (empty()) return nullptr;\n        const usize pos = hash0(static_cast<u64>(key));\n\
     \        const u8 id = hash1(static_cast<u64>(key));\n        const usize i =\
     \ find_key(key, pos, id);\n        return state[i] == 128 ? nullptr : (values\
     \ + i);\n    }\n\n    void clear() {\n        if (initialized()) {\n         \
@@ -103,10 +103,10 @@ data:
     \ keys, mask + 1);\n            TraitsV::deallocate(alloc_v, values, mask + 1);\n\
     \            TraitsU::deallocate(alloc_u, state, mask + 1);\n            reset_variables();\n\
     \        }\n    }\n\n    Value& operator[](const Key& key) { return *insert(key,\
-    \ Value()).first; }\n    usize size() { return full; }\n    bool empty() { return\
-    \ size() == 0; }\n\n    class Iter {\n        using Ref = std::pair<const Key&,\
-    \ Value&>;\n        friend class IntegerHashMap;\n\n        usize idx;\n     \
-    \   IntegerHashMap* map;\n\n        explicit Iter(const usize i, IntegerHashMap*\
+    \ Value()).first; }\n    usize size() const { return full; }\n    bool empty()\
+    \ const { return size() == 0; }\n\n    class Iter {\n        using Ref = std::pair<const\
+    \ Key&, Value&>;\n        friend class IntegerHashMap;\n\n        usize idx;\n\
+    \        IntegerHashMap* map;\n\n        explicit Iter(const usize i, IntegerHashMap*\
     \ m) : idx(i), map(m) { step(); }\n        void step() {\n            while (idx\
     \ <= map->mask and map->state[idx] >= 128) idx += 1;\n        }\n\n      public:\n\
     \        bool operator!=(const Iter& other) const { return idx != other.idx; }\n\
@@ -184,8 +184,8 @@ data:
     \ id);\n        if (state[i] != 128) {\n            full -= 1;\n            del\
     \ += 1;\n            state[i] = 129;\n            TraitsV::destroy(alloc_v, values\
     \ + i);\n            if (8 * full <= mask) resize();\n            return true;\n\
-    \        }\n        return false;\n    }\n\n    Value* find(const Key& key) {\n\
-    \        if (empty()) return nullptr;\n        const usize pos = hash0(static_cast<u64>(key));\n\
+    \        }\n        return false;\n    }\n\n    Value* find(const Key& key) const\
+    \ {\n        if (empty()) return nullptr;\n        const usize pos = hash0(static_cast<u64>(key));\n\
     \        const u8 id = hash1(static_cast<u64>(key));\n        const usize i =\
     \ find_key(key, pos, id);\n        return state[i] == 128 ? nullptr : (values\
     \ + i);\n    }\n\n    void clear() {\n        if (initialized()) {\n         \
@@ -194,10 +194,10 @@ data:
     \ keys, mask + 1);\n            TraitsV::deallocate(alloc_v, values, mask + 1);\n\
     \            TraitsU::deallocate(alloc_u, state, mask + 1);\n            reset_variables();\n\
     \        }\n    }\n\n    Value& operator[](const Key& key) { return *insert(key,\
-    \ Value()).first; }\n    usize size() { return full; }\n    bool empty() { return\
-    \ size() == 0; }\n\n    class Iter {\n        using Ref = std::pair<const Key&,\
-    \ Value&>;\n        friend class IntegerHashMap;\n\n        usize idx;\n     \
-    \   IntegerHashMap* map;\n\n        explicit Iter(const usize i, IntegerHashMap*\
+    \ Value()).first; }\n    usize size() const { return full; }\n    bool empty()\
+    \ const { return size() == 0; }\n\n    class Iter {\n        using Ref = std::pair<const\
+    \ Key&, Value&>;\n        friend class IntegerHashMap;\n\n        usize idx;\n\
+    \        IntegerHashMap* map;\n\n        explicit Iter(const usize i, IntegerHashMap*\
     \ m) : idx(i), map(m) { step(); }\n        void step() {\n            while (idx\
     \ <= map->mask and map->state[idx] >= 128) idx += 1;\n        }\n\n      public:\n\
     \        bool operator!=(const Iter& other) const { return idx != other.idx; }\n\
@@ -211,7 +211,7 @@ data:
   isVerificationFile: false
   path: container/integer_hash_map.cpp
   requiredBy: []
-  timestamp: '2021-09-10 20:34:41+09:00'
+  timestamp: '2021-09-20 20:48:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/integer_hash_map.test.cpp

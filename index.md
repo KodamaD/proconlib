@@ -67,8 +67,14 @@ data:
       path: graph/dinic.cpp
       title: graph/dinic.cpp
     - icon: ':heavy_check_mark:'
+      path: graph/primal_dual.cpp
+      title: graph/primal_dual.cpp
+    - icon: ':heavy_check_mark:'
       path: graph/rollback_union_find.cpp
       title: graph/rollback_union_find.cpp
+    - icon: ':heavy_check_mark:'
+      path: graph/strongly_connected_components.cpp
+      title: graph/strongly_connected_components.cpp
     - icon: ':heavy_check_mark:'
       path: graph/union_find.cpp
       title: graph/union_find.cpp
@@ -180,7 +186,7 @@ data:
     - icon: ':warning:'
       path: utility/setmax.cpp
       title: utility/setmax.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: utility/setmin.cpp
       title: utility/setmin.cpp
     - icon: ':warning:'
@@ -226,6 +232,12 @@ data:
       path: test/polynomial_hash.test.cpp
       title: test/polynomial_hash.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/primal_dual_maxflow.test.cpp
+      title: test/primal_dual_maxflow.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/primal_dual_mincostflow.test.cpp
+      title: test/primal_dual_mincostflow.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/prime_sieve.test.cpp
       title: test/prime_sieve.test.cpp
     - icon: ':heavy_check_mark:'
@@ -246,6 +258,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/sparse_table.test.cpp
       title: test/sparse_table.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/strongly_connected_components.test.cpp
+      title: test/strongly_connected_components.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/totient.test.cpp
       title: test/totient.test.cpp

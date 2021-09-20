@@ -30,6 +30,12 @@ data:
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
   - icon: ':heavy_check_mark:'
+    path: graph/primal_dual.cpp
+    title: graph/primal_dual.cpp
+  - icon: ':heavy_check_mark:'
+    path: graph/strongly_connected_components.cpp
+    title: graph/strongly_connected_components.cpp
+  - icon: ':heavy_check_mark:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
   - icon: ':heavy_check_mark:'
@@ -67,6 +73,12 @@ data:
     path: test/polynomial_hash.test.cpp
     title: test/polynomial_hash.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/primal_dual_maxflow.test.cpp
+    title: test/primal_dual_maxflow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/primal_dual_mincostflow.test.cpp
+    title: test/primal_dual_mincostflow.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/prime_sieve.test.cpp
     title: test/prime_sieve.test.cpp
   - icon: ':heavy_check_mark:'
@@ -84,6 +96,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/strongly_connected_components.test.cpp
+    title: test/strongly_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
@@ -121,6 +136,8 @@ data:
   path: utility/rep.cpp
   requiredBy:
   - utility/fast_io.cpp
+  - graph/primal_dual.cpp
+  - graph/strongly_connected_components.cpp
   - graph/union_find.cpp
   - container/dual_segment_tree.cpp
   - container/sparse_table.cpp
@@ -137,6 +154,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/bipartite_matching.test.cpp
+  - test/primal_dual_mincostflow.test.cpp
   - test/dual_segment_tree.test.cpp
   - test/prime_sieve.test.cpp
   - test/segment_tree_beats.test.cpp
@@ -147,8 +165,10 @@ data:
   - test/union_find.test.cpp
   - test/rollback_union_find.test.cpp
   - test/segment_tree.test.cpp
+  - test/strongly_connected_components.test.cpp
   - test/fenwick_tree.test.cpp
   - test/sparse_table.test.cpp
+  - test/primal_dual_maxflow.test.cpp
   - test/fast_io.test.cpp
 documentation_of: utility/rep.cpp
 layout: document

@@ -20,7 +20,7 @@ data:
     \    assert(ok != ng);\n    if (ok < ng) {\n        while (ok + 1 != ng) {\n \
     \           const T md = ok + T((U(ng) - U(ok)) >> 1);\n            (f(md) ? ok\
     \ : ng) = md;\n        }\n    } else {\n        while (ng + 1 != ok) {\n     \
-    \       const T md = ok + T((U(ok) - U(ng)) >> 1);\n            (f(md) ? ok :\
+    \       const T md = ng + T((U(ok) - U(ng)) >> 1);\n            (f(md) ? ok :\
     \ ng) = md;\n        }\n    }\n    return ok;\n}\n"
   code: "#pragma once\n#include <type_traits>\n#include <cassert>\n#include \"../utility/int_alias.cpp\"\
     \n\ntemplate <class T, class F, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\n\
@@ -28,14 +28,14 @@ data:
     \    assert(ok != ng);\n    if (ok < ng) {\n        while (ok + 1 != ng) {\n \
     \           const T md = ok + T((U(ng) - U(ok)) >> 1);\n            (f(md) ? ok\
     \ : ng) = md;\n        }\n    } else {\n        while (ng + 1 != ok) {\n     \
-    \       const T md = ok + T((U(ok) - U(ng)) >> 1);\n            (f(md) ? ok :\
+    \       const T md = ng + T((U(ok) - U(ng)) >> 1);\n            (f(md) ? ok :\
     \ ng) = md;\n        }\n    }\n    return ok;\n}"
   dependsOn:
   - utility/int_alias.cpp
   isVerificationFile: false
   path: utility/binary_search.cpp
   requiredBy: []
-  timestamp: '2021-09-17 22:43:40+09:00'
+  timestamp: '2021-09-19 12:46:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: utility/binary_search.cpp

@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dinic.cpp
     title: graph/dinic.cpp
+  - icon: ':heavy_check_mark:'
+    path: graph/strongly_connected_components.cpp
+    title: graph/strongly_connected_components.cpp
   - icon: ':warning:'
     path: math/divisors_from_factors.cpp
     title: math/divisors_from_factors.cpp
@@ -15,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/rollback_union_find.test.cpp
     title: test/rollback_union_find.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/strongly_connected_components.test.cpp
+    title: test/strongly_connected_components.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -38,6 +44,7 @@ data:
   isVerificationFile: false
   path: utility/rec_lambda.cpp
   requiredBy:
+  - graph/strongly_connected_components.cpp
   - graph/dinic.cpp
   - math/divisors_from_factors.cpp
   timestamp: '2021-09-04 17:30:23+09:00'
@@ -45,6 +52,7 @@ data:
   verifiedWith:
   - test/bipartite_matching.test.cpp
   - test/rollback_union_find.test.cpp
+  - test/strongly_connected_components.test.cpp
 documentation_of: utility/rec_lambda.cpp
 layout: document
 redirect_from:
