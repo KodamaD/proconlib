@@ -8,7 +8,10 @@
 #include "../utility/rep.cpp"
 #include "../utility/setmin.cpp"
 
-template <class Flow, class Cost, std::enable_if_t<std::is_integral_v<Flow> and std::is_integral_v<Cost>>* = nullptr>
+template <class Flow,
+          class Cost,
+          std::enable_if_t<std::is_integral_v<Flow> and std::is_integral_v<Cost> and std::is_signed_v<Flow> and
+                           std::is_signed_v<Cost>>* = nullptr>
 class PrimalDual {
     struct Edge {
         usize dst, rev;
