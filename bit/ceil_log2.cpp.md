@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/fenwick_tree.cpp
     title: container/fenwick_tree.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -39,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fenwick_tree.test.cpp
     title: test/fenwick_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/lazy_segment_tree.test.cpp
+    title: test/lazy_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
@@ -90,6 +93,7 @@ data:
   - test/segment_tree_beats.test.cpp
   - test/modint_util.test.cpp
   - test/polynomial_hash.test.cpp
+  - test/lazy_segment_tree.test.cpp
   - test/segment_tree.test.cpp
   - test/fenwick_tree.test.cpp
 documentation_of: bit/ceil_log2.cpp

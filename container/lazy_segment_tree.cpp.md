@@ -17,10 +17,13 @@ data:
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/lazy_segment_tree.test.cpp
+    title: test/lazy_segment_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"container/lazy_segment_tree.cpp\"\n#include <cassert>\n\
@@ -171,8 +174,9 @@ data:
   path: container/lazy_segment_tree.cpp
   requiredBy: []
   timestamp: '2021-09-27 22:23:01+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/lazy_segment_tree.test.cpp
 documentation_of: container/lazy_segment_tree.cpp
 layout: document
 redirect_from:

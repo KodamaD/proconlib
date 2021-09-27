@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/lazy_segment_tree.test.cpp
+    title: test/lazy_segment_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"traits/pair_monoid.cpp\"\n#include <utility>\n\ntemplate\
@@ -24,8 +27,9 @@ data:
   path: traits/pair_monoid.cpp
   requiredBy: []
   timestamp: '2021-09-27 22:23:01+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/lazy_segment_tree.test.cpp
 documentation_of: traits/pair_monoid.cpp
 layout: document
 redirect_from:

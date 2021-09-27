@@ -4,6 +4,12 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/lazy_segment_tree.test.cpp
+    title: test/lazy_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/queue_aggregation.test.cpp
+    title: test/queue_aggregation.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
   _isVerificationFailed: false
@@ -37,6 +43,8 @@ data:
   timestamp: '2021-09-27 22:23:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/queue_aggregation.test.cpp
+  - test/lazy_segment_tree.test.cpp
   - test/segment_tree.test.cpp
 documentation_of: traits/affine_composite_monoid.cpp
 layout: document
