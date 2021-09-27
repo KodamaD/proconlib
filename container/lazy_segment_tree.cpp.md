@@ -17,13 +17,10 @@ data:
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/lazy_segment_tree.test.cpp
-    title: test/lazy_segment_tree.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"container/lazy_segment_tree.cpp\"\n#include <cassert>\n\
@@ -52,112 +49,118 @@ data:
     \ constexpr revrep(const usize first, const usize last) noexcept\n        : first(last\
     \ - 1), last(std::min(first, last) - 1) {}\n    constexpr Iter begin() const noexcept\
     \ { return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
-    };\n#line 9 \"container/lazy_segment_tree.cpp\"\n\ntemplate <class Monoid, class\
-    \ Effector> class LazySegmentTree {\n    using M = Monoid;\n    using E = Effector;\n\
-    \    usize internal_size, logn, seg_size;\n    std::vector<M> data;\n    std::vector<E>\
-    \ lazy;\n\n    void fetch(const usize k) { data[k] = data[2 * k] + data[2 * k\
-    \ + 1]; }\n    void apply(const usize k, const E& e) {\n        data[k] = data[k]\
-    \ * e;\n        if (k < seg_size) lazy[k] = lazy[k] * e;\n    }\n    void flush(const\
-    \ usize k) {\n        apply(2 * k, lazy[k]);\n        apply(2 * k + 1, lazy[k]);\n\
-    \        lazy[k] = E::one();\n    }\n\n    void push(const usize k) {\n      \
-    \  for (const usize d : revrep(bit_rzeros(k) + 1, logn + 1)) flush(k >> d);\n\
-    \    }\n    void pull(usize k) {\n        for (k >>= bit_rzeros(k); k > 1;) fetch(k\
-    \ >>= 1);\n    }\n\n  public:\n    explicit LazySegmentTree(const usize size =\
-    \ 0, const M& value = M::zero())\n        : LazySegmentTree(std::vector<M>(size,\
-    \ value)) {}\n    explicit LazySegmentTree(const std::vector<M>& vec) : internal_size(vec.size())\
+    };\n#line 9 \"container/lazy_segment_tree.cpp\"\n\ntemplate <class A> class LazySegmentTree\
+    \ {\n    using M = typename A::Monoid;\n    using E = typename A::Effector;\n\
+    \    using T = typename M::Type;\n    using U = typename E::Type;\n    usize internal_size,\
+    \ logn, seg_size;\n    std::vector<T> data;\n    std::vector<U> lazy;\n\n    void\
+    \ fetch(const usize k) { data[k] = M::operation(data[2 * k], data[2 * k + 1]);\
+    \ }\n    void apply(const usize k, const U& e) {\n        data[k] = A::operation(data[k],\
+    \ e);\n        if (k < seg_size) lazy[k] = E::operation(lazy[k], e);\n    }\n\
+    \    void flush(const usize k) {\n        apply(2 * k, lazy[k]);\n        apply(2\
+    \ * k + 1, lazy[k]);\n        lazy[k] = E::identity();\n    }\n\n    void push(const\
+    \ usize k) {\n        for (const usize d : revrep(bit_rzeros(k) + 1, logn + 1))\
+    \ flush(k >> d);\n    }\n    void pull(usize k) {\n        for (k >>= bit_rzeros(k);\
+    \ k > 1;) fetch(k >>= 1);\n    }\n\n  public:\n    explicit LazySegmentTree(const\
+    \ usize size = 0, const T& value = M::identity())\n        : LazySegmentTree(std::vector<T>(size,\
+    \ value)) {}\n    explicit LazySegmentTree(const std::vector<T>& vec) : internal_size(vec.size())\
     \ {\n        logn = ceil_log2(internal_size);\n        seg_size = 1 << logn;\n\
-    \        data = std::vector<M>(2 * seg_size, M::zero());\n        lazy = std::vector<E>(seg_size,\
-    \ E::one());\n        for (const usize i : rep(0, internal_size)) data[seg_size\
+    \        data = std::vector<T>(2 * seg_size, M::identity());\n        lazy = std::vector<U>(seg_size,\
+    \ E::identity());\n        for (const usize i : rep(0, internal_size)) data[seg_size\
     \ + i] = vec[i];\n        for (const usize i : revrep(1, seg_size)) fetch(i);\n\
     \    }\n\n    usize size() const { return internal_size; }\n\n    void assign(usize\
-    \ i, const M& value) {\n        assert(i < internal_size);\n        i += seg_size;\n\
+    \ i, const T& value) {\n        assert(i < internal_size);\n        i += seg_size;\n\
     \        for (const usize d : revrep(1, logn + 1)) flush(i >> d);\n        data[i]\
     \ = value;\n        for (const usize d : rep(1, logn + 1)) fetch(i >> d);\n  \
-    \  }\n    void operate(usize l, usize r, const E& e) {\n        assert(l <= r\
+    \  }\n    void operate(usize l, usize r, const U& e) {\n        assert(l <= r\
     \ and r <= internal_size);\n        l += seg_size;\n        r += seg_size;\n \
     \       push(l);\n        push(r);\n        for (usize l0 = l, r0 = r; l0 < r0;\
     \ l0 >>= 1, r0 >>= 1) {\n            if (l0 & 1) apply(l0++, e);\n           \
     \ if (r0 & 1) apply(--r0, e);\n        }\n        pull(l);\n        pull(r);\n\
-    \    }\n\n    M fold() const { return data[1]; }\n    M fold(usize l, usize r)\
+    \    }\n\n    T fold() const { return data[1]; }\n    T fold(usize l, usize r)\
     \ {\n        assert(l <= r and r <= internal_size);\n        l += seg_size;\n\
-    \        r += seg_size;\n        push(l);\n        push(r);\n        M ret_l =\
-    \ M::zero(), ret_r = M::zero();\n        while (l < r) {\n            if (l &\
-    \ 1) ret_l = ret_l + data[l++];\n            if (r & 1) ret_r = data[--r] + ret_r;\n\
-    \            l >>= 1;\n            r >>= 1;\n        }\n        return ret_l +\
-    \ ret_r;\n    }\n\n    template <class F> usize max_right(usize l, const F& f)\
-    \ {\n        assert(l <= internal_size);\n        assert(f(M::zero()));\n    \
-    \    if (l == internal_size) return internal_size;\n        l += seg_size;\n \
-    \       for (const usize d : revrep(1, logn + 1)) flush(l >> d);\n        M sum\
-    \ = M::zero();\n        do {\n            while (!(l & 1)) l >>= 1;\n        \
-    \    if (!f(sum + data[l])) {\n                while (l < seg_size) {\n      \
-    \              flush(l);\n                    l = 2 * l;\n                   \
-    \ if (f(sum + data[l])) sum = sum + data[l++];\n                }\n          \
-    \      return l - seg_size;\n            }\n            sum = sum + data[l++];\n\
+    \        r += seg_size;\n        push(l);\n        push(r);\n        T ret_l =\
+    \ M::identity(), ret_r = M::identity();\n        while (l < r) {\n           \
+    \ if (l & 1) ret_l = M::operation(ret_l, data[l++]);\n            if (r & 1) ret_r\
+    \ = M::operation(data[--r], ret_r);\n            l >>= 1;\n            r >>= 1;\n\
+    \        }\n        return M::operation(ret_l, ret_r);\n    }\n\n    template\
+    \ <class F> usize max_right(usize l, const F& f) {\n        assert(l <= internal_size);\n\
+    \        assert(f(M::identity()));\n        if (l == internal_size) return internal_size;\n\
+    \        l += seg_size;\n        for (const usize d : revrep(1, logn + 1)) flush(l\
+    \ >> d);\n        T sum = M::identity();\n        do {\n            while (!(l\
+    \ & 1)) l >>= 1;\n            if (!f(M::operation(sum, data[l]))) {\n        \
+    \        while (l < seg_size) {\n                    flush(l);\n             \
+    \       l = 2 * l;\n                    if (f(M::operation(sum, data[l]))) sum\
+    \ = M::operation(sum, data[l++]);\n                }\n                return l\
+    \ - seg_size;\n            }\n            sum = M::operation(sum, data[l++]);\n\
     \        } while ((l & -l) != l);\n        return internal_size;\n    }\n\n  \
     \  template <class F> usize min_left(usize r, const F& f) {\n        assert(r\
-    \ <= internal_size);\n        assert(f(M::zero()));\n        if (r == 0) return\
+    \ <= internal_size);\n        assert(f(M::identity()));\n        if (r == 0) return\
     \ 0;\n        r += seg_size;\n        for (const usize d : revrep(1, logn + 1))\
-    \ flush((r - 1) >> d);\n        M sum = M::zero();\n        do {\n           \
-    \ r -= 1;\n            while (r > 1 and (r & 1)) r >>= 1;\n            if (!f(data[r]\
-    \ + sum)) {\n                while (r < seg_size) {\n                    flush(r);\n\
-    \                    r = 2 * r + 1;\n                    if (f(data[r] + sum))\
-    \ sum = data[r--] + sum;\n                }\n                return r + 1 - seg_size;\n\
-    \            }\n            sum = data[r] + sum;\n        } while ((r & -r) !=\
-    \ r);\n        return 0;\n    }\n};\n"
+    \ flush((r - 1) >> d);\n        T sum = M::identity();\n        do {\n       \
+    \     r -= 1;\n            while (r > 1 and (r & 1)) r >>= 1;\n            if\
+    \ (!f(M::operation(data[r], sum))) {\n                while (r < seg_size) {\n\
+    \                    flush(r);\n                    r = 2 * r + 1;\n         \
+    \           if (f(M::operation(data[r], sum))) sum = M::operation(data[r--], sum);\n\
+    \                }\n                return r + 1 - seg_size;\n            }\n\
+    \            sum = M::operation(data[r], sum);\n        } while ((r & -r) != r);\n\
+    \        return 0;\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n#include \"../bit/bit_rzeros.cpp\"\
     \n#include \"../bit/ceil_log2.cpp\"\n#include \"../utility/int_alias.cpp\"\n#include\
     \ \"../utility/rep.cpp\"\n#include \"../utility/revrep.cpp\"\n\ntemplate <class\
-    \ Monoid, class Effector> class LazySegmentTree {\n    using M = Monoid;\n   \
-    \ using E = Effector;\n    usize internal_size, logn, seg_size;\n    std::vector<M>\
-    \ data;\n    std::vector<E> lazy;\n\n    void fetch(const usize k) { data[k] =\
-    \ data[2 * k] + data[2 * k + 1]; }\n    void apply(const usize k, const E& e)\
-    \ {\n        data[k] = data[k] * e;\n        if (k < seg_size) lazy[k] = lazy[k]\
-    \ * e;\n    }\n    void flush(const usize k) {\n        apply(2 * k, lazy[k]);\n\
-    \        apply(2 * k + 1, lazy[k]);\n        lazy[k] = E::one();\n    }\n\n  \
-    \  void push(const usize k) {\n        for (const usize d : revrep(bit_rzeros(k)\
+    \ A> class LazySegmentTree {\n    using M = typename A::Monoid;\n    using E =\
+    \ typename A::Effector;\n    using T = typename M::Type;\n    using U = typename\
+    \ E::Type;\n    usize internal_size, logn, seg_size;\n    std::vector<T> data;\n\
+    \    std::vector<U> lazy;\n\n    void fetch(const usize k) { data[k] = M::operation(data[2\
+    \ * k], data[2 * k + 1]); }\n    void apply(const usize k, const U& e) {\n   \
+    \     data[k] = A::operation(data[k], e);\n        if (k < seg_size) lazy[k] =\
+    \ E::operation(lazy[k], e);\n    }\n    void flush(const usize k) {\n        apply(2\
+    \ * k, lazy[k]);\n        apply(2 * k + 1, lazy[k]);\n        lazy[k] = E::identity();\n\
+    \    }\n\n    void push(const usize k) {\n        for (const usize d : revrep(bit_rzeros(k)\
     \ + 1, logn + 1)) flush(k >> d);\n    }\n    void pull(usize k) {\n        for\
     \ (k >>= bit_rzeros(k); k > 1;) fetch(k >>= 1);\n    }\n\n  public:\n    explicit\
-    \ LazySegmentTree(const usize size = 0, const M& value = M::zero())\n        :\
-    \ LazySegmentTree(std::vector<M>(size, value)) {}\n    explicit LazySegmentTree(const\
-    \ std::vector<M>& vec) : internal_size(vec.size()) {\n        logn = ceil_log2(internal_size);\n\
-    \        seg_size = 1 << logn;\n        data = std::vector<M>(2 * seg_size, M::zero());\n\
-    \        lazy = std::vector<E>(seg_size, E::one());\n        for (const usize\
+    \ LazySegmentTree(const usize size = 0, const T& value = M::identity())\n    \
+    \    : LazySegmentTree(std::vector<T>(size, value)) {}\n    explicit LazySegmentTree(const\
+    \ std::vector<T>& vec) : internal_size(vec.size()) {\n        logn = ceil_log2(internal_size);\n\
+    \        seg_size = 1 << logn;\n        data = std::vector<T>(2 * seg_size, M::identity());\n\
+    \        lazy = std::vector<U>(seg_size, E::identity());\n        for (const usize\
     \ i : rep(0, internal_size)) data[seg_size + i] = vec[i];\n        for (const\
     \ usize i : revrep(1, seg_size)) fetch(i);\n    }\n\n    usize size() const {\
-    \ return internal_size; }\n\n    void assign(usize i, const M& value) {\n    \
+    \ return internal_size; }\n\n    void assign(usize i, const T& value) {\n    \
     \    assert(i < internal_size);\n        i += seg_size;\n        for (const usize\
     \ d : revrep(1, logn + 1)) flush(i >> d);\n        data[i] = value;\n        for\
     \ (const usize d : rep(1, logn + 1)) fetch(i >> d);\n    }\n    void operate(usize\
-    \ l, usize r, const E& e) {\n        assert(l <= r and r <= internal_size);\n\
+    \ l, usize r, const U& e) {\n        assert(l <= r and r <= internal_size);\n\
     \        l += seg_size;\n        r += seg_size;\n        push(l);\n        push(r);\n\
     \        for (usize l0 = l, r0 = r; l0 < r0; l0 >>= 1, r0 >>= 1) {\n         \
     \   if (l0 & 1) apply(l0++, e);\n            if (r0 & 1) apply(--r0, e);\n   \
-    \     }\n        pull(l);\n        pull(r);\n    }\n\n    M fold() const { return\
-    \ data[1]; }\n    M fold(usize l, usize r) {\n        assert(l <= r and r <= internal_size);\n\
+    \     }\n        pull(l);\n        pull(r);\n    }\n\n    T fold() const { return\
+    \ data[1]; }\n    T fold(usize l, usize r) {\n        assert(l <= r and r <= internal_size);\n\
     \        l += seg_size;\n        r += seg_size;\n        push(l);\n        push(r);\n\
-    \        M ret_l = M::zero(), ret_r = M::zero();\n        while (l < r) {\n  \
-    \          if (l & 1) ret_l = ret_l + data[l++];\n            if (r & 1) ret_r\
-    \ = data[--r] + ret_r;\n            l >>= 1;\n            r >>= 1;\n        }\n\
-    \        return ret_l + ret_r;\n    }\n\n    template <class F> usize max_right(usize\
-    \ l, const F& f) {\n        assert(l <= internal_size);\n        assert(f(M::zero()));\n\
-    \        if (l == internal_size) return internal_size;\n        l += seg_size;\n\
-    \        for (const usize d : revrep(1, logn + 1)) flush(l >> d);\n        M sum\
-    \ = M::zero();\n        do {\n            while (!(l & 1)) l >>= 1;\n        \
-    \    if (!f(sum + data[l])) {\n                while (l < seg_size) {\n      \
-    \              flush(l);\n                    l = 2 * l;\n                   \
-    \ if (f(sum + data[l])) sum = sum + data[l++];\n                }\n          \
-    \      return l - seg_size;\n            }\n            sum = sum + data[l++];\n\
+    \        T ret_l = M::identity(), ret_r = M::identity();\n        while (l < r)\
+    \ {\n            if (l & 1) ret_l = M::operation(ret_l, data[l++]);\n        \
+    \    if (r & 1) ret_r = M::operation(data[--r], ret_r);\n            l >>= 1;\n\
+    \            r >>= 1;\n        }\n        return M::operation(ret_l, ret_r);\n\
+    \    }\n\n    template <class F> usize max_right(usize l, const F& f) {\n    \
+    \    assert(l <= internal_size);\n        assert(f(M::identity()));\n        if\
+    \ (l == internal_size) return internal_size;\n        l += seg_size;\n       \
+    \ for (const usize d : revrep(1, logn + 1)) flush(l >> d);\n        T sum = M::identity();\n\
+    \        do {\n            while (!(l & 1)) l >>= 1;\n            if (!f(M::operation(sum,\
+    \ data[l]))) {\n                while (l < seg_size) {\n                    flush(l);\n\
+    \                    l = 2 * l;\n                    if (f(M::operation(sum, data[l])))\
+    \ sum = M::operation(sum, data[l++]);\n                }\n                return\
+    \ l - seg_size;\n            }\n            sum = M::operation(sum, data[l++]);\n\
     \        } while ((l & -l) != l);\n        return internal_size;\n    }\n\n  \
     \  template <class F> usize min_left(usize r, const F& f) {\n        assert(r\
-    \ <= internal_size);\n        assert(f(M::zero()));\n        if (r == 0) return\
+    \ <= internal_size);\n        assert(f(M::identity()));\n        if (r == 0) return\
     \ 0;\n        r += seg_size;\n        for (const usize d : revrep(1, logn + 1))\
-    \ flush((r - 1) >> d);\n        M sum = M::zero();\n        do {\n           \
-    \ r -= 1;\n            while (r > 1 and (r & 1)) r >>= 1;\n            if (!f(data[r]\
-    \ + sum)) {\n                while (r < seg_size) {\n                    flush(r);\n\
-    \                    r = 2 * r + 1;\n                    if (f(data[r] + sum))\
-    \ sum = data[r--] + sum;\n                }\n                return r + 1 - seg_size;\n\
-    \            }\n            sum = data[r] + sum;\n        } while ((r & -r) !=\
-    \ r);\n        return 0;\n    }\n};\n"
+    \ flush((r - 1) >> d);\n        T sum = M::identity();\n        do {\n       \
+    \     r -= 1;\n            while (r > 1 and (r & 1)) r >>= 1;\n            if\
+    \ (!f(M::operation(data[r], sum))) {\n                while (r < seg_size) {\n\
+    \                    flush(r);\n                    r = 2 * r + 1;\n         \
+    \           if (f(M::operation(data[r], sum))) sum = M::operation(data[r--], sum);\n\
+    \                }\n                return r + 1 - seg_size;\n            }\n\
+    \            sum = M::operation(data[r], sum);\n        } while ((r & -r) != r);\n\
+    \        return 0;\n    }\n};\n"
   dependsOn:
   - bit/bit_rzeros.cpp
   - utility/int_alias.cpp
@@ -167,10 +170,9 @@ data:
   isVerificationFile: false
   path: container/lazy_segment_tree.cpp
   requiredBy: []
-  timestamp: '2021-09-08 18:46:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/lazy_segment_tree.test.cpp
+  timestamp: '2021-09-27 22:23:01+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: container/lazy_segment_tree.cpp
 layout: document
 redirect_from:

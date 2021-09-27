@@ -15,6 +15,9 @@ data:
       path: bit/bit_lzeros.cpp
       title: bit/bit_lzeros.cpp
     - icon: ':warning:'
+      path: bit/bit_parity.cpp
+      title: bit/bit_parity.cpp
+    - icon: ':warning:'
       path: bit/bit_reverse.cpp
       title: bit/bit_reverse.cpp
     - icon: ':heavy_check_mark:'
@@ -40,13 +43,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: container/integer_hash_map.cpp
       title: container/integer_hash_map.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: container/lazy_segment_tree.cpp
       title: container/lazy_segment_tree.cpp
     - icon: ':heavy_check_mark:'
       path: container/polynomial_hash.cpp
       title: container/polynomial_hash.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: container/queue_aggregation.cpp
       title: container/queue_aggregation.cpp
     - icon: ':heavy_check_mark:'
@@ -58,7 +61,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: container/sparse_table.cpp
       title: container/sparse_table.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: container/stack_aggregation.cpp
       title: container/stack_aggregation.cpp
   - name: graph
@@ -136,6 +139,35 @@ data:
     - icon: ':heavy_check_mark:'
       path: random/xorshift.cpp
       title: random/xorshift.cpp
+  - name: traits
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: traits/affine_composite_monoid.cpp
+      title: traits/affine_composite_monoid.cpp
+    - icon: ':heavy_check_mark:'
+      path: traits/assign_monoid.cpp
+      title: traits/assign_monoid.cpp
+    - icon: ':warning:'
+      path: traits/max_monoid.cpp
+      title: traits/max_monoid.cpp
+    - icon: ':heavy_check_mark:'
+      path: traits/min_monoid.cpp
+      title: traits/min_monoid.cpp
+    - icon: ':heavy_check_mark:'
+      path: traits/num_semiring.cpp
+      title: traits/num_semiring.cpp
+    - icon: ':warning:'
+      path: traits/optional_monoid.cpp
+      title: traits/optional_monoid.cpp
+    - icon: ':warning:'
+      path: traits/pair_monoid.cpp
+      title: traits/pair_monoid.cpp
+    - icon: ':warning:'
+      path: traits/plus_monoid.cpp
+      title: traits/plus_monoid.cpp
+    - icon: ':warning:'
+      path: traits/reversed_monoid.cpp
+      title: traits/reversed_monoid.cpp
   - name: utility
     pages:
     - icon: ':heavy_check_mark:'
@@ -165,9 +197,6 @@ data:
     - icon: ':warning:'
       path: utility/multi_vec.cpp
       title: utility/multi_vec.cpp
-    - icon: ':heavy_check_mark:'
-      path: utility/num_semiring.cpp
-      title: utility/num_semiring.cpp
     - icon: ':warning:'
       path: utility/permutations.cpp
       title: utility/permutations.cpp
@@ -177,9 +206,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/rep.cpp
       title: utility/rep.cpp
-    - icon: ':heavy_check_mark:'
-      path: utility/reversed_monoid.cpp
-      title: utility/reversed_monoid.cpp
     - icon: ':heavy_check_mark:'
       path: utility/revrep.cpp
       title: utility/revrep.cpp
@@ -222,7 +248,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/integer_hash_map.test.cpp
       title: test/integer_hash_map.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/lazy_segment_tree.test.cpp
       title: test/lazy_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -240,7 +266,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/prime_sieve.test.cpp
       title: test/prime_sieve.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/queue_aggregation.test.cpp
       title: test/queue_aggregation.test.cpp
     - icon: ':heavy_check_mark:'

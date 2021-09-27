@@ -11,6 +11,9 @@ data:
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
   - icon: ':heavy_check_mark:'
+    path: traits/min_monoid.cpp
+    title: traits/min_monoid.cpp
+  - icon: ':heavy_check_mark:'
     path: utility/infty.cpp
     title: utility/infty.cpp
   - icon: ':heavy_check_mark:'
@@ -43,55 +46,53 @@ data:
     \ last(std::max(first, last)) {}\n    constexpr Iter begin() const noexcept {\
     \ return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
     };\n#line 2 \"utility/infty.cpp\"\n#include <limits>\n\ntemplate <class T, T Div\
-    \ = 2> constexpr T INFTY = std::numeric_limits<T>::max() / Div;\n#line 2 \"container/sparse_table.cpp\"\
+    \ = 2> constexpr T INFTY = std::numeric_limits<T>::max() / Div;\n#line 2 \"traits/min_monoid.cpp\"\
+    \n#include <functional>\n#line 4 \"traits/min_monoid.cpp\"\n\ntemplate <class\
+    \ T> struct MinMonoid {\n    using Type = T;\n    static constexpr T identity()\
+    \ { return std::numeric_limits<T>::max(); }\n    static constexpr T operation(const\
+    \ T& l, const T& r) { return std::min(l, r); }\n};\n#line 2 \"container/sparse_table.cpp\"\
     \n#include <cassert>\n#include <vector>\n#line 3 \"bit/bit_lzeros.cpp\"\n\n__attribute__((target(\"\
     avx2\"))) constexpr u64 bit_lzeros(const u64 x) { return x == 0 ? 64 : __builtin_clzll(x);\
     \ }\n#line 4 \"bit/bit_width.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr\
     \ u64 bit_width(const u64 x) { return 64 - bit_lzeros(x); }\n#line 7 \"container/sparse_table.cpp\"\
-    \n\ntemplate <class IdempotentMonoid> class SparseTable {\n    using M = IdempotentMonoid;\n\
-    \    std::vector<std::vector<M>> table;\n\n  public:\n    SparseTable() : SparseTable(std::vector<M>())\
-    \ {}\n    explicit SparseTable(const std::vector<M>& vec) {\n        const auto\
+    \n\ntemplate <class M> class SparseTable {\n    using T = typename M::Type;\n\
+    \    std::vector<std::vector<T>> table;\n\n  public:\n    SparseTable() : SparseTable(std::vector<T>())\
+    \ {}\n    explicit SparseTable(const std::vector<T>& vec) {\n        const auto\
     \ size = vec.size();\n        const auto height = bit_width(size);\n        table.reserve(height);\n\
     \        table.push_back(vec);\n        for (const usize d : rep(1, height)) {\n\
-    \            table.push_back(std::vector<M>(size - (1 << d) + 1, M::zero()));\n\
+    \            table.push_back(std::vector<T>(size - (1 << d) + 1, M::identity()));\n\
     \            for (const usize i : rep(0, table[d].size())) {\n               \
-    \ table[d][i] = table[d - 1][i] + table[d - 1][i + (1 << (d - 1))];\n        \
-    \    }\n        }\n    }\n\n    usize size() const { return table[0].size(); }\n\
-    \n    M fold(const usize l, const usize r) const {\n        if (l == r) return\
-    \ M::zero();\n        assert(l < r);\n        const auto d = bit_width(r - l)\
-    \ - 1;\n        return table[d][l] + table[d][r - (1 << d)];\n    }\n};\n#line\
-    \ 6 \"test/sparse_table.test.cpp\"\n#include <iostream>\n\nstruct Monoid {\n \
-    \   static constexpr Monoid zero() {\n        return Monoid { INFTY<u32> };\n\
-    \    }\n    u32 min;\n    constexpr Monoid operator + (const Monoid& other) const\
-    \ {\n        return Monoid { std::min(min, other.min) };\n    }\n};\n\nint main()\
-    \ {\n    usize N, Q;\n    std::cin >> N >> Q;\n    std::vector<Monoid> A(N, Monoid::zero());\n\
-    \    for (const usize i: rep(0, N)) {\n        u32 x;\n        std::cin >> x;\n\
-    \        A[i].min = x;\n    }\n    SparseTable<Monoid> table(A);\n    while (Q--)\
-    \ {\n        usize l, r;\n        std::cin >> l >> r;\n        std::cout << table.fold(l,\
-    \ r).min << '\\n';\n    }\n    return 0;\n}\n"
+    \ table[d][i] = M::operation(table[d - 1][i], table[d - 1][i + (1 << (d - 1))]);\n\
+    \            }\n        }\n    }\n\n    usize size() const { return table[0].size();\
+    \ }\n\n    T fold(const usize l, const usize r) const {\n        if (l == r) return\
+    \ M::identity();\n        assert(l < r);\n        const auto d = bit_width(r -\
+    \ l) - 1;\n        return M::operation(table[d][l], table[d][r - (1 << d)]);\n\
+    \    }\n};\n#line 7 \"test/sparse_table.test.cpp\"\n#include <iostream>\n\nint\
+    \ main() {\n    usize N, Q;\n    std::cin >> N >> Q;\n    std::vector<u32> A(N);\n\
+    \    for (auto& x : A) {\n        std::cin >> x;\n    }\n    SparseTable<MinMonoid<u32>>\
+    \ table(A);\n    while (Q--) {\n        usize l, r;\n        std::cin >> l >>\
+    \ r;\n        std::cout << table.fold(l, r) << '\\n';\n    }\n    return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     ../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n#include \"../utility/infty.cpp\"\
-    \n#include \"../container/sparse_table.cpp\"\n#include <iostream>\n\nstruct Monoid\
-    \ {\n    static constexpr Monoid zero() {\n        return Monoid { INFTY<u32>\
-    \ };\n    }\n    u32 min;\n    constexpr Monoid operator + (const Monoid& other)\
-    \ const {\n        return Monoid { std::min(min, other.min) };\n    }\n};\n\n\
-    int main() {\n    usize N, Q;\n    std::cin >> N >> Q;\n    std::vector<Monoid>\
-    \ A(N, Monoid::zero());\n    for (const usize i: rep(0, N)) {\n        u32 x;\n\
-    \        std::cin >> x;\n        A[i].min = x;\n    }\n    SparseTable<Monoid>\
-    \ table(A);\n    while (Q--) {\n        usize l, r;\n        std::cin >> l >>\
-    \ r;\n        std::cout << table.fold(l, r).min << '\\n';\n    }\n    return 0;\n\
-    }"
+    \n#include \"../traits/min_monoid.cpp\"\n#include \"../container/sparse_table.cpp\"\
+    \n#include <iostream>\n\nint main() {\n    usize N, Q;\n    std::cin >> N >> Q;\n\
+    \    std::vector<u32> A(N);\n    for (auto& x : A) {\n        std::cin >> x;\n\
+    \    }\n    SparseTable<MinMonoid<u32>> table(A);\n    while (Q--) {\n       \
+    \ usize l, r;\n        std::cin >> l >> r;\n        std::cout << table.fold(l,\
+    \ r) << '\\n';\n    }\n    return 0;\n}"
   dependsOn:
   - utility/int_alias.cpp
   - utility/rep.cpp
   - utility/infty.cpp
+  - traits/min_monoid.cpp
   - container/sparse_table.cpp
   - bit/bit_width.cpp
   - bit/bit_lzeros.cpp
   isVerificationFile: true
   path: test/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 18:46:15+09:00'
+  timestamp: '2021-09-27 22:23:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sparse_table.test.cpp

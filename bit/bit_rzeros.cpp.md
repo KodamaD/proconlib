@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -18,9 +18,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/dual_segment_tree.test.cpp
     title: test/dual_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/lazy_segment_tree.test.cpp
-    title: test/lazy_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/segment_tree_beats.test.cpp
     title: test/segment_tree_beats.test.cpp
@@ -77,7 +74,6 @@ data:
   verifiedWith:
   - test/dual_segment_tree.test.cpp
   - test/segment_tree_beats.test.cpp
-  - test/lazy_segment_tree.test.cpp
 documentation_of: bit/bit_rzeros.cpp
 layout: document
 redirect_from:

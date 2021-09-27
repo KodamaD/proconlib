@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -63,9 +63,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fenwick_tree.test.cpp
     title: test/fenwick_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/lazy_segment_tree.test.cpp
-    title: test/lazy_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
@@ -160,7 +157,6 @@ data:
   - test/segment_tree_beats.test.cpp
   - test/modint_util.test.cpp
   - test/polynomial_hash.test.cpp
-  - test/lazy_segment_tree.test.cpp
   - test/semiring_matrix.test.cpp
   - test/union_find.test.cpp
   - test/rollback_union_find.test.cpp

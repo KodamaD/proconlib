@@ -40,32 +40,34 @@ data:
     \ first, const usize last) noexcept : first(first), last(std::max(first, last))\
     \ {}\n    constexpr Iter begin() const noexcept { return first; }\n    constexpr\
     \ Iter end() const noexcept { return last; }\n};\n#line 7 \"container/sparse_table.cpp\"\
-    \n\ntemplate <class IdempotentMonoid> class SparseTable {\n    using M = IdempotentMonoid;\n\
-    \    std::vector<std::vector<M>> table;\n\n  public:\n    SparseTable() : SparseTable(std::vector<M>())\
-    \ {}\n    explicit SparseTable(const std::vector<M>& vec) {\n        const auto\
+    \n\ntemplate <class M> class SparseTable {\n    using T = typename M::Type;\n\
+    \    std::vector<std::vector<T>> table;\n\n  public:\n    SparseTable() : SparseTable(std::vector<T>())\
+    \ {}\n    explicit SparseTable(const std::vector<T>& vec) {\n        const auto\
     \ size = vec.size();\n        const auto height = bit_width(size);\n        table.reserve(height);\n\
     \        table.push_back(vec);\n        for (const usize d : rep(1, height)) {\n\
-    \            table.push_back(std::vector<M>(size - (1 << d) + 1, M::zero()));\n\
+    \            table.push_back(std::vector<T>(size - (1 << d) + 1, M::identity()));\n\
     \            for (const usize i : rep(0, table[d].size())) {\n               \
-    \ table[d][i] = table[d - 1][i] + table[d - 1][i + (1 << (d - 1))];\n        \
-    \    }\n        }\n    }\n\n    usize size() const { return table[0].size(); }\n\
-    \n    M fold(const usize l, const usize r) const {\n        if (l == r) return\
-    \ M::zero();\n        assert(l < r);\n        const auto d = bit_width(r - l)\
-    \ - 1;\n        return table[d][l] + table[d][r - (1 << d)];\n    }\n};\n"
+    \ table[d][i] = M::operation(table[d - 1][i], table[d - 1][i + (1 << (d - 1))]);\n\
+    \            }\n        }\n    }\n\n    usize size() const { return table[0].size();\
+    \ }\n\n    T fold(const usize l, const usize r) const {\n        if (l == r) return\
+    \ M::identity();\n        assert(l < r);\n        const auto d = bit_width(r -\
+    \ l) - 1;\n        return M::operation(table[d][l], table[d][r - (1 << d)]);\n\
+    \    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n#include \"../bit/bit_width.cpp\"\
     \n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n\ntemplate\
-    \ <class IdempotentMonoid> class SparseTable {\n    using M = IdempotentMonoid;\n\
-    \    std::vector<std::vector<M>> table;\n\n  public:\n    SparseTable() : SparseTable(std::vector<M>())\
-    \ {}\n    explicit SparseTable(const std::vector<M>& vec) {\n        const auto\
-    \ size = vec.size();\n        const auto height = bit_width(size);\n        table.reserve(height);\n\
+    \ <class M> class SparseTable {\n    using T = typename M::Type;\n    std::vector<std::vector<T>>\
+    \ table;\n\n  public:\n    SparseTable() : SparseTable(std::vector<T>()) {}\n\
+    \    explicit SparseTable(const std::vector<T>& vec) {\n        const auto size\
+    \ = vec.size();\n        const auto height = bit_width(size);\n        table.reserve(height);\n\
     \        table.push_back(vec);\n        for (const usize d : rep(1, height)) {\n\
-    \            table.push_back(std::vector<M>(size - (1 << d) + 1, M::zero()));\n\
+    \            table.push_back(std::vector<T>(size - (1 << d) + 1, M::identity()));\n\
     \            for (const usize i : rep(0, table[d].size())) {\n               \
-    \ table[d][i] = table[d - 1][i] + table[d - 1][i + (1 << (d - 1))];\n        \
-    \    }\n        }\n    }\n\n    usize size() const { return table[0].size(); }\n\
-    \n    M fold(const usize l, const usize r) const {\n        if (l == r) return\
-    \ M::zero();\n        assert(l < r);\n        const auto d = bit_width(r - l)\
-    \ - 1;\n        return table[d][l] + table[d][r - (1 << d)];\n    }\n};\n"
+    \ table[d][i] = M::operation(table[d - 1][i], table[d - 1][i + (1 << (d - 1))]);\n\
+    \            }\n        }\n    }\n\n    usize size() const { return table[0].size();\
+    \ }\n\n    T fold(const usize l, const usize r) const {\n        if (l == r) return\
+    \ M::identity();\n        assert(l < r);\n        const auto d = bit_width(r -\
+    \ l) - 1;\n        return M::operation(table[d][l], table[d][r - (1 << d)]);\n\
+    \    }\n};\n"
   dependsOn:
   - bit/bit_width.cpp
   - utility/int_alias.cpp
@@ -74,7 +76,7 @@ data:
   isVerificationFile: false
   path: container/sparse_table.cpp
   requiredBy: []
-  timestamp: '2021-09-08 18:46:15+09:00'
+  timestamp: '2021-09-27 22:23:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sparse_table.test.cpp

@@ -12,6 +12,9 @@ data:
     path: bit/bit_lzeros.cpp
     title: bit/bit_lzeros.cpp
   - icon: ':warning:'
+    path: bit/bit_parity.cpp
+    title: bit/bit_parity.cpp
+  - icon: ':warning:'
     path: bit/bit_reverse.cpp
     title: bit/bit_reverse.cpp
   - icon: ':heavy_check_mark:'
@@ -35,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/integer_hash_map.cpp
     title: container/integer_hash_map.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -151,9 +154,6 @@ data:
     path: test/integer_hash_map.test.cpp
     title: test/integer_hash_map.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/lazy_segment_tree.test.cpp
-    title: test/lazy_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/modint_util.test.cpp
     title: test/modint_util.test.cpp
   - icon: ':heavy_check_mark:'
@@ -168,9 +168,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/prime_sieve.test.cpp
     title: test/prime_sieve.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/queue_aggregation.test.cpp
-    title: test/queue_aggregation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/rollback_union_find.test.cpp
     title: test/rollback_union_find.test.cpp
@@ -266,6 +263,7 @@ data:
   - bit/bit_reverse.cpp
   - bit/bit_lzeros.cpp
   - bit/popcount.cpp
+  - bit/bit_parity.cpp
   - container/fenwick_tree.cpp
   - container/dual_segment_tree.cpp
   - container/sparse_table.cpp
@@ -297,10 +295,8 @@ data:
   - test/segment_tree_beats.test.cpp
   - test/modint_util.test.cpp
   - test/totient.test.cpp
-  - test/queue_aggregation.test.cpp
   - test/factorize.test.cpp
   - test/polynomial_hash.test.cpp
-  - test/lazy_segment_tree.test.cpp
   - test/semiring_matrix.test.cpp
   - test/union_find.test.cpp
   - test/rollback_union_find.test.cpp
