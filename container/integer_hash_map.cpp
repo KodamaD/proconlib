@@ -3,6 +3,7 @@
 #include <memory>
 #include <type_traits>
 #include <utility>
+#include "../random/xorshift.cpp"
 #include "../utility/int_alias.cpp"
 #include "../utility/int_alias_extended.cpp"
 
@@ -19,20 +20,16 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
     std::allocator<Key> alloc_k;
     std::allocator<Value> alloc_v;
 
-    u64 hash0(u64 key) const {
+    u64 hash(u64 key) const {
         if (__builtin_expect(logn == 0, 0)) return 0;
+        static const u64 rand = xorshift();
+        key ^= rand;
         key ^= key >> (64 - logn);
         return (key * 11400714819323198485ull) >> (64 - logn);
     }
-    u8 hash1(u64 key) const {
-        key ^= key >> 57;
-        return (key * 5871781006564002453ull) >> 57;
-    }
-
-    usize find_key(const Key& key, usize i, const u8 id) const {
+    usize find_key(const Key& key, usize i) const {
         while (state[i] != 128) {
-            if (state[i] == id)
-                if (__builtin_expect(keys[i] == key, 1)) return i;
+            if (state[i] < 128 && keys[i] == key) return i;
             i += 1;
             i &= mask;
         }
@@ -61,7 +58,7 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
         std::memset(state, 128, mask + 1);
         for (usize i = 0; i < old_len; i += 1) {
             if (old_state[i] < 128) {
-                const usize k = find_nonfull(hash0(static_cast<u64>(old_keys[i])));
+                const usize k = find_nonfull(hash(static_cast<u64>(old_keys[i])));
                 state[k] = old_state[i];
                 keys[k] = old_keys[i];
                 TraitsV::construct(alloc_v, values + k, std::move(old_values[i]));
@@ -122,18 +119,17 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
 
     template <class... Args> std::pair<Value*, bool> insert(const Key& key, Args&&... args) {
         if (!initialized()) resize();
-        const usize pos = hash0(static_cast<u64>(key));
-        const u8 id = hash1(static_cast<u64>(key));
-        usize i = find_key(key, pos, id);
+        const usize pos = hash(static_cast<u64>(key));
+        usize i = find_key(key, pos);
         if (state[i] == 128) {
             i = find_nonfull(pos);
             full += 1;
             del -= (state[i] == 129);
             if (2 * (full + del) > mask + 1) {
                 resize();
-                i = find_nonfull(hash0(static_cast<u64>(key)));
+                i = find_nonfull(hash(static_cast<u64>(key)));
             }
-            state[i] = id;
+            state[i] = 0;
             keys[i] = key;
             TraitsV::construct(alloc_v, values + i, std::forward<Args>(args)...);
             return std::make_pair(values + i, true);
@@ -143,9 +139,7 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
 
     bool erase(const Key& key) {
         if (empty()) return false;
-        const usize pos = hash0(static_cast<u64>(key));
-        const u8 id = hash1(static_cast<u64>(key));
-        const usize i = find_key(key, pos, id);
+        const usize i = find_key(key, hash(static_cast<u64>(key)));
         if (state[i] != 128) {
             full -= 1;
             del += 1;
@@ -159,9 +153,7 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
 
     Value* find(const Key& key) const {
         if (empty()) return nullptr;
-        const usize pos = hash0(static_cast<u64>(key));
-        const u8 id = hash1(static_cast<u64>(key));
-        const usize i = find_key(key, pos, id);
+        const usize i = find_key(key, hash(static_cast<u64>(key)));
         return state[i] == 128 ? nullptr : (values + i);
     }
 

@@ -2,33 +2,22 @@
 #include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
 #include "../utility/infty.cpp"
+#include "../traits/min_monoid.cpp"
 #include "../container/sparse_table.cpp"
 #include <iostream>
-
-struct Monoid {
-    static constexpr Monoid zero() {
-        return Monoid { INFTY<u32> };
-    }
-    u32 min;
-    constexpr Monoid operator + (const Monoid& other) const {
-        return Monoid { std::min(min, other.min) };
-    }
-};
 
 int main() {
     usize N, Q;
     std::cin >> N >> Q;
-    std::vector<Monoid> A(N, Monoid::zero());
-    for (const usize i: rep(0, N)) {
-        u32 x;
+    std::vector<u32> A(N);
+    for (auto& x : A) {
         std::cin >> x;
-        A[i].min = x;
     }
-    SparseTable<Monoid> table(A);
+    SparseTable<MinMonoid<u32>> table(A);
     while (Q--) {
         usize l, r;
         std::cin >> l >> r;
-        std::cout << table.fold(l, r).min << '\n';
+        std::cout << table.fold(l, r) << '\n';
     }
     return 0;
 }

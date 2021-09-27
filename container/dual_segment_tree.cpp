@@ -7,16 +7,16 @@
 #include "../utility/rep.cpp"
 #include "../utility/revrep.cpp"
 
-template <class Effector> class DualSegmentTree {
-    using E = Effector;
+template <class M> class DualSegmentTree {
+    using T = typename M::Type;
     usize internal_size, logn;
-    std::vector<E> lazy;
+    std::vector<T> lazy;
 
-    void apply(const usize k, const E& e) { lazy[k] = lazy[k] * e; }
+    void apply(const usize k, const T& e) { lazy[k] = M::operation(lazy[k], e); }
     void flush(const usize k) {
         apply(2 * k, lazy[k]);
         apply(2 * k + 1, lazy[k]);
-        lazy[k] = E::one();
+        lazy[k] = M::identity();
     }
     void push(const usize k) {
         for (const usize d : revrep(bit_rzeros(k) + 1, logn + 1)) {
@@ -25,17 +25,17 @@ template <class Effector> class DualSegmentTree {
     }
 
   public:
-    explicit DualSegmentTree(const usize size = 0, const E& value = E::one())
-        : DualSegmentTree(std::vector<E>(size, value)) {}
-    explicit DualSegmentTree(const std::vector<E>& vec) : internal_size(vec.size()) {
+    explicit DualSegmentTree(const usize size = 0, const T& value = M::identity())
+        : DualSegmentTree(std::vector<T>(size, value)) {}
+    explicit DualSegmentTree(const std::vector<T>& vec) : internal_size(vec.size()) {
         logn = ceil_log2(internal_size);
-        lazy = std::vector<E>(2 * internal_size, E::one());
+        lazy = std::vector<T>(2 * internal_size, M::identity());
         for (const usize i : rep(0, internal_size)) lazy[i] = vec[i];
     }
 
     usize size() const { return internal_size; }
 
-    void operate(usize l, usize r, const E& e) {
+    void operate(usize l, usize r, const T& e) {
         assert(l <= r and r <= internal_size);
         l += internal_size;
         r += internal_size;
@@ -48,19 +48,19 @@ template <class Effector> class DualSegmentTree {
             r >>= 1;
         }
     }
-    void assign(usize i, const E& e) {
+    void assign(usize i, const T& e) {
         assert(i < internal_size);
         i += internal_size;
         for (const usize d : revrep(1, logn + 1)) flush(i >> d);
         lazy[i] = e;
     }
 
-    E get(usize i) const {
+    T get(usize i) const {
         assert(i < internal_size);
         i += internal_size;
-        E ret = E::one();
+        T ret = M::identity();
         while (i > 0) {
-            ret = ret * lazy[i];
+            ret = M::operation(ret, lazy[i]);
             i >>= 1;
         }
         return ret;

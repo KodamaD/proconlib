@@ -1,48 +1,33 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
-#include "../math/static_modint.cpp"
 #include "../container/lazy_segment_tree.cpp"
-#include "../utility/int_alias.cpp"
-#include "../utility/rep.cpp"
 #include <iostream>
+#include "../math/static_modint.cpp"
+#include "../utility/affine_composite_monoid.cpp"
+#include "../utility/int_alias.cpp"
+#include "../traits/pair_monoid.cpp"
+#include "../traits/plus_monoid.cpp"
+#include "../utility/rep.cpp"
 
 using Fp = StaticModint<998244353>;
 
-struct Monoid {
-    static constexpr Monoid zero() {
-        return Monoid { Fp::raw(0), 0 };
-    }
-    Fp sum;
-    usize size;
-    constexpr Monoid operator + (const Monoid& other) const {
-        return Monoid { sum + other.sum, size + other.size };
+struct SumAffine {
+    using Monoid = PairMonoid<PlusMonoid<Fp>, PlusMonoid<usize>>;
+    using Effector = AffineCompositeMonoid<Fp>;
+    static constexpr std::pair<Fp, usize> operation(const std::pair<Fp, usize>& m, const Affine<Fp>& e) {
+        return {e.a * m.first + e.b * m.second, m.second};
     }
 };
-
-struct Effector {
-    static constexpr Effector one() {
-        return Effector { Fp::raw(1), Fp::raw(0) };
-    }
-    Fp a, b;
-    constexpr Effector operator * (const Effector& other) const {
-        return Effector { other.a * a, other.a * b + other.b };
-    }
-};
-
-constexpr Monoid operator * (const Monoid& m, const Effector& e) {
-    return Monoid { e.a * m.sum + e.b * Fp::raw(m.size), m.size };
-}
 
 int main() {
     usize N, Q;
     std::cin >> N >> Q;
-    std::vector<Monoid> initial(N, Monoid::zero());
-    for (const usize i: rep(0, N)) {
+    std::vector<std::pair<Fp, usize>> initial(N);
+    for (const usize i : rep(0, N)) {
         u32 a;
         std::cin >> a;
-        initial[i].sum = Fp::raw(a);
-        initial[i].size = 1;
+        initial[i] = {a, 1};
     }
-    LazySegmentTree<Monoid, Effector> seg(initial);
+    LazySegmentTree<SumAffine> seg(initial);
     while (Q--) {
         usize t;
         std::cin >> t;
@@ -51,12 +36,11 @@ int main() {
             std::cin >> l >> r;
             u32 b, c;
             std::cin >> b >> c;
-            seg.operate(l, r, Effector { Fp::raw(b), Fp::raw(c) });
-        }
-        else {
+            seg.operate(l, r, {Fp(b), Fp(c)});
+        } else {
             usize l, r;
             std::cin >> l >> r;
-            std::cout << seg.fold(l, r).sum << '\n';
+            std::cout << seg.fold(l, r).first << '\n';
         }
     }
     return 0;

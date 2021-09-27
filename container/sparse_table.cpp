@@ -5,31 +5,31 @@
 #include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
 
-template <class IdempotentMonoid> class SparseTable {
-    using M = IdempotentMonoid;
-    std::vector<std::vector<M>> table;
+template <class M> class SparseTable {
+    using T = typename M::Type;
+    std::vector<std::vector<T>> table;
 
   public:
-    SparseTable() : SparseTable(std::vector<M>()) {}
-    explicit SparseTable(const std::vector<M>& vec) {
+    SparseTable() : SparseTable(std::vector<T>()) {}
+    explicit SparseTable(const std::vector<T>& vec) {
         const auto size = vec.size();
         const auto height = bit_width(size);
         table.reserve(height);
         table.push_back(vec);
         for (const usize d : rep(1, height)) {
-            table.push_back(std::vector<M>(size - (1 << d) + 1, M::zero()));
+            table.push_back(std::vector<T>(size - (1 << d) + 1, M::identity()));
             for (const usize i : rep(0, table[d].size())) {
-                table[d][i] = table[d - 1][i] + table[d - 1][i + (1 << (d - 1))];
+                table[d][i] = M::operation(table[d - 1][i], table[d - 1][i + (1 << (d - 1))]);
             }
         }
     }
 
     usize size() const { return table[0].size(); }
 
-    M fold(const usize l, const usize r) const {
-        if (l == r) return M::zero();
+    T fold(const usize l, const usize r) const {
+        if (l == r) return M::identity();
         assert(l < r);
         const auto d = bit_width(r - l) - 1;
-        return table[d][l] + table[d][r - (1 << d)];
+        return M::operation(table[d][l], table[d][r - (1 << d)]);
     }
 };
