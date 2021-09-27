@@ -1,6 +1,6 @@
 #pragma once
 #include "../container/stack_aggregation.cpp"
-#include "../utility/reversed_monoid.cpp"
+#include "../traits/reversed_monoid.cpp"
 
 template <class M> class QueueAggregation {
     using T = typename M::Type;

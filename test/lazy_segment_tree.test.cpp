@@ -2,8 +2,8 @@
 #include "../container/lazy_segment_tree.cpp"
 #include <iostream>
 #include "../math/static_modint.cpp"
-#include "../utility/affine_composite_monoid.cpp"
 #include "../utility/int_alias.cpp"
+#include "../traits/affine_composite_monoid.cpp"
 #include "../traits/pair_monoid.cpp"
 #include "../traits/plus_monoid.cpp"
 #include "../utility/rep.cpp"
