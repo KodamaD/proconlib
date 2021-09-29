@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: algorithm
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algorithm/larsch.cpp
       title: algorithm/larsch.cpp
     - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: bit/bit_width.cpp
       title: bit/bit_width.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bit/ceil_log2.cpp
       title: bit/ceil_log2.cpp
     - icon: ':warning:'
@@ -55,7 +55,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: container/queue_aggregation.cpp
       title: container/queue_aggregation.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: container/segment_tree.cpp
       title: container/segment_tree.cpp
     - icon: ':heavy_check_mark:'
@@ -150,7 +150,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: traits/assign_monoid.cpp
       title: traits/assign_monoid.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: traits/max_monoid.cpp
       title: traits/max_monoid.cpp
     - icon: ':heavy_check_mark:'
@@ -185,10 +185,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/fast_io.cpp
       title: utility/fast_io.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/infty.cpp
       title: utility/infty.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
     - icon: ':heavy_check_mark:'
@@ -206,10 +206,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/rep.cpp
       title: utility/rep.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/revrep.cpp
       title: utility/revrep.cpp
     - icon: ':warning:'
@@ -251,7 +251,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/integer_hash_map.test.cpp
       title: test/integer_hash_map.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/larsch.test.cpp
       title: test/larsch.test.cpp
     - icon: ':heavy_check_mark:'
