@@ -6,6 +6,7 @@
 #include "../random/xorshift.cpp"
 #include "../utility/int_alias.cpp"
 #include "../utility/int_alias_extended.cpp"
+#include "../utility/rep.cpp"
 
 template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = nullptr> class IntegerHashMap {
     using TraitsK = std::allocator_traits<std::allocator<Key>>;
@@ -56,7 +57,7 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
         keys = TraitsK::allocate(alloc_k, mask + 1);
         values = TraitsV::allocate(alloc_v, mask + 1);
         std::memset(state, 128, mask + 1);
-        for (usize i = 0; i < old_len; i += 1) {
+        for (const usize i : rep(0, old_len)) {
             if (old_state[i] < 128) {
                 const usize k = find_nonfull(hash(static_cast<u64>(old_keys[i])));
                 state[k] = old_state[i];
@@ -82,7 +83,7 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
     ~IntegerHashMap() { clear(); }
     IntegerHashMap(const IntegerHashMap& other) noexcept : alloc_u(), alloc_k(), alloc_v() {
         reset_variables();
-        for (usize i = 0; i <= other.mask; i += 1)
+        for (const usize i : rep(0, other.mask + 1))
             if (other.state[i] < 128) insert(other.keys[i], other.values[i]);
     }
     IntegerHashMap(IntegerHashMap&& other) noexcept : alloc_u(), alloc_k(), alloc_v() {
@@ -98,7 +99,7 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
     IntegerHashMap& operator=(const IntegerHashMap& other) noexcept {
         if (this != &other) {
             clear();
-            for (usize i = 0; i <= other.mask; i += 1)
+            for (const usize i : rep(0, other.mask + 1))
                 if (other.state[i] < 128) insert(other.keys[i], other.values[i]);
         }
         return *this;
@@ -159,7 +160,7 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
 
     void clear() {
         if (initialized()) {
-            for (usize i = 0; i <= mask; i += 1)
+            for (const usize i : rep(0, mask + 1))
                 if (state[i] < 128) TraitsV::destroy(alloc_v, values + i);
             TraitsK::deallocate(alloc_k, keys, mask + 1);
             TraitsV::deallocate(alloc_v, values, mask + 1);
