@@ -3,6 +3,9 @@ data:
   libraryCategories:
   - name: algorithm
     pages:
+    - icon: ':x:'
+      path: algorithm/larsch.cpp
+      title: algorithm/larsch.cpp
     - icon: ':warning:'
       path: algorithm/monotone_minima.cpp
       title: algorithm/monotone_minima.cpp
@@ -26,7 +29,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: bit/bit_width.cpp
       title: bit/bit_width.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: bit/ceil_log2.cpp
       title: bit/ceil_log2.cpp
     - icon: ':warning:'
@@ -52,7 +55,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: container/queue_aggregation.cpp
       title: container/queue_aggregation.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: container/segment_tree.cpp
       title: container/segment_tree.cpp
     - icon: ':heavy_check_mark:'
@@ -147,7 +150,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: traits/assign_monoid.cpp
       title: traits/assign_monoid.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: traits/max_monoid.cpp
       title: traits/max_monoid.cpp
     - icon: ':heavy_check_mark:'
@@ -182,10 +185,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/fast_io.cpp
       title: utility/fast_io.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/infty.cpp
       title: utility/infty.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
     - icon: ':heavy_check_mark:'
@@ -203,10 +206,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/rep.cpp
       title: utility/rep.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/revrep.cpp
       title: utility/revrep.cpp
     - icon: ':warning:'
@@ -248,6 +251,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/integer_hash_map.test.cpp
       title: test/integer_hash_map.test.cpp
+    - icon: ':x:'
+      path: test/larsch.test.cpp
+      title: test/larsch.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/lazy_segment_tree.test.cpp
       title: test/lazy_segment_tree.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fast_io.test.cpp
     title: test/fast_io.test.cpp
+  - icon: ':x:'
+    path: test/larsch.test.cpp
+    title: test/larsch.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
@@ -36,9 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segment_tree_beats.test.cpp
     title: test/segment_tree_beats.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/revrep.cpp\"\n#include <algorithm>\n#line 2 \"utility/int_alias.cpp\"\
@@ -75,13 +78,14 @@ data:
   - container/lazy_segment_tree.cpp
   - container/segment_tree.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/dual_segment_tree.test.cpp
   - test/segment_tree_beats.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/segment_tree.test.cpp
   - test/fast_io.test.cpp
+  - test/larsch.test.cpp
 documentation_of: utility/revrep.cpp
 layout: document
 redirect_from:

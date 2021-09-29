@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -15,12 +15,15 @@ data:
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
   - icon: ':heavy_check_mark:'
+    path: container/integer_hash_map.cpp
+    title: container/integer_hash_map.cpp
+  - icon: ':heavy_check_mark:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
   - icon: ':heavy_check_mark:'
     path: container/polynomial_hash.cpp
     title: container/polynomial_hash.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -64,6 +67,12 @@ data:
     path: test/fenwick_tree.test.cpp
     title: test/fenwick_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/integer_hash_map.test.cpp
+    title: test/integer_hash_map.test.cpp
+  - icon: ':x:'
+    path: test/larsch.test.cpp
+    title: test/larsch.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,9 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n#line 2 \"utility/int_alias.cpp\"\
@@ -142,6 +151,7 @@ data:
   - container/dual_segment_tree.cpp
   - container/sparse_table.cpp
   - container/segment_tree_beats.cpp
+  - container/integer_hash_map.cpp
   - container/polynomial_hash.cpp
   - container/lazy_segment_tree.cpp
   - container/segment_tree.cpp
@@ -151,7 +161,7 @@ data:
   - math/modint_util.cpp
   - math/semiring_matrix.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/bipartite_matching.test.cpp
   - test/primal_dual_mincostflow.test.cpp
@@ -169,7 +179,9 @@ data:
   - test/fenwick_tree.test.cpp
   - test/sparse_table.test.cpp
   - test/primal_dual_maxflow.test.cpp
+  - test/integer_hash_map.test.cpp
   - test/fast_io.test.cpp
+  - test/larsch.test.cpp
 documentation_of: utility/rep.cpp
 layout: document
 redirect_from:

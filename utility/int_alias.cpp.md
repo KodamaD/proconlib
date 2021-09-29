@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: algorithm/larsch.cpp
+    title: algorithm/larsch.cpp
   - icon: ':warning:'
     path: algorithm/monotone_minima.cpp
     title: algorithm/monotone_minima.cpp
@@ -23,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: bit/bit_width.cpp
     title: bit/bit_width.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
   - icon: ':warning:'
@@ -44,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/polynomial_hash.cpp
     title: container/polynomial_hash.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -119,10 +122,10 @@ data:
   - icon: ':warning:'
     path: utility/permutations.cpp
     title: utility/permutations.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   - icon: ':warning:'
@@ -153,6 +156,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/integer_hash_map.test.cpp
     title: test/integer_hash_map.test.cpp
+  - icon: ':x:'
+    path: test/larsch.test.cpp
+    title: test/larsch.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
@@ -198,9 +204,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 2 "utility/int_alias.cpp"
@@ -279,6 +285,7 @@ data:
   - container/lazy_segment_tree.cpp
   - container/segment_tree.cpp
   - algorithm/monotone_minima.cpp
+  - algorithm/larsch.cpp
   - algorithm/smawk.cpp
   - random/rand_int.cpp
   - random/xorshift.cpp
@@ -291,7 +298,7 @@ data:
   - math/semiring_matrix.cpp
   - math/divisors_from_factors.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/bipartite_matching.test.cpp
   - test/primal_dual_mincostflow.test.cpp
@@ -315,6 +322,7 @@ data:
   - test/primal_dual_maxflow.test.cpp
   - test/integer_hash_map.test.cpp
   - test/fast_io.test.cpp
+  - test/larsch.test.cpp
 documentation_of: utility/int_alias.cpp
 layout: document
 redirect_from:
