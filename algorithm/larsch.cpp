@@ -52,7 +52,9 @@ class LARSCH {
         ReduceRow rec;
 
         explicit ReduceCol(const usize n_, const Select& f_)
-            : n(n_), m(0), x(0), y(0), c(), f(f_), rec(n_, [&](usize i, usize j, usize k) { return f(i, c[j], c[k]); }) {}
+            : n(n_), m(0), x(0), y(0), c(), f(f_), rec(n_, [&](usize i, usize j, usize k) {
+                  return f(i, c[j], c[k]);
+              }) {}
 
         void add_column() {
             while (true) {

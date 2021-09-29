@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/challenges/search/titles/3086"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/challenges/sources/UOA/UAPC/3086?year=2020"
 #include "../algorithm/larsch.cpp"
 #include "../container/segment_tree.cpp"
 #include "../traits/max_monoid.cpp"
