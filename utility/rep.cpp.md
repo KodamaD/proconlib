@@ -5,12 +5,30 @@ data:
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: algorithm/and_convolution.cpp
+    title: algorithm/and_convolution.cpp
   - icon: ':warning:'
     path: algorithm/monotone_minima.cpp
     title: algorithm/monotone_minima.cpp
   - icon: ':warning:'
+    path: algorithm/or_convolution.cpp
+    title: algorithm/or_convolution.cpp
+  - icon: ':warning:'
     path: algorithm/smawk.cpp
     title: algorithm/smawk.cpp
+  - icon: ':warning:'
+    path: algorithm/subset_mobius_transform.cpp
+    title: algorithm/subset_mobius_transform.cpp
+  - icon: ':warning:'
+    path: algorithm/subset_zeta_transform.cpp
+    title: algorithm/subset_zeta_transform.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/superset_mobius_transform.cpp
+    title: algorithm/superset_mobius_transform.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/superset_zeta_transform.cpp
+    title: algorithm/superset_zeta_transform.cpp
   - icon: ':heavy_check_mark:'
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
@@ -54,6 +72,9 @@ data:
     path: utility/fast_io.cpp
     title: utility/fast_io.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/and_convolution.test.cpp
+    title: test/and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/bipartite_matching.test.cpp
     title: test/bipartite_matching.test.cpp
@@ -111,6 +132,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/z_algorithm.test.cpp
+    title: test/z_algorithm.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -155,7 +179,13 @@ data:
   - container/polynomial_hash.cpp
   - container/lazy_segment_tree.cpp
   - container/segment_tree.cpp
+  - algorithm/subset_zeta_transform.cpp
+  - algorithm/superset_zeta_transform.cpp
+  - algorithm/subset_mobius_transform.cpp
+  - algorithm/and_convolution.cpp
   - algorithm/monotone_minima.cpp
+  - algorithm/or_convolution.cpp
+  - algorithm/superset_mobius_transform.cpp
   - algorithm/smawk.cpp
   - math/prime_sieve.cpp
   - math/modint_util.cpp
@@ -178,7 +208,9 @@ data:
   - test/strongly_connected_components.test.cpp
   - test/fenwick_tree.test.cpp
   - test/sparse_table.test.cpp
+  - test/and_convolution.test.cpp
   - test/primal_dual_maxflow.test.cpp
+  - test/z_algorithm.test.cpp
   - test/integer_hash_map.test.cpp
   - test/fast_io.test.cpp
   - test/larsch.test.cpp

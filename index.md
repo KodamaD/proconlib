@@ -4,14 +4,35 @@ data:
   - name: algorithm
     pages:
     - icon: ':heavy_check_mark:'
+      path: algorithm/and_convolution.cpp
+      title: algorithm/and_convolution.cpp
+    - icon: ':heavy_check_mark:'
       path: algorithm/larsch.cpp
       title: algorithm/larsch.cpp
     - icon: ':warning:'
       path: algorithm/monotone_minima.cpp
       title: algorithm/monotone_minima.cpp
     - icon: ':warning:'
+      path: algorithm/or_convolution.cpp
+      title: algorithm/or_convolution.cpp
+    - icon: ':warning:'
       path: algorithm/smawk.cpp
       title: algorithm/smawk.cpp
+    - icon: ':warning:'
+      path: algorithm/subset_mobius_transform.cpp
+      title: algorithm/subset_mobius_transform.cpp
+    - icon: ':warning:'
+      path: algorithm/subset_zeta_transform.cpp
+      title: algorithm/subset_zeta_transform.cpp
+    - icon: ':heavy_check_mark:'
+      path: algorithm/superset_mobius_transform.cpp
+      title: algorithm/superset_mobius_transform.cpp
+    - icon: ':heavy_check_mark:'
+      path: algorithm/superset_zeta_transform.cpp
+      title: algorithm/superset_zeta_transform.cpp
+    - icon: ':heavy_check_mark:'
+      path: algorithm/z_algorithm.cpp
+      title: algorithm/z_algorithm.cpp
   - name: bit
     pages:
     - icon: ':heavy_check_mark:'
@@ -228,6 +249,9 @@ data:
   - name: test
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/and_convolution.test.cpp
+      title: test/and_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/auto_memoize.test.cpp
       title: test/auto_memoize.test.cpp
     - icon: ':heavy_check_mark:'
@@ -299,5 +323,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/union_find.test.cpp
       title: test/union_find.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/z_algorithm.test.cpp
+      title: test/z_algorithm.test.cpp
 layout: toppage
 ---

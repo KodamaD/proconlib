@@ -13,6 +13,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/and_convolution.test.cpp
+    title: test/and_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -130,6 +133,7 @@ data:
   - test/lazy_segment_tree.test.cpp
   - test/semiring_matrix.test.cpp
   - test/segment_tree.test.cpp
+  - test/and_convolution.test.cpp
 documentation_of: math/static_modint.cpp
 layout: document
 redirect_from:
