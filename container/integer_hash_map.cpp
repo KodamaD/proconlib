@@ -5,19 +5,18 @@
 #include <utility>
 #include "../random/xorshift.cpp"
 #include "../utility/int_alias.cpp"
-#include "../utility/int_alias_extended.cpp"
 #include "../utility/rep.cpp"
 
 template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = nullptr> class IntegerHashMap {
     using TraitsK = std::allocator_traits<std::allocator<Key>>;
     using TraitsV = std::allocator_traits<std::allocator<Value>>;
-    using TraitsU = std::allocator_traits<std::allocator<u8>>;
+    using TraitsU = std::allocator_traits<std::allocator<char>>;
 
     usize full, del, logn, mask;
-    u8* state;
+    char* state;
     Key* keys;
     Value* values;
-    std::allocator<u8> alloc_u;
+    std::allocator<char> alloc_u;
     std::allocator<Key> alloc_k;
     std::allocator<Value> alloc_v;
 
@@ -29,15 +28,15 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
         return (key * 11400714819323198485ull) >> (64 - logn);
     }
     usize find_key(const Key& key, usize i) const {
-        while (state[i] != 128) {
-            if (state[i] < 128 && keys[i] == key) return i;
+        while (state[i] != 0) {
+            if (state[i] > 1 && keys[i] == key) return i;
             i += 1;
             i &= mask;
         }
         return i;
     }
     usize find_nonfull(usize i) const {
-        while (state[i] < 128) {
+        while (state[i] > 1) {
             i += 1;
             i &= mask;
         }
@@ -45,7 +44,7 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
     }
 
     void resize() {
-        u8* old_state = state;
+        char* old_state = state;
         Key* old_keys = keys;
         Value* old_values = values;
         const usize old_len = (!initialized() ? 0 : mask + 1);
@@ -56,9 +55,9 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
         state = TraitsU::allocate(alloc_u, mask + 1);
         keys = TraitsK::allocate(alloc_k, mask + 1);
         values = TraitsV::allocate(alloc_v, mask + 1);
-        std::memset(state, 128, mask + 1);
+        std::memset(state, 0, mask + 1);
         for (const usize i : rep(0, old_len)) {
-            if (old_state[i] < 128) {
+            if (old_state[i] > 1) {
                 const usize k = find_nonfull(hash(static_cast<u64>(old_keys[i])));
                 state[k] = old_state[i];
                 keys[k] = old_keys[i];
@@ -84,7 +83,7 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
     IntegerHashMap(const IntegerHashMap& other) noexcept : alloc_u(), alloc_k(), alloc_v() {
         reset_variables();
         for (const usize i : rep(0, other.mask + 1))
-            if (other.state[i] < 128) insert(other.keys[i], other.values[i]);
+            if (other.state[i] > 1) insert(other.keys[i], other.values[i]);
     }
     IntegerHashMap(IntegerHashMap&& other) noexcept : alloc_u(), alloc_k(), alloc_v() {
         full = std::exchange(other.full, 0);
@@ -100,7 +99,7 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
         if (this != &other) {
             clear();
             for (const usize i : rep(0, other.mask + 1))
-                if (other.state[i] < 128) insert(other.keys[i], other.values[i]);
+                if (other.state[i] > 1) insert(other.keys[i], other.values[i]);
         }
         return *this;
     }
@@ -122,15 +121,15 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
         if (!initialized()) resize();
         const usize pos = hash(static_cast<u64>(key));
         usize i = find_key(key, pos);
-        if (state[i] == 128) {
+        if (state[i] == 0) {
             i = find_nonfull(pos);
             full += 1;
-            del -= (state[i] == 129);
+            del -= (state[i] == 1);
             if (2 * (full + del) > mask + 1) {
                 resize();
                 i = find_nonfull(hash(static_cast<u64>(key)));
             }
-            state[i] = 0;
+            state[i] = 2;
             keys[i] = key;
             TraitsV::construct(alloc_v, values + i, std::forward<Args>(args)...);
             return std::make_pair(values + i, true);
@@ -141,10 +140,10 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
     bool erase(const Key& key) {
         if (empty()) return false;
         const usize i = find_key(key, hash(static_cast<u64>(key)));
-        if (state[i] != 128) {
+        if (state[i] != 0) {
             full -= 1;
             del += 1;
-            state[i] = 129;
+            state[i] = 1;
             TraitsV::destroy(alloc_v, values + i);
             if (8 * full <= mask) resize();
             return true;
@@ -155,13 +154,13 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
     Value* find(const Key& key) const {
         if (empty()) return nullptr;
         const usize i = find_key(key, hash(static_cast<u64>(key)));
-        return state[i] == 128 ? nullptr : (values + i);
+        return state[i] == 0 ? nullptr : (values + i);
     }
 
     void clear() {
         if (initialized()) {
             for (const usize i : rep(0, mask + 1))
-                if (state[i] < 128) TraitsV::destroy(alloc_v, values + i);
+                if (state[i] > 1) TraitsV::destroy(alloc_v, values + i);
             TraitsK::deallocate(alloc_k, keys, mask + 1);
             TraitsV::deallocate(alloc_v, values, mask + 1);
             TraitsU::deallocate(alloc_u, state, mask + 1);
@@ -182,7 +181,7 @@ template <class Key, class Value, std::enable_if_t<std::is_integral_v<Key>>* = n
 
         explicit Iter(const usize i, IntegerHashMap* m) : idx(i), map(m) { step(); }
         void step() {
-            while (idx <= map->mask and map->state[idx] >= 128) idx += 1;
+            while (idx <= map->mask and map->state[idx] < 2) idx += 1;
         }
 
       public:
