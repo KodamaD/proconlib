@@ -44,15 +44,15 @@ data:
   isVerificationFile: false
   path: utility/rec_lambda.cpp
   requiredBy:
-  - graph/strongly_connected_components.cpp
-  - graph/dinic.cpp
   - math/divisors_from_factors.cpp
+  - graph/dinic.cpp
+  - graph/strongly_connected_components.cpp
   timestamp: '2021-09-04 17:30:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/bipartite_matching.test.cpp
   - test/rollback_union_find.test.cpp
   - test/strongly_connected_components.test.cpp
+  - test/bipartite_matching.test.cpp
 documentation_of: utility/rec_lambda.cpp
 layout: document
 redirect_from:

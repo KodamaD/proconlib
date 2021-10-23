@@ -129,11 +129,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_util.test.cpp
-  - test/queue_aggregation.test.cpp
   - test/lazy_segment_tree.test.cpp
+  - test/and_convolution.test.cpp
   - test/semiring_matrix.test.cpp
   - test/segment_tree.test.cpp
-  - test/and_convolution.test.cpp
+  - test/queue_aggregation.test.cpp
 documentation_of: math/static_modint.cpp
 layout: document
 redirect_from:

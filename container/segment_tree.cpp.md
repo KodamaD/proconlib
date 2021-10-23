@@ -139,8 +139,8 @@ data:
   timestamp: '2021-09-27 22:23:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/segment_tree.test.cpp
   - test/larsch.test.cpp
+  - test/segment_tree.test.cpp
 documentation_of: container/segment_tree.cpp
 layout: document
 redirect_from:

@@ -63,15 +63,15 @@ data:
   isVerificationFile: false
   path: utility/auto_realloc.cpp
   requiredBy:
-  - container/polynomial_hash.cpp
-  - math/prime_sieve.cpp
   - math/modint_util.cpp
+  - math/prime_sieve.cpp
+  - container/polynomial_hash.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/prime_sieve.test.cpp
   - test/modint_util.test.cpp
   - test/polynomial_hash.test.cpp
+  - test/prime_sieve.test.cpp
 documentation_of: utility/auto_realloc.cpp
 layout: document
 redirect_from:

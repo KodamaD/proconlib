@@ -73,19 +73,19 @@ data:
   path: utility/revrep.cpp
   requiredBy:
   - utility/fast_io.cpp
-  - container/dual_segment_tree.cpp
   - container/segment_tree_beats.cpp
-  - container/lazy_segment_tree.cpp
   - container/segment_tree.cpp
+  - container/lazy_segment_tree.cpp
+  - container/dual_segment_tree.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/dual_segment_tree.test.cpp
-  - test/segment_tree_beats.test.cpp
   - test/lazy_segment_tree.test.cpp
+  - test/dual_segment_tree.test.cpp
+  - test/larsch.test.cpp
+  - test/segment_tree_beats.test.cpp
   - test/segment_tree.test.cpp
   - test/fast_io.test.cpp
-  - test/larsch.test.cpp
 documentation_of: utility/revrep.cpp
 layout: document
 redirect_from:

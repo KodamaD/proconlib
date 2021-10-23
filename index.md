@@ -65,8 +65,8 @@ data:
       path: container/fenwick_tree.cpp
       title: container/fenwick_tree.cpp
     - icon: ':heavy_check_mark:'
-      path: container/integer_hash_map.cpp
-      title: container/integer_hash_map.cpp
+      path: container/integer_hash_table.cpp
+      title: container/integer_hash_table.cpp
     - icon: ':heavy_check_mark:'
       path: container/lazy_segment_tree.cpp
       title: container/lazy_segment_tree.cpp
@@ -157,9 +157,21 @@ data:
       title: math/totient.cpp
   - name: random
     pages:
+    - icon: ':warning:'
+      path: random/rand_bool.cpp
+      title: random/rand_bool.cpp
     - icon: ':heavy_check_mark:'
       path: random/rand_int.cpp
       title: random/rand_int.cpp
+    - icon: ':warning:'
+      path: random/rand_perm.cpp
+      title: random/rand_perm.cpp
+    - icon: ':warning:'
+      path: random/rand_real.cpp
+      title: random/rand_real.cpp
+    - icon: ':warning:'
+      path: random/shuffle_vec.cpp
+      title: random/shuffle_vec.cpp
     - icon: ':heavy_check_mark:'
       path: random/xorshift.cpp
       title: random/xorshift.cpp
@@ -207,6 +219,9 @@ data:
       path: utility/fast_io.cpp
       title: utility/fast_io.cpp
     - icon: ':heavy_check_mark:'
+      path: utility/index_offset.cpp
+      title: utility/index_offset.cpp
+    - icon: ':heavy_check_mark:'
       path: utility/infty.cpp
       title: utility/infty.cpp
     - icon: ':heavy_check_mark:'
@@ -233,6 +248,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/revrep.cpp
       title: utility/revrep.cpp
+    - icon: ':warning:'
+      path: utility/scan.cpp
+      title: utility/scan.cpp
     - icon: ':warning:'
       path: utility/setmax.cpp
       title: utility/setmax.cpp
@@ -273,8 +291,11 @@ data:
       path: test/fenwick_tree.test.cpp
       title: test/fenwick_tree.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/integer_hash_map.test.cpp
-      title: test/integer_hash_map.test.cpp
+      path: test/integer_hash_table.test.cpp
+      title: test/integer_hash_table.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/integer_hash_table_verbose.test.cpp
+      title: test/integer_hash_table_verbose.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/larsch.test.cpp
       title: test/larsch.test.cpp

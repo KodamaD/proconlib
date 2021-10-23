@@ -62,21 +62,21 @@ data:
   isVerificationFile: false
   path: math/rem_euclid.cpp
   requiredBy:
-  - math/mod_inv.cpp
-  - math/inv_gcd.cpp
-  - math/dynamic_modint.cpp
-  - math/static_modint.cpp
   - math/primitive_root.cpp
   - math/mod_pow.cpp
+  - math/inv_gcd.cpp
+  - math/static_modint.cpp
+  - math/dynamic_modint.cpp
+  - math/mod_inv.cpp
   timestamp: '2021-09-04 17:30:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_util.test.cpp
-  - test/queue_aggregation.test.cpp
   - test/lazy_segment_tree.test.cpp
+  - test/and_convolution.test.cpp
   - test/semiring_matrix.test.cpp
   - test/segment_tree.test.cpp
-  - test/and_convolution.test.cpp
+  - test/queue_aggregation.test.cpp
 documentation_of: math/rem_euclid.cpp
 layout: document
 redirect_from:
