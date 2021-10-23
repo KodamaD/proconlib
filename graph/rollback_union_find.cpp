@@ -1,13 +1,12 @@
 #pragma once
 #include <cassert>
-#include <stack>
 #include <utility>
 #include <vector>
 #include "../utility/int_alias.cpp"
 
 class RollbackUnionFind {
     std::vector<usize> data;
-    std::stack<std::pair<usize, usize>> history;
+    std::vector<std::pair<usize, usize>> history;
 
   public:
     explicit RollbackUnionFind(const usize size = 0) : data(size, -1), history() {}
@@ -32,8 +31,8 @@ class RollbackUnionFind {
         v = leader(v);
         if (u == v) return std::make_pair(u, false);
         if (data[u] > data[v]) std::swap(u, v);
-        history.emplace(u, data[u]);
-        history.emplace(v, data[v]);
+        history.emplace_back(u, data[u]);
+        history.emplace_back(v, data[v]);
         data[u] += data[v];
         data[v] = u;
         return std::make_pair(u, true);
@@ -48,8 +47,8 @@ class RollbackUnionFind {
     void rollback(const usize steps) {
         assert(2 * steps <= history.size());
         for (usize i = 2 * steps; i > 0; --i) {
-            const auto [k, x] = history.top();
-            history.pop();
+            const auto [k, x] = history.back();
+            history.pop_back();
             data[k] = x;
         }
     }

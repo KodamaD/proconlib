@@ -4,6 +4,7 @@
 #include <type_traits>
 #include <utility>
 #include <vector>
+#include "../utility/index_offset.cpp"
 #include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
 #include "../utility/setmin.cpp"
@@ -47,23 +48,6 @@ class PrimalDual {
         Cost cost() const { return edge().cost; }
     };
 
-    class Vertices {
-        friend class PrimalDual;
-        usize offset, len;
-        explicit Vertices(const usize o, const usize l) : offset(o), len(l) {}
-
-      public:
-        Vertices() : offset(0), len(0) {}
-        usize operator[](const usize i) const {
-            assert(i < len);
-            return offset + i;
-        }
-        usize to_idx(const usize i) const {
-            assert(offset <= i and i < offset + len);
-            return i - offset;
-        }
-    };
-
     usize size() const { return graph.size(); }
 
     usize add_vertex() {
@@ -71,8 +55,8 @@ class PrimalDual {
         gap.emplace_back();
         return size() - 1;
     }
-    Vertices add_vertices(usize n) {
-        Vertices ret{size(), n};
+    IndexOffset add_vertices(usize n) {
+        IndexOffset ret(size(), n);
         while (n--) {
             graph.emplace_back();
             gap.emplace_back();

@@ -5,6 +5,7 @@
 #include <queue>
 #include <type_traits>
 #include <vector>
+#include "../utility/index_offset.cpp"
 #include "../utility/int_alias.cpp"
 #include "../utility/rec_lambda.cpp"
 
@@ -38,31 +39,14 @@ template <class Flow, std::enable_if_t<std::is_integral_v<Flow>>* = nullptr> cla
         Flow cap() const { return edge().cap + rev_edge().cap; }
     };
 
-    class Vertices {
-        friend class Dinic;
-        usize offset, len;
-        explicit Vertices(const usize o, const usize l) : offset(o), len(l) {}
-
-      public:
-        Vertices() : offset(0), len(0) {}
-        usize operator[](const usize i) const {
-            assert(i < len);
-            return offset + i;
-        }
-        usize to_idx(const usize i) const {
-            assert(offset <= i and i < offset + len);
-            return i - offset;
-        }
-    };
-
     usize size() const { return graph.size(); }
 
     usize add_vertex() {
         graph.emplace_back();
         return size() - 1;
     }
-    Vertices add_vertices(usize n) {
-        Vertices ret{size(), n};
+    IndexOffset add_vertices(usize n) {
+        IndexOffset ret(size(), n);
         while (n--) graph.emplace_back();
         return ret;
     }
