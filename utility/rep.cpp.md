@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
   - icon: ':heavy_check_mark:'
@@ -88,6 +88,9 @@ data:
     path: test/fenwick_tree.test.cpp
     title: test/fenwick_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/heavy_light_decomposition.test.cpp
+    title: test/heavy_light_decomposition.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/integer_hash_table.test.cpp
     title: test/integer_hash_table.test.cpp
   - icon: ':heavy_check_mark:'
@@ -126,7 +129,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
   - icon: ':heavy_check_mark:'
@@ -138,9 +141,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/z_algorithm.test.cpp
     title: test/z_algorithm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n#line 2 \"utility/int_alias.cpp\"\
@@ -194,7 +197,7 @@ data:
   - algorithm/or_convolution.cpp
   - algorithm/and_convolution.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/modint_util.test.cpp
   - test/lazy_segment_tree.test.cpp
@@ -213,6 +216,7 @@ data:
   - test/z_algorithm.test.cpp
   - test/polynomial_hash.test.cpp
   - test/integer_hash_table.test.cpp
+  - test/heavy_light_decomposition.test.cpp
   - test/segment_tree.test.cpp
   - test/prime_sieve.test.cpp
   - test/fast_io.test.cpp

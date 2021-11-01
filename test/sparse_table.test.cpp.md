@@ -1,32 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bit/bit_lzeros.cpp
     title: bit/bit_lzeros.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bit/bit_width.cpp
     title: bit/bit_width.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: traits/min_monoid.cpp
     title: traits/min_monoid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: traits/optional_monoid.cpp
+    title: traits/optional_monoid.cpp
+  - icon: ':question:'
     path: utility/infty.cpp
     title: utility/infty.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -46,15 +49,20 @@ data:
     \ last(std::max(first, last)) {}\n    constexpr Iter begin() const noexcept {\
     \ return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
     };\n#line 2 \"utility/infty.cpp\"\n#include <limits>\n\ntemplate <class T, T Div\
-    \ = 2> constexpr T INFTY = std::numeric_limits<T>::max() / Div;\n#line 2 \"traits/min_monoid.cpp\"\
-    \n#include <functional>\n#line 4 \"traits/min_monoid.cpp\"\n\ntemplate <class\
-    \ T> struct MinMonoid {\n    using Type = T;\n    static constexpr T identity()\
-    \ { return std::numeric_limits<T>::max(); }\n    static constexpr T operation(const\
-    \ T& l, const T& r) { return std::min(l, r); }\n};\n#line 2 \"container/sparse_table.cpp\"\
-    \n#include <cassert>\n#include <vector>\n#line 3 \"bit/bit_lzeros.cpp\"\n\n__attribute__((target(\"\
-    avx2\"))) constexpr u64 bit_lzeros(const u64 x) { return x == 0 ? 64 : __builtin_clzll(x);\
-    \ }\n#line 4 \"bit/bit_width.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr\
-    \ u64 bit_width(const u64 x) { return 64 - bit_lzeros(x); }\n#line 7 \"container/sparse_table.cpp\"\
+    \ = 2> constexpr T INFTY = std::numeric_limits<T>::max() / Div;\n#line 2 \"traits/optional_monoid.cpp\"\
+    \n#include <optional>\n#include <utility>\n\ntemplate <class S> struct OptionalMonoid\
+    \ {\n    using Type = std::optional<typename S::Type>;\n    static constexpr Type\
+    \ identity() { return std::nullopt; }\n    static constexpr Type operation(const\
+    \ Type& l, const Type& r) {\n        if (!l) return r;\n        if (!r) return\
+    \ l;\n        return Type(std::in_place, S::operation(*l, *r));\n    }\n};\n#line\
+    \ 4 \"traits/min_monoid.cpp\"\n\ntemplate <class T> struct MinSemiGroup {\n  \
+    \  using Type = T;\n    static constexpr T operation(const T& l, const T& r) {\
+    \ return std::min(l, r); }\n};\n\ntemplate <class T> using MinMonoid = OptionalMonoid<MinSemiGroup<T>>;\n\
+    #line 2 \"container/sparse_table.cpp\"\n#include <cassert>\n#include <vector>\n\
+    #line 3 \"bit/bit_lzeros.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr\
+    \ u64 bit_lzeros(const u64 x) { return x == 0 ? 64 : __builtin_clzll(x); }\n#line\
+    \ 4 \"bit/bit_width.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr u64 bit_width(const\
+    \ u64 x) { return 64 - bit_lzeros(x); }\n#line 7 \"container/sparse_table.cpp\"\
     \n\ntemplate <class M> class SparseTable {\n    using T = typename M::Type;\n\
     \    std::vector<std::vector<T>> table;\n\n  public:\n    SparseTable() : SparseTable(std::vector<T>())\
     \ {}\n    explicit SparseTable(const std::vector<T>& vec) {\n        const auto\
@@ -86,14 +94,15 @@ data:
   - utility/rep.cpp
   - utility/infty.cpp
   - traits/min_monoid.cpp
+  - traits/optional_monoid.cpp
   - container/sparse_table.cpp
   - bit/bit_width.cpp
   - bit/bit_lzeros.cpp
   isVerificationFile: true
   path: test/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2021-09-27 22:23:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-11-01 18:27:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/sparse_table.test.cpp
 layout: document

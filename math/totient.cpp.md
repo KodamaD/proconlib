@@ -10,6 +10,9 @@ data:
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/heavy_light_decomposition.test.cpp
+    title: test/heavy_light_decomposition.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -55,6 +58,7 @@ data:
   - test/and_convolution.test.cpp
   - test/totient.test.cpp
   - test/semiring_matrix.test.cpp
+  - test/heavy_light_decomposition.test.cpp
   - test/segment_tree.test.cpp
   - test/queue_aggregation.test.cpp
 documentation_of: math/totient.cpp

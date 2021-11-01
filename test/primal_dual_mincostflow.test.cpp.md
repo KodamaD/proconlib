@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -83,23 +83,23 @@ data:
     \ std::vector<Cost>& p) {\n        assert(p.size() == size());\n        potential\
     \ = p;\n    }\n\n    template <class Result = Cost> std::pair<Result, bool> solve_bflow()\
     \ {\n        potential.resize(size(), 0);\n        for (const usize u : rep(0,\
-    \ size())) {\n            for (Edge& e : graph[u]) {\n                if (e.cap\
-    \ < 0 or e.cost + potential[u] - potential[e.dst] < 0) {\n                   \
-    \ e.flow += e.cap;\n                    graph[e.dst][e.rev].flow -= e.cap;\n \
-    \                   gap[u] -= e.cap;\n                    gap[e.dst] += e.cap;\n\
-    \                }\n            }\n        }\n        std::vector<usize> over,\
-    \ lack;\n        for (const usize u : rep(0, size())) {\n            if (gap[u]\
-    \ > 0) over.push_back(u);\n            if (gap[u] < 0) lack.push_back(u);\n  \
-    \      }\n        struct State {\n            Cost cost;\n            usize vertex;\n\
-    \            bool operator<(const State& other) const { return cost > other.cost;\
-    \ }\n        };\n        std::vector<State> heap;\n        std::vector<Edge*>\
-    \ parent;\n        std::vector<usize> que_min;\n        std::vector<Cost> dist;\n\
-    \        std::vector<char> seen;\n        Cost farthest;\n        const auto dual\
-    \ = [&] {\n            over.erase(std::remove_if(over.begin(), over.end(), [&](const\
-    \ usize u) { return gap[u] <= 0; }),\n                       over.end());\n  \
-    \          lack.erase(std::remove_if(lack.begin(), lack.end(), [&](const usize\
-    \ u) { return gap[u] >= 0; }),\n                       lack.end());\n        \
-    \    if (over.empty() or lack.empty()) return false;\n            dist.assign(size(),\
+    \ size())) {\n            for (Edge& e : graph[u]) {\n                if (e.flow\
+    \ > e.cap or e.cost + potential[u] - potential[e.dst] < 0) {\n               \
+    \     const Flow dif = e.cap - e.flow;\n                    e.flow += dif;\n \
+    \                   graph[e.dst][e.rev].flow -= dif;\n                    gap[u]\
+    \ -= dif;\n                    gap[e.dst] += dif;\n                }\n       \
+    \     }\n        }\n        std::vector<usize> over, lack;\n        for (const\
+    \ usize u : rep(0, size())) {\n            if (gap[u] > 0) over.push_back(u);\n\
+    \            if (gap[u] < 0) lack.push_back(u);\n        }\n        struct State\
+    \ {\n            Cost cost;\n            usize vertex;\n            bool operator<(const\
+    \ State& other) const { return cost > other.cost; }\n        };\n        std::vector<State>\
+    \ heap;\n        std::vector<Edge*> parent;\n        std::vector<usize> que_min;\n\
+    \        std::vector<Cost> dist;\n        std::vector<char> seen;\n        Cost\
+    \ farthest;\n        const auto dual = [&] {\n            over.erase(std::remove_if(over.begin(),\
+    \ over.end(), [&](const usize u) { return gap[u] <= 0; }),\n                 \
+    \      over.end());\n            lack.erase(std::remove_if(lack.begin(), lack.end(),\
+    \ [&](const usize u) { return gap[u] >= 0; }),\n                       lack.end());\n\
+    \            if (over.empty() or lack.empty()) return false;\n            dist.assign(size(),\
     \ std::numeric_limits<Cost>::max());\n            parent.assign(size(), nullptr);\n\
     \            seen.assign(size(), false);\n            que_min.clear();\n     \
     \       heap.clear();\n            usize heap_size = 0, lack_cnt = 0;\n      \
@@ -117,7 +117,7 @@ data:
     \                if (gap[u] < 0) {\n                    lack_cnt += 1;\n     \
     \               if (lack_cnt == lack.size()) break;\n                }\n     \
     \           for (const usize i : rep(0, graph[u].size())) {\n                \
-    \    const Edge& e = graph[u][i];\n                    if (e.flow == e.cap) continue;\n\
+    \    const Edge& e = graph[u][i];\n                    if (e.flow >= e.cap) continue;\n\
     \                    const usize v = e.dst;\n                    if (setmin(dist[v],\
     \ dist[u] + e.cost + potential[u] - potential[v])) {\n                       \
     \ parent[v] = &graph[e.dst][e.rev];\n                        if (dist[v] == dist[u])\
@@ -133,7 +133,7 @@ data:
     \        const Edge& e = graph[parent[u]->dst][parent[u]->rev];\n            \
     \        setmin(f, e.cap - e.flow);\n                    u = parent[u]->dst;\n\
     \                }\n                setmin(f, gap[u]);\n                if (f\
-    \ == 0) continue;\n                u = dst;\n                while (parent[u])\
+    \ <= 0) continue;\n                u = dst;\n                while (parent[u])\
     \ {\n                    Edge& e = graph[parent[u]->dst][parent[u]->rev];\n  \
     \                  e.flow += f;\n                    graph[e.dst][e.rev].flow\
     \ -= f;\n                    u = parent[u]->dst;\n                }\n        \
@@ -176,7 +176,7 @@ data:
   isVerificationFile: true
   path: test/primal_dual_mincostflow.test.cpp
   requiredBy: []
-  timestamp: '2021-10-23 19:56:59+09:00'
+  timestamp: '2021-11-01 18:27:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/primal_dual_mincostflow.test.cpp

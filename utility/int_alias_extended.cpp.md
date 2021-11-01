@@ -6,8 +6,17 @@ data:
     path: container/polynomial_hash.cpp
     title: container/polynomial_hash.cpp
   - icon: ':warning:'
+    path: math/barret_reduction.cpp
+    title: math/barret_reduction.cpp
+  - icon: ':warning:'
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
+  - icon: ':warning:'
+    path: math/mod_pow.cpp
+    title: math/mod_pow.cpp
+  - icon: ':warning:'
+    path: math/primitive_root.cpp
+    title: math/primitive_root.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/polynomial_hash.test.cpp
@@ -61,6 +70,9 @@ data:
   isVerificationFile: false
   path: utility/int_alias_extended.cpp
   requiredBy:
+  - math/primitive_root.cpp
+  - math/mod_pow.cpp
+  - math/barret_reduction.cpp
   - math/dynamic_modint.cpp
   - container/polynomial_hash.cpp
   timestamp: '2021-09-08 18:46:15+09:00'

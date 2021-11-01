@@ -25,6 +25,9 @@ data:
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/heavy_light_decomposition.test.cpp
+    title: test/heavy_light_decomposition.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -44,20 +47,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: '#line 2 "math/rem_euclid.cpp"
-
-
-    template <class T> constexpr T rem_euclid(T value, const T& mod) { return (value
-    %= mod) >= 0 ? value : value + mod; }
-
-    '
-  code: '#pragma once
-
-
-    template <class T> constexpr T rem_euclid(T value, const T& mod) { return (value
-    %= mod) >= 0 ? value : value + mod; }
-
-    '
+  bundledCode: "#line 2 \"math/rem_euclid.cpp\"\n#include <cassert>\n\ntemplate <class\
+    \ T> constexpr T rem_euclid(T value, const T& mod) {\n    assert(mod > 0);\n \
+    \   return (value %= mod) >= 0 ? value : value + mod;\n}\n"
+  code: "#pragma once\n#include <cassert>\n\ntemplate <class T> constexpr T rem_euclid(T\
+    \ value, const T& mod) {\n    assert(mod > 0);\n    return (value %= mod) >= 0\
+    \ ? value : value + mod;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: math/rem_euclid.cpp
@@ -68,13 +63,14 @@ data:
   - math/static_modint.cpp
   - math/dynamic_modint.cpp
   - math/mod_inv.cpp
-  timestamp: '2021-09-04 17:30:23+09:00'
+  timestamp: '2021-11-01 18:27:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_util.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/and_convolution.test.cpp
   - test/semiring_matrix.test.cpp
+  - test/heavy_light_decomposition.test.cpp
   - test/segment_tree.test.cpp
   - test/queue_aggregation.test.cpp
 documentation_of: math/rem_euclid.cpp

@@ -35,7 +35,7 @@ data:
       title: algorithm/z_algorithm.cpp
   - name: bit
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: bit/bit_lzeros.cpp
       title: bit/bit_lzeros.cpp
     - icon: ':warning:'
@@ -47,7 +47,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: bit/bit_rzeros.cpp
       title: bit/bit_rzeros.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: bit/bit_width.cpp
       title: bit/bit_width.cpp
     - icon: ':heavy_check_mark:'
@@ -82,7 +82,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: container/segment_tree_beats.cpp
       title: container/segment_tree_beats.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: container/sparse_table.cpp
       title: container/sparse_table.cpp
     - icon: ':heavy_check_mark:'
@@ -90,6 +90,9 @@ data:
       title: container/stack_aggregation.cpp
   - name: graph
     pages:
+    - icon: ':heavy_check_mark:'
+      path: graph/basic_graph.cpp
+      title: graph/basic_graph.cpp
     - icon: ':heavy_check_mark:'
       path: graph/dinic.cpp
       title: graph/dinic.cpp
@@ -103,19 +106,22 @@ data:
       path: graph/strongly_connected_components.cpp
       title: graph/strongly_connected_components.cpp
     - icon: ':heavy_check_mark:'
+      path: graph/tree_manager.cpp
+      title: graph/tree_manager.cpp
+    - icon: ':heavy_check_mark:'
       path: graph/union_find.cpp
       title: graph/union_find.cpp
   - name: math
     pages:
+    - icon: ':warning:'
+      path: math/barret_reduction.cpp
+      title: math/barret_reduction.cpp
     - icon: ':warning:'
       path: math/ceil_div.cpp
       title: math/ceil_div.cpp
     - icon: ':warning:'
       path: math/divisors.cpp
       title: math/divisors.cpp
-    - icon: ':warning:'
-      path: math/divisors_from_factors.cpp
-      title: math/divisors_from_factors.cpp
     - icon: ':warning:'
       path: math/dynamic_modint.cpp
       title: math/dynamic_modint.cpp
@@ -183,16 +189,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: traits/assign_monoid.cpp
       title: traits/assign_monoid.cpp
+    - icon: ':warning:'
+      path: traits/max_add_action.cpp
+      title: traits/max_add_action.cpp
     - icon: ':heavy_check_mark:'
       path: traits/max_monoid.cpp
       title: traits/max_monoid.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
+      path: traits/min_add_action.cpp
+      title: traits/min_add_action.cpp
+    - icon: ':x:'
       path: traits/min_monoid.cpp
       title: traits/min_monoid.cpp
     - icon: ':heavy_check_mark:'
       path: traits/num_semiring.cpp
       title: traits/num_semiring.cpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: traits/optional_monoid.cpp
       title: traits/optional_monoid.cpp
     - icon: ':heavy_check_mark:'
@@ -204,6 +216,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: traits/reversed_monoid.cpp
       title: traits/reversed_monoid.cpp
+    - icon: ':heavy_check_mark:'
+      path: traits/sum_affine_action.cpp
+      title: traits/sum_affine_action.cpp
   - name: utility
     pages:
     - icon: ':heavy_check_mark:'
@@ -221,10 +236,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/index_offset.cpp
       title: utility/index_offset.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/infty.cpp
       title: utility/infty.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
     - icon: ':heavy_check_mark:'
@@ -242,7 +257,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/rep.cpp
       title: utility/rep.cpp
     - icon: ':heavy_check_mark:'
@@ -291,6 +306,9 @@ data:
       path: test/fenwick_tree.test.cpp
       title: test/fenwick_tree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/heavy_light_decomposition.test.cpp
+      title: test/heavy_light_decomposition.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/integer_hash_table.test.cpp
       title: test/integer_hash_table.test.cpp
     - icon: ':heavy_check_mark:'
@@ -332,7 +350,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/semiring_matrix.test.cpp
       title: test/semiring_matrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/sparse_table.test.cpp
       title: test/sparse_table.test.cpp
     - icon: ':heavy_check_mark:'

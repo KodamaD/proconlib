@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: algorithm/z_algorithm.cpp
     title: algorithm/z_algorithm.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bit/bit_lzeros.cpp
     title: bit/bit_lzeros.cpp
   - icon: ':warning:'
@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: bit/bit_rzeros.cpp
     title: bit/bit_rzeros.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bit/bit_width.cpp
     title: bit/bit_width.cpp
   - icon: ':heavy_check_mark:'
@@ -74,9 +74,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
+  - icon: ':heavy_check_mark:'
+    path: graph/basic_graph.cpp
+    title: graph/basic_graph.cpp
   - icon: ':heavy_check_mark:'
     path: graph/dinic.cpp
     title: graph/dinic.cpp
@@ -90,17 +93,23 @@ data:
     path: graph/strongly_connected_components.cpp
     title: graph/strongly_connected_components.cpp
   - icon: ':heavy_check_mark:'
+    path: graph/tree_manager.cpp
+    title: graph/tree_manager.cpp
+  - icon: ':heavy_check_mark:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
   - icon: ':warning:'
-    path: math/divisors_from_factors.cpp
-    title: math/divisors_from_factors.cpp
+    path: math/barret_reduction.cpp
+    title: math/barret_reduction.cpp
   - icon: ':warning:'
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
   - icon: ':heavy_check_mark:'
     path: math/factorize.cpp
     title: math/factorize.cpp
+  - icon: ':warning:'
+    path: math/mod_pow.cpp
+    title: math/mod_pow.cpp
   - icon: ':heavy_check_mark:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
@@ -158,7 +167,7 @@ data:
   - icon: ':warning:'
     path: utility/permutations.cpp
     title: utility/permutations.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -192,6 +201,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fenwick_tree.test.cpp
     title: test/fenwick_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/heavy_light_decomposition.test.cpp
+    title: test/heavy_light_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/integer_hash_table.test.cpp
     title: test/integer_hash_table.test.cpp
@@ -234,7 +246,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
   - icon: ':heavy_check_mark:'
@@ -249,9 +261,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/z_algorithm.test.cpp
     title: test/z_algorithm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 2 "utility/int_alias.cpp"
@@ -299,9 +311,10 @@ data:
   path: utility/int_alias.cpp
   requiredBy:
   - math/primitive_root.cpp
+  - math/mod_pow.cpp
   - math/static_modint.cpp
-  - math/divisors_from_factors.cpp
   - math/modint_util.cpp
+  - math/barret_reduction.cpp
   - math/dynamic_modint.cpp
   - math/semiring_matrix.cpp
   - math/factorize.cpp
@@ -325,6 +338,8 @@ data:
   - random/rand_bool.cpp
   - random/shuffle_vec.cpp
   - graph/dinic.cpp
+  - graph/tree_manager.cpp
+  - graph/basic_graph.cpp
   - graph/rollback_union_find.cpp
   - graph/primal_dual.cpp
   - graph/strongly_connected_components.cpp
@@ -355,7 +370,7 @@ data:
   - bit/bit_lzeros.cpp
   - bit/popcount.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/modint_util.test.cpp
   - test/lazy_segment_tree.test.cpp
@@ -377,6 +392,7 @@ data:
   - test/z_algorithm.test.cpp
   - test/polynomial_hash.test.cpp
   - test/integer_hash_table.test.cpp
+  - test/heavy_light_decomposition.test.cpp
   - test/segment_tree.test.cpp
   - test/prime_sieve.test.cpp
   - test/queue_aggregation.test.cpp

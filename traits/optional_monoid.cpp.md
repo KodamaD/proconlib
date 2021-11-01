@@ -1,11 +1,29 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: traits/max_add_action.cpp
+    title: traits/max_add_action.cpp
+  - icon: ':heavy_check_mark:'
+    path: traits/max_monoid.cpp
+    title: traits/max_monoid.cpp
+  - icon: ':warning:'
+    path: traits/min_add_action.cpp
+    title: traits/min_add_action.cpp
+  - icon: ':x:'
+    path: traits/min_monoid.cpp
+    title: traits/min_monoid.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/larsch.test.cpp
+    title: test/larsch.test.cpp
+  - icon: ':x:'
+    path: test/sparse_table.test.cpp
+    title: test/sparse_table.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"traits/optional_monoid.cpp\"\n#include <optional>\n#include\
@@ -23,10 +41,16 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: traits/optional_monoid.cpp
-  requiredBy: []
+  requiredBy:
+  - traits/max_monoid.cpp
+  - traits/max_add_action.cpp
+  - traits/min_monoid.cpp
+  - traits/min_add_action.cpp
   timestamp: '2021-09-27 22:23:01+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/larsch.test.cpp
+  - test/sparse_table.test.cpp
 documentation_of: traits/optional_monoid.cpp
 layout: document
 redirect_from:

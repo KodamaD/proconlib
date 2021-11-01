@@ -29,9 +29,12 @@ data:
     path: traits/plus_monoid.cpp
     title: traits/plus_monoid.cpp
   - icon: ':heavy_check_mark:'
+    path: traits/sum_affine_action.cpp
+    title: traits/sum_affine_action.cpp
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -130,47 +133,45 @@ data:
     \            sum = M::operation(data[r], sum);\n        } while ((r & -r) != r);\n\
     \        return 0;\n    }\n};\n#line 3 \"test/lazy_segment_tree.test.cpp\"\n#include\
     \ <iostream>\n#line 2 \"math/static_modint.cpp\"\n#include <ostream>\n#include\
-    \ <type_traits>\n#line 2 \"math/totient.cpp\"\n\ntemplate <class T> constexpr\
-    \ T totient(T x) {\n    T ret = x;\n    for (T i = 2; i * i <= x; ++i) {\n   \
-    \     if (x % i == 0) {\n            ret /= i;\n            ret *= i - 1;\n  \
-    \          while (x % i == 0) x /= i;\n        }\n    }\n    if (x > 1) {\n  \
-    \      ret /= x;\n        ret *= x - 1;\n    }\n    return ret;\n}\n#line 2 \"\
-    math/rem_euclid.cpp\"\n\ntemplate <class T> constexpr T rem_euclid(T value, const\
-    \ T& mod) { return (value %= mod) >= 0 ? value : value + mod; }\n#line 7 \"math/static_modint.cpp\"\
-    \n\ntemplate <u32 MOD, std::enable_if_t<((u32)1 <= MOD and MOD <= ((u32)1 << 31))>*\
-    \ = nullptr> class StaticModint {\n    using Mint = StaticModint;\n\n    static\
-    \ inline constexpr u32 PHI = totient(MOD);\n    u32 v;\n\n  public:\n    static\
-    \ constexpr u32 mod() noexcept { return MOD; }\n\n    template <class T, std::enable_if_t<std::is_signed_v<T>\
-    \ and std::is_integral_v<T>>* = nullptr>\n    static constexpr T normalize(const\
-    \ T x) noexcept {\n        return rem_euclid<std::common_type_t<T, i64>>(x, MOD);\n\
-    \    }\n    template <class T, std::enable_if_t<std::is_unsigned_v<T> and std::is_integral_v<T>>*\
-    \ = nullptr>\n    static constexpr T normalize(const T x) noexcept {\n       \
-    \ return x % MOD;\n    }\n\n    constexpr StaticModint() noexcept : v(0) {}\n\
-    \    template <class T> constexpr StaticModint(const T x) noexcept : v(normalize(x))\
-    \ {}\n    template <class T> static constexpr Mint raw(const T x) noexcept {\n\
-    \        Mint ret;\n        ret.v = x;\n        return ret;\n    }\n\n    constexpr\
-    \ u32 get() const noexcept { return v; }\n    constexpr Mint neg() const noexcept\
-    \ { return raw(v == 0 ? 0 : MOD - v); }\n    constexpr Mint inv() const noexcept\
-    \ { return pow(PHI - 1); }\n    constexpr Mint pow(u64 exp) const noexcept {\n\
-    \        Mint ret(1), mult(*this);\n        for (; exp > 0; exp >>= 1) {\n   \
+    \ <type_traits>\n#line 3 \"math/rem_euclid.cpp\"\n\ntemplate <class T> constexpr\
+    \ T rem_euclid(T value, const T& mod) {\n    assert(mod > 0);\n    return (value\
+    \ %= mod) >= 0 ? value : value + mod;\n}\n#line 2 \"math/totient.cpp\"\n\ntemplate\
+    \ <class T> constexpr T totient(T x) {\n    T ret = x;\n    for (T i = 2; i *\
+    \ i <= x; ++i) {\n        if (x % i == 0) {\n            ret /= i;\n         \
+    \   ret *= i - 1;\n            while (x % i == 0) x /= i;\n        }\n    }\n\
+    \    if (x > 1) {\n        ret /= x;\n        ret *= x - 1;\n    }\n    return\
+    \ ret;\n}\n#line 7 \"math/static_modint.cpp\"\n\ntemplate <u32 MOD, std::enable_if_t<((u32)1\
+    \ <= MOD and MOD <= ((u32)1 << 31))>* = nullptr> class StaticModint {\n    using\
+    \ Self = StaticModint;\n\n    static inline constexpr u32 PHI = totient(MOD);\n\
+    \    u32 v;\n\n  public:\n    static constexpr u32 mod() noexcept { return MOD;\
+    \ }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\n\
+    \    static constexpr T normalize(const T& x) noexcept {\n        return rem_euclid<std::common_type_t<T,\
+    \ i64>>(x, MOD);\n    }\n\n    constexpr StaticModint() noexcept : v(0) {}\n \
+    \   template <class T> constexpr StaticModint(const T& x) noexcept : v(normalize(x))\
+    \ {}\n    template <class T> static constexpr Self raw(const T& x) noexcept {\n\
+    \        Self ret;\n        ret.v = x;\n        return ret;\n    }\n\n    constexpr\
+    \ u32 get() const noexcept { return v; }\n    constexpr Self neg() const noexcept\
+    \ { return raw(v == 0 ? 0 : MOD - v); }\n    constexpr Self inv() const noexcept\
+    \ { return pow(PHI - 1); }\n    constexpr Self pow(u64 exp) const noexcept {\n\
+    \        Self ret(1), mult(*this);\n        for (; exp > 0; exp >>= 1) {\n   \
     \         if (exp & 1) ret *= mult;\n            mult *= mult;\n        }\n  \
-    \      return ret;\n    }\n\n    constexpr Mint operator-() const noexcept { return\
-    \ neg(); }\n    constexpr Mint operator~() const noexcept { return inv(); }\n\n\
-    \    constexpr Mint operator+(const Mint& rhs) const noexcept { return Mint(*this)\
-    \ += rhs; }\n    constexpr Mint& operator+=(const Mint& rhs) noexcept {\n    \
+    \      return ret;\n    }\n\n    constexpr Self operator-() const noexcept { return\
+    \ neg(); }\n    constexpr Self operator~() const noexcept { return inv(); }\n\n\
+    \    constexpr Self operator+(const Self& rhs) const noexcept { return Self(*this)\
+    \ += rhs; }\n    constexpr Self& operator+=(const Self& rhs) noexcept {\n    \
     \    if ((v += rhs.v) >= MOD) v -= MOD;\n        return *this;\n    }\n\n    constexpr\
-    \ Mint operator-(const Mint& rhs) const noexcept { return Mint(*this) -= rhs;\
-    \ }\n    constexpr Mint& operator-=(const Mint& rhs) noexcept {\n        if (v\
+    \ Self operator-(const Self& rhs) const noexcept { return Self(*this) -= rhs;\
+    \ }\n    constexpr Self& operator-=(const Self& rhs) noexcept {\n        if (v\
     \ < rhs.v) v += MOD;\n        v -= rhs.v;\n        return *this;\n    }\n\n  \
-    \  constexpr Mint operator*(const Mint& rhs) const noexcept { return Mint(*this)\
-    \ *= rhs; }\n    constexpr Mint& operator*=(const Mint& rhs) noexcept {\n    \
+    \  constexpr Self operator*(const Self& rhs) const noexcept { return Self(*this)\
+    \ *= rhs; }\n    constexpr Self& operator*=(const Self& rhs) noexcept {\n    \
     \    v = (u64)v * rhs.v % MOD;\n        return *this;\n    }\n\n    constexpr\
-    \ Mint operator/(const Mint& rhs) const noexcept { return Mint(*this) /= rhs;\
-    \ }\n    constexpr Mint& operator/=(const Mint& rhs) noexcept { return *this *=\
-    \ rhs.inv(); }\n\n    constexpr bool operator==(const Mint& rhs) const noexcept\
-    \ { return v == rhs.v; }\n    constexpr bool operator!=(const Mint& rhs) const\
+    \ Self operator/(const Self& rhs) const noexcept { return Self(*this) /= rhs;\
+    \ }\n    constexpr Self& operator/=(const Self& rhs) noexcept { return *this *=\
+    \ rhs.inv(); }\n\n    constexpr bool operator==(const Self& rhs) const noexcept\
+    \ { return v == rhs.v; }\n    constexpr bool operator!=(const Self& rhs) const\
     \ noexcept { return v != rhs.v; }\n    friend std::ostream& operator<<(std::ostream&\
-    \ stream, const Mint& rhs) { return stream << rhs.v; }\n};\n\nusing Modint1000000007\
+    \ stream, const Self& rhs) { return stream << rhs.v; }\n};\n\nusing Modint1000000007\
     \ = StaticModint<1000000007>;\nusing Modint998244353 = StaticModint<998244353>;\n\
     #line 2 \"traits/affine_composite_monoid.cpp\"\n\ntemplate <class T> struct Affine\
     \ {\n    T a, b;\n    constexpr Affine(const T& a = 1, const T& b = 0) : a(a),\
@@ -188,32 +189,30 @@ data:
     \ r.first), N::operation(l.second, r.second)};\n    }\n};\n#line 2 \"traits/plus_monoid.cpp\"\
     \n\ntemplate <class T> struct PlusMonoid {\n    using Type = T;\n    static constexpr\
     \ T identity() { return T(0); }\n    static constexpr T operation(const T& l,\
-    \ const T& r) { return l + r; }\n};\n#line 10 \"test/lazy_segment_tree.test.cpp\"\
-    \n\nusing Fp = StaticModint<998244353>;\n\nstruct SumAffine {\n    using Monoid\
-    \ = PairMonoid<PlusMonoid<Fp>, PlusMonoid<usize>>;\n    using Effector = AffineCompositeMonoid<Fp>;\n\
-    \    static constexpr std::pair<Fp, usize> operation(const std::pair<Fp, usize>&\
-    \ m, const Affine<Fp>& e) {\n        return {e.a * m.first + e.b * m.second, m.second};\n\
-    \    }\n};\n\nint main() {\n    usize N, Q;\n    std::cin >> N >> Q;\n    std::vector<std::pair<Fp,\
-    \ usize>> initial(N);\n    for (const usize i : rep(0, N)) {\n        u32 a;\n\
-    \        std::cin >> a;\n        initial[i] = {a, 1};\n    }\n    LazySegmentTree<SumAffine>\
-    \ seg(initial);\n    while (Q--) {\n        usize t;\n        std::cin >> t;\n\
-    \        if (t == 0) {\n            usize l, r;\n            std::cin >> l >>\
-    \ r;\n            u32 b, c;\n            std::cin >> b >> c;\n            seg.operate(l,\
-    \ r, {Fp(b), Fp(c)});\n        } else {\n            usize l, r;\n           \
-    \ std::cin >> l >> r;\n            std::cout << seg.fold(l, r).first << '\\n';\n\
-    \        }\n    }\n    return 0;\n}\n"
+    \ const T& r) { return l + r; }\n};\n#line 5 \"traits/sum_affine_action.cpp\"\n\
+    \ntemplate <class T> struct SumAffineAction {\n    using Monoid = PairMonoid<PlusMonoid<T>,\
+    \ PlusMonoid<T>>;\n    using Effector = AffineCompositeMonoid<T>;\n    static\
+    \ constexpr std::pair<T, T> operation(const std::pair<T, T>& m, const Affine<T>&\
+    \ e) {\n        return {e.a * m.first + e.b * m.second, m.second};\n    }\n};\n\
+    #line 8 \"test/lazy_segment_tree.test.cpp\"\n\nusing Fp = Modint998244353;\nusing\
+    \ Action = SumAffineAction<Fp>;\n\nint main() {\n    usize N, Q;\n    std::cin\
+    \ >> N >> Q;\n    std::vector<std::pair<Fp, Fp>> initial(N);\n    for (const usize\
+    \ i : rep(0, N)) {\n        u32 a;\n        std::cin >> a;\n        initial[i]\
+    \ = {a, 1};\n    }\n    LazySegmentTree<Action> seg(initial);\n    while (Q--)\
+    \ {\n        usize t;\n        std::cin >> t;\n        if (t == 0) {\n       \
+    \     usize l, r;\n            std::cin >> l >> r;\n            u32 b, c;\n  \
+    \          std::cin >> b >> c;\n            seg.operate(l, r, {Fp(b), Fp(c)});\n\
+    \        } else {\n            usize l, r;\n            std::cin >> l >> r;\n\
+    \            std::cout << seg.fold(l, r).first << '\\n';\n        }\n    }\n \
+    \   return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \n#include \"../container/lazy_segment_tree.cpp\"\n#include <iostream>\n#include\
-    \ \"../math/static_modint.cpp\"\n#include \"../utility/int_alias.cpp\"\n#include\
-    \ \"../traits/affine_composite_monoid.cpp\"\n#include \"../traits/pair_monoid.cpp\"\
-    \n#include \"../traits/plus_monoid.cpp\"\n#include \"../utility/rep.cpp\"\n\n\
-    using Fp = StaticModint<998244353>;\n\nstruct SumAffine {\n    using Monoid =\
-    \ PairMonoid<PlusMonoid<Fp>, PlusMonoid<usize>>;\n    using Effector = AffineCompositeMonoid<Fp>;\n\
-    \    static constexpr std::pair<Fp, usize> operation(const std::pair<Fp, usize>&\
-    \ m, const Affine<Fp>& e) {\n        return {e.a * m.first + e.b * m.second, m.second};\n\
-    \    }\n};\n\nint main() {\n    usize N, Q;\n    std::cin >> N >> Q;\n    std::vector<std::pair<Fp,\
-    \ usize>> initial(N);\n    for (const usize i : rep(0, N)) {\n        u32 a;\n\
-    \        std::cin >> a;\n        initial[i] = {a, 1};\n    }\n    LazySegmentTree<SumAffine>\
+    \ \"../math/static_modint.cpp\"\n#include \"../traits/sum_affine_action.cpp\"\n\
+    #include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n\nusing\
+    \ Fp = Modint998244353;\nusing Action = SumAffineAction<Fp>;\n\nint main() {\n\
+    \    usize N, Q;\n    std::cin >> N >> Q;\n    std::vector<std::pair<Fp, Fp>>\
+    \ initial(N);\n    for (const usize i : rep(0, N)) {\n        u32 a;\n       \
+    \ std::cin >> a;\n        initial[i] = {a, 1};\n    }\n    LazySegmentTree<Action>\
     \ seg(initial);\n    while (Q--) {\n        usize t;\n        std::cin >> t;\n\
     \        if (t == 0) {\n            usize l, r;\n            std::cin >> l >>\
     \ r;\n            u32 b, c;\n            std::cin >> b >> c;\n            seg.operate(l,\
@@ -228,15 +227,16 @@ data:
   - utility/rep.cpp
   - utility/revrep.cpp
   - math/static_modint.cpp
-  - math/totient.cpp
   - math/rem_euclid.cpp
+  - math/totient.cpp
+  - traits/sum_affine_action.cpp
   - traits/affine_composite_monoid.cpp
   - traits/pair_monoid.cpp
   - traits/plus_monoid.cpp
   isVerificationFile: true
   path: test/lazy_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-09-27 22:41:23+09:00'
+  timestamp: '2021-11-01 18:27:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lazy_segment_tree.test.cpp

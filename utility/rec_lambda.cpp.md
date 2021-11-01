@@ -8,13 +8,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_components.cpp
     title: graph/strongly_connected_components.cpp
-  - icon: ':warning:'
-    path: math/divisors_from_factors.cpp
-    title: math/divisors_from_factors.cpp
+  - icon: ':heavy_check_mark:'
+    path: graph/tree_manager.cpp
+    title: graph/tree_manager.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/bipartite_matching.test.cpp
     title: test/bipartite_matching.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/heavy_light_decomposition.test.cpp
+    title: test/heavy_light_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/rollback_union_find.test.cpp
     title: test/rollback_union_find.test.cpp
@@ -44,8 +47,8 @@ data:
   isVerificationFile: false
   path: utility/rec_lambda.cpp
   requiredBy:
-  - math/divisors_from_factors.cpp
   - graph/dinic.cpp
+  - graph/tree_manager.cpp
   - graph/strongly_connected_components.cpp
   timestamp: '2021-09-04 17:30:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -53,6 +56,7 @@ data:
   - test/rollback_union_find.test.cpp
   - test/strongly_connected_components.test.cpp
   - test/bipartite_matching.test.cpp
+  - test/heavy_light_decomposition.test.cpp
 documentation_of: utility/rec_lambda.cpp
 layout: document
 redirect_from:

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
@@ -28,12 +28,12 @@ data:
     \ 6 \"random/shuffle_vec.cpp\"\n\ntemplate <class T> void shuffle_vec(std::vector<T>&\
     \ v) {\n    static std::default_random_engine gen(xorshift());\n    std::shuffle(v.begin(),\
     \ v.end(), gen);\n}\n#line 6 \"random/rand_perm.cpp\"\n\ntemplate <class T> std::vector<T>\
-    \ rand_perm(const usize n, const T first = 0) {\n    std::vector<T> p(n);\n  \
-    \  std::iota(p.begin(), p.end(), first);\n    shuffle_vec(p);\n    return p;\n\
+    \ rand_perm(const usize n, const T& first = 0) {\n    std::vector<T> p(n);\n \
+    \   std::iota(p.begin(), p.end(), first);\n    shuffle_vec(p);\n    return p;\n\
     }\n"
   code: "#pragma once\n#include <numeric>\n#include <vector>\n#include \"../random/shuffle_vec.cpp\"\
     \n#include \"../utility/int_alias.cpp\"\n\ntemplate <class T> std::vector<T> rand_perm(const\
-    \ usize n, const T first = 0) {\n    std::vector<T> p(n);\n    std::iota(p.begin(),\
+    \ usize n, const T& first = 0) {\n    std::vector<T> p(n);\n    std::iota(p.begin(),\
     \ p.end(), first);\n    shuffle_vec(p);\n    return p;\n}"
   dependsOn:
   - random/shuffle_vec.cpp
@@ -42,7 +42,7 @@ data:
   isVerificationFile: false
   path: random/rand_perm.cpp
   requiredBy: []
-  timestamp: '2021-10-23 19:56:59+09:00'
+  timestamp: '2021-11-01 18:27:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: random/rand_perm.cpp

@@ -1,7 +1,13 @@
 ---
 data:
-  _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: traits/optional_monoid.cpp
+    title: traits/optional_monoid.cpp
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: traits/max_add_action.cpp
+    title: traits/max_add_action.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/larsch.test.cpp
@@ -11,20 +17,27 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"traits/max_monoid.cpp\"\n#include <functional>\n#include\
-    \ <limits>\n\ntemplate <class T> struct MaxMonoid {\n    using Type = T;\n   \
-    \ static constexpr T identity() { return std::numeric_limits<T>::min(); }\n  \
-    \  static constexpr T operation(const T& l, const T& r) { return std::max(l, r);\
-    \ }\n};\n"
-  code: "#pragma once\n#include <functional>\n#include <limits>\n\ntemplate <class\
-    \ T> struct MaxMonoid {\n    using Type = T;\n    static constexpr T identity()\
-    \ { return std::numeric_limits<T>::min(); }\n    static constexpr T operation(const\
-    \ T& l, const T& r) { return std::max(l, r); }\n};\n"
-  dependsOn: []
+  bundledCode: "#line 2 \"traits/max_monoid.cpp\"\n#include <algorithm>\n#line 2 \"\
+    traits/optional_monoid.cpp\"\n#include <optional>\n#include <utility>\n\ntemplate\
+    \ <class S> struct OptionalMonoid {\n    using Type = std::optional<typename S::Type>;\n\
+    \    static constexpr Type identity() { return std::nullopt; }\n    static constexpr\
+    \ Type operation(const Type& l, const Type& r) {\n        if (!l) return r;\n\
+    \        if (!r) return l;\n        return Type(std::in_place, S::operation(*l,\
+    \ *r));\n    }\n};\n#line 4 \"traits/max_monoid.cpp\"\n\ntemplate <class T> struct\
+    \ MaxSemiGroup {\n    using Type = T;\n    static constexpr T operation(const\
+    \ T& l, const T& r) { return std::max(l, r); }\n};\n\ntemplate <class T> using\
+    \ MaxMonoid = OptionalMonoid<MaxSemiGroup<T>>;\n"
+  code: "#pragma once\n#include <algorithm>\n#include \"../traits/optional_monoid.cpp\"\
+    \n\ntemplate <class T> struct MaxSemiGroup {\n    using Type = T;\n    static\
+    \ constexpr T operation(const T& l, const T& r) { return std::max(l, r); }\n};\n\
+    \ntemplate <class T> using MaxMonoid = OptionalMonoid<MaxSemiGroup<T>>;"
+  dependsOn:
+  - traits/optional_monoid.cpp
   isVerificationFile: false
   path: traits/max_monoid.cpp
-  requiredBy: []
-  timestamp: '2021-09-27 22:23:01+09:00'
+  requiredBy:
+  - traits/max_add_action.cpp
+  timestamp: '2021-11-01 18:27:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/larsch.test.cpp

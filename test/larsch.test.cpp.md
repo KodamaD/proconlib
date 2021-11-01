@@ -13,13 +13,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: traits/max_monoid.cpp
     title: traits/max_monoid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: traits/optional_monoid.cpp
+    title: traits/optional_monoid.cpp
+  - icon: ':question:'
     path: utility/infty.cpp
     title: utility/infty.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -134,33 +137,40 @@ data:
     \ (f(M::operation(data[r], sum))) sum = M::operation(data[r--], sum);\n      \
     \          }\n                return r + 1 - seg_size;\n            }\n      \
     \      sum = M::operation(data[r], sum);\n        } while ((r & -r) != r);\n \
-    \       return 0;\n    }\n};\n#line 3 \"traits/max_monoid.cpp\"\n#include <limits>\n\
-    \ntemplate <class T> struct MaxMonoid {\n    using Type = T;\n    static constexpr\
-    \ T identity() { return std::numeric_limits<T>::min(); }\n    static constexpr\
-    \ T operation(const T& l, const T& r) { return std::max(l, r); }\n};\n#line 3\
-    \ \"utility/infty.cpp\"\n\ntemplate <class T, T Div = 2> constexpr T INFTY = std::numeric_limits<T>::max()\
-    \ / Div;\n#line 8 \"test/larsch.test.cpp\"\n#include <iostream>\n#line 10 \"test/larsch.test.cpp\"\
-    \n\nint main() {\n    usize N, L;\n    std::cin >> N >> L;\n    std::vector<i64>\
-    \ A(N);\n    for (auto& x : A) {\n        std::cin >> x;\n    }\n    SegmentTree<MaxMonoid<i64>>\
-    \ seg(A);\n    std::vector<i64> dp(N + 1);\n    const auto transit = [&](usize\
-    \ i, const usize j) {\n        i += 1;\n        if (j + L > i) return -INFTY<i64>;\n\
-    \        return dp[j] + seg.fold(j, i);\n    };\n    CompLARSCH<i64, std::greater<i64>>\
-    \ larsch(N, transit);\n    for (const auto i : rep(0, N)) {\n        larsch.add_column();\n\
-    \        dp[i + 1] = transit(i, larsch.get_argmin());\n    }\n    std::cout <<\
-    \ dp[N] << '\\n';\n    return 0;\n}\n"
+    \       return 0;\n    }\n};\n#line 2 \"traits/optional_monoid.cpp\"\n#include\
+    \ <optional>\n#include <utility>\n\ntemplate <class S> struct OptionalMonoid {\n\
+    \    using Type = std::optional<typename S::Type>;\n    static constexpr Type\
+    \ identity() { return std::nullopt; }\n    static constexpr Type operation(const\
+    \ Type& l, const Type& r) {\n        if (!l) return r;\n        if (!r) return\
+    \ l;\n        return Type(std::in_place, S::operation(*l, *r));\n    }\n};\n#line\
+    \ 4 \"traits/max_monoid.cpp\"\n\ntemplate <class T> struct MaxSemiGroup {\n  \
+    \  using Type = T;\n    static constexpr T operation(const T& l, const T& r) {\
+    \ return std::max(l, r); }\n};\n\ntemplate <class T> using MaxMonoid = OptionalMonoid<MaxSemiGroup<T>>;\n\
+    #line 2 \"utility/infty.cpp\"\n#include <limits>\n\ntemplate <class T, T Div =\
+    \ 2> constexpr T INFTY = std::numeric_limits<T>::max() / Div;\n#line 8 \"test/larsch.test.cpp\"\
+    \n#include <iostream>\n#line 10 \"test/larsch.test.cpp\"\n\nint main() {\n   \
+    \ usize N, L;\n    std::cin >> N >> L;\n    std::vector<std::optional<i64>> A(N);\n\
+    \    for (auto& x : A) {\n        i64 t;\n        std::cin >> t;\n        x =\
+    \ t;\n    }\n    SegmentTree<MaxMonoid<i64>> seg(A);\n    std::vector<i64> dp(N\
+    \ + 1);\n    const auto transit = [&](usize i, const usize j) {\n        i +=\
+    \ 1;\n        if (j + L > i) return -INFTY<i64>;\n        return dp[j] + *seg.fold(j,\
+    \ i);\n    };\n    CompLARSCH<i64, std::greater<i64>> larsch(N, transit);\n  \
+    \  for (const auto i : rep(0, N)) {\n        larsch.add_column();\n        dp[i\
+    \ + 1] = transit(i, larsch.get_argmin());\n    }\n    std::cout << dp[N] << '\\\
+    n';\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/challenges/sources/UOA/UAPC/3086?year=2020\"\
     \n#include \"../algorithm/larsch.cpp\"\n#include \"../container/segment_tree.cpp\"\
     \n#include \"../traits/max_monoid.cpp\"\n#include \"../utility/infty.cpp\"\n#include\
     \ \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n#include <iostream>\n\
     #include <vector>\n\nint main() {\n    usize N, L;\n    std::cin >> N >> L;\n\
-    \    std::vector<i64> A(N);\n    for (auto& x : A) {\n        std::cin >> x;\n\
-    \    }\n    SegmentTree<MaxMonoid<i64>> seg(A);\n    std::vector<i64> dp(N + 1);\n\
-    \    const auto transit = [&](usize i, const usize j) {\n        i += 1;\n   \
-    \     if (j + L > i) return -INFTY<i64>;\n        return dp[j] + seg.fold(j, i);\n\
-    \    };\n    CompLARSCH<i64, std::greater<i64>> larsch(N, transit);\n    for (const\
-    \ auto i : rep(0, N)) {\n        larsch.add_column();\n        dp[i + 1] = transit(i,\
-    \ larsch.get_argmin());\n    }\n    std::cout << dp[N] << '\\n';\n    return 0;\n\
-    }"
+    \    std::vector<std::optional<i64>> A(N);\n    for (auto& x : A) {\n        i64\
+    \ t;\n        std::cin >> t;\n        x = t;\n    }\n    SegmentTree<MaxMonoid<i64>>\
+    \ seg(A);\n    std::vector<i64> dp(N + 1);\n    const auto transit = [&](usize\
+    \ i, const usize j) {\n        i += 1;\n        if (j + L > i) return -INFTY<i64>;\n\
+    \        return dp[j] + *seg.fold(j, i);\n    };\n    CompLARSCH<i64, std::greater<i64>>\
+    \ larsch(N, transit);\n    for (const auto i : rep(0, N)) {\n        larsch.add_column();\n\
+    \        dp[i + 1] = transit(i, larsch.get_argmin());\n    }\n    std::cout <<\
+    \ dp[N] << '\\n';\n    return 0;\n}"
   dependsOn:
   - algorithm/larsch.cpp
   - utility/int_alias.cpp
@@ -169,11 +179,12 @@ data:
   - utility/rep.cpp
   - utility/revrep.cpp
   - traits/max_monoid.cpp
+  - traits/optional_monoid.cpp
   - utility/infty.cpp
   isVerificationFile: true
   path: test/larsch.test.cpp
   requiredBy: []
-  timestamp: '2021-09-29 21:09:13+09:00'
+  timestamp: '2021-11-01 18:27:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/larsch.test.cpp

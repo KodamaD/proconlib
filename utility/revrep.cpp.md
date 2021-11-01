@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fast_io.test.cpp
     title: test/fast_io.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/heavy_light_decomposition.test.cpp
+    title: test/heavy_light_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/larsch.test.cpp
     title: test/larsch.test.cpp
@@ -84,6 +87,7 @@ data:
   - test/dual_segment_tree.test.cpp
   - test/larsch.test.cpp
   - test/segment_tree_beats.test.cpp
+  - test/heavy_light_decomposition.test.cpp
   - test/segment_tree.test.cpp
   - test/fast_io.test.cpp
 documentation_of: utility/revrep.cpp

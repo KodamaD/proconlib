@@ -7,6 +7,9 @@ data:
     title: container/queue_aggregation.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/heavy_light_decomposition.test.cpp
+    title: test/heavy_light_decomposition.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/queue_aggregation.test.cpp
     title: test/queue_aggregation.test.cpp
   _isVerificationFailed: false
@@ -30,6 +33,7 @@ data:
   timestamp: '2021-09-27 22:23:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/heavy_light_decomposition.test.cpp
   - test/queue_aggregation.test.cpp
 documentation_of: traits/reversed_monoid.cpp
 layout: document
