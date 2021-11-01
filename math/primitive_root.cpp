@@ -15,9 +15,9 @@ constexpr u32 primitive_root(const u32 mod) {
     }
     if (cur != 1) exp[size++] = (mod - 1) / cur;
     for (u32 check = 1; check < mod; ++check) {
-        for (const auto e : exp) {
+        for (const u32 e : exp) {
             if (e == 0) return check;
-            if (mod_pow<u64>(check, e, mod) == 1) break;
+            if (mod_pow(check, e, mod) == 1) break;
         }
     }
     return mod;

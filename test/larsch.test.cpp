@@ -11,16 +11,18 @@
 int main() {
     usize N, L;
     std::cin >> N >> L;
-    std::vector<i64> A(N);
+    std::vector<std::optional<i64>> A(N);
     for (auto& x : A) {
-        std::cin >> x;
+        i64 t;
+        std::cin >> t;
+        x = t;
     }
     SegmentTree<MaxMonoid<i64>> seg(A);
     std::vector<i64> dp(N + 1);
     const auto transit = [&](usize i, const usize j) {
         i += 1;
         if (j + L > i) return -INFTY<i64>;
-        return dp[j] + seg.fold(j, i);
+        return dp[j] + *seg.fold(j, i);
     };
     CompLARSCH<i64, std::greater<i64>> larsch(N, transit);
     for (const auto i : rep(0, N)) {

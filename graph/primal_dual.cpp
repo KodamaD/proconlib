@@ -92,11 +92,12 @@ class PrimalDual {
         potential.resize(size(), 0);
         for (const usize u : rep(0, size())) {
             for (Edge& e : graph[u]) {
-                if (e.cap < 0 or e.cost + potential[u] - potential[e.dst] < 0) {
-                    e.flow += e.cap;
-                    graph[e.dst][e.rev].flow -= e.cap;
-                    gap[u] -= e.cap;
-                    gap[e.dst] += e.cap;
+                if (e.flow > e.cap or e.cost + potential[u] - potential[e.dst] < 0) {
+                    const Flow dif = e.cap - e.flow;
+                    e.flow += dif;
+                    graph[e.dst][e.rev].flow -= dif;
+                    gap[u] -= dif;
+                    gap[e.dst] += dif;
                 }
             }
         }
@@ -157,7 +158,7 @@ class PrimalDual {
                 }
                 for (const usize i : rep(0, graph[u].size())) {
                     const Edge& e = graph[u][i];
-                    if (e.flow == e.cap) continue;
+                    if (e.flow >= e.cap) continue;
                     const usize v = e.dst;
                     if (setmin(dist[v], dist[u] + e.cost + potential[u] - potential[v])) {
                         parent[v] = &graph[e.dst][e.rev];
@@ -186,7 +187,7 @@ class PrimalDual {
                     u = parent[u]->dst;
                 }
                 setmin(f, gap[u]);
-                if (f == 0) continue;
+                if (f <= 0) continue;
                 u = dst;
                 while (parent[u]) {
                     Edge& e = graph[parent[u]->dst][parent[u]->rev];

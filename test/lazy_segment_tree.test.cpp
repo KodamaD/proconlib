@@ -2,32 +2,23 @@
 #include "../container/lazy_segment_tree.cpp"
 #include <iostream>
 #include "../math/static_modint.cpp"
+#include "../traits/sum_affine_action.cpp"
 #include "../utility/int_alias.cpp"
-#include "../traits/affine_composite_monoid.cpp"
-#include "../traits/pair_monoid.cpp"
-#include "../traits/plus_monoid.cpp"
 #include "../utility/rep.cpp"
 
-using Fp = StaticModint<998244353>;
-
-struct SumAffine {
-    using Monoid = PairMonoid<PlusMonoid<Fp>, PlusMonoid<usize>>;
-    using Effector = AffineCompositeMonoid<Fp>;
-    static constexpr std::pair<Fp, usize> operation(const std::pair<Fp, usize>& m, const Affine<Fp>& e) {
-        return {e.a * m.first + e.b * m.second, m.second};
-    }
-};
+using Fp = Modint998244353;
+using Action = SumAffineAction<Fp>;
 
 int main() {
     usize N, Q;
     std::cin >> N >> Q;
-    std::vector<std::pair<Fp, usize>> initial(N);
+    std::vector<std::pair<Fp, Fp>> initial(N);
     for (const usize i : rep(0, N)) {
         u32 a;
         std::cin >> a;
         initial[i] = {a, 1};
     }
-    LazySegmentTree<SumAffine> seg(initial);
+    LazySegmentTree<Action> seg(initial);
     while (Q--) {
         usize t;
         std::cin >> t;

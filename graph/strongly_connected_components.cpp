@@ -1,23 +1,22 @@
 #pragma once
 #include <cassert>
-#include <optional>
 #include <vector>
 #include "../utility/int_alias.cpp"
 #include "../utility/rec_lambda.cpp"
 #include "../utility/rep.cpp"
 #include "../utility/setmin.cpp"
 
-class StronglyConnectedComponents {
-    std::vector<std::vector<usize>> graph;
+template <class G> class StronglyConnectedComponents {
+    usize count;
     std::vector<usize> index;
-    std::optional<usize> decomposed;
 
-    void decompose_internal() {
-        decomposed = 0;
-        index.resize(size());
+  public:
+    StronglyConnectedComponents() : count(0), index() {}
+    explicit StronglyConnectedComponents(const G& graph) : count(0), index(graph.size()) {
+        const usize n = size();
         usize time_stamp = 0;
-        std::vector<usize> visited, low(size()), ord(size());
-        visited.reserve(size());
+        std::vector<usize> visited, low(n), ord(n);
+        visited.reserve(n);
         const auto dfs = rec_lambda([&](auto&& dfs, const usize u) -> void {
             low[u] = ord[u] = ++time_stamp;
             visited.push_back(u);
@@ -33,48 +32,28 @@ class StronglyConnectedComponents {
                 while (true) {
                     const usize v = visited.back();
                     visited.pop_back();
-                    ord[v] = size();
-                    index[v] = *decomposed;
+                    ord[v] = n;
+                    index[v] = count;
                     if (u == v) break;
                 }
-                *decomposed += 1;
+                count += 1;
             }
         });
-        for (const usize u : rep(0, size())) {
+        for (const usize u : rep(0, n))
             if (!ord[u]) dfs(u);
-        }
-        for (auto& x : index) {
-            x = *decomposed - x - 1;
-        }
+        for (auto& x : index) x = count - x - 1;
     }
 
-  public:
-    StronglyConnectedComponents() : graph(), index(), decomposed() {}
-    explicit StronglyConnectedComponents(const usize n) : graph(n), index(), decomposed() {}
-
-    void add_edge(const usize u, const usize v) {
+    usize size() const { return index.size(); }
+    usize group_count() const { return count; }
+    usize group_id(const usize u) const {
         assert(u < size());
-        assert(v < size());
-        assert(!decomposed);
-        graph[u].push_back(v);
-    }
-
-    usize size() const { return graph.size(); }
-    usize count_groups() {
-        if (!decomposed) decompose_internal();
-        return *decomposed;
-    }
-    usize group_id(const usize u) {
-        assert(u < size());
-        if (!decomposed) decompose_internal();
         return index[u];
     }
 
-    std::vector<std::vector<usize>> decopmose() {
-        std::vector<std::vector<usize>> ret(count_groups());
-        for (const usize u : rep(0, size())) {
-            ret[index[u]].push_back(u);
-        }
+    std::vector<std::vector<usize>> decopmose() const {
+        std::vector<std::vector<usize>> ret(group_count());
+        for (const usize u : rep(0, size())) ret[index[u]].push_back(u);
         return ret;
     }
 };
