@@ -8,7 +8,7 @@
 #include "../utility/rep.cpp"
 
 template <class T, class Result = T>
-std::optional<std::pair<Result, Result>> congruency_equations(const std::vector<T>& m, const std::vector<T>& r) {
+std::optional<std::pair<Result, Result>> congruence_equations(const std::vector<T>& m, const std::vector<T>& r) {
     using U = std::make_signed_t<Result>;
     assert(m.size() == r.size());
     const usize n = m.size();
