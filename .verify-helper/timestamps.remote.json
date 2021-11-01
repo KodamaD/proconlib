@@ -22,6 +22,7 @@
 "test/segment_tree.test.cpp": "2021-11-01 18:27:47 +0900",
 "test/segment_tree_beats.test.cpp": "2021-09-27 22:23:01 +0900",
 "test/semiring_matrix.test.cpp": "2021-11-01 18:27:47 +0900",
+"test/sparse_table.test.cpp": "2021-11-01 19:18:05 +0900",
 "test/strongly_connected_components.test.cpp": "2021-11-01 18:27:47 +0900",
 "test/totient.test.cpp": "2021-09-08 18:46:15 +0900",
 "test/union_find.test.cpp": "2021-09-08 18:46:15 +0900",
