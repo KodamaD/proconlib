@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
   - icon: ':heavy_check_mark:'
@@ -59,6 +59,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
+  - icon: ':warning:'
+    path: math/congruency_equations.cpp
+    title: math/congruency_equations.cpp
   - icon: ':heavy_check_mark:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
@@ -129,7 +132,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
   - icon: ':heavy_check_mark:'
@@ -141,9 +144,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/z_algorithm.test.cpp
     title: test/z_algorithm.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n#line 2 \"utility/int_alias.cpp\"\
@@ -175,6 +178,7 @@ data:
   path: utility/rep.cpp
   requiredBy:
   - math/modint_util.cpp
+  - math/congruency_equations.cpp
   - math/semiring_matrix.cpp
   - math/prime_sieve.cpp
   - utility/fast_io.cpp
@@ -197,7 +201,7 @@ data:
   - algorithm/or_convolution.cpp
   - algorithm/and_convolution.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_util.test.cpp
   - test/lazy_segment_tree.test.cpp

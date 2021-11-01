@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: math/congruency_equations.cpp
+    title: math/congruency_equations.cpp
+  - icon: ':warning:'
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
   - icon: ':warning:'
@@ -62,6 +65,7 @@ data:
   - math/inv_gcd.cpp
   - math/static_modint.cpp
   - math/dynamic_modint.cpp
+  - math/congruency_equations.cpp
   - math/mod_inv.cpp
   timestamp: '2021-11-01 18:27:47+09:00'
   verificationStatus: LIBRARY_ALL_AC

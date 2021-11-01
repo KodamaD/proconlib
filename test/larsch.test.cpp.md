@@ -13,16 +13,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: traits/max_monoid.cpp
     title: traits/max_monoid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/optional_monoid.cpp
     title: traits/optional_monoid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/infty.cpp
     title: utility/infty.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'

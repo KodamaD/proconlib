@@ -22,7 +22,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: traits/reversed_monoid.cpp
     title: traits/reversed_monoid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []

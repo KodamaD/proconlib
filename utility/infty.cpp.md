@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/larsch.test.cpp
     title: test/larsch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: '#line 2 "utility/infty.cpp"
@@ -37,7 +37,7 @@ data:
   path: utility/infty.cpp
   requiredBy: []
   timestamp: '2021-09-04 17:30:23+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/larsch.test.cpp
   - test/sparse_table.test.cpp

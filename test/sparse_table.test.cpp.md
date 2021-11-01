@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bit/bit_lzeros.cpp
     title: bit/bit_lzeros.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bit/bit_width.cpp
     title: bit/bit_width.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: traits/min_monoid.cpp
     title: traits/min_monoid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/optional_monoid.cpp
     title: traits/optional_monoid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/infty.cpp
     title: utility/infty.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -76,19 +76,20 @@ data:
     \ M::identity();\n        assert(l < r);\n        const auto d = bit_width(r -\
     \ l) - 1;\n        return M::operation(table[d][l], table[d][r - (1 << d)]);\n\
     \    }\n};\n#line 7 \"test/sparse_table.test.cpp\"\n#include <iostream>\n\nint\
-    \ main() {\n    usize N, Q;\n    std::cin >> N >> Q;\n    std::vector<u32> A(N);\n\
-    \    for (auto& x : A) {\n        std::cin >> x;\n    }\n    SparseTable<MinMonoid<u32>>\
-    \ table(A);\n    while (Q--) {\n        usize l, r;\n        std::cin >> l >>\
-    \ r;\n        std::cout << table.fold(l, r) << '\\n';\n    }\n    return 0;\n\
-    }\n"
+    \ main() {\n    usize N, Q;\n    std::cin >> N >> Q;\n    std::vector<std::optional<u32>>\
+    \ A(N);\n    for (auto& x : A) {\n        u32 t;\n        std::cin >> t;\n   \
+    \     x = t;\n    }\n    SparseTable<MinMonoid<u32>> table(A);\n    while (Q--)\
+    \ {\n        usize l, r;\n        std::cin >> l >> r;\n        std::cout << *table.fold(l,\
+    \ r) << '\\n';\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     ../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n#include \"../utility/infty.cpp\"\
     \n#include \"../traits/min_monoid.cpp\"\n#include \"../container/sparse_table.cpp\"\
     \n#include <iostream>\n\nint main() {\n    usize N, Q;\n    std::cin >> N >> Q;\n\
-    \    std::vector<u32> A(N);\n    for (auto& x : A) {\n        std::cin >> x;\n\
-    \    }\n    SparseTable<MinMonoid<u32>> table(A);\n    while (Q--) {\n       \
-    \ usize l, r;\n        std::cin >> l >> r;\n        std::cout << table.fold(l,\
-    \ r) << '\\n';\n    }\n    return 0;\n}"
+    \    std::vector<std::optional<u32>> A(N);\n    for (auto& x : A) {\n        u32\
+    \ t;\n        std::cin >> t;\n        x = t;\n    }\n    SparseTable<MinMonoid<u32>>\
+    \ table(A);\n    while (Q--) {\n        usize l, r;\n        std::cin >> l >>\
+    \ r;\n        std::cout << *table.fold(l, r) << '\\n';\n    }\n    return 0;\n\
+    }"
   dependsOn:
   - utility/int_alias.cpp
   - utility/rep.cpp
@@ -101,8 +102,8 @@ data:
   isVerificationFile: true
   path: test/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2021-11-01 18:27:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-11-01 19:18:05+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sparse_table.test.cpp
 layout: document

@@ -35,7 +35,7 @@ data:
       title: algorithm/z_algorithm.cpp
   - name: bit
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: bit/bit_lzeros.cpp
       title: bit/bit_lzeros.cpp
     - icon: ':warning:'
@@ -47,7 +47,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: bit/bit_rzeros.cpp
       title: bit/bit_rzeros.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: bit/bit_width.cpp
       title: bit/bit_width.cpp
     - icon: ':heavy_check_mark:'
@@ -82,7 +82,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: container/segment_tree_beats.cpp
       title: container/segment_tree_beats.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: container/sparse_table.cpp
       title: container/sparse_table.cpp
     - icon: ':heavy_check_mark:'
@@ -119,6 +119,9 @@ data:
     - icon: ':warning:'
       path: math/ceil_div.cpp
       title: math/ceil_div.cpp
+    - icon: ':warning:'
+      path: math/congruency_equations.cpp
+      title: math/congruency_equations.cpp
     - icon: ':warning:'
       path: math/divisors.cpp
       title: math/divisors.cpp
@@ -198,13 +201,13 @@ data:
     - icon: ':warning:'
       path: traits/min_add_action.cpp
       title: traits/min_add_action.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: traits/min_monoid.cpp
       title: traits/min_monoid.cpp
     - icon: ':heavy_check_mark:'
       path: traits/num_semiring.cpp
       title: traits/num_semiring.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: traits/optional_monoid.cpp
       title: traits/optional_monoid.cpp
     - icon: ':heavy_check_mark:'
@@ -236,10 +239,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/index_offset.cpp
       title: utility/index_offset.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/infty.cpp
       title: utility/infty.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
     - icon: ':heavy_check_mark:'
@@ -257,7 +260,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/rep.cpp
       title: utility/rep.cpp
     - icon: ':heavy_check_mark:'
@@ -350,7 +353,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/semiring_matrix.test.cpp
       title: test/semiring_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/sparse_table.test.cpp
       title: test/sparse_table.test.cpp
     - icon: ':heavy_check_mark:'
