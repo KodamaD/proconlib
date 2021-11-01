@@ -29,12 +29,11 @@ data:
     \ = std::int64_t;\nusing u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\n\
     using usize = std::size_t;\n#line 2 \"utility/rec_lambda.cpp\"\n#include <type_traits>\n\
     #include <utility>\n\ntemplate <class F> struct RecursiveLambda : private F {\n\
-    \    explicit constexpr RecursiveLambda(F&& f) : F(std::forward<F>(f)) {}\n  \
-    \  template <class... Args> constexpr decltype(auto) operator()(Args&&... args)\
-    \ const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate <class F> constexpr decltype(auto) rec_lambda(F&& f) {\n\
-    \    using G = std::decay_t<F>;\n    return RecursiveLambda<G>(std::forward<G>(f));\n\
-    }\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n#line 4 \"utility/rep.cpp\"\
+    \    explicit constexpr RecursiveLambda(F&& f) : F(std::move(f)) {}\n    template\
+    \ <class... Args> constexpr decltype(auto) operator()(Args&&... args) const {\n\
+    \        return F::operator()(*this, std::forward<Args>(args)...);\n    }\n};\n\
+    \ntemplate <class F> constexpr decltype(auto) rec_lambda(F&& f) { return RecursiveLambda<F>(std::move(f));\
+    \ }\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n#line 4 \"utility/rep.cpp\"\
     \n\nclass rep {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const\
     \ usize pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept\
     \ { ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
@@ -102,7 +101,7 @@ data:
   isVerificationFile: false
   path: graph/strongly_connected_components.cpp
   requiredBy: []
-  timestamp: '2021-11-01 18:27:47+09:00'
+  timestamp: '2021-11-01 21:39:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/strongly_connected_components.test.cpp

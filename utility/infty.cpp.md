@@ -6,9 +6,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/larsch.test.cpp
     title: test/larsch.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/sparse_table.test.cpp
-    title: test/sparse_table.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -40,7 +37,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/larsch.test.cpp
-  - test/sparse_table.test.cpp
 documentation_of: utility/infty.cpp
 layout: document
 redirect_from:

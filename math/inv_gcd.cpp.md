@@ -6,8 +6,8 @@ data:
     title: math/rem_euclid.cpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: math/congruency_equations.cpp
-    title: math/congruency_equations.cpp
+    path: math/congruence_equations.cpp
+    title: math/congruence_equations.cpp
   - icon: ':warning:'
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
@@ -45,7 +45,7 @@ data:
   path: math/inv_gcd.cpp
   requiredBy:
   - math/dynamic_modint.cpp
-  - math/congruency_equations.cpp
+  - math/congruence_equations.cpp
   - math/mod_inv.cpp
   timestamp: '2021-11-01 18:27:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS

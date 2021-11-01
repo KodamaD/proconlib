@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: traits/min_monoid.cpp
     title: traits/min_monoid.cpp
   - icon: ':heavy_check_mark:'

@@ -23,43 +23,43 @@ data:
     \ = std::int64_t;\nusing u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\n\
     using usize = std::size_t;\n#line 2 \"utility/rec_lambda.cpp\"\n#include <type_traits>\n\
     #line 4 \"utility/rec_lambda.cpp\"\n\ntemplate <class F> struct RecursiveLambda\
-    \ : private F {\n    explicit constexpr RecursiveLambda(F&& f) : F(std::forward<F>(f))\
+    \ : private F {\n    explicit constexpr RecursiveLambda(F&& f) : F(std::move(f))\
     \ {}\n    template <class... Args> constexpr decltype(auto) operator()(Args&&...\
     \ args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate <class F> constexpr decltype(auto) rec_lambda(F&& f) {\n\
-    \    using G = std::decay_t<F>;\n    return RecursiveLambda<G>(std::forward<G>(f));\n\
-    }\n#line 7 \"graph/tree_manager.cpp\"\n\ntemplate <class G> class TreeManager\
-    \ {\n  public:\n    class NodeInfo {\n        friend class TreeManager;\n    \
-    \    NodeInfo() : parent(0), subtree(0), head(0), enter(0), exit(0) {}\n\n   \
-    \   public:\n        usize parent, subtree, head, next, enter, exit;\n    };\n\
-    \n  private:\n    using Self = TreeManager;\n    std::vector<NodeInfo> node;\n\
-    \n  public:\n    TreeManager() : node() {}\n    explicit TreeManager(const G&\
-    \ graph, const usize root = 0) : Self(graph, std::vector<usize>({root})) {}\n\
-    \    explicit TreeManager(const G& graph, const std::vector<usize>& root) : node(graph.size(),\
-    \ NodeInfo()) {\n        const usize n = size();\n        const auto build = rec_lambda([&](auto&&\
-    \ dfs, const usize u, const usize p) -> void {\n            node[u].parent = p;\n\
-    \            node[u].subtree = 1;\n            for (const usize v : graph[u])\
-    \ {\n                if (v != p) {\n                    dfs(v, u);\n         \
-    \           node[u].subtree += node[v].subtree;\n                }\n         \
-    \   }\n        });\n        usize time_stamp = 0;\n        const auto decompose\
-    \ = rec_lambda([&](auto&& dfs, const usize u, const usize h) -> void {\n     \
-    \       node[u].head = h;\n            node[u].enter = time_stamp++;\n       \
-    \     usize& s = node[u].next;\n            s = u;\n            for (const usize\
-    \ v : graph[u])\n                if (v != node[u].parent and (s == u or node[s].subtree\
-    \ < node[v].subtree)) s = v;\n            if (s != u) {\n                dfs(s,\
-    \ h);\n                for (const usize v : graph[u])\n                    if\
-    \ (v != node[u].parent and v != s) dfs(v, v);\n            }\n            node[u].exit\
-    \ = time_stamp;\n        });\n        for (const usize r : root) {\n         \
-    \   assert(r < n);\n            assert(node[r].subtree == 0);\n            build(r,\
-    \ r);\n            decompose(r, r);\n        }\n    }\n\n    class Path {\n  \
-    \      friend class TreeManager;\n        usize src, dst;\n        const Self*\
-    \ self;\n\n        explicit Path(const usize s, const usize d, const Self* p)\
-    \ : src(s), dst(d), self(p) {}\n\n      public:\n        Path begin() const {\
-    \ return *this; }\n        std::monostate end() const { return {}; }\n       \
-    \ bool operator!=(std::monostate) const { return src != dst; }\n        void operator++()\
-    \ { src = self->node[src].parent; }\n        std::pair<usize, usize> operator*()\
-    \ {\n            const usize x = src;\n            const usize y = self->node[src].head;\n\
-    \            const usize z = self->node[dst].next;\n            src = (y != self->node[dst].head\
+    \    }\n};\n\ntemplate <class F> constexpr decltype(auto) rec_lambda(F&& f) {\
+    \ return RecursiveLambda<F>(std::move(f)); }\n#line 7 \"graph/tree_manager.cpp\"\
+    \n\ntemplate <class G> class TreeManager {\n  public:\n    class NodeInfo {\n\
+    \        friend class TreeManager;\n        NodeInfo() : parent(0), subtree(0),\
+    \ head(0), enter(0), exit(0) {}\n\n      public:\n        usize parent, subtree,\
+    \ head, next, enter, exit;\n    };\n\n  private:\n    using Self = TreeManager;\n\
+    \    std::vector<NodeInfo> node;\n\n  public:\n    TreeManager() : node() {}\n\
+    \    explicit TreeManager(const G& graph, const usize root = 0) : Self(graph,\
+    \ std::vector<usize>({root})) {}\n    explicit TreeManager(const G& graph, const\
+    \ std::vector<usize>& root) : node(graph.size(), NodeInfo()) {\n        const\
+    \ usize n = size();\n        const auto build = rec_lambda([&](auto&& dfs, const\
+    \ usize u, const usize p) -> void {\n            node[u].parent = p;\n       \
+    \     node[u].subtree = 1;\n            for (const usize v : graph[u]) {\n   \
+    \             if (v != p) {\n                    dfs(v, u);\n                \
+    \    node[u].subtree += node[v].subtree;\n                }\n            }\n \
+    \       });\n        usize time_stamp = 0;\n        const auto decompose = rec_lambda([&](auto&&\
+    \ dfs, const usize u, const usize h) -> void {\n            node[u].head = h;\n\
+    \            node[u].enter = time_stamp++;\n            usize& s = node[u].next;\n\
+    \            s = u;\n            for (const usize v : graph[u])\n            \
+    \    if (v != node[u].parent and (s == u or node[s].subtree < node[v].subtree))\
+    \ s = v;\n            if (s != u) {\n                dfs(s, h);\n            \
+    \    for (const usize v : graph[u])\n                    if (v != node[u].parent\
+    \ and v != s) dfs(v, v);\n            }\n            node[u].exit = time_stamp;\n\
+    \        });\n        for (const usize r : root) {\n            assert(r < n);\n\
+    \            assert(node[r].subtree == 0);\n            build(r, r);\n       \
+    \     decompose(r, r);\n        }\n    }\n\n    class Path {\n        friend class\
+    \ TreeManager;\n        usize src, dst;\n        const Self* self;\n\n       \
+    \ explicit Path(const usize s, const usize d, const Self* p) : src(s), dst(d),\
+    \ self(p) {}\n\n      public:\n        Path begin() const { return *this; }\n\
+    \        std::monostate end() const { return {}; }\n        bool operator!=(std::monostate)\
+    \ const { return src != dst; }\n        void operator++() { src = self->node[src].parent;\
+    \ }\n        std::pair<usize, usize> operator*() {\n            const usize x\
+    \ = src;\n            const usize y = self->node[src].head;\n            const\
+    \ usize z = self->node[dst].next;\n            src = (y != self->node[dst].head\
     \ ? y : z);\n            return std::make_pair(x, src);\n        }\n    };\n\n\
     \    usize size() const { return node.size(); }\n    const NodeInfo& operator[](const\
     \ usize u) const {\n        assert(u < size());\n        return node[u];\n   \
@@ -122,7 +122,7 @@ data:
   isVerificationFile: false
   path: graph/tree_manager.cpp
   requiredBy: []
-  timestamp: '2021-11-01 18:27:47+09:00'
+  timestamp: '2021-11-01 21:39:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/heavy_light_decomposition.test.cpp

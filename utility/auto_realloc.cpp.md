@@ -41,22 +41,20 @@ data:
     \    return e;\n}\n#line 6 \"utility/auto_realloc.cpp\"\n\ntemplate <class F>\
     \ class AutoReallocation {\n    using R = typename decltype(std::declval<F>()((usize)0))::value_type;\n\
     \n    F func;\n    mutable std::vector<R> data;\n\n  public:\n    explicit AutoReallocation(F&&\
-    \ f) : func(std::forward<F>(f)), data() {}\n\n    void reserve(const usize size)\
-    \ const {\n        if (data.size() < size) data = func(((usize)1 << ceil_log2(size)));\n\
+    \ f) : func(std::move(f)), data() {}\n\n    void reserve(const usize size) const\
+    \ {\n        if (data.size() < size) data = func(((usize)1 << ceil_log2(size)));\n\
     \    }\n    R operator[](const usize i) const {\n        reserve(i + 1);\n   \
     \     return data[i];\n    }\n};\n\ntemplate <class F> decltype(auto) auto_realloc(F&&\
-    \ f) {\n    using G = std::decay_t<F>;\n    return AutoReallocation<G>(std::forward<G>(f));\n\
-    }\n"
+    \ f) { return AutoReallocation<F>(std::move(f)); }\n"
   code: "#pragma once\n#include <utility>\n#include <vector>\n#include \"../bit/ceil_log2.cpp\"\
     \n#include \"../utility/int_alias.cpp\"\n\ntemplate <class F> class AutoReallocation\
     \ {\n    using R = typename decltype(std::declval<F>()((usize)0))::value_type;\n\
     \n    F func;\n    mutable std::vector<R> data;\n\n  public:\n    explicit AutoReallocation(F&&\
-    \ f) : func(std::forward<F>(f)), data() {}\n\n    void reserve(const usize size)\
-    \ const {\n        if (data.size() < size) data = func(((usize)1 << ceil_log2(size)));\n\
+    \ f) : func(std::move(f)), data() {}\n\n    void reserve(const usize size) const\
+    \ {\n        if (data.size() < size) data = func(((usize)1 << ceil_log2(size)));\n\
     \    }\n    R operator[](const usize i) const {\n        reserve(i + 1);\n   \
     \     return data[i];\n    }\n};\n\ntemplate <class F> decltype(auto) auto_realloc(F&&\
-    \ f) {\n    using G = std::decay_t<F>;\n    return AutoReallocation<G>(std::forward<G>(f));\n\
-    }\n"
+    \ f) { return AutoReallocation<F>(std::move(f)); }\n"
   dependsOn:
   - bit/ceil_log2.cpp
   - utility/int_alias.cpp
@@ -66,7 +64,7 @@ data:
   - math/modint_util.cpp
   - math/prime_sieve.cpp
   - container/polynomial_hash.cpp
-  timestamp: '2021-09-08 18:46:15+09:00'
+  timestamp: '2021-11-01 21:39:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_util.test.cpp

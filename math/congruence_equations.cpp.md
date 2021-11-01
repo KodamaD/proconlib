@@ -20,7 +20,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/congruency_equations.cpp\"\n#include <optional>\n#include\
+  bundledCode: "#line 2 \"math/congruence_equations.cpp\"\n#include <optional>\n#include\
     \ <type_traits>\n#include <utility>\n#include <vector>\n#line 2 \"math/rem_euclid.cpp\"\
     \n#include <cassert>\n\ntemplate <class T> constexpr T rem_euclid(T value, const\
     \ T& mod) {\n    assert(mod > 0);\n    return (value %= mod) >= 0 ? value : value\
@@ -42,9 +42,9 @@ data:
     \ itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit constexpr\
     \ rep(const usize first, const usize last) noexcept : first(first), last(std::max(first,\
     \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
-    \ constexpr Iter end() const noexcept { return last; }\n};\n#line 9 \"math/congruency_equations.cpp\"\
+    \ constexpr Iter end() const noexcept { return last; }\n};\n#line 9 \"math/congruence_equations.cpp\"\
     \n\ntemplate <class T, class Result = T>\nstd::optional<std::pair<Result, Result>>\
-    \ congruency_equations(const std::vector<T>& m, const std::vector<T>& r) {\n \
+    \ congruence_equations(const std::vector<T>& m, const std::vector<T>& r) {\n \
     \   using U = std::make_signed_t<Result>;\n    assert(m.size() == r.size());\n\
     \    const usize n = m.size();\n    U r0 = 0, m0 = 1;\n    for (const usize i\
     \ : rep(0, n)) {\n        assert(m[i] > 0);\n        U r1 = rem_euclid(r[i], m[i]),\
@@ -59,7 +59,7 @@ data:
   code: "#pragma once\n#include <optional>\n#include <type_traits>\n#include <utility>\n\
     #include <vector>\n#include \"../math/inv_gcd.cpp\"\n#include \"../math/rem_euclid.cpp\"\
     \n#include \"../utility/rep.cpp\"\n\ntemplate <class T, class Result = T>\nstd::optional<std::pair<Result,\
-    \ Result>> congruency_equations(const std::vector<T>& m, const std::vector<T>&\
+    \ Result>> congruence_equations(const std::vector<T>& m, const std::vector<T>&\
     \ r) {\n    using U = std::make_signed_t<Result>;\n    assert(m.size() == r.size());\n\
     \    const usize n = m.size();\n    U r0 = 0, m0 = 1;\n    for (const usize i\
     \ : rep(0, n)) {\n        assert(m[i] > 0);\n        U r1 = rem_euclid(r[i], m[i]),\
@@ -77,15 +77,15 @@ data:
   - utility/rep.cpp
   - utility/int_alias.cpp
   isVerificationFile: false
-  path: math/congruency_equations.cpp
+  path: math/congruence_equations.cpp
   requiredBy: []
-  timestamp: '2021-11-01 19:18:05+09:00'
+  timestamp: '2021-11-01 21:39:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: math/congruency_equations.cpp
+documentation_of: math/congruence_equations.cpp
 layout: document
 redirect_from:
-- /library/math/congruency_equations.cpp
-- /library/math/congruency_equations.cpp.html
-title: math/congruency_equations.cpp
+- /library/math/congruence_equations.cpp
+- /library/math/congruence_equations.cpp.html
+title: math/congruence_equations.cpp
 ---

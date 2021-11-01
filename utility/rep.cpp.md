@@ -60,8 +60,8 @@ data:
     path: graph/union_find.cpp
     title: graph/union_find.cpp
   - icon: ':warning:'
-    path: math/congruency_equations.cpp
-    title: math/congruency_equations.cpp
+    path: math/congruence_equations.cpp
+    title: math/congruence_equations.cpp
   - icon: ':heavy_check_mark:'
     path: math/modint_util.cpp
     title: math/modint_util.cpp
@@ -178,7 +178,7 @@ data:
   path: utility/rep.cpp
   requiredBy:
   - math/modint_util.cpp
-  - math/congruency_equations.cpp
+  - math/congruence_equations.cpp
   - math/semiring_matrix.cpp
   - math/prime_sieve.cpp
   - utility/fast_io.cpp

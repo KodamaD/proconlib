@@ -120,8 +120,8 @@ data:
       path: math/ceil_div.cpp
       title: math/ceil_div.cpp
     - icon: ':warning:'
-      path: math/congruency_equations.cpp
-      title: math/congruency_equations.cpp
+      path: math/congruence_equations.cpp
+      title: math/congruence_equations.cpp
     - icon: ':warning:'
       path: math/divisors.cpp
       title: math/divisors.cpp
@@ -192,6 +192,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: traits/assign_monoid.cpp
       title: traits/assign_monoid.cpp
+    - icon: ':heavy_check_mark:'
+      path: traits/lambda_semigroup.cpp
+      title: traits/lambda_semigroup.cpp
     - icon: ':warning:'
       path: traits/max_add_action.cpp
       title: traits/max_add_action.cpp
@@ -201,7 +204,7 @@ data:
     - icon: ':warning:'
       path: traits/min_add_action.cpp
       title: traits/min_add_action.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: traits/min_monoid.cpp
       title: traits/min_monoid.cpp
     - icon: ':heavy_check_mark:'

@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: traits/min_add_action.cpp
     title: traits/min_add_action.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: traits/min_monoid.cpp
     title: traits/min_monoid.cpp
   _extendedVerifiedWith:

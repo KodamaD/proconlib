@@ -8,13 +8,10 @@ data:
   - icon: ':warning:'
     path: traits/min_add_action.cpp
     title: traits/min_add_action.cpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/sparse_table.test.cpp
-    title: test/sparse_table.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"traits/min_monoid.cpp\"\n#include <algorithm>\n#line 2 \"\
@@ -38,9 +35,8 @@ data:
   requiredBy:
   - traits/min_add_action.cpp
   timestamp: '2021-11-01 18:27:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/sparse_table.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: traits/min_monoid.cpp
 layout: document
 redirect_from:

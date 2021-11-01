@@ -102,8 +102,8 @@ data:
     path: math/barret_reduction.cpp
     title: math/barret_reduction.cpp
   - icon: ':warning:'
-    path: math/congruency_equations.cpp
-    title: math/congruency_equations.cpp
+    path: math/congruence_equations.cpp
+    title: math/congruence_equations.cpp
   - icon: ':warning:'
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
@@ -319,7 +319,7 @@ data:
   - math/modint_util.cpp
   - math/barret_reduction.cpp
   - math/dynamic_modint.cpp
-  - math/congruency_equations.cpp
+  - math/congruence_equations.cpp
   - math/semiring_matrix.cpp
   - math/factorize.cpp
   - math/prime_sieve.cpp

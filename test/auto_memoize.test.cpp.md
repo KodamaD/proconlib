@@ -31,17 +31,16 @@ data:
     \    F func;\n    mutable std::map<Tuple, R> data;\n\n    template <usize... I>\
     \ R apply(const Tuple& args_tuple, std::index_sequence<I...>) const {\n      \
     \  return func(*this, std::get<I>(args_tuple)...);\n    }\n\n  public:\n    explicit\
-    \ AutoMemoization(F&& f) : func(std::forward<F>(f)) {}\n\n    template <class...\
-    \ Args> R operator()(Args&&... args) const {\n        Tuple tup(std::forward<Args>(args)...);\n\
+    \ AutoMemoization(F&& f) : func(std::move(f)) {}\n\n    template <class... Args>\
+    \ R operator()(Args&&... args) const {\n        Tuple tup(std::forward<Args>(args)...);\n\
     \        const auto itr = data.find(tup);\n        if (itr != data.end()) return\
     \ itr->second;\n        R ret = apply(tup, std::make_index_sequence<std::tuple_size_v<Tuple>>());\n\
     \        data.emplace(std::move(tup), ret);\n        return ret;\n    }\n};\n\n\
-    template <class F> decltype(auto) auto_memoize(F&& f) {\n    using G = std::decay_t<F>;\n\
-    \    return AutoMemoization<G>(std::forward<G>(f));\n}\n#line 4 \"test/auto_memoize.test.cpp\"\
-    \n#include <iostream>\n\nint main() {\n    u64 x;\n    std::cin >> x;\n    std::cout\
-    \ << auto_memoize([](auto&& fib, const u64 x) -> u64 {\n        if (x <= 1) return\
-    \ 1;\n        return fib(x - 1) + fib(x - 2);\n    })(x) << '\\n';\n    return\
-    \ 0;\n}\n"
+    template <class F> decltype(auto) auto_memoize(F&& f) { return AutoMemoization<F>(std::move(f));\
+    \ }\n#line 4 \"test/auto_memoize.test.cpp\"\n#include <iostream>\n\nint main()\
+    \ {\n    u64 x;\n    std::cin >> x;\n    std::cout << auto_memoize([](auto&& fib,\
+    \ const u64 x) -> u64 {\n        if (x <= 1) return 1;\n        return fib(x -\
+    \ 1) + fib(x - 2);\n    })(x) << '\\n';\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_10_A\"\
     \n#include \"../utility/int_alias.cpp\"\n#include \"../utility/auto_memoize.cpp\"\
     \n#include <iostream>\n\nint main() {\n    u64 x;\n    std::cin >> x;\n    std::cout\
@@ -54,7 +53,7 @@ data:
   isVerificationFile: true
   path: test/auto_memoize.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 18:46:15+09:00'
+  timestamp: '2021-11-01 21:39:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/auto_memoize.test.cpp
