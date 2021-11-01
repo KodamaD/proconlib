@@ -9,15 +9,17 @@
 int main() {
     usize N, Q;
     std::cin >> N >> Q;
-    std::vector<u32> A(N);
+    std::vector<std::optional<u32>> A(N);
     for (auto& x : A) {
-        std::cin >> x;
+        u32 t;
+        std::cin >> t;
+        x = t;
     }
     SparseTable<MinMonoid<u32>> table(A);
     while (Q--) {
         usize l, r;
         std::cin >> l >> r;
-        std::cout << table.fold(l, r) << '\n';
+        std::cout << *table.fold(l, r) << '\n';
     }
     return 0;
 }
