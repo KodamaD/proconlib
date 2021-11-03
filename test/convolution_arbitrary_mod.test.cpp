@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
+#define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
 #include <iostream>
 #include <vector>
 #include "../algorithm/convolution_arbitrary_mod.cpp"

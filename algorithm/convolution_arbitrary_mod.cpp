@@ -14,9 +14,9 @@ template <class T> std::vector<T> convolution_arbitrary_mod(const std::vector<T>
     static constexpr u64 M1M2 = MOD1 * MOD2;
     static constexpr u64 I2 = mod_inv(MOD1, MOD2);
     static constexpr u64 I3 = mod_inv(M1M2, MOD3);
-    std::vector<T> c1 = convolution_mod<MOD1>(a, b);
-    std::vector<T> c2 = convolution_mod<MOD2>(a, b);
-    std::vector<T> c3 = convolution_mod<MOD3>(a, b);
+    std::vector<T> c1 = convolution_mod<T, MOD1>(a, b);
+    std::vector<T> c2 = convolution_mod<T, MOD2>(a, b);
+    std::vector<T> c3 = convolution_mod<T, MOD3>(a, b);
     std::vector<T> c(n + m - 1);
     for (const usize i : rep(0, n + m - 1)) {
         const u32 x = c1[i];

@@ -19,9 +19,9 @@ std::vector<T> convolution_int(const std::vector<T>& a, const std::vector<T>& b)
     static constexpr u64 I2 = mod_inv(MOD1 * MOD3, MOD2);
     static constexpr u64 I3 = mod_inv(MOD1 * MOD2, MOD3);
     static constexpr u64 OFFSET[5] = {0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};
-    std::vector<T> c1 = convolution_mod<MOD1>(a, b);
-    std::vector<T> c2 = convolution_mod<MOD2>(a, b);
-    std::vector<T> c3 = convolution_mod<MOD3>(a, b);
+    std::vector<T> c1 = convolution_mod<T, MOD1>(a, b);
+    std::vector<T> c2 = convolution_mod<T, MOD2>(a, b);
+    std::vector<T> c3 = convolution_mod<T, MOD3>(a, b);
     std::vector<T> c(n + m - 1);
     for (const usize i : rep(0, n + m - 1)) {
         u64 x = 0;
