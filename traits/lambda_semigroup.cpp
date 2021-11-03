@@ -14,7 +14,7 @@ template <class F> class LambdaSemiGroup {
         assert(OP);
         return OP->operator()(l, r);
     }
-    explicit constexpr LambdaSemiGroup(F&& f) { OP = std::make_unique<F>(std::move(f)); }
+    explicit constexpr LambdaSemiGroup(F&& f) { OP = std::make_unique<F>(std::forward<F>(f)); }
 };
 
-template <class F> decltype(auto) lambda_semigroup(F&& f) { return LambdaSemiGroup<F>(std::move(f)); }
+template <class F> decltype(auto) lambda_semigroup(F&& f) { return LambdaSemiGroup<F>(std::forward<F>(f)); }

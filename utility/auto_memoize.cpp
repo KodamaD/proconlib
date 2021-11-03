@@ -24,7 +24,7 @@ template <class F> class AutoMemoization {
     }
 
   public:
-    explicit AutoMemoization(F&& f) : func(std::move(f)) {}
+    explicit AutoMemoization(F&& f) : func(std::forward<F>(f)) {}
 
     template <class... Args> R operator()(Args&&... args) const {
         Tuple tup(std::forward<Args>(args)...);
@@ -36,4 +36,4 @@ template <class F> class AutoMemoization {
     }
 };
 
-template <class F> decltype(auto) auto_memoize(F&& f) { return AutoMemoization<F>(std::move(f)); }
+template <class F> decltype(auto) auto_memoize(F&& f) { return AutoMemoization<F>(std::forward<F>(f)); }

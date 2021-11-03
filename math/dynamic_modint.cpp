@@ -32,7 +32,7 @@ template <usize ID> class DynamicModint {
         return ret;
     }
 
-    u32 get() const noexcept { return v; }
+    u32 val() const noexcept { return v; }
     Self neg() const noexcept { return raw(v == 0 ? 0 : mod() - v); }
     Self inv() const noexcept { return raw(mod_inv(v, mod())); }
     Self pow(u64 exp) const noexcept {

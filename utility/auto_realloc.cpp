@@ -11,7 +11,7 @@ template <class F> class AutoReallocation {
     mutable std::vector<R> data;
 
   public:
-    explicit AutoReallocation(F&& f) : func(std::move(f)), data() {}
+    explicit AutoReallocation(F&& f) : func(std::forward<F>(f)), data() {}
 
     void reserve(const usize size) const {
         if (data.size() < size) data = func(((usize)1 << ceil_log2(size)));
@@ -22,4 +22,4 @@ template <class F> class AutoReallocation {
     }
 };
 
-template <class F> decltype(auto) auto_realloc(F&& f) { return AutoReallocation<F>(std::move(f)); }
+template <class F> decltype(auto) auto_realloc(F&& f) { return AutoReallocation<F>(std::forward<F>(f)); }

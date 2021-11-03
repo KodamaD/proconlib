@@ -27,7 +27,7 @@ template <u32 MOD, std::enable_if_t<((u32)1 <= MOD and MOD <= ((u32)1 << 31))>* 
         return ret;
     }
 
-    constexpr u32 get() const noexcept { return v; }
+    constexpr u32 val() const noexcept { return v; }
     constexpr Self neg() const noexcept { return raw(v == 0 ? 0 : MOD - v); }
     constexpr Self inv() const noexcept { return pow(PHI - 1); }
     constexpr Self pow(u64 exp) const noexcept {
