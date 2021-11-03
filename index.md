@@ -7,6 +7,15 @@ data:
       path: algorithm/and_convolution.cpp
       title: algorithm/and_convolution.cpp
     - icon: ':heavy_check_mark:'
+      path: algorithm/convolution_arbitrary_mod.cpp
+      title: algorithm/convolution_arbitrary_mod.cpp
+    - icon: ':warning:'
+      path: algorithm/convolution_int.cpp
+      title: algorithm/convolution_int.cpp
+    - icon: ':heavy_check_mark:'
+      path: algorithm/convolution_mod.cpp
+      title: algorithm/convolution_mod.cpp
+    - icon: ':heavy_check_mark:'
       path: algorithm/larsch.cpp
       title: algorithm/larsch.cpp
     - icon: ':warning:'
@@ -113,7 +122,7 @@ data:
       title: graph/union_find.cpp
   - name: math
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/barret_reduction.cpp
       title: math/barret_reduction.cpp
     - icon: ':warning:'
@@ -134,22 +143,25 @@ data:
     - icon: ':warning:'
       path: math/floor_div.cpp
       title: math/floor_div.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/inv_gcd.cpp
       title: math/inv_gcd.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/mod_inv.cpp
       title: math/mod_inv.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/mod_pow.cpp
       title: math/mod_pow.cpp
     - icon: ':heavy_check_mark:'
       path: math/modint_util.cpp
       title: math/modint_util.cpp
     - icon: ':heavy_check_mark:'
+      path: math/modulo_transform.cpp
+      title: math/modulo_transform.cpp
+    - icon: ':heavy_check_mark:'
       path: math/prime_sieve.cpp
       title: math/prime_sieve.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/primitive_root.cpp
       title: math/primitive_root.cpp
     - icon: ':heavy_check_mark:'
@@ -296,6 +308,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/bipartite_matching.test.cpp
       title: test/bipartite_matching.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/convolution_arbitrary_mod.test.cpp
+      title: test/convolution_arbitrary_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/convolution_mod.test.cpp
+      title: test/convolution_mod.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/dual_segment_tree.test.cpp
       title: test/dual_segment_tree.test.cpp

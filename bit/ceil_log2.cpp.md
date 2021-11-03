@@ -6,6 +6,15 @@ data:
     title: utility/int_alias.cpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: algorithm/convolution_arbitrary_mod.cpp
+    title: algorithm/convolution_arbitrary_mod.cpp
+  - icon: ':warning:'
+    path: algorithm/convolution_int.cpp
+    title: algorithm/convolution_int.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/convolution_mod.cpp
+    title: algorithm/convolution_mod.cpp
+  - icon: ':heavy_check_mark:'
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -36,6 +45,12 @@ data:
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_arbitrary_mod.test.cpp
+    title: test/convolution_arbitrary_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_mod.test.cpp
+    title: test/convolution_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/dual_segment_tree.test.cpp
     title: test/dual_segment_tree.test.cpp
@@ -93,29 +108,34 @@ data:
   requiredBy:
   - math/modint_util.cpp
   - math/prime_sieve.cpp
+  - algorithm/convolution_int.cpp
+  - algorithm/convolution_mod.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
   - utility/auto_realloc.cpp
-  - container/segment_tree_beats.cpp
-  - container/segment_tree.cpp
-  - container/lazy_segment_tree.cpp
-  - container/dual_segment_tree.cpp
   - container/fenwick_tree.cpp
-  - container/polynomial_hash.cpp
+  - container/lazy_segment_tree.cpp
+  - container/segment_tree.cpp
+  - container/segment_tree_beats.cpp
+  - container/dual_segment_tree.cpp
   - container/integer_hash_table.cpp
+  - container/polynomial_hash.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/modint_util.test.cpp
-  - test/lazy_segment_tree.test.cpp
-  - test/dual_segment_tree.test.cpp
-  - test/fenwick_tree.test.cpp
-  - test/larsch.test.cpp
+  - test/convolution_mod.test.cpp
   - test/segment_tree_beats.test.cpp
-  - test/polynomial_hash.test.cpp
-  - test/integer_hash_table.test.cpp
-  - test/heavy_light_decomposition.test.cpp
+  - test/modint_util.test.cpp
   - test/segment_tree.test.cpp
-  - test/prime_sieve.test.cpp
   - test/integer_hash_table_verbose.test.cpp
+  - test/integer_hash_table.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/dual_segment_tree.test.cpp
+  - test/lazy_segment_tree.test.cpp
+  - test/polynomial_hash.test.cpp
+  - test/larsch.test.cpp
+  - test/prime_sieve.test.cpp
+  - test/fenwick_tree.test.cpp
+  - test/heavy_light_decomposition.test.cpp
 documentation_of: bit/ceil_log2.cpp
 layout: document
 redirect_from:

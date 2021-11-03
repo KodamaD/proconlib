@@ -57,7 +57,7 @@ data:
     \   template <class T> constexpr StaticModint(const T& x) noexcept : v(normalize(x))\
     \ {}\n    template <class T> static constexpr Self raw(const T& x) noexcept {\n\
     \        Self ret;\n        ret.v = x;\n        return ret;\n    }\n\n    constexpr\
-    \ u32 get() const noexcept { return v; }\n    constexpr Self neg() const noexcept\
+    \ u32 val() const noexcept { return v; }\n    constexpr Self neg() const noexcept\
     \ { return raw(v == 0 ? 0 : MOD - v); }\n    constexpr Self inv() const noexcept\
     \ { return pow(PHI - 1); }\n    constexpr Self pow(u64 exp) const noexcept {\n\
     \        Self ret(1), mult(*this);\n        for (; exp > 0; exp >>= 1) {\n   \
@@ -86,11 +86,11 @@ data:
     \ << e) < x) ++e;\n    return e;\n}\n#line 6 \"utility/auto_realloc.cpp\"\n\n\
     template <class F> class AutoReallocation {\n    using R = typename decltype(std::declval<F>()((usize)0))::value_type;\n\
     \n    F func;\n    mutable std::vector<R> data;\n\n  public:\n    explicit AutoReallocation(F&&\
-    \ f) : func(std::move(f)), data() {}\n\n    void reserve(const usize size) const\
-    \ {\n        if (data.size() < size) data = func(((usize)1 << ceil_log2(size)));\n\
+    \ f) : func(std::forward<F>(f)), data() {}\n\n    void reserve(const usize size)\
+    \ const {\n        if (data.size() < size) data = func(((usize)1 << ceil_log2(size)));\n\
     \    }\n    R operator[](const usize i) const {\n        reserve(i + 1);\n   \
     \     return data[i];\n    }\n};\n\ntemplate <class F> decltype(auto) auto_realloc(F&&\
-    \ f) { return AutoReallocation<F>(std::move(f)); }\n#line 2 \"utility/rep.cpp\"\
+    \ f) { return AutoReallocation<F>(std::forward<F>(f)); }\n#line 2 \"utility/rep.cpp\"\
     \n#include <algorithm>\n#line 4 \"utility/rep.cpp\"\n\nclass rep {\n    struct\
     \ Iter {\n        usize itr;\n        constexpr Iter(const usize pos) noexcept\
     \ : itr(pos) {}\n        constexpr void operator++() noexcept { ++itr; }\n   \
@@ -151,7 +151,7 @@ data:
   isVerificationFile: true
   path: test/modint_util.test.cpp
   requiredBy: []
-  timestamp: '2021-11-01 21:39:08+09:00'
+  timestamp: '2021-11-03 19:13:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/modint_util.test.cpp

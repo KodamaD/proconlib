@@ -33,13 +33,13 @@ data:
   isVerificationFile: false
   path: utility/setmin.cpp
   requiredBy:
-  - graph/primal_dual.cpp
   - graph/strongly_connected_components.cpp
+  - graph/primal_dual.cpp
   timestamp: '2021-09-04 17:30:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/strongly_connected_components.test.cpp
   - test/primal_dual_mincostflow.test.cpp
+  - test/strongly_connected_components.test.cpp
   - test/primal_dual_maxflow.test.cpp
 documentation_of: utility/setmin.cpp
 layout: document

@@ -6,6 +6,15 @@ data:
     title: utility/int_alias.cpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: algorithm/convolution_arbitrary_mod.cpp
+    title: algorithm/convolution_arbitrary_mod.cpp
+  - icon: ':warning:'
+    path: algorithm/convolution_int.cpp
+    title: algorithm/convolution_int.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/convolution_mod.cpp
+    title: algorithm/convolution_mod.cpp
+  - icon: ':heavy_check_mark:'
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -18,9 +27,18 @@ data:
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
   - icon: ':heavy_check_mark:'
+    path: math/modulo_transform.cpp
+    title: math/modulo_transform.cpp
+  - icon: ':heavy_check_mark:'
     path: utility/fast_io.cpp
     title: utility/fast_io.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_arbitrary_mod.test.cpp
+    title: test/convolution_arbitrary_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_mod.test.cpp
+    title: test/convolution_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/dual_segment_tree.test.cpp
     title: test/dual_segment_tree.test.cpp
@@ -75,21 +93,27 @@ data:
   isVerificationFile: false
   path: utility/revrep.cpp
   requiredBy:
+  - math/modulo_transform.cpp
+  - algorithm/convolution_int.cpp
+  - algorithm/convolution_mod.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
   - utility/fast_io.cpp
-  - container/segment_tree_beats.cpp
-  - container/segment_tree.cpp
   - container/lazy_segment_tree.cpp
+  - container/segment_tree.cpp
+  - container/segment_tree_beats.cpp
   - container/dual_segment_tree.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/lazy_segment_tree.test.cpp
-  - test/dual_segment_tree.test.cpp
-  - test/larsch.test.cpp
+  - test/convolution_mod.test.cpp
   - test/segment_tree_beats.test.cpp
-  - test/heavy_light_decomposition.test.cpp
   - test/segment_tree.test.cpp
   - test/fast_io.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/dual_segment_tree.test.cpp
+  - test/lazy_segment_tree.test.cpp
+  - test/larsch.test.cpp
+  - test/heavy_light_decomposition.test.cpp
 documentation_of: utility/revrep.cpp
 layout: document
 redirect_from:

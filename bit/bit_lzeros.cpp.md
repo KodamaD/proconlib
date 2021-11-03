@@ -60,8 +60,8 @@ data:
   isVerificationFile: false
   path: bit/bit_lzeros.cpp
   requiredBy:
-  - container/sparse_table.cpp
   - bit/bit_width.cpp
+  - container/sparse_table.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/barret_reduction.cpp
     title: math/barret_reduction.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/inv_gcd.cpp
     title: math/inv_gcd.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/mod_inv.cpp
     title: math/mod_inv.cpp
   - icon: ':heavy_check_mark:'
@@ -60,7 +60,7 @@ data:
     \ i64>>(x, mod());\n    }\n\n    DynamicModint() noexcept : v(0) {}\n    template\
     \ <class T> DynamicModint(const T& x) noexcept : v(normalize(x)) {}\n    template\
     \ <class T> static Self raw(const T& x) noexcept {\n        Self ret;\n      \
-    \  ret.v = x;\n        return ret;\n    }\n\n    u32 get() const noexcept { return\
+    \  ret.v = x;\n        return ret;\n    }\n\n    u32 val() const noexcept { return\
     \ v; }\n    Self neg() const noexcept { return raw(v == 0 ? 0 : mod() - v); }\n\
     \    Self inv() const noexcept { return raw(mod_inv(v, mod())); }\n    Self pow(u64\
     \ exp) const noexcept {\n        Self ret(1), mult(*this);\n        for (; exp\
@@ -93,7 +93,7 @@ data:
     \ i64>>(x, mod());\n    }\n\n    DynamicModint() noexcept : v(0) {}\n    template\
     \ <class T> DynamicModint(const T& x) noexcept : v(normalize(x)) {}\n    template\
     \ <class T> static Self raw(const T& x) noexcept {\n        Self ret;\n      \
-    \  ret.v = x;\n        return ret;\n    }\n\n    u32 get() const noexcept { return\
+    \  ret.v = x;\n        return ret;\n    }\n\n    u32 val() const noexcept { return\
     \ v; }\n    Self neg() const noexcept { return raw(v == 0 ? 0 : mod() - v); }\n\
     \    Self inv() const noexcept { return raw(mod_inv(v, mod())); }\n    Self pow(u64\
     \ exp) const noexcept {\n        Self ret(1), mult(*this);\n        for (; exp\
@@ -124,7 +124,7 @@ data:
   isVerificationFile: false
   path: math/dynamic_modint.cpp
   requiredBy: []
-  timestamp: '2021-11-01 18:27:47+09:00'
+  timestamp: '2021-11-03 19:13:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/dynamic_modint.cpp

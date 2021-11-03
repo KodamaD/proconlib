@@ -31,25 +31,25 @@ data:
     links: []
   bundledCode: "#line 2 \"utility/rec_lambda.cpp\"\n#include <type_traits>\n#include\
     \ <utility>\n\ntemplate <class F> struct RecursiveLambda : private F {\n    explicit\
-    \ constexpr RecursiveLambda(F&& f) : F(std::move(f)) {}\n    template <class...\
+    \ constexpr RecursiveLambda(F&& f) : F(std::forward<F>(f)) {}\n    template <class...\
     \ Args> constexpr decltype(auto) operator()(Args&&... args) const {\n        return\
     \ F::operator()(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate <class\
-    \ F> constexpr decltype(auto) rec_lambda(F&& f) { return RecursiveLambda<F>(std::move(f));\
+    \ F> constexpr decltype(auto) rec_lambda(F&& f) { return RecursiveLambda<F>(std::forward<F>(f));\
     \ }\n"
   code: "#pragma once\n#include <type_traits>\n#include <utility>\n\ntemplate <class\
     \ F> struct RecursiveLambda : private F {\n    explicit constexpr RecursiveLambda(F&&\
-    \ f) : F(std::move(f)) {}\n    template <class... Args> constexpr decltype(auto)\
+    \ f) : F(std::forward<F>(f)) {}\n    template <class... Args> constexpr decltype(auto)\
     \ operator()(Args&&... args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate <class F> constexpr decltype(auto) rec_lambda(F&& f) {\
-    \ return RecursiveLambda<F>(std::move(f)); }\n"
+    \ return RecursiveLambda<F>(std::forward<F>(f)); }\n"
   dependsOn: []
   isVerificationFile: false
   path: utility/rec_lambda.cpp
   requiredBy:
+  - graph/strongly_connected_components.cpp
   - graph/dinic.cpp
   - graph/tree_manager.cpp
-  - graph/strongly_connected_components.cpp
-  timestamp: '2021-11-01 21:39:08+09:00'
+  timestamp: '2021-11-03 19:13:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/rollback_union_find.test.cpp

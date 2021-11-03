@@ -3,12 +3,27 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: algorithm/convolution_arbitrary_mod.cpp
+    title: algorithm/convolution_arbitrary_mod.cpp
+  - icon: ':warning:'
+    path: algorithm/convolution_int.cpp
+    title: algorithm/convolution_int.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/convolution_mod.cpp
+    title: algorithm/convolution_mod.cpp
+  - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_arbitrary_mod.test.cpp
+    title: test/convolution_arbitrary_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_mod.test.cpp
+    title: test/convolution_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
@@ -50,17 +65,22 @@ data:
   path: math/totient.cpp
   requiredBy:
   - math/static_modint.cpp
+  - algorithm/convolution_int.cpp
+  - algorithm/convolution_mod.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
   timestamp: '2021-09-04 17:30:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/semiring_matrix.test.cpp
+  - test/convolution_mod.test.cpp
   - test/modint_util.test.cpp
+  - test/segment_tree.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/queue_aggregation.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/and_convolution.test.cpp
   - test/totient.test.cpp
-  - test/semiring_matrix.test.cpp
   - test/heavy_light_decomposition.test.cpp
-  - test/segment_tree.test.cpp
-  - test/queue_aggregation.test.cpp
 documentation_of: math/totient.cpp
 layout: document
 redirect_from:

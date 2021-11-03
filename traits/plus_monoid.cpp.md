@@ -31,8 +31,8 @@ data:
   isVerificationFile: false
   path: traits/plus_monoid.cpp
   requiredBy:
-  - traits/sum_affine_action.cpp
   - traits/max_add_action.cpp
+  - traits/sum_affine_action.cpp
   - traits/min_add_action.cpp
   timestamp: '2021-09-27 22:23:01+09:00'
   verificationStatus: LIBRARY_ALL_AC

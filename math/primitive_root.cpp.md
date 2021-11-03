@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/barret_reduction.cpp
     title: math/barret_reduction.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/mod_pow.cpp
     title: math/mod_pow.cpp
   - icon: ':heavy_check_mark:'
@@ -16,11 +16,29 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/int_alias_extended.cpp
     title: utility/int_alias_extended.cpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: algorithm/convolution_arbitrary_mod.cpp
+    title: algorithm/convolution_arbitrary_mod.cpp
+  - icon: ':warning:'
+    path: algorithm/convolution_int.cpp
+    title: algorithm/convolution_int.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/convolution_mod.cpp
+    title: algorithm/convolution_mod.cpp
+  - icon: ':heavy_check_mark:'
+    path: math/modulo_transform.cpp
+    title: math/modulo_transform.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_arbitrary_mod.test.cpp
+    title: test/convolution_arbitrary_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_mod.test.cpp
+    title: test/convolution_mod.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/primitive_root.cpp\"\n#include <array>\n#line 2 \"\
@@ -69,10 +87,16 @@ data:
   - math/rem_euclid.cpp
   isVerificationFile: false
   path: math/primitive_root.cpp
-  requiredBy: []
+  requiredBy:
+  - math/modulo_transform.cpp
+  - algorithm/convolution_int.cpp
+  - algorithm/convolution_mod.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
   timestamp: '2021-11-01 18:27:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/convolution_mod.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
 documentation_of: math/primitive_root.cpp
 layout: document
 redirect_from:

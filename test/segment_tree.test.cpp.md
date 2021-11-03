@@ -60,7 +60,7 @@ data:
     \   template <class T> constexpr StaticModint(const T& x) noexcept : v(normalize(x))\
     \ {}\n    template <class T> static constexpr Self raw(const T& x) noexcept {\n\
     \        Self ret;\n        ret.v = x;\n        return ret;\n    }\n\n    constexpr\
-    \ u32 get() const noexcept { return v; }\n    constexpr Self neg() const noexcept\
+    \ u32 val() const noexcept { return v; }\n    constexpr Self neg() const noexcept\
     \ { return raw(v == 0 ? 0 : MOD - v); }\n    constexpr Self inv() const noexcept\
     \ { return pow(PHI - 1); }\n    constexpr Self pow(u64 exp) const noexcept {\n\
     \        Self ret(1), mult(*this);\n        for (; exp > 0; exp >>= 1) {\n   \
@@ -187,7 +187,7 @@ data:
   isVerificationFile: true
   path: test/segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-11-01 18:27:47+09:00'
+  timestamp: '2021-11-03 19:13:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segment_tree.test.cpp

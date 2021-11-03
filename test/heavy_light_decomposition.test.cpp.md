@@ -144,11 +144,11 @@ data:
     \        return EdgePtr(u, e, this);\n    }\n};\n#line 3 \"graph/tree_manager.cpp\"\
     \n#include <variant>\n#line 2 \"utility/rec_lambda.cpp\"\n#include <type_traits>\n\
     #line 4 \"utility/rec_lambda.cpp\"\n\ntemplate <class F> struct RecursiveLambda\
-    \ : private F {\n    explicit constexpr RecursiveLambda(F&& f) : F(std::move(f))\
+    \ : private F {\n    explicit constexpr RecursiveLambda(F&& f) : F(std::forward<F>(f))\
     \ {}\n    template <class... Args> constexpr decltype(auto) operator()(Args&&...\
     \ args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate <class F> constexpr decltype(auto) rec_lambda(F&& f) {\
-    \ return RecursiveLambda<F>(std::move(f)); }\n#line 7 \"graph/tree_manager.cpp\"\
+    \ return RecursiveLambda<F>(std::forward<F>(f)); }\n#line 7 \"graph/tree_manager.cpp\"\
     \n\ntemplate <class G> class TreeManager {\n  public:\n    class NodeInfo {\n\
     \        friend class TreeManager;\n        NodeInfo() : parent(0), subtree(0),\
     \ head(0), enter(0), exit(0) {}\n\n      public:\n        usize parent, subtree,\
@@ -209,7 +209,7 @@ data:
     \   template <class T> constexpr StaticModint(const T& x) noexcept : v(normalize(x))\
     \ {}\n    template <class T> static constexpr Self raw(const T& x) noexcept {\n\
     \        Self ret;\n        ret.v = x;\n        return ret;\n    }\n\n    constexpr\
-    \ u32 get() const noexcept { return v; }\n    constexpr Self neg() const noexcept\
+    \ u32 val() const noexcept { return v; }\n    constexpr Self neg() const noexcept\
     \ { return raw(v == 0 ? 0 : MOD - v); }\n    constexpr Self inv() const noexcept\
     \ { return pow(PHI - 1); }\n    constexpr Self pow(u64 exp) const noexcept {\n\
     \        Self ret(1), mult(*this);\n        for (; exp > 0; exp >>= 1) {\n   \
@@ -313,7 +313,7 @@ data:
   isVerificationFile: true
   path: test/heavy_light_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2021-11-01 21:39:08+09:00'
+  timestamp: '2021-11-03 19:13:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/heavy_light_decomposition.test.cpp

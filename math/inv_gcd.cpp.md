@@ -5,19 +5,28 @@ data:
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: algorithm/convolution_arbitrary_mod.cpp
+    title: algorithm/convolution_arbitrary_mod.cpp
+  - icon: ':warning:'
+    path: algorithm/convolution_int.cpp
+    title: algorithm/convolution_int.cpp
   - icon: ':warning:'
     path: math/congruence_equations.cpp
     title: math/congruence_equations.cpp
   - icon: ':warning:'
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/mod_inv.cpp
     title: math/mod_inv.cpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_arbitrary_mod.test.cpp
+    title: test/convolution_arbitrary_mod.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/inv_gcd.cpp\"\n#include <type_traits>\n#include <utility>\n\
@@ -45,11 +54,14 @@ data:
   path: math/inv_gcd.cpp
   requiredBy:
   - math/dynamic_modint.cpp
-  - math/congruence_equations.cpp
   - math/mod_inv.cpp
+  - math/congruence_equations.cpp
+  - algorithm/convolution_int.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
   timestamp: '2021-11-01 18:27:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/convolution_arbitrary_mod.test.cpp
 documentation_of: math/inv_gcd.cpp
 layout: document
 redirect_from:

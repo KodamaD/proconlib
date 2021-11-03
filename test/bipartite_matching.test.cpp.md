@@ -49,14 +49,14 @@ data:
     \    assert(offset <= i and i < offset + len);\n        return i - offset;\n \
     \   }\n};\n#line 3 \"utility/rec_lambda.cpp\"\n#include <utility>\n\ntemplate\
     \ <class F> struct RecursiveLambda : private F {\n    explicit constexpr RecursiveLambda(F&&\
-    \ f) : F(std::move(f)) {}\n    template <class... Args> constexpr decltype(auto)\
+    \ f) : F(std::forward<F>(f)) {}\n    template <class... Args> constexpr decltype(auto)\
     \ operator()(Args&&... args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate <class F> constexpr decltype(auto) rec_lambda(F&& f) {\
-    \ return RecursiveLambda<F>(std::move(f)); }\n#line 11 \"graph/dinic.cpp\"\n\n\
-    template <class Flow, std::enable_if_t<std::is_integral_v<Flow>>* = nullptr> class\
-    \ Dinic {\n    struct Edge {\n        usize dst, rev;\n        Flow cap;\n   \
-    \ };\n\n    std::vector<std::vector<Edge>> graph;\n\n  public:\n    Dinic() :\
-    \ graph() {}\n    explicit Dinic(const usize n) : graph(n) {}\n\n    class EdgePtr\
+    \ return RecursiveLambda<F>(std::forward<F>(f)); }\n#line 11 \"graph/dinic.cpp\"\
+    \n\ntemplate <class Flow, std::enable_if_t<std::is_integral_v<Flow>>* = nullptr>\
+    \ class Dinic {\n    struct Edge {\n        usize dst, rev;\n        Flow cap;\n\
+    \    };\n\n    std::vector<std::vector<Edge>> graph;\n\n  public:\n    Dinic()\
+    \ : graph() {}\n    explicit Dinic(const usize n) : graph(n) {}\n\n    class EdgePtr\
     \ {\n        friend class Dinic;\n        Dinic* self;\n        usize u, e;\n\n\
     \        explicit EdgePtr(Dinic* p, const usize u, const usize e) : self(p), u(u),\
     \ e(e) {}\n\n        const Edge& edge() const { return self->graph[u][e]; }\n\
@@ -135,7 +135,7 @@ data:
   isVerificationFile: true
   path: test/bipartite_matching.test.cpp
   requiredBy: []
-  timestamp: '2021-11-01 21:39:08+09:00'
+  timestamp: '2021-11-03 19:13:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/bipartite_matching.test.cpp

@@ -38,11 +38,11 @@ data:
     \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
     \ constexpr Iter end() const noexcept { return last; }\n};\n#line 2 \"utility/rec_lambda.cpp\"\
     \n#include <type_traits>\n#include <utility>\n\ntemplate <class F> struct RecursiveLambda\
-    \ : private F {\n    explicit constexpr RecursiveLambda(F&& f) : F(std::move(f))\
+    \ : private F {\n    explicit constexpr RecursiveLambda(F&& f) : F(std::forward<F>(f))\
     \ {}\n    template <class... Args> constexpr decltype(auto) operator()(Args&&...\
     \ args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate <class F> constexpr decltype(auto) rec_lambda(F&& f) {\
-    \ return RecursiveLambda<F>(std::move(f)); }\n#line 2 \"graph/rollback_union_find.cpp\"\
+    \ return RecursiveLambda<F>(std::forward<F>(f)); }\n#line 2 \"graph/rollback_union_find.cpp\"\
     \n#include <cassert>\n#line 4 \"graph/rollback_union_find.cpp\"\n#include <vector>\n\
     #line 6 \"graph/rollback_union_find.cpp\"\n\nclass RollbackUnionFind {\n    std::vector<usize>\
     \ data;\n    std::vector<std::pair<usize, usize>> history;\n\n  public:\n    explicit\
@@ -105,7 +105,7 @@ data:
   isVerificationFile: true
   path: test/rollback_union_find.test.cpp
   requiredBy: []
-  timestamp: '2021-11-01 21:39:08+09:00'
+  timestamp: '2021-11-03 19:13:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rollback_union_find.test.cpp

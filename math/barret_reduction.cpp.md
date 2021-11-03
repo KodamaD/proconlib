@@ -8,19 +8,37 @@ data:
     path: utility/int_alias_extended.cpp
     title: utility/int_alias_extended.cpp
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: algorithm/convolution_arbitrary_mod.cpp
+    title: algorithm/convolution_arbitrary_mod.cpp
+  - icon: ':warning:'
+    path: algorithm/convolution_int.cpp
+    title: algorithm/convolution_int.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/convolution_mod.cpp
+    title: algorithm/convolution_mod.cpp
   - icon: ':warning:'
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/mod_pow.cpp
     title: math/mod_pow.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: math/modulo_transform.cpp
+    title: math/modulo_transform.cpp
+  - icon: ':heavy_check_mark:'
     path: math/primitive_root.cpp
     title: math/primitive_root.cpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_arbitrary_mod.test.cpp
+    title: test/convolution_arbitrary_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_mod.test.cpp
+    title: test/convolution_mod.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstddef>\n#include <cstdint>\n\
@@ -48,12 +66,18 @@ data:
   isVerificationFile: false
   path: math/barret_reduction.cpp
   requiredBy:
-  - math/primitive_root.cpp
   - math/mod_pow.cpp
   - math/dynamic_modint.cpp
+  - math/modulo_transform.cpp
+  - math/primitive_root.cpp
+  - algorithm/convolution_int.cpp
+  - algorithm/convolution_mod.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
   timestamp: '2021-11-01 18:27:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/convolution_mod.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
 documentation_of: math/barret_reduction.cpp
 layout: document
 redirect_from:

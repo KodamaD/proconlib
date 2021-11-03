@@ -2,22 +2,34 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: algorithm/convolution_arbitrary_mod.cpp
+    title: algorithm/convolution_arbitrary_mod.cpp
+  - icon: ':warning:'
+    path: algorithm/convolution_int.cpp
+    title: algorithm/convolution_int.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/convolution_mod.cpp
+    title: algorithm/convolution_mod.cpp
   - icon: ':warning:'
     path: math/congruence_equations.cpp
     title: math/congruence_equations.cpp
   - icon: ':warning:'
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/inv_gcd.cpp
     title: math/inv_gcd.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/mod_inv.cpp
     title: math/mod_inv.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/mod_pow.cpp
     title: math/mod_pow.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: math/modulo_transform.cpp
+    title: math/modulo_transform.cpp
+  - icon: ':heavy_check_mark:'
     path: math/primitive_root.cpp
     title: math/primitive_root.cpp
   - icon: ':heavy_check_mark:'
@@ -27,6 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_arbitrary_mod.test.cpp
+    title: test/convolution_arbitrary_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_mod.test.cpp
+    title: test/convolution_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
@@ -60,23 +78,29 @@ data:
   isVerificationFile: false
   path: math/rem_euclid.cpp
   requiredBy:
-  - math/primitive_root.cpp
-  - math/mod_pow.cpp
-  - math/inv_gcd.cpp
   - math/static_modint.cpp
+  - math/mod_pow.cpp
   - math/dynamic_modint.cpp
-  - math/congruence_equations.cpp
+  - math/modulo_transform.cpp
+  - math/primitive_root.cpp
+  - math/inv_gcd.cpp
   - math/mod_inv.cpp
+  - math/congruence_equations.cpp
+  - algorithm/convolution_int.cpp
+  - algorithm/convolution_mod.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
   timestamp: '2021-11-01 18:27:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/semiring_matrix.test.cpp
+  - test/convolution_mod.test.cpp
   - test/modint_util.test.cpp
+  - test/segment_tree.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/queue_aggregation.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/and_convolution.test.cpp
-  - test/semiring_matrix.test.cpp
   - test/heavy_light_decomposition.test.cpp
-  - test/segment_tree.test.cpp
-  - test/queue_aggregation.test.cpp
 documentation_of: math/rem_euclid.cpp
 layout: document
 redirect_from:

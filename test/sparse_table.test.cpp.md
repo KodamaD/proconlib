@@ -70,8 +70,8 @@ data:
     \  public:\n    using Type = typename GetArg<decltype(&F::operator())>::Type;\n\
     \    static constexpr Type operation(const Type& l, const Type& r) {\n       \
     \ assert(OP);\n        return OP->operator()(l, r);\n    }\n    explicit constexpr\
-    \ LambdaSemiGroup(F&& f) { OP = std::make_unique<F>(std::move(f)); }\n};\n\ntemplate\
-    \ <class F> decltype(auto) lambda_semigroup(F&& f) { return LambdaSemiGroup<F>(std::move(f));\
+    \ LambdaSemiGroup(F&& f) { OP = std::make_unique<F>(std::forward<F>(f)); }\n};\n\
+    \ntemplate <class F> decltype(auto) lambda_semigroup(F&& f) { return LambdaSemiGroup<F>(std::forward<F>(f));\
     \ }\n#line 2 \"traits/optional_monoid.cpp\"\n#include <optional>\n#line 4 \"traits/optional_monoid.cpp\"\
     \n\ntemplate <class S> struct OptionalMonoid {\n    using Type = std::optional<typename\
     \ S::Type>;\n    static constexpr Type identity() { return std::nullopt; }\n \
@@ -109,7 +109,7 @@ data:
   isVerificationFile: true
   path: test/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2021-11-01 21:39:08+09:00'
+  timestamp: '2021-11-03 19:13:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sparse_table.test.cpp

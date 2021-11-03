@@ -29,44 +29,44 @@ data:
     \ return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
     };\n#line 6 \"algorithm/smawk.cpp\"\n\ntemplate <class T, class Select>\nstd::vector<T>\
     \ smawk(const std::vector<T>& row, const std::vector<T>& column, const Select&\
-    \ select) {\n    const usize N = row.size();\n    if (N == 0) return {};\n   \
+    \ select) {\n    const usize n = row.size();\n    if (n == 0) return {};\n   \
     \ std::vector<T> c2;\n    for (const T i : column) {\n        while (!c2.empty()\
     \ and select(row[c2.size() - 1], c2.back(), i)) c2.pop_back();\n        if (c2.size()\
-    \ < N) c2.push_back(i);\n    }\n    std::vector<T> r2;\n    for (usize i = 1;\
-    \ i < N; i += 2) r2.push_back(row[i]);\n    const std::vector<T> a2 = smawk(r2,\
-    \ c2, select);\n    std::vector<T> ret(N);\n    for (const usize i : rep(0, a2.size()))\
-    \ ret[2 * i + 1] = a2[i];\n    usize j = 0;\n    for (usize i = 0; i < N; i +=\
-    \ 2) {\n        ret[i] = c2[j];\n        const T end = (i + 1 == N ? c2.back()\
+    \ < n) c2.push_back(i);\n    }\n    std::vector<T> r2;\n    for (usize i = 1;\
+    \ i < n; i += 2) r2.push_back(row[i]);\n    const std::vector<T> a2 = smawk(r2,\
+    \ c2, select);\n    std::vector<T> ret(n);\n    for (const usize i : rep(0, a2.size()))\
+    \ ret[2 * i + 1] = a2[i];\n    usize j = 0;\n    for (usize i = 0; i < n; i +=\
+    \ 2) {\n        ret[i] = c2[j];\n        const T end = (i + 1 == n ? c2.back()\
     \ : ret[i + 1]);\n        while (c2[j] != end) {\n            j += 1;\n      \
     \      if (select(row[i], ret[i], c2[j])) ret[i] = c2[j];\n        }\n    }\n\
     \    return ret;\n}\n\ntemplate <class Select> std::vector<usize> smawk(const\
     \ usize row, const usize column, const Select& select) {\n    std::vector<usize>\
     \ r(row), c(column);\n    std::iota(r.begin(), r.end(), (usize)0);\n    std::iota(c.begin(),\
-    \ c.end(), (usize)0);\n    return smawk(row, column, select);\n}\n"
+    \ c.end(), (usize)0);\n    return smawk(r, c, select);\n}\n"
   code: "#pragma once\n#include <numeric>\n#include <vector>\n#include \"../utility/int_alias.cpp\"\
     \n#include \"../utility/rep.cpp\"\n\ntemplate <class T, class Select>\nstd::vector<T>\
     \ smawk(const std::vector<T>& row, const std::vector<T>& column, const Select&\
-    \ select) {\n    const usize N = row.size();\n    if (N == 0) return {};\n   \
+    \ select) {\n    const usize n = row.size();\n    if (n == 0) return {};\n   \
     \ std::vector<T> c2;\n    for (const T i : column) {\n        while (!c2.empty()\
     \ and select(row[c2.size() - 1], c2.back(), i)) c2.pop_back();\n        if (c2.size()\
-    \ < N) c2.push_back(i);\n    }\n    std::vector<T> r2;\n    for (usize i = 1;\
-    \ i < N; i += 2) r2.push_back(row[i]);\n    const std::vector<T> a2 = smawk(r2,\
-    \ c2, select);\n    std::vector<T> ret(N);\n    for (const usize i : rep(0, a2.size()))\
-    \ ret[2 * i + 1] = a2[i];\n    usize j = 0;\n    for (usize i = 0; i < N; i +=\
-    \ 2) {\n        ret[i] = c2[j];\n        const T end = (i + 1 == N ? c2.back()\
+    \ < n) c2.push_back(i);\n    }\n    std::vector<T> r2;\n    for (usize i = 1;\
+    \ i < n; i += 2) r2.push_back(row[i]);\n    const std::vector<T> a2 = smawk(r2,\
+    \ c2, select);\n    std::vector<T> ret(n);\n    for (const usize i : rep(0, a2.size()))\
+    \ ret[2 * i + 1] = a2[i];\n    usize j = 0;\n    for (usize i = 0; i < n; i +=\
+    \ 2) {\n        ret[i] = c2[j];\n        const T end = (i + 1 == n ? c2.back()\
     \ : ret[i + 1]);\n        while (c2[j] != end) {\n            j += 1;\n      \
     \      if (select(row[i], ret[i], c2[j])) ret[i] = c2[j];\n        }\n    }\n\
     \    return ret;\n}\n\ntemplate <class Select> std::vector<usize> smawk(const\
     \ usize row, const usize column, const Select& select) {\n    std::vector<usize>\
     \ r(row), c(column);\n    std::iota(r.begin(), r.end(), (usize)0);\n    std::iota(c.begin(),\
-    \ c.end(), (usize)0);\n    return smawk(row, column, select);\n}\n"
+    \ c.end(), (usize)0);\n    return smawk(r, c, select);\n}\n"
   dependsOn:
   - utility/int_alias.cpp
   - utility/rep.cpp
   isVerificationFile: false
   path: algorithm/smawk.cpp
   requiredBy: []
-  timestamp: '2021-10-23 19:56:59+09:00'
+  timestamp: '2021-11-03 19:13:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: algorithm/smawk.cpp

@@ -23,11 +23,11 @@ data:
     \ = std::int64_t;\nusing u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\n\
     using usize = std::size_t;\n#line 2 \"utility/rec_lambda.cpp\"\n#include <type_traits>\n\
     #line 4 \"utility/rec_lambda.cpp\"\n\ntemplate <class F> struct RecursiveLambda\
-    \ : private F {\n    explicit constexpr RecursiveLambda(F&& f) : F(std::move(f))\
+    \ : private F {\n    explicit constexpr RecursiveLambda(F&& f) : F(std::forward<F>(f))\
     \ {}\n    template <class... Args> constexpr decltype(auto) operator()(Args&&...\
     \ args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate <class F> constexpr decltype(auto) rec_lambda(F&& f) {\
-    \ return RecursiveLambda<F>(std::move(f)); }\n#line 7 \"graph/tree_manager.cpp\"\
+    \ return RecursiveLambda<F>(std::forward<F>(f)); }\n#line 7 \"graph/tree_manager.cpp\"\
     \n\ntemplate <class G> class TreeManager {\n  public:\n    class NodeInfo {\n\
     \        friend class TreeManager;\n        NodeInfo() : parent(0), subtree(0),\
     \ head(0), enter(0), exit(0) {}\n\n      public:\n        usize parent, subtree,\
@@ -122,7 +122,7 @@ data:
   isVerificationFile: false
   path: graph/tree_manager.cpp
   requiredBy: []
-  timestamp: '2021-11-01 21:39:08+09:00'
+  timestamp: '2021-11-03 19:13:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/heavy_light_decomposition.test.cpp
