@@ -9,6 +9,9 @@ data:
     path: algorithm/and_convolution.cpp
     title: algorithm/and_convolution.cpp
   - icon: ':heavy_check_mark:'
+    path: algorithm/berlekamp_massey.cpp
+    title: algorithm/berlekamp_massey.cpp
+  - icon: ':heavy_check_mark:'
     path: algorithm/convolution_arbitrary_mod.cpp
     title: algorithm/convolution_arbitrary_mod.cpp
   - icon: ':warning:'
@@ -90,6 +93,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/berlekamp_massey.test.cpp
+    title: test/berlekamp_massey.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/bipartite_matching.test.cpp
     title: test/bipartite_matching.test.cpp
@@ -208,6 +214,7 @@ data:
   - algorithm/convolution_mod.cpp
   - algorithm/monotone_minima.cpp
   - algorithm/convolution_arbitrary_mod.cpp
+  - algorithm/berlekamp_massey.cpp
   - algorithm/smawk.cpp
   - algorithm/superset_zeta_transform.cpp
   - algorithm/or_convolution.cpp
@@ -235,6 +242,7 @@ data:
   - test/integer_hash_table_verbose.test.cpp
   - test/primal_dual_mincostflow.test.cpp
   - test/integer_hash_table.test.cpp
+  - test/berlekamp_massey.test.cpp
   - test/strongly_connected_components.test.cpp
   - test/z_algorithm.test.cpp
   - test/fast_io.test.cpp

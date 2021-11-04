@@ -7,6 +7,9 @@ data:
       path: algorithm/and_convolution.cpp
       title: algorithm/and_convolution.cpp
     - icon: ':heavy_check_mark:'
+      path: algorithm/berlekamp_massey.cpp
+      title: algorithm/berlekamp_massey.cpp
+    - icon: ':heavy_check_mark:'
       path: algorithm/convolution_arbitrary_mod.cpp
       title: algorithm/convolution_arbitrary_mod.cpp
     - icon: ':warning:'
@@ -305,6 +308,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/auto_memoize.test.cpp
       title: test/auto_memoize.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/berlekamp_massey.test.cpp
+      title: test/berlekamp_massey.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/bipartite_matching.test.cpp
       title: test/bipartite_matching.test.cpp

@@ -52,8 +52,8 @@ data:
     \ Iter end() const noexcept { return last; }\n};\n#line 7 \"container/sparse_table.cpp\"\
     \n\ntemplate <class M> class SparseTable {\n    using T = typename M::Type;\n\
     \    std::vector<std::vector<T>> table;\n\n  public:\n    SparseTable() : SparseTable(std::vector<T>())\
-    \ {}\n    explicit SparseTable(const std::vector<T>& vec) {\n        const auto\
-    \ size = vec.size();\n        const auto height = bit_width(size);\n        table.reserve(height);\n\
+    \ {}\n    explicit SparseTable(const std::vector<T>& vec) {\n        const usize\
+    \ size = vec.size();\n        const usize height = bit_width(size);\n        table.reserve(height);\n\
     \        table.push_back(vec);\n        for (const usize d : rep(1, height)) {\n\
     \            table.push_back(std::vector<T>(size - (1 << d) + 1, M::identity()));\n\
     \            for (const usize i : rep(0, table[d].size())) {\n               \
@@ -109,7 +109,7 @@ data:
   isVerificationFile: true
   path: test/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2021-11-03 19:13:26+09:00'
+  timestamp: '2021-11-04 19:10:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sparse_table.test.cpp

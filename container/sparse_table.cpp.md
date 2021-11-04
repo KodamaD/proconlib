@@ -42,8 +42,8 @@ data:
     \ Iter end() const noexcept { return last; }\n};\n#line 7 \"container/sparse_table.cpp\"\
     \n\ntemplate <class M> class SparseTable {\n    using T = typename M::Type;\n\
     \    std::vector<std::vector<T>> table;\n\n  public:\n    SparseTable() : SparseTable(std::vector<T>())\
-    \ {}\n    explicit SparseTable(const std::vector<T>& vec) {\n        const auto\
-    \ size = vec.size();\n        const auto height = bit_width(size);\n        table.reserve(height);\n\
+    \ {}\n    explicit SparseTable(const std::vector<T>& vec) {\n        const usize\
+    \ size = vec.size();\n        const usize height = bit_width(size);\n        table.reserve(height);\n\
     \        table.push_back(vec);\n        for (const usize d : rep(1, height)) {\n\
     \            table.push_back(std::vector<T>(size - (1 << d) + 1, M::identity()));\n\
     \            for (const usize i : rep(0, table[d].size())) {\n               \
@@ -57,8 +57,8 @@ data:
     \n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n\ntemplate\
     \ <class M> class SparseTable {\n    using T = typename M::Type;\n    std::vector<std::vector<T>>\
     \ table;\n\n  public:\n    SparseTable() : SparseTable(std::vector<T>()) {}\n\
-    \    explicit SparseTable(const std::vector<T>& vec) {\n        const auto size\
-    \ = vec.size();\n        const auto height = bit_width(size);\n        table.reserve(height);\n\
+    \    explicit SparseTable(const std::vector<T>& vec) {\n        const usize size\
+    \ = vec.size();\n        const usize height = bit_width(size);\n        table.reserve(height);\n\
     \        table.push_back(vec);\n        for (const usize d : rep(1, height)) {\n\
     \            table.push_back(std::vector<T>(size - (1 << d) + 1, M::identity()));\n\
     \            for (const usize i : rep(0, table[d].size())) {\n               \
@@ -76,7 +76,7 @@ data:
   isVerificationFile: false
   path: container/sparse_table.cpp
   requiredBy: []
-  timestamp: '2021-09-27 22:23:01+09:00'
+  timestamp: '2021-11-04 19:10:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sparse_table.test.cpp

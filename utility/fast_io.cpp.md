@@ -58,34 +58,35 @@ data:
     \ return 5;\n            if (n >= TEN<3>) return 4;\n            if (n >= TEN<2>)\
     \ return 3;\n            if (n >= TEN<1>) return 2;\n            return 1;\n \
     \       }\n    }\n}\n\nstruct NumBlock {\n    char NUM[40000];\n    constexpr\
-    \ NumBlock() : NUM() {\n        for (const auto i : rep(0, 10000)) {\n       \
-    \     auto n = i;\n            for (const auto j : revrep(0, 4)) {\n         \
-    \       NUM[i * 4 + j] = n % 10 + '0';\n                n /= 10;\n           \
-    \ }\n        }\n    }\n} constexpr num_block;\n\nclass Scanner {\n    char buf[BUF_SIZE];\n\
-    \    usize left, right;\n\n    __attribute__((target(\"avx2\"))) inline void load()\
-    \ {\n        const usize len = right - left;\n        std::memcpy(buf, buf + left,\
-    \ len);\n        right = len + std::fread(buf + len, 1, BUF_SIZE - len, stdin);\n\
-    \        left = 0;\n    }\n\n    __attribute__((target(\"avx2\"))) inline void\
-    \ ignore_spaces() {\n        while (buf[left] <= ' ') {\n            if (__builtin_expect(++left\
-    \ == right, 0)) load();\n        }\n    }\n\n  public:\n    Scanner() : buf(),\
-    \ left(0), right(0) { load(); }\n\n    __attribute__((target(\"avx2\"))) void\
-    \ scan(char& c) {\n        ignore_spaces();\n        c = buf[left++];\n    }\n\
-    \n    template <typename T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\n\
-    \    __attribute__((target(\"avx2\"))) inline void scan(T& x) {\n        ignore_spaces();\n\
-    \        if (__builtin_expect(left + 32 > right, 0)) load();\n        char c =\
-    \ buf[left++];\n        bool minus = false;\n        if constexpr (std::is_signed_v<T>)\
-    \ {\n            if (c == '-') {\n                minus = 1;\n               \
-    \ c = buf[left++];\n            }\n        }\n        x = 0;\n        while (c\
-    \ >= '0') {\n            x = x * 10 + (c & 15);\n            c = buf[left++];\n\
-    \        }\n        if constexpr (std::is_signed_v<T>) {\n            if (minus)\
-    \ x = -x;\n        }\n    }\n\n    template <class T, class... Args> __attribute__((target(\"\
-    avx2\"))) inline void scan(T& x, Args&... args) {\n        scan(x);\n        scan(args...);\n\
-    \    }\n};\n\nclass Printer {\n    char buf[BUF_SIZE];\n    usize pos;\n\n   \
-    \ __attribute__((target(\"avx2\"))) inline void flush() {\n        std::fwrite(buf,\
-    \ 1, pos, stdout);\n        pos = 0;\n    }\n\n  public:\n    Printer() : buf(),\
-    \ pos(0) {}\n    ~Printer() { flush(); }\n\n    __attribute__((target(\"avx2\"\
-    ))) void print(const char c) {\n        buf[pos] = c;\n        if (__builtin_expect(++pos\
-    \ == BUF_SIZE, 0)) flush();\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>>*\
+    \ NumBlock() : NUM() {\n        for (const usize i : rep(0, 10000)) {\n      \
+    \      usize n = i;\n            for (const usize j : revrep(0, 4)) {\n      \
+    \          NUM[i * 4 + j] = n % 10 + '0';\n                n /= 10;\n        \
+    \    }\n        }\n    }\n} constexpr num_block;\n\nclass Scanner {\n    char\
+    \ buf[BUF_SIZE];\n    usize left, right;\n\n    __attribute__((target(\"avx2\"\
+    ))) inline void load() {\n        const usize len = right - left;\n        std::memcpy(buf,\
+    \ buf + left, len);\n        right = len + std::fread(buf + len, 1, BUF_SIZE -\
+    \ len, stdin);\n        left = 0;\n    }\n\n    __attribute__((target(\"avx2\"\
+    ))) inline void ignore_spaces() {\n        while (buf[left] <= ' ') {\n      \
+    \      if (__builtin_expect(++left == right, 0)) load();\n        }\n    }\n\n\
+    \  public:\n    Scanner() : buf(), left(0), right(0) { load(); }\n\n    __attribute__((target(\"\
+    avx2\"))) void scan(char& c) {\n        ignore_spaces();\n        c = buf[left++];\n\
+    \    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>>* =\
+    \ nullptr>\n    __attribute__((target(\"avx2\"))) inline void scan(T& x) {\n \
+    \       ignore_spaces();\n        if (__builtin_expect(left + 32 > right, 0))\
+    \ load();\n        char c = buf[left++];\n        bool minus = false;\n      \
+    \  if constexpr (std::is_signed_v<T>) {\n            if (c == '-') {\n       \
+    \         minus = 1;\n                c = buf[left++];\n            }\n      \
+    \  }\n        x = 0;\n        while (c >= '0') {\n            x = x * 10 + (c\
+    \ & 15);\n            c = buf[left++];\n        }\n        if constexpr (std::is_signed_v<T>)\
+    \ {\n            if (minus) x = -x;\n        }\n    }\n\n    template <class T,\
+    \ class... Args> __attribute__((target(\"avx2\"))) inline void scan(T& x, Args&...\
+    \ args) {\n        scan(x);\n        scan(args...);\n    }\n};\n\nclass Printer\
+    \ {\n    char buf[BUF_SIZE];\n    usize pos;\n\n    __attribute__((target(\"avx2\"\
+    ))) inline void flush() {\n        std::fwrite(buf, 1, pos, stdout);\n       \
+    \ pos = 0;\n    }\n\n  public:\n    Printer() : buf(), pos(0) {}\n    ~Printer()\
+    \ { flush(); }\n\n    __attribute__((target(\"avx2\"))) void print(const char\
+    \ c) {\n        buf[pos] = c;\n        if (__builtin_expect(++pos == BUF_SIZE,\
+    \ 0)) flush();\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>>*\
     \ = nullptr>\n    __attribute__((target(\"avx2\"))) inline void print(T x) {\n\
     \        if (__builtin_expect(pos + 32 > BUF_SIZE, 0)) flush();\n        if (x\
     \ == 0) {\n            buf[pos++] = '0';\n            return;\n        }\n   \
@@ -119,34 +120,35 @@ data:
     \ return 5;\n            if (n >= TEN<3>) return 4;\n            if (n >= TEN<2>)\
     \ return 3;\n            if (n >= TEN<1>) return 2;\n            return 1;\n \
     \       }\n    }\n}\n\nstruct NumBlock {\n    char NUM[40000];\n    constexpr\
-    \ NumBlock() : NUM() {\n        for (const auto i : rep(0, 10000)) {\n       \
-    \     auto n = i;\n            for (const auto j : revrep(0, 4)) {\n         \
-    \       NUM[i * 4 + j] = n % 10 + '0';\n                n /= 10;\n           \
-    \ }\n        }\n    }\n} constexpr num_block;\n\nclass Scanner {\n    char buf[BUF_SIZE];\n\
-    \    usize left, right;\n\n    __attribute__((target(\"avx2\"))) inline void load()\
-    \ {\n        const usize len = right - left;\n        std::memcpy(buf, buf + left,\
-    \ len);\n        right = len + std::fread(buf + len, 1, BUF_SIZE - len, stdin);\n\
-    \        left = 0;\n    }\n\n    __attribute__((target(\"avx2\"))) inline void\
-    \ ignore_spaces() {\n        while (buf[left] <= ' ') {\n            if (__builtin_expect(++left\
-    \ == right, 0)) load();\n        }\n    }\n\n  public:\n    Scanner() : buf(),\
-    \ left(0), right(0) { load(); }\n\n    __attribute__((target(\"avx2\"))) void\
-    \ scan(char& c) {\n        ignore_spaces();\n        c = buf[left++];\n    }\n\
-    \n    template <typename T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\n\
-    \    __attribute__((target(\"avx2\"))) inline void scan(T& x) {\n        ignore_spaces();\n\
-    \        if (__builtin_expect(left + 32 > right, 0)) load();\n        char c =\
-    \ buf[left++];\n        bool minus = false;\n        if constexpr (std::is_signed_v<T>)\
-    \ {\n            if (c == '-') {\n                minus = 1;\n               \
-    \ c = buf[left++];\n            }\n        }\n        x = 0;\n        while (c\
-    \ >= '0') {\n            x = x * 10 + (c & 15);\n            c = buf[left++];\n\
-    \        }\n        if constexpr (std::is_signed_v<T>) {\n            if (minus)\
-    \ x = -x;\n        }\n    }\n\n    template <class T, class... Args> __attribute__((target(\"\
-    avx2\"))) inline void scan(T& x, Args&... args) {\n        scan(x);\n        scan(args...);\n\
-    \    }\n};\n\nclass Printer {\n    char buf[BUF_SIZE];\n    usize pos;\n\n   \
-    \ __attribute__((target(\"avx2\"))) inline void flush() {\n        std::fwrite(buf,\
-    \ 1, pos, stdout);\n        pos = 0;\n    }\n\n  public:\n    Printer() : buf(),\
-    \ pos(0) {}\n    ~Printer() { flush(); }\n\n    __attribute__((target(\"avx2\"\
-    ))) void print(const char c) {\n        buf[pos] = c;\n        if (__builtin_expect(++pos\
-    \ == BUF_SIZE, 0)) flush();\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>>*\
+    \ NumBlock() : NUM() {\n        for (const usize i : rep(0, 10000)) {\n      \
+    \      usize n = i;\n            for (const usize j : revrep(0, 4)) {\n      \
+    \          NUM[i * 4 + j] = n % 10 + '0';\n                n /= 10;\n        \
+    \    }\n        }\n    }\n} constexpr num_block;\n\nclass Scanner {\n    char\
+    \ buf[BUF_SIZE];\n    usize left, right;\n\n    __attribute__((target(\"avx2\"\
+    ))) inline void load() {\n        const usize len = right - left;\n        std::memcpy(buf,\
+    \ buf + left, len);\n        right = len + std::fread(buf + len, 1, BUF_SIZE -\
+    \ len, stdin);\n        left = 0;\n    }\n\n    __attribute__((target(\"avx2\"\
+    ))) inline void ignore_spaces() {\n        while (buf[left] <= ' ') {\n      \
+    \      if (__builtin_expect(++left == right, 0)) load();\n        }\n    }\n\n\
+    \  public:\n    Scanner() : buf(), left(0), right(0) { load(); }\n\n    __attribute__((target(\"\
+    avx2\"))) void scan(char& c) {\n        ignore_spaces();\n        c = buf[left++];\n\
+    \    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>>* =\
+    \ nullptr>\n    __attribute__((target(\"avx2\"))) inline void scan(T& x) {\n \
+    \       ignore_spaces();\n        if (__builtin_expect(left + 32 > right, 0))\
+    \ load();\n        char c = buf[left++];\n        bool minus = false;\n      \
+    \  if constexpr (std::is_signed_v<T>) {\n            if (c == '-') {\n       \
+    \         minus = 1;\n                c = buf[left++];\n            }\n      \
+    \  }\n        x = 0;\n        while (c >= '0') {\n            x = x * 10 + (c\
+    \ & 15);\n            c = buf[left++];\n        }\n        if constexpr (std::is_signed_v<T>)\
+    \ {\n            if (minus) x = -x;\n        }\n    }\n\n    template <class T,\
+    \ class... Args> __attribute__((target(\"avx2\"))) inline void scan(T& x, Args&...\
+    \ args) {\n        scan(x);\n        scan(args...);\n    }\n};\n\nclass Printer\
+    \ {\n    char buf[BUF_SIZE];\n    usize pos;\n\n    __attribute__((target(\"avx2\"\
+    ))) inline void flush() {\n        std::fwrite(buf, 1, pos, stdout);\n       \
+    \ pos = 0;\n    }\n\n  public:\n    Printer() : buf(), pos(0) {}\n    ~Printer()\
+    \ { flush(); }\n\n    __attribute__((target(\"avx2\"))) void print(const char\
+    \ c) {\n        buf[pos] = c;\n        if (__builtin_expect(++pos == BUF_SIZE,\
+    \ 0)) flush();\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>>*\
     \ = nullptr>\n    __attribute__((target(\"avx2\"))) inline void print(T x) {\n\
     \        if (__builtin_expect(pos + 32 > BUF_SIZE, 0)) flush();\n        if (x\
     \ == 0) {\n            buf[pos++] = '0';\n            return;\n        }\n   \
@@ -169,7 +171,7 @@ data:
   isVerificationFile: false
   path: utility/fast_io.cpp
   requiredBy: []
-  timestamp: '2021-09-08 18:46:15+09:00'
+  timestamp: '2021-11-04 19:10:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fast_io.test.cpp

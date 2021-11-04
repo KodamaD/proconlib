@@ -19,6 +19,9 @@ data:
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/berlekamp_massey.test.cpp
+    title: test/berlekamp_massey.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/convolution_arbitrary_mod.test.cpp
     title: test/convolution_arbitrary_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,6 +78,7 @@ data:
   - test/convolution_mod.test.cpp
   - test/modint_util.test.cpp
   - test/segment_tree.test.cpp
+  - test/berlekamp_massey.test.cpp
   - test/convolution_arbitrary_mod.test.cpp
   - test/queue_aggregation.test.cpp
   - test/lazy_segment_tree.test.cpp

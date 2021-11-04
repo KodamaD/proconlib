@@ -60,16 +60,16 @@ data:
     \ M::operation(data[2 * k], data[2 * k + 1]); }\n    void apply(const usize k,\
     \ const U& e) {\n        if (k >= seg_size) {\n            data[k] = A::operation(data[k],\
     \ e).value();\n            return;\n        }\n        lazy[k] = E::operation(lazy[k],\
-    \ e);\n        auto result = A::operation(data[k], e);\n        if (result) {\n\
-    \            data[k] = std::move(*result);\n        } else {\n            flush(k);\n\
-    \            fetch(k);\n        }\n    }\n    void flush(const usize k) {\n  \
-    \      apply(2 * k, lazy[k]);\n        apply(2 * k + 1, lazy[k]);\n        lazy[k]\
-    \ = E::identity();\n    }\n\n    void push(const usize k) {\n        for (const\
-    \ usize d : revrep(bit_rzeros(k) + 1, logn + 1)) flush(k >> d);\n    }\n    void\
-    \ pull(usize k) {\n        for (k >>= bit_rzeros(k); k > 1;) fetch(k >>= 1);\n\
-    \    }\n\n  public:\n    explicit SegmentTreeBeats(const usize size = 0, const\
-    \ T& value = M::identity())\n        : SegmentTreeBeats(std::vector<T>(size, value))\
-    \ {}\n    explicit SegmentTreeBeats(const std::vector<T>& vec) : internal_size(vec.size())\
+    \ e);\n        std::optional<T> result = A::operation(data[k], e);\n        if\
+    \ (result) {\n            data[k] = std::move(*result);\n        } else {\n  \
+    \          flush(k);\n            fetch(k);\n        }\n    }\n    void flush(const\
+    \ usize k) {\n        apply(2 * k, lazy[k]);\n        apply(2 * k + 1, lazy[k]);\n\
+    \        lazy[k] = E::identity();\n    }\n\n    void push(const usize k) {\n \
+    \       for (const usize d : revrep(bit_rzeros(k) + 1, logn + 1)) flush(k >> d);\n\
+    \    }\n    void pull(usize k) {\n        for (k >>= bit_rzeros(k); k > 1;) fetch(k\
+    \ >>= 1);\n    }\n\n  public:\n    explicit SegmentTreeBeats(const usize size\
+    \ = 0, const T& value = M::identity())\n        : SegmentTreeBeats(std::vector<T>(size,\
+    \ value)) {}\n    explicit SegmentTreeBeats(const std::vector<T>& vec) : internal_size(vec.size())\
     \ {\n        logn = ceil_log2(internal_size);\n        seg_size = 1 << logn;\n\
     \        data = std::vector<T>(2 * seg_size, M::identity());\n        lazy = std::vector<U>(seg_size,\
     \ E::identity());\n        for (const usize i : rep(0, internal_size)) data[seg_size\
@@ -121,12 +121,12 @@ data:
     \ fetch(const usize k) { data[k] = M::operation(data[2 * k], data[2 * k + 1]);\
     \ }\n    void apply(const usize k, const U& e) {\n        if (k >= seg_size) {\n\
     \            data[k] = A::operation(data[k], e).value();\n            return;\n\
-    \        }\n        lazy[k] = E::operation(lazy[k], e);\n        auto result =\
-    \ A::operation(data[k], e);\n        if (result) {\n            data[k] = std::move(*result);\n\
-    \        } else {\n            flush(k);\n            fetch(k);\n        }\n \
-    \   }\n    void flush(const usize k) {\n        apply(2 * k, lazy[k]);\n     \
-    \   apply(2 * k + 1, lazy[k]);\n        lazy[k] = E::identity();\n    }\n\n  \
-    \  void push(const usize k) {\n        for (const usize d : revrep(bit_rzeros(k)\
+    \        }\n        lazy[k] = E::operation(lazy[k], e);\n        std::optional<T>\
+    \ result = A::operation(data[k], e);\n        if (result) {\n            data[k]\
+    \ = std::move(*result);\n        } else {\n            flush(k);\n           \
+    \ fetch(k);\n        }\n    }\n    void flush(const usize k) {\n        apply(2\
+    \ * k, lazy[k]);\n        apply(2 * k + 1, lazy[k]);\n        lazy[k] = E::identity();\n\
+    \    }\n\n    void push(const usize k) {\n        for (const usize d : revrep(bit_rzeros(k)\
     \ + 1, logn + 1)) flush(k >> d);\n    }\n    void pull(usize k) {\n        for\
     \ (k >>= bit_rzeros(k); k > 1;) fetch(k >>= 1);\n    }\n\n  public:\n    explicit\
     \ SegmentTreeBeats(const usize size = 0, const T& value = M::identity())\n   \
@@ -181,7 +181,7 @@ data:
   isVerificationFile: false
   path: container/segment_tree_beats.cpp
   requiredBy: []
-  timestamp: '2021-09-27 22:23:01+09:00'
+  timestamp: '2021-11-04 19:10:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segment_tree_beats.test.cpp
