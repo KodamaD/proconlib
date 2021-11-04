@@ -49,9 +49,9 @@ __attribute__((target("avx2"))) inline constexpr usize integer_digits(const u64 
 struct NumBlock {
     char NUM[40000];
     constexpr NumBlock() : NUM() {
-        for (const auto i : rep(0, 10000)) {
-            auto n = i;
-            for (const auto j : revrep(0, 4)) {
+        for (const usize i : rep(0, 10000)) {
+            usize n = i;
+            for (const usize j : revrep(0, 4)) {
                 NUM[i * 4 + j] = n % 10 + '0';
                 n /= 10;
             }

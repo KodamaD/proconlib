@@ -25,7 +25,7 @@ template <class A> class SegmentTreeBeats {
             return;
         }
         lazy[k] = E::operation(lazy[k], e);
-        auto result = A::operation(data[k], e);
+        std::optional<T> result = A::operation(data[k], e);
         if (result) {
             data[k] = std::move(*result);
         } else {

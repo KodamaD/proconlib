@@ -12,8 +12,8 @@ template <class M> class SparseTable {
   public:
     SparseTable() : SparseTable(std::vector<T>()) {}
     explicit SparseTable(const std::vector<T>& vec) {
-        const auto size = vec.size();
-        const auto height = bit_width(size);
+        const usize size = vec.size();
+        const usize height = bit_width(size);
         table.reserve(height);
         table.push_back(vec);
         for (const usize d : rep(1, height)) {
