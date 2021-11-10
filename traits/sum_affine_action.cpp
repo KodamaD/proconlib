@@ -1,7 +1,7 @@
 #pragma once
-#include "../traits/affine_composite_monoid.cpp"
-#include "../traits/pair_monoid.cpp"
-#include "../traits/plus_monoid.cpp"
+#include "affine_composite_monoid.cpp"
+#include "pair_monoid.cpp"
+#include "plus_monoid.cpp"
 
 template <class T> struct SumAffineAction {
     using Monoid = PairMonoid<PlusMonoid<T>, PlusMonoid<T>>;

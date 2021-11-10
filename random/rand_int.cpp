@@ -1,6 +1,6 @@
 #pragma once
 #include <random>
-#include "../random/xorshift.cpp"
+#include "xorshift.cpp"
 
 template <class T> T rand_int(const T& min, const T& max) {
     static std::default_random_engine gen(xorshift());

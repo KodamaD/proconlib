@@ -2,11 +2,11 @@
 #include <algorithm>
 #include <type_traits>
 #include <vector>
-#include "../algorithm/convolution_mod.cpp"
 #include "../math/mod_inv.cpp"
 #include "../math/rem_euclid.cpp"
 #include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
+#include "convolution_mod.cpp"
 
 template <class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>
 std::vector<T> convolution_int(const std::vector<T>& a, const std::vector<T>& b) {

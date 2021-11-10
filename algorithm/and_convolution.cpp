@@ -3,8 +3,8 @@
 #include <cassert>
 #include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
-#include "../algorithm/superset_zeta_transform.cpp"
-#include "../algorithm/superset_mobius_transform.cpp"
+#include "superset_zeta_transform.cpp"
+#include "superset_mobius_transform.cpp"
 
 template <class T> std::vector<T> and_convolution(std::vector<T> a, std::vector<T> b) {
     assert(a.size() == b.size());

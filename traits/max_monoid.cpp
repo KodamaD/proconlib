@@ -1,6 +1,6 @@
 #pragma once
 #include <algorithm>
-#include "../traits/optional_monoid.cpp"
+#include "optional_monoid.cpp"
 
 template <class T> struct MaxSemiGroup {
     using Type = T;

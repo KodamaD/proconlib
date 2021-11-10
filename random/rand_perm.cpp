@@ -1,7 +1,7 @@
 #pragma once
 #include <numeric>
 #include <vector>
-#include "../random/shuffle_vec.cpp"
+#include "shuffle_vec.cpp"
 #include "../utility/int_alias.cpp"
 
 template <class T> std::vector<T> rand_perm(const usize n, const T& first = 0) {

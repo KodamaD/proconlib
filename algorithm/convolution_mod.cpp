@@ -39,7 +39,7 @@ template <class M> std::vector<M> convolution_mod(std::vector<M>&& a, std::vecto
     const usize n = a.size(), m = b.size();
     if (n == 0 || m == 0) return {};
     if (std::min(n, m) <= 60) return convolution_naive(a, b);
-    return convolution_ntt(a, b);
+    return convolution_ntt(std::move(a), std::move(b));
 }
 
 template <class M> std::vector<M> convolution_mod(const std::vector<M>& a, const std::vector<M>& b) {

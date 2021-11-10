@@ -2,7 +2,7 @@
 #include <utility>
 #include <vector>
 #include "../bit/ceil_log2.cpp"
-#include "../utility/int_alias.cpp"
+#include "int_alias.cpp"
 
 template <class F> class AutoReallocation {
     using R = typename decltype(std::declval<F>()((usize)0))::value_type;

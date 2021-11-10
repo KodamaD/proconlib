@@ -1,6 +1,6 @@
 #pragma once
-#include "../traits/min_monoid.cpp"
-#include "../traits/plus_monoid.cpp"
+#include "min_monoid.cpp"
+#include "plus_monoid.cpp"
 
 template <class T> struct MinAddAction {
     using Monoid = MinMonoid<T>;

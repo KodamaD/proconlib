@@ -1,9 +1,9 @@
 #pragma once
 #include <ostream>
 #include <type_traits>
-#include "../math/rem_euclid.cpp"
-#include "../math/totient.cpp"
 #include "../utility/int_alias.cpp"
+#include "rem_euclid.cpp"
+#include "totient.cpp"
 
 template <u32 MOD, std::enable_if_t<((u32)1 <= MOD and MOD <= ((u32)1 << 31))>* = nullptr> class StaticModint {
     using Self = StaticModint;

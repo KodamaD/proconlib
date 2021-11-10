@@ -2,10 +2,10 @@
 #include <cassert>
 #include <ostream>
 #include <type_traits>
-#include "../math/barret_reduction.cpp"
-#include "../math/mod_inv.cpp"
-#include "../math/rem_euclid.cpp"
 #include "../utility/int_alias.cpp"
+#include "barret_reduction.cpp"
+#include "mod_inv.cpp"
+#include "rem_euclid.cpp"
 
 template <usize ID> class DynamicModint {
     using Self = DynamicModint;

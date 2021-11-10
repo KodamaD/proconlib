@@ -1,7 +1,7 @@
 #pragma once
 #include <array>
 #include <type_traits>
-#include "../utility/int_alias.cpp"
+#include "int_alias.cpp"
 
 template <class T, usize N, usize... Seq> struct MultiArrayImpl {
     using type = std::array<typename MultiArrayImpl<T, Seq...>::type, N>;

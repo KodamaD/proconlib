@@ -3,9 +3,9 @@
 #include <cstring>
 #include <type_traits>
 #include <utility>
-#include "../utility/int_alias.cpp"
-#include "../utility/rep.cpp"
-#include "../utility/revrep.cpp"
+#include "int_alias.cpp"
+#include "rep.cpp"
+#include "revrep.cpp"
 
 namespace fast_io {
 

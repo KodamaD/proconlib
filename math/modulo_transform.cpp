@@ -2,10 +2,10 @@
 #include <array>
 #include <vector>
 #include "../bit/bit_rzeros.cpp"
-#include "../math/primitive_root.cpp"
 #include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
 #include "../utility/revrep.cpp"
+#include "primitive_root.cpp"
 
 template <class M> struct ModuloTransform {
     static constexpr u32 ROOT = primitive_root(M::mod());

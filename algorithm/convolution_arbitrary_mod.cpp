@@ -1,13 +1,14 @@
 #pragma once
 #include <vector>
-#include "../algorithm/convolution_mod.cpp"
 #include "../math/mod_inv.cpp"
 #include "../math/rem_euclid.cpp"
 #include "../utility/int_alias.cpp"
 #include "../utility/int_alias_extended.cpp"
 #include "../utility/rep.cpp"
+#include "convolution_mod.cpp"
 
-template <class T> std::vector<T> convolution_arbitrary_mod(const std::vector<T>& a, const std::vector<T>& b, const T& mod) {
+template <class T>
+std::vector<T> convolution_arbitrary_mod(const std::vector<T>& a, const std::vector<T>& b, const T& mod) {
     const usize n = a.size(), m = b.size();
     if (n == 0 || m == 0) return {};
     static constexpr u64 MOD1 = 754974721, MOD2 = 167772161, MOD3 = 469762049;
@@ -20,8 +21,8 @@ template <class T> std::vector<T> convolution_arbitrary_mod(const std::vector<T>
     std::vector<T> c(n + m - 1);
     for (const usize i : rep(0, n + m - 1)) {
         const u32 x = c1[i];
-        const u64 y = (u64) (c2[i] + MOD2 - x % MOD2) * I2 % MOD2 * MOD1 + x;
-        c[i] = ((u128) (c3[i] + MOD3 - y % MOD3) * I3 % MOD3 * M1M2 + y) % mod;
+        const u64 y = (u64)(c2[i] + MOD2 - x % MOD2) * I2 % MOD2 * MOD1 + x;
+        c[i] = ((u128)(c3[i] + MOD3 - y % MOD3) * I3 % MOD3 * M1M2 + y) % mod;
     }
     return c;
 }

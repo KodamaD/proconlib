@@ -3,7 +3,7 @@
 #include <tuple>
 #include <type_traits>
 #include <utility>
-#include "../utility/int_alias.cpp"
+#include "int_alias.cpp"
 
 template <class F> class AutoMemoization {
     template <class> struct GetSig;

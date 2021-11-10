@@ -1,6 +1,6 @@
 #pragma once
 #include <cassert>
-#include "../utility/int_alias.cpp"
+#include "int_alias.cpp"
 
 class IndexOffset {
     usize offset, len;

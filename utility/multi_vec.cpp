@@ -2,7 +2,7 @@
 #include <type_traits>
 #include <utility>
 #include <vector>
-#include "../utility/int_alias.cpp"
+#include "int_alias.cpp"
 
 template <class T, usize N, std::enable_if_t<(N != 0)>* = nullptr> struct MultiVecImpl {
     using type = std::vector<typename MultiVecImpl<T, N - 1>::type>;

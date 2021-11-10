@@ -1,7 +1,7 @@
 #pragma once
 #include <type_traits>
 #include <utility>
-#include "../math/rem_euclid.cpp"
+#include "rem_euclid.cpp"
 
 template <class T> constexpr std::pair<T, T> inv_gcd(const T& a, const T& b) {
     using U = std::make_signed_t<T>;

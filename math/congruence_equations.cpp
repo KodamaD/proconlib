@@ -3,9 +3,9 @@
 #include <type_traits>
 #include <utility>
 #include <vector>
-#include "../math/inv_gcd.cpp"
-#include "../math/rem_euclid.cpp"
 #include "../utility/rep.cpp"
+#include "inv_gcd.cpp"
+#include "rem_euclid.cpp"
 
 template <class T, class Result = T>
 std::optional<std::pair<Result, Result>> congruence_equations(const std::vector<T>& m, const std::vector<T>& r) {

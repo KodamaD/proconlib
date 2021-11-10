@@ -1,7 +1,7 @@
 #pragma once
 #include <algorithm>
 #include <vector>
-#include "../utility/int_alias.cpp"
+#include "int_alias.cpp"
 
 template <class T> usize compress(std::vector<T>& vec) {
     std::sort(vec.begin(), vec.end());

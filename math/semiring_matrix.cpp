@@ -13,21 +13,15 @@ template <class S> class SemiRingMatrix {
 
   public:
     SemiRingMatrix() = default;
-    explicit SemiRingMatrix(const usize h, const usize w, const T& val = S::zero())
-        : data(h, std::vector<T>(w, val)) {}
+    explicit SemiRingMatrix(const usize h, const usize w, const T& val = S::zero()) : data(h, std::vector<T>(w, val)) {}
 
-    SemiRingMatrix(const std::vector<std::vector<T>>& vec) : data(vec) {}
+    SemiRingMatrix(const std::vector<std::vector<T>>& vec) : data(vec) {
+        for (const auto& v : vec) assert(v.size() == width());
+    }
     SemiRingMatrix(const std::initializer_list<std::initializer_list<T>>& list) {
         data.reserve(list.size());
-        for (const auto& v : list) {
-            data.emplace_back(v.begin(), v.end());
-        }
-    }
-    template <usize H, usize W> SemiRingMatrix(const std::array<std::array<T, W>, H>& arr) {
-        data.reserve(H);
-        for (const auto& v : arr) {
-            data.emplace_back(v.begin(), v.end());
-        }
+        for (const auto& v : list) data.emplace_back(v.begin(), v.end());
+        for (const auto& v : vec) assert(v.size() == width());
     }
 
     usize height() const { return data.size(); }

@@ -3,7 +3,7 @@
 #include <numeric>
 #include <variant>
 #include <vector>
-#include "../utility/int_alias.cpp"
+#include "int_alias.cpp"
 
 class permutations {
     struct Iter {

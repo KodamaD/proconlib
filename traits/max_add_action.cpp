@@ -1,6 +1,6 @@
 #pragma once
-#include "../traits/max_monoid.cpp"
-#include "../traits/plus_monoid.cpp"
+#include "max_monoid.cpp"
+#include "plus_monoid.cpp"
 
 template <class T> struct MaxAddAction {
     using Monoid = MaxMonoid<T>;

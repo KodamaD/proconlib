@@ -1,6 +1,6 @@
 #pragma once
 #include <variant>
-#include "../utility/int_alias.cpp"
+#include "int_alias.cpp"
 
 class subsets {
     struct Iter {

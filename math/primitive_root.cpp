@@ -1,7 +1,7 @@
 #pragma once
 #include <array>
-#include "../math/mod_pow.cpp"
 #include "../utility/int_alias.cpp"
+#include "mod_pow.cpp"
 
 constexpr u32 primitive_root(const u32 mod) {
     std::array<u32, 32> exp{};

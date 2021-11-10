@@ -2,9 +2,9 @@
 #include <algorithm>
 #include <random>
 #include <vector>
-#include "../random/xorshift.cpp"
+#include "xorshift.cpp"
 
-template <class T> void shuffle_vec(std::vector<T>& v) {
+template <class C> void shuffle_vec(C& v) {
     static std::default_random_engine gen(xorshift());
     std::shuffle(v.begin(), v.end(), gen);
 }
