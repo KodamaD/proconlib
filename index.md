@@ -167,16 +167,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/primitive_root.cpp
       title: math/primitive_root.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/rem_euclid.cpp
       title: math/rem_euclid.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/semiring_matrix.cpp
       title: math/semiring_matrix.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/static_modint.cpp
       title: math/static_modint.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/totient.cpp
       title: math/totient.cpp
   - name: random
@@ -222,7 +222,7 @@ data:
     - icon: ':warning:'
       path: traits/min_monoid.cpp
       title: traits/min_monoid.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: traits/num_semiring.cpp
       title: traits/num_semiring.cpp
     - icon: ':heavy_check_mark:'
@@ -260,7 +260,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/infty.cpp
       title: utility/infty.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
     - icon: ':heavy_check_mark:'
@@ -278,7 +278,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/rep.cpp
       title: utility/rep.cpp
     - icon: ':heavy_check_mark:'
@@ -377,7 +377,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/segment_tree_beats.test.cpp
       title: test/segment_tree_beats.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/semiring_matrix.test.cpp
       title: test/semiring_matrix.test.cpp
     - icon: ':heavy_check_mark:'

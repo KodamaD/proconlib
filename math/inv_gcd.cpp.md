@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
   _extendedRequiredBy:
@@ -40,7 +40,7 @@ data:
     \        s = t;\n        t = tmp;\n        tmp = m0;\n        m0 = m1;\n     \
     \   m1 = tmp;\n    }\n    if (m0 < 0) m0 += b / s;\n    return {(T)s, (T)m0};\n\
     }\n"
-  code: "#pragma once\n#include <type_traits>\n#include <utility>\n#include \"../math/rem_euclid.cpp\"\
+  code: "#pragma once\n#include <type_traits>\n#include <utility>\n#include \"rem_euclid.cpp\"\
     \n\ntemplate <class T> constexpr std::pair<T, T> inv_gcd(const T& a, const T&\
     \ b) {\n    using U = std::make_signed_t<T>;\n    U t = rem_euclid(a, b);\n  \
     \  if (t == 0) return {b, 0};\n    U s = b, m0 = 0, m1 = 1;\n    while (t != 0)\
@@ -58,7 +58,7 @@ data:
   - math/congruence_equations.cpp
   - algorithm/convolution_int.cpp
   - algorithm/convolution_arbitrary_mod.cpp
-  timestamp: '2021-11-01 18:27:47+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution_arbitrary_mod.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -103,38 +103,37 @@ data:
     \ {\n        print(std::forward<Args>(args)...);\n        print('\\n');\n    }\n\
     };\n\n};  // namespace fast_io\n"
   code: "#pragma once\n#include <cstdio>\n#include <cstring>\n#include <type_traits>\n\
-    #include <utility>\n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\
-    \n#include \"../utility/revrep.cpp\"\n\nnamespace fast_io {\n\ntemplate <u64 N>\
-    \ constexpr u64 TEN = 10 * TEN<N - 1>;\ntemplate <> constexpr u64 TEN<0> = 1;\n\
-    \nconstexpr usize BUF_SIZE = 1 << 17;\n\n__attribute__((target(\"avx2\"))) inline\
-    \ constexpr usize integer_digits(const u64 n) {\n    if (n >= TEN<10>) {\n   \
-    \     if (n >= TEN<15>) {\n            if (n >= TEN<19>) return 20;\n        \
-    \    if (n >= TEN<18>) return 19;\n            if (n >= TEN<17>) return 18;\n\
-    \            if (n >= TEN<16>) return 17;\n            return 16;\n        } else\
-    \ {\n            if (n >= TEN<14>) return 15;\n            if (n >= TEN<13>) return\
-    \ 14;\n            if (n >= TEN<12>) return 13;\n            if (n >= TEN<11>)\
-    \ return 12;\n            return 11;\n        }\n    } else {\n        if (n >=\
-    \ TEN<5>) {\n            if (n >= TEN<9>) return 10;\n            if (n >= TEN<8>)\
-    \ return 9;\n            if (n >= TEN<7>) return 8;\n            if (n >= TEN<6>)\
-    \ return 7;\n            return 6;\n        } else {\n            if (n >= TEN<4>)\
-    \ return 5;\n            if (n >= TEN<3>) return 4;\n            if (n >= TEN<2>)\
-    \ return 3;\n            if (n >= TEN<1>) return 2;\n            return 1;\n \
-    \       }\n    }\n}\n\nstruct NumBlock {\n    char NUM[40000];\n    constexpr\
-    \ NumBlock() : NUM() {\n        for (const usize i : rep(0, 10000)) {\n      \
-    \      usize n = i;\n            for (const usize j : revrep(0, 4)) {\n      \
-    \          NUM[i * 4 + j] = n % 10 + '0';\n                n /= 10;\n        \
-    \    }\n        }\n    }\n} constexpr num_block;\n\nclass Scanner {\n    char\
-    \ buf[BUF_SIZE];\n    usize left, right;\n\n    __attribute__((target(\"avx2\"\
-    ))) inline void load() {\n        const usize len = right - left;\n        std::memcpy(buf,\
-    \ buf + left, len);\n        right = len + std::fread(buf + len, 1, BUF_SIZE -\
-    \ len, stdin);\n        left = 0;\n    }\n\n    __attribute__((target(\"avx2\"\
-    ))) inline void ignore_spaces() {\n        while (buf[left] <= ' ') {\n      \
-    \      if (__builtin_expect(++left == right, 0)) load();\n        }\n    }\n\n\
-    \  public:\n    Scanner() : buf(), left(0), right(0) { load(); }\n\n    __attribute__((target(\"\
-    avx2\"))) void scan(char& c) {\n        ignore_spaces();\n        c = buf[left++];\n\
-    \    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>>* =\
-    \ nullptr>\n    __attribute__((target(\"avx2\"))) inline void scan(T& x) {\n \
-    \       ignore_spaces();\n        if (__builtin_expect(left + 32 > right, 0))\
+    #include <utility>\n#include \"int_alias.cpp\"\n#include \"rep.cpp\"\n#include\
+    \ \"revrep.cpp\"\n\nnamespace fast_io {\n\ntemplate <u64 N> constexpr u64 TEN\
+    \ = 10 * TEN<N - 1>;\ntemplate <> constexpr u64 TEN<0> = 1;\n\nconstexpr usize\
+    \ BUF_SIZE = 1 << 17;\n\n__attribute__((target(\"avx2\"))) inline constexpr usize\
+    \ integer_digits(const u64 n) {\n    if (n >= TEN<10>) {\n        if (n >= TEN<15>)\
+    \ {\n            if (n >= TEN<19>) return 20;\n            if (n >= TEN<18>) return\
+    \ 19;\n            if (n >= TEN<17>) return 18;\n            if (n >= TEN<16>)\
+    \ return 17;\n            return 16;\n        } else {\n            if (n >= TEN<14>)\
+    \ return 15;\n            if (n >= TEN<13>) return 14;\n            if (n >= TEN<12>)\
+    \ return 13;\n            if (n >= TEN<11>) return 12;\n            return 11;\n\
+    \        }\n    } else {\n        if (n >= TEN<5>) {\n            if (n >= TEN<9>)\
+    \ return 10;\n            if (n >= TEN<8>) return 9;\n            if (n >= TEN<7>)\
+    \ return 8;\n            if (n >= TEN<6>) return 7;\n            return 6;\n \
+    \       } else {\n            if (n >= TEN<4>) return 5;\n            if (n >=\
+    \ TEN<3>) return 4;\n            if (n >= TEN<2>) return 3;\n            if (n\
+    \ >= TEN<1>) return 2;\n            return 1;\n        }\n    }\n}\n\nstruct NumBlock\
+    \ {\n    char NUM[40000];\n    constexpr NumBlock() : NUM() {\n        for (const\
+    \ usize i : rep(0, 10000)) {\n            usize n = i;\n            for (const\
+    \ usize j : revrep(0, 4)) {\n                NUM[i * 4 + j] = n % 10 + '0';\n\
+    \                n /= 10;\n            }\n        }\n    }\n} constexpr num_block;\n\
+    \nclass Scanner {\n    char buf[BUF_SIZE];\n    usize left, right;\n\n    __attribute__((target(\"\
+    avx2\"))) inline void load() {\n        const usize len = right - left;\n    \
+    \    std::memcpy(buf, buf + left, len);\n        right = len + std::fread(buf\
+    \ + len, 1, BUF_SIZE - len, stdin);\n        left = 0;\n    }\n\n    __attribute__((target(\"\
+    avx2\"))) inline void ignore_spaces() {\n        while (buf[left] <= ' ') {\n\
+    \            if (__builtin_expect(++left == right, 0)) load();\n        }\n  \
+    \  }\n\n  public:\n    Scanner() : buf(), left(0), right(0) { load(); }\n\n  \
+    \  __attribute__((target(\"avx2\"))) void scan(char& c) {\n        ignore_spaces();\n\
+    \        c = buf[left++];\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>>*\
+    \ = nullptr>\n    __attribute__((target(\"avx2\"))) inline void scan(T& x) {\n\
+    \        ignore_spaces();\n        if (__builtin_expect(left + 32 > right, 0))\
     \ load();\n        char c = buf[left++];\n        bool minus = false;\n      \
     \  if constexpr (std::is_signed_v<T>) {\n            if (c == '-') {\n       \
     \         minus = 1;\n                c = buf[left++];\n            }\n      \
@@ -171,7 +170,7 @@ data:
   isVerificationFile: false
   path: utility/fast_io.cpp
   requiredBy: []
-  timestamp: '2021-11-04 19:10:29+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fast_io.test.cpp

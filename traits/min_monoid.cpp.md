@@ -24,17 +24,17 @@ data:
     \ MinSemiGroup {\n    using Type = T;\n    static constexpr T operation(const\
     \ T& l, const T& r) { return std::min(l, r); }\n};\n\ntemplate <class T> using\
     \ MinMonoid = OptionalMonoid<MinSemiGroup<T>>;\n"
-  code: "#pragma once\n#include <algorithm>\n#include \"../traits/optional_monoid.cpp\"\
-    \n\ntemplate <class T> struct MinSemiGroup {\n    using Type = T;\n    static\
-    \ constexpr T operation(const T& l, const T& r) { return std::min(l, r); }\n};\n\
-    \ntemplate <class T> using MinMonoid = OptionalMonoid<MinSemiGroup<T>>;"
+  code: "#pragma once\n#include <algorithm>\n#include \"optional_monoid.cpp\"\n\n\
+    template <class T> struct MinSemiGroup {\n    using Type = T;\n    static constexpr\
+    \ T operation(const T& l, const T& r) { return std::min(l, r); }\n};\n\ntemplate\
+    \ <class T> using MinMonoid = OptionalMonoid<MinSemiGroup<T>>;"
   dependsOn:
   - traits/optional_monoid.cpp
   isVerificationFile: false
   path: traits/min_monoid.cpp
   requiredBy:
   - traits/min_add_action.cpp
-  timestamp: '2021-11-01 18:27:47+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: traits/min_monoid.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/auto_memoize.cpp
     title: utility/auto_memoize.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
@@ -53,7 +53,7 @@ data:
   isVerificationFile: true
   path: test/auto_memoize.test.cpp
   requiredBy: []
-  timestamp: '2021-11-03 19:13:26+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/auto_memoize.test.cpp

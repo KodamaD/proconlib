@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -24,12 +24,12 @@ data:
     using u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
     #line 5 \"random/xorshift.cpp\"\n\nu64 xorshift() {\n    static u64 state = std::chrono::system_clock::now().time_since_epoch().count();\n\
     \    state ^= state << 7;\n    state ^= state >> 9;\n    return state;\n}\n#line\
-    \ 6 \"random/shuffle_vec.cpp\"\n\ntemplate <class T> void shuffle_vec(std::vector<T>&\
-    \ v) {\n    static std::default_random_engine gen(xorshift());\n    std::shuffle(v.begin(),\
+    \ 6 \"random/shuffle_vec.cpp\"\n\ntemplate <class C> void shuffle_vec(C& v) {\n\
+    \    static std::default_random_engine gen(xorshift());\n    std::shuffle(v.begin(),\
     \ v.end(), gen);\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <random>\n#include <vector>\n\
-    #include \"../random/xorshift.cpp\"\n\ntemplate <class T> void shuffle_vec(std::vector<T>&\
-    \ v) {\n    static std::default_random_engine gen(xorshift());\n    std::shuffle(v.begin(),\
+    #include \"xorshift.cpp\"\n\ntemplate <class C> void shuffle_vec(C& v) {\n   \
+    \ static std::default_random_engine gen(xorshift());\n    std::shuffle(v.begin(),\
     \ v.end(), gen);\n}"
   dependsOn:
   - random/xorshift.cpp
@@ -38,7 +38,7 @@ data:
   path: random/shuffle_vec.cpp
   requiredBy:
   - random/rand_perm.cpp
-  timestamp: '2021-10-23 19:56:59+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: random/shuffle_vec.cpp

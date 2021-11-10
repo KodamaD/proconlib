@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/totient.cpp
     title: math/totient.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -48,15 +48,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/static_modint.cpp\"\n#include <ostream>\n#include <type_traits>\n\
+    #line 2 \"utility/int_alias.cpp\"\n#include <cstddef>\n#include <cstdint>\n\n\
+    using i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
+    using u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
     #line 2 \"math/rem_euclid.cpp\"\n#include <cassert>\n\ntemplate <class T> constexpr\
     \ T rem_euclid(T value, const T& mod) {\n    assert(mod > 0);\n    return (value\
     \ %= mod) >= 0 ? value : value + mod;\n}\n#line 2 \"math/totient.cpp\"\n\ntemplate\
@@ -64,10 +67,7 @@ data:
     \ i <= x; ++i) {\n        if (x % i == 0) {\n            ret /= i;\n         \
     \   ret *= i - 1;\n            while (x % i == 0) x /= i;\n        }\n    }\n\
     \    if (x > 1) {\n        ret /= x;\n        ret *= x - 1;\n    }\n    return\
-    \ ret;\n}\n#line 2 \"utility/int_alias.cpp\"\n#include <cstddef>\n#include <cstdint>\n\
-    \nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
-    using u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
-    #line 7 \"math/static_modint.cpp\"\n\ntemplate <u32 MOD, std::enable_if_t<((u32)1\
+    \ ret;\n}\n#line 7 \"math/static_modint.cpp\"\n\ntemplate <u32 MOD, std::enable_if_t<((u32)1\
     \ <= MOD and MOD <= ((u32)1 << 31))>* = nullptr> class StaticModint {\n    using\
     \ Self = StaticModint;\n\n    static inline constexpr u32 PHI = totient(MOD);\n\
     \    u32 v;\n\n  public:\n    static constexpr u32 mod() noexcept { return MOD;\
@@ -100,12 +100,12 @@ data:
     \ noexcept { return v != rhs.v; }\n    friend std::ostream& operator<<(std::ostream&\
     \ stream, const Self& rhs) { return stream << rhs.v; }\n};\n\nusing Modint1000000007\
     \ = StaticModint<1000000007>;\nusing Modint998244353 = StaticModint<998244353>;\n"
-  code: "#pragma once\n#include <ostream>\n#include <type_traits>\n#include \"../math/rem_euclid.cpp\"\
-    \n#include \"../math/totient.cpp\"\n#include \"../utility/int_alias.cpp\"\n\n\
-    template <u32 MOD, std::enable_if_t<((u32)1 <= MOD and MOD <= ((u32)1 << 31))>*\
-    \ = nullptr> class StaticModint {\n    using Self = StaticModint;\n\n    static\
-    \ inline constexpr u32 PHI = totient(MOD);\n    u32 v;\n\n  public:\n    static\
-    \ constexpr u32 mod() noexcept { return MOD; }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>*\
+  code: "#pragma once\n#include <ostream>\n#include <type_traits>\n#include \"../utility/int_alias.cpp\"\
+    \n#include \"rem_euclid.cpp\"\n#include \"totient.cpp\"\n\ntemplate <u32 MOD,\
+    \ std::enable_if_t<((u32)1 <= MOD and MOD <= ((u32)1 << 31))>* = nullptr> class\
+    \ StaticModint {\n    using Self = StaticModint;\n\n    static inline constexpr\
+    \ u32 PHI = totient(MOD);\n    u32 v;\n\n  public:\n    static constexpr u32 mod()\
+    \ noexcept { return MOD; }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>*\
     \ = nullptr>\n    static constexpr T normalize(const T& x) noexcept {\n      \
     \  return rem_euclid<std::common_type_t<T, i64>>(x, MOD);\n    }\n\n    constexpr\
     \ StaticModint() noexcept : v(0) {}\n    template <class T> constexpr StaticModint(const\
@@ -135,17 +135,17 @@ data:
     \ stream, const Self& rhs) { return stream << rhs.v; }\n};\n\nusing Modint1000000007\
     \ = StaticModint<1000000007>;\nusing Modint998244353 = StaticModint<998244353>;\n"
   dependsOn:
+  - utility/int_alias.cpp
   - math/rem_euclid.cpp
   - math/totient.cpp
-  - utility/int_alias.cpp
   isVerificationFile: false
   path: math/static_modint.cpp
   requiredBy:
   - algorithm/convolution_int.cpp
   - algorithm/convolution_mod.cpp
   - algorithm/convolution_arbitrary_mod.cpp
-  timestamp: '2021-11-03 19:13:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-11-10 20:31:05+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/semiring_matrix.test.cpp
   - test/convolution_mod.test.cpp

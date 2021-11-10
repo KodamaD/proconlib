@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
@@ -27,7 +27,7 @@ data:
     \                                                                        make_vec(std::forward<Args>(args)...));\n\
     }\n"
   code: "#pragma once\n#include <type_traits>\n#include <utility>\n#include <vector>\n\
-    #include \"../utility/int_alias.cpp\"\n\ntemplate <class T, usize N, std::enable_if_t<(N\
+    #include \"int_alias.cpp\"\n\ntemplate <class T, usize N, std::enable_if_t<(N\
     \ != 0)>* = nullptr> struct MultiVecImpl {\n    using type = std::vector<typename\
     \ MultiVecImpl<T, N - 1>::type>;\n};\n\ntemplate <class T> struct MultiVecImpl<T,\
     \ 1> { using type = std::vector<T>; };\n\ntemplate <class T, usize N> using MultiVec\
@@ -43,7 +43,7 @@ data:
   isVerificationFile: false
   path: utility/multi_vec.cpp
   requiredBy: []
-  timestamp: '2021-09-08 18:46:15+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: utility/multi_vec.cpp

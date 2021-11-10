@@ -27,17 +27,17 @@ data:
     \ MaxSemiGroup {\n    using Type = T;\n    static constexpr T operation(const\
     \ T& l, const T& r) { return std::max(l, r); }\n};\n\ntemplate <class T> using\
     \ MaxMonoid = OptionalMonoid<MaxSemiGroup<T>>;\n"
-  code: "#pragma once\n#include <algorithm>\n#include \"../traits/optional_monoid.cpp\"\
-    \n\ntemplate <class T> struct MaxSemiGroup {\n    using Type = T;\n    static\
-    \ constexpr T operation(const T& l, const T& r) { return std::max(l, r); }\n};\n\
-    \ntemplate <class T> using MaxMonoid = OptionalMonoid<MaxSemiGroup<T>>;"
+  code: "#pragma once\n#include <algorithm>\n#include \"optional_monoid.cpp\"\n\n\
+    template <class T> struct MaxSemiGroup {\n    using Type = T;\n    static constexpr\
+    \ T operation(const T& l, const T& r) { return std::max(l, r); }\n};\n\ntemplate\
+    \ <class T> using MaxMonoid = OptionalMonoid<MaxSemiGroup<T>>;"
   dependsOn:
   - traits/optional_monoid.cpp
   isVerificationFile: false
   path: traits/max_monoid.cpp
   requiredBy:
   - traits/max_add_action.cpp
-  timestamp: '2021-11-01 18:27:47+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/larsch.test.cpp

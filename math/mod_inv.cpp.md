@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/inv_gcd.cpp
     title: math/inv_gcd.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
   _extendedRequiredBy:
@@ -39,9 +39,9 @@ data:
     \  return {(T)s, (T)m0};\n}\n#line 4 \"math/mod_inv.cpp\"\n\ntemplate <class T>\
     \ constexpr T mod_inv(const T& a, const T& mod) {\n    const auto [g, x] = inv_gcd(a,\
     \ mod);\n    assert(g == 1);\n    return x;\n}\n"
-  code: "#pragma once\n#include <cassert>\n#include \"../math/inv_gcd.cpp\"\n\ntemplate\
-    \ <class T> constexpr T mod_inv(const T& a, const T& mod) {\n    const auto [g,\
-    \ x] = inv_gcd(a, mod);\n    assert(g == 1);\n    return x;\n}\n"
+  code: "#pragma once\n#include <cassert>\n#include \"inv_gcd.cpp\"\n\ntemplate <class\
+    \ T> constexpr T mod_inv(const T& a, const T& mod) {\n    const auto [g, x] =\
+    \ inv_gcd(a, mod);\n    assert(g == 1);\n    return x;\n}\n"
   dependsOn:
   - math/inv_gcd.cpp
   - math/rem_euclid.cpp
@@ -51,7 +51,7 @@ data:
   - math/dynamic_modint.cpp
   - algorithm/convolution_int.cpp
   - algorithm/convolution_arbitrary_mod.cpp
-  timestamp: '2021-11-01 18:27:47+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution_arbitrary_mod.test.cpp

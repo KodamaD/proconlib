@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
@@ -23,21 +23,20 @@ data:
     \ subsets(u64 s) noexcept : s(s) {}\n    constexpr Iter begin() const noexcept\
     \ { return Iter(s, s); }\n    constexpr std::monostate end() noexcept { return\
     \ {}; }\n};\n"
-  code: "#pragma once\n#include <variant>\n#include \"../utility/int_alias.cpp\"\n\
-    \nclass subsets {\n    struct Iter {\n        u64 s, t;\n        explicit constexpr\
-    \ Iter(const u64 s, const u64 t) noexcept : s(s), t(t) {}\n        constexpr bool\
-    \ operator!=(std::monostate) const noexcept { return ~t != 0; }\n        constexpr\
-    \ void operator++() noexcept { t -= 1; }\n        constexpr u64 operator*() noexcept\
-    \ { return t &= s; }\n    };\n    u64 s;\n\n  public:\n    explicit constexpr\
-    \ subsets(u64 s) noexcept : s(s) {}\n    constexpr Iter begin() const noexcept\
-    \ { return Iter(s, s); }\n    constexpr std::monostate end() noexcept { return\
-    \ {}; }\n};\n"
+  code: "#pragma once\n#include <variant>\n#include \"int_alias.cpp\"\n\nclass subsets\
+    \ {\n    struct Iter {\n        u64 s, t;\n        explicit constexpr Iter(const\
+    \ u64 s, const u64 t) noexcept : s(s), t(t) {}\n        constexpr bool operator!=(std::monostate)\
+    \ const noexcept { return ~t != 0; }\n        constexpr void operator++() noexcept\
+    \ { t -= 1; }\n        constexpr u64 operator*() noexcept { return t &= s; }\n\
+    \    };\n    u64 s;\n\n  public:\n    explicit constexpr subsets(u64 s) noexcept\
+    \ : s(s) {}\n    constexpr Iter begin() const noexcept { return Iter(s, s); }\n\
+    \    constexpr std::monostate end() noexcept { return {}; }\n};\n"
   dependsOn:
   - utility/int_alias.cpp
   isVerificationFile: false
   path: utility/subsets.cpp
   requiredBy: []
-  timestamp: '2021-09-08 18:46:15+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: utility/subsets.cpp

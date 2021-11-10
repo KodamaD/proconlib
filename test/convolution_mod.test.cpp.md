@@ -22,22 +22,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/primitive_root.cpp
     title: math/primitive_root.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/totient.cpp
     title: math/totient.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   - icon: ':heavy_check_mark:'
     path: utility/int_alias_extended.cpp
     title: utility/int_alias_extended.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -63,7 +63,24 @@ data:
     \ << e) < x) ++e;\n    return e;\n}\n#line 2 \"math/modulo_transform.cpp\"\n#include\
     \ <array>\n#line 3 \"bit/bit_rzeros.cpp\"\n\n__attribute__((target(\"avx2\")))\
     \ constexpr u64 bit_rzeros(const u64 x) { return x == 0 ? 64 : __builtin_ctzll(x);\
-    \ }\n#line 2 \"math/mod_pow.cpp\"\n#include <cassert>\n#include <type_traits>\n\
+    \ }\n#line 4 \"utility/rep.cpp\"\n\nclass rep {\n    struct Iter {\n        usize\
+    \ itr;\n        constexpr Iter(const usize pos) noexcept : itr(pos) {}\n     \
+    \   constexpr void operator++() noexcept { ++itr; }\n        constexpr bool operator!=(const\
+    \ Iter& other) const noexcept { return itr != other.itr; }\n        constexpr\
+    \ usize operator*() const noexcept { return itr; }\n    };\n    const Iter first,\
+    \ last;\n\n  public:\n    explicit constexpr rep(const usize first, const usize\
+    \ last) noexcept : first(first), last(std::max(first, last)) {}\n    constexpr\
+    \ Iter begin() const noexcept { return first; }\n    constexpr Iter end() const\
+    \ noexcept { return last; }\n};\n#line 4 \"utility/revrep.cpp\"\n\nclass revrep\
+    \ {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const usize\
+    \ pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept {\
+    \ --itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
+    \ { return itr != other.itr; }\n        constexpr usize operator*() const noexcept\
+    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
+    \ constexpr revrep(const usize first, const usize last) noexcept\n        : first(last\
+    \ - 1), last(std::min(first, last) - 1) {}\n    constexpr Iter begin() const noexcept\
+    \ { return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
+    };\n#line 2 \"math/mod_pow.cpp\"\n#include <cassert>\n#include <type_traits>\n\
     #line 4 \"utility/int_alias_extended.cpp\"\n\nusing i8 = std::int8_t;\nusing u8\
     \ = std::uint8_t;\nusing i16 = std::int16_t;\nusing u16 = std::uint16_t;\nusing\
     \ i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 4 \"math/barret_reduction.cpp\"\
@@ -87,45 +104,28 @@ data:
     \ 1) exp[size++] = (mod - 1) / cur;\n    for (u32 check = 1; check < mod; ++check)\
     \ {\n        for (const u32 e : exp) {\n            if (e == 0) return check;\n\
     \            if (mod_pow(check, e, mod) == 1) break;\n        }\n    }\n    return\
-    \ mod;\n}\n#line 4 \"utility/rep.cpp\"\n\nclass rep {\n    struct Iter {\n   \
-    \     usize itr;\n        constexpr Iter(const usize pos) noexcept : itr(pos)\
-    \ {}\n        constexpr void operator++() noexcept { ++itr; }\n        constexpr\
-    \ bool operator!=(const Iter& other) const noexcept { return itr != other.itr;\
-    \ }\n        constexpr usize operator*() const noexcept { return itr; }\n    };\n\
-    \    const Iter first, last;\n\n  public:\n    explicit constexpr rep(const usize\
-    \ first, const usize last) noexcept : first(first), last(std::max(first, last))\
-    \ {}\n    constexpr Iter begin() const noexcept { return first; }\n    constexpr\
-    \ Iter end() const noexcept { return last; }\n};\n#line 4 \"utility/revrep.cpp\"\
-    \n\nclass revrep {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const\
-    \ usize pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept\
-    \ { --itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
-    \ { return itr != other.itr; }\n        constexpr usize operator*() const noexcept\
-    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
-    \ constexpr revrep(const usize first, const usize last) noexcept\n        : first(last\
-    \ - 1), last(std::min(first, last) - 1) {}\n    constexpr Iter begin() const noexcept\
-    \ { return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
-    };\n#line 9 \"math/modulo_transform.cpp\"\n\ntemplate <class M> struct ModuloTransform\
-    \ {\n    static constexpr u32 ROOT = primitive_root(M::mod());\n    static constexpr\
-    \ usize RANK = bit_rzeros(M::mod() - 1);\n\n    std::array<M, RANK + 1> root,\
-    \ iroot;\n    std::array<M, (RANK >= 2 ? RANK - 2 + 1 : 0)> rate2, irate2;\n \
-    \   std::array<M, (RANK >= 3 ? RANK - 3 + 1 : 0)> rate3, irate3;\n\n    constexpr\
-    \ ModuloTransform() {\n        root[RANK] = M(ROOT).pow((M::mod() - 1) >> RANK);\n\
-    \        iroot[RANK] = root[RANK].inv();\n        for (const usize i : revrep(0,\
-    \ RANK)) {\n            root[i] = root[i + 1] * root[i + 1];\n            iroot[i]\
-    \ = iroot[i + 1] * iroot[i + 1];\n        }\n        M prod = 1, iprod = 1;\n\
-    \        for (const usize i : rep(2, RANK + 1)) {\n            rate2[i - 2] =\
-    \ root[i] * prod;\n            irate2[i - 2] = iroot[i] * iprod;\n           \
-    \ prod *= iroot[i];\n            iprod *= root[i];\n        }\n        prod =\
-    \ 1, iprod = 1;\n        for (const usize i : rep(3, RANK + 1)) {\n          \
-    \  rate3[i - 3] = root[i] * prod;\n            irate3[i - 3] = iroot[i] * iprod;\n\
+    \ mod;\n}\n#line 9 \"math/modulo_transform.cpp\"\n\ntemplate <class M> struct\
+    \ ModuloTransform {\n    static constexpr u32 ROOT = primitive_root(M::mod());\n\
+    \    static constexpr usize RANK = bit_rzeros(M::mod() - 1);\n\n    std::array<M,\
+    \ RANK + 1> root, iroot;\n    std::array<M, (RANK >= 2 ? RANK - 2 + 1 : 0)> rate2,\
+    \ irate2;\n    std::array<M, (RANK >= 3 ? RANK - 3 + 1 : 0)> rate3, irate3;\n\n\
+    \    constexpr ModuloTransform() {\n        root[RANK] = M(ROOT).pow((M::mod()\
+    \ - 1) >> RANK);\n        iroot[RANK] = root[RANK].inv();\n        for (const\
+    \ usize i : revrep(0, RANK)) {\n            root[i] = root[i + 1] * root[i + 1];\n\
+    \            iroot[i] = iroot[i + 1] * iroot[i + 1];\n        }\n        M prod\
+    \ = 1, iprod = 1;\n        for (const usize i : rep(2, RANK + 1)) {\n        \
+    \    rate2[i - 2] = root[i] * prod;\n            irate2[i - 2] = iroot[i] * iprod;\n\
     \            prod *= iroot[i];\n            iprod *= root[i];\n        }\n   \
-    \ }\n\n    void butterfly(std::vector<M>& a) const {\n        const usize n =\
-    \ a.size();\n        const usize h = bit_rzeros(n);\n        for (usize len =\
-    \ 0; len < h;) {\n            if (len + 1 == h) {\n                M rot = 1;\n\
-    \                for (const usize s : rep(0, 1 << len)) {\n                  \
-    \  const usize t = s << 1;\n                    const M l = a[t], r = a[t + 1]\
-    \ * rot;\n                    a[t] = l + r;\n                    a[t + 1] = l\
-    \ - r;\n                    if (((s + 1) >> len) == 0) rot *= rate2[bit_rzeros(~s)];\n\
+    \     prod = 1, iprod = 1;\n        for (const usize i : rep(3, RANK + 1)) {\n\
+    \            rate3[i - 3] = root[i] * prod;\n            irate3[i - 3] = iroot[i]\
+    \ * iprod;\n            prod *= iroot[i];\n            iprod *= root[i];\n   \
+    \     }\n    }\n\n    void butterfly(std::vector<M>& a) const {\n        const\
+    \ usize n = a.size();\n        const usize h = bit_rzeros(n);\n        for (usize\
+    \ len = 0; len < h;) {\n            if (len + 1 == h) {\n                M rot\
+    \ = 1;\n                for (const usize s : rep(0, 1 << len)) {\n           \
+    \         const usize t = s << 1;\n                    const M l = a[t], r = a[t\
+    \ + 1] * rot;\n                    a[t] = l + r;\n                    a[t + 1]\
+    \ = l - r;\n                    if (((s + 1) >> len) == 0) rot *= rate2[bit_rzeros(~s)];\n\
     \                }\n                len += 1;\n            } else {\n        \
     \        const usize p = 1 << (h - len - 2);\n                M rot = 1;\n   \
     \             for (const usize s : rep(0, 1 << len)) {\n                    const\
@@ -213,12 +213,13 @@ data:
     \ : rep(0, n + m - 1)) a[i] *= c;\n    return a;\n}\n\ntemplate <class M> std::vector<M>\
     \ convolution_mod(std::vector<M>&& a, std::vector<M>&& b) {\n    const usize n\
     \ = a.size(), m = b.size();\n    if (n == 0 || m == 0) return {};\n    if (std::min(n,\
-    \ m) <= 60) return convolution_naive(a, b);\n    return convolution_ntt(a, b);\n\
-    }\n\ntemplate <class M> std::vector<M> convolution_mod(const std::vector<M>& a,\
-    \ const std::vector<M>& b) {\n    const usize n = a.size(), m = b.size();\n  \
-    \  if (n == 0 || m == 0) return {};\n    if (std::min(n, m) <= 60) return convolution_naive(a,\
-    \ b);\n    return convolution_ntt(a, b);\n}\n\ntemplate <class T, u32 MOD, std::enable_if_t<std::is_integral_v<T>>*\
-    \ = nullptr>\nstd::vector<T> convolution_mod(const std::vector<T>& a, const std::vector<T>&\
+    \ m) <= 60) return convolution_naive(a, b);\n    return convolution_ntt(std::move(a),\
+    \ std::move(b));\n}\n\ntemplate <class M> std::vector<M> convolution_mod(const\
+    \ std::vector<M>& a, const std::vector<M>& b) {\n    const usize n = a.size(),\
+    \ m = b.size();\n    if (n == 0 || m == 0) return {};\n    if (std::min(n, m)\
+    \ <= 60) return convolution_naive(a, b);\n    return convolution_ntt(a, b);\n\
+    }\n\ntemplate <class T, u32 MOD, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\n\
+    std::vector<T> convolution_mod(const std::vector<T>& a, const std::vector<T>&\
     \ b) {\n    const usize n = a.size(), m = b.size();\n    if (n == 0 || m == 0)\
     \ return {};\n    using M = StaticModint<MOD>;\n    std::vector<M> a2(n), b2(m);\n\
     \    for (const usize i : rep(0, n)) a2[i] = a[i];\n    for (const usize i : rep(0,\
@@ -248,19 +249,19 @@ data:
   - utility/int_alias.cpp
   - math/modulo_transform.cpp
   - bit/bit_rzeros.cpp
+  - utility/rep.cpp
+  - utility/revrep.cpp
   - math/primitive_root.cpp
   - math/mod_pow.cpp
   - math/barret_reduction.cpp
   - utility/int_alias_extended.cpp
   - math/rem_euclid.cpp
-  - utility/rep.cpp
-  - utility/revrep.cpp
   - math/static_modint.cpp
   - math/totient.cpp
   isVerificationFile: true
   path: test/convolution_mod.test.cpp
   requiredBy: []
-  timestamp: '2021-11-03 19:13:26+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/convolution_mod.test.cpp

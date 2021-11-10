@@ -34,8 +34,8 @@ data:
     \   using Effector = PlusMonoid<T>;\n    static constexpr std::optional<T> operation(const\
     \ std::optional<T>& l, const T& r) {\n        if (!l) return std::nullopt;\n \
     \       return std::optional<T>(std::in_place, *l + r);\n    }\n};\n"
-  code: "#pragma once\n#include \"../traits/max_monoid.cpp\"\n#include \"../traits/plus_monoid.cpp\"\
-    \n\ntemplate <class T> struct MaxAddAction {\n    using Monoid = MaxMonoid<T>;\n\
+  code: "#pragma once\n#include \"max_monoid.cpp\"\n#include \"plus_monoid.cpp\"\n\
+    \ntemplate <class T> struct MaxAddAction {\n    using Monoid = MaxMonoid<T>;\n\
     \    using Effector = PlusMonoid<T>;\n    static constexpr std::optional<T> operation(const\
     \ std::optional<T>& l, const T& r) {\n        if (!l) return std::nullopt;\n \
     \       return std::optional<T>(std::in_place, *l + r);\n    }\n};"
@@ -46,7 +46,7 @@ data:
   isVerificationFile: false
   path: traits/max_add_action.cpp
   requiredBy: []
-  timestamp: '2021-11-01 18:27:47+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: traits/max_add_action.cpp

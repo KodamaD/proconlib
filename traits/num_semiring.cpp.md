@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"traits/num_semiring.cpp\"\n\ntemplate <class T> struct NumSemiRing\
@@ -26,7 +26,7 @@ data:
   path: traits/num_semiring.cpp
   requiredBy: []
   timestamp: '2021-09-27 22:23:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/semiring_matrix.test.cpp
 documentation_of: traits/num_semiring.cpp

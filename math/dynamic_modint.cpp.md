@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/mod_inv.cpp
     title: math/mod_inv.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   - icon: ':heavy_check_mark:'
@@ -82,14 +82,14 @@ data:
     \    friend std::ostream& operator<<(std::ostream& stream, const Self& rhs) {\
     \ return stream << rhs.v; }\n};\n\nusing Modint = DynamicModint<__COUNTER__>;\n"
   code: "#pragma once\n#include <cassert>\n#include <ostream>\n#include <type_traits>\n\
-    #include \"../math/barret_reduction.cpp\"\n#include \"../math/mod_inv.cpp\"\n\
-    #include \"../math/rem_euclid.cpp\"\n#include \"../utility/int_alias.cpp\"\n\n\
-    template <usize ID> class DynamicModint {\n    using Self = DynamicModint;\n\n\
-    \    static inline auto bt = BarretReduction(1);\n    u32 v;\n\n  public:\n  \
-    \  static u32 mod() noexcept { return bt.mod; }\n    static void set_mod(const\
-    \ u32 mod) noexcept {\n        assert((u32)1 <= mod and mod <= ((u32)1 << 31));\n\
-    \        bt = BarretReduction(mod);\n    }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>*\
-    \ = nullptr> static T normalize(const T& x) noexcept {\n        return rem_euclid<std::common_type_t<T,\
+    #include \"../utility/int_alias.cpp\"\n#include \"barret_reduction.cpp\"\n#include\
+    \ \"mod_inv.cpp\"\n#include \"rem_euclid.cpp\"\n\ntemplate <usize ID> class DynamicModint\
+    \ {\n    using Self = DynamicModint;\n\n    static inline auto bt = BarretReduction(1);\n\
+    \    u32 v;\n\n  public:\n    static u32 mod() noexcept { return bt.mod; }\n \
+    \   static void set_mod(const u32 mod) noexcept {\n        assert((u32)1 <= mod\
+    \ and mod <= ((u32)1 << 31));\n        bt = BarretReduction(mod);\n    }\n\n \
+    \   template <class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr> static\
+    \ T normalize(const T& x) noexcept {\n        return rem_euclid<std::common_type_t<T,\
     \ i64>>(x, mod());\n    }\n\n    DynamicModint() noexcept : v(0) {}\n    template\
     \ <class T> DynamicModint(const T& x) noexcept : v(normalize(x)) {}\n    template\
     \ <class T> static Self raw(const T& x) noexcept {\n        Self ret;\n      \
@@ -115,8 +115,8 @@ data:
     \    friend std::ostream& operator<<(std::ostream& stream, const Self& rhs) {\
     \ return stream << rhs.v; }\n};\n\nusing Modint = DynamicModint<__COUNTER__>;\n"
   dependsOn:
-  - math/barret_reduction.cpp
   - utility/int_alias.cpp
+  - math/barret_reduction.cpp
   - utility/int_alias_extended.cpp
   - math/mod_inv.cpp
   - math/inv_gcd.cpp
@@ -124,7 +124,7 @@ data:
   isVerificationFile: false
   path: math/dynamic_modint.cpp
   requiredBy: []
-  timestamp: '2021-11-03 19:13:26+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/dynamic_modint.cpp

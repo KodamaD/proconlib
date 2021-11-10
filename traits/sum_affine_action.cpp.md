@@ -42,12 +42,12 @@ data:
     \    using Effector = AffineCompositeMonoid<T>;\n    static constexpr std::pair<T,\
     \ T> operation(const std::pair<T, T>& m, const Affine<T>& e) {\n        return\
     \ {e.a * m.first + e.b * m.second, m.second};\n    }\n};\n"
-  code: "#pragma once\n#include \"../traits/affine_composite_monoid.cpp\"\n#include\
-    \ \"../traits/pair_monoid.cpp\"\n#include \"../traits/plus_monoid.cpp\"\n\ntemplate\
-    \ <class T> struct SumAffineAction {\n    using Monoid = PairMonoid<PlusMonoid<T>,\
-    \ PlusMonoid<T>>;\n    using Effector = AffineCompositeMonoid<T>;\n    static\
-    \ constexpr std::pair<T, T> operation(const std::pair<T, T>& m, const Affine<T>&\
-    \ e) {\n        return {e.a * m.first + e.b * m.second, m.second};\n    }\n};"
+  code: "#pragma once\n#include \"affine_composite_monoid.cpp\"\n#include \"pair_monoid.cpp\"\
+    \n#include \"plus_monoid.cpp\"\n\ntemplate <class T> struct SumAffineAction {\n\
+    \    using Monoid = PairMonoid<PlusMonoid<T>, PlusMonoid<T>>;\n    using Effector\
+    \ = AffineCompositeMonoid<T>;\n    static constexpr std::pair<T, T> operation(const\
+    \ std::pair<T, T>& m, const Affine<T>& e) {\n        return {e.a * m.first + e.b\
+    \ * m.second, m.second};\n    }\n};"
   dependsOn:
   - traits/affine_composite_monoid.cpp
   - traits/pair_monoid.cpp
@@ -55,7 +55,7 @@ data:
   isVerificationFile: false
   path: traits/sum_affine_action.cpp
   requiredBy: []
-  timestamp: '2021-11-01 18:27:47+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lazy_segment_tree.test.cpp

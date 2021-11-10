@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -30,8 +30,8 @@ data:
     \ 4 \"random/rand_int.cpp\"\n\ntemplate <class T> T rand_int(const T& min, const\
     \ T& max) {\n    static std::default_random_engine gen(xorshift());\n    return\
     \ std::uniform_int_distribution<T>(min, max)(gen);\n}\n"
-  code: "#pragma once\n#include <random>\n#include \"../random/xorshift.cpp\"\n\n\
-    template <class T> T rand_int(const T& min, const T& max) {\n    static std::default_random_engine\
+  code: "#pragma once\n#include <random>\n#include \"xorshift.cpp\"\n\ntemplate <class\
+    \ T> T rand_int(const T& min, const T& max) {\n    static std::default_random_engine\
     \ gen(xorshift());\n    return std::uniform_int_distribution<T>(min, max)(gen);\n\
     }"
   dependsOn:
@@ -41,7 +41,7 @@ data:
   path: random/rand_int.cpp
   requiredBy:
   - container/polynomial_hash.cpp
-  timestamp: '2021-09-08 18:46:15+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/polynomial_hash.test.cpp

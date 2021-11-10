@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -46,14 +46,13 @@ data:
     \     assert(i < len);\n        return offset + i;\n    }\n    constexpr usize\
     \ to_idx(const usize i) const noexcept {\n        assert(offset <= i and i < offset\
     \ + len);\n        return i - offset;\n    }\n};\n"
-  code: "#pragma once\n#include <cassert>\n#include \"../utility/int_alias.cpp\"\n\
-    \nclass IndexOffset {\n    usize offset, len;\n\n  public:\n    explicit constexpr\
-    \ IndexOffset(const usize o, const usize l) noexcept : offset(o), len(l) {}\n\
-    \    constexpr usize size() const { return len; }\n    constexpr usize operator[](const\
-    \ usize i) const noexcept {\n        assert(i < len);\n        return offset +\
-    \ i;\n    }\n    constexpr usize to_idx(const usize i) const noexcept {\n    \
-    \    assert(offset <= i and i < offset + len);\n        return i - offset;\n \
-    \   }\n};\n"
+  code: "#pragma once\n#include <cassert>\n#include \"int_alias.cpp\"\n\nclass IndexOffset\
+    \ {\n    usize offset, len;\n\n  public:\n    explicit constexpr IndexOffset(const\
+    \ usize o, const usize l) noexcept : offset(o), len(l) {}\n    constexpr usize\
+    \ size() const { return len; }\n    constexpr usize operator[](const usize i)\
+    \ const noexcept {\n        assert(i < len);\n        return offset + i;\n   \
+    \ }\n    constexpr usize to_idx(const usize i) const noexcept {\n        assert(offset\
+    \ <= i and i < offset + len);\n        return i - offset;\n    }\n};\n"
   dependsOn:
   - utility/int_alias.cpp
   isVerificationFile: false
@@ -62,7 +61,7 @@ data:
   - graph/dinic.cpp
   - graph/primal_dual.cpp
   - graph/basic_graph.cpp
-  timestamp: '2021-10-23 19:56:59+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/primal_dual_mincostflow.test.cpp

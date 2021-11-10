@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -128,7 +128,7 @@ data:
   isVerificationFile: true
   path: test/strongly_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2021-11-03 19:13:26+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/strongly_connected_components.test.cpp

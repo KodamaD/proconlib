@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'

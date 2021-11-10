@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/fast_io.cpp
     title: utility/fast_io.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -122,7 +122,7 @@ data:
   isVerificationFile: true
   path: test/fast_io.test.cpp
   requiredBy: []
-  timestamp: '2021-11-04 19:10:29+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fast_io.test.cpp

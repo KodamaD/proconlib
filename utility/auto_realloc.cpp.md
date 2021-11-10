@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -47,9 +47,9 @@ data:
     \     return data[i];\n    }\n};\n\ntemplate <class F> decltype(auto) auto_realloc(F&&\
     \ f) { return AutoReallocation<F>(std::forward<F>(f)); }\n"
   code: "#pragma once\n#include <utility>\n#include <vector>\n#include \"../bit/ceil_log2.cpp\"\
-    \n#include \"../utility/int_alias.cpp\"\n\ntemplate <class F> class AutoReallocation\
-    \ {\n    using R = typename decltype(std::declval<F>()((usize)0))::value_type;\n\
-    \n    F func;\n    mutable std::vector<R> data;\n\n  public:\n    explicit AutoReallocation(F&&\
+    \n#include \"int_alias.cpp\"\n\ntemplate <class F> class AutoReallocation {\n\
+    \    using R = typename decltype(std::declval<F>()((usize)0))::value_type;\n\n\
+    \    F func;\n    mutable std::vector<R> data;\n\n  public:\n    explicit AutoReallocation(F&&\
     \ f) : func(std::forward<F>(f)), data() {}\n\n    void reserve(const usize size)\
     \ const {\n        if (data.size() < size) data = func(((usize)1 << ceil_log2(size)));\n\
     \    }\n    R operator[](const usize i) const {\n        reserve(i + 1);\n   \
@@ -64,7 +64,7 @@ data:
   - math/modint_util.cpp
   - math/prime_sieve.cpp
   - container/polynomial_hash.cpp
-  timestamp: '2021-11-03 19:13:26+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_util.test.cpp

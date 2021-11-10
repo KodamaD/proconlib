@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
@@ -31,7 +31,7 @@ data:
     \ 1) < prob; }\n"
   code: '#pragma once
 
-    #include "../random/rand_real.cpp"
+    #include "rand_real.cpp"
 
 
     template <class T> bool rand_bool(const T& prob) { return rand_real<T>(0, 1) <
@@ -43,7 +43,7 @@ data:
   isVerificationFile: false
   path: random/rand_bool.cpp
   requiredBy: []
-  timestamp: '2021-10-23 19:56:59+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: random/rand_bool.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
@@ -20,7 +20,7 @@ data:
     \ Seq...>::type, N>;\n};\n\ntemplate <class T, usize N> struct MultiArrayImpl<T,\
     \ N> { using type = std::array<T, N>; };\n\ntemplate <class T, usize N, usize...\
     \ Seq> using MultiArray = typename MultiArrayImpl<T, N, Seq...>::type;\n"
-  code: "#pragma once\n#include <array>\n#include <type_traits>\n#include \"../utility/int_alias.cpp\"\
+  code: "#pragma once\n#include <array>\n#include <type_traits>\n#include \"int_alias.cpp\"\
     \n\ntemplate <class T, usize N, usize... Seq> struct MultiArrayImpl {\n    using\
     \ type = std::array<typename MultiArrayImpl<T, Seq...>::type, N>;\n};\n\ntemplate\
     \ <class T, usize N> struct MultiArrayImpl<T, N> { using type = std::array<T,\
@@ -31,7 +31,7 @@ data:
   isVerificationFile: false
   path: utility/multi_array.cpp
   requiredBy: []
-  timestamp: '2021-09-08 18:46:15+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: utility/multi_array.cpp

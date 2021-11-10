@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: algorithm/superset_zeta_transform.cpp
     title: algorithm/superset_zeta_transform.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
@@ -50,10 +50,10 @@ data:
     \   superset_zeta_transform(b);\n    for (const usize i : rep(0, a.size())) a[i]\
     \ *= b[i];\n    superset_mobius_transform(a);\n    return a;\n}\n"
   code: "#pragma once\n#include <vector>\n#include <cassert>\n#include \"../utility/int_alias.cpp\"\
-    \n#include \"../utility/rep.cpp\"\n#include \"../algorithm/superset_zeta_transform.cpp\"\
-    \n#include \"../algorithm/superset_mobius_transform.cpp\"\n\ntemplate <class T>\
-    \ std::vector<T> and_convolution(std::vector<T> a, std::vector<T> b) {\n    assert(a.size()\
-    \ == b.size());\n    superset_zeta_transform(a);\n    superset_zeta_transform(b);\n\
+    \n#include \"../utility/rep.cpp\"\n#include \"superset_zeta_transform.cpp\"\n\
+    #include \"superset_mobius_transform.cpp\"\n\ntemplate <class T> std::vector<T>\
+    \ and_convolution(std::vector<T> a, std::vector<T> b) {\n    assert(a.size() ==\
+    \ b.size());\n    superset_zeta_transform(a);\n    superset_zeta_transform(b);\n\
     \    for (const usize i : rep(0, a.size())) a[i] *= b[i];\n    superset_mobius_transform(a);\n\
     \    return a;\n}\n"
   dependsOn:
@@ -64,7 +64,7 @@ data:
   isVerificationFile: false
   path: algorithm/and_convolution.cpp
   requiredBy: []
-  timestamp: '2021-10-04 09:51:31+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/and_convolution.test.cpp

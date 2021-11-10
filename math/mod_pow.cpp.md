@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/barret_reduction.cpp
     title: math/barret_reduction.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   - icon: ':heavy_check_mark:'
@@ -61,16 +61,16 @@ data:
     \ u32 ret = 1, mul = rem_euclid<std::common_type_t<T, i64>>(x, mod);\n    for\
     \ (; exp > 0; exp >>= 1) {\n        if (exp & 1) ret = bt.product(ret, mul);\n\
     \        mul = bt.product(mul, mul);\n    }\n    return ret;\n}\n"
-  code: "#pragma once\n#include <cassert>\n#include <type_traits>\n#include \"../math/barret_reduction.cpp\"\
-    \n#include \"../math/rem_euclid.cpp\"\n#include \"../utility/int_alias.cpp\"\n\
-    \ntemplate <class T> constexpr u32 mod_pow(T x, u64 exp, const u32 mod) {\n  \
-    \  assert(mod > 0);\n    if (mod == 1) return 0;\n    const BarretReduction bt(mod);\n\
-    \    u32 ret = 1, mul = rem_euclid<std::common_type_t<T, i64>>(x, mod);\n    for\
-    \ (; exp > 0; exp >>= 1) {\n        if (exp & 1) ret = bt.product(ret, mul);\n\
-    \        mul = bt.product(mul, mul);\n    }\n    return ret;\n}\n"
+  code: "#pragma once\n#include <cassert>\n#include <type_traits>\n#include \"../utility/int_alias.cpp\"\
+    \n#include \"barret_reduction.cpp\"\n#include \"rem_euclid.cpp\"\n\ntemplate <class\
+    \ T> constexpr u32 mod_pow(T x, u64 exp, const u32 mod) {\n    assert(mod > 0);\n\
+    \    if (mod == 1) return 0;\n    const BarretReduction bt(mod);\n    u32 ret\
+    \ = 1, mul = rem_euclid<std::common_type_t<T, i64>>(x, mod);\n    for (; exp >\
+    \ 0; exp >>= 1) {\n        if (exp & 1) ret = bt.product(ret, mul);\n        mul\
+    \ = bt.product(mul, mul);\n    }\n    return ret;\n}\n"
   dependsOn:
-  - math/barret_reduction.cpp
   - utility/int_alias.cpp
+  - math/barret_reduction.cpp
   - utility/int_alias_extended.cpp
   - math/rem_euclid.cpp
   isVerificationFile: false
@@ -81,7 +81,7 @@ data:
   - algorithm/convolution_int.cpp
   - algorithm/convolution_mod.cpp
   - algorithm/convolution_arbitrary_mod.cpp
-  timestamp: '2021-11-01 18:27:47+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution_mod.test.cpp

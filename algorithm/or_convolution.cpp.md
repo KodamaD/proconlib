@@ -7,10 +7,10 @@ data:
   - icon: ':warning:'
     path: algorithm/subset_zeta_transform.cpp
     title: algorithm/subset_zeta_transform.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
@@ -47,12 +47,11 @@ data:
     \ subset_zeta_transform(b);\n    for (const usize i : rep(0, a.size())) a[i] *=\
     \ b[i];\n    subset_mobius_transform(a);\n    return a;\n}\n"
   code: "#pragma once\n#include <vector>\n#include <cassert>\n#include \"../utility/int_alias.cpp\"\
-    \n#include \"../utility/rep.cpp\"\n#include \"../algorithm/subset_zeta_transform.cpp\"\
-    \n#include \"../algorithm/subset_mobius_transform.cpp\"\n\ntemplate <class T>\
-    \ std::vector<T> or_convolution(std::vector<T> a, std::vector<T> b) {\n    assert(a.size()\
-    \ == b.size());\n    subset_zeta_transform(a);\n    subset_zeta_transform(b);\n\
-    \    for (const usize i : rep(0, a.size())) a[i] *= b[i];\n    subset_mobius_transform(a);\n\
-    \    return a;\n}\n"
+    \n#include \"../utility/rep.cpp\"\n#include \"subset_zeta_transform.cpp\"\n#include\
+    \ \"subset_mobius_transform.cpp\"\n\ntemplate <class T> std::vector<T> or_convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n    assert(a.size() == b.size());\n    subset_zeta_transform(a);\n\
+    \    subset_zeta_transform(b);\n    for (const usize i : rep(0, a.size())) a[i]\
+    \ *= b[i];\n    subset_mobius_transform(a);\n    return a;\n}\n"
   dependsOn:
   - utility/int_alias.cpp
   - utility/rep.cpp
@@ -61,7 +60,7 @@ data:
   isVerificationFile: false
   path: algorithm/or_convolution.cpp
   requiredBy: []
-  timestamp: '2021-10-04 09:51:31+09:00'
+  timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: algorithm/or_convolution.cpp
