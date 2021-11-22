@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -88,20 +88,20 @@ data:
   path: bit/bit_rzeros.cpp
   requiredBy:
   - math/modulo_transform.cpp
-  - algorithm/convolution_int.cpp
-  - algorithm/convolution_mod.cpp
-  - algorithm/convolution_arbitrary_mod.cpp
   - container/lazy_segment_tree.cpp
-  - container/segment_tree_beats.cpp
   - container/dual_segment_tree.cpp
+  - container/segment_tree_beats.cpp
+  - algorithm/convolution_mod.cpp
+  - algorithm/convolution_int.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/convolution_mod.test.cpp
-  - test/segment_tree_beats.test.cpp
-  - test/convolution_arbitrary_mod.test.cpp
   - test/dual_segment_tree.test.cpp
   - test/lazy_segment_tree.test.cpp
+  - test/convolution_mod.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/segment_tree_beats.test.cpp
 documentation_of: bit/bit_rzeros.cpp
 layout: document
 redirect_from:

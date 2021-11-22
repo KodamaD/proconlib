@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -32,48 +32,48 @@ data:
     \ i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
     using u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
     #line 4 \"utility/index_offset.cpp\"\n\nclass IndexOffset {\n    usize offset,\
-    \ len;\n\n  public:\n    explicit constexpr IndexOffset(const usize o, const usize\
-    \ l) noexcept : offset(o), len(l) {}\n    constexpr usize size() const { return\
-    \ len; }\n    constexpr usize operator[](const usize i) const noexcept {\n   \
-    \     assert(i < len);\n        return offset + i;\n    }\n    constexpr usize\
-    \ to_idx(const usize i) const noexcept {\n        assert(offset <= i and i < offset\
-    \ + len);\n        return i - offset;\n    }\n};\n#line 4 \"utility/rep.cpp\"\n\
-    \nclass rep {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const\
-    \ usize pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept\
-    \ { ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
-    \ { return itr != other.itr; }\n        constexpr usize operator*() const noexcept\
-    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
-    \ constexpr rep(const usize first, const usize last) noexcept : first(first),\
-    \ last(std::max(first, last)) {}\n    constexpr Iter begin() const noexcept {\
-    \ return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
-    };\n#line 2 \"utility/setmin.cpp\"\n\ntemplate <class T> bool setmin(T& lhs, const\
-    \ T& rhs) {\n    if (lhs > rhs) {\n        lhs = rhs;\n        return true;\n\
-    \    }\n    return false;\n}\n#line 11 \"graph/primal_dual.cpp\"\n\ntemplate <class\
-    \ Flow,\n          class Cost,\n          std::enable_if_t<std::is_integral_v<Flow>\
-    \ and std::is_integral_v<Cost> and std::is_signed_v<Flow> and\n              \
-    \             std::is_signed_v<Cost>>* = nullptr>\nclass PrimalDual {\n    struct\
-    \ Edge {\n        usize dst, rev;\n        Flow flow, cap;\n        Cost cost;\n\
-    \    };\n\n    std::vector<std::vector<Edge>> graph;\n    std::vector<Flow> gap;\n\
-    \    std::vector<Cost> potential;\n\n  public:\n    PrimalDual() : graph() {}\n\
-    \    explicit PrimalDual(const usize n) : graph(n), gap(n) {}\n\n    class EdgePtr\
-    \ {\n        friend class PrimalDual;\n        PrimalDual* self;\n        usize\
-    \ u, e;\n\n        explicit EdgePtr(PrimalDual* p, const usize u, const usize\
-    \ e) : self(p), u(u), e(e) {}\n\n        const Edge& edge() const { return self->graph[u][e];\
-    \ }\n        const Edge& rev_edge() const { return self->graph[edge().dst][edge().rev];\
-    \ }\n\n      public:\n        EdgePtr() : self(nullptr), u(0), e(0) {}\n     \
-    \   usize src() const { return u; }\n        usize dst() const { return edge().dst;\
-    \ }\n        Flow flow() const { return edge().flow; }\n        Flow lower() const\
-    \ { return -rev_edge().cap; }\n        Flow upper() const { return edge().cap;\
-    \ }\n        Cost cost() const { return edge().cost; }\n    };\n\n    usize size()\
-    \ const { return graph.size(); }\n\n    usize add_vertex() {\n        graph.emplace_back();\n\
-    \        gap.emplace_back();\n        return size() - 1;\n    }\n    IndexOffset\
-    \ add_vertices(usize n) {\n        IndexOffset ret(size(), n);\n        while\
-    \ (n--) {\n            graph.emplace_back();\n            gap.emplace_back();\n\
-    \        }\n        return ret;\n    }\n\n    EdgePtr add_edge(const usize src,\
-    \ const usize dst, const Flow lower, const Flow upper, const Cost cost) {\n  \
-    \      assert(src < size());\n        assert(dst < size());\n        assert(lower\
-    \ <= upper);\n        const usize src_id = graph[src].size();\n        const usize\
-    \ dst_id = graph[dst].size() + (src == dst);\n        graph[src].push_back(Edge{dst,\
+    \ len;\n\n  public:\n    IndexOffset() : offset(), len() {}\n    explicit constexpr\
+    \ IndexOffset(const usize o, const usize l) noexcept : offset(o), len(l) {}\n\
+    \    constexpr usize size() const { return len; }\n    constexpr usize operator[](const\
+    \ usize i) const noexcept {\n        assert(i < len);\n        return offset +\
+    \ i;\n    }\n    constexpr usize to_idx(const usize i) const noexcept {\n    \
+    \    assert(offset <= i and i < offset + len);\n        return i - offset;\n \
+    \   }\n};\n#line 4 \"utility/rep.cpp\"\n\nclass rep {\n    struct Iter {\n   \
+    \     usize itr;\n        constexpr Iter(const usize pos) noexcept : itr(pos)\
+    \ {}\n        constexpr void operator++() noexcept { ++itr; }\n        constexpr\
+    \ bool operator!=(const Iter& other) const noexcept { return itr != other.itr;\
+    \ }\n        constexpr usize operator*() const noexcept { return itr; }\n    };\n\
+    \    const Iter first, last;\n\n  public:\n    explicit constexpr rep(const usize\
+    \ first, const usize last) noexcept : first(first), last(std::max(first, last))\
+    \ {}\n    constexpr Iter begin() const noexcept { return first; }\n    constexpr\
+    \ Iter end() const noexcept { return last; }\n};\n#line 2 \"utility/setmin.cpp\"\
+    \n\ntemplate <class T> bool setmin(T& lhs, const T& rhs) {\n    if (lhs > rhs)\
+    \ {\n        lhs = rhs;\n        return true;\n    }\n    return false;\n}\n#line\
+    \ 11 \"graph/primal_dual.cpp\"\n\ntemplate <class Flow,\n          class Cost,\n\
+    \          std::enable_if_t<std::is_integral_v<Flow> and std::is_integral_v<Cost>\
+    \ and std::is_signed_v<Flow> and\n                           std::is_signed_v<Cost>>*\
+    \ = nullptr>\nclass PrimalDual {\n    struct Edge {\n        usize dst, rev;\n\
+    \        Flow flow, cap;\n        Cost cost;\n    };\n\n    std::vector<std::vector<Edge>>\
+    \ graph;\n    std::vector<Flow> gap;\n    std::vector<Cost> potential;\n\n  public:\n\
+    \    PrimalDual() : graph() {}\n    explicit PrimalDual(const usize n) : graph(n),\
+    \ gap(n) {}\n\n    class EdgePtr {\n        friend class PrimalDual;\n       \
+    \ PrimalDual* self;\n        usize u, e;\n\n        explicit EdgePtr(PrimalDual*\
+    \ p, const usize u, const usize e) : self(p), u(u), e(e) {}\n\n        const Edge&\
+    \ edge() const { return self->graph[u][e]; }\n        const Edge& rev_edge() const\
+    \ { return self->graph[edge().dst][edge().rev]; }\n\n      public:\n        EdgePtr()\
+    \ : self(nullptr), u(0), e(0) {}\n        usize src() const { return u; }\n  \
+    \      usize dst() const { return edge().dst; }\n        Flow flow() const { return\
+    \ edge().flow; }\n        Flow lower() const { return -rev_edge().cap; }\n   \
+    \     Flow upper() const { return edge().cap; }\n        Cost cost() const { return\
+    \ edge().cost; }\n    };\n\n    usize size() const { return graph.size(); }\n\n\
+    \    usize add_vertex() {\n        graph.emplace_back();\n        gap.emplace_back();\n\
+    \        return size() - 1;\n    }\n    IndexOffset add_vertices(usize n) {\n\
+    \        IndexOffset ret(size(), n);\n        while (n--) {\n            graph.emplace_back();\n\
+    \            gap.emplace_back();\n        }\n        return ret;\n    }\n\n  \
+    \  EdgePtr add_edge(const usize src, const usize dst, const Flow lower, const\
+    \ Flow upper, const Cost cost) {\n        assert(src < size());\n        assert(dst\
+    \ < size());\n        assert(lower <= upper);\n        const usize src_id = graph[src].size();\n\
+    \        const usize dst_id = graph[dst].size() + (src == dst);\n        graph[src].push_back(Edge{dst,\
     \ dst_id, 0, upper, cost});\n        graph[dst].push_back(Edge{src, src_id, 0,\
     \ -lower, -cost});\n        return EdgePtr(this, src, src_id);\n    }\n\n    void\
     \ add_supply(const usize u, const Flow f) {\n        assert(u < size());\n   \
@@ -266,7 +266,7 @@ data:
   isVerificationFile: false
   path: graph/primal_dual.cpp
   requiredBy: []
-  timestamp: '2021-11-10 20:31:05+09:00'
+  timestamp: '2021-11-22 20:09:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/primal_dual_mincostflow.test.cpp

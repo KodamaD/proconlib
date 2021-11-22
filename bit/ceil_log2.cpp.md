@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -106,36 +106,36 @@ data:
   isVerificationFile: false
   path: bit/ceil_log2.cpp
   requiredBy:
-  - math/modint_util.cpp
   - math/prime_sieve.cpp
-  - algorithm/convolution_int.cpp
-  - algorithm/convolution_mod.cpp
-  - algorithm/convolution_arbitrary_mod.cpp
-  - utility/auto_realloc.cpp
+  - math/modint_util.cpp
   - container/fenwick_tree.cpp
   - container/lazy_segment_tree.cpp
-  - container/segment_tree.cpp
-  - container/segment_tree_beats.cpp
-  - container/dual_segment_tree.cpp
-  - container/integer_hash_table.cpp
   - container/polynomial_hash.cpp
+  - container/integer_hash_table.cpp
+  - container/dual_segment_tree.cpp
+  - container/segment_tree_beats.cpp
+  - container/segment_tree.cpp
+  - utility/auto_realloc.cpp
+  - algorithm/convolution_mod.cpp
+  - algorithm/convolution_int.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/convolution_mod.test.cpp
-  - test/segment_tree_beats.test.cpp
-  - test/modint_util.test.cpp
-  - test/segment_tree.test.cpp
-  - test/integer_hash_table_verbose.test.cpp
-  - test/integer_hash_table.test.cpp
-  - test/convolution_arbitrary_mod.test.cpp
   - test/dual_segment_tree.test.cpp
-  - test/lazy_segment_tree.test.cpp
-  - test/polynomial_hash.test.cpp
-  - test/larsch.test.cpp
-  - test/prime_sieve.test.cpp
-  - test/fenwick_tree.test.cpp
   - test/heavy_light_decomposition.test.cpp
+  - test/segment_tree.test.cpp
+  - test/modint_util.test.cpp
+  - test/fenwick_tree.test.cpp
+  - test/integer_hash_table_verbose.test.cpp
+  - test/larsch.test.cpp
+  - test/lazy_segment_tree.test.cpp
+  - test/convolution_mod.test.cpp
+  - test/prime_sieve.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/segment_tree_beats.test.cpp
+  - test/polynomial_hash.test.cpp
+  - test/integer_hash_table.test.cpp
 documentation_of: bit/ceil_log2.cpp
 layout: document
 redirect_from:

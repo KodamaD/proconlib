@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/totient.cpp
     title: math/totient.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -48,12 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/static_modint.cpp\"\n#include <ostream>\n#include <type_traits>\n\
@@ -141,22 +141,22 @@ data:
   isVerificationFile: false
   path: math/static_modint.cpp
   requiredBy:
-  - algorithm/convolution_int.cpp
   - algorithm/convolution_mod.cpp
+  - algorithm/convolution_int.cpp
   - algorithm/convolution_arbitrary_mod.cpp
   timestamp: '2021-11-10 20:31:05+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/semiring_matrix.test.cpp
-  - test/convolution_mod.test.cpp
-  - test/modint_util.test.cpp
+  - test/heavy_light_decomposition.test.cpp
   - test/segment_tree.test.cpp
-  - test/berlekamp_massey.test.cpp
-  - test/convolution_arbitrary_mod.test.cpp
-  - test/queue_aggregation.test.cpp
+  - test/modint_util.test.cpp
+  - test/semiring_matrix.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/and_convolution.test.cpp
-  - test/heavy_light_decomposition.test.cpp
+  - test/convolution_mod.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/berlekamp_massey.test.cpp
+  - test/queue_aggregation.test.cpp
 documentation_of: math/static_modint.cpp
 layout: document
 redirect_from:

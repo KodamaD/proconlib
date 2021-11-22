@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -94,26 +94,26 @@ data:
   path: utility/revrep.cpp
   requiredBy:
   - math/modulo_transform.cpp
-  - algorithm/convolution_int.cpp
-  - algorithm/convolution_mod.cpp
-  - algorithm/convolution_arbitrary_mod.cpp
-  - utility/fast_io.cpp
   - container/lazy_segment_tree.cpp
-  - container/segment_tree.cpp
-  - container/segment_tree_beats.cpp
   - container/dual_segment_tree.cpp
+  - container/segment_tree_beats.cpp
+  - container/segment_tree.cpp
+  - utility/fast_io.cpp
+  - algorithm/convolution_mod.cpp
+  - algorithm/convolution_int.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/convolution_mod.test.cpp
-  - test/segment_tree_beats.test.cpp
-  - test/segment_tree.test.cpp
   - test/fast_io.test.cpp
-  - test/convolution_arbitrary_mod.test.cpp
   - test/dual_segment_tree.test.cpp
-  - test/lazy_segment_tree.test.cpp
-  - test/larsch.test.cpp
   - test/heavy_light_decomposition.test.cpp
+  - test/segment_tree.test.cpp
+  - test/larsch.test.cpp
+  - test/lazy_segment_tree.test.cpp
+  - test/convolution_mod.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/segment_tree_beats.test.cpp
 documentation_of: utility/revrep.cpp
 layout: document
 redirect_from:

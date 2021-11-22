@@ -4,13 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/binary_optimization.cpp
+    title: graph/binary_optimization.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/bipartite_matching.test.cpp
@@ -26,16 +29,16 @@ data:
     using i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
     using u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
     #line 4 \"utility/index_offset.cpp\"\n\nclass IndexOffset {\n    usize offset,\
-    \ len;\n\n  public:\n    explicit constexpr IndexOffset(const usize o, const usize\
-    \ l) noexcept : offset(o), len(l) {}\n    constexpr usize size() const { return\
-    \ len; }\n    constexpr usize operator[](const usize i) const noexcept {\n   \
-    \     assert(i < len);\n        return offset + i;\n    }\n    constexpr usize\
-    \ to_idx(const usize i) const noexcept {\n        assert(offset <= i and i < offset\
-    \ + len);\n        return i - offset;\n    }\n};\n#line 3 \"utility/rec_lambda.cpp\"\
-    \n#include <utility>\n\ntemplate <class F> struct RecursiveLambda : private F\
-    \ {\n    explicit constexpr RecursiveLambda(F&& f) : F(std::forward<F>(f)) {}\n\
-    \    template <class... Args> constexpr decltype(auto) operator()(Args&&... args)\
-    \ const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
+    \ len;\n\n  public:\n    IndexOffset() : offset(), len() {}\n    explicit constexpr\
+    \ IndexOffset(const usize o, const usize l) noexcept : offset(o), len(l) {}\n\
+    \    constexpr usize size() const { return len; }\n    constexpr usize operator[](const\
+    \ usize i) const noexcept {\n        assert(i < len);\n        return offset +\
+    \ i;\n    }\n    constexpr usize to_idx(const usize i) const noexcept {\n    \
+    \    assert(offset <= i and i < offset + len);\n        return i - offset;\n \
+    \   }\n};\n#line 3 \"utility/rec_lambda.cpp\"\n#include <utility>\n\ntemplate\
+    \ <class F> struct RecursiveLambda : private F {\n    explicit constexpr RecursiveLambda(F&&\
+    \ f) : F(std::forward<F>(f)) {}\n    template <class... Args> constexpr decltype(auto)\
+    \ operator()(Args&&... args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate <class F> constexpr decltype(auto) rec_lambda(F&& f) {\
     \ return RecursiveLambda<F>(std::forward<F>(f)); }\n#line 11 \"graph/dinic.cpp\"\
     \n\ntemplate <class Flow, std::enable_if_t<std::is_integral_v<Flow>>* = nullptr>\
@@ -83,7 +86,13 @@ data:
     \ {\n            bfs();\n            if (level[dst] == size()) break;\n      \
     \      std::fill(iter.begin(), iter.end(), (usize)0);\n            const Flow\
     \ f = dfs(dst, flow_limit - ret);\n            if (f == 0) break;\n          \
-    \  ret += f;\n        }\n        return ret;\n    }\n};\n"
+    \  ret += f;\n        }\n        return ret;\n    }\n\n    std::vector<char> min_cut(const\
+    \ usize src) const {\n        std::vector<char> ret(size());\n        std::queue<usize>\
+    \ que;\n        ret[src] = true;\n        que.push(src);\n        while (!que.empty())\
+    \ {\n            const usize u = que.front();\n            que.pop();\n      \
+    \      for (const Edge& e : graph[u]) {\n                if (e.cap > 0 and !ret[e.dst])\
+    \ {\n                    ret[e.dst] = true;\n                    que.push(e.dst);\n\
+    \                }\n            }\n        }\n        return ret;\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <limits>\n\
     #include <queue>\n#include <type_traits>\n#include <vector>\n#include \"../utility/index_offset.cpp\"\
     \n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rec_lambda.cpp\"\
@@ -132,15 +141,22 @@ data:
     \ {\n            bfs();\n            if (level[dst] == size()) break;\n      \
     \      std::fill(iter.begin(), iter.end(), (usize)0);\n            const Flow\
     \ f = dfs(dst, flow_limit - ret);\n            if (f == 0) break;\n          \
-    \  ret += f;\n        }\n        return ret;\n    }\n};\n"
+    \  ret += f;\n        }\n        return ret;\n    }\n\n    std::vector<char> min_cut(const\
+    \ usize src) const {\n        std::vector<char> ret(size());\n        std::queue<usize>\
+    \ que;\n        ret[src] = true;\n        que.push(src);\n        while (!que.empty())\
+    \ {\n            const usize u = que.front();\n            que.pop();\n      \
+    \      for (const Edge& e : graph[u]) {\n                if (e.cap > 0 and !ret[e.dst])\
+    \ {\n                    ret[e.dst] = true;\n                    que.push(e.dst);\n\
+    \                }\n            }\n        }\n        return ret;\n    }\n};\n"
   dependsOn:
   - utility/index_offset.cpp
   - utility/int_alias.cpp
   - utility/rec_lambda.cpp
   isVerificationFile: false
   path: graph/dinic.cpp
-  requiredBy: []
-  timestamp: '2021-11-10 20:31:05+09:00'
+  requiredBy:
+  - graph/binary_optimization.cpp
+  timestamp: '2021-11-22 20:09:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/bipartite_matching.test.cpp

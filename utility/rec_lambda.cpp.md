@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/binary_optimization.cpp
+    title: graph/binary_optimization.cpp
   - icon: ':heavy_check_mark:'
     path: graph/dinic.cpp
     title: graph/dinic.cpp
@@ -46,16 +49,17 @@ data:
   isVerificationFile: false
   path: utility/rec_lambda.cpp
   requiredBy:
-  - graph/strongly_connected_components.cpp
-  - graph/dinic.cpp
   - graph/tree_manager.cpp
+  - graph/dinic.cpp
+  - graph/binary_optimization.cpp
+  - graph/strongly_connected_components.cpp
   timestamp: '2021-11-03 19:13:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/rollback_union_find.test.cpp
-  - test/strongly_connected_components.test.cpp
-  - test/bipartite_matching.test.cpp
   - test/heavy_light_decomposition.test.cpp
+  - test/bipartite_matching.test.cpp
+  - test/strongly_connected_components.test.cpp
+  - test/rollback_union_find.test.cpp
 documentation_of: utility/rec_lambda.cpp
 layout: document
 redirect_from:

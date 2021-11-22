@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -62,6 +62,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
+  - icon: ':warning:'
+    path: graph/binary_optimization.cpp
+    title: graph/binary_optimization.cpp
   - icon: ':heavy_check_mark:'
     path: graph/primal_dual.cpp
     title: graph/primal_dual.cpp
@@ -83,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/semiring_matrix.cpp
     title: math/semiring_matrix.cpp
   - icon: ':heavy_check_mark:'
@@ -153,7 +156,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segment_tree_beats.test.cpp
     title: test/segment_tree_beats.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -168,9 +171,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/z_algorithm.test.cpp
     title: test/z_algorithm.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n#line 2 \"utility/int_alias.cpp\"\
@@ -201,63 +204,64 @@ data:
   isVerificationFile: false
   path: utility/rep.cpp
   requiredBy:
+  - math/prime_sieve.cpp
   - math/semiring_matrix.cpp
   - math/modulo_transform.cpp
   - math/modint_util.cpp
-  - math/prime_sieve.cpp
   - math/congruence_equations.cpp
-  - graph/strongly_connected_components.cpp
-  - graph/primal_dual.cpp
-  - graph/union_find.cpp
-  - algorithm/superset_mobius_transform.cpp
-  - algorithm/convolution_int.cpp
-  - algorithm/convolution_mod.cpp
-  - algorithm/monotone_minima.cpp
-  - algorithm/convolution_arbitrary_mod.cpp
-  - algorithm/berlekamp_massey.cpp
-  - algorithm/smawk.cpp
-  - algorithm/superset_zeta_transform.cpp
-  - algorithm/or_convolution.cpp
-  - algorithm/subset_mobius_transform.cpp
-  - algorithm/and_convolution.cpp
-  - algorithm/subset_zeta_transform.cpp
-  - utility/fast_io.cpp
   - container/sparse_table.cpp
   - container/lazy_segment_tree.cpp
-  - container/segment_tree.cpp
-  - container/segment_tree_beats.cpp
-  - container/dual_segment_tree.cpp
-  - container/integer_hash_table.cpp
   - container/polynomial_hash.cpp
+  - container/integer_hash_table.cpp
+  - container/dual_segment_tree.cpp
+  - container/segment_tree_beats.cpp
+  - container/segment_tree.cpp
+  - graph/binary_optimization.cpp
+  - graph/union_find.cpp
+  - graph/primal_dual.cpp
+  - graph/strongly_connected_components.cpp
+  - utility/fast_io.cpp
+  - algorithm/monotone_minima.cpp
+  - algorithm/berlekamp_massey.cpp
+  - algorithm/superset_zeta_transform.cpp
+  - algorithm/smawk.cpp
+  - algorithm/and_convolution.cpp
+  - algorithm/convolution_mod.cpp
+  - algorithm/convolution_int.cpp
+  - algorithm/subset_mobius_transform.cpp
+  - algorithm/superset_mobius_transform.cpp
+  - algorithm/subset_zeta_transform.cpp
+  - algorithm/or_convolution.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/semiring_matrix.test.cpp
-  - test/convolution_mod.test.cpp
-  - test/rollback_union_find.test.cpp
-  - test/segment_tree_beats.test.cpp
-  - test/modint_util.test.cpp
-  - test/sparse_table.test.cpp
-  - test/segment_tree.test.cpp
-  - test/integer_hash_table_verbose.test.cpp
-  - test/primal_dual_mincostflow.test.cpp
-  - test/integer_hash_table.test.cpp
-  - test/berlekamp_massey.test.cpp
-  - test/strongly_connected_components.test.cpp
-  - test/z_algorithm.test.cpp
   - test/fast_io.test.cpp
-  - test/convolution_arbitrary_mod.test.cpp
   - test/dual_segment_tree.test.cpp
-  - test/lazy_segment_tree.test.cpp
-  - test/polynomial_hash.test.cpp
-  - test/larsch.test.cpp
-  - test/prime_sieve.test.cpp
-  - test/primal_dual_maxflow.test.cpp
-  - test/fenwick_tree.test.cpp
-  - test/and_convolution.test.cpp
-  - test/union_find.test.cpp
-  - test/bipartite_matching.test.cpp
   - test/heavy_light_decomposition.test.cpp
+  - test/union_find.test.cpp
+  - test/segment_tree.test.cpp
+  - test/modint_util.test.cpp
+  - test/fenwick_tree.test.cpp
+  - test/integer_hash_table_verbose.test.cpp
+  - test/larsch.test.cpp
+  - test/semiring_matrix.test.cpp
+  - test/lazy_segment_tree.test.cpp
+  - test/and_convolution.test.cpp
+  - test/primal_dual_mincostflow.test.cpp
+  - test/convolution_mod.test.cpp
+  - test/bipartite_matching.test.cpp
+  - test/prime_sieve.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/berlekamp_massey.test.cpp
+  - test/z_algorithm.test.cpp
+  - test/sparse_table.test.cpp
+  - test/primal_dual_maxflow.test.cpp
+  - test/segment_tree_beats.test.cpp
+  - test/polynomial_hash.test.cpp
+  - test/integer_hash_table.test.cpp
+  - test/strongly_connected_components.test.cpp
+  - test/rollback_union_find.test.cpp
 documentation_of: utility/rep.cpp
 layout: document
 redirect_from:

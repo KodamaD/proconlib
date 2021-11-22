@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -61,15 +61,15 @@ data:
   isVerificationFile: false
   path: utility/auto_realloc.cpp
   requiredBy:
-  - math/modint_util.cpp
   - math/prime_sieve.cpp
+  - math/modint_util.cpp
   - container/polynomial_hash.cpp
   timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint_util.test.cpp
-  - test/polynomial_hash.test.cpp
   - test/prime_sieve.test.cpp
+  - test/polynomial_hash.test.cpp
 documentation_of: utility/auto_realloc.cpp
 layout: document
 redirect_from:

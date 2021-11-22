@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: algorithm/convolution_mod.cpp
     title: algorithm/convolution_mod.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   _extendedVerifiedWith:
@@ -42,15 +42,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/totient.test.cpp
     title: test/totient.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/totient.cpp\"\n\ntemplate <class T> constexpr T totient(T\
@@ -68,23 +68,23 @@ data:
   path: math/totient.cpp
   requiredBy:
   - math/static_modint.cpp
-  - algorithm/convolution_int.cpp
   - algorithm/convolution_mod.cpp
+  - algorithm/convolution_int.cpp
   - algorithm/convolution_arbitrary_mod.cpp
   timestamp: '2021-09-04 17:30:23+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/semiring_matrix.test.cpp
-  - test/convolution_mod.test.cpp
-  - test/modint_util.test.cpp
+  - test/heavy_light_decomposition.test.cpp
   - test/segment_tree.test.cpp
-  - test/berlekamp_massey.test.cpp
-  - test/convolution_arbitrary_mod.test.cpp
-  - test/queue_aggregation.test.cpp
+  - test/modint_util.test.cpp
+  - test/semiring_matrix.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/and_convolution.test.cpp
+  - test/convolution_mod.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/berlekamp_massey.test.cpp
+  - test/queue_aggregation.test.cpp
   - test/totient.test.cpp
-  - test/heavy_light_decomposition.test.cpp
 documentation_of: math/totient.cpp
 layout: document
 redirect_from:

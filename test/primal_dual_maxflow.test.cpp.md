@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -33,24 +33,25 @@ data:
     \ <cstddef>\n#include <cstdint>\n\nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\n\
     using i64 = std::int64_t;\nusing u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\n\
     using usize = std::size_t;\n#line 4 \"utility/index_offset.cpp\"\n\nclass IndexOffset\
-    \ {\n    usize offset, len;\n\n  public:\n    explicit constexpr IndexOffset(const\
-    \ usize o, const usize l) noexcept : offset(o), len(l) {}\n    constexpr usize\
-    \ size() const { return len; }\n    constexpr usize operator[](const usize i)\
-    \ const noexcept {\n        assert(i < len);\n        return offset + i;\n   \
-    \ }\n    constexpr usize to_idx(const usize i) const noexcept {\n        assert(offset\
-    \ <= i and i < offset + len);\n        return i - offset;\n    }\n};\n#line 4\
-    \ \"utility/rep.cpp\"\n\nclass rep {\n    struct Iter {\n        usize itr;\n\
-    \        constexpr Iter(const usize pos) noexcept : itr(pos) {}\n        constexpr\
-    \ void operator++() noexcept { ++itr; }\n        constexpr bool operator!=(const\
-    \ Iter& other) const noexcept { return itr != other.itr; }\n        constexpr\
-    \ usize operator*() const noexcept { return itr; }\n    };\n    const Iter first,\
-    \ last;\n\n  public:\n    explicit constexpr rep(const usize first, const usize\
-    \ last) noexcept : first(first), last(std::max(first, last)) {}\n    constexpr\
-    \ Iter begin() const noexcept { return first; }\n    constexpr Iter end() const\
-    \ noexcept { return last; }\n};\n#line 2 \"utility/setmin.cpp\"\n\ntemplate <class\
-    \ T> bool setmin(T& lhs, const T& rhs) {\n    if (lhs > rhs) {\n        lhs =\
-    \ rhs;\n        return true;\n    }\n    return false;\n}\n#line 11 \"graph/primal_dual.cpp\"\
-    \n\ntemplate <class Flow,\n          class Cost,\n          std::enable_if_t<std::is_integral_v<Flow>\
+    \ {\n    usize offset, len;\n\n  public:\n    IndexOffset() : offset(), len()\
+    \ {}\n    explicit constexpr IndexOffset(const usize o, const usize l) noexcept\
+    \ : offset(o), len(l) {}\n    constexpr usize size() const { return len; }\n \
+    \   constexpr usize operator[](const usize i) const noexcept {\n        assert(i\
+    \ < len);\n        return offset + i;\n    }\n    constexpr usize to_idx(const\
+    \ usize i) const noexcept {\n        assert(offset <= i and i < offset + len);\n\
+    \        return i - offset;\n    }\n};\n#line 4 \"utility/rep.cpp\"\n\nclass rep\
+    \ {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const usize\
+    \ pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept {\
+    \ ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
+    \ { return itr != other.itr; }\n        constexpr usize operator*() const noexcept\
+    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
+    \ constexpr rep(const usize first, const usize last) noexcept : first(first),\
+    \ last(std::max(first, last)) {}\n    constexpr Iter begin() const noexcept {\
+    \ return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
+    };\n#line 2 \"utility/setmin.cpp\"\n\ntemplate <class T> bool setmin(T& lhs, const\
+    \ T& rhs) {\n    if (lhs > rhs) {\n        lhs = rhs;\n        return true;\n\
+    \    }\n    return false;\n}\n#line 11 \"graph/primal_dual.cpp\"\n\ntemplate <class\
+    \ Flow,\n          class Cost,\n          std::enable_if_t<std::is_integral_v<Flow>\
     \ and std::is_integral_v<Cost> and std::is_signed_v<Flow> and\n              \
     \             std::is_signed_v<Cost>>* = nullptr>\nclass PrimalDual {\n    struct\
     \ Edge {\n        usize dst, rev;\n        Flow flow, cap;\n        Cost cost;\n\
@@ -172,7 +173,7 @@ data:
   isVerificationFile: true
   path: test/primal_dual_maxflow.test.cpp
   requiredBy: []
-  timestamp: '2021-11-10 20:31:05+09:00'
+  timestamp: '2021-11-22 20:09:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/primal_dual_maxflow.test.cpp

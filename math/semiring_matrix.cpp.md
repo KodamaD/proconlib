@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/semiring_matrix.cpp\"\n#include <array>\n#include <cassert>\n\
@@ -36,10 +36,10 @@ data:
     \ public:\n    SemiRingMatrix() = default;\n    explicit SemiRingMatrix(const\
     \ usize h, const usize w, const T& val = S::zero()) : data(h, std::vector<T>(w,\
     \ val)) {}\n\n    SemiRingMatrix(const std::vector<std::vector<T>>& vec) : data(vec)\
-    \ {\n        for (const auto& v : vec) assert(v.size() == width());\n    }\n \
-    \   SemiRingMatrix(const std::initializer_list<std::initializer_list<T>>& list)\
+    \ {\n        for (const auto& v : data) assert(v.size() == width());\n    }\n\
+    \    SemiRingMatrix(const std::initializer_list<std::initializer_list<T>>& list)\
     \ {\n        data.reserve(list.size());\n        for (const auto& v : list) data.emplace_back(v.begin(),\
-    \ v.end());\n        for (const auto& v : vec) assert(v.size() == width());\n\
+    \ v.end());\n        for (const auto& v : data) assert(v.size() == width());\n\
     \    }\n\n    usize height() const { return data.size(); }\n    usize width()\
     \ const { return data.empty() ? 0 : data[0].size(); }\n\n    T& operator()(const\
     \ usize i, const usize j) {\n        assert(i < height());\n        assert(j <\
@@ -74,10 +74,10 @@ data:
     \ public:\n    SemiRingMatrix() = default;\n    explicit SemiRingMatrix(const\
     \ usize h, const usize w, const T& val = S::zero()) : data(h, std::vector<T>(w,\
     \ val)) {}\n\n    SemiRingMatrix(const std::vector<std::vector<T>>& vec) : data(vec)\
-    \ {\n        for (const auto& v : vec) assert(v.size() == width());\n    }\n \
-    \   SemiRingMatrix(const std::initializer_list<std::initializer_list<T>>& list)\
+    \ {\n        for (const auto& v : data) assert(v.size() == width());\n    }\n\
+    \    SemiRingMatrix(const std::initializer_list<std::initializer_list<T>>& list)\
     \ {\n        data.reserve(list.size());\n        for (const auto& v : list) data.emplace_back(v.begin(),\
-    \ v.end());\n        for (const auto& v : vec) assert(v.size() == width());\n\
+    \ v.end());\n        for (const auto& v : data) assert(v.size() == width());\n\
     \    }\n\n    usize height() const { return data.size(); }\n    usize width()\
     \ const { return data.empty() ? 0 : data[0].size(); }\n\n    T& operator()(const\
     \ usize i, const usize j) {\n        assert(i < height());\n        assert(j <\
@@ -111,8 +111,8 @@ data:
   isVerificationFile: false
   path: math/semiring_matrix.cpp
   requiredBy: []
-  timestamp: '2021-11-10 20:31:05+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-11-22 20:09:12+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/semiring_matrix.test.cpp
 documentation_of: math/semiring_matrix.cpp

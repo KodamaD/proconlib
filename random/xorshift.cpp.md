@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -55,19 +55,19 @@ data:
   isVerificationFile: false
   path: random/xorshift.cpp
   requiredBy:
+  - container/polynomial_hash.cpp
+  - container/integer_hash_table.cpp
   - random/rand_bool.cpp
+  - random/rand_perm.cpp
   - random/rand_int.cpp
   - random/shuffle_vec.cpp
   - random/rand_real.cpp
-  - random/rand_perm.cpp
-  - container/integer_hash_table.cpp
-  - container/polynomial_hash.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/integer_hash_table_verbose.test.cpp
-  - test/integer_hash_table.test.cpp
   - test/polynomial_hash.test.cpp
+  - test/integer_hash_table.test.cpp
 documentation_of: random/xorshift.cpp
 layout: document
 redirect_from:

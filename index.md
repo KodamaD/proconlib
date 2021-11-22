@@ -105,6 +105,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/basic_graph.cpp
       title: graph/basic_graph.cpp
+    - icon: ':warning:'
+      path: graph/binary_optimization.cpp
+      title: graph/binary_optimization.cpp
     - icon: ':heavy_check_mark:'
       path: graph/dinic.cpp
       title: graph/dinic.cpp
@@ -167,16 +170,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/primitive_root.cpp
       title: math/primitive_root.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/rem_euclid.cpp
       title: math/rem_euclid.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/semiring_matrix.cpp
       title: math/semiring_matrix.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/static_modint.cpp
       title: math/static_modint.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/totient.cpp
       title: math/totient.cpp
   - name: random
@@ -222,7 +225,7 @@ data:
     - icon: ':warning:'
       path: traits/min_monoid.cpp
       title: traits/min_monoid.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: traits/num_semiring.cpp
       title: traits/num_semiring.cpp
     - icon: ':heavy_check_mark:'
@@ -260,7 +263,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/infty.cpp
       title: utility/infty.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
     - icon: ':heavy_check_mark:'
@@ -278,7 +281,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/rep.cpp
       title: utility/rep.cpp
     - icon: ':heavy_check_mark:'
@@ -377,7 +380,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/segment_tree_beats.test.cpp
       title: test/segment_tree_beats.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/semiring_matrix.test.cpp
       title: test/semiring_matrix.test.cpp
     - icon: ':heavy_check_mark:'

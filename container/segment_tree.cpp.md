@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: bit/ceil_log2.cpp
     title: bit/ceil_log2.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -142,9 +142,9 @@ data:
   timestamp: '2021-09-27 22:23:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/heavy_light_decomposition.test.cpp
   - test/segment_tree.test.cpp
   - test/larsch.test.cpp
-  - test/heavy_light_decomposition.test.cpp
 documentation_of: container/segment_tree.cpp
 layout: document
 redirect_from:

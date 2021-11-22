@@ -88,15 +88,15 @@ data:
   isVerificationFile: false
   path: utility/int_alias_extended.cpp
   requiredBy:
-  - math/mod_pow.cpp
-  - math/dynamic_modint.cpp
   - math/modulo_transform.cpp
-  - math/barret_reduction.cpp
+  - math/mod_pow.cpp
   - math/primitive_root.cpp
-  - algorithm/convolution_int.cpp
-  - algorithm/convolution_mod.cpp
-  - algorithm/convolution_arbitrary_mod.cpp
+  - math/dynamic_modint.cpp
+  - math/barret_reduction.cpp
   - container/polynomial_hash.cpp
+  - algorithm/convolution_mod.cpp
+  - algorithm/convolution_int.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
   timestamp: '2021-09-08 18:46:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

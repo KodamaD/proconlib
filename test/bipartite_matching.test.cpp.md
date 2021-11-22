@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
@@ -41,16 +41,17 @@ data:
     \ return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
     };\n#line 3 \"graph/dinic.cpp\"\n#include <cassert>\n#include <limits>\n#include\
     \ <queue>\n#include <type_traits>\n#include <vector>\n#line 4 \"utility/index_offset.cpp\"\
-    \n\nclass IndexOffset {\n    usize offset, len;\n\n  public:\n    explicit constexpr\
-    \ IndexOffset(const usize o, const usize l) noexcept : offset(o), len(l) {}\n\
-    \    constexpr usize size() const { return len; }\n    constexpr usize operator[](const\
-    \ usize i) const noexcept {\n        assert(i < len);\n        return offset +\
-    \ i;\n    }\n    constexpr usize to_idx(const usize i) const noexcept {\n    \
-    \    assert(offset <= i and i < offset + len);\n        return i - offset;\n \
-    \   }\n};\n#line 3 \"utility/rec_lambda.cpp\"\n#include <utility>\n\ntemplate\
-    \ <class F> struct RecursiveLambda : private F {\n    explicit constexpr RecursiveLambda(F&&\
-    \ f) : F(std::forward<F>(f)) {}\n    template <class... Args> constexpr decltype(auto)\
-    \ operator()(Args&&... args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
+    \n\nclass IndexOffset {\n    usize offset, len;\n\n  public:\n    IndexOffset()\
+    \ : offset(), len() {}\n    explicit constexpr IndexOffset(const usize o, const\
+    \ usize l) noexcept : offset(o), len(l) {}\n    constexpr usize size() const {\
+    \ return len; }\n    constexpr usize operator[](const usize i) const noexcept\
+    \ {\n        assert(i < len);\n        return offset + i;\n    }\n    constexpr\
+    \ usize to_idx(const usize i) const noexcept {\n        assert(offset <= i and\
+    \ i < offset + len);\n        return i - offset;\n    }\n};\n#line 3 \"utility/rec_lambda.cpp\"\
+    \n#include <utility>\n\ntemplate <class F> struct RecursiveLambda : private F\
+    \ {\n    explicit constexpr RecursiveLambda(F&& f) : F(std::forward<F>(f)) {}\n\
+    \    template <class... Args> constexpr decltype(auto) operator()(Args&&... args)\
+    \ const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate <class F> constexpr decltype(auto) rec_lambda(F&& f) {\
     \ return RecursiveLambda<F>(std::forward<F>(f)); }\n#line 11 \"graph/dinic.cpp\"\
     \n\ntemplate <class Flow, std::enable_if_t<std::is_integral_v<Flow>>* = nullptr>\
@@ -98,20 +99,26 @@ data:
     \ {\n            bfs();\n            if (level[dst] == size()) break;\n      \
     \      std::fill(iter.begin(), iter.end(), (usize)0);\n            const Flow\
     \ f = dfs(dst, flow_limit - ret);\n            if (f == 0) break;\n          \
-    \  ret += f;\n        }\n        return ret;\n    }\n};\n#line 5 \"test/bipartite_matching.test.cpp\"\
-    \n#include <iostream>\n#line 7 \"test/bipartite_matching.test.cpp\"\n\nint main()\
-    \ {\n    usize L, R, M;\n    std::cin >> L >> R >> M;\n    Dinic<usize> dinic;\n\
-    \    const auto src = dinic.add_vertex();\n    const auto dst = dinic.add_vertex();\n\
-    \    const auto left = dinic.add_vertices(L);\n    const auto right = dinic.add_vertices(R);\n\
-    \    std::vector<Dinic<usize>::EdgePtr> ptr(M);\n    for (const auto i : rep(0,\
-    \ L)) {\n        dinic.add_edge(src, left[i], 1);\n    }\n    for (const auto\
-    \ i : rep(0, R)) {\n        dinic.add_edge(right[i], dst, 1);\n    }\n    for\
-    \ (const auto i : rep(0, M)) {\n        usize a, b;\n        std::cin >> a >>\
-    \ b;\n        ptr[i] = dinic.add_edge(left[a], right[b], 1);\n    }\n    std::cout\
-    \ << dinic.flow(src, dst) << '\\n';\n    for (const auto i : rep(0, M)) {\n  \
-    \      if (ptr[i].flow() == 1) {\n            std::cout << left.to_idx(ptr[i].src())\
-    \ << ' ' << right.to_idx(ptr[i].dst()) << '\\n';\n        }\n    }\n    return\
-    \ 0;\n}\n"
+    \  ret += f;\n        }\n        return ret;\n    }\n\n    std::vector<char> min_cut(const\
+    \ usize src) const {\n        std::vector<char> ret(size());\n        std::queue<usize>\
+    \ que;\n        ret[src] = true;\n        que.push(src);\n        while (!que.empty())\
+    \ {\n            const usize u = que.front();\n            que.pop();\n      \
+    \      for (const Edge& e : graph[u]) {\n                if (e.cap > 0 and !ret[e.dst])\
+    \ {\n                    ret[e.dst] = true;\n                    que.push(e.dst);\n\
+    \                }\n            }\n        }\n        return ret;\n    }\n};\n\
+    #line 5 \"test/bipartite_matching.test.cpp\"\n#include <iostream>\n#line 7 \"\
+    test/bipartite_matching.test.cpp\"\n\nint main() {\n    usize L, R, M;\n    std::cin\
+    \ >> L >> R >> M;\n    Dinic<usize> dinic;\n    const auto src = dinic.add_vertex();\n\
+    \    const auto dst = dinic.add_vertex();\n    const auto left = dinic.add_vertices(L);\n\
+    \    const auto right = dinic.add_vertices(R);\n    std::vector<Dinic<usize>::EdgePtr>\
+    \ ptr(M);\n    for (const auto i : rep(0, L)) {\n        dinic.add_edge(src, left[i],\
+    \ 1);\n    }\n    for (const auto i : rep(0, R)) {\n        dinic.add_edge(right[i],\
+    \ dst, 1);\n    }\n    for (const auto i : rep(0, M)) {\n        usize a, b;\n\
+    \        std::cin >> a >> b;\n        ptr[i] = dinic.add_edge(left[a], right[b],\
+    \ 1);\n    }\n    std::cout << dinic.flow(src, dst) << '\\n';\n    for (const\
+    \ auto i : rep(0, M)) {\n        if (ptr[i].flow() == 1) {\n            std::cout\
+    \ << left.to_idx(ptr[i].src()) << ' ' << right.to_idx(ptr[i].dst()) << '\\n';\n\
+    \        }\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bipartitematching\"\n#include\
     \ \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n#include \"../graph/dinic.cpp\"\
     \n#include <iostream>\n#include <vector>\n\nint main() {\n    usize L, R, M;\n\
@@ -135,7 +142,7 @@ data:
   isVerificationFile: true
   path: test/bipartite_matching.test.cpp
   requiredBy: []
-  timestamp: '2021-11-10 20:31:05+09:00'
+  timestamp: '2021-11-22 20:09:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/bipartite_matching.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   - icon: ':heavy_check_mark:'
@@ -66,12 +66,12 @@ data:
   isVerificationFile: false
   path: math/barret_reduction.cpp
   requiredBy:
-  - math/mod_pow.cpp
-  - math/dynamic_modint.cpp
   - math/modulo_transform.cpp
+  - math/mod_pow.cpp
   - math/primitive_root.cpp
-  - algorithm/convolution_int.cpp
+  - math/dynamic_modint.cpp
   - algorithm/convolution_mod.cpp
+  - algorithm/convolution_int.cpp
   - algorithm/convolution_arbitrary_mod.cpp
   timestamp: '2021-11-01 18:27:47+09:00'
   verificationStatus: LIBRARY_ALL_AC

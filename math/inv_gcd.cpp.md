@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
   _extendedRequiredBy:
@@ -53,8 +53,8 @@ data:
   isVerificationFile: false
   path: math/inv_gcd.cpp
   requiredBy:
-  - math/dynamic_modint.cpp
   - math/mod_inv.cpp
+  - math/dynamic_modint.cpp
   - math/congruence_equations.cpp
   - algorithm/convolution_int.cpp
   - algorithm/convolution_arbitrary_mod.cpp
