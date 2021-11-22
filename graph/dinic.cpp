@@ -113,4 +113,22 @@ template <class Flow, std::enable_if_t<std::is_integral_v<Flow>>* = nullptr> cla
         }
         return ret;
     }
+
+    std::vector<char> min_cut(const usize src) const {
+        std::vector<char> ret(size());
+        std::queue<usize> que;
+        ret[src] = true;
+        que.push(src);
+        while (!que.empty()) {
+            const usize u = que.front();
+            que.pop();
+            for (const Edge& e : graph[u]) {
+                if (e.cap > 0 and !ret[e.dst]) {
+                    ret[e.dst] = true;
+                    que.push(e.dst);
+                }
+            }
+        }
+        return ret;
+    }
 };

@@ -6,6 +6,7 @@ class IndexOffset {
     usize offset, len;
 
   public:
+    IndexOffset() : offset(), len() {}
     explicit constexpr IndexOffset(const usize o, const usize l) noexcept : offset(o), len(l) {}
     constexpr usize size() const { return len; }
     constexpr usize operator[](const usize i) const noexcept {
