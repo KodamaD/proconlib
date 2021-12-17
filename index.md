@@ -53,10 +53,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: container/fenwick_tree.cpp
       title: container/fenwick_tree.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: container/integer_hash_table.cpp
       title: container/integer_hash_table.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: container/lazy_segment_tree.cpp
       title: container/lazy_segment_tree.cpp
     - icon: ':heavy_check_mark:'
@@ -176,12 +176,12 @@ data:
     - icon: ':warning:'
       path: random/shuffle_vec.cpp
       title: random/shuffle_vec.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/xorshift.cpp
       title: random/xorshift.cpp
   - name: traits
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: traits/affine_composite_monoid.cpp
       title: traits/affine_composite_monoid.cpp
     - icon: ':heavy_check_mark:'
@@ -208,16 +208,16 @@ data:
     - icon: ':question:'
       path: traits/optional_monoid.cpp
       title: traits/optional_monoid.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: traits/pair_monoid.cpp
       title: traits/pair_monoid.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: traits/plus_monoid.cpp
       title: traits/plus_monoid.cpp
     - icon: ':heavy_check_mark:'
       path: traits/reversed_monoid.cpp
       title: traits/reversed_monoid.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: traits/sum_affine_action.cpp
       title: traits/sum_affine_action.cpp
   - name: utility
@@ -339,16 +339,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/heavy_light_decomposition.test.cpp
       title: test/heavy_light_decomposition.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/integer_hash_table.test.cpp
       title: test/integer_hash_table.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/integer_hash_table_verbose.test.cpp
       title: test/integer_hash_table_verbose.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/larsch.test.cpp
       title: test/larsch.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/lazy_segment_tree.test.cpp
       title: test/lazy_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'

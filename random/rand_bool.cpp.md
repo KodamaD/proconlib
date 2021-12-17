@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: random/rand_real.cpp
     title: random/rand_real.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
   - icon: ':question:'

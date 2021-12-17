@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: math/totient.cpp
     title: math/totient.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/affine_composite_monoid.cpp
     title: traits/affine_composite_monoid.cpp
   - icon: ':heavy_check_mark:'

@@ -18,12 +18,12 @@ data:
     title: utility/revrep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"container/lazy_segment_tree.cpp\"\n#include <cassert>\n\
@@ -64,9 +64,9 @@ data:
     \   data[k] = A::operation(data[k], e);\n        if (k < seg_size) lazy[k] = E::operation(lazy[k],\
     \ e);\n    }\n    void flush(const int k) {\n        apply(2 * k, lazy[k]);\n\
     \        apply(2 * k + 1, lazy[k]);\n        lazy[k] = E::identity();\n    }\n\
-    \n    void push(const int k) {\n        for (const int d : revrep(bit_rzeros(k)\
+    \n    void push(const int k) {\n        for (const int d : revrep(countr_zero(k)\
     \ + 1, logn + 1)) flush(k >> d);\n    }\n    void pull(int k) {\n        for (k\
-    \ >>= bit_rzeros(k); k > 1;) fetch(k >>= 1);\n    }\n\n  public:\n    explicit\
+    \ >>= countr_zero(k); k > 1;) fetch(k >>= 1);\n    }\n\n  public:\n    explicit\
     \ LazySegmentTree(const int size = 0, const T& value = M::identity())\n      \
     \  : LazySegmentTree(std::vector<T>(size, value)) {}\n    explicit LazySegmentTree(const\
     \ std::vector<T>& vec) : internal_size(vec.size()) {\n        logn = ceil_log2(internal_size);\n\
@@ -121,9 +121,9 @@ data:
     \ e);\n        if (k < seg_size) lazy[k] = E::operation(lazy[k], e);\n    }\n\
     \    void flush(const int k) {\n        apply(2 * k, lazy[k]);\n        apply(2\
     \ * k + 1, lazy[k]);\n        lazy[k] = E::identity();\n    }\n\n    void push(const\
-    \ int k) {\n        for (const int d : revrep(bit_rzeros(k) + 1, logn + 1)) flush(k\
-    \ >> d);\n    }\n    void pull(int k) {\n        for (k >>= bit_rzeros(k); k >\
-    \ 1;) fetch(k >>= 1);\n    }\n\n  public:\n    explicit LazySegmentTree(const\
+    \ int k) {\n        for (const int d : revrep(countr_zero(k) + 1, logn + 1)) flush(k\
+    \ >> d);\n    }\n    void pull(int k) {\n        for (k >>= countr_zero(k); k\
+    \ > 1;) fetch(k >>= 1);\n    }\n\n  public:\n    explicit LazySegmentTree(const\
     \ int size = 0, const T& value = M::identity())\n        : LazySegmentTree(std::vector<T>(size,\
     \ value)) {}\n    explicit LazySegmentTree(const std::vector<T>& vec) : internal_size(vec.size())\
     \ {\n        logn = ceil_log2(internal_size);\n        seg_size = 1 << logn;\n\
@@ -176,8 +176,8 @@ data:
   isVerificationFile: false
   path: container/lazy_segment_tree.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:48:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-12-17 20:09:20+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lazy_segment_tree.test.cpp
 documentation_of: container/lazy_segment_tree.cpp

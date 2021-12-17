@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
   - icon: ':question:'
@@ -13,16 +13,16 @@ data:
   - icon: ':question:'
     path: math/totient.cpp
     title: math/totient.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/affine_composite_monoid.cpp
     title: traits/affine_composite_monoid.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: traits/pair_monoid.cpp
     title: traits/pair_monoid.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: traits/plus_monoid.cpp
     title: traits/plus_monoid.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: traits/sum_affine_action.cpp
     title: traits/sum_affine_action.cpp
   - icon: ':question:'
@@ -42,9 +42,9 @@ data:
     title: utility/revrep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -89,9 +89,9 @@ data:
     \   data[k] = A::operation(data[k], e);\n        if (k < seg_size) lazy[k] = E::operation(lazy[k],\
     \ e);\n    }\n    void flush(const int k) {\n        apply(2 * k, lazy[k]);\n\
     \        apply(2 * k + 1, lazy[k]);\n        lazy[k] = E::identity();\n    }\n\
-    \n    void push(const int k) {\n        for (const int d : revrep(bit_rzeros(k)\
+    \n    void push(const int k) {\n        for (const int d : revrep(countr_zero(k)\
     \ + 1, logn + 1)) flush(k >> d);\n    }\n    void pull(int k) {\n        for (k\
-    \ >>= bit_rzeros(k); k > 1;) fetch(k >>= 1);\n    }\n\n  public:\n    explicit\
+    \ >>= countr_zero(k); k > 1;) fetch(k >>= 1);\n    }\n\n  public:\n    explicit\
     \ LazySegmentTree(const int size = 0, const T& value = M::identity())\n      \
     \  : LazySegmentTree(std::vector<T>(size, value)) {}\n    explicit LazySegmentTree(const\
     \ std::vector<T>& vec) : internal_size(vec.size()) {\n        logn = ceil_log2(internal_size);\n\
@@ -239,8 +239,8 @@ data:
   isVerificationFile: true
   path: test/lazy_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:48:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-17 20:09:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lazy_segment_tree.test.cpp
 layout: document

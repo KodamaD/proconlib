@@ -68,8 +68,8 @@ data:
     \ flush(k);\n            fetch(k);\n        }\n    }\n    void flush(const int\
     \ k) {\n        apply(2 * k, lazy[k]);\n        apply(2 * k + 1, lazy[k]);\n \
     \       lazy[k] = E::identity();\n    }\n\n    void push(const int k) {\n    \
-    \    for (const int d : revrep(bit_rzeros(k) + 1, logn + 1)) flush(k >> d);\n\
-    \    }\n    void pull(int k) {\n        for (k >>= bit_rzeros(k); k > 1;) fetch(k\
+    \    for (const int d : revrep(countr_zero(k) + 1, logn + 1)) flush(k >> d);\n\
+    \    }\n    void pull(int k) {\n        for (k >>= countr_zero(k); k > 1;) fetch(k\
     \ >>= 1);\n    }\n\n  public:\n    explicit SegmentTreeBeats(const int size =\
     \ 0, const T& value = M::identity())\n        : SegmentTreeBeats(std::vector<T>(size,\
     \ value)) {}\n    explicit SegmentTreeBeats(const std::vector<T>& vec) : internal_size(vec.size())\
@@ -129,8 +129,8 @@ data:
     \ flush(k);\n            fetch(k);\n        }\n    }\n    void flush(const int\
     \ k) {\n        apply(2 * k, lazy[k]);\n        apply(2 * k + 1, lazy[k]);\n \
     \       lazy[k] = E::identity();\n    }\n\n    void push(const int k) {\n    \
-    \    for (const int d : revrep(bit_rzeros(k) + 1, logn + 1)) flush(k >> d);\n\
-    \    }\n    void pull(int k) {\n        for (k >>= bit_rzeros(k); k > 1;) fetch(k\
+    \    for (const int d : revrep(countr_zero(k) + 1, logn + 1)) flush(k >> d);\n\
+    \    }\n    void pull(int k) {\n        for (k >>= countr_zero(k); k > 1;) fetch(k\
     \ >>= 1);\n    }\n\n  public:\n    explicit SegmentTreeBeats(const int size =\
     \ 0, const T& value = M::identity())\n        : SegmentTreeBeats(std::vector<T>(size,\
     \ value)) {}\n    explicit SegmentTreeBeats(const std::vector<T>& vec) : internal_size(vec.size())\
@@ -184,7 +184,7 @@ data:
   isVerificationFile: false
   path: container/segment_tree_beats.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:48:33+09:00'
+  timestamp: '2021-12-17 20:09:20+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/segment_tree_beats.test.cpp

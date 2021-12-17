@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: container/integer_hash_table.cpp
     title: container/integer_hash_table.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/associative_array
@@ -55,63 +55,63 @@ data:
     \      Data() : ctrl(Ctrl::Empty), slot() {}\n        ~Data() {\n            if\
     \ (ctrl == Ctrl::Full) slot.mut_pair.~pair();\n        }\n    };\n\n    struct\
     \ Manager {\n        static inline constexpr u64 PHI = 11400714819323198485ull;\n\
-    \        static inline const u64 RND = xorshift();\n\n        usize logn, size,\
+    \        static inline const u64 RND = xorshift();\n\n        int logn, size,\
     \ full, deleted;\n        Manager() : logn(0), size(0), full(0), deleted(0) {}\n\
     \n        void fix() {\n            logn = ceil_log2(3 * full);\n            size\
     \ = (full == 0 ? 0 : (1 << logn));\n            deleted = 0;\n        }\n\n  \
     \      bool balanced() const { return 2 * (full + deleted) <= size and 8 * full\
-    \ >= size; }\n        usize mask() const { return size - 1; }\n\n        usize\
-    \ index(const K& k) const {\n            u64 x = static_cast<u64>(k) ^ RND;\n\
-    \            x ^= x >> (64 - logn);\n            return (x * PHI) >> (64 - logn);\n\
-    \        }\n    };\n\n    Data* data;\n    Manager info;\n\n    usize find_key(const\
-    \ K& k, usize i) const {\n        while (data[i].ctrl != Ctrl::Empty) {\n    \
-    \        if (data[i].ctrl == Ctrl::Full and data[i].slot.pair.first == k) break;\n\
+    \ >= size; }\n        int mask() const { return size - 1; }\n\n        int index(const\
+    \ K& k) const {\n            u64 x = static_cast<u64>(k) ^ RND;\n            x\
+    \ ^= x >> (64 - logn);\n            return (x * PHI) >> (64 - logn);\n       \
+    \ }\n    };\n\n    Data* data;\n    Manager info;\n\n    int find_key(const K&\
+    \ k, int i) const {\n        while (data[i].ctrl != Ctrl::Empty) {\n         \
+    \   if (data[i].ctrl == Ctrl::Full and data[i].slot.pair.first == k) break;\n\
     \            i = (i + 1) & info.mask();\n        }\n        return i;\n    }\n\
-    \    usize find_place(usize i) const {\n        while (data[i].ctrl == Ctrl::Full)\
+    \    int find_place(int i) const {\n        while (data[i].ctrl == Ctrl::Full)\
     \ i = (i + 1) & info.mask();\n        return i;\n    }\n\n    template <class...\
-    \ Args> void construct(const usize i, Args&&... args) {\n        new (&data[i].slot.mut_pair)\
+    \ Args> void construct(const int i, Args&&... args) {\n        new (&data[i].slot.mut_pair)\
     \ std::pair<K, V>(std::forward<Args>(args)...);\n    }\n    void resize() {\n\
-    \        Data* old_data = std::exchange(data, nullptr);\n        const usize old_len\
+    \        Data* old_data = std::exchange(data, nullptr);\n        const int old_len\
     \ = info.size;\n        info.fix();\n        if (info.size) {\n            data\
-    \ = new Data[info.size];\n            for (const usize i : rep(0, old_len)) {\n\
+    \ = new Data[info.size];\n            for (const int i : rep(0, old_len)) {\n\
     \                if (old_data[i].ctrl == Ctrl::Full) {\n                    const\
-    \ usize k = find_place(info.index(old_data[i].slot.pair.first));\n           \
-    \         data[k].ctrl = Ctrl::Full;\n                    construct(k, std::move(old_data[i].slot.mut_pair));\n\
+    \ int k = find_place(info.index(old_data[i].slot.pair.first));\n             \
+    \       data[k].ctrl = Ctrl::Full;\n                    construct(k, std::move(old_data[i].slot.mut_pair));\n\
     \                }\n            }\n        }\n        if (old_data) delete[] old_data;\n\
     \    }\n\n  public:\n    IntegerHashTable() noexcept : data(nullptr), info() {}\n\
     \    IntegerHashTable(const Self& other) noexcept : Self() { *this = other; }\n\
     \    IntegerHashTable(Self&& other) noexcept : Self() { *this = std::move(other);\
     \ }\n    ~IntegerHashTable() { clear(); }\n\n    class Iter {\n        friend\
-    \ class IntegerHashTable;\n        usize idx;\n        Self* self;\n\n       \
-    \ explicit Iter(const usize i, Self* s) : idx(i - 1), self(s) { next(); }\n\n\
-    \        void next() {\n            while (++idx < self->info.size)\n        \
-    \        if (self->data[idx].ctrl == Ctrl::Full) return;\n        }\n\n      public:\n\
-    \        bool operator!=(const Iter& other) const { return idx != other.idx or\
-    \ self != other.self; }\n        std::pair<const K, V>& operator*() const { return\
-    \ self->data[idx].slot.pair; }\n        void operator++() { next(); }\n    };\n\
-    \n    class ConstIter {\n        friend class IntegerHashTable;\n        usize\
-    \ idx;\n        const Self* self;\n\n        explicit ConstIter(const usize i,\
-    \ const Self* s) : idx(i - 1), self(s) { next(); }\n\n        void next() {\n\
-    \            while (++idx < self->info.size)\n                if (self->data[idx].ctrl\
+    \ class IntegerHashTable;\n        int idx;\n        Self* self;\n\n        explicit\
+    \ Iter(const int i, Self* s) : idx(i - 1), self(s) { next(); }\n\n        void\
+    \ next() {\n            while (++idx < self->info.size)\n                if (self->data[idx].ctrl\
     \ == Ctrl::Full) return;\n        }\n\n      public:\n        bool operator!=(const\
-    \ ConstIter& other) const { return idx != other.idx or self != other.self; }\n\
-    \        const std::pair<const K, V>& operator*() const { return self->data[idx].slot.pair;\
-    \ }\n        void operator++() { next(); }\n    };\n\n    Self& operator=(const\
-    \ Self& other) noexcept {\n        if (this != &other) {\n            clear();\n\
-    \            info = other.info;\n            info.fix();\n            if (info.size)\
-    \ {\n                data = new Data[info.size];\n                for (const usize\
-    \ i : rep(0, other.info.size)) {\n                    if (other.data[i].ctrl ==\
-    \ Ctrl::Full) {\n                        const usize k = find_place(info.index(other.data[i].slot.pair.first));\n\
+    \ Iter& other) const { return idx != other.idx or self != other.self; }\n    \
+    \    std::pair<const K, V>& operator*() const { return self->data[idx].slot.pair;\
+    \ }\n        void operator++() { next(); }\n    };\n\n    class ConstIter {\n\
+    \        friend class IntegerHashTable;\n        int idx;\n        const Self*\
+    \ self;\n\n        explicit ConstIter(const int i, const Self* s) : idx(i - 1),\
+    \ self(s) { next(); }\n\n        void next() {\n            while (++idx < self->info.size)\n\
+    \                if (self->data[idx].ctrl == Ctrl::Full) return;\n        }\n\n\
+    \      public:\n        bool operator!=(const ConstIter& other) const { return\
+    \ idx != other.idx or self != other.self; }\n        const std::pair<const K,\
+    \ V>& operator*() const { return self->data[idx].slot.pair; }\n        void operator++()\
+    \ { next(); }\n    };\n\n    Self& operator=(const Self& other) noexcept {\n \
+    \       if (this != &other) {\n            clear();\n            info = other.info;\n\
+    \            info.fix();\n            if (info.size) {\n                data =\
+    \ new Data[info.size];\n                for (const int i : rep(0, other.info.size))\
+    \ {\n                    if (other.data[i].ctrl == Ctrl::Full) {\n           \
+    \             const int k = find_place(info.index(other.data[i].slot.pair.first));\n\
     \                        data[k].ctrl = Ctrl::Full;\n                        construct(k,\
     \ other.data[i].slot.mut_pair);\n                    }\n                }\n  \
     \          }\n        }\n        return *this;\n    }\n    Self& operator=(Self&&\
     \ other) noexcept {\n        if (this != &other) {\n            clear();\n   \
     \         data = std::exchange(other.data, nullptr);\n            info = std::exchange(other.info,\
     \ Manager());\n        }\n        return *this;\n    }\n\n    template <class...\
-    \ Args> std::pair<V*, bool> insert(const K& key, Args&&... args) {\n        usize\
+    \ Args> std::pair<V*, bool> insert(const K& key, Args&&... args) {\n        int\
     \ idx = -1;\n        if (empty()) {\n            info.full += 1;\n           \
     \ resize();\n            idx = info.index(key);\n        } else {\n          \
-    \  const usize pos = info.index(key);\n            usize i = find_key(key, pos);\n\
+    \  const int pos = info.index(key);\n            int i = find_key(key, pos);\n\
     \            if (data[i].ctrl == Ctrl::Full) return std::make_pair(&data[i].slot.pair.second,\
     \ false);\n            i = find_place(pos);\n            info.full += 1;\n   \
     \         info.deleted -= (data[i].ctrl == Ctrl::Deleted);\n            if (!info.balanced())\
@@ -120,19 +120,19 @@ data:
     \        construct(idx, std::piecewise_construct, std::forward_as_tuple(key),\n\
     \                  std::forward_as_tuple(std::forward<Args>(args)...));\n    \
     \    return std::make_pair(&data[idx].slot.pair.second, true);\n    }\n\n    bool\
-    \ erase(const K& key) {\n        if (empty()) return false;\n        const usize\
+    \ erase(const K& key) {\n        if (empty()) return false;\n        const int\
     \ i = find_key(key, info.index(key));\n        if (data[i].ctrl == Ctrl::Full)\
     \ {\n            info.full -= 1;\n            info.deleted += 1;\n           \
     \ data[i].ctrl = Ctrl::Deleted;\n            data[i].slot.mut_pair.~pair();\n\
     \            if (!info.balanced()) resize();\n            return true;\n     \
     \   }\n        return false;\n    }\n\n    V* find(const K& key) const {\n   \
-    \     if (empty()) return nullptr;\n        const usize i = find_key(key, info.index(key));\n\
+    \     if (empty()) return nullptr;\n        const int i = find_key(key, info.index(key));\n\
     \        return data[i].ctrl == Ctrl::Full ? &data[i].slot.pair.second : nullptr;\n\
     \    }\n\n    void clear() {\n        if (data) {\n            delete[] data;\n\
     \            data = nullptr;\n        }\n        info = Manager();\n    }\n\n\
-    \    usize size() const { return info.full; }\n    bool empty() const { return\
-    \ size() == 0; }\n    V& operator[](const K& key) { return *insert(key).first;\
-    \ }\n\n    Iter begin() { return Iter(0, this); }\n    Iter end() { return Iter(info.size,\
+    \    int size() const { return info.full; }\n    bool empty() const { return size()\
+    \ == 0; }\n    V& operator[](const K& key) { return *insert(key).first; }\n\n\
+    \    Iter begin() { return Iter(0, this); }\n    Iter end() { return Iter(info.size,\
     \ this); }\n    ConstIter begin() const { return ConstIter(0, this); }\n    ConstIter\
     \ end() const { return ConstIter(info.size, this); }\n};\n#line 4 \"test/integer_hash_table.test.cpp\"\
     \n#include <iostream>\n\nint main() {\n    int Q;\n    std::cin >> Q;\n    IntegerHashTable<u64,\
@@ -156,8 +156,8 @@ data:
   isVerificationFile: true
   path: test/integer_hash_table.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-17 20:09:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/integer_hash_table.test.cpp
 layout: document
