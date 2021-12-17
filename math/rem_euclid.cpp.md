@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/primitive_root.cpp
     title: math/primitive_root.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   _extendedVerifiedWith:
@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/convolution_mod.test.cpp
     title: test/convolution_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fp_util.test.cpp
     title: test/fp_util.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,9 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/rem_euclid.cpp\"\n#include <cassert>\n\ntemplate <class\
@@ -93,7 +93,7 @@ data:
   - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_int.cpp
   timestamp: '2021-11-01 18:27:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution_arbitrary_mod.test.cpp
   - test/queue_aggregation.test.cpp

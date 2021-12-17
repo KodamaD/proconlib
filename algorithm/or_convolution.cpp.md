@@ -7,7 +7,7 @@ data:
   - icon: ':warning:'
     path: algorithm/subset_zeta_transform.cpp
     title: algorithm/subset_zeta_transform.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []

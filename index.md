@@ -68,10 +68,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: container/segment_tree.cpp
       title: container/segment_tree.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: container/segment_tree_beats.cpp
       title: container/segment_tree_beats.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: container/sparse_table.cpp
       title: container/sparse_table.cpp
     - icon: ':heavy_check_mark:'
@@ -126,7 +126,7 @@ data:
     - icon: ':warning:'
       path: math/floor_div.cpp
       title: math/floor_div.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/fp_util.cpp
       title: math/fp_util.cpp
     - icon: ':heavy_check_mark:'
@@ -147,16 +147,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/primitive_root.cpp
       title: math/primitive_root.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/rem_euclid.cpp
       title: math/rem_euclid.cpp
     - icon: ':heavy_check_mark:'
       path: math/semiring_matrix.cpp
       title: math/semiring_matrix.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/static_modint.cpp
       title: math/static_modint.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/totient.cpp
       title: math/totient.cpp
   - name: random
@@ -187,7 +187,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: traits/assign_monoid.cpp
       title: traits/assign_monoid.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: traits/lambda_semigroup.cpp
       title: traits/lambda_semigroup.cpp
     - icon: ':warning:'
@@ -205,7 +205,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: traits/num_semiring.cpp
       title: traits/num_semiring.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: traits/optional_monoid.cpp
       title: traits/optional_monoid.cpp
     - icon: ':heavy_check_mark:'
@@ -234,16 +234,16 @@ data:
     - icon: ':warning:'
       path: utility/bit_parity.cpp
       title: utility/bit_parity.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: utility/bit_width.cpp
       title: utility/bit_width.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/ceil_log2.cpp
       title: utility/ceil_log2.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: utility/countl_zero.cpp
       title: utility/countl_zero.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/countr_zero.cpp
       title: utility/countr_zero.cpp
     - icon: ':warning:'
@@ -258,7 +258,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/infty.cpp
       title: utility/infty.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
     - icon: ':warning:'
@@ -276,10 +276,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/rep.cpp
       title: utility/rep.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/revrep.cpp
       title: utility/revrep.cpp
     - icon: ':warning:'
@@ -333,7 +333,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fenwick_tree.test.cpp
       title: test/fenwick_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/fp_util.test.cpp
       title: test/fp_util.test.cpp
     - icon: ':heavy_check_mark:'
@@ -372,13 +372,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/segment_tree.test.cpp
       title: test/segment_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/segment_tree_beats.test.cpp
       title: test/segment_tree_beats.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/semiring_matrix.test.cpp
       title: test/semiring_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/sparse_table.test.cpp
       title: test/sparse_table.test.cpp
     - icon: ':heavy_check_mark:'

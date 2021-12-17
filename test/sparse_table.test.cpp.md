@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: traits/lambda_semigroup.cpp
     title: traits/lambda_semigroup.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/optional_monoid.cpp
     title: traits/optional_monoid.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: utility/bit_width.cpp
     title: utility/bit_width.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: utility/countl_zero.cpp
     title: utility/countl_zero.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -61,7 +61,7 @@ data:
     \ = M::operation(table[d - 1][i], table[d - 1][i + (1 << (d - 1))]);\n       \
     \     }\n        }\n    }\n\n    int size() const { return table[0].size(); }\n\
     \n    T fold(const int l, const int r) const {\n        assert(0 <= l and l <=\
-    \ r and r < size());\n        if (l == r) return M::identity();\n        const\
+    \ r and r <= size());\n        if (l == r) return M::identity();\n        const\
     \ auto d = bit_width(r - l) - 1;\n        return M::operation(table[d][l], table[d][r\
     \ - (1 << d)]);\n    }\n};\n#line 3 \"test/sparse_table.test.cpp\"\n#include <iostream>\n\
     #include <numeric>\n#line 2 \"traits/lambda_semigroup.cpp\"\n#include <memory>\n\
@@ -110,8 +110,8 @@ data:
   isVerificationFile: true
   path: test/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:48:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-17 21:33:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sparse_table.test.cpp
 layout: document

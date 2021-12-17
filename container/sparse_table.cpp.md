@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: utility/bit_width.cpp
     title: utility/bit_width.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: utility/countl_zero.cpp
     title: utility/countl_zero.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"container/sparse_table.cpp\"\n#include <cassert>\n#include\
@@ -52,7 +52,7 @@ data:
     \ = M::operation(table[d - 1][i], table[d - 1][i + (1 << (d - 1))]);\n       \
     \     }\n        }\n    }\n\n    int size() const { return table[0].size(); }\n\
     \n    T fold(const int l, const int r) const {\n        assert(0 <= l and l <=\
-    \ r and r < size());\n        if (l == r) return M::identity();\n        const\
+    \ r and r <= size());\n        if (l == r) return M::identity();\n        const\
     \ auto d = bit_width(r - l) - 1;\n        return M::operation(table[d][l], table[d][r\
     \ - (1 << d)]);\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n#include \"../utility/bit_width.cpp\"\
@@ -67,7 +67,7 @@ data:
     \ = M::operation(table[d - 1][i], table[d - 1][i + (1 << (d - 1))]);\n       \
     \     }\n        }\n    }\n\n    int size() const { return table[0].size(); }\n\
     \n    T fold(const int l, const int r) const {\n        assert(0 <= l and l <=\
-    \ r and r < size());\n        if (l == r) return M::identity();\n        const\
+    \ r and r <= size());\n        if (l == r) return M::identity();\n        const\
     \ auto d = bit_width(r - l) - 1;\n        return M::operation(table[d][l], table[d][r\
     \ - (1 << d)]);\n    }\n};\n"
   dependsOn:
@@ -78,8 +78,8 @@ data:
   isVerificationFile: false
   path: container/sparse_table.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:48:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-12-17 21:33:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sparse_table.test.cpp
 documentation_of: container/sparse_table.cpp

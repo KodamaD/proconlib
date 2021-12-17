@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
   - icon: ':heavy_check_mark:'
@@ -54,12 +54,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/segment_tree_beats.test.cpp
     title: test/segment_tree_beats.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/revrep.cpp\"\n#include <algorithm>\n\nclass ReversedRange\
@@ -100,7 +100,7 @@ data:
   - container/segment_tree_beats.cpp
   - container/segment_tree.cpp
   timestamp: '2021-12-17 09:20:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution_arbitrary_mod.test.cpp
   - test/larsch.test.cpp

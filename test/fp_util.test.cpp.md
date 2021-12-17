@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/fp_util.cpp
     title: math/fp_util.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/totient.cpp
     title: math/totient.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/117
@@ -72,31 +72,32 @@ data:
     \ = StaticModint<1000000007>;\nusing Modint998244353 = StaticModint<998244353>;\n\
     #line 3 \"math/fp_util.cpp\"\n#include <vector>\n\ntemplate <class M> struct FpUtil\
     \ {\n    static M fact(const int n) {\n        static std::vector<M> vec;\n  \
-    \      assert(n >= 0);\n        if (vec.empty()) vec = {M(1)};\n        while\
-    \ ((int)vec.size() <= n) vec.push_back(vec.back() * M(n));\n        return vec[n];\n\
-    \    }\n    static M inv(const int n) {\n        static std::vector<M> vec;\n\
-    \        assert(n > 0);\n        if (vec.empty()) vec = {M(0), M(1)};\n      \
-    \  while ((int)vec.size() <= n) vec.push_back(-M(M::mod() / n) * vec[M::mod()\
-    \ % n]);\n        return vec[n];\n    }\n    static M inv_fact(const int n) {\n\
-    \        static std::vector<M> vec;\n        assert(n >= 0);\n        if (vec.empty())\
-    \ vec = {M(1)};\n        while ((int)vec.size() <= n) vec.push_back(vec.back()\
-    \ * inv(n));\n        return vec[n];\n    }\n    static M binom(const int n, const\
-    \ int k) {\n        assert(0 <= k and k <= n);\n        return fact(n) * inv_fact(n\
-    \ - k) * inv_fact(k);\n    }\n    static M factpow(const int n, const int k) {\n\
-    \        assert(0 <= k and k <= n);\n        return fact(n) * inv_fact(n - k);\n\
-    \    }\n    static M homo(const int n, const int k) {\n        assert((n == 0\
-    \ and k == 0) or (n > 0 and k >= 0));\n        if (n == 0 and k == 0) return M(1);\n\
-    \        return binom(n + k - 1, k);\n    }\n};\n#line 5 \"test/fp_util.test.cpp\"\
-    \n#include <iostream>\n\nusing Fp = StaticModint<1000000007>;\nusing Util = FpUtil<Fp>;\n\
-    \nint main() {\n    int T;\n    std::cin >> T;\n    while (T--) {\n        char\
-    \ type, dust;\n        int N, K;\n        std::cin >> type >> dust >> N >> dust\
-    \ >> K >> dust;\n        if (type == 'C') {\n            if (N < K) std::cout\
-    \ << 0 << '\\n';\n            else std::cout << Util::binom(N, K) << '\\n';\n\
-    \        }\n        if (type == 'P') {\n            if (N < K) std::cout << 0\
-    \ << '\\n';\n            else std::cout << Util::factpow(N, K) << '\\n';\n   \
-    \     }\n        if (type == 'H') {\n            if (N == 0 && K > 0) std::cout\
-    \ << 0 << '\\n';\n            else std::cout << Util::homo(N, K) << '\\n';\n \
-    \       }\n    }\n    return 0;\n}\n"
+    \      assert(n >= 0);\n        if (vec.empty()) vec = {M(1)};\n        for (int\
+    \ i = vec.size(); i <= n; ++i) vec.push_back(vec.back() * M(i));\n        return\
+    \ vec[n];\n    }\n    static M inv(const int n) {\n        static std::vector<M>\
+    \ vec;\n        assert(n > 0);\n        if (vec.empty()) vec = {M(0), M(1)};\n\
+    \        for (int i = vec.size(); i <= n; ++i) vec.push_back(-M(M::mod() / i)\
+    \ * vec[M::mod() % i]);\n        return vec[n];\n    }\n    static M inv_fact(const\
+    \ int n) {\n        static std::vector<M> vec;\n        assert(n >= 0);\n    \
+    \    if (vec.empty()) vec = {M(1)};\n        for (int i = vec.size(); i <= n;\
+    \ ++i) vec.push_back(vec.back() * inv(i));\n        return vec[n];\n    }\n  \
+    \  static M binom(const int n, const int k) {\n        assert(0 <= k and k <=\
+    \ n);\n        return fact(n) * inv_fact(n - k) * inv_fact(k);\n    }\n    static\
+    \ M factpow(const int n, const int k) {\n        assert(0 <= k and k <= n);\n\
+    \        return fact(n) * inv_fact(n - k);\n    }\n    static M homo(const int\
+    \ n, const int k) {\n        assert((n == 0 and k == 0) or (n > 0 and k >= 0));\n\
+    \        if (n == 0 and k == 0) return M(1);\n        return binom(n + k - 1,\
+    \ k);\n    }\n};\n#line 5 \"test/fp_util.test.cpp\"\n#include <iostream>\n\nusing\
+    \ Fp = StaticModint<1000000007>;\nusing Util = FpUtil<Fp>;\n\nint main() {\n \
+    \   int T;\n    std::cin >> T;\n    while (T--) {\n        char type, dust;\n\
+    \        int N, K;\n        std::cin >> type >> dust >> N >> dust >> K >> dust;\n\
+    \        if (type == 'C') {\n            if (N < K) std::cout << 0 << '\\n';\n\
+    \            else std::cout << Util::binom(N, K) << '\\n';\n        }\n      \
+    \  if (type == 'P') {\n            if (N < K) std::cout << 0 << '\\n';\n     \
+    \       else std::cout << Util::factpow(N, K) << '\\n';\n        }\n        if\
+    \ (type == 'H') {\n            if (N == 0 && K > 0) std::cout << 0 << '\\n';\n\
+    \            else std::cout << Util::homo(N, K) << '\\n';\n        }\n    }\n\
+    \    return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/117\"\n#include \"../math/static_modint.cpp\"\
     \n#include \"../math/fp_util.cpp\"\n#include \"../utility/int_alias.cpp\"\n#include\
     \ <iostream>\n\nusing Fp = StaticModint<1000000007>;\nusing Util = FpUtil<Fp>;\n\
@@ -118,8 +119,8 @@ data:
   isVerificationFile: true
   path: test/fp_util.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 20:09:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-17 21:33:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fp_util.test.cpp
 layout: document

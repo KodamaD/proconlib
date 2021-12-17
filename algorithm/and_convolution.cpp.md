@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: algorithm/superset_zeta_transform.cpp
     title: algorithm/superset_zeta_transform.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []

@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: traits/min_monoid.cpp
     title: traits/min_monoid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/optional_monoid.cpp
     title: traits/optional_monoid.cpp
   - icon: ':heavy_check_mark:'

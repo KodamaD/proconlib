@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: utility/bit_width.cpp
     title: utility/bit_width.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: '#line 2 "utility/int_alias.cpp"
@@ -61,7 +61,7 @@ data:
   - utility/bit_width.cpp
   - container/sparse_table.cpp
   timestamp: '2021-12-17 09:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sparse_table.test.cpp
 documentation_of: utility/countl_zero.cpp

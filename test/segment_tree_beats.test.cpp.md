@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/countr_zero.cpp
     title: utility/countr_zero.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/880
@@ -121,9 +121,9 @@ data:
     \n#include <iostream>\n#include <numeric>\n#line 9 \"test/segment_tree_beats.test.cpp\"\
     \n\nconstexpr u32 MAX = 1000000000;\n\nstruct Info {\n    u32 max, lcm;\n    u64\
     \ sum;\n    int len;\n    static Info all_same(const u32 x, const int l) { return\
-    \ {x, x, x * l, l}; }\n};\n\nstruct Operate {\n    u32 assign, gcd;\n};\n\nstruct\
-    \ Structure {\n    struct Monoid {\n        using Type = Info;\n        static\
-    \ Info identity() { return {0, 1, 0, 0}; }\n        static Info operation(const\
+    \ {x, x, (u64)x * l, l}; }\n};\n\nstruct Operate {\n    u32 assign, gcd;\n};\n\
+    \nstruct Structure {\n    struct Monoid {\n        using Type = Info;\n      \
+    \  static Info identity() { return {0, 1, 0, 0}; }\n        static Info operation(const\
     \ Info& l, const Info& r) {\n            return {\n                std::max(l.max,\
     \ r.max),\n                (u32)std::min<u64>(std::lcm<u64>(l.lcm, r.lcm), MAX\
     \ + 1),\n                l.sum + r.sum,\n                l.len + r.len,\n    \
@@ -150,17 +150,17 @@ data:
     #include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n\nconstexpr\
     \ u32 MAX = 1000000000;\n\nstruct Info {\n    u32 max, lcm;\n    u64 sum;\n  \
     \  int len;\n    static Info all_same(const u32 x, const int l) { return {x, x,\
-    \ x * l, l}; }\n};\n\nstruct Operate {\n    u32 assign, gcd;\n};\n\nstruct Structure\
-    \ {\n    struct Monoid {\n        using Type = Info;\n        static Info identity()\
-    \ { return {0, 1, 0, 0}; }\n        static Info operation(const Info& l, const\
-    \ Info& r) {\n            return {\n                std::max(l.max, r.max),\n\
-    \                (u32)std::min<u64>(std::lcm<u64>(l.lcm, r.lcm), MAX + 1),\n \
-    \               l.sum + r.sum,\n                l.len + r.len,\n            };\n\
-    \        }\n    };\n    struct Effector {\n        using Type = Operate;\n   \
-    \     static Operate identity() { return {0, 0}; }\n        static Operate operation(const\
-    \ Operate& l, const Operate& r) {\n            if (r.assign) return r;\n     \
-    \       if (l.assign) return {std::gcd(l.assign, r.gcd), 0};\n            return\
-    \ {0, std::gcd(l.gcd, r.gcd)};\n        }\n    };\n    static std::optional<Info>\
+    \ (u64)x * l, l}; }\n};\n\nstruct Operate {\n    u32 assign, gcd;\n};\n\nstruct\
+    \ Structure {\n    struct Monoid {\n        using Type = Info;\n        static\
+    \ Info identity() { return {0, 1, 0, 0}; }\n        static Info operation(const\
+    \ Info& l, const Info& r) {\n            return {\n                std::max(l.max,\
+    \ r.max),\n                (u32)std::min<u64>(std::lcm<u64>(l.lcm, r.lcm), MAX\
+    \ + 1),\n                l.sum + r.sum,\n                l.len + r.len,\n    \
+    \        };\n        }\n    };\n    struct Effector {\n        using Type = Operate;\n\
+    \        static Operate identity() { return {0, 0}; }\n        static Operate\
+    \ operation(const Operate& l, const Operate& r) {\n            if (r.assign) return\
+    \ r;\n            if (l.assign) return {std::gcd(l.assign, r.gcd), 0};\n     \
+    \       return {0, std::gcd(l.gcd, r.gcd)};\n        }\n    };\n    static std::optional<Info>\
     \ operation(const Info& m, const Operate& e) {\n        if (m.len == 0) return\
     \ m;\n        if (e.assign) return Info::all_same(e.assign, m.len);\n        if\
     \ (e.gcd % m.lcm == 0) return m;\n        if (m.len == 1) return Info::all_same(std::gcd(m.max,\
@@ -184,8 +184,8 @@ data:
   isVerificationFile: true
   path: test/segment_tree_beats.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 20:09:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-17 21:33:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segment_tree_beats.test.cpp
 layout: document

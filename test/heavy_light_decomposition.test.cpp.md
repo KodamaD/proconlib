@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_manager.cpp
     title: graph/tree_manager.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/totient.cpp
     title: math/totient.cpp
   - icon: ':heavy_check_mark:'
@@ -25,22 +25,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: traits/reversed_monoid.cpp
     title: traits/reversed_monoid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
   - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedRequiredBy: []

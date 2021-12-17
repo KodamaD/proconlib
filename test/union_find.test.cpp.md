@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
