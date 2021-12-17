@@ -42,32 +42,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: algorithm/superset_zeta_transform.cpp
       title: algorithm/superset_zeta_transform.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: algorithm/z_algorithm.cpp
       title: algorithm/z_algorithm.cpp
-  - name: bit
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: bit/bit_lzeros.cpp
-      title: bit/bit_lzeros.cpp
-    - icon: ':warning:'
-      path: bit/bit_parity.cpp
-      title: bit/bit_parity.cpp
-    - icon: ':warning:'
-      path: bit/bit_reverse.cpp
-      title: bit/bit_reverse.cpp
-    - icon: ':heavy_check_mark:'
-      path: bit/bit_rzeros.cpp
-      title: bit/bit_rzeros.cpp
-    - icon: ':heavy_check_mark:'
-      path: bit/bit_width.cpp
-      title: bit/bit_width.cpp
-    - icon: ':heavy_check_mark:'
-      path: bit/ceil_log2.cpp
-      title: bit/ceil_log2.cpp
-    - icon: ':warning:'
-      path: bit/popcount.cpp
-      title: bit/popcount.cpp
   - name: container
     pages:
     - icon: ':heavy_check_mark:'
@@ -76,10 +53,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: container/fenwick_tree.cpp
       title: container/fenwick_tree.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: container/integer_hash_table.cpp
       title: container/integer_hash_table.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: container/lazy_segment_tree.cpp
       title: container/lazy_segment_tree.cpp
     - icon: ':heavy_check_mark:'
@@ -91,7 +68,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: container/segment_tree.cpp
       title: container/segment_tree.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: container/segment_tree_beats.cpp
       title: container/segment_tree_beats.cpp
     - icon: ':heavy_check_mark:'
@@ -102,7 +79,7 @@ data:
       title: container/stack_aggregation.cpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/basic_graph.cpp
       title: graph/basic_graph.cpp
     - icon: ':warning:'
@@ -117,13 +94,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/rollback_union_find.cpp
       title: graph/rollback_union_find.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/strongly_connected_components.cpp
       title: graph/strongly_connected_components.cpp
     - icon: ':heavy_check_mark:'
       path: graph/tree_manager.cpp
       title: graph/tree_manager.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/union_find.cpp
       title: graph/union_find.cpp
   - name: math
@@ -149,6 +126,9 @@ data:
     - icon: ':warning:'
       path: math/floor_div.cpp
       title: math/floor_div.cpp
+    - icon: ':x:'
+      path: math/fp_util.cpp
+      title: math/fp_util.cpp
     - icon: ':heavy_check_mark:'
       path: math/inv_gcd.cpp
       title: math/inv_gcd.cpp
@@ -159,9 +139,6 @@ data:
       path: math/mod_pow.cpp
       title: math/mod_pow.cpp
     - icon: ':heavy_check_mark:'
-      path: math/modint_util.cpp
-      title: math/modint_util.cpp
-    - icon: ':heavy_check_mark:'
       path: math/modulo_transform.cpp
       title: math/modulo_transform.cpp
     - icon: ':heavy_check_mark:'
@@ -170,16 +147,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/primitive_root.cpp
       title: math/primitive_root.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/rem_euclid.cpp
       title: math/rem_euclid.cpp
     - icon: ':heavy_check_mark:'
       path: math/semiring_matrix.cpp
       title: math/semiring_matrix.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/static_modint.cpp
       title: math/static_modint.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/totient.cpp
       title: math/totient.cpp
   - name: random
@@ -199,12 +176,12 @@ data:
     - icon: ':warning:'
       path: random/shuffle_vec.cpp
       title: random/shuffle_vec.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/xorshift.cpp
       title: random/xorshift.cpp
   - name: traits
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: traits/affine_composite_monoid.cpp
       title: traits/affine_composite_monoid.cpp
     - icon: ':heavy_check_mark:'
@@ -231,16 +208,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: traits/optional_monoid.cpp
       title: traits/optional_monoid.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: traits/pair_monoid.cpp
       title: traits/pair_monoid.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: traits/plus_monoid.cpp
       title: traits/plus_monoid.cpp
     - icon: ':heavy_check_mark:'
       path: traits/reversed_monoid.cpp
       title: traits/reversed_monoid.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: traits/sum_affine_action.cpp
       title: traits/sum_affine_action.cpp
   - name: utility
@@ -254,21 +231,39 @@ data:
     - icon: ':warning:'
       path: utility/binary_search.cpp
       title: utility/binary_search.cpp
+    - icon: ':warning:'
+      path: utility/bit_parity.cpp
+      title: utility/bit_parity.cpp
+    - icon: ':heavy_check_mark:'
+      path: utility/bit_width.cpp
+      title: utility/bit_width.cpp
+    - icon: ':question:'
+      path: utility/ceil_log2.cpp
+      title: utility/ceil_log2.cpp
+    - icon: ':heavy_check_mark:'
+      path: utility/countl_zero.cpp
+      title: utility/countl_zero.cpp
+    - icon: ':question:'
+      path: utility/countr_zero.cpp
+      title: utility/countr_zero.cpp
+    - icon: ':warning:'
+      path: utility/dedup.cpp
+      title: utility/dedup.cpp
     - icon: ':heavy_check_mark:'
       path: utility/fast_io.cpp
       title: utility/fast_io.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/index_offset.cpp
       title: utility/index_offset.cpp
     - icon: ':heavy_check_mark:'
       path: utility/infty.cpp
       title: utility/infty.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
-    - icon: ':heavy_check_mark:'
-      path: utility/int_alias_extended.cpp
-      title: utility/int_alias_extended.cpp
+    - icon: ':warning:'
+      path: utility/lowb.cpp
+      title: utility/lowb.cpp
     - icon: ':warning:'
       path: utility/multi_array.cpp
       title: utility/multi_array.cpp
@@ -278,13 +273,13 @@ data:
     - icon: ':warning:'
       path: utility/permutations.cpp
       title: utility/permutations.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/rep.cpp
       title: utility/rep.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/revrep.cpp
       title: utility/revrep.cpp
     - icon: ':warning:'
@@ -293,15 +288,15 @@ data:
     - icon: ':warning:'
       path: utility/setmax.cpp
       title: utility/setmax.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/setmin.cpp
       title: utility/setmin.cpp
     - icon: ':warning:'
       path: utility/subsets.cpp
       title: utility/subsets.cpp
     - icon: ':warning:'
-      path: utility/vec_util.cpp
-      title: utility/vec_util.cpp
+      path: utility/upb.cpp
+      title: utility/upb.cpp
   verificationCategories:
   - name: test
     pages:
@@ -338,24 +333,24 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fenwick_tree.test.cpp
       title: test/fenwick_tree.test.cpp
+    - icon: ':x:'
+      path: test/fp_util.test.cpp
+      title: test/fp_util.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/heavy_light_decomposition.test.cpp
       title: test/heavy_light_decomposition.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/integer_hash_table.test.cpp
       title: test/integer_hash_table.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/integer_hash_table_verbose.test.cpp
       title: test/integer_hash_table_verbose.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/larsch.test.cpp
       title: test/larsch.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/lazy_segment_tree.test.cpp
       title: test/lazy_segment_tree.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/modint_util.test.cpp
-      title: test/modint_util.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/polynomial_hash.test.cpp
       title: test/polynomial_hash.test.cpp
@@ -377,7 +372,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/segment_tree.test.cpp
       title: test/segment_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/segment_tree_beats.test.cpp
       title: test/segment_tree_beats.test.cpp
     - icon: ':heavy_check_mark:'
@@ -386,16 +381,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/sparse_table.test.cpp
       title: test/sparse_table.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/strongly_connected_components.test.cpp
       title: test/strongly_connected_components.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/totient.test.cpp
       title: test/totient.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/union_find.test.cpp
       title: test/union_find.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/z_algorithm.test.cpp
       title: test/z_algorithm.test.cpp
 layout: toppage

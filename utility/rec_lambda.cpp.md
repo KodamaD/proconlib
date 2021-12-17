@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dinic.cpp
     title: graph/dinic.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/strongly_connected_components.cpp
     title: graph/strongly_connected_components.cpp
   - icon: ':heavy_check_mark:'
@@ -24,12 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/rollback_union_find.test.cpp
     title: test/rollback_union_find.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/rec_lambda.cpp\"\n#include <type_traits>\n#include\
@@ -49,17 +49,17 @@ data:
   isVerificationFile: false
   path: utility/rec_lambda.cpp
   requiredBy:
+  - graph/strongly_connected_components.cpp
   - graph/tree_manager.cpp
   - graph/dinic.cpp
   - graph/binary_optimization.cpp
-  - graph/strongly_connected_components.cpp
   timestamp: '2021-11-03 19:13:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/heavy_light_decomposition.test.cpp
-  - test/bipartite_matching.test.cpp
   - test/strongly_connected_components.test.cpp
+  - test/heavy_light_decomposition.test.cpp
   - test/rollback_union_find.test.cpp
+  - test/bipartite_matching.test.cpp
 documentation_of: utility/rec_lambda.cpp
 layout: document
 redirect_from:

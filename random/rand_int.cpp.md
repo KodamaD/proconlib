@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -21,11 +21,10 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"random/rand_int.cpp\"\n#include <random>\n#line 2 \"random/xorshift.cpp\"\
-    \n#include <chrono>\n#line 2 \"utility/int_alias.cpp\"\n#include <cstddef>\n#include\
-    \ <cstdint>\n\nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64\
-    \ = std::int64_t;\nusing u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\n\
-    using usize = std::size_t;\n#line 5 \"random/xorshift.cpp\"\n\nu64 xorshift()\
-    \ {\n    static u64 state = std::chrono::system_clock::now().time_since_epoch().count();\n\
+    \n#include <chrono>\n#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\n\
+    using i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
+    using u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+    #line 5 \"random/xorshift.cpp\"\n\nu64 xorshift() {\n    static u64 state = std::chrono::system_clock::now().time_since_epoch().count();\n\
     \    state ^= state << 7;\n    state ^= state >> 9;\n    return state;\n}\n#line\
     \ 4 \"random/rand_int.cpp\"\n\ntemplate <class T> T rand_int(const T& min, const\
     \ T& max) {\n    static std::default_random_engine gen(xorshift());\n    return\
@@ -41,7 +40,7 @@ data:
   path: random/rand_int.cpp
   requiredBy:
   - container/polynomial_hash.cpp
-  timestamp: '2021-11-10 20:31:05+09:00'
+  timestamp: '2021-12-17 09:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/polynomial_hash.test.cpp

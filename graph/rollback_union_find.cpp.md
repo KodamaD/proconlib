@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: utility/int_alias.cpp
-    title: utility/int_alias.cpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -15,53 +12,49 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/rollback_union_find.cpp\"\n#include <cassert>\n#include\
-    \ <utility>\n#include <vector>\n#line 2 \"utility/int_alias.cpp\"\n#include <cstddef>\n\
-    #include <cstdint>\n\nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\n\
-    using i64 = std::int64_t;\nusing u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\n\
-    using usize = std::size_t;\n#line 6 \"graph/rollback_union_find.cpp\"\n\nclass\
-    \ RollbackUnionFind {\n    std::vector<usize> data;\n    std::vector<std::pair<usize,\
-    \ usize>> history;\n\n  public:\n    explicit RollbackUnionFind(const usize size\
-    \ = 0) : data(size, -1), history() {}\n\n    usize size() const { return data.size();\
-    \ }\n\n    usize leader(usize u) const {\n        assert(u < size());\n      \
-    \  while (data[u] < size()) u = data[u];\n        return u;\n    }\n\n    usize\
-    \ size(const usize u) const {\n        assert(u < size());\n        return -data[leader(u)];\n\
-    \    }\n\n    std::pair<usize, bool> merge(usize u, usize v) {\n        assert(u\
-    \ < size());\n        assert(v < size());\n        u = leader(u);\n        v =\
-    \ leader(v);\n        if (u == v) return std::make_pair(u, false);\n        if\
-    \ (data[u] > data[v]) std::swap(u, v);\n        history.emplace_back(u, data[u]);\n\
-    \        history.emplace_back(v, data[v]);\n        data[u] += data[v];\n    \
-    \    data[v] = u;\n        return std::make_pair(u, true);\n    }\n\n    bool\
-    \ same(const usize u, const usize v) const {\n        assert(u < size());\n  \
-    \      assert(v < size());\n        return leader(u) == leader(v);\n    }\n\n\
-    \    void rollback(const usize steps) {\n        assert(2 * steps <= history.size());\n\
-    \        for (usize i = 2 * steps; i > 0; --i) {\n            const auto [k, x]\
-    \ = history.back();\n            history.pop_back();\n            data[k] = x;\n\
-    \        }\n    }\n};\n"
-  code: "#pragma once\n#include <cassert>\n#include <utility>\n#include <vector>\n\
-    #include \"../utility/int_alias.cpp\"\n\nclass RollbackUnionFind {\n    std::vector<usize>\
-    \ data;\n    std::vector<std::pair<usize, usize>> history;\n\n  public:\n    explicit\
-    \ RollbackUnionFind(const usize size = 0) : data(size, -1), history() {}\n\n \
-    \   usize size() const { return data.size(); }\n\n    usize leader(usize u) const\
-    \ {\n        assert(u < size());\n        while (data[u] < size()) u = data[u];\n\
-    \        return u;\n    }\n\n    usize size(const usize u) const {\n        assert(u\
-    \ < size());\n        return -data[leader(u)];\n    }\n\n    std::pair<usize,\
-    \ bool> merge(usize u, usize v) {\n        assert(u < size());\n        assert(v\
-    \ < size());\n        u = leader(u);\n        v = leader(v);\n        if (u ==\
-    \ v) return std::make_pair(u, false);\n        if (data[u] > data[v]) std::swap(u,\
-    \ v);\n        history.emplace_back(u, data[u]);\n        history.emplace_back(v,\
+    \ <utility>\n#include <vector>\n\nclass RollbackUnionFind {\n    std::vector<int>\
+    \ data;\n    std::vector<std::pair<int, int>> history;\n\n  public:\n    explicit\
+    \ RollbackUnionFind(const int size = 0) : data(size, -1), history() {}\n\n   \
+    \ int size() const { return data.size(); }\n\n    int leader(int u) const {\n\
+    \        assert(0 <= u and u < size());\n        while (data[u] >= 0) u = data[u];\n\
+    \        return u;\n    }\n\n    int size(const int u) const {\n        assert(0\
+    \ <= u and u < size());\n        return -data[leader(u)];\n    }\n\n    std::pair<int,\
+    \ bool> merge(int u, int v) {\n        assert(0 <= u and u < size());\n      \
+    \  assert(0 <= v and v < size());\n        u = leader(u);\n        v = leader(v);\n\
+    \        if (u == v) return std::make_pair(u, false);\n        if (data[u] > data[v])\
+    \ std::swap(u, v);\n        history.emplace_back(u, data[u]);\n        history.emplace_back(v,\
     \ data[v]);\n        data[u] += data[v];\n        data[v] = u;\n        return\
-    \ std::make_pair(u, true);\n    }\n\n    bool same(const usize u, const usize\
-    \ v) const {\n        assert(u < size());\n        assert(v < size());\n     \
-    \   return leader(u) == leader(v);\n    }\n\n    void rollback(const usize steps)\
-    \ {\n        assert(2 * steps <= history.size());\n        for (usize i = 2 *\
-    \ steps; i > 0; --i) {\n            const auto [k, x] = history.back();\n    \
-    \        history.pop_back();\n            data[k] = x;\n        }\n    }\n};"
-  dependsOn:
-  - utility/int_alias.cpp
+    \ std::make_pair(u, true);\n    }\n\n    bool same(const int u, const int v) const\
+    \ {\n        assert(0 <= u and u < size());\n        assert(0 <= v and v < size());\n\
+    \        return leader(u) == leader(v);\n    }\n\n    void rollback(const int\
+    \ steps) {\n        assert(0 <= steps and 2 * steps <= history.size());\n    \
+    \    for (int i = 2 * steps; i > 0; --i) {\n            const auto [k, x] = history.back();\n\
+    \            history.pop_back();\n            data[k] = x;\n        }\n    }\n\
+    };\n"
+  code: "#pragma once\n#include <cassert>\n#include <utility>\n#include <vector>\n\
+    \nclass RollbackUnionFind {\n    std::vector<int> data;\n    std::vector<std::pair<int,\
+    \ int>> history;\n\n  public:\n    explicit RollbackUnionFind(const int size =\
+    \ 0) : data(size, -1), history() {}\n\n    int size() const { return data.size();\
+    \ }\n\n    int leader(int u) const {\n        assert(0 <= u and u < size());\n\
+    \        while (data[u] >= 0) u = data[u];\n        return u;\n    }\n\n    int\
+    \ size(const int u) const {\n        assert(0 <= u and u < size());\n        return\
+    \ -data[leader(u)];\n    }\n\n    std::pair<int, bool> merge(int u, int v) {\n\
+    \        assert(0 <= u and u < size());\n        assert(0 <= v and v < size());\n\
+    \        u = leader(u);\n        v = leader(v);\n        if (u == v) return std::make_pair(u,\
+    \ false);\n        if (data[u] > data[v]) std::swap(u, v);\n        history.emplace_back(u,\
+    \ data[u]);\n        history.emplace_back(v, data[v]);\n        data[u] += data[v];\n\
+    \        data[v] = u;\n        return std::make_pair(u, true);\n    }\n\n    bool\
+    \ same(const int u, const int v) const {\n        assert(0 <= u and u < size());\n\
+    \        assert(0 <= v and v < size());\n        return leader(u) == leader(v);\n\
+    \    }\n\n    void rollback(const int steps) {\n        assert(0 <= steps and\
+    \ 2 * steps <= history.size());\n        for (int i = 2 * steps; i > 0; --i) {\n\
+    \            const auto [k, x] = history.back();\n            history.pop_back();\n\
+    \            data[k] = x;\n        }\n    }\n};"
+  dependsOn: []
   isVerificationFile: false
   path: graph/rollback_union_find.cpp
   requiredBy: []
-  timestamp: '2021-10-23 19:56:59+09:00'
+  timestamp: '2021-12-17 09:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/rollback_union_find.test.cpp

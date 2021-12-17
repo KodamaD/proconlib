@@ -42,10 +42,10 @@ data:
   isVerificationFile: false
   path: traits/optional_monoid.cpp
   requiredBy:
-  - traits/min_add_action.cpp
   - traits/max_add_action.cpp
-  - traits/min_monoid.cpp
   - traits/max_monoid.cpp
+  - traits/min_monoid.cpp
+  - traits/min_add_action.cpp
   timestamp: '2021-09-27 22:23:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: algorithm/convolution_mod.cpp
     title: algorithm/convolution_mod.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   _extendedVerifiedWith:
@@ -27,15 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/convolution_mod.test.cpp
     title: test/convolution_mod.test.cpp
+  - icon: ':x:'
+    path: test/fp_util.test.cpp
+    title: test/fp_util.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/modint_util.test.cpp
-    title: test/modint_util.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/queue_aggregation.test.cpp
     title: test/queue_aggregation.test.cpp
@@ -45,12 +45,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/totient.test.cpp
     title: test/totient.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/totient.cpp\"\n\ntemplate <class T> constexpr T totient(T\
@@ -69,22 +69,22 @@ data:
   requiredBy:
   - math/static_modint.cpp
   - algorithm/convolution_mod.cpp
-  - algorithm/convolution_int.cpp
   - algorithm/convolution_arbitrary_mod.cpp
+  - algorithm/convolution_int.cpp
   timestamp: '2021-09-04 17:30:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/heavy_light_decomposition.test.cpp
-  - test/segment_tree.test.cpp
-  - test/modint_util.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/totient.test.cpp
+  - test/queue_aggregation.test.cpp
   - test/semiring_matrix.test.cpp
   - test/lazy_segment_tree.test.cpp
+  - test/berlekamp_massey.test.cpp
+  - test/heavy_light_decomposition.test.cpp
+  - test/segment_tree.test.cpp
   - test/and_convolution.test.cpp
   - test/convolution_mod.test.cpp
-  - test/convolution_arbitrary_mod.test.cpp
-  - test/berlekamp_massey.test.cpp
-  - test/queue_aggregation.test.cpp
-  - test/totient.test.cpp
+  - test/fp_util.test.cpp
 documentation_of: math/totient.cpp
 layout: document
 redirect_from:

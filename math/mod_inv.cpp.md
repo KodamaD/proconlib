@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/inv_gcd.cpp
     title: math/inv_gcd.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
   _extendedRequiredBy:
@@ -49,8 +49,8 @@ data:
   path: math/mod_inv.cpp
   requiredBy:
   - math/dynamic_modint.cpp
-  - algorithm/convolution_int.cpp
   - algorithm/convolution_arbitrary_mod.cpp
+  - algorithm/convolution_int.cpp
   timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: traits/affine_composite_monoid.cpp
     title: traits/affine_composite_monoid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: traits/pair_monoid.cpp
     title: traits/pair_monoid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: traits/plus_monoid.cpp
     title: traits/plus_monoid.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"traits/affine_composite_monoid.cpp\"\n\ntemplate <class\
@@ -56,7 +56,7 @@ data:
   path: traits/sum_affine_action.cpp
   requiredBy: []
   timestamp: '2021-11-10 20:31:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/lazy_segment_tree.test.cpp
 documentation_of: traits/sum_affine_action.cpp

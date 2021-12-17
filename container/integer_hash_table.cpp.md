@@ -1,106 +1,106 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: bit/ceil_log2.cpp
-    title: bit/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: utility/ceil_log2.cpp
+    title: utility/ceil_log2.cpp
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/integer_hash_table.test.cpp
     title: test/integer_hash_table.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/integer_hash_table_verbose.test.cpp
     title: test/integer_hash_table_verbose.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"container/integer_hash_table.cpp\"\n#include <tuple>\n#include\
-    \ <type_traits>\n#include <utility>\n#line 2 \"utility/int_alias.cpp\"\n#include\
-    \ <cstddef>\n#include <cstdint>\n\nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\n\
-    using i64 = std::int64_t;\nusing u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\n\
-    using usize = std::size_t;\n#line 3 \"bit/ceil_log2.cpp\"\n\n__attribute__((target(\"\
-    avx2\"))) constexpr u64 ceil_log2(const u64 x) {\n    u64 e = 0;\n    while (((u64)1\
-    \ << e) < x) ++e;\n    return e;\n}\n#line 2 \"random/xorshift.cpp\"\n#include\
-    \ <chrono>\n#include <random>\n#line 5 \"random/xorshift.cpp\"\n\nu64 xorshift()\
-    \ {\n    static u64 state = std::chrono::system_clock::now().time_since_epoch().count();\n\
+    \ <type_traits>\n#include <utility>\n#line 2 \"random/xorshift.cpp\"\n#include\
+    \ <chrono>\n#include <random>\n#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\
+    \nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
+    using u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+    #line 5 \"random/xorshift.cpp\"\n\nu64 xorshift() {\n    static u64 state = std::chrono::system_clock::now().time_since_epoch().count();\n\
     \    state ^= state << 7;\n    state ^= state >> 9;\n    return state;\n}\n#line\
-    \ 2 \"utility/rep.cpp\"\n#include <algorithm>\n#line 4 \"utility/rep.cpp\"\n\n\
-    class rep {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const\
-    \ usize pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept\
-    \ { ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
-    \ { return itr != other.itr; }\n        constexpr usize operator*() const noexcept\
+    \ 3 \"utility/ceil_log2.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr int\
+    \ ceil_log2(const u64 x) {\n    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n\
+    \    return e;\n}\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\nclass\
+    \ Range {\n    struct Iter {\n        int itr;\n        constexpr Iter(const int\
+    \ pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept {\
+    \ ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
+    \ { return itr != other.itr; }\n        constexpr int operator*() const noexcept\
     \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
-    \ constexpr rep(const usize first, const usize last) noexcept : first(first),\
-    \ last(std::max(first, last)) {}\n    constexpr Iter begin() const noexcept {\
-    \ return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
-    };\n#line 9 \"container/integer_hash_table.cpp\"\n\ntemplate <class K, class V,\
-    \ std::enable_if_t<std::is_integral_v<K>>* = nullptr> class IntegerHashTable {\n\
-    \    using Self = IntegerHashTable;\n\n    enum class Ctrl : char { Empty, Full,\
-    \ Deleted };\n\n    union Slot {\n        std::pair<const K, V> pair;\n      \
-    \  std::pair<K, V> mut_pair;\n        Slot() {}\n        ~Slot() {}\n    };\n\n\
-    \    struct Data {\n        Ctrl ctrl;\n        Slot slot;\n        Data() : ctrl(Ctrl::Empty),\
-    \ slot() {}\n        ~Data() {\n            if (ctrl == Ctrl::Full) slot.mut_pair.~pair();\n\
-    \        }\n    };\n\n    struct Manager {\n        static inline constexpr u64\
-    \ PHI = 11400714819323198485ull;\n        static inline const u64 RND = xorshift();\n\
-    \n        usize logn, size, full, deleted;\n        Manager() : logn(0), size(0),\
-    \ full(0), deleted(0) {}\n\n        void fix() {\n            logn = ceil_log2(3\
-    \ * full);\n            size = (full == 0 ? 0 : (1 << logn));\n            deleted\
-    \ = 0;\n        }\n\n        bool balanced() const { return 2 * (full + deleted)\
-    \ <= size and 8 * full >= size; }\n        usize mask() const { return size -\
-    \ 1; }\n\n        usize index(const K& k) const {\n            u64 x = static_cast<u64>(k)\
-    \ ^ RND;\n            x ^= x >> (64 - logn);\n            return (x * PHI) >>\
-    \ (64 - logn);\n        }\n    };\n\n    Data* data;\n    Manager info;\n\n  \
-    \  usize find_key(const K& k, usize i) const {\n        while (data[i].ctrl !=\
-    \ Ctrl::Empty) {\n            if (data[i].ctrl == Ctrl::Full and data[i].slot.pair.first\
-    \ == k) break;\n            i = (i + 1) & info.mask();\n        }\n        return\
-    \ i;\n    }\n    usize find_place(usize i) const {\n        while (data[i].ctrl\
-    \ == Ctrl::Full) i = (i + 1) & info.mask();\n        return i;\n    }\n\n    template\
-    \ <class... Args> void construct(const usize i, Args&&... args) {\n        new\
-    \ (&data[i].slot.mut_pair) std::pair<K, V>(std::forward<Args>(args)...);\n   \
-    \ }\n    void resize() {\n        Data* old_data = std::exchange(data, nullptr);\n\
-    \        const usize old_len = info.size;\n        info.fix();\n        if (info.size)\
-    \ {\n            data = new Data[info.size];\n            for (const usize i :\
-    \ rep(0, old_len)) {\n                if (old_data[i].ctrl == Ctrl::Full) {\n\
-    \                    const usize k = find_place(info.index(old_data[i].slot.pair.first));\n\
-    \                    data[k].ctrl = Ctrl::Full;\n                    construct(k,\
-    \ std::move(old_data[i].slot.mut_pair));\n                }\n            }\n \
-    \       }\n        if (old_data) delete[] old_data;\n    }\n\n  public:\n    IntegerHashTable()\
-    \ noexcept : data(nullptr), info() {}\n    IntegerHashTable(const Self& other)\
-    \ noexcept : Self() { *this = other; }\n    IntegerHashTable(Self&& other) noexcept\
-    \ : Self() { *this = std::move(other); }\n    ~IntegerHashTable() { clear(); }\n\
-    \n    class Iter {\n        friend class IntegerHashTable;\n        usize idx;\n\
-    \        Self* self;\n\n        explicit Iter(const usize i, Self* s) : idx(i\
-    \ - 1), self(s) { next(); }\n\n        void next() {\n            while (++idx\
-    \ < self->info.size)\n                if (self->data[idx].ctrl == Ctrl::Full)\
-    \ return;\n        }\n\n      public:\n        bool operator!=(const Iter& other)\
-    \ const { return idx != other.idx or self != other.self; }\n        std::pair<const\
-    \ K, V>& operator*() const { return self->data[idx].slot.pair; }\n        void\
-    \ operator++() { next(); }\n    };\n\n    class ConstIter {\n        friend class\
-    \ IntegerHashTable;\n        usize idx;\n        const Self* self;\n\n       \
-    \ explicit ConstIter(const usize i, const Self* s) : idx(i - 1), self(s) { next();\
-    \ }\n\n        void next() {\n            while (++idx < self->info.size)\n  \
-    \              if (self->data[idx].ctrl == Ctrl::Full) return;\n        }\n\n\
-    \      public:\n        bool operator!=(const ConstIter& other) const { return\
-    \ idx != other.idx or self != other.self; }\n        const std::pair<const K,\
-    \ V>& operator*() const { return self->data[idx].slot.pair; }\n        void operator++()\
-    \ { next(); }\n    };\n\n    Self& operator=(const Self& other) noexcept {\n \
-    \       if (this != &other) {\n            clear();\n            info = other.info;\n\
-    \            info.fix();\n            if (info.size) {\n                data =\
-    \ new Data[info.size];\n                for (const usize i : rep(0, other.info.size))\
-    \ {\n                    if (other.data[i].ctrl == Ctrl::Full) {\n           \
-    \             const usize k = find_place(info.index(other.data[i].slot.pair.first));\n\
+    \ constexpr Range(const int first, const int last) noexcept : first(first), last(std::max(first,\
+    \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
+    \ constexpr Iter end() const noexcept { return last; }\n};\n\nconstexpr Range\
+    \ rep(const int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range\
+    \ rep(const int n) noexcept { return Range(0, n); }\n#line 9 \"container/integer_hash_table.cpp\"\
+    \n\ntemplate <class K, class V, std::enable_if_t<std::is_integral_v<K>>* = nullptr>\
+    \ class IntegerHashTable {\n    using Self = IntegerHashTable;\n\n    enum class\
+    \ Ctrl : char { Empty, Full, Deleted };\n\n    union Slot {\n        std::pair<const\
+    \ K, V> pair;\n        std::pair<K, V> mut_pair;\n        Slot() {}\n        ~Slot()\
+    \ {}\n    };\n\n    struct Data {\n        Ctrl ctrl;\n        Slot slot;\n  \
+    \      Data() : ctrl(Ctrl::Empty), slot() {}\n        ~Data() {\n            if\
+    \ (ctrl == Ctrl::Full) slot.mut_pair.~pair();\n        }\n    };\n\n    struct\
+    \ Manager {\n        static inline constexpr u64 PHI = 11400714819323198485ull;\n\
+    \        static inline const u64 RND = xorshift();\n\n        usize logn, size,\
+    \ full, deleted;\n        Manager() : logn(0), size(0), full(0), deleted(0) {}\n\
+    \n        void fix() {\n            logn = ceil_log2(3 * full);\n            size\
+    \ = (full == 0 ? 0 : (1 << logn));\n            deleted = 0;\n        }\n\n  \
+    \      bool balanced() const { return 2 * (full + deleted) <= size and 8 * full\
+    \ >= size; }\n        usize mask() const { return size - 1; }\n\n        usize\
+    \ index(const K& k) const {\n            u64 x = static_cast<u64>(k) ^ RND;\n\
+    \            x ^= x >> (64 - logn);\n            return (x * PHI) >> (64 - logn);\n\
+    \        }\n    };\n\n    Data* data;\n    Manager info;\n\n    usize find_key(const\
+    \ K& k, usize i) const {\n        while (data[i].ctrl != Ctrl::Empty) {\n    \
+    \        if (data[i].ctrl == Ctrl::Full and data[i].slot.pair.first == k) break;\n\
+    \            i = (i + 1) & info.mask();\n        }\n        return i;\n    }\n\
+    \    usize find_place(usize i) const {\n        while (data[i].ctrl == Ctrl::Full)\
+    \ i = (i + 1) & info.mask();\n        return i;\n    }\n\n    template <class...\
+    \ Args> void construct(const usize i, Args&&... args) {\n        new (&data[i].slot.mut_pair)\
+    \ std::pair<K, V>(std::forward<Args>(args)...);\n    }\n    void resize() {\n\
+    \        Data* old_data = std::exchange(data, nullptr);\n        const usize old_len\
+    \ = info.size;\n        info.fix();\n        if (info.size) {\n            data\
+    \ = new Data[info.size];\n            for (const usize i : rep(0, old_len)) {\n\
+    \                if (old_data[i].ctrl == Ctrl::Full) {\n                    const\
+    \ usize k = find_place(info.index(old_data[i].slot.pair.first));\n           \
+    \         data[k].ctrl = Ctrl::Full;\n                    construct(k, std::move(old_data[i].slot.mut_pair));\n\
+    \                }\n            }\n        }\n        if (old_data) delete[] old_data;\n\
+    \    }\n\n  public:\n    IntegerHashTable() noexcept : data(nullptr), info() {}\n\
+    \    IntegerHashTable(const Self& other) noexcept : Self() { *this = other; }\n\
+    \    IntegerHashTable(Self&& other) noexcept : Self() { *this = std::move(other);\
+    \ }\n    ~IntegerHashTable() { clear(); }\n\n    class Iter {\n        friend\
+    \ class IntegerHashTable;\n        usize idx;\n        Self* self;\n\n       \
+    \ explicit Iter(const usize i, Self* s) : idx(i - 1), self(s) { next(); }\n\n\
+    \        void next() {\n            while (++idx < self->info.size)\n        \
+    \        if (self->data[idx].ctrl == Ctrl::Full) return;\n        }\n\n      public:\n\
+    \        bool operator!=(const Iter& other) const { return idx != other.idx or\
+    \ self != other.self; }\n        std::pair<const K, V>& operator*() const { return\
+    \ self->data[idx].slot.pair; }\n        void operator++() { next(); }\n    };\n\
+    \n    class ConstIter {\n        friend class IntegerHashTable;\n        usize\
+    \ idx;\n        const Self* self;\n\n        explicit ConstIter(const usize i,\
+    \ const Self* s) : idx(i - 1), self(s) { next(); }\n\n        void next() {\n\
+    \            while (++idx < self->info.size)\n                if (self->data[idx].ctrl\
+    \ == Ctrl::Full) return;\n        }\n\n      public:\n        bool operator!=(const\
+    \ ConstIter& other) const { return idx != other.idx or self != other.self; }\n\
+    \        const std::pair<const K, V>& operator*() const { return self->data[idx].slot.pair;\
+    \ }\n        void operator++() { next(); }\n    };\n\n    Self& operator=(const\
+    \ Self& other) noexcept {\n        if (this != &other) {\n            clear();\n\
+    \            info = other.info;\n            info.fix();\n            if (info.size)\
+    \ {\n                data = new Data[info.size];\n                for (const usize\
+    \ i : rep(0, other.info.size)) {\n                    if (other.data[i].ctrl ==\
+    \ Ctrl::Full) {\n                        const usize k = find_place(info.index(other.data[i].slot.pair.first));\n\
     \                        data[k].ctrl = Ctrl::Full;\n                        construct(k,\
     \ other.data[i].slot.mut_pair);\n                    }\n                }\n  \
     \          }\n        }\n        return *this;\n    }\n    Self& operator=(Self&&\
@@ -135,7 +135,7 @@ data:
     \ this); }\n    ConstIter begin() const { return ConstIter(0, this); }\n    ConstIter\
     \ end() const { return ConstIter(info.size, this); }\n};\n"
   code: "#pragma once\n#include <tuple>\n#include <type_traits>\n#include <utility>\n\
-    #include \"../bit/ceil_log2.cpp\"\n#include \"../random/xorshift.cpp\"\n#include\
+    #include \"../random/xorshift.cpp\"\n#include \"../utility/ceil_log2.cpp\"\n#include\
     \ \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n\ntemplate <class\
     \ K, class V, std::enable_if_t<std::is_integral_v<K>>* = nullptr> class IntegerHashTable\
     \ {\n    using Self = IntegerHashTable;\n\n    enum class Ctrl : char { Empty,\
@@ -226,15 +226,15 @@ data:
     \ this); }\n    ConstIter begin() const { return ConstIter(0, this); }\n    ConstIter\
     \ end() const { return ConstIter(info.size, this); }\n};"
   dependsOn:
-  - bit/ceil_log2.cpp
-  - utility/int_alias.cpp
   - random/xorshift.cpp
+  - utility/int_alias.cpp
+  - utility/ceil_log2.cpp
   - utility/rep.cpp
   isVerificationFile: false
   path: container/integer_hash_table.cpp
   requiredBy: []
-  timestamp: '2021-10-23 19:56:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-12-17 09:20:39+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/integer_hash_table_verbose.test.cpp
   - test/integer_hash_table.test.cpp

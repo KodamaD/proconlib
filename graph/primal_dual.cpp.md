@@ -1,16 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
-  - icon: ':heavy_check_mark:'
-    path: utility/int_alias.cpp
-    title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/setmin.cpp
     title: utility/setmin.cpp
   _extendedRequiredBy: []
@@ -28,84 +25,83 @@ data:
     links: []
   bundledCode: "#line 2 \"graph/primal_dual.cpp\"\n#include <algorithm>\n#include\
     \ <cassert>\n#include <type_traits>\n#include <utility>\n#include <vector>\n#line\
-    \ 2 \"utility/int_alias.cpp\"\n#include <cstddef>\n#include <cstdint>\n\nusing\
-    \ i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
-    using u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
-    #line 4 \"utility/index_offset.cpp\"\n\nclass IndexOffset {\n    usize offset,\
-    \ len;\n\n  public:\n    IndexOffset() : offset(), len() {}\n    explicit constexpr\
-    \ IndexOffset(const usize o, const usize l) noexcept : offset(o), len(l) {}\n\
-    \    constexpr usize size() const { return len; }\n    constexpr usize operator[](const\
-    \ usize i) const noexcept {\n        assert(i < len);\n        return offset +\
-    \ i;\n    }\n    constexpr usize to_idx(const usize i) const noexcept {\n    \
-    \    assert(offset <= i and i < offset + len);\n        return i - offset;\n \
-    \   }\n};\n#line 4 \"utility/rep.cpp\"\n\nclass rep {\n    struct Iter {\n   \
-    \     usize itr;\n        constexpr Iter(const usize pos) noexcept : itr(pos)\
-    \ {}\n        constexpr void operator++() noexcept { ++itr; }\n        constexpr\
-    \ bool operator!=(const Iter& other) const noexcept { return itr != other.itr;\
-    \ }\n        constexpr usize operator*() const noexcept { return itr; }\n    };\n\
-    \    const Iter first, last;\n\n  public:\n    explicit constexpr rep(const usize\
-    \ first, const usize last) noexcept : first(first), last(std::max(first, last))\
-    \ {}\n    constexpr Iter begin() const noexcept { return first; }\n    constexpr\
-    \ Iter end() const noexcept { return last; }\n};\n#line 2 \"utility/setmin.cpp\"\
-    \n\ntemplate <class T> bool setmin(T& lhs, const T& rhs) {\n    if (lhs > rhs)\
-    \ {\n        lhs = rhs;\n        return true;\n    }\n    return false;\n}\n#line\
-    \ 11 \"graph/primal_dual.cpp\"\n\ntemplate <class Flow,\n          class Cost,\n\
-    \          std::enable_if_t<std::is_integral_v<Flow> and std::is_integral_v<Cost>\
-    \ and std::is_signed_v<Flow> and\n                           std::is_signed_v<Cost>>*\
-    \ = nullptr>\nclass PrimalDual {\n    struct Edge {\n        usize dst, rev;\n\
-    \        Flow flow, cap;\n        Cost cost;\n    };\n\n    std::vector<std::vector<Edge>>\
-    \ graph;\n    std::vector<Flow> gap;\n    std::vector<Cost> potential;\n\n  public:\n\
-    \    PrimalDual() : graph() {}\n    explicit PrimalDual(const usize n) : graph(n),\
-    \ gap(n) {}\n\n    class EdgePtr {\n        friend class PrimalDual;\n       \
-    \ PrimalDual* self;\n        usize u, e;\n\n        explicit EdgePtr(PrimalDual*\
-    \ p, const usize u, const usize e) : self(p), u(u), e(e) {}\n\n        const Edge&\
-    \ edge() const { return self->graph[u][e]; }\n        const Edge& rev_edge() const\
-    \ { return self->graph[edge().dst][edge().rev]; }\n\n      public:\n        EdgePtr()\
-    \ : self(nullptr), u(0), e(0) {}\n        usize src() const { return u; }\n  \
-    \      usize dst() const { return edge().dst; }\n        Flow flow() const { return\
-    \ edge().flow; }\n        Flow lower() const { return -rev_edge().cap; }\n   \
-    \     Flow upper() const { return edge().cap; }\n        Cost cost() const { return\
-    \ edge().cost; }\n    };\n\n    usize size() const { return graph.size(); }\n\n\
-    \    usize add_vertex() {\n        graph.emplace_back();\n        gap.emplace_back();\n\
-    \        return size() - 1;\n    }\n    IndexOffset add_vertices(usize n) {\n\
-    \        IndexOffset ret(size(), n);\n        while (n--) {\n            graph.emplace_back();\n\
-    \            gap.emplace_back();\n        }\n        return ret;\n    }\n\n  \
-    \  EdgePtr add_edge(const usize src, const usize dst, const Flow lower, const\
-    \ Flow upper, const Cost cost) {\n        assert(src < size());\n        assert(dst\
-    \ < size());\n        assert(lower <= upper);\n        const usize src_id = graph[src].size();\n\
-    \        const usize dst_id = graph[dst].size() + (src == dst);\n        graph[src].push_back(Edge{dst,\
+    \ 3 \"utility/index_offset.cpp\"\n\nclass IndexOffset {\n    int offset, len;\n\
+    \n  public:\n    constexpr IndexOffset() noexcept : offset(), len() {}\n    explicit\
+    \ constexpr IndexOffset(const int o, const int l) noexcept : offset(o), len(l)\
+    \ {}\n    constexpr int size() const { return len; }\n    constexpr int operator[](const\
+    \ int i) const noexcept {\n        assert(i < len);\n        return offset + i;\n\
+    \    }\n    constexpr int to_idx(const int i) const noexcept {\n        assert(offset\
+    \ <= i and i < offset + len);\n        return i - offset;\n    }\n};\n#line 3\
+    \ \"utility/rep.cpp\"\n\nclass Range {\n    struct Iter {\n        int itr;\n\
+    \        constexpr Iter(const int pos) noexcept : itr(pos) {}\n        constexpr\
+    \ void operator++() noexcept { ++itr; }\n        constexpr bool operator!=(const\
+    \ Iter& other) const noexcept { return itr != other.itr; }\n        constexpr\
+    \ int operator*() const noexcept { return itr; }\n    };\n    const Iter first,\
+    \ last;\n\n  public:\n    explicit constexpr Range(const int first, const int\
+    \ last) noexcept : first(first), last(std::max(first, last)) {}\n    constexpr\
+    \ Iter begin() const noexcept { return first; }\n    constexpr Iter end() const\
+    \ noexcept { return last; }\n};\n\nconstexpr Range rep(const int l, const int\
+    \ r) noexcept { return Range(l, r); }\nconstexpr Range rep(const int n) noexcept\
+    \ { return Range(0, n); }\n#line 2 \"utility/setmin.cpp\"\n\ntemplate <class T>\
+    \ bool setmin(T& lhs, const T& rhs) {\n    if (lhs > rhs) {\n        lhs = rhs;\n\
+    \        return true;\n    }\n    return false;\n}\n#line 10 \"graph/primal_dual.cpp\"\
+    \n\ntemplate <class Flow,\n          class Cost,\n          std::enable_if_t<std::is_integral_v<Flow>\
+    \ and std::is_integral_v<Cost> and std::is_signed_v<Flow> and\n              \
+    \             std::is_signed_v<Cost>>* = nullptr>\nclass PrimalDual {\n    struct\
+    \ Edge {\n        int dst, rev;\n        Flow flow, cap;\n        Cost cost;\n\
+    \    };\n\n    std::vector<std::vector<Edge>> graph;\n    std::vector<Flow> gap;\n\
+    \    std::vector<Cost> potential;\n\n  public:\n    PrimalDual() : graph() {}\n\
+    \    explicit PrimalDual(const int n) : graph(n), gap(n) {}\n\n    class EdgePtr\
+    \ {\n        friend class PrimalDual;\n        PrimalDual* self;\n        int\
+    \ u, e;\n\n        explicit EdgePtr(PrimalDual* p, const int u, const int e) :\
+    \ self(p), u(u), e(e) {}\n\n        const Edge& edge() const { return self->graph[u][e];\
+    \ }\n        const Edge& rev_edge() const { return self->graph[edge().dst][edge().rev];\
+    \ }\n\n      public:\n        EdgePtr() : self(nullptr), u(0), e(0) {}\n     \
+    \   int src() const { return u; }\n        int dst() const { return edge().dst;\
+    \ }\n        Flow flow() const { return edge().flow; }\n        Flow lower() const\
+    \ { return -rev_edge().cap; }\n        Flow upper() const { return edge().cap;\
+    \ }\n        Cost cost() const { return edge().cost; }\n    };\n\n    int size()\
+    \ const { return graph.size(); }\n\n    int add_vertex() {\n        graph.emplace_back();\n\
+    \        gap.emplace_back();\n        return size() - 1;\n    }\n    IndexOffset\
+    \ add_vertices(int n) {\n        IndexOffset ret(size(), n);\n        while (n--)\
+    \ {\n            graph.emplace_back();\n            gap.emplace_back();\n    \
+    \    }\n        return ret;\n    }\n\n    EdgePtr add_edge(const int src, const\
+    \ int dst, const Flow lower, const Flow upper, const Cost cost) {\n        assert(0\
+    \ <= src and src < size());\n        assert(0 <= dst and dst < size());\n    \
+    \    assert(lower <= upper);\n        const int src_id = graph[src].size();\n\
+    \        const int dst_id = graph[dst].size() + (src == dst);\n        graph[src].push_back(Edge{dst,\
     \ dst_id, 0, upper, cost});\n        graph[dst].push_back(Edge{src, src_id, 0,\
     \ -lower, -cost});\n        return EdgePtr(this, src, src_id);\n    }\n\n    void\
-    \ add_supply(const usize u, const Flow f) {\n        assert(u < size());\n   \
-    \     gap[u] += f;\n    }\n    void add_demand(const usize u, const Flow f) {\n\
-    \        assert(u < size());\n        gap[u] -= f;\n    }\n    void set_potential(const\
-    \ std::vector<Cost>& p) {\n        assert(p.size() == size());\n        potential\
-    \ = p;\n    }\n\n    template <class Result = Cost> std::pair<Result, bool> solve_bflow()\
-    \ {\n        potential.resize(size(), 0);\n        for (const usize u : rep(0,\
-    \ size())) {\n            for (Edge& e : graph[u]) {\n                if (e.flow\
-    \ > e.cap or e.cost + potential[u] - potential[e.dst] < 0) {\n               \
-    \     const Flow dif = e.cap - e.flow;\n                    e.flow += dif;\n \
-    \                   graph[e.dst][e.rev].flow -= dif;\n                    gap[u]\
-    \ -= dif;\n                    gap[e.dst] += dif;\n                }\n       \
-    \     }\n        }\n        std::vector<usize> over, lack;\n        for (const\
-    \ usize u : rep(0, size())) {\n            if (gap[u] > 0) over.push_back(u);\n\
+    \ add_supply(const int u, const Flow f) {\n        assert(0 <= u and u < size());\n\
+    \        gap[u] += f;\n    }\n    void add_demand(const int u, const Flow f) {\n\
+    \        assert(0 <= u and u < size());\n        gap[u] -= f;\n    }\n    void\
+    \ set_potential(const std::vector<Cost>& p) {\n        assert(p.size() == size());\n\
+    \        potential = p;\n    }\n\n    template <class Result = Cost> std::pair<Result,\
+    \ bool> solve_bflow() {\n        potential.resize(size(), 0);\n        for (const\
+    \ int u : rep(0, size())) {\n            for (Edge& e : graph[u]) {\n        \
+    \        if (e.flow > e.cap or e.cost + potential[u] - potential[e.dst] < 0) {\n\
+    \                    const Flow dif = e.cap - e.flow;\n                    e.flow\
+    \ += dif;\n                    graph[e.dst][e.rev].flow -= dif;\n            \
+    \        gap[u] -= dif;\n                    gap[e.dst] += dif;\n            \
+    \    }\n            }\n        }\n        std::vector<int> over, lack;\n     \
+    \   for (const int u : rep(0, size())) {\n            if (gap[u] > 0) over.push_back(u);\n\
     \            if (gap[u] < 0) lack.push_back(u);\n        }\n        struct State\
-    \ {\n            Cost cost;\n            usize vertex;\n            bool operator<(const\
+    \ {\n            Cost cost;\n            int vertex;\n            bool operator<(const\
     \ State& other) const { return cost > other.cost; }\n        };\n        std::vector<State>\
-    \ heap;\n        std::vector<Edge*> parent;\n        std::vector<usize> que_min;\n\
+    \ heap;\n        std::vector<Edge*> parent;\n        std::vector<int> que_min;\n\
     \        std::vector<Cost> dist;\n        std::vector<char> seen;\n        Cost\
     \ farthest;\n        const auto dual = [&] {\n            over.erase(std::remove_if(over.begin(),\
-    \ over.end(), [&](const usize u) { return gap[u] <= 0; }),\n                 \
-    \      over.end());\n            lack.erase(std::remove_if(lack.begin(), lack.end(),\
-    \ [&](const usize u) { return gap[u] >= 0; }),\n                       lack.end());\n\
+    \ over.end(), [&](const int u) { return gap[u] <= 0; }),\n                   \
+    \    over.end());\n            lack.erase(std::remove_if(lack.begin(), lack.end(),\
+    \ [&](const int u) { return gap[u] >= 0; }),\n                       lack.end());\n\
     \            if (over.empty() or lack.empty()) return false;\n            dist.assign(size(),\
     \ std::numeric_limits<Cost>::max());\n            parent.assign(size(), nullptr);\n\
     \            seen.assign(size(), false);\n            que_min.clear();\n     \
-    \       heap.clear();\n            usize heap_size = 0, lack_cnt = 0;\n      \
-    \      farthest = 0;\n            for (const usize src : over) {\n           \
-    \     dist[src] = 0;\n                que_min.push_back(src);\n            }\n\
-    \            while (!que_min.empty() or !heap.empty()) {\n                usize\
-    \ u;\n                if (!que_min.empty()) {\n                    u = que_min.back();\n\
+    \       heap.clear();\n            int heap_size = 0, lack_cnt = 0;\n        \
+    \    farthest = 0;\n            for (const int src : over) {\n               \
+    \ dist[src] = 0;\n                que_min.push_back(src);\n            }\n   \
+    \         while (!que_min.empty() or !heap.empty()) {\n                int u;\n\
+    \                if (!que_min.empty()) {\n                    u = que_min.back();\n\
     \                    que_min.pop_back();\n                } else {\n         \
     \           while (heap_size < heap.size()) {\n                        heap_size\
     \ += 1;\n                        std::push_heap(heap.begin(), heap.begin() + heap_size);\n\
@@ -115,36 +111,37 @@ data:
     \ continue;\n                seen[u] = true;\n                farthest = dist[u];\n\
     \                if (gap[u] < 0) {\n                    lack_cnt += 1;\n     \
     \               if (lack_cnt == lack.size()) break;\n                }\n     \
-    \           for (const usize i : rep(0, graph[u].size())) {\n                \
-    \    const Edge& e = graph[u][i];\n                    if (e.flow >= e.cap) continue;\n\
-    \                    const usize v = e.dst;\n                    if (setmin(dist[v],\
+    \           for (const int i : rep(0, graph[u].size())) {\n                  \
+    \  const Edge& e = graph[u][i];\n                    if (e.flow >= e.cap) continue;\n\
+    \                    const int v = e.dst;\n                    if (setmin(dist[v],\
     \ dist[u] + e.cost + potential[u] - potential[v])) {\n                       \
     \ parent[v] = &graph[e.dst][e.rev];\n                        if (dist[v] == dist[u])\
     \ {\n                            que_min.push_back(v);\n                     \
     \   } else {\n                            heap.push_back(State{dist[v], v});\n\
     \                        }\n                    }\n                }\n       \
     \     }\n            if (lack_cnt == 0) return false;\n            for (const\
-    \ usize u : rep(0, size())) {\n                potential[u] += std::min(farthest,\
+    \ int u : rep(0, size())) {\n                potential[u] += std::min(farthest,\
     \ dist[u]);\n            }\n            return true;\n        };\n        while\
-    \ (dual()) {\n            for (const usize dst : lack) {\n                if (dist[dst]\
+    \ (dual()) {\n            for (const int dst : lack) {\n                if (dist[dst]\
     \ > farthest) continue;\n                Flow f = -gap[dst];\n               \
-    \ usize u = dst;\n                while (parent[u] and f > 0) {\n            \
-    \        const Edge& e = graph[parent[u]->dst][parent[u]->rev];\n            \
-    \        setmin(f, e.cap - e.flow);\n                    u = parent[u]->dst;\n\
-    \                }\n                setmin(f, gap[u]);\n                if (f\
-    \ <= 0) continue;\n                u = dst;\n                while (parent[u])\
-    \ {\n                    Edge& e = graph[parent[u]->dst][parent[u]->rev];\n  \
-    \                  e.flow += f;\n                    graph[e.dst][e.rev].flow\
-    \ -= f;\n                    u = parent[u]->dst;\n                }\n        \
-    \        gap[u] -= f;\n                gap[dst] += f;\n            }\n       \
-    \ }\n        Result sum = 0;\n        for (const auto& v : graph) {\n        \
-    \    for (const Edge& e : v) {\n                if (e.flow > 0) sum += (Result)e.flow\
-    \ * (Result)e.cost;\n            }\n        }\n        return std::make_pair(sum,\
-    \ over.empty() and lack.empty());\n    }\n\n    template <class Result = Cost>\
-    \ std::pair<Flow, Result> flow(const usize src, const usize dst) {\n        return\
-    \ flow<Result>(src, dst, std::numeric_limits<Flow>::max());\n    }\n    template\
-    \ <class Result = Cost>\n    std::pair<Flow, Result> flow(const usize src, const\
-    \ usize dst, const Flow flow_limit) {\n        assert(src != dst);\n        assert(std::all_of(gap.begin(),\
+    \ int u = dst;\n                while (parent[u] and f > 0) {\n              \
+    \      const Edge& e = graph[parent[u]->dst][parent[u]->rev];\n              \
+    \      setmin(f, e.cap - e.flow);\n                    u = parent[u]->dst;\n \
+    \               }\n                setmin(f, gap[u]);\n                if (f <=\
+    \ 0) continue;\n                u = dst;\n                while (parent[u]) {\n\
+    \                    Edge& e = graph[parent[u]->dst][parent[u]->rev];\n      \
+    \              e.flow += f;\n                    graph[e.dst][e.rev].flow -= f;\n\
+    \                    u = parent[u]->dst;\n                }\n                gap[u]\
+    \ -= f;\n                gap[dst] += f;\n            }\n        }\n        Result\
+    \ sum = 0;\n        for (const auto& v : graph) {\n            for (const Edge&\
+    \ e : v) {\n                if (e.flow > 0) sum += (Result)e.flow * (Result)e.cost;\n\
+    \            }\n        }\n        return std::make_pair(sum, over.empty() and\
+    \ lack.empty());\n    }\n\n    template <class Result = Cost> std::pair<Flow,\
+    \ Result> flow(const int src, const int dst) {\n        return flow<Result>(src,\
+    \ dst, std::numeric_limits<Flow>::max());\n    }\n    template <class Result =\
+    \ Cost>\n    std::pair<Flow, Result> flow(const int src, const int dst, const\
+    \ Flow flow_limit) {\n        assert(0 <= src and src < size());\n        assert(0\
+    \ <= dst and dst < size());\n        assert(src != dst);\n        assert(std::all_of(gap.begin(),\
     \ gap.end(), [&](const Flow f) { return f == 0; }));\n        Flow inf_flow =\
     \ 0;\n        for (const Edge& e : graph[src]) inf_flow += std::max<Flow>(e.cap,\
     \ 0);\n        add_edge(dst, src, 0, inf_flow, 0);\n        assert(solve_bflow<Result>().second);\n\
@@ -154,64 +151,64 @@ data:
     \        return std::make_pair(flow, cost);\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <type_traits>\n\
     #include <utility>\n#include <vector>\n#include \"../utility/index_offset.cpp\"\
-    \n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n#include\
-    \ \"../utility/setmin.cpp\"\n\ntemplate <class Flow,\n          class Cost,\n\
-    \          std::enable_if_t<std::is_integral_v<Flow> and std::is_integral_v<Cost>\
-    \ and std::is_signed_v<Flow> and\n                           std::is_signed_v<Cost>>*\
-    \ = nullptr>\nclass PrimalDual {\n    struct Edge {\n        usize dst, rev;\n\
-    \        Flow flow, cap;\n        Cost cost;\n    };\n\n    std::vector<std::vector<Edge>>\
-    \ graph;\n    std::vector<Flow> gap;\n    std::vector<Cost> potential;\n\n  public:\n\
-    \    PrimalDual() : graph() {}\n    explicit PrimalDual(const usize n) : graph(n),\
-    \ gap(n) {}\n\n    class EdgePtr {\n        friend class PrimalDual;\n       \
-    \ PrimalDual* self;\n        usize u, e;\n\n        explicit EdgePtr(PrimalDual*\
-    \ p, const usize u, const usize e) : self(p), u(u), e(e) {}\n\n        const Edge&\
-    \ edge() const { return self->graph[u][e]; }\n        const Edge& rev_edge() const\
-    \ { return self->graph[edge().dst][edge().rev]; }\n\n      public:\n        EdgePtr()\
-    \ : self(nullptr), u(0), e(0) {}\n        usize src() const { return u; }\n  \
-    \      usize dst() const { return edge().dst; }\n        Flow flow() const { return\
-    \ edge().flow; }\n        Flow lower() const { return -rev_edge().cap; }\n   \
-    \     Flow upper() const { return edge().cap; }\n        Cost cost() const { return\
-    \ edge().cost; }\n    };\n\n    usize size() const { return graph.size(); }\n\n\
-    \    usize add_vertex() {\n        graph.emplace_back();\n        gap.emplace_back();\n\
-    \        return size() - 1;\n    }\n    IndexOffset add_vertices(usize n) {\n\
-    \        IndexOffset ret(size(), n);\n        while (n--) {\n            graph.emplace_back();\n\
-    \            gap.emplace_back();\n        }\n        return ret;\n    }\n\n  \
-    \  EdgePtr add_edge(const usize src, const usize dst, const Flow lower, const\
-    \ Flow upper, const Cost cost) {\n        assert(src < size());\n        assert(dst\
-    \ < size());\n        assert(lower <= upper);\n        const usize src_id = graph[src].size();\n\
-    \        const usize dst_id = graph[dst].size() + (src == dst);\n        graph[src].push_back(Edge{dst,\
+    \n#include \"../utility/rep.cpp\"\n#include \"../utility/setmin.cpp\"\n\ntemplate\
+    \ <class Flow,\n          class Cost,\n          std::enable_if_t<std::is_integral_v<Flow>\
+    \ and std::is_integral_v<Cost> and std::is_signed_v<Flow> and\n              \
+    \             std::is_signed_v<Cost>>* = nullptr>\nclass PrimalDual {\n    struct\
+    \ Edge {\n        int dst, rev;\n        Flow flow, cap;\n        Cost cost;\n\
+    \    };\n\n    std::vector<std::vector<Edge>> graph;\n    std::vector<Flow> gap;\n\
+    \    std::vector<Cost> potential;\n\n  public:\n    PrimalDual() : graph() {}\n\
+    \    explicit PrimalDual(const int n) : graph(n), gap(n) {}\n\n    class EdgePtr\
+    \ {\n        friend class PrimalDual;\n        PrimalDual* self;\n        int\
+    \ u, e;\n\n        explicit EdgePtr(PrimalDual* p, const int u, const int e) :\
+    \ self(p), u(u), e(e) {}\n\n        const Edge& edge() const { return self->graph[u][e];\
+    \ }\n        const Edge& rev_edge() const { return self->graph[edge().dst][edge().rev];\
+    \ }\n\n      public:\n        EdgePtr() : self(nullptr), u(0), e(0) {}\n     \
+    \   int src() const { return u; }\n        int dst() const { return edge().dst;\
+    \ }\n        Flow flow() const { return edge().flow; }\n        Flow lower() const\
+    \ { return -rev_edge().cap; }\n        Flow upper() const { return edge().cap;\
+    \ }\n        Cost cost() const { return edge().cost; }\n    };\n\n    int size()\
+    \ const { return graph.size(); }\n\n    int add_vertex() {\n        graph.emplace_back();\n\
+    \        gap.emplace_back();\n        return size() - 1;\n    }\n    IndexOffset\
+    \ add_vertices(int n) {\n        IndexOffset ret(size(), n);\n        while (n--)\
+    \ {\n            graph.emplace_back();\n            gap.emplace_back();\n    \
+    \    }\n        return ret;\n    }\n\n    EdgePtr add_edge(const int src, const\
+    \ int dst, const Flow lower, const Flow upper, const Cost cost) {\n        assert(0\
+    \ <= src and src < size());\n        assert(0 <= dst and dst < size());\n    \
+    \    assert(lower <= upper);\n        const int src_id = graph[src].size();\n\
+    \        const int dst_id = graph[dst].size() + (src == dst);\n        graph[src].push_back(Edge{dst,\
     \ dst_id, 0, upper, cost});\n        graph[dst].push_back(Edge{src, src_id, 0,\
     \ -lower, -cost});\n        return EdgePtr(this, src, src_id);\n    }\n\n    void\
-    \ add_supply(const usize u, const Flow f) {\n        assert(u < size());\n   \
-    \     gap[u] += f;\n    }\n    void add_demand(const usize u, const Flow f) {\n\
-    \        assert(u < size());\n        gap[u] -= f;\n    }\n    void set_potential(const\
-    \ std::vector<Cost>& p) {\n        assert(p.size() == size());\n        potential\
-    \ = p;\n    }\n\n    template <class Result = Cost> std::pair<Result, bool> solve_bflow()\
-    \ {\n        potential.resize(size(), 0);\n        for (const usize u : rep(0,\
-    \ size())) {\n            for (Edge& e : graph[u]) {\n                if (e.flow\
-    \ > e.cap or e.cost + potential[u] - potential[e.dst] < 0) {\n               \
-    \     const Flow dif = e.cap - e.flow;\n                    e.flow += dif;\n \
-    \                   graph[e.dst][e.rev].flow -= dif;\n                    gap[u]\
-    \ -= dif;\n                    gap[e.dst] += dif;\n                }\n       \
-    \     }\n        }\n        std::vector<usize> over, lack;\n        for (const\
-    \ usize u : rep(0, size())) {\n            if (gap[u] > 0) over.push_back(u);\n\
+    \ add_supply(const int u, const Flow f) {\n        assert(0 <= u and u < size());\n\
+    \        gap[u] += f;\n    }\n    void add_demand(const int u, const Flow f) {\n\
+    \        assert(0 <= u and u < size());\n        gap[u] -= f;\n    }\n    void\
+    \ set_potential(const std::vector<Cost>& p) {\n        assert(p.size() == size());\n\
+    \        potential = p;\n    }\n\n    template <class Result = Cost> std::pair<Result,\
+    \ bool> solve_bflow() {\n        potential.resize(size(), 0);\n        for (const\
+    \ int u : rep(0, size())) {\n            for (Edge& e : graph[u]) {\n        \
+    \        if (e.flow > e.cap or e.cost + potential[u] - potential[e.dst] < 0) {\n\
+    \                    const Flow dif = e.cap - e.flow;\n                    e.flow\
+    \ += dif;\n                    graph[e.dst][e.rev].flow -= dif;\n            \
+    \        gap[u] -= dif;\n                    gap[e.dst] += dif;\n            \
+    \    }\n            }\n        }\n        std::vector<int> over, lack;\n     \
+    \   for (const int u : rep(0, size())) {\n            if (gap[u] > 0) over.push_back(u);\n\
     \            if (gap[u] < 0) lack.push_back(u);\n        }\n        struct State\
-    \ {\n            Cost cost;\n            usize vertex;\n            bool operator<(const\
+    \ {\n            Cost cost;\n            int vertex;\n            bool operator<(const\
     \ State& other) const { return cost > other.cost; }\n        };\n        std::vector<State>\
-    \ heap;\n        std::vector<Edge*> parent;\n        std::vector<usize> que_min;\n\
+    \ heap;\n        std::vector<Edge*> parent;\n        std::vector<int> que_min;\n\
     \        std::vector<Cost> dist;\n        std::vector<char> seen;\n        Cost\
     \ farthest;\n        const auto dual = [&] {\n            over.erase(std::remove_if(over.begin(),\
-    \ over.end(), [&](const usize u) { return gap[u] <= 0; }),\n                 \
-    \      over.end());\n            lack.erase(std::remove_if(lack.begin(), lack.end(),\
-    \ [&](const usize u) { return gap[u] >= 0; }),\n                       lack.end());\n\
+    \ over.end(), [&](const int u) { return gap[u] <= 0; }),\n                   \
+    \    over.end());\n            lack.erase(std::remove_if(lack.begin(), lack.end(),\
+    \ [&](const int u) { return gap[u] >= 0; }),\n                       lack.end());\n\
     \            if (over.empty() or lack.empty()) return false;\n            dist.assign(size(),\
     \ std::numeric_limits<Cost>::max());\n            parent.assign(size(), nullptr);\n\
     \            seen.assign(size(), false);\n            que_min.clear();\n     \
-    \       heap.clear();\n            usize heap_size = 0, lack_cnt = 0;\n      \
-    \      farthest = 0;\n            for (const usize src : over) {\n           \
-    \     dist[src] = 0;\n                que_min.push_back(src);\n            }\n\
-    \            while (!que_min.empty() or !heap.empty()) {\n                usize\
-    \ u;\n                if (!que_min.empty()) {\n                    u = que_min.back();\n\
+    \       heap.clear();\n            int heap_size = 0, lack_cnt = 0;\n        \
+    \    farthest = 0;\n            for (const int src : over) {\n               \
+    \ dist[src] = 0;\n                que_min.push_back(src);\n            }\n   \
+    \         while (!que_min.empty() or !heap.empty()) {\n                int u;\n\
+    \                if (!que_min.empty()) {\n                    u = que_min.back();\n\
     \                    que_min.pop_back();\n                } else {\n         \
     \           while (heap_size < heap.size()) {\n                        heap_size\
     \ += 1;\n                        std::push_heap(heap.begin(), heap.begin() + heap_size);\n\
@@ -221,36 +218,37 @@ data:
     \ continue;\n                seen[u] = true;\n                farthest = dist[u];\n\
     \                if (gap[u] < 0) {\n                    lack_cnt += 1;\n     \
     \               if (lack_cnt == lack.size()) break;\n                }\n     \
-    \           for (const usize i : rep(0, graph[u].size())) {\n                \
-    \    const Edge& e = graph[u][i];\n                    if (e.flow >= e.cap) continue;\n\
-    \                    const usize v = e.dst;\n                    if (setmin(dist[v],\
+    \           for (const int i : rep(0, graph[u].size())) {\n                  \
+    \  const Edge& e = graph[u][i];\n                    if (e.flow >= e.cap) continue;\n\
+    \                    const int v = e.dst;\n                    if (setmin(dist[v],\
     \ dist[u] + e.cost + potential[u] - potential[v])) {\n                       \
     \ parent[v] = &graph[e.dst][e.rev];\n                        if (dist[v] == dist[u])\
     \ {\n                            que_min.push_back(v);\n                     \
     \   } else {\n                            heap.push_back(State{dist[v], v});\n\
     \                        }\n                    }\n                }\n       \
     \     }\n            if (lack_cnt == 0) return false;\n            for (const\
-    \ usize u : rep(0, size())) {\n                potential[u] += std::min(farthest,\
+    \ int u : rep(0, size())) {\n                potential[u] += std::min(farthest,\
     \ dist[u]);\n            }\n            return true;\n        };\n        while\
-    \ (dual()) {\n            for (const usize dst : lack) {\n                if (dist[dst]\
+    \ (dual()) {\n            for (const int dst : lack) {\n                if (dist[dst]\
     \ > farthest) continue;\n                Flow f = -gap[dst];\n               \
-    \ usize u = dst;\n                while (parent[u] and f > 0) {\n            \
-    \        const Edge& e = graph[parent[u]->dst][parent[u]->rev];\n            \
-    \        setmin(f, e.cap - e.flow);\n                    u = parent[u]->dst;\n\
-    \                }\n                setmin(f, gap[u]);\n                if (f\
-    \ <= 0) continue;\n                u = dst;\n                while (parent[u])\
-    \ {\n                    Edge& e = graph[parent[u]->dst][parent[u]->rev];\n  \
-    \                  e.flow += f;\n                    graph[e.dst][e.rev].flow\
-    \ -= f;\n                    u = parent[u]->dst;\n                }\n        \
-    \        gap[u] -= f;\n                gap[dst] += f;\n            }\n       \
-    \ }\n        Result sum = 0;\n        for (const auto& v : graph) {\n        \
-    \    for (const Edge& e : v) {\n                if (e.flow > 0) sum += (Result)e.flow\
-    \ * (Result)e.cost;\n            }\n        }\n        return std::make_pair(sum,\
-    \ over.empty() and lack.empty());\n    }\n\n    template <class Result = Cost>\
-    \ std::pair<Flow, Result> flow(const usize src, const usize dst) {\n        return\
-    \ flow<Result>(src, dst, std::numeric_limits<Flow>::max());\n    }\n    template\
-    \ <class Result = Cost>\n    std::pair<Flow, Result> flow(const usize src, const\
-    \ usize dst, const Flow flow_limit) {\n        assert(src != dst);\n        assert(std::all_of(gap.begin(),\
+    \ int u = dst;\n                while (parent[u] and f > 0) {\n              \
+    \      const Edge& e = graph[parent[u]->dst][parent[u]->rev];\n              \
+    \      setmin(f, e.cap - e.flow);\n                    u = parent[u]->dst;\n \
+    \               }\n                setmin(f, gap[u]);\n                if (f <=\
+    \ 0) continue;\n                u = dst;\n                while (parent[u]) {\n\
+    \                    Edge& e = graph[parent[u]->dst][parent[u]->rev];\n      \
+    \              e.flow += f;\n                    graph[e.dst][e.rev].flow -= f;\n\
+    \                    u = parent[u]->dst;\n                }\n                gap[u]\
+    \ -= f;\n                gap[dst] += f;\n            }\n        }\n        Result\
+    \ sum = 0;\n        for (const auto& v : graph) {\n            for (const Edge&\
+    \ e : v) {\n                if (e.flow > 0) sum += (Result)e.flow * (Result)e.cost;\n\
+    \            }\n        }\n        return std::make_pair(sum, over.empty() and\
+    \ lack.empty());\n    }\n\n    template <class Result = Cost> std::pair<Flow,\
+    \ Result> flow(const int src, const int dst) {\n        return flow<Result>(src,\
+    \ dst, std::numeric_limits<Flow>::max());\n    }\n    template <class Result =\
+    \ Cost>\n    std::pair<Flow, Result> flow(const int src, const int dst, const\
+    \ Flow flow_limit) {\n        assert(0 <= src and src < size());\n        assert(0\
+    \ <= dst and dst < size());\n        assert(src != dst);\n        assert(std::all_of(gap.begin(),\
     \ gap.end(), [&](const Flow f) { return f == 0; }));\n        Flow inf_flow =\
     \ 0;\n        for (const Edge& e : graph[src]) inf_flow += std::max<Flow>(e.cap,\
     \ 0);\n        add_edge(dst, src, 0, inf_flow, 0);\n        assert(solve_bflow<Result>().second);\n\
@@ -260,13 +258,12 @@ data:
     \        return std::make_pair(flow, cost);\n    }\n};\n"
   dependsOn:
   - utility/index_offset.cpp
-  - utility/int_alias.cpp
   - utility/rep.cpp
   - utility/setmin.cpp
   isVerificationFile: false
   path: graph/primal_dual.cpp
   requiredBy: []
-  timestamp: '2021-11-22 20:09:12+09:00'
+  timestamp: '2021-12-17 09:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/primal_dual_mincostflow.test.cpp

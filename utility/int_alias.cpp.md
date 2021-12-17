@@ -3,12 +3,6 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: algorithm/and_convolution.cpp
-    title: algorithm/and_convolution.cpp
-  - icon: ':heavy_check_mark:'
-    path: algorithm/berlekamp_massey.cpp
-    title: algorithm/berlekamp_massey.cpp
-  - icon: ':heavy_check_mark:'
     path: algorithm/convolution_arbitrary_mod.cpp
     title: algorithm/convolution_arbitrary_mod.cpp
   - icon: ':warning:'
@@ -18,63 +12,15 @@ data:
     path: algorithm/convolution_mod.cpp
     title: algorithm/convolution_mod.cpp
   - icon: ':heavy_check_mark:'
-    path: algorithm/larsch.cpp
-    title: algorithm/larsch.cpp
-  - icon: ':warning:'
-    path: algorithm/monotone_minima.cpp
-    title: algorithm/monotone_minima.cpp
-  - icon: ':warning:'
-    path: algorithm/or_convolution.cpp
-    title: algorithm/or_convolution.cpp
-  - icon: ':warning:'
-    path: algorithm/smawk.cpp
-    title: algorithm/smawk.cpp
-  - icon: ':warning:'
-    path: algorithm/subset_mobius_transform.cpp
-    title: algorithm/subset_mobius_transform.cpp
-  - icon: ':warning:'
-    path: algorithm/subset_zeta_transform.cpp
-    title: algorithm/subset_zeta_transform.cpp
-  - icon: ':heavy_check_mark:'
-    path: algorithm/superset_mobius_transform.cpp
-    title: algorithm/superset_mobius_transform.cpp
-  - icon: ':heavy_check_mark:'
-    path: algorithm/superset_zeta_transform.cpp
-    title: algorithm/superset_zeta_transform.cpp
-  - icon: ':heavy_check_mark:'
-    path: algorithm/z_algorithm.cpp
-    title: algorithm/z_algorithm.cpp
-  - icon: ':heavy_check_mark:'
-    path: bit/bit_lzeros.cpp
-    title: bit/bit_lzeros.cpp
-  - icon: ':warning:'
-    path: bit/bit_parity.cpp
-    title: bit/bit_parity.cpp
-  - icon: ':warning:'
-    path: bit/bit_reverse.cpp
-    title: bit/bit_reverse.cpp
-  - icon: ':heavy_check_mark:'
-    path: bit/bit_rzeros.cpp
-    title: bit/bit_rzeros.cpp
-  - icon: ':heavy_check_mark:'
-    path: bit/bit_width.cpp
-    title: bit/bit_width.cpp
-  - icon: ':heavy_check_mark:'
-    path: bit/ceil_log2.cpp
-    title: bit/ceil_log2.cpp
-  - icon: ':warning:'
-    path: bit/popcount.cpp
-    title: bit/popcount.cpp
-  - icon: ':heavy_check_mark:'
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
   - icon: ':heavy_check_mark:'
     path: container/fenwick_tree.cpp
     title: container/fenwick_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/integer_hash_table.cpp
     title: container/integer_hash_table.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -83,15 +29,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
   - icon: ':heavy_check_mark:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
-  - icon: ':heavy_check_mark:'
-    path: graph/basic_graph.cpp
-    title: graph/basic_graph.cpp
   - icon: ':warning:'
     path: graph/binary_optimization.cpp
     title: graph/binary_optimization.cpp
@@ -99,26 +42,8 @@ data:
     path: graph/dinic.cpp
     title: graph/dinic.cpp
   - icon: ':heavy_check_mark:'
-    path: graph/primal_dual.cpp
-    title: graph/primal_dual.cpp
-  - icon: ':heavy_check_mark:'
-    path: graph/rollback_union_find.cpp
-    title: graph/rollback_union_find.cpp
-  - icon: ':heavy_check_mark:'
-    path: graph/strongly_connected_components.cpp
-    title: graph/strongly_connected_components.cpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_manager.cpp
-    title: graph/tree_manager.cpp
-  - icon: ':heavy_check_mark:'
-    path: graph/union_find.cpp
-    title: graph/union_find.cpp
-  - icon: ':heavy_check_mark:'
     path: math/barret_reduction.cpp
     title: math/barret_reduction.cpp
-  - icon: ':warning:'
-    path: math/congruence_equations.cpp
-    title: math/congruence_equations.cpp
   - icon: ':warning:'
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
@@ -128,9 +53,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/mod_pow.cpp
     title: math/mod_pow.cpp
-  - icon: ':heavy_check_mark:'
-    path: math/modint_util.cpp
-    title: math/modint_util.cpp
   - icon: ':heavy_check_mark:'
     path: math/modulo_transform.cpp
     title: math/modulo_transform.cpp
@@ -143,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/semiring_matrix.cpp
     title: math/semiring_matrix.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   - icon: ':warning:'
@@ -161,45 +83,33 @@ data:
   - icon: ':warning:'
     path: random/shuffle_vec.cpp
     title: random/shuffle_vec.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
-  - icon: ':heavy_check_mark:'
-    path: utility/auto_memoize.cpp
-    title: utility/auto_memoize.cpp
   - icon: ':heavy_check_mark:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
   - icon: ':warning:'
-    path: utility/binary_search.cpp
-    title: utility/binary_search.cpp
+    path: utility/bit_parity.cpp
+    title: utility/bit_parity.cpp
+  - icon: ':heavy_check_mark:'
+    path: utility/bit_width.cpp
+    title: utility/bit_width.cpp
+  - icon: ':question:'
+    path: utility/ceil_log2.cpp
+    title: utility/ceil_log2.cpp
+  - icon: ':heavy_check_mark:'
+    path: utility/countl_zero.cpp
+    title: utility/countl_zero.cpp
+  - icon: ':question:'
+    path: utility/countr_zero.cpp
+    title: utility/countr_zero.cpp
   - icon: ':heavy_check_mark:'
     path: utility/fast_io.cpp
     title: utility/fast_io.cpp
-  - icon: ':heavy_check_mark:'
-    path: utility/index_offset.cpp
-    title: utility/index_offset.cpp
-  - icon: ':warning:'
-    path: utility/multi_array.cpp
-    title: utility/multi_array.cpp
-  - icon: ':warning:'
-    path: utility/multi_vec.cpp
-    title: utility/multi_vec.cpp
-  - icon: ':warning:'
-    path: utility/permutations.cpp
-    title: utility/permutations.cpp
-  - icon: ':heavy_check_mark:'
-    path: utility/rep.cpp
-    title: utility/rep.cpp
-  - icon: ':heavy_check_mark:'
-    path: utility/revrep.cpp
-    title: utility/revrep.cpp
   - icon: ':warning:'
     path: utility/subsets.cpp
     title: utility/subsets.cpp
-  - icon: ':warning:'
-    path: utility/vec_util.cpp
-    title: utility/vec_util.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/and_convolution.test.cpp
@@ -231,24 +141,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fenwick_tree.test.cpp
     title: test/fenwick_tree.test.cpp
+  - icon: ':x:'
+    path: test/fp_util.test.cpp
+    title: test/fp_util.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/integer_hash_table.test.cpp
     title: test/integer_hash_table.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/integer_hash_table_verbose.test.cpp
     title: test/integer_hash_table_verbose.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/larsch.test.cpp
     title: test/larsch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/modint_util.test.cpp
-    title: test/modint_util.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/polynomial_hash.test.cpp
     title: test/polynomial_hash.test.cpp
@@ -265,12 +175,9 @@ data:
     path: test/queue_aggregation.test.cpp
     title: test/queue_aggregation.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/rollback_union_find.test.cpp
-    title: test/rollback_union_find.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segment_tree_beats.test.cpp
     title: test/segment_tree_beats.test.cpp
   - icon: ':heavy_check_mark:'
@@ -279,27 +186,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/strongly_connected_components.test.cpp
-    title: test/strongly_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/totient.test.cpp
     title: test/totient.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/union_find.test.cpp
-    title: test/union_find.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/z_algorithm.test.cpp
-    title: test/z_algorithm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 2 "utility/int_alias.cpp"
 
-    #include <cstddef>
-
     #include <cstdint>
 
 
@@ -311,15 +207,13 @@ data:
 
     using u64 = std::uint64_t;
 
-    using isize = std::ptrdiff_t;
+    using i128 = __int128_t;
 
-    using usize = std::size_t;
+    using u128 = __uint128_t;
 
     '
   code: '#pragma once
 
-    #include <cstddef>
-
     #include <cstdint>
 
 
@@ -331,114 +225,80 @@ data:
 
     using u64 = std::uint64_t;
 
-    using isize = std::ptrdiff_t;
+    using i128 = __int128_t;
 
-    using usize = std::size_t;
+    using u128 = __uint128_t;
 
     '
   dependsOn: []
   isVerificationFile: false
   path: utility/int_alias.cpp
   requiredBy:
-  - math/prime_sieve.cpp
-  - math/semiring_matrix.cpp
-  - math/modulo_transform.cpp
-  - math/mod_pow.cpp
-  - math/factorize.cpp
-  - math/modint_util.cpp
-  - math/primitive_root.cpp
-  - math/static_modint.cpp
-  - math/dynamic_modint.cpp
-  - math/barret_reduction.cpp
-  - math/congruence_equations.cpp
-  - bit/ceil_log2.cpp
-  - bit/bit_parity.cpp
-  - bit/bit_width.cpp
-  - bit/bit_lzeros.cpp
-  - bit/popcount.cpp
-  - bit/bit_reverse.cpp
-  - bit/bit_rzeros.cpp
-  - container/sparse_table.cpp
-  - container/fenwick_tree.cpp
-  - container/lazy_segment_tree.cpp
-  - container/polynomial_hash.cpp
-  - container/integer_hash_table.cpp
-  - container/dual_segment_tree.cpp
-  - container/segment_tree_beats.cpp
-  - container/segment_tree.cpp
-  - graph/tree_manager.cpp
-  - graph/rollback_union_find.cpp
   - graph/dinic.cpp
   - graph/binary_optimization.cpp
-  - graph/basic_graph.cpp
-  - graph/union_find.cpp
-  - graph/primal_dual.cpp
-  - graph/strongly_connected_components.cpp
-  - utility/binary_search.cpp
-  - utility/index_offset.cpp
-  - utility/multi_vec.cpp
-  - utility/fast_io.cpp
-  - utility/revrep.cpp
-  - utility/auto_memoize.cpp
-  - utility/vec_util.cpp
-  - utility/multi_array.cpp
-  - utility/permutations.cpp
-  - utility/rep.cpp
-  - utility/subsets.cpp
-  - utility/auto_realloc.cpp
-  - random/xorshift.cpp
-  - random/rand_bool.cpp
-  - random/rand_perm.cpp
-  - random/rand_int.cpp
-  - random/shuffle_vec.cpp
-  - random/rand_real.cpp
-  - algorithm/larsch.cpp
-  - algorithm/monotone_minima.cpp
-  - algorithm/berlekamp_massey.cpp
-  - algorithm/z_algorithm.cpp
-  - algorithm/superset_zeta_transform.cpp
-  - algorithm/smawk.cpp
-  - algorithm/and_convolution.cpp
+  - math/primitive_root.cpp
+  - math/mod_pow.cpp
+  - math/dynamic_modint.cpp
+  - math/factorize.cpp
+  - math/static_modint.cpp
+  - math/modulo_transform.cpp
+  - math/semiring_matrix.cpp
+  - math/prime_sieve.cpp
+  - math/barret_reduction.cpp
   - algorithm/convolution_mod.cpp
-  - algorithm/convolution_int.cpp
-  - algorithm/subset_mobius_transform.cpp
-  - algorithm/superset_mobius_transform.cpp
-  - algorithm/subset_zeta_transform.cpp
-  - algorithm/or_convolution.cpp
   - algorithm/convolution_arbitrary_mod.cpp
-  timestamp: '2021-09-08 18:46:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - algorithm/convolution_int.cpp
+  - utility/countl_zero.cpp
+  - utility/bit_parity.cpp
+  - utility/auto_realloc.cpp
+  - utility/ceil_log2.cpp
+  - utility/subsets.cpp
+  - utility/bit_width.cpp
+  - utility/countr_zero.cpp
+  - utility/fast_io.cpp
+  - random/shuffle_vec.cpp
+  - random/rand_bool.cpp
+  - random/rand_real.cpp
+  - random/rand_int.cpp
+  - random/rand_perm.cpp
+  - random/xorshift.cpp
+  - container/fenwick_tree.cpp
+  - container/polynomial_hash.cpp
+  - container/lazy_segment_tree.cpp
+  - container/dual_segment_tree.cpp
+  - container/segment_tree_beats.cpp
+  - container/integer_hash_table.cpp
+  - container/segment_tree.cpp
+  - container/sparse_table.cpp
+  timestamp: '2021-12-17 09:20:39+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/fast_io.test.cpp
-  - test/dual_segment_tree.test.cpp
-  - test/heavy_light_decomposition.test.cpp
-  - test/union_find.test.cpp
-  - test/auto_memoize.test.cpp
-  - test/segment_tree.test.cpp
-  - test/modint_util.test.cpp
-  - test/fenwick_tree.test.cpp
-  - test/integer_hash_table_verbose.test.cpp
-  - test/larsch.test.cpp
-  - test/semiring_matrix.test.cpp
-  - test/lazy_segment_tree.test.cpp
-  - test/and_convolution.test.cpp
-  - test/primal_dual_mincostflow.test.cpp
-  - test/convolution_mod.test.cpp
-  - test/bipartite_matching.test.cpp
-  - test/prime_sieve.test.cpp
   - test/convolution_arbitrary_mod.test.cpp
-  - test/berlekamp_massey.test.cpp
-  - test/factorize.test.cpp
-  - test/z_algorithm.test.cpp
-  - test/sparse_table.test.cpp
-  - test/primal_dual_maxflow.test.cpp
-  - test/queue_aggregation.test.cpp
-  - test/segment_tree_beats.test.cpp
   - test/totient.test.cpp
+  - test/larsch.test.cpp
+  - test/fast_io.test.cpp
+  - test/queue_aggregation.test.cpp
+  - test/integer_hash_table_verbose.test.cpp
+  - test/semiring_matrix.test.cpp
   - test/polynomial_hash.test.cpp
+  - test/lazy_segment_tree.test.cpp
+  - test/primal_dual_mincostflow.test.cpp
+  - test/sparse_table.test.cpp
+  - test/berlekamp_massey.test.cpp
+  - test/heavy_light_decomposition.test.cpp
+  - test/segment_tree.test.cpp
+  - test/auto_memoize.test.cpp
+  - test/segment_tree_beats.test.cpp
+  - test/dual_segment_tree.test.cpp
+  - test/prime_sieve.test.cpp
+  - test/and_convolution.test.cpp
+  - test/fenwick_tree.test.cpp
   - test/integer_hash_table.test.cpp
-  - test/strongly_connected_components.test.cpp
-  - test/rollback_union_find.test.cpp
+  - test/convolution_mod.test.cpp
+  - test/fp_util.test.cpp
+  - test/primal_dual_maxflow.test.cpp
+  - test/bipartite_matching.test.cpp
+  - test/factorize.test.cpp
 documentation_of: utility/int_alias.cpp
 layout: document
 redirect_from:

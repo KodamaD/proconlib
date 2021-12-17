@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/factorize.cpp
     title: math/factorize.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
@@ -19,11 +19,11 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A
   bundledCode: "#line 1 \"test/factorize.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A\"\
     \n#line 2 \"math/factorize.cpp\"\n#include <cassert>\n#include <utility>\n#include\
-    \ <vector>\n#line 2 \"utility/int_alias.cpp\"\n#include <cstddef>\n#include <cstdint>\n\
-    \nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
-    using u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
+    \ <vector>\n#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32\
+    \ = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing\
+    \ u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
     #line 6 \"math/factorize.cpp\"\n\ntemplate <class T> std::vector<std::pair<T,\
-    \ usize>> factorize(T x) {\n    assert(x > 0);\n    std::vector<std::pair<T, usize>>\
+    \ int>> factorize(T x) {\n    assert(x > 0);\n    std::vector<std::pair<T, int>>\
     \ ret;\n    for (T i = 2; i * i <= x; ++i) {\n        if (x % i == 0) {\n    \
     \        ret.emplace_back(i, 0);\n            while (x % i == 0) {\n         \
     \       ret.back().second++;\n                x /= i;\n            }\n       \
@@ -44,7 +44,7 @@ data:
   isVerificationFile: true
   path: test/factorize.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 18:46:15+09:00'
+  timestamp: '2021-12-17 09:20:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/factorize.test.cpp

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: bit/ceil_log2.cpp
-    title: bit/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/integer_hash_table.cpp
     title: container/integer_hash_table.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: utility/ceil_log2.cpp
+    title: utility/ceil_log2.cpp
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A
@@ -30,24 +30,25 @@ data:
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A\"\n#include\
     \ <cassert>\n#include <vector>\n#include <utility>\n#include <memory>\n#line 2\
     \ \"container/integer_hash_table.cpp\"\n#include <tuple>\n#include <type_traits>\n\
-    #line 2 \"utility/int_alias.cpp\"\n#include <cstddef>\n#include <cstdint>\n\n\
-    using i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
-    using u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
-    #line 3 \"bit/ceil_log2.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr u64\
-    \ ceil_log2(const u64 x) {\n    u64 e = 0;\n    while (((u64)1 << e) < x) ++e;\n\
-    \    return e;\n}\n#line 2 \"random/xorshift.cpp\"\n#include <chrono>\n#include\
-    \ <random>\n#line 5 \"random/xorshift.cpp\"\n\nu64 xorshift() {\n    static u64\
-    \ state = std::chrono::system_clock::now().time_since_epoch().count();\n    state\
-    \ ^= state << 7;\n    state ^= state >> 9;\n    return state;\n}\n#line 2 \"utility/rep.cpp\"\
-    \n#include <algorithm>\n#line 4 \"utility/rep.cpp\"\n\nclass rep {\n    struct\
-    \ Iter {\n        usize itr;\n        constexpr Iter(const usize pos) noexcept\
-    \ : itr(pos) {}\n        constexpr void operator++() noexcept { ++itr; }\n   \
-    \     constexpr bool operator!=(const Iter& other) const noexcept { return itr\
-    \ != other.itr; }\n        constexpr usize operator*() const noexcept { return\
-    \ itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit constexpr\
-    \ rep(const usize first, const usize last) noexcept : first(first), last(std::max(first,\
+    #line 2 \"random/xorshift.cpp\"\n#include <chrono>\n#include <random>\n#line 2\
+    \ \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32 = std::int32_t;\n\
+    using u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
+    using i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 5 \"random/xorshift.cpp\"\
+    \n\nu64 xorshift() {\n    static u64 state = std::chrono::system_clock::now().time_since_epoch().count();\n\
+    \    state ^= state << 7;\n    state ^= state >> 9;\n    return state;\n}\n#line\
+    \ 3 \"utility/ceil_log2.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr int\
+    \ ceil_log2(const u64 x) {\n    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n\
+    \    return e;\n}\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\nclass\
+    \ Range {\n    struct Iter {\n        int itr;\n        constexpr Iter(const int\
+    \ pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept {\
+    \ ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
+    \ { return itr != other.itr; }\n        constexpr int operator*() const noexcept\
+    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
+    \ constexpr Range(const int first, const int last) noexcept : first(first), last(std::max(first,\
     \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
-    \ constexpr Iter end() const noexcept { return last; }\n};\n#line 9 \"container/integer_hash_table.cpp\"\
+    \ constexpr Iter end() const noexcept { return last; }\n};\n\nconstexpr Range\
+    \ rep(const int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range\
+    \ rep(const int n) noexcept { return Range(0, n); }\n#line 9 \"container/integer_hash_table.cpp\"\
     \n\ntemplate <class K, class V, std::enable_if_t<std::is_integral_v<K>>* = nullptr>\
     \ class IntegerHashTable {\n    using Self = IntegerHashTable;\n\n    enum class\
     \ Ctrl : char { Empty, Full, Deleted };\n\n    union Slot {\n        std::pair<const\
@@ -221,15 +222,15 @@ data:
     \ std::cout << \"Hello World\\n\";\n}"
   dependsOn:
   - container/integer_hash_table.cpp
-  - bit/ceil_log2.cpp
-  - utility/int_alias.cpp
   - random/xorshift.cpp
+  - utility/int_alias.cpp
+  - utility/ceil_log2.cpp
   - utility/rep.cpp
   isVerificationFile: true
   path: test/integer_hash_table_verbose.test.cpp
   requiredBy: []
-  timestamp: '2021-10-23 19:56:59+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-12-17 09:20:39+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/integer_hash_table_verbose.test.cpp
 layout: document

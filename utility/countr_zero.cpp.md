@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -17,10 +17,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
   - icon: ':heavy_check_mark:'
@@ -36,20 +36,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/dual_segment_tree.test.cpp
     title: test/dual_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segment_tree_beats.test.cpp
     title: test/segment_tree_beats.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 2 "utility/int_alias.cpp"
-
-    #include <cstddef>
 
     #include <cstdint>
 
@@ -62,50 +60,50 @@ data:
 
     using u64 = std::uint64_t;
 
-    using isize = std::ptrdiff_t;
+    using i128 = __int128_t;
 
-    using usize = std::size_t;
+    using u128 = __uint128_t;
 
-    #line 3 "bit/bit_rzeros.cpp"
+    #line 3 "utility/countr_zero.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr u64 bit_rzeros(const u64 x) { return
+    __attribute__((target("avx2"))) constexpr int countr_zero(const u64 x) { return
     x == 0 ? 64 : __builtin_ctzll(x); }
 
     '
   code: '#pragma once
 
-    #include "../utility/int_alias.cpp"
+    #include "int_alias.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr u64 bit_rzeros(const u64 x) { return
+    __attribute__((target("avx2"))) constexpr int countr_zero(const u64 x) { return
     x == 0 ? 64 : __builtin_ctzll(x); }
 
     '
   dependsOn:
   - utility/int_alias.cpp
   isVerificationFile: false
-  path: bit/bit_rzeros.cpp
+  path: utility/countr_zero.cpp
   requiredBy:
   - math/modulo_transform.cpp
+  - algorithm/convolution_mod.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
+  - algorithm/convolution_int.cpp
   - container/lazy_segment_tree.cpp
   - container/dual_segment_tree.cpp
   - container/segment_tree_beats.cpp
-  - algorithm/convolution_mod.cpp
-  - algorithm/convolution_int.cpp
-  - algorithm/convolution_arbitrary_mod.cpp
-  timestamp: '2021-09-08 18:46:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-12-17 09:20:39+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/dual_segment_tree.test.cpp
-  - test/lazy_segment_tree.test.cpp
-  - test/convolution_mod.test.cpp
   - test/convolution_arbitrary_mod.test.cpp
+  - test/lazy_segment_tree.test.cpp
   - test/segment_tree_beats.test.cpp
-documentation_of: bit/bit_rzeros.cpp
+  - test/dual_segment_tree.test.cpp
+  - test/convolution_mod.test.cpp
+documentation_of: utility/countr_zero.cpp
 layout: document
 redirect_from:
-- /library/bit/bit_rzeros.cpp
-- /library/bit/bit_rzeros.cpp.html
-title: bit/bit_rzeros.cpp
+- /library/utility/countr_zero.cpp
+- /library/utility/countr_zero.cpp.html
+title: utility/countr_zero.cpp
 ---

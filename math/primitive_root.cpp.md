@@ -7,15 +7,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/mod_pow.cpp
     title: math/mod_pow.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
-    path: utility/int_alias_extended.cpp
-    title: utility/int_alias_extended.cpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: algorithm/convolution_arbitrary_mod.cpp
@@ -42,28 +39,26 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"math/primitive_root.cpp\"\n#include <array>\n#line 2 \"\
-    utility/int_alias.cpp\"\n#include <cstddef>\n#include <cstdint>\n\nusing i32 =\
-    \ std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing\
-    \ u64 = std::uint64_t;\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
-    #line 2 \"math/mod_pow.cpp\"\n#include <cassert>\n#include <type_traits>\n#line\
-    \ 4 \"utility/int_alias_extended.cpp\"\n\nusing i8 = std::int8_t;\nusing u8 =\
-    \ std::uint8_t;\nusing i16 = std::int16_t;\nusing u16 = std::uint16_t;\nusing\
-    \ i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 4 \"math/barret_reduction.cpp\"\
+    utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32 = std::int32_t;\nusing\
+    \ u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
+    using i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 2 \"math/mod_pow.cpp\"\
+    \n#include <cassert>\n#include <type_traits>\n#line 3 \"math/barret_reduction.cpp\"\
     \n\nclass BarretReduction {\n    u32 mod;\n    u64 near_inv;\n\n  public:\n  \
     \  explicit constexpr BarretReduction(const u32 mod) noexcept : mod(mod), near_inv((u64)(-1)\
     \ / mod + 1) {}\n    constexpr u32 product(const u32 a, const u32 b) const noexcept\
     \ {\n        const u64 z = (u64)a * b;\n        const u64 x = ((u128)z * near_inv)\
     \ >> 64;\n        const u32 v = z - x * mod;\n        return v < mod ? v : v +\
-    \ mod;\n    }\n};\n#line 3 \"math/rem_euclid.cpp\"\n\ntemplate <class T> constexpr\
-    \ T rem_euclid(T value, const T& mod) {\n    assert(mod > 0);\n    return (value\
-    \ %= mod) >= 0 ? value : value + mod;\n}\n#line 7 \"math/mod_pow.cpp\"\n\ntemplate\
-    \ <class T> constexpr u32 mod_pow(T x, u64 exp, const u32 mod) {\n    assert(mod\
-    \ > 0);\n    if (mod == 1) return 0;\n    const BarretReduction bt(mod);\n   \
-    \ u32 ret = 1, mul = rem_euclid<std::common_type_t<T, i64>>(x, mod);\n    for\
-    \ (; exp > 0; exp >>= 1) {\n        if (exp & 1) ret = bt.product(ret, mul);\n\
-    \        mul = bt.product(mul, mul);\n    }\n    return ret;\n}\n#line 5 \"math/primitive_root.cpp\"\
+    \ mod;\n    }\n    constexpr u32 get_mod() const noexcept { return mod; }\n};\n\
+    #line 3 \"math/rem_euclid.cpp\"\n\ntemplate <class T> constexpr T rem_euclid(T\
+    \ value, const T& mod) {\n    assert(mod > 0);\n    return (value %= mod) >= 0\
+    \ ? value : value + mod;\n}\n#line 7 \"math/mod_pow.cpp\"\n\ntemplate <class T>\
+    \ constexpr u32 mod_pow(T x, u64 exp, const u32 mod) {\n    assert(mod > 0);\n\
+    \    if (mod == 1) return 0;\n    const BarretReduction bt(mod);\n    u32 ret\
+    \ = 1, mul = rem_euclid<std::common_type_t<T, i64>>(x, mod);\n    for (; exp >\
+    \ 0; exp >>= 1) {\n        if (exp & 1) ret = bt.product(ret, mul);\n        mul\
+    \ = bt.product(mul, mul);\n    }\n    return ret;\n}\n#line 5 \"math/primitive_root.cpp\"\
     \n\nconstexpr u32 primitive_root(const u32 mod) {\n    std::array<u32, 32> exp{};\n\
-    \    u32 cur = mod - 1;\n    usize size = 0;\n    for (u32 i = 2; i * i <= cur;\
+    \    u32 cur = mod - 1;\n    int size = 0;\n    for (u32 i = 2; i * i <= cur;\
     \ ++i) {\n        if (cur % i == 0) {\n            exp[size++] = (mod - 1) / i;\n\
     \            while (cur % i == 0) cur /= i;\n        }\n    }\n    if (cur !=\
     \ 1) exp[size++] = (mod - 1) / cur;\n    for (u32 check = 1; check < mod; ++check)\
@@ -72,10 +67,10 @@ data:
     \ mod;\n}\n"
   code: "#pragma once\n#include <array>\n#include \"../utility/int_alias.cpp\"\n#include\
     \ \"mod_pow.cpp\"\n\nconstexpr u32 primitive_root(const u32 mod) {\n    std::array<u32,\
-    \ 32> exp{};\n    u32 cur = mod - 1;\n    usize size = 0;\n    for (u32 i = 2;\
-    \ i * i <= cur; ++i) {\n        if (cur % i == 0) {\n            exp[size++] =\
-    \ (mod - 1) / i;\n            while (cur % i == 0) cur /= i;\n        }\n    }\n\
-    \    if (cur != 1) exp[size++] = (mod - 1) / cur;\n    for (u32 check = 1; check\
+    \ 32> exp{};\n    u32 cur = mod - 1;\n    int size = 0;\n    for (u32 i = 2; i\
+    \ * i <= cur; ++i) {\n        if (cur % i == 0) {\n            exp[size++] = (mod\
+    \ - 1) / i;\n            while (cur % i == 0) cur /= i;\n        }\n    }\n  \
+    \  if (cur != 1) exp[size++] = (mod - 1) / cur;\n    for (u32 check = 1; check\
     \ < mod; ++check) {\n        for (const u32 e : exp) {\n            if (e == 0)\
     \ return check;\n            if (mod_pow(check, e, mod) == 1) break;\n       \
     \ }\n    }\n    return mod;\n}\n"
@@ -83,20 +78,19 @@ data:
   - utility/int_alias.cpp
   - math/mod_pow.cpp
   - math/barret_reduction.cpp
-  - utility/int_alias_extended.cpp
   - math/rem_euclid.cpp
   isVerificationFile: false
   path: math/primitive_root.cpp
   requiredBy:
   - math/modulo_transform.cpp
   - algorithm/convolution_mod.cpp
-  - algorithm/convolution_int.cpp
   - algorithm/convolution_arbitrary_mod.cpp
-  timestamp: '2021-11-10 20:31:05+09:00'
+  - algorithm/convolution_int.cpp
+  timestamp: '2021-12-17 09:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/convolution_mod.test.cpp
   - test/convolution_arbitrary_mod.test.cpp
+  - test/convolution_mod.test.cpp
 documentation_of: math/primitive_root.cpp
 layout: document
 redirect_from:

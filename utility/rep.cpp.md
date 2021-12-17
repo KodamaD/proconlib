@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: utility/int_alias.cpp
-    title: utility/int_alias.cpp
+  _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: algorithm/and_convolution.cpp
@@ -44,10 +41,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/integer_hash_table.cpp
     title: container/integer_hash_table.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -56,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
   - icon: ':heavy_check_mark:'
@@ -68,18 +65,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/primal_dual.cpp
     title: graph/primal_dual.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/strongly_connected_components.cpp
     title: graph/strongly_connected_components.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
   - icon: ':warning:'
     path: math/congruence_equations.cpp
     title: math/congruence_equations.cpp
-  - icon: ':heavy_check_mark:'
-    path: math/modint_util.cpp
-    title: math/modint_util.cpp
   - icon: ':heavy_check_mark:'
     path: math/modulo_transform.cpp
     title: math/modulo_transform.cpp
@@ -120,21 +114,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/integer_hash_table.test.cpp
     title: test/integer_hash_table.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/integer_hash_table_verbose.test.cpp
     title: test/integer_hash_table_verbose.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/larsch.test.cpp
     title: test/larsch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/modint_util.test.cpp
-    title: test/modint_util.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/polynomial_hash.test.cpp
     title: test/polynomial_hash.test.cpp
@@ -153,7 +144,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/segment_tree.test.cpp
     title: test/segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segment_tree_beats.test.cpp
     title: test/segment_tree_beats.test.cpp
   - icon: ':heavy_check_mark:'
@@ -162,106 +153,102 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/z_algorithm.test.cpp
     title: test/z_algorithm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n#line 2 \"utility/int_alias.cpp\"\
-    \n#include <cstddef>\n#include <cstdint>\n\nusing i32 = std::int32_t;\nusing u32\
-    \ = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\nusing\
-    \ isize = std::ptrdiff_t;\nusing usize = std::size_t;\n#line 4 \"utility/rep.cpp\"\
-    \n\nclass rep {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const\
-    \ usize pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept\
-    \ { ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
-    \ { return itr != other.itr; }\n        constexpr usize operator*() const noexcept\
-    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
-    \ constexpr rep(const usize first, const usize last) noexcept : first(first),\
-    \ last(std::max(first, last)) {}\n    constexpr Iter begin() const noexcept {\
-    \ return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
-    };\n"
-  code: "#pragma once\n#include <algorithm>\n#include \"int_alias.cpp\"\n\nclass rep\
-    \ {\n    struct Iter {\n        usize itr;\n        constexpr Iter(const usize\
-    \ pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept {\
-    \ ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
-    \ { return itr != other.itr; }\n        constexpr usize operator*() const noexcept\
-    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
-    \ constexpr rep(const usize first, const usize last) noexcept : first(first),\
-    \ last(std::max(first, last)) {}\n    constexpr Iter begin() const noexcept {\
-    \ return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
-    };\n"
-  dependsOn:
-  - utility/int_alias.cpp
+  bundledCode: "#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\nclass Range {\n\
+    \    struct Iter {\n        int itr;\n        constexpr Iter(const int pos) noexcept\
+    \ : itr(pos) {}\n        constexpr void operator++() noexcept { ++itr; }\n   \
+    \     constexpr bool operator!=(const Iter& other) const noexcept { return itr\
+    \ != other.itr; }\n        constexpr int operator*() const noexcept { return itr;\
+    \ }\n    };\n    const Iter first, last;\n\n  public:\n    explicit constexpr\
+    \ Range(const int first, const int last) noexcept : first(first), last(std::max(first,\
+    \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
+    \ constexpr Iter end() const noexcept { return last; }\n};\n\nconstexpr Range\
+    \ rep(const int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range\
+    \ rep(const int n) noexcept { return Range(0, n); }\n"
+  code: "#pragma once\n#include <algorithm>\n\nclass Range {\n    struct Iter {\n\
+    \        int itr;\n        constexpr Iter(const int pos) noexcept : itr(pos) {}\n\
+    \        constexpr void operator++() noexcept { ++itr; }\n        constexpr bool\
+    \ operator!=(const Iter& other) const noexcept { return itr != other.itr; }\n\
+    \        constexpr int operator*() const noexcept { return itr; }\n    };\n  \
+    \  const Iter first, last;\n\n  public:\n    explicit constexpr Range(const int\
+    \ first, const int last) noexcept : first(first), last(std::max(first, last))\
+    \ {}\n    constexpr Iter begin() const noexcept { return first; }\n    constexpr\
+    \ Iter end() const noexcept { return last; }\n};\n\nconstexpr Range rep(const\
+    \ int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range rep(const\
+    \ int n) noexcept { return Range(0, n); }"
+  dependsOn: []
   isVerificationFile: false
   path: utility/rep.cpp
   requiredBy:
-  - math/prime_sieve.cpp
-  - math/semiring_matrix.cpp
-  - math/modulo_transform.cpp
-  - math/modint_util.cpp
-  - math/congruence_equations.cpp
-  - container/sparse_table.cpp
-  - container/lazy_segment_tree.cpp
-  - container/polynomial_hash.cpp
-  - container/integer_hash_table.cpp
-  - container/dual_segment_tree.cpp
-  - container/segment_tree_beats.cpp
-  - container/segment_tree.cpp
-  - graph/binary_optimization.cpp
+  - graph/strongly_connected_components.cpp
   - graph/union_find.cpp
   - graph/primal_dual.cpp
-  - graph/strongly_connected_components.cpp
-  - utility/fast_io.cpp
-  - algorithm/monotone_minima.cpp
-  - algorithm/berlekamp_massey.cpp
-  - algorithm/superset_zeta_transform.cpp
-  - algorithm/smawk.cpp
-  - algorithm/and_convolution.cpp
+  - graph/binary_optimization.cpp
+  - math/modulo_transform.cpp
+  - math/semiring_matrix.cpp
+  - math/congruence_equations.cpp
+  - math/prime_sieve.cpp
   - algorithm/convolution_mod.cpp
-  - algorithm/convolution_int.cpp
-  - algorithm/subset_mobius_transform.cpp
   - algorithm/superset_mobius_transform.cpp
-  - algorithm/subset_zeta_transform.cpp
+  - algorithm/superset_zeta_transform.cpp
+  - algorithm/monotone_minima.cpp
   - algorithm/or_convolution.cpp
   - algorithm/convolution_arbitrary_mod.cpp
-  timestamp: '2021-09-08 18:46:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - algorithm/and_convolution.cpp
+  - algorithm/subset_mobius_transform.cpp
+  - algorithm/smawk.cpp
+  - algorithm/berlekamp_massey.cpp
+  - algorithm/subset_zeta_transform.cpp
+  - algorithm/convolution_int.cpp
+  - utility/fast_io.cpp
+  - container/polynomial_hash.cpp
+  - container/lazy_segment_tree.cpp
+  - container/dual_segment_tree.cpp
+  - container/segment_tree_beats.cpp
+  - container/integer_hash_table.cpp
+  - container/segment_tree.cpp
+  - container/sparse_table.cpp
+  timestamp: '2021-12-17 09:20:39+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/fast_io.test.cpp
-  - test/dual_segment_tree.test.cpp
-  - test/heavy_light_decomposition.test.cpp
-  - test/union_find.test.cpp
-  - test/segment_tree.test.cpp
-  - test/modint_util.test.cpp
-  - test/fenwick_tree.test.cpp
-  - test/integer_hash_table_verbose.test.cpp
-  - test/larsch.test.cpp
-  - test/semiring_matrix.test.cpp
-  - test/lazy_segment_tree.test.cpp
-  - test/and_convolution.test.cpp
-  - test/primal_dual_mincostflow.test.cpp
-  - test/convolution_mod.test.cpp
-  - test/bipartite_matching.test.cpp
-  - test/prime_sieve.test.cpp
   - test/convolution_arbitrary_mod.test.cpp
-  - test/berlekamp_massey.test.cpp
-  - test/z_algorithm.test.cpp
-  - test/sparse_table.test.cpp
-  - test/primal_dual_maxflow.test.cpp
-  - test/segment_tree_beats.test.cpp
-  - test/polynomial_hash.test.cpp
-  - test/integer_hash_table.test.cpp
   - test/strongly_connected_components.test.cpp
+  - test/larsch.test.cpp
+  - test/z_algorithm.test.cpp
+  - test/fast_io.test.cpp
+  - test/integer_hash_table_verbose.test.cpp
+  - test/semiring_matrix.test.cpp
+  - test/polynomial_hash.test.cpp
+  - test/lazy_segment_tree.test.cpp
+  - test/primal_dual_mincostflow.test.cpp
+  - test/sparse_table.test.cpp
+  - test/berlekamp_massey.test.cpp
+  - test/heavy_light_decomposition.test.cpp
   - test/rollback_union_find.test.cpp
+  - test/segment_tree.test.cpp
+  - test/segment_tree_beats.test.cpp
+  - test/dual_segment_tree.test.cpp
+  - test/prime_sieve.test.cpp
+  - test/and_convolution.test.cpp
+  - test/fenwick_tree.test.cpp
+  - test/integer_hash_table.test.cpp
+  - test/convolution_mod.test.cpp
+  - test/union_find.test.cpp
+  - test/primal_dual_maxflow.test.cpp
+  - test/bipartite_matching.test.cpp
 documentation_of: utility/rep.cpp
 layout: document
 redirect_from:

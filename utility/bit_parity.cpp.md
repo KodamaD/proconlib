@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
@@ -12,8 +12,6 @@ data:
   attributes:
     links: []
   bundledCode: '#line 2 "utility/int_alias.cpp"
-
-    #include <cstddef>
 
     #include <cstdint>
 
@@ -26,38 +24,38 @@ data:
 
     using u64 = std::uint64_t;
 
-    using isize = std::ptrdiff_t;
+    using i128 = __int128_t;
 
-    using usize = std::size_t;
+    using u128 = __uint128_t;
 
-    #line 3 "bit/bit_parity.cpp"
+    #line 3 "utility/bit_parity.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr u64 bit_parity(const u64 x) { return
+    __attribute__((target("avx2"))) constexpr int bit_parity(const u64 x) { return
     __builtin_parityll(x); }
 
     '
   code: '#pragma once
 
-    #include "../utility/int_alias.cpp"
+    #include "int_alias.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr u64 bit_parity(const u64 x) { return
+    __attribute__((target("avx2"))) constexpr int bit_parity(const u64 x) { return
     __builtin_parityll(x); }
 
     '
   dependsOn:
   - utility/int_alias.cpp
   isVerificationFile: false
-  path: bit/bit_parity.cpp
+  path: utility/bit_parity.cpp
   requiredBy: []
-  timestamp: '2021-09-27 22:23:01+09:00'
+  timestamp: '2021-12-17 09:20:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: bit/bit_parity.cpp
+documentation_of: utility/bit_parity.cpp
 layout: document
 redirect_from:
-- /library/bit/bit_parity.cpp
-- /library/bit/bit_parity.cpp.html
-title: bit/bit_parity.cpp
+- /library/utility/bit_parity.cpp
+- /library/utility/bit_parity.cpp.html
+title: utility/bit_parity.cpp
 ---

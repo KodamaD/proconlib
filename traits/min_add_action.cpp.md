@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: traits/optional_monoid.cpp
     title: traits/optional_monoid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: traits/plus_monoid.cpp
     title: traits/plus_monoid.cpp
   _extendedRequiredBy: []

@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/primitive_root.cpp
     title: math/primitive_root.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   _extendedVerifiedWith:
@@ -48,15 +48,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/convolution_mod.test.cpp
     title: test/convolution_mod.test.cpp
+  - icon: ':x:'
+    path: test/fp_util.test.cpp
+    title: test/fp_util.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/modint_util.test.cpp
-    title: test/modint_util.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/queue_aggregation.test.cpp
     title: test/queue_aggregation.test.cpp
@@ -66,9 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/rem_euclid.cpp\"\n#include <cassert>\n\ntemplate <class\
@@ -81,30 +81,30 @@ data:
   isVerificationFile: false
   path: math/rem_euclid.cpp
   requiredBy:
-  - math/modulo_transform.cpp
-  - math/mod_pow.cpp
-  - math/mod_inv.cpp
-  - math/inv_gcd.cpp
   - math/primitive_root.cpp
-  - math/static_modint.cpp
+  - math/mod_pow.cpp
   - math/dynamic_modint.cpp
+  - math/inv_gcd.cpp
+  - math/mod_inv.cpp
+  - math/static_modint.cpp
+  - math/modulo_transform.cpp
   - math/congruence_equations.cpp
   - algorithm/convolution_mod.cpp
-  - algorithm/convolution_int.cpp
   - algorithm/convolution_arbitrary_mod.cpp
+  - algorithm/convolution_int.cpp
   timestamp: '2021-11-01 18:27:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/heavy_light_decomposition.test.cpp
-  - test/segment_tree.test.cpp
-  - test/modint_util.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/queue_aggregation.test.cpp
   - test/semiring_matrix.test.cpp
   - test/lazy_segment_tree.test.cpp
+  - test/berlekamp_massey.test.cpp
+  - test/heavy_light_decomposition.test.cpp
+  - test/segment_tree.test.cpp
   - test/and_convolution.test.cpp
   - test/convolution_mod.test.cpp
-  - test/convolution_arbitrary_mod.test.cpp
-  - test/berlekamp_massey.test.cpp
-  - test/queue_aggregation.test.cpp
+  - test/fp_util.test.cpp
 documentation_of: math/rem_euclid.cpp
 layout: document
 redirect_from:

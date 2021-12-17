@@ -2,9 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: bit/bit_lzeros.cpp
-    title: bit/bit_lzeros.cpp
-  - icon: ':heavy_check_mark:'
+    path: utility/countl_zero.cpp
+    title: utility/countl_zero.cpp
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -22,8 +22,6 @@ data:
     links: []
   bundledCode: '#line 2 "utility/int_alias.cpp"
 
-    #include <cstddef>
-
     #include <cstdint>
 
 
@@ -35,49 +33,47 @@ data:
 
     using u64 = std::uint64_t;
 
-    using isize = std::ptrdiff_t;
+    using i128 = __int128_t;
 
-    using usize = std::size_t;
+    using u128 = __uint128_t;
 
-    #line 3 "bit/bit_lzeros.cpp"
+    #line 3 "utility/countl_zero.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr u64 bit_lzeros(const u64 x) { return
+    __attribute__((target("avx2"))) constexpr int countl_zero(const u64 x) { return
     x == 0 ? 64 : __builtin_clzll(x); }
 
-    #line 4 "bit/bit_width.cpp"
+    #line 3 "utility/bit_width.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr u64 bit_width(const u64 x) { return
-    64 - bit_lzeros(x); }
+    __attribute__((target("avx2"))) constexpr int bit_width(const u64 x) { return
+    64 - countl_zero(x); }
 
     '
   code: '#pragma once
 
-    #include "../utility/int_alias.cpp"
-
-    #include "bit_lzeros.cpp"
+    #include "countl_zero.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr u64 bit_width(const u64 x) { return
-    64 - bit_lzeros(x); }
+    __attribute__((target("avx2"))) constexpr int bit_width(const u64 x) { return
+    64 - countl_zero(x); }
 
     '
   dependsOn:
+  - utility/countl_zero.cpp
   - utility/int_alias.cpp
-  - bit/bit_lzeros.cpp
   isVerificationFile: false
-  path: bit/bit_width.cpp
+  path: utility/bit_width.cpp
   requiredBy:
   - container/sparse_table.cpp
-  timestamp: '2021-09-08 18:46:15+09:00'
+  timestamp: '2021-12-17 09:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sparse_table.test.cpp
-documentation_of: bit/bit_width.cpp
+documentation_of: utility/bit_width.cpp
 layout: document
 redirect_from:
-- /library/bit/bit_width.cpp
-- /library/bit/bit_width.cpp.html
-title: bit/bit_width.cpp
+- /library/utility/bit_width.cpp
+- /library/utility/bit_width.cpp.html
+title: utility/bit_width.cpp
 ---
