@@ -14,7 +14,7 @@ template <class M> struct FpUtil {
         static std::vector<M> vec;
         assert(n > 0);
         if (vec.empty()) vec = {M(0), M(1)};
-        while ((int)vec.size() <= n) vec.push_back(-M(M::mod() / n) * vec[M::mod() % i]);
+        while ((int)vec.size() <= n) vec.push_back(-M(M::mod() / n) * vec[M::mod() % n]);
         return vec[n];
     }
     static M inv_fact(const int n) {

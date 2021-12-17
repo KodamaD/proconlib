@@ -27,10 +27,10 @@ template <class A> class LazySegmentTree {
     }
 
     void push(const int k) {
-        for (const int d : revrep(bit_rzeros(k) + 1, logn + 1)) flush(k >> d);
+        for (const int d : revrep(countr_zero(k) + 1, logn + 1)) flush(k >> d);
     }
     void pull(int k) {
-        for (k >>= bit_rzeros(k); k > 1;) fetch(k >>= 1);
+        for (k >>= countr_zero(k); k > 1;) fetch(k >>= 1);
     }
 
   public:
