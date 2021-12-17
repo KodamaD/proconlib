@@ -1,5 +1,4 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_B"
-#include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
 #include "../container/polynomial_hash.cpp"
 #include <iostream>
@@ -12,7 +11,7 @@ int main() {
     }
     PolynomialHash rh(std::vector<char>(T.begin(), T.end()));
     const auto match = PolynomialHash(std::vector<char>(P.begin(), P.end())).fold();
-    for (const usize i: rep(0, T.size() - P.size() + 1)) {
+    for (const int i: rep(0, T.size() - P.size() + 1)) {
         if (rh.fold(i, i + P.size()) == match) {
             std::cout << i << '\n';
         }

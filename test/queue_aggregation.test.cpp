@@ -10,11 +10,11 @@ using Fp = Modint998244353;
 int main() {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
-    usize Q;
+    int Q;
     std::cin >> Q;
     QueueAggregation<AffineCompositeMonoid<Fp>> que;
     while (Q--) {
-        usize t;
+        int t;
         std::cin >> t;
         if (t == 0) {
             u32 a, b;

@@ -3,7 +3,6 @@
 #include <tuple>
 #include <type_traits>
 #include <utility>
-#include "int_alias.cpp"
 
 template <class F> class AutoMemoization {
     template <class> struct GetSig;
@@ -19,7 +18,7 @@ template <class F> class AutoMemoization {
     F func;
     mutable std::map<Tuple, R> data;
 
-    template <usize... I> R apply(const Tuple& args_tuple, std::index_sequence<I...>) const {
+    template <std::size_t... I> R apply(const Tuple& args_tuple, std::index_sequence<I...>) const {
         return func(*this, std::get<I>(args_tuple)...);
     }
 

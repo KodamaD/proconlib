@@ -6,10 +6,9 @@
 #include "../random/rand_int.cpp"
 #include "../utility/auto_realloc.cpp"
 #include "../utility/int_alias.cpp"
-#include "../utility/int_alias_extended.cpp"
 #include "../utility/rep.cpp"
 
-template <usize ID> struct PolynomialHashHelper {
+template <int ID> struct PolynomialHashHelper {
     static inline constexpr u64 MOD = ((u64)1 << 61) - 1;
     static inline const u64 BASE = rand_int<u64>(0, MOD - 1);
 
@@ -21,17 +20,17 @@ template <usize ID> struct PolynomialHashHelper {
         return ret >= MOD ? ret - MOD : ret;
     }
 
-    static inline const auto BASE_POW = auto_realloc([](const usize n) {
+    static inline const auto BASE_POW = auto_realloc([](const int n) {
         std::vector<u64> ret(n);
         ret[0] = 1;
-        for (const usize i : rep(1, n)) {
+        for (const int i : rep(1, n)) {
             ret[i] = mul(ret[i - 1], BASE);
         }
         return ret;
     });
 };
 
-template <class T, usize ID = 0, std::enable_if_t<std::is_integral_v<T>>* = nullptr> class PolynomialHash {
+template <class T, int ID = 0, std::enable_if_t<std::is_integral_v<T>>* = nullptr> class PolynomialHash {
     using Helper = PolynomialHashHelper<ID>;
 
     std::vector<u64> hash;
@@ -40,20 +39,20 @@ template <class T, usize ID = 0, std::enable_if_t<std::is_integral_v<T>>* = null
   public:
     PolynomialHash() : PolynomialHash(std::vector<T>()) {}
     explicit PolynomialHash(const std::vector<T>& vec) : data(vec) {
-        const usize size = data.size();
+        const int size = data.size();
         hash = std::vector<u64>(size + 1);
-        for (const usize i : rep(0, size)) {
+        for (const int i : rep(0, size)) {
             assert(0 <= data[i]);
             assert((u64)data[i] < Helper::MOD);
             hash[i + 1] = Helper::add(Helper::mul(Helper::BASE, hash[i]), (u64)data[i]);
         }
     }
 
-    usize size() const { return data.size(); }
+    int size() const { return data.size(); }
     const std::vector<T>& get() const { return data; }
 
     u64 fold() const { return hash.back(); }
-    u64 fold(const usize l, const usize r) const {
+    u64 fold(const int l, const int r) const {
         assert(l <= r and r <= size());
         return Helper::sub(hash[r], Helper::mul(hash[l], Helper::BASE_POW[r - l]));
     }
@@ -61,7 +60,7 @@ template <class T, usize ID = 0, std::enable_if_t<std::is_integral_v<T>>* = null
     void concat(const PolynomialHash& other) {
         hash.reserve(hash.size() + other.size());
         u64 val = hash.back();
-        for (const usize i : rep(0, other.size())) {
+        for (const int i : rep(0, other.size())) {
             val = Helper::mul(val, Helper::BASE);
             hash.push_back(Helper::add(val, other.hash[i + 1]));
         }

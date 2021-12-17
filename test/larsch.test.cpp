@@ -9,7 +9,7 @@
 #include <vector>
 
 int main() {
-    usize N, L;
+    int N, L;
     std::cin >> N >> L;
     std::vector<std::optional<i64>> A(N);
     for (auto& x : A) {
@@ -19,7 +19,7 @@ int main() {
     }
     SegmentTree<MaxMonoid<i64>> seg(A);
     std::vector<i64> dp(N + 1);
-    const auto transit = [&](usize i, const usize j) {
+    const auto transit = [&](int i, int j) {
         i += 1;
         if (j + L > i) return -INFTY<i64>;
         return dp[j] + *seg.fold(j, i);

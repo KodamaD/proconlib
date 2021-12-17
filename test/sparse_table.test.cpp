@@ -8,20 +8,20 @@
 #include "../utility/rep.cpp"
 
 int main() {
-    usize N, Q;
+    int N, Q;
     std::cin >> N >> Q;
     std::vector<u32> A(N);
     for (auto& x : A) {
         std::cin >> x;
     }
-    const auto sg_instance = lambda_semigroup([&](const usize i, const usize j) { return A[i] < A[j] ? i : j; });
-    std::vector<std::optional<usize>> vec(N);
+    const auto sg_instance = lambda_semigroup([&](const int i, const int j) { return A[i] < A[j] ? i : j; });
+    std::vector<std::optional<int>> vec(N);
     for (const auto i : rep(0, N)) {
         vec[i] = i;
     }
     SparseTable<OptionalMonoid<decltype(sg_instance)>> table(vec);
     while (Q--) {
-        usize l, r;
+        int l, r;
         std::cin >> l >> r;
         std::cout << A[*table.fold(l, r)] << '\n';
     }

@@ -6,7 +6,7 @@
 constexpr u32 primitive_root(const u32 mod) {
     std::array<u32, 32> exp{};
     u32 cur = mod - 1;
-    usize size = 0;
+    int size = 0;
     for (u32 i = 2; i * i <= cur; ++i) {
         if (cur % i == 0) {
             exp[size++] = (mod - 1) / i;

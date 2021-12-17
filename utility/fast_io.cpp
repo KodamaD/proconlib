@@ -12,9 +12,9 @@ namespace fast_io {
 template <u64 N> constexpr u64 TEN = 10 * TEN<N - 1>;
 template <> constexpr u64 TEN<0> = 1;
 
-constexpr usize BUF_SIZE = 1 << 17;
+constexpr int BUF_SIZE = 1 << 17;
 
-__attribute__((target("avx2"))) inline constexpr usize integer_digits(const u64 n) {
+__attribute__((target("avx2"))) inline constexpr int integer_digits(const u64 n) {
     if (n >= TEN<10>) {
         if (n >= TEN<15>) {
             if (n >= TEN<19>) return 20;
@@ -49,9 +49,9 @@ __attribute__((target("avx2"))) inline constexpr usize integer_digits(const u64 
 struct NumBlock {
     char NUM[40000];
     constexpr NumBlock() : NUM() {
-        for (const usize i : rep(0, 10000)) {
-            usize n = i;
-            for (const usize j : revrep(0, 4)) {
+        for (const int i : rep(0, 10000)) {
+            int n = i;
+            for (const int j : revrep(0, 4)) {
                 NUM[i * 4 + j] = n % 10 + '0';
                 n /= 10;
             }
@@ -61,10 +61,10 @@ struct NumBlock {
 
 class Scanner {
     char buf[BUF_SIZE];
-    usize left, right;
+    int left, right;
 
     __attribute__((target("avx2"))) inline void load() {
-        const usize len = right - left;
+        const int len = right - left;
         std::memcpy(buf, buf + left, len);
         right = len + std::fread(buf + len, 1, BUF_SIZE - len, stdin);
         left = 0;
@@ -114,7 +114,7 @@ class Scanner {
 
 class Printer {
     char buf[BUF_SIZE];
-    usize pos;
+    int pos;
 
     __attribute__((target("avx2"))) inline void flush() {
         std::fwrite(buf, 1, pos, stdout);
@@ -144,7 +144,7 @@ class Printer {
             }
         }
         const auto digit = integer_digits(x);
-        usize len = digit;
+        int len = digit;
         while (len >= 4) {
             len -= 4;
             std::memcpy(buf + pos + len, num_block.NUM + (x % 10000) * 4, 4);

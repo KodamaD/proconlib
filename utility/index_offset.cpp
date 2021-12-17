@@ -1,19 +1,18 @@
 #pragma once
 #include <cassert>
-#include "int_alias.cpp"
 
 class IndexOffset {
-    usize offset, len;
+    int offset, len;
 
   public:
-    IndexOffset() : offset(), len() {}
-    explicit constexpr IndexOffset(const usize o, const usize l) noexcept : offset(o), len(l) {}
-    constexpr usize size() const { return len; }
-    constexpr usize operator[](const usize i) const noexcept {
+    constexpr IndexOffset() noexcept : offset(), len() {}
+    explicit constexpr IndexOffset(const int o, const int l) noexcept : offset(o), len(l) {}
+    constexpr int size() const { return len; }
+    constexpr int operator[](const int i) const noexcept {
         assert(i < len);
         return offset + i;
     }
-    constexpr usize to_idx(const usize i) const noexcept {
+    constexpr int to_idx(const int i) const noexcept {
         assert(offset <= i and i < offset + len);
         return i - offset;
     }

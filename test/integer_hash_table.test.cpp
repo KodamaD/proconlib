@@ -4,7 +4,7 @@
 #include <iostream>
 
 int main() {
-    usize Q;
+    int Q;
     std::cin >> Q;
     IntegerHashTable<u64, u64> map;
     while (Q--) {

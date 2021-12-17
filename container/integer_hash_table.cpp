@@ -2,8 +2,8 @@
 #include <tuple>
 #include <type_traits>
 #include <utility>
-#include "../bit/ceil_log2.cpp"
 #include "../random/xorshift.cpp"
+#include "../utility/ceil_log2.cpp"
 #include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
 

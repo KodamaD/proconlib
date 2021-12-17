@@ -1,11 +1,11 @@
 #pragma once
 #include <utility>
 #include <vector>
-#include "../bit/ceil_log2.cpp"
+#include "ceil_log2.cpp"
 #include "int_alias.cpp"
 
 template <class F> class AutoReallocation {
-    using R = typename decltype(std::declval<F>()((usize)0))::value_type;
+    using R = typename decltype(std::declval<F>()(0))::value_type;
 
     F func;
     mutable std::vector<R> data;
@@ -13,10 +13,11 @@ template <class F> class AutoReallocation {
   public:
     explicit AutoReallocation(F&& f) : func(std::forward<F>(f)), data() {}
 
-    void reserve(const usize size) const {
-        if (data.size() < size) data = func(((usize)1 << ceil_log2(size)));
+    void reserve(const int size) const {
+        if ((int)data.size() < size) data = func(((int)1 << ceil_log2(size)));
     }
-    R operator[](const usize i) const {
+    R operator[](const int i) const {
+        assert(i >= 0);
         reserve(i + 1);
         return data[i];
     }

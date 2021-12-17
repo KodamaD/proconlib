@@ -2,7 +2,7 @@
 #include <variant>
 #include "int_alias.cpp"
 
-class subsets {
+class SubsetScanner {
     struct Iter {
         u64 s, t;
         explicit constexpr Iter(const u64 s, const u64 t) noexcept : s(s), t(t) {}
@@ -13,7 +13,9 @@ class subsets {
     u64 s;
 
   public:
-    explicit constexpr subsets(u64 s) noexcept : s(s) {}
+    explicit constexpr SubsetScanner(u64 s) noexcept : s(s) {}
     constexpr Iter begin() const noexcept { return Iter(s, s); }
     constexpr std::monostate end() noexcept { return {}; }
 };
+
+constexpr SubsetScanner subsets(const u64 set) noexcept { return SubsetScanner(set); }

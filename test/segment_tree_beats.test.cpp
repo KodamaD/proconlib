@@ -12,8 +12,8 @@ constexpr u32 MAX = 1000000000;
 struct Info {
     u32 max, lcm;
     u64 sum;
-    usize len;
-    static Info all_same(const u32 x, const usize l) { return {x, x, x * l, l}; }
+    int len;
+    static Info all_same(const u32 x, const int l) { return {x, x, x * l, l}; }
 };
 
 struct Operate {
@@ -52,7 +52,7 @@ struct Structure {
 };
 
 int main() {
-    usize N, Q;
+    int N, Q;
     std::cin >> N >> Q;
     std::vector<Info> build;
     build.reserve(N);
@@ -63,7 +63,7 @@ int main() {
     }
     SegmentTreeBeats<Structure> seg(build);
     while (Q--) {
-        usize t, l, r;
+        int t, l, r;
         std::cin >> t >> l >> r;
         l -= 1;
         if (t <= 2) {

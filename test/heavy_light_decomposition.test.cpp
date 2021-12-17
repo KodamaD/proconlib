@@ -16,7 +16,7 @@ using Monoid = AffineCompositeMonoid<Fp>;
 using RevMonoid = ReversedMonoid<Monoid>;
 
 int main() {
-    usize N, Q;
+    int N, Q;
     std::cin >> N >> Q;
     std::vector<Line> F(N);
     for (auto& f : F) {
@@ -26,7 +26,7 @@ int main() {
     }
     BasicGraph graph(N);
     for (const auto _ : rep(1, N)) {
-        usize x, y;
+        int x, y;
         std::cin >> x >> y;
         graph.add_edge(x, y);
         graph.add_edge(y, x);
@@ -43,17 +43,17 @@ int main() {
         seg_rev = SegmentTree<RevMonoid>(build);
     }
     while (Q--) {
-        usize t;
+        int t;
         std::cin >> t;
         if (t == 0) {
-            usize p;
+            int p;
             u32 c, d;
             std::cin >> p >> c >> d;
             F[p] = Line(c, d);
             seg.assign(tree[p].enter, F[p]);
             seg_rev.assign(tree[p].enter, F[p]);
         } else {
-            usize u, v;
+            int u, v;
             u32 x;
             std::cin >> u >> v >> x;
             const auto lca = tree.lca(u, v);

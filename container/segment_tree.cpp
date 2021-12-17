@@ -1,31 +1,30 @@
 #pragma once
 #include <cassert>
 #include <vector>
-#include "../bit/ceil_log2.cpp"
-#include "../utility/int_alias.cpp"
+#include "../utility/ceil_log2.cpp"
 #include "../utility/rep.cpp"
 #include "../utility/revrep.cpp"
 
 template <class M> class SegmentTree {
     using T = typename M::Type;
-    usize internal_size, seg_size;
+    int internal_size, seg_size;
     std::vector<T> data;
 
-    void fetch(const usize k) { data[k] = M::operation(data[2 * k], data[2 * k + 1]); }
+    void fetch(const int k) { data[k] = M::operation(data[2 * k], data[2 * k + 1]); }
 
   public:
-    explicit SegmentTree(const usize size = 0, const T& value = M::identity())
+    explicit SegmentTree(const int size = 0, const T& value = M::identity())
         : SegmentTree(std::vector<T>(size, value)) {}
     explicit SegmentTree(const std::vector<T>& vec) : internal_size(vec.size()) {
         seg_size = 1 << ceil_log2(internal_size);
         data = std::vector<T>(2 * seg_size, M::identity());
-        for (const usize i : rep(0, internal_size)) data[seg_size + i] = vec[i];
-        for (const usize i : revrep(1, seg_size)) fetch(i);
+        for (const int i : rep(0, internal_size)) data[seg_size + i] = vec[i];
+        for (const int i : revrep(1, seg_size)) fetch(i);
     }
 
-    usize size() const { return internal_size; }
+    int size() const { return internal_size; }
 
-    void assign(usize i, const T& value) {
+    void assign(int i, const T& value) {
         assert(i < internal_size);
         i += seg_size;
         data[i] = value;
@@ -36,7 +35,7 @@ template <class M> class SegmentTree {
     }
 
     T fold() const { return data[1]; }
-    T fold(usize l, usize r) const {
+    T fold(int l, int r) const {
         assert(l <= r and r <= internal_size);
         l += seg_size;
         r += seg_size;
@@ -50,7 +49,7 @@ template <class M> class SegmentTree {
         return M::operation(ret_l, ret_r);
     }
 
-    template <class F> usize max_right(usize l, const F& f) const {
+    template <class F> int max_right(int l, const F& f) const {
         assert(l <= internal_size);
         assert(f(M::identity()));
         if (l == internal_size) return internal_size;
@@ -70,7 +69,7 @@ template <class M> class SegmentTree {
         return internal_size;
     }
 
-    template <class F> usize min_left(usize r, const F& f) const {
+    template <class F> int min_left(int r, const F& f) const {
         assert(r <= internal_size);
         assert(f(M::identity()));
         if (r == 0) return 0;

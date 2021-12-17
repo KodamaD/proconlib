@@ -9,27 +9,27 @@
 using Fp = StaticModint<998244353>;
 
 int main() {
-    usize N, Q;
+    int N, Q;
     std::cin >> N >> Q;
     std::vector<Affine<Fp>> initial(N);
-    for (const usize i: rep(0, N)) {
+    for (const int i: rep(0, N)) {
         u32 a, b;
         std::cin >> a >> b;
         initial[i] = {a, b};
     }
     SegmentTree<AffineCompositeMonoid<Fp>> seg(initial);
     while (Q--) {
-        usize t;
+        int t;
         std::cin >> t;
         if (t == 0) {
-            usize p;
+            int p;
             std::cin >> p;
             u32 c, d;
             std::cin >> c >> d;
             seg.assign(p, {Fp(c), Fp(d)});
         }
         else {
-            usize l, r;
+            int l, r;
             std::cin >> l >> r;
             u32 x;
             std::cin >> x;

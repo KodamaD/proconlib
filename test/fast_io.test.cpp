@@ -6,9 +6,9 @@ fast_io::Scanner input;
 fast_io::Printer output;
 
 int main() {
-    usize N;
-    input.scan(N);
-    while (N--) {
+    int n;
+    input.scan(n);
+    while (n--) {
         u64 a, b;
         input.scan(a, b);
         output.println(a + b);

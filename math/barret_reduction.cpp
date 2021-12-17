@@ -1,6 +1,5 @@
 #pragma once
 #include "../utility/int_alias.cpp"
-#include "../utility/int_alias_extended.cpp"
 
 class BarretReduction {
     u32 mod;
@@ -14,4 +13,5 @@ class BarretReduction {
         const u32 v = z - x * mod;
         return v < mod ? v : v + mod;
     }
+    constexpr u32 get_mod() const noexcept { return mod; }
 };

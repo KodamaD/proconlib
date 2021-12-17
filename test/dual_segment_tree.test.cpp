@@ -6,20 +6,20 @@
 #include "../traits/assign_monoid.cpp"
 
 int main() {
-    usize N, Q;
+    int N, Q;
     std::cin >> N >> Q;
     DualSegmentTree<AssignMonoid<u32>> seg(N);
     while (Q--) {
-        usize t;
+        int t;
         std::cin >> t;
         if (t == 0) {
-            usize l, r;
+            int l, r;
             std::cin >> l >> r;
             u32 x;
             std::cin >> x;
             seg.operate(l, r + 1, x);
         } else {
-            usize p;
+            int p;
             std::cin >> p;
             const auto e = seg.get(p);
             if (!e) {

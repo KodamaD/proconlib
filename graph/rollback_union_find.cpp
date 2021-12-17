@@ -2,31 +2,30 @@
 #include <cassert>
 #include <utility>
 #include <vector>
-#include "../utility/int_alias.cpp"
 
 class RollbackUnionFind {
-    std::vector<usize> data;
-    std::vector<std::pair<usize, usize>> history;
+    std::vector<int> data;
+    std::vector<std::pair<int, int>> history;
 
   public:
-    explicit RollbackUnionFind(const usize size = 0) : data(size, -1), history() {}
+    explicit RollbackUnionFind(const int size = 0) : data(size, -1), history() {}
 
-    usize size() const { return data.size(); }
+    int size() const { return data.size(); }
 
-    usize leader(usize u) const {
-        assert(u < size());
-        while (data[u] < size()) u = data[u];
+    int leader(int u) const {
+        assert(0 <= u and u < size());
+        while (data[u] >= 0) u = data[u];
         return u;
     }
 
-    usize size(const usize u) const {
-        assert(u < size());
+    int size(const int u) const {
+        assert(0 <= u and u < size());
         return -data[leader(u)];
     }
 
-    std::pair<usize, bool> merge(usize u, usize v) {
-        assert(u < size());
-        assert(v < size());
+    std::pair<int, bool> merge(int u, int v) {
+        assert(0 <= u and u < size());
+        assert(0 <= v and v < size());
         u = leader(u);
         v = leader(v);
         if (u == v) return std::make_pair(u, false);
@@ -38,15 +37,15 @@ class RollbackUnionFind {
         return std::make_pair(u, true);
     }
 
-    bool same(const usize u, const usize v) const {
-        assert(u < size());
-        assert(v < size());
+    bool same(const int u, const int v) const {
+        assert(0 <= u and u < size());
+        assert(0 <= v and v < size());
         return leader(u) == leader(v);
     }
 
-    void rollback(const usize steps) {
-        assert(2 * steps <= history.size());
-        for (usize i = 2 * steps; i > 0; --i) {
+    void rollback(const int steps) {
+        assert(0 <= steps and 2 * steps <= history.size());
+        for (int i = 2 * steps; i > 0; --i) {
             const auto [k, x] = history.back();
             history.pop_back();
             data[k] = x;

@@ -2,19 +2,18 @@
 #include <queue>
 #include <tuple>
 #include <vector>
-#include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
 
-template <class Select> std::vector<usize> monotone_minima(const usize row, const usize column, const Select& select) {
-    std::vector<usize> ret(row);
-    std::queue<std::tuple<usize, usize, usize, usize>> que;
+template <class Select> std::vector<int> monotone_minima(const int row, const int column, const Select& select) {
+    std::vector<int> ret(row);
+    std::queue<std::tuple<int, int, int, int>> que;
     que.emplace(0, row, 0, column);
     while (!que.empty()) {
         const auto [l, r, d, u] = que.front();
         que.pop();
-        const usize m = (l + r) / 2;
+        const int m = (l + r) / 2;
         ret[m] = d;
-        for (const usize i : rep(d + 1, u)) {
+        for (const int i : rep(d + 1, u)) {
             if (select(m, ret[m], i)) {
                 ret[m] = i;
             }

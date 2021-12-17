@@ -1,7 +1,6 @@
 #pragma once
-#include <type_traits>
 #include <cassert>
-#include "int_alias.cpp"
+#include <type_traits>
 
 template <class T, class F, std::enable_if_t<std::is_integral_v<T>>* = nullptr>
 T binary_search(T ok, T ng, const F& f) {

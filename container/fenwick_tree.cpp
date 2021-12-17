@@ -1,22 +1,21 @@
 #pragma once
 #include <cassert>
 #include <vector>
-#include "../bit/ceil_log2.cpp"
-#include "../utility/int_alias.cpp"
+#include "../utility/ceil_log2.cpp"
 
 template <class T> class FenwickTree {
-    usize logn;
+    int logn;
     std::vector<T> data;
 
   public:
-    explicit FenwickTree(const usize size = 0) {
+    explicit FenwickTree(const int size = 0) {
         logn = ceil_log2(size + 1) - 1;
         data = std::vector<T>(size + 1, T(0));
     }
 
-    usize size() const { return data.size() - 1; }
+    int size() const { return data.size() - 1; }
 
-    void add(usize i, const T& x) {
+    void add(int i, const T& x) {
         assert(i < size());
         i += 1;
         while (i < data.size()) {
@@ -24,7 +23,7 @@ template <class T> class FenwickTree {
             i += i & -i;
         }
     }
-    void subtract(usize i, const T& x) {
+    void subtract(int i, const T& x) {
         assert(i < size());
         i += 1;
         while (i < data.size()) {
@@ -34,7 +33,7 @@ template <class T> class FenwickTree {
     }
 
     T fold() const { return fold(0, size()); }
-    T fold(usize l, usize r) const {
+    T fold(int l, int r) const {
         assert(l <= r and r <= size());
         T ret(0);
         while (l < r) {
@@ -48,11 +47,11 @@ template <class T> class FenwickTree {
         return ret;
     }
 
-    template <class F> usize max_right(const F& f) const {
+    template <class F> int max_right(const F& f) const {
         assert(f(T(0)));
-        usize i = 0;
+        int i = 0;
         T sum(0);
-        for (usize k = (1 << logn); k > 0; k >>= 1) {
+        for (int k = (1 << logn); k > 0; k >>= 1) {
             if (i + k <= size() && f(sum + data[i + k])) {
                 i += k;
                 sum += data[i];

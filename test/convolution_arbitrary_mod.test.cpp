@@ -9,7 +9,7 @@
 using Fp = Modint1000000007;
 
 int main() {
-    usize n, m;
+    int n, m;
     std::cin >> n >> m;
     std::vector<Fp> a(n), b(m);
     for (auto& x : a) {

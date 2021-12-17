@@ -1,19 +1,21 @@
 #pragma once
 #include <algorithm>
-#include "int_alias.cpp"
 
-class rep {
+class Range {
     struct Iter {
-        usize itr;
-        constexpr Iter(const usize pos) noexcept : itr(pos) {}
+        int itr;
+        constexpr Iter(const int pos) noexcept : itr(pos) {}
         constexpr void operator++() noexcept { ++itr; }
         constexpr bool operator!=(const Iter& other) const noexcept { return itr != other.itr; }
-        constexpr usize operator*() const noexcept { return itr; }
+        constexpr int operator*() const noexcept { return itr; }
     };
     const Iter first, last;
 
   public:
-    explicit constexpr rep(const usize first, const usize last) noexcept : first(first), last(std::max(first, last)) {}
+    explicit constexpr Range(const int first, const int last) noexcept : first(first), last(std::max(first, last)) {}
     constexpr Iter begin() const noexcept { return first; }
     constexpr Iter end() const noexcept { return last; }
 };
+
+constexpr Range rep(const int l, const int r) noexcept { return Range(l, r); }
+constexpr Range rep(const int n) noexcept { return Range(0, n); }

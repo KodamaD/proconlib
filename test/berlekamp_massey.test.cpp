@@ -8,7 +8,7 @@
 using Fp = Modint998244353;
 
 int main() { 
-    usize n;
+    int n;
     std::cin >> n;
     std::vector<Fp> a(n);
     for (auto& x : a) {
@@ -18,7 +18,7 @@ int main() {
     }
     const auto c = berlekamp_massey(a);
     std::cout << c.size() << '\n';
-    for (const usize i : rep(0, c.size())) {
+    for (const int i : rep(0, c.size())) {
         std::cout << c[i] << " \n"[i + 1 == c.size()];
     }
     return 0; 

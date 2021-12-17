@@ -11,7 +11,7 @@
 
 template <class Flow, std::enable_if_t<std::is_integral_v<Flow>>* = nullptr> class Dinic {
     struct Edge {
-        usize dst, rev;
+        int dst, rev;
         Flow cap;
     };
 
@@ -19,63 +19,63 @@ template <class Flow, std::enable_if_t<std::is_integral_v<Flow>>* = nullptr> cla
 
   public:
     Dinic() : graph() {}
-    explicit Dinic(const usize n) : graph(n) {}
+    explicit Dinic(const int n) : graph(n) {}
 
     class EdgePtr {
         friend class Dinic;
         Dinic* self;
-        usize u, e;
+        int u, e;
 
-        explicit EdgePtr(Dinic* p, const usize u, const usize e) : self(p), u(u), e(e) {}
+        explicit EdgePtr(Dinic* p, const int u, const int e) : self(p), u(u), e(e) {}
 
         const Edge& edge() const { return self->graph[u][e]; }
         const Edge& rev_edge() const { return self->graph[edge().dst][edge().rev]; }
 
       public:
         EdgePtr() : self(nullptr), u(0), e(0) {}
-        usize src() const { return u; }
-        usize dst() const { return edge().dst; }
+        int src() const { return u; }
+        int dst() const { return edge().dst; }
         Flow flow() const { return rev_edge().cap; }
         Flow cap() const { return edge().cap + rev_edge().cap; }
     };
 
-    usize size() const { return graph.size(); }
+    int size() const { return graph.size(); }
 
-    usize add_vertex() {
+    int add_vertex() {
         graph.emplace_back();
         return size() - 1;
     }
-    IndexOffset add_vertices(usize n) {
+    IndexOffset add_vertices(int n) {
         IndexOffset ret(size(), n);
         while (n--) graph.emplace_back();
         return ret;
     }
 
-    EdgePtr add_edge(const usize src, const usize dst, const Flow cap) {
-        assert(src < size());
-        assert(dst < size());
+    EdgePtr add_edge(const int src, const int dst, const Flow cap) {
+        assert(0 <= src and src < size());
+        assert(0 <= dst and dst < size());
         assert(cap >= 0);
-        const usize src_id = graph[src].size();
-        const usize dst_id = graph[dst].size() + (src == dst);
+        const int src_id = graph[src].size();
+        const int dst_id = graph[dst].size() + (src == dst);
         graph[src].push_back(Edge{dst, dst_id, cap});
         graph[dst].push_back(Edge{src, src_id, 0});
         return EdgePtr(this, src, src_id);
     }
 
-    Flow flow(const usize src, const usize dst) { return flow(src, dst, std::numeric_limits<Flow>::max()); }
-    Flow flow(const usize src, const usize dst, const Flow flow_limit) {
-        assert(src < size());
-        assert(dst < size());
+    Flow flow(const int src, const int dst) { return flow(src, dst, std::numeric_limits<Flow>::max()); }
+    Flow flow(const int src, const int dst, const Flow flow_limit) {
+        assert(0 <= src and src < size());
+        assert(0 <= dst and dst < size());
         assert(src != dst);
-        std::vector<usize> level(size()), iter(size());
-        std::queue<usize> que;
+        std::vector<int> level(size()), iter(size());
+        std::queue<int> que;
         const auto bfs = [&] {
             std::fill(level.begin(), level.end(), size());
             level[src] = 0;
             while (!que.empty()) que.pop();
             que.push(src);
             while (!que.empty()) {
-                const usize u = que.front();
+                const int u = que.front();
                 que.pop();
                 for (const Edge& e : graph[u]) {
                     if (e.cap == 0 or level[e.dst] < size()) continue;
@@ -85,10 +85,10 @@ template <class Flow, std::enable_if_t<std::is_integral_v<Flow>>* = nullptr> cla
                 }
             }
         };
-        const auto dfs = rec_lambda([&](auto&& dfs, const usize u, const Flow ub) -> Flow {
+        const auto dfs = rec_lambda([&](auto&& dfs, const int u, const Flow ub) -> Flow {
             if (u == src) return ub;
             Flow ret = 0;
-            for (usize& i = iter[u]; i < graph[u].size(); i += 1) {
+            for (int& i = iter[u]; i < graph[u].size(); i += 1) {
                 Edge& e = graph[u][i];
                 Edge& re = graph[e.dst][e.rev];
                 if (level[u] <= level[e.dst] or re.cap == 0) continue;
@@ -106,7 +106,7 @@ template <class Flow, std::enable_if_t<std::is_integral_v<Flow>>* = nullptr> cla
         while (ret < flow_limit) {
             bfs();
             if (level[dst] == size()) break;
-            std::fill(iter.begin(), iter.end(), (usize)0);
+            std::fill(iter.begin(), iter.end(), (int)0);
             const Flow f = dfs(dst, flow_limit - ret);
             if (f == 0) break;
             ret += f;
@@ -114,13 +114,13 @@ template <class Flow, std::enable_if_t<std::is_integral_v<Flow>>* = nullptr> cla
         return ret;
     }
 
-    std::vector<char> min_cut(const usize src) const {
+    std::vector<char> min_cut(const int src) const {
         std::vector<char> ret(size());
-        std::queue<usize> que;
+        std::queue<int> que;
         ret[src] = true;
         que.push(src);
         while (!que.empty()) {
-            const usize u = que.front();
+            const int u = que.front();
             que.pop();
             for (const Edge& e : graph[u]) {
                 if (e.cap > 0 and !ret[e.dst]) {

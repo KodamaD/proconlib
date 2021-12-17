@@ -3,21 +3,22 @@
 #include <numeric>
 #include <variant>
 #include <vector>
-#include "int_alias.cpp"
 
-class permutations {
+class PermutationScanner {
     struct Iter {
         bool f;
-        std::vector<usize> v;
-        explicit Iter(const usize n, const usize k) noexcept : f(true), v(n) { std::iota(v.begin(), v.end(), k); }
+        std::vector<int> v;
+        explicit Iter(const int n, const int k) noexcept : f(true), v(n) { std::iota(v.begin(), v.end(), k); }
         bool operator!=(std::monostate) const noexcept { return f; }
         void operator++() noexcept { f = std::next_permutation(v.begin(), v.end()); }
-        const std::vector<usize>& operator*() noexcept { return v; }
+        const std::vector<int>& operator*() noexcept { return v; }
     };
     Iter iter;
 
   public:
-    explicit permutations(const usize n, const usize k = 0) noexcept : iter(n, k) {}
+    explicit PermutationScanner(const int n, const int k = 0) noexcept : iter(n, k) {}
     Iter begin() const noexcept { return iter; }
     std::monostate end() noexcept { return {}; }
 };
+
+PermutationScanner permutations(const int n, const int k = 0) noexcept { return PermutationScanner(n, k); }

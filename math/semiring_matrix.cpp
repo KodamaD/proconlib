@@ -13,7 +13,7 @@ template <class S> class SemiRingMatrix {
 
   public:
     SemiRingMatrix() = default;
-    explicit SemiRingMatrix(const usize h, const usize w, const T& val = S::zero()) : data(h, std::vector<T>(w, val)) {}
+    explicit SemiRingMatrix(const int h, const int w, const T& val = S::zero()) : data(h, std::vector<T>(w, val)) {}
 
     SemiRingMatrix(const std::vector<std::vector<T>>& vec) : data(vec) {
         for (const auto& v : data) assert(v.size() == width());
@@ -24,15 +24,15 @@ template <class S> class SemiRingMatrix {
         for (const auto& v : data) assert(v.size() == width());
     }
 
-    usize height() const { return data.size(); }
-    usize width() const { return data.empty() ? 0 : data[0].size(); }
+    int height() const { return data.size(); }
+    int width() const { return data.empty() ? 0 : data[0].size(); }
 
-    T& operator()(const usize i, const usize j) {
+    T& operator()(const int i, const int j) {
         assert(i < height());
         assert(j < width());
         return data[i][j];
     }
-    const T& operator()(const usize i, const usize j) const {
+    const T& operator()(const int i, const int j) const {
         assert(i < height());
         assert(j < width());
         return data[i][j];
@@ -42,8 +42,8 @@ template <class S> class SemiRingMatrix {
     Self& operator+=(const Self& other) {
         assert(height() == other.height());
         assert(width() == other.width());
-        for (const usize i : rep(0, height())) {
-            for (const usize j : rep(0, width())) {
+        for (const int i : rep(0, height())) {
+            for (const int j : rep(0, width())) {
                 data[i][j] = S::sum(data[i][j], other.data[i][j]);
             }
         }
@@ -53,9 +53,9 @@ template <class S> class SemiRingMatrix {
     Self operator*(const Self& other) const {
         assert(width() == other.height());
         Self ret(height(), other.width(), S::zero());
-        for (const usize i : rep(0, height())) {
-            for (const usize k : rep(0, width())) {
-                for (const usize j : rep(0, other.width())) {
+        for (const int i : rep(0, height())) {
+            for (const int k : rep(0, width())) {
+                for (const int j : rep(0, other.width())) {
                     ret.data[i][j] = S::sum(ret.data[i][j], S::product(data[i][k], other.data[k][j]));
                 }
             }
@@ -65,8 +65,8 @@ template <class S> class SemiRingMatrix {
 
     Self operator*(const T& other) const { return Self(*this) *= other; }
     Self& operator*=(const T& other) {
-        for (const usize i : rep(0, height())) {
-            for (const usize j : rep(0, width())) {
+        for (const int i : rep(0, height())) {
+            for (const int j : rep(0, width())) {
                 data[i][j] = S::product(data[i][j], other);
             }
         }
@@ -75,7 +75,7 @@ template <class S> class SemiRingMatrix {
     Self pow(u64 exp) const {
         assert(height() == width());
         Self ret(height(), width(), S::zero()), mult(*this);
-        for (const usize i : rep(0, height())) {
+        for (const int i : rep(0, height())) {
             ret.data[i][i] = S::one();
         }
         for (; exp > 0; exp >>= 1) {

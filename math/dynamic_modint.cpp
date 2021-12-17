@@ -7,14 +7,14 @@
 #include "mod_inv.cpp"
 #include "rem_euclid.cpp"
 
-template <usize ID> class DynamicModint {
+template <int ID> class DynamicModint {
     using Self = DynamicModint;
 
     static inline auto bt = BarretReduction(1);
     u32 v;
 
   public:
-    static u32 mod() noexcept { return bt.mod; }
+    static u32 mod() noexcept { return bt.get_mod(); }
     static void set_mod(const u32 mod) noexcept {
         assert((u32)1 <= mod and mod <= ((u32)1 << 31));
         bt = BarretReduction(mod);
@@ -74,4 +74,4 @@ template <usize ID> class DynamicModint {
     friend std::ostream& operator<<(std::ostream& stream, const Self& rhs) { return stream << rhs.v; }
 };
 
-using Modint = DynamicModint<__COUNTER__>;
+using Modint = DynamicModint<-1>;

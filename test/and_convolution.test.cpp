@@ -7,7 +7,7 @@
 using Fp = Modint998244353;
 
 int main() {
-    usize N;
+    int N;
     std::cin >> N;
     N = 1 << N;
     std::vector<Fp> A(N), B(N);

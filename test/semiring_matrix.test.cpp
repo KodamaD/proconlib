@@ -11,7 +11,7 @@ using Fp = Modint998244353;
 using Matrix = SemiRingMatrix<NumSemiRing<Fp>>;
 
 int main() {
-    usize N, M, K;
+    int N, M, K;
     std::cin >> N >> M >> K;
     std::vector<std::vector<Fp>> A(N, std::vector<Fp>(M));
     std::vector<std::vector<Fp>> B(M, std::vector<Fp>(K));
