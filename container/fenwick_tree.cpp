@@ -16,7 +16,7 @@ template <class T> class FenwickTree {
     int size() const { return data.size() - 1; }
 
     void add(int i, const T& x) {
-        assert(i < size());
+        assert(0 <= i and i < size());
         i += 1;
         while (i < data.size()) {
             data[i] += x;
@@ -24,7 +24,7 @@ template <class T> class FenwickTree {
         }
     }
     void subtract(int i, const T& x) {
-        assert(i < size());
+        assert(0 <= i and i < size());
         i += 1;
         while (i < data.size()) {
             data[i] -= x;
@@ -34,7 +34,7 @@ template <class T> class FenwickTree {
 
     T fold() const { return fold(0, size()); }
     T fold(int l, int r) const {
-        assert(l <= r and r <= size());
+        assert(0 <= l and l <= r and r <= size());
         T ret(0);
         while (l < r) {
             ret += data[r];

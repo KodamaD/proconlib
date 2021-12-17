@@ -60,14 +60,14 @@ template <class A> class SegmentTreeBeats {
     int size() const { return internal_size; }
 
     void assign(int i, const T& value) {
-        assert(i < internal_size);
+        assert(0 <= i and i < internal_size);
         i += seg_size;
         for (const int d : revrep(1, logn + 1)) flush(i >> d);
         data[i] = value;
         for (const int d : rep(1, logn + 1)) fetch(i >> d);
     }
     void operate(int l, int r, const U& e) {
-        assert(l <= r and r <= internal_size);
+        assert(0 <= l and l <= r and r <= internal_size);
         l += seg_size;
         r += seg_size;
         push(l);
@@ -82,7 +82,7 @@ template <class A> class SegmentTreeBeats {
 
     T fold() const { return data[1]; }
     T fold(int l, int r) {
-        assert(l <= r and r <= internal_size);
+        assert(0 <= l and l <= r and r <= internal_size);
         l += seg_size;
         r += seg_size;
         push(l);
@@ -98,7 +98,7 @@ template <class A> class SegmentTreeBeats {
     }
 
     template <class F> int max_right(int l, const F& f) {
-        assert(l <= internal_size);
+        assert(0 <= l and l <= internal_size);
         assert(f(M::identity()));
         if (l == internal_size) return internal_size;
         l += seg_size;
@@ -120,7 +120,7 @@ template <class A> class SegmentTreeBeats {
     }
 
     template <class F> int min_left(int r, const F& f) {
-        assert(r <= internal_size);
+        assert(0 <= r and r <= internal_size);
         assert(f(M::identity()));
         if (r == 0) return 0;
         r += seg_size;

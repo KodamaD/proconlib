@@ -53,7 +53,7 @@ template <class T, int ID = 0, std::enable_if_t<std::is_integral_v<T>>* = nullpt
 
     u64 fold() const { return hash.back(); }
     u64 fold(const int l, const int r) const {
-        assert(l <= r and r <= size());
+        assert(0 <= l and l <= r and r <= size());
         return Helper::sub(hash[r], Helper::mul(hash[l], Helper::BASE_POW[r - l]));
     }
 

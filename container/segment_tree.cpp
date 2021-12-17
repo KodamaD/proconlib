@@ -25,7 +25,7 @@ template <class M> class SegmentTree {
     int size() const { return internal_size; }
 
     void assign(int i, const T& value) {
-        assert(i < internal_size);
+        assert(0 <= i and i < internal_size);
         i += seg_size;
         data[i] = value;
         while (i > 1) {
@@ -36,7 +36,7 @@ template <class M> class SegmentTree {
 
     T fold() const { return data[1]; }
     T fold(int l, int r) const {
-        assert(l <= r and r <= internal_size);
+        assert(0 <= l and l <= r and r <= internal_size);
         l += seg_size;
         r += seg_size;
         T ret_l = M::identity(), ret_r = M::identity();
@@ -50,7 +50,7 @@ template <class M> class SegmentTree {
     }
 
     template <class F> int max_right(int l, const F& f) const {
-        assert(l <= internal_size);
+        assert(0 <= l and l <= internal_size);
         assert(f(M::identity()));
         if (l == internal_size) return internal_size;
         l += seg_size;
@@ -70,7 +70,7 @@ template <class M> class SegmentTree {
     }
 
     template <class F> int min_left(int r, const F& f) const {
-        assert(r <= internal_size);
+        assert(0 <= r and r <= internal_size);
         assert(f(M::identity()));
         if (r == 0) return 0;
         r += seg_size;

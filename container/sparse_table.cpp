@@ -26,8 +26,8 @@ template <class M> class SparseTable {
     int size() const { return table[0].size(); }
 
     T fold(const int l, const int r) const {
+        assert(0 <= l and l <= r and r < size());
         if (l == r) return M::identity();
-        assert(l < r);
         const auto d = bit_width(r - l) - 1;
         return M::operation(table[d][l], table[d][r - (1 << d)]);
     }
