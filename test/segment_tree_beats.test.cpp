@@ -13,7 +13,7 @@ struct Info {
     u32 max, lcm;
     u64 sum;
     int len;
-    static Info all_same(const u32 x, const int l) { return {x, x, x * l, l}; }
+    static Info all_same(const u32 x, const int l) { return {x, x, (u64)x * l, l}; }
 };
 
 struct Operate {
