@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
   _extendedRequiredBy: []

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: utility/bit_width.cpp
     title: utility/bit_width.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: utility/countl_zero.cpp
     title: utility/countl_zero.cpp
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"container/sparse_table.cpp\"\n#include <cassert>\n#include\
@@ -51,9 +51,10 @@ data:
     \            for (const int i : rep(0, table[d].size())) {\n                table[d][i]\
     \ = M::operation(table[d - 1][i], table[d - 1][i + (1 << (d - 1))]);\n       \
     \     }\n        }\n    }\n\n    int size() const { return table[0].size(); }\n\
-    \n    T fold(const int l, const int r) const {\n        if (l == r) return M::identity();\n\
-    \        assert(l < r);\n        const auto d = bit_width(r - l) - 1;\n      \
-    \  return M::operation(table[d][l], table[d][r - (1 << d)]);\n    }\n};\n"
+    \n    T fold(const int l, const int r) const {\n        assert(0 <= l and l <=\
+    \ r and r < size());\n        if (l == r) return M::identity();\n        const\
+    \ auto d = bit_width(r - l) - 1;\n        return M::operation(table[d][l], table[d][r\
+    \ - (1 << d)]);\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n#include \"../utility/bit_width.cpp\"\
     \n#include \"../utility/rep.cpp\"\n\ntemplate <class M> class SparseTable {\n\
     \    using T = typename M::Type;\n    std::vector<std::vector<T>> table;\n\n \
@@ -65,9 +66,10 @@ data:
     \            for (const int i : rep(0, table[d].size())) {\n                table[d][i]\
     \ = M::operation(table[d - 1][i], table[d - 1][i + (1 << (d - 1))]);\n       \
     \     }\n        }\n    }\n\n    int size() const { return table[0].size(); }\n\
-    \n    T fold(const int l, const int r) const {\n        if (l == r) return M::identity();\n\
-    \        assert(l < r);\n        const auto d = bit_width(r - l) - 1;\n      \
-    \  return M::operation(table[d][l], table[d][r - (1 << d)]);\n    }\n};\n"
+    \n    T fold(const int l, const int r) const {\n        assert(0 <= l and l <=\
+    \ r and r < size());\n        if (l == r) return M::identity();\n        const\
+    \ auto d = bit_width(r - l) - 1;\n        return M::operation(table[d][l], table[d][r\
+    \ - (1 << d)]);\n    }\n};\n"
   dependsOn:
   - utility/bit_width.cpp
   - utility/countl_zero.cpp
@@ -76,8 +78,8 @@ data:
   isVerificationFile: false
   path: container/sparse_table.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-12-17 09:48:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/sparse_table.test.cpp
 documentation_of: container/sparse_table.cpp

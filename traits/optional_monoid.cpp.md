@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/larsch.test.cpp
     title: test/larsch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"traits/optional_monoid.cpp\"\n#include <optional>\n#include\
@@ -47,7 +47,7 @@ data:
   - traits/min_monoid.cpp
   - traits/min_add_action.cpp
   timestamp: '2021-09-27 22:23:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/larsch.test.cpp
   - test/sparse_table.test.cpp

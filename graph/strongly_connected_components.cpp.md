@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
   - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/setmin.cpp
     title: utility/setmin.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/strongly_connected_components.cpp\"\n#include <cassert>\n\
@@ -95,7 +95,7 @@ data:
   path: graph/strongly_connected_components.cpp
   requiredBy: []
   timestamp: '2021-12-17 09:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/strongly_connected_components.test.cpp
 documentation_of: graph/strongly_connected_components.cpp

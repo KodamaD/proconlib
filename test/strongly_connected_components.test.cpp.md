@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/basic_graph.cpp
     title: graph/basic_graph.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_components.cpp
     title: graph/strongly_connected_components.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
   - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/setmin.cpp
     title: utility/setmin.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/scc
@@ -123,7 +123,7 @@ data:
   path: test/strongly_connected_components.test.cpp
   requiredBy: []
   timestamp: '2021-12-17 09:20:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/strongly_connected_components.test.cpp
 layout: document

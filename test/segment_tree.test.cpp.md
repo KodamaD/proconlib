@@ -117,34 +117,34 @@ data:
     \        for (const int i : rep(0, internal_size)) data[seg_size + i] = vec[i];\n\
     \        for (const int i : revrep(1, seg_size)) fetch(i);\n    }\n\n    int size()\
     \ const { return internal_size; }\n\n    void assign(int i, const T& value) {\n\
-    \        assert(i < internal_size);\n        i += seg_size;\n        data[i] =\
-    \ value;\n        while (i > 1) {\n            i >>= 1;\n            fetch(i);\n\
-    \        }\n    }\n\n    T fold() const { return data[1]; }\n    T fold(int l,\
-    \ int r) const {\n        assert(l <= r and r <= internal_size);\n        l +=\
-    \ seg_size;\n        r += seg_size;\n        T ret_l = M::identity(), ret_r =\
-    \ M::identity();\n        while (l < r) {\n            if (l & 1) ret_l = M::operation(ret_l,\
-    \ data[l++]);\n            if (r & 1) ret_r = M::operation(data[--r], ret_r);\n\
-    \            l >>= 1;\n            r >>= 1;\n        }\n        return M::operation(ret_l,\
-    \ ret_r);\n    }\n\n    template <class F> int max_right(int l, const F& f) const\
-    \ {\n        assert(l <= internal_size);\n        assert(f(M::identity()));\n\
-    \        if (l == internal_size) return internal_size;\n        l += seg_size;\n\
-    \        T sum = M::identity();\n        do {\n            while (!(l & 1)) l\
-    \ >>= 1;\n            if (!f(M::operation(sum, data[l]))) {\n                while\
-    \ (l < seg_size) {\n                    l = 2 * l;\n                    if (f(M::operation(sum,\
-    \ data[l]))) sum = M::operation(sum, data[l++]);\n                }\n        \
-    \        return l - seg_size;\n            }\n            sum = M::operation(sum,\
-    \ data[l++]);\n        } while ((l & -l) != l);\n        return internal_size;\n\
-    \    }\n\n    template <class F> int min_left(int r, const F& f) const {\n   \
-    \     assert(r <= internal_size);\n        assert(f(M::identity()));\n       \
-    \ if (r == 0) return 0;\n        r += seg_size;\n        T sum = M::identity();\n\
-    \        do {\n            r -= 1;\n            while (r > 1 and (r & 1)) r >>=\
-    \ 1;\n            if (!f(M::operation(data[r], sum))) {\n                while\
-    \ (r < seg_size) {\n                    r = 2 * r + 1;\n                    if\
-    \ (f(M::operation(data[r], sum))) sum = M::operation(data[r--], sum);\n      \
-    \          }\n                return r + 1 - seg_size;\n            }\n      \
-    \      sum = M::operation(data[r], sum);\n        } while ((r & -r) != r);\n \
-    \       return 0;\n    }\n};\n#line 2 \"traits/affine_composite_monoid.cpp\"\n\
-    \ntemplate <class T> struct Affine {\n    T a, b;\n    constexpr Affine(const\
+    \        assert(0 <= i and i < internal_size);\n        i += seg_size;\n     \
+    \   data[i] = value;\n        while (i > 1) {\n            i >>= 1;\n        \
+    \    fetch(i);\n        }\n    }\n\n    T fold() const { return data[1]; }\n \
+    \   T fold(int l, int r) const {\n        assert(0 <= l and l <= r and r <= internal_size);\n\
+    \        l += seg_size;\n        r += seg_size;\n        T ret_l = M::identity(),\
+    \ ret_r = M::identity();\n        while (l < r) {\n            if (l & 1) ret_l\
+    \ = M::operation(ret_l, data[l++]);\n            if (r & 1) ret_r = M::operation(data[--r],\
+    \ ret_r);\n            l >>= 1;\n            r >>= 1;\n        }\n        return\
+    \ M::operation(ret_l, ret_r);\n    }\n\n    template <class F> int max_right(int\
+    \ l, const F& f) const {\n        assert(0 <= l and l <= internal_size);\n   \
+    \     assert(f(M::identity()));\n        if (l == internal_size) return internal_size;\n\
+    \        l += seg_size;\n        T sum = M::identity();\n        do {\n      \
+    \      while (!(l & 1)) l >>= 1;\n            if (!f(M::operation(sum, data[l])))\
+    \ {\n                while (l < seg_size) {\n                    l = 2 * l;\n\
+    \                    if (f(M::operation(sum, data[l]))) sum = M::operation(sum,\
+    \ data[l++]);\n                }\n                return l - seg_size;\n     \
+    \       }\n            sum = M::operation(sum, data[l++]);\n        } while ((l\
+    \ & -l) != l);\n        return internal_size;\n    }\n\n    template <class F>\
+    \ int min_left(int r, const F& f) const {\n        assert(0 <= r and r <= internal_size);\n\
+    \        assert(f(M::identity()));\n        if (r == 0) return 0;\n        r +=\
+    \ seg_size;\n        T sum = M::identity();\n        do {\n            r -= 1;\n\
+    \            while (r > 1 and (r & 1)) r >>= 1;\n            if (!f(M::operation(data[r],\
+    \ sum))) {\n                while (r < seg_size) {\n                    r = 2\
+    \ * r + 1;\n                    if (f(M::operation(data[r], sum))) sum = M::operation(data[r--],\
+    \ sum);\n                }\n                return r + 1 - seg_size;\n       \
+    \     }\n            sum = M::operation(data[r], sum);\n        } while ((r &\
+    \ -r) != r);\n        return 0;\n    }\n};\n#line 2 \"traits/affine_composite_monoid.cpp\"\
+    \n\ntemplate <class T> struct Affine {\n    T a, b;\n    constexpr Affine(const\
     \ T& a = 1, const T& b = 0) : a(a), b(b) {}\n    constexpr T eval(const T& x)\
     \ const { return a * x + b; }\n    constexpr Affine operator+(const Affine& other)\
     \ const { return affine(a + other.a, b + other.b); }\n    constexpr Affine composite(const\
@@ -190,7 +190,7 @@ data:
   isVerificationFile: true
   path: test/segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-17 09:48:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segment_tree.test.cpp

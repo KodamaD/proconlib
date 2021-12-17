@@ -32,7 +32,7 @@ data:
   - icon: ':x:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
   - icon: ':warning:'
@@ -92,13 +92,13 @@ data:
   - icon: ':warning:'
     path: utility/bit_parity.cpp
     title: utility/bit_parity.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: utility/bit_width.cpp
     title: utility/bit_width.cpp
   - icon: ':question:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: utility/countl_zero.cpp
     title: utility/countl_zero.cpp
   - icon: ':question:'
@@ -183,10 +183,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/totient.test.cpp
     title: test/totient.test.cpp
   _isVerificationFailed: true

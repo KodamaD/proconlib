@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
   - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
   _extendedRequiredBy:

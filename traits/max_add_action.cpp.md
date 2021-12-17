@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: traits/max_monoid.cpp
     title: traits/max_monoid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: traits/optional_monoid.cpp
     title: traits/optional_monoid.cpp
   - icon: ':x:'

@@ -74,41 +74,42 @@ data:
     \        lazy = std::vector<U>(seg_size, E::identity());\n        for (const int\
     \ i : rep(0, internal_size)) data[seg_size + i] = vec[i];\n        for (const\
     \ int i : revrep(1, seg_size)) fetch(i);\n    }\n\n    int size() const { return\
-    \ internal_size; }\n\n    void assign(int i, const T& value) {\n        assert(i\
-    \ < internal_size);\n        i += seg_size;\n        for (const int d : revrep(1,\
-    \ logn + 1)) flush(i >> d);\n        data[i] = value;\n        for (const int\
-    \ d : rep(1, logn + 1)) fetch(i >> d);\n    }\n    void operate(int l, int r,\
-    \ const U& e) {\n        assert(l <= r and r <= internal_size);\n        l +=\
-    \ seg_size;\n        r += seg_size;\n        push(l);\n        push(r);\n    \
-    \    for (int l0 = l, r0 = r; l0 < r0; l0 >>= 1, r0 >>= 1) {\n            if (l0\
-    \ & 1) apply(l0++, e);\n            if (r0 & 1) apply(--r0, e);\n        }\n \
-    \       pull(l);\n        pull(r);\n    }\n\n    T fold() const { return data[1];\
-    \ }\n    T fold(int l, int r) {\n        assert(l <= r and r <= internal_size);\n\
+    \ internal_size; }\n\n    void assign(int i, const T& value) {\n        assert(0\
+    \ <= i and i < internal_size);\n        i += seg_size;\n        for (const int\
+    \ d : revrep(1, logn + 1)) flush(i >> d);\n        data[i] = value;\n        for\
+    \ (const int d : rep(1, logn + 1)) fetch(i >> d);\n    }\n    void operate(int\
+    \ l, int r, const U& e) {\n        assert(0 <= l and l <= r and r <= internal_size);\n\
     \        l += seg_size;\n        r += seg_size;\n        push(l);\n        push(r);\n\
-    \        T ret_l = M::identity(), ret_r = M::identity();\n        while (l < r)\
-    \ {\n            if (l & 1) ret_l = M::operation(ret_l, data[l++]);\n        \
-    \    if (r & 1) ret_r = M::operation(data[--r], ret_r);\n            l >>= 1;\n\
-    \            r >>= 1;\n        }\n        return M::operation(ret_l, ret_r);\n\
-    \    }\n\n    template <class F> int max_right(int l, const F& f) {\n        assert(l\
-    \ <= internal_size);\n        assert(f(M::identity()));\n        if (l == internal_size)\
-    \ return internal_size;\n        l += seg_size;\n        for (const int d : revrep(1,\
-    \ logn + 1)) flush(l >> d);\n        T sum = M::identity();\n        do {\n  \
-    \          while (!(l & 1)) l >>= 1;\n            if (!f(M::operation(sum, data[l])))\
-    \ {\n                while (l < seg_size) {\n                    flush(l);\n \
-    \                   l = 2 * l;\n                    if (f(M::operation(sum, data[l])))\
-    \ sum = M::operation(sum, data[l++]);\n                }\n                return\
-    \ l - seg_size;\n            }\n            sum = M::operation(sum, data[l++]);\n\
-    \        } while ((l & -l) != l);\n        return internal_size;\n    }\n\n  \
-    \  template <class F> int min_left(int r, const F& f) {\n        assert(r <= internal_size);\n\
-    \        assert(f(M::identity()));\n        if (r == 0) return 0;\n        r +=\
-    \ seg_size;\n        for (const int d : revrep(1, logn + 1)) flush((r - 1) >>\
-    \ d);\n        T sum = M::identity();\n        do {\n            r -= 1;\n   \
-    \         while (r > 1 and (r & 1)) r >>= 1;\n            if (!f(M::operation(data[r],\
-    \ sum))) {\n                while (r < seg_size) {\n                    flush(r);\n\
-    \                    r = 2 * r + 1;\n                    if (f(M::operation(data[r],\
-    \ sum))) sum = M::operation(data[r--], sum);\n                }\n            \
-    \    return r + 1 - seg_size;\n            }\n            sum = M::operation(data[r],\
-    \ sum);\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n"
+    \        for (int l0 = l, r0 = r; l0 < r0; l0 >>= 1, r0 >>= 1) {\n           \
+    \ if (l0 & 1) apply(l0++, e);\n            if (r0 & 1) apply(--r0, e);\n     \
+    \   }\n        pull(l);\n        pull(r);\n    }\n\n    T fold() const { return\
+    \ data[1]; }\n    T fold(int l, int r) {\n        assert(0 <= l and l <= r and\
+    \ r <= internal_size);\n        l += seg_size;\n        r += seg_size;\n     \
+    \   push(l);\n        push(r);\n        T ret_l = M::identity(), ret_r = M::identity();\n\
+    \        while (l < r) {\n            if (l & 1) ret_l = M::operation(ret_l, data[l++]);\n\
+    \            if (r & 1) ret_r = M::operation(data[--r], ret_r);\n            l\
+    \ >>= 1;\n            r >>= 1;\n        }\n        return M::operation(ret_l,\
+    \ ret_r);\n    }\n\n    template <class F> int max_right(int l, const F& f) {\n\
+    \        assert(0 <= l and l <= internal_size);\n        assert(f(M::identity()));\n\
+    \        if (l == internal_size) return internal_size;\n        l += seg_size;\n\
+    \        for (const int d : revrep(1, logn + 1)) flush(l >> d);\n        T sum\
+    \ = M::identity();\n        do {\n            while (!(l & 1)) l >>= 1;\n    \
+    \        if (!f(M::operation(sum, data[l]))) {\n                while (l < seg_size)\
+    \ {\n                    flush(l);\n                    l = 2 * l;\n         \
+    \           if (f(M::operation(sum, data[l]))) sum = M::operation(sum, data[l++]);\n\
+    \                }\n                return l - seg_size;\n            }\n    \
+    \        sum = M::operation(sum, data[l++]);\n        } while ((l & -l) != l);\n\
+    \        return internal_size;\n    }\n\n    template <class F> int min_left(int\
+    \ r, const F& f) {\n        assert(0 <= r and r <= internal_size);\n        assert(f(M::identity()));\n\
+    \        if (r == 0) return 0;\n        r += seg_size;\n        for (const int\
+    \ d : revrep(1, logn + 1)) flush((r - 1) >> d);\n        T sum = M::identity();\n\
+    \        do {\n            r -= 1;\n            while (r > 1 and (r & 1)) r >>=\
+    \ 1;\n            if (!f(M::operation(data[r], sum))) {\n                while\
+    \ (r < seg_size) {\n                    flush(r);\n                    r = 2 *\
+    \ r + 1;\n                    if (f(M::operation(data[r], sum))) sum = M::operation(data[r--],\
+    \ sum);\n                }\n                return r + 1 - seg_size;\n       \
+    \     }\n            sum = M::operation(data[r], sum);\n        } while ((r &\
+    \ -r) != r);\n        return 0;\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n#include \"../utility/ceil_log2.cpp\"\
     \n#include \"../utility/countr_zero.cpp\"\n#include \"../utility/rep.cpp\"\n#include\
     \ \"../utility/revrep.cpp\"\n\ntemplate <class A> class LazySegmentTree {\n  \
@@ -130,38 +131,39 @@ data:
     \ E::identity());\n        for (const int i : rep(0, internal_size)) data[seg_size\
     \ + i] = vec[i];\n        for (const int i : revrep(1, seg_size)) fetch(i);\n\
     \    }\n\n    int size() const { return internal_size; }\n\n    void assign(int\
-    \ i, const T& value) {\n        assert(i < internal_size);\n        i += seg_size;\n\
-    \        for (const int d : revrep(1, logn + 1)) flush(i >> d);\n        data[i]\
-    \ = value;\n        for (const int d : rep(1, logn + 1)) fetch(i >> d);\n    }\n\
-    \    void operate(int l, int r, const U& e) {\n        assert(l <= r and r <=\
-    \ internal_size);\n        l += seg_size;\n        r += seg_size;\n        push(l);\n\
-    \        push(r);\n        for (int l0 = l, r0 = r; l0 < r0; l0 >>= 1, r0 >>=\
-    \ 1) {\n            if (l0 & 1) apply(l0++, e);\n            if (r0 & 1) apply(--r0,\
-    \ e);\n        }\n        pull(l);\n        pull(r);\n    }\n\n    T fold() const\
-    \ { return data[1]; }\n    T fold(int l, int r) {\n        assert(l <= r and r\
-    \ <= internal_size);\n        l += seg_size;\n        r += seg_size;\n       \
-    \ push(l);\n        push(r);\n        T ret_l = M::identity(), ret_r = M::identity();\n\
-    \        while (l < r) {\n            if (l & 1) ret_l = M::operation(ret_l, data[l++]);\n\
-    \            if (r & 1) ret_r = M::operation(data[--r], ret_r);\n            l\
-    \ >>= 1;\n            r >>= 1;\n        }\n        return M::operation(ret_l,\
-    \ ret_r);\n    }\n\n    template <class F> int max_right(int l, const F& f) {\n\
-    \        assert(l <= internal_size);\n        assert(f(M::identity()));\n    \
-    \    if (l == internal_size) return internal_size;\n        l += seg_size;\n \
-    \       for (const int d : revrep(1, logn + 1)) flush(l >> d);\n        T sum\
-    \ = M::identity();\n        do {\n            while (!(l & 1)) l >>= 1;\n    \
-    \        if (!f(M::operation(sum, data[l]))) {\n                while (l < seg_size)\
-    \ {\n                    flush(l);\n                    l = 2 * l;\n         \
-    \           if (f(M::operation(sum, data[l]))) sum = M::operation(sum, data[l++]);\n\
-    \                }\n                return l - seg_size;\n            }\n    \
-    \        sum = M::operation(sum, data[l++]);\n        } while ((l & -l) != l);\n\
-    \        return internal_size;\n    }\n\n    template <class F> int min_left(int\
-    \ r, const F& f) {\n        assert(r <= internal_size);\n        assert(f(M::identity()));\n\
-    \        if (r == 0) return 0;\n        r += seg_size;\n        for (const int\
-    \ d : revrep(1, logn + 1)) flush((r - 1) >> d);\n        T sum = M::identity();\n\
-    \        do {\n            r -= 1;\n            while (r > 1 and (r & 1)) r >>=\
-    \ 1;\n            if (!f(M::operation(data[r], sum))) {\n                while\
-    \ (r < seg_size) {\n                    flush(r);\n                    r = 2 *\
-    \ r + 1;\n                    if (f(M::operation(data[r], sum))) sum = M::operation(data[r--],\
+    \ i, const T& value) {\n        assert(0 <= i and i < internal_size);\n      \
+    \  i += seg_size;\n        for (const int d : revrep(1, logn + 1)) flush(i >>\
+    \ d);\n        data[i] = value;\n        for (const int d : rep(1, logn + 1))\
+    \ fetch(i >> d);\n    }\n    void operate(int l, int r, const U& e) {\n      \
+    \  assert(0 <= l and l <= r and r <= internal_size);\n        l += seg_size;\n\
+    \        r += seg_size;\n        push(l);\n        push(r);\n        for (int\
+    \ l0 = l, r0 = r; l0 < r0; l0 >>= 1, r0 >>= 1) {\n            if (l0 & 1) apply(l0++,\
+    \ e);\n            if (r0 & 1) apply(--r0, e);\n        }\n        pull(l);\n\
+    \        pull(r);\n    }\n\n    T fold() const { return data[1]; }\n    T fold(int\
+    \ l, int r) {\n        assert(0 <= l and l <= r and r <= internal_size);\n   \
+    \     l += seg_size;\n        r += seg_size;\n        push(l);\n        push(r);\n\
+    \        T ret_l = M::identity(), ret_r = M::identity();\n        while (l < r)\
+    \ {\n            if (l & 1) ret_l = M::operation(ret_l, data[l++]);\n        \
+    \    if (r & 1) ret_r = M::operation(data[--r], ret_r);\n            l >>= 1;\n\
+    \            r >>= 1;\n        }\n        return M::operation(ret_l, ret_r);\n\
+    \    }\n\n    template <class F> int max_right(int l, const F& f) {\n        assert(0\
+    \ <= l and l <= internal_size);\n        assert(f(M::identity()));\n        if\
+    \ (l == internal_size) return internal_size;\n        l += seg_size;\n       \
+    \ for (const int d : revrep(1, logn + 1)) flush(l >> d);\n        T sum = M::identity();\n\
+    \        do {\n            while (!(l & 1)) l >>= 1;\n            if (!f(M::operation(sum,\
+    \ data[l]))) {\n                while (l < seg_size) {\n                    flush(l);\n\
+    \                    l = 2 * l;\n                    if (f(M::operation(sum, data[l])))\
+    \ sum = M::operation(sum, data[l++]);\n                }\n                return\
+    \ l - seg_size;\n            }\n            sum = M::operation(sum, data[l++]);\n\
+    \        } while ((l & -l) != l);\n        return internal_size;\n    }\n\n  \
+    \  template <class F> int min_left(int r, const F& f) {\n        assert(0 <= r\
+    \ and r <= internal_size);\n        assert(f(M::identity()));\n        if (r ==\
+    \ 0) return 0;\n        r += seg_size;\n        for (const int d : revrep(1, logn\
+    \ + 1)) flush((r - 1) >> d);\n        T sum = M::identity();\n        do {\n \
+    \           r -= 1;\n            while (r > 1 and (r & 1)) r >>= 1;\n        \
+    \    if (!f(M::operation(data[r], sum))) {\n                while (r < seg_size)\
+    \ {\n                    flush(r);\n                    r = 2 * r + 1;\n     \
+    \               if (f(M::operation(data[r], sum))) sum = M::operation(data[r--],\
     \ sum);\n                }\n                return r + 1 - seg_size;\n       \
     \     }\n            sum = M::operation(data[r], sum);\n        } while ((r &\
     \ -r) != r);\n        return 0;\n    }\n};\n"
@@ -174,7 +176,7 @@ data:
   isVerificationFile: false
   path: container/lazy_segment_tree.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-17 09:48:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/lazy_segment_tree.test.cpp

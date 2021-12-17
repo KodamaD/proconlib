@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"traits/lambda_semigroup.cpp\"\n#include <memory>\n#include\
@@ -35,7 +35,7 @@ data:
   path: traits/lambda_semigroup.cpp
   requiredBy: []
   timestamp: '2021-11-03 19:13:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/sparse_table.test.cpp
 documentation_of: traits/lambda_semigroup.cpp

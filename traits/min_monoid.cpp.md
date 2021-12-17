@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: traits/optional_monoid.cpp
     title: traits/optional_monoid.cpp
   _extendedRequiredBy:

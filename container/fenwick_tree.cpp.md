@@ -28,46 +28,47 @@ data:
     \    explicit FenwickTree(const int size = 0) {\n        logn = ceil_log2(size\
     \ + 1) - 1;\n        data = std::vector<T>(size + 1, T(0));\n    }\n\n    int\
     \ size() const { return data.size() - 1; }\n\n    void add(int i, const T& x)\
-    \ {\n        assert(i < size());\n        i += 1;\n        while (i < data.size())\
-    \ {\n            data[i] += x;\n            i += i & -i;\n        }\n    }\n \
-    \   void subtract(int i, const T& x) {\n        assert(i < size());\n        i\
-    \ += 1;\n        while (i < data.size()) {\n            data[i] -= x;\n      \
-    \      i += i & -i;\n        }\n    }\n\n    T fold() const { return fold(0, size());\
-    \ }\n    T fold(int l, int r) const {\n        assert(l <= r and r <= size());\n\
-    \        T ret(0);\n        while (l < r) {\n            ret += data[r];\n   \
-    \         r -= r & -r;\n        }\n        while (r < l) {\n            ret -=\
-    \ data[l];\n            l -= l & -l;\n        }\n        return ret;\n    }\n\n\
-    \    template <class F> int max_right(const F& f) const {\n        assert(f(T(0)));\n\
-    \        int i = 0;\n        T sum(0);\n        for (int k = (1 << logn); k >\
-    \ 0; k >>= 1) {\n            if (i + k <= size() && f(sum + data[i + k])) {\n\
-    \                i += k;\n                sum += data[i];\n            }\n   \
-    \     }\n        return i;\n    }\n};\n"
+    \ {\n        assert(0 <= i and i < size());\n        i += 1;\n        while (i\
+    \ < data.size()) {\n            data[i] += x;\n            i += i & -i;\n    \
+    \    }\n    }\n    void subtract(int i, const T& x) {\n        assert(0 <= i and\
+    \ i < size());\n        i += 1;\n        while (i < data.size()) {\n         \
+    \   data[i] -= x;\n            i += i & -i;\n        }\n    }\n\n    T fold()\
+    \ const { return fold(0, size()); }\n    T fold(int l, int r) const {\n      \
+    \  assert(0 <= l and l <= r and r <= size());\n        T ret(0);\n        while\
+    \ (l < r) {\n            ret += data[r];\n            r -= r & -r;\n        }\n\
+    \        while (r < l) {\n            ret -= data[l];\n            l -= l & -l;\n\
+    \        }\n        return ret;\n    }\n\n    template <class F> int max_right(const\
+    \ F& f) const {\n        assert(f(T(0)));\n        int i = 0;\n        T sum(0);\n\
+    \        for (int k = (1 << logn); k > 0; k >>= 1) {\n            if (i + k <=\
+    \ size() && f(sum + data[i + k])) {\n                i += k;\n               \
+    \ sum += data[i];\n            }\n        }\n        return i;\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n#include \"../utility/ceil_log2.cpp\"\
     \n\ntemplate <class T> class FenwickTree {\n    int logn;\n    std::vector<T>\
     \ data;\n\n  public:\n    explicit FenwickTree(const int size = 0) {\n       \
     \ logn = ceil_log2(size + 1) - 1;\n        data = std::vector<T>(size + 1, T(0));\n\
     \    }\n\n    int size() const { return data.size() - 1; }\n\n    void add(int\
-    \ i, const T& x) {\n        assert(i < size());\n        i += 1;\n        while\
-    \ (i < data.size()) {\n            data[i] += x;\n            i += i & -i;\n \
-    \       }\n    }\n    void subtract(int i, const T& x) {\n        assert(i < size());\n\
-    \        i += 1;\n        while (i < data.size()) {\n            data[i] -= x;\n\
-    \            i += i & -i;\n        }\n    }\n\n    T fold() const { return fold(0,\
-    \ size()); }\n    T fold(int l, int r) const {\n        assert(l <= r and r <=\
-    \ size());\n        T ret(0);\n        while (l < r) {\n            ret += data[r];\n\
-    \            r -= r & -r;\n        }\n        while (r < l) {\n            ret\
-    \ -= data[l];\n            l -= l & -l;\n        }\n        return ret;\n    }\n\
-    \n    template <class F> int max_right(const F& f) const {\n        assert(f(T(0)));\n\
-    \        int i = 0;\n        T sum(0);\n        for (int k = (1 << logn); k >\
-    \ 0; k >>= 1) {\n            if (i + k <= size() && f(sum + data[i + k])) {\n\
-    \                i += k;\n                sum += data[i];\n            }\n   \
-    \     }\n        return i;\n    }\n};\n"
+    \ i, const T& x) {\n        assert(0 <= i and i < size());\n        i += 1;\n\
+    \        while (i < data.size()) {\n            data[i] += x;\n            i +=\
+    \ i & -i;\n        }\n    }\n    void subtract(int i, const T& x) {\n        assert(0\
+    \ <= i and i < size());\n        i += 1;\n        while (i < data.size()) {\n\
+    \            data[i] -= x;\n            i += i & -i;\n        }\n    }\n\n   \
+    \ T fold() const { return fold(0, size()); }\n    T fold(int l, int r) const {\n\
+    \        assert(0 <= l and l <= r and r <= size());\n        T ret(0);\n     \
+    \   while (l < r) {\n            ret += data[r];\n            r -= r & -r;\n \
+    \       }\n        while (r < l) {\n            ret -= data[l];\n            l\
+    \ -= l & -l;\n        }\n        return ret;\n    }\n\n    template <class F>\
+    \ int max_right(const F& f) const {\n        assert(f(T(0)));\n        int i =\
+    \ 0;\n        T sum(0);\n        for (int k = (1 << logn); k > 0; k >>= 1) {\n\
+    \            if (i + k <= size() && f(sum + data[i + k])) {\n                i\
+    \ += k;\n                sum += data[i];\n            }\n        }\n        return\
+    \ i;\n    }\n};\n"
   dependsOn:
   - utility/ceil_log2.cpp
   - utility/int_alias.cpp
   isVerificationFile: false
   path: container/fenwick_tree.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-17 09:48:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fenwick_tree.test.cpp

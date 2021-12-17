@@ -45,28 +45,28 @@ data:
     \n  public:\n    explicit FenwickTree(const int size = 0) {\n        logn = ceil_log2(size\
     \ + 1) - 1;\n        data = std::vector<T>(size + 1, T(0));\n    }\n\n    int\
     \ size() const { return data.size() - 1; }\n\n    void add(int i, const T& x)\
-    \ {\n        assert(i < size());\n        i += 1;\n        while (i < data.size())\
-    \ {\n            data[i] += x;\n            i += i & -i;\n        }\n    }\n \
-    \   void subtract(int i, const T& x) {\n        assert(i < size());\n        i\
-    \ += 1;\n        while (i < data.size()) {\n            data[i] -= x;\n      \
-    \      i += i & -i;\n        }\n    }\n\n    T fold() const { return fold(0, size());\
-    \ }\n    T fold(int l, int r) const {\n        assert(l <= r and r <= size());\n\
-    \        T ret(0);\n        while (l < r) {\n            ret += data[r];\n   \
-    \         r -= r & -r;\n        }\n        while (r < l) {\n            ret -=\
-    \ data[l];\n            l -= l & -l;\n        }\n        return ret;\n    }\n\n\
-    \    template <class F> int max_right(const F& f) const {\n        assert(f(T(0)));\n\
-    \        int i = 0;\n        T sum(0);\n        for (int k = (1 << logn); k >\
-    \ 0; k >>= 1) {\n            if (i + k <= size() && f(sum + data[i + k])) {\n\
-    \                i += k;\n                sum += data[i];\n            }\n   \
-    \     }\n        return i;\n    }\n};\n#line 5 \"test/fenwick_tree.test.cpp\"\n\
-    #include <iostream>\n\nint main() {\n    int N, Q;\n    std::cin >> N >> Q;\n\
-    \    FenwickTree<u64> fen(N);\n    for (const int i: rep(0, N)) {\n        u64\
-    \ x;\n        std::cin >> x;\n        fen.add(i, x);\n    }\n    while (Q--) {\n\
-    \        int t;\n        std::cin >> t;\n        if (t == 0) {\n            int\
-    \ p;\n            u64 x;\n            std::cin >> p >> x;\n            fen.add(p,\
-    \ x);\n        }\n        else {\n            int l, r;\n            std::cin\
-    \ >> l >> r;\n            std::cout << fen.fold(l, r) << '\\n';\n        }\n \
-    \   }\n    return 0;\n}\n"
+    \ {\n        assert(0 <= i and i < size());\n        i += 1;\n        while (i\
+    \ < data.size()) {\n            data[i] += x;\n            i += i & -i;\n    \
+    \    }\n    }\n    void subtract(int i, const T& x) {\n        assert(0 <= i and\
+    \ i < size());\n        i += 1;\n        while (i < data.size()) {\n         \
+    \   data[i] -= x;\n            i += i & -i;\n        }\n    }\n\n    T fold()\
+    \ const { return fold(0, size()); }\n    T fold(int l, int r) const {\n      \
+    \  assert(0 <= l and l <= r and r <= size());\n        T ret(0);\n        while\
+    \ (l < r) {\n            ret += data[r];\n            r -= r & -r;\n        }\n\
+    \        while (r < l) {\n            ret -= data[l];\n            l -= l & -l;\n\
+    \        }\n        return ret;\n    }\n\n    template <class F> int max_right(const\
+    \ F& f) const {\n        assert(f(T(0)));\n        int i = 0;\n        T sum(0);\n\
+    \        for (int k = (1 << logn); k > 0; k >>= 1) {\n            if (i + k <=\
+    \ size() && f(sum + data[i + k])) {\n                i += k;\n               \
+    \ sum += data[i];\n            }\n        }\n        return i;\n    }\n};\n#line\
+    \ 5 \"test/fenwick_tree.test.cpp\"\n#include <iostream>\n\nint main() {\n    int\
+    \ N, Q;\n    std::cin >> N >> Q;\n    FenwickTree<u64> fen(N);\n    for (const\
+    \ int i: rep(0, N)) {\n        u64 x;\n        std::cin >> x;\n        fen.add(i,\
+    \ x);\n    }\n    while (Q--) {\n        int t;\n        std::cin >> t;\n    \
+    \    if (t == 0) {\n            int p;\n            u64 x;\n            std::cin\
+    \ >> p >> x;\n            fen.add(p, x);\n        }\n        else {\n        \
+    \    int l, r;\n            std::cin >> l >> r;\n            std::cout << fen.fold(l,\
+    \ r) << '\\n';\n        }\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
     #include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n#include\
     \ \"../container/fenwick_tree.cpp\"\n#include <iostream>\n\nint main() {\n   \
@@ -85,7 +85,7 @@ data:
   isVerificationFile: true
   path: test/fenwick_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-17 09:48:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fenwick_tree.test.cpp

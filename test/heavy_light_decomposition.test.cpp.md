@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/basic_graph.cpp
     title: graph/basic_graph.cpp
   - icon: ':heavy_check_mark:'
@@ -28,13 +28,13 @@ data:
   - icon: ':question:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
   - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
   - icon: ':question:'
@@ -93,58 +93,58 @@ data:
     \        for (const int i : rep(0, internal_size)) data[seg_size + i] = vec[i];\n\
     \        for (const int i : revrep(1, seg_size)) fetch(i);\n    }\n\n    int size()\
     \ const { return internal_size; }\n\n    void assign(int i, const T& value) {\n\
-    \        assert(i < internal_size);\n        i += seg_size;\n        data[i] =\
-    \ value;\n        while (i > 1) {\n            i >>= 1;\n            fetch(i);\n\
-    \        }\n    }\n\n    T fold() const { return data[1]; }\n    T fold(int l,\
-    \ int r) const {\n        assert(l <= r and r <= internal_size);\n        l +=\
-    \ seg_size;\n        r += seg_size;\n        T ret_l = M::identity(), ret_r =\
-    \ M::identity();\n        while (l < r) {\n            if (l & 1) ret_l = M::operation(ret_l,\
-    \ data[l++]);\n            if (r & 1) ret_r = M::operation(data[--r], ret_r);\n\
-    \            l >>= 1;\n            r >>= 1;\n        }\n        return M::operation(ret_l,\
-    \ ret_r);\n    }\n\n    template <class F> int max_right(int l, const F& f) const\
-    \ {\n        assert(l <= internal_size);\n        assert(f(M::identity()));\n\
-    \        if (l == internal_size) return internal_size;\n        l += seg_size;\n\
-    \        T sum = M::identity();\n        do {\n            while (!(l & 1)) l\
-    \ >>= 1;\n            if (!f(M::operation(sum, data[l]))) {\n                while\
-    \ (l < seg_size) {\n                    l = 2 * l;\n                    if (f(M::operation(sum,\
-    \ data[l]))) sum = M::operation(sum, data[l++]);\n                }\n        \
-    \        return l - seg_size;\n            }\n            sum = M::operation(sum,\
-    \ data[l++]);\n        } while ((l & -l) != l);\n        return internal_size;\n\
-    \    }\n\n    template <class F> int min_left(int r, const F& f) const {\n   \
-    \     assert(r <= internal_size);\n        assert(f(M::identity()));\n       \
-    \ if (r == 0) return 0;\n        r += seg_size;\n        T sum = M::identity();\n\
-    \        do {\n            r -= 1;\n            while (r > 1 and (r & 1)) r >>=\
-    \ 1;\n            if (!f(M::operation(data[r], sum))) {\n                while\
-    \ (r < seg_size) {\n                    r = 2 * r + 1;\n                    if\
-    \ (f(M::operation(data[r], sum))) sum = M::operation(data[r--], sum);\n      \
-    \          }\n                return r + 1 - seg_size;\n            }\n      \
-    \      sum = M::operation(data[r], sum);\n        } while ((r & -r) != r);\n \
-    \       return 0;\n    }\n};\n#line 3 \"graph/basic_graph.cpp\"\n#include <utility>\n\
-    #line 3 \"utility/index_offset.cpp\"\n\nclass IndexOffset {\n    int offset, len;\n\
-    \n  public:\n    constexpr IndexOffset() noexcept : offset(), len() {}\n    explicit\
-    \ constexpr IndexOffset(const int o, const int l) noexcept : offset(o), len(l)\
-    \ {}\n    constexpr int size() const { return len; }\n    constexpr int operator[](const\
-    \ int i) const noexcept {\n        assert(i < len);\n        return offset + i;\n\
-    \    }\n    constexpr int to_idx(const int i) const noexcept {\n        assert(offset\
-    \ <= i and i < offset + len);\n        return i - offset;\n    }\n};\n#line 6\
-    \ \"graph/basic_graph.cpp\"\n\ntemplate <class E = int> class BasicGraph {\n \
-    \   std::vector<std::vector<E>> graph;\n\n  public:\n    BasicGraph() : graph()\
-    \ {}\n    explicit BasicGraph(const int n) : graph(n) {}\n\n    class EdgePtr\
-    \ {\n        friend class BasicGraph;\n        int u, e;\n        BasicGraph*\
-    \ self;\n\n        explicit EdgePtr(const int u, const int e, BasicGraph* p) :\
-    \ u(u), e(e), self(p) {}\n\n      public:\n        EdgePtr() : u(0), e(0), self(nullptr)\
-    \ {}\n        int src() const { return u; }\n        E& operator*() const { return\
-    \ self->graph[u][e]; }\n        E* operator->() const { return &self->graph[u][e];\
-    \ }\n    };\n\n    int size() const { return graph.size(); }\n    std::vector<E>&\
-    \ operator[](const int u) {\n        assert(0 <= u and u < (int)size());\n   \
-    \     return graph[u];\n    }\n    const std::vector<E>& operator[](const int\
-    \ u) const {\n        assert(0 <= u and u < (int)size());\n        return graph[u];\n\
-    \    }\n\n    int add_vertex() {\n        graph.emplace_back();\n        return\
-    \ size() - 1;\n    }\n    IndexOffset add_vertices(int n) {\n        IndexOffset\
-    \ ret(size(), n);\n        while (n--) graph.emplace_back();\n        return ret;\n\
-    \    }\n\n    template <class... Args> EdgePtr add_edge(const int u, Args&&...\
-    \ args) {\n        assert(0 <= u and u < (int)size());\n        const int e =\
-    \ graph[u].size();\n        graph[u].emplace_back(std::forward<Args>(args)...);\n\
+    \        assert(0 <= i and i < internal_size);\n        i += seg_size;\n     \
+    \   data[i] = value;\n        while (i > 1) {\n            i >>= 1;\n        \
+    \    fetch(i);\n        }\n    }\n\n    T fold() const { return data[1]; }\n \
+    \   T fold(int l, int r) const {\n        assert(0 <= l and l <= r and r <= internal_size);\n\
+    \        l += seg_size;\n        r += seg_size;\n        T ret_l = M::identity(),\
+    \ ret_r = M::identity();\n        while (l < r) {\n            if (l & 1) ret_l\
+    \ = M::operation(ret_l, data[l++]);\n            if (r & 1) ret_r = M::operation(data[--r],\
+    \ ret_r);\n            l >>= 1;\n            r >>= 1;\n        }\n        return\
+    \ M::operation(ret_l, ret_r);\n    }\n\n    template <class F> int max_right(int\
+    \ l, const F& f) const {\n        assert(0 <= l and l <= internal_size);\n   \
+    \     assert(f(M::identity()));\n        if (l == internal_size) return internal_size;\n\
+    \        l += seg_size;\n        T sum = M::identity();\n        do {\n      \
+    \      while (!(l & 1)) l >>= 1;\n            if (!f(M::operation(sum, data[l])))\
+    \ {\n                while (l < seg_size) {\n                    l = 2 * l;\n\
+    \                    if (f(M::operation(sum, data[l]))) sum = M::operation(sum,\
+    \ data[l++]);\n                }\n                return l - seg_size;\n     \
+    \       }\n            sum = M::operation(sum, data[l++]);\n        } while ((l\
+    \ & -l) != l);\n        return internal_size;\n    }\n\n    template <class F>\
+    \ int min_left(int r, const F& f) const {\n        assert(0 <= r and r <= internal_size);\n\
+    \        assert(f(M::identity()));\n        if (r == 0) return 0;\n        r +=\
+    \ seg_size;\n        T sum = M::identity();\n        do {\n            r -= 1;\n\
+    \            while (r > 1 and (r & 1)) r >>= 1;\n            if (!f(M::operation(data[r],\
+    \ sum))) {\n                while (r < seg_size) {\n                    r = 2\
+    \ * r + 1;\n                    if (f(M::operation(data[r], sum))) sum = M::operation(data[r--],\
+    \ sum);\n                }\n                return r + 1 - seg_size;\n       \
+    \     }\n            sum = M::operation(data[r], sum);\n        } while ((r &\
+    \ -r) != r);\n        return 0;\n    }\n};\n#line 3 \"graph/basic_graph.cpp\"\n\
+    #include <utility>\n#line 3 \"utility/index_offset.cpp\"\n\nclass IndexOffset\
+    \ {\n    int offset, len;\n\n  public:\n    constexpr IndexOffset() noexcept :\
+    \ offset(), len() {}\n    explicit constexpr IndexOffset(const int o, const int\
+    \ l) noexcept : offset(o), len(l) {}\n    constexpr int size() const { return\
+    \ len; }\n    constexpr int operator[](const int i) const noexcept {\n       \
+    \ assert(i < len);\n        return offset + i;\n    }\n    constexpr int to_idx(const\
+    \ int i) const noexcept {\n        assert(offset <= i and i < offset + len);\n\
+    \        return i - offset;\n    }\n};\n#line 6 \"graph/basic_graph.cpp\"\n\n\
+    template <class E = int> class BasicGraph {\n    std::vector<std::vector<E>> graph;\n\
+    \n  public:\n    BasicGraph() : graph() {}\n    explicit BasicGraph(const int\
+    \ n) : graph(n) {}\n\n    class EdgePtr {\n        friend class BasicGraph;\n\
+    \        int u, e;\n        BasicGraph* self;\n\n        explicit EdgePtr(const\
+    \ int u, const int e, BasicGraph* p) : u(u), e(e), self(p) {}\n\n      public:\n\
+    \        EdgePtr() : u(0), e(0), self(nullptr) {}\n        int src() const { return\
+    \ u; }\n        E& operator*() const { return self->graph[u][e]; }\n        E*\
+    \ operator->() const { return &self->graph[u][e]; }\n    };\n\n    int size()\
+    \ const { return graph.size(); }\n    std::vector<E>& operator[](const int u)\
+    \ {\n        assert(0 <= u and u < (int)size());\n        return graph[u];\n \
+    \   }\n    const std::vector<E>& operator[](const int u) const {\n        assert(0\
+    \ <= u and u < (int)size());\n        return graph[u];\n    }\n\n    int add_vertex()\
+    \ {\n        graph.emplace_back();\n        return size() - 1;\n    }\n    IndexOffset\
+    \ add_vertices(int n) {\n        IndexOffset ret(size(), n);\n        while (n--)\
+    \ graph.emplace_back();\n        return ret;\n    }\n\n    template <class...\
+    \ Args> EdgePtr add_edge(const int u, Args&&... args) {\n        assert(0 <= u\
+    \ and u < (int)size());\n        const int e = graph[u].size();\n        graph[u].emplace_back(std::forward<Args>(args)...);\n\
     \        return EdgePtr(u, e, this);\n    }\n};\n#line 4 \"graph/tree_manager.cpp\"\
     \n#include <variant>\n#line 2 \"utility/rec_lambda.cpp\"\n#include <type_traits>\n\
     #line 4 \"utility/rec_lambda.cpp\"\n\ntemplate <class F> struct RecursiveLambda\
@@ -315,7 +315,7 @@ data:
   isVerificationFile: true
   path: test/heavy_light_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-17 09:48:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/heavy_light_decomposition.test.cpp

@@ -45,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/totient.test.cpp
     title: test/totient.test.cpp
   _isVerificationFailed: true

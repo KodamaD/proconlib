@@ -85,17 +85,17 @@ data:
     \ hash[i]), (u64)data[i]);\n        }\n    }\n\n    int size() const { return\
     \ data.size(); }\n    const std::vector<T>& get() const { return data; }\n\n \
     \   u64 fold() const { return hash.back(); }\n    u64 fold(const int l, const\
-    \ int r) const {\n        assert(l <= r and r <= size());\n        return Helper::sub(hash[r],\
-    \ Helper::mul(hash[l], Helper::BASE_POW[r - l]));\n    }\n\n    void concat(const\
-    \ PolynomialHash& other) {\n        hash.reserve(hash.size() + other.size());\n\
-    \        u64 val = hash.back();\n        for (const int i : rep(0, other.size()))\
-    \ {\n            val = Helper::mul(val, Helper::BASE);\n            hash.push_back(Helper::add(val,\
-    \ other.hash[i + 1]));\n        }\n        data.reserve(data.size() + other.size());\n\
-    \        std::copy(other.data.cbegin(), other.data.cend(), std::back_inserter(data));\n\
-    \    }\n};\n#line 4 \"test/polynomial_hash.test.cpp\"\n#include <iostream>\n\n\
-    int main() {\n    std::string T, P;\n    std::cin >> T >> P;\n    if (T.size()\
-    \ < P.size()) {\n        return 0;\n    }\n    PolynomialHash rh(std::vector<char>(T.begin(),\
-    \ T.end()));\n    const auto match = PolynomialHash(std::vector<char>(P.begin(),\
+    \ int r) const {\n        assert(0 <= l and l <= r and r <= size());\n       \
+    \ return Helper::sub(hash[r], Helper::mul(hash[l], Helper::BASE_POW[r - l]));\n\
+    \    }\n\n    void concat(const PolynomialHash& other) {\n        hash.reserve(hash.size()\
+    \ + other.size());\n        u64 val = hash.back();\n        for (const int i :\
+    \ rep(0, other.size())) {\n            val = Helper::mul(val, Helper::BASE);\n\
+    \            hash.push_back(Helper::add(val, other.hash[i + 1]));\n        }\n\
+    \        data.reserve(data.size() + other.size());\n        std::copy(other.data.cbegin(),\
+    \ other.data.cend(), std::back_inserter(data));\n    }\n};\n#line 4 \"test/polynomial_hash.test.cpp\"\
+    \n#include <iostream>\n\nint main() {\n    std::string T, P;\n    std::cin >>\
+    \ T >> P;\n    if (T.size() < P.size()) {\n        return 0;\n    }\n    PolynomialHash\
+    \ rh(std::vector<char>(T.begin(), T.end()));\n    const auto match = PolynomialHash(std::vector<char>(P.begin(),\
     \ P.end())).fold();\n    for (const int i: rep(0, T.size() - P.size() + 1)) {\n\
     \        if (rh.fold(i, i + P.size()) == match) {\n            std::cout << i\
     \ << '\\n';\n        }\n    }\n    return 0;\n}\n"
@@ -118,7 +118,7 @@ data:
   isVerificationFile: true
   path: test/polynomial_hash.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-17 09:48:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/polynomial_hash.test.cpp

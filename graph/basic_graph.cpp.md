@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
   _extendedRequiredBy: []
@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/basic_graph.cpp\"\n#include <cassert>\n#include <utility>\n\
@@ -70,7 +70,7 @@ data:
   path: graph/basic_graph.cpp
   requiredBy: []
   timestamp: '2021-12-17 09:20:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/strongly_connected_components.test.cpp
   - test/heavy_light_decomposition.test.cpp

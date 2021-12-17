@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/basic_graph.cpp
     title: graph/basic_graph.cpp
   - icon: ':warning:'
@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/primal_dual_mincostflow.test.cpp
     title: test/primal_dual_mincostflow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/index_offset.cpp\"\n#include <cassert>\n\nclass\
@@ -60,7 +60,7 @@ data:
   - graph/primal_dual.cpp
   - graph/binary_optimization.cpp
   timestamp: '2021-12-17 09:20:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/strongly_connected_components.test.cpp
   - test/primal_dual_mincostflow.test.cpp

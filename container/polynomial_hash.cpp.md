@@ -81,14 +81,14 @@ data:
     \ hash[i]), (u64)data[i]);\n        }\n    }\n\n    int size() const { return\
     \ data.size(); }\n    const std::vector<T>& get() const { return data; }\n\n \
     \   u64 fold() const { return hash.back(); }\n    u64 fold(const int l, const\
-    \ int r) const {\n        assert(l <= r and r <= size());\n        return Helper::sub(hash[r],\
-    \ Helper::mul(hash[l], Helper::BASE_POW[r - l]));\n    }\n\n    void concat(const\
-    \ PolynomialHash& other) {\n        hash.reserve(hash.size() + other.size());\n\
-    \        u64 val = hash.back();\n        for (const int i : rep(0, other.size()))\
-    \ {\n            val = Helper::mul(val, Helper::BASE);\n            hash.push_back(Helper::add(val,\
-    \ other.hash[i + 1]));\n        }\n        data.reserve(data.size() + other.size());\n\
-    \        std::copy(other.data.cbegin(), other.data.cend(), std::back_inserter(data));\n\
-    \    }\n};\n"
+    \ int r) const {\n        assert(0 <= l and l <= r and r <= size());\n       \
+    \ return Helper::sub(hash[r], Helper::mul(hash[l], Helper::BASE_POW[r - l]));\n\
+    \    }\n\n    void concat(const PolynomialHash& other) {\n        hash.reserve(hash.size()\
+    \ + other.size());\n        u64 val = hash.back();\n        for (const int i :\
+    \ rep(0, other.size())) {\n            val = Helper::mul(val, Helper::BASE);\n\
+    \            hash.push_back(Helper::add(val, other.hash[i + 1]));\n        }\n\
+    \        data.reserve(data.size() + other.size());\n        std::copy(other.data.cbegin(),\
+    \ other.data.cend(), std::back_inserter(data));\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <string>\n#include <type_traits>\n\
     #include <vector>\n#include \"../random/rand_int.cpp\"\n#include \"../utility/auto_realloc.cpp\"\
     \n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\n\ntemplate\
@@ -112,14 +112,14 @@ data:
     \ hash[i]), (u64)data[i]);\n        }\n    }\n\n    int size() const { return\
     \ data.size(); }\n    const std::vector<T>& get() const { return data; }\n\n \
     \   u64 fold() const { return hash.back(); }\n    u64 fold(const int l, const\
-    \ int r) const {\n        assert(l <= r and r <= size());\n        return Helper::sub(hash[r],\
-    \ Helper::mul(hash[l], Helper::BASE_POW[r - l]));\n    }\n\n    void concat(const\
-    \ PolynomialHash& other) {\n        hash.reserve(hash.size() + other.size());\n\
-    \        u64 val = hash.back();\n        for (const int i : rep(0, other.size()))\
-    \ {\n            val = Helper::mul(val, Helper::BASE);\n            hash.push_back(Helper::add(val,\
-    \ other.hash[i + 1]));\n        }\n        data.reserve(data.size() + other.size());\n\
-    \        std::copy(other.data.cbegin(), other.data.cend(), std::back_inserter(data));\n\
-    \    }\n};\n"
+    \ int r) const {\n        assert(0 <= l and l <= r and r <= size());\n       \
+    \ return Helper::sub(hash[r], Helper::mul(hash[l], Helper::BASE_POW[r - l]));\n\
+    \    }\n\n    void concat(const PolynomialHash& other) {\n        hash.reserve(hash.size()\
+    \ + other.size());\n        u64 val = hash.back();\n        for (const int i :\
+    \ rep(0, other.size())) {\n            val = Helper::mul(val, Helper::BASE);\n\
+    \            hash.push_back(Helper::add(val, other.hash[i + 1]));\n        }\n\
+    \        data.reserve(data.size() + other.size());\n        std::copy(other.data.cbegin(),\
+    \ other.data.cend(), std::back_inserter(data));\n    }\n};\n"
   dependsOn:
   - random/rand_int.cpp
   - random/xorshift.cpp
@@ -130,7 +130,7 @@ data:
   isVerificationFile: false
   path: container/polynomial_hash.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-17 09:48:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/polynomial_hash.test.cpp

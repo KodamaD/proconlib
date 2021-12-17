@@ -56,7 +56,7 @@ data:
   - icon: ':x:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
   - icon: ':warning:'
@@ -65,10 +65,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/primal_dual.cpp
     title: graph/primal_dual.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_components.cpp
     title: graph/strongly_connected_components.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
   - icon: ':warning:'
@@ -150,16 +150,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/z_algorithm.test.cpp
     title: test/z_algorithm.test.cpp
   _isVerificationFailed: true

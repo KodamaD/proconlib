@@ -42,7 +42,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: algorithm/superset_zeta_transform.cpp
       title: algorithm/superset_zeta_transform.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algorithm/z_algorithm.cpp
       title: algorithm/z_algorithm.cpp
   - name: container
@@ -71,7 +71,7 @@ data:
     - icon: ':x:'
       path: container/segment_tree_beats.cpp
       title: container/segment_tree_beats.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: container/sparse_table.cpp
       title: container/sparse_table.cpp
     - icon: ':heavy_check_mark:'
@@ -79,7 +79,7 @@ data:
       title: container/stack_aggregation.cpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/basic_graph.cpp
       title: graph/basic_graph.cpp
     - icon: ':warning:'
@@ -94,13 +94,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/rollback_union_find.cpp
       title: graph/rollback_union_find.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/strongly_connected_components.cpp
       title: graph/strongly_connected_components.cpp
     - icon: ':heavy_check_mark:'
       path: graph/tree_manager.cpp
       title: graph/tree_manager.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/union_find.cpp
       title: graph/union_find.cpp
   - name: math
@@ -187,7 +187,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: traits/assign_monoid.cpp
       title: traits/assign_monoid.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: traits/lambda_semigroup.cpp
       title: traits/lambda_semigroup.cpp
     - icon: ':warning:'
@@ -205,7 +205,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: traits/num_semiring.cpp
       title: traits/num_semiring.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: traits/optional_monoid.cpp
       title: traits/optional_monoid.cpp
     - icon: ':x:'
@@ -234,13 +234,13 @@ data:
     - icon: ':warning:'
       path: utility/bit_parity.cpp
       title: utility/bit_parity.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: utility/bit_width.cpp
       title: utility/bit_width.cpp
     - icon: ':question:'
       path: utility/ceil_log2.cpp
       title: utility/ceil_log2.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: utility/countl_zero.cpp
       title: utility/countl_zero.cpp
     - icon: ':question:'
@@ -252,7 +252,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/fast_io.cpp
       title: utility/fast_io.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/index_offset.cpp
       title: utility/index_offset.cpp
     - icon: ':heavy_check_mark:'
@@ -273,7 +273,7 @@ data:
     - icon: ':warning:'
       path: utility/permutations.cpp
       title: utility/permutations.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
     - icon: ':question:'
@@ -288,7 +288,7 @@ data:
     - icon: ':warning:'
       path: utility/setmax.cpp
       title: utility/setmax.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/setmin.cpp
       title: utility/setmin.cpp
     - icon: ':warning:'
@@ -378,19 +378,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/semiring_matrix.test.cpp
       title: test/semiring_matrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/sparse_table.test.cpp
       title: test/sparse_table.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/strongly_connected_components.test.cpp
       title: test/strongly_connected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/totient.test.cpp
       title: test/totient.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/union_find.test.cpp
       title: test/union_find.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/z_algorithm.test.cpp
       title: test/z_algorithm.test.cpp
 layout: toppage

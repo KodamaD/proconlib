@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/primal_dual.cpp
     title: graph/primal_dual.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/setmin.cpp
     title: utility/setmin.cpp
   _extendedRequiredBy: []
