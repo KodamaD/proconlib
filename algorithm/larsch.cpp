@@ -59,7 +59,7 @@ class LARSCH {
                 if (i <= x or !f(i - 1, c[i - 1], m)) break;
                 c.pop_back();
             }
-            if (c.size() != n) c.push_back(m);
+            if ((int)c.size() != n) c.push_back(m);
             m += 1;
         }
 

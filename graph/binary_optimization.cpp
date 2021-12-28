@@ -4,7 +4,7 @@
 #include <vector>
 #include "../utility/index_offset.cpp"
 #include "../utility/rep.cpp"
-#include "graph/dinic.cpp"
+#include "dinic.cpp"
 
 template <class T> class BinaryOptimization {
     Dinic<T> graph;

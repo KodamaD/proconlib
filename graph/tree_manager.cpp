@@ -74,7 +74,7 @@ template <class G> class TreeManager {
             const int y = self->node[src].head;
             const int z = self->node[dst].next;
             src = (y != self->node[dst].head ? y : z);
-            return std::make_pair(x, src);
+            return {x, src};
         }
     };
 

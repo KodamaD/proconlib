@@ -83,7 +83,7 @@ class PrimalDual {
         gap[u] -= f;
     }
     void set_potential(const std::vector<Cost>& p) {
-        assert(p.size() == size());
+        assert((int)p.size() == size());
         potential = p;
     }
 
@@ -139,7 +139,7 @@ class PrimalDual {
                     u = que_min.back();
                     que_min.pop_back();
                 } else {
-                    while (heap_size < heap.size()) {
+                    while (heap_size < (int)heap.size()) {
                         heap_size += 1;
                         std::push_heap(heap.begin(), heap.begin() + heap_size);
                     }
@@ -153,7 +153,7 @@ class PrimalDual {
                 farthest = dist[u];
                 if (gap[u] < 0) {
                     lack_cnt += 1;
-                    if (lack_cnt == lack.size()) break;
+                    if (lack_cnt == (int)lack.size()) break;
                 }
                 for (const int i : rep(graph[u].size())) {
                     const Edge& e = graph[u][i];

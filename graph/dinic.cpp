@@ -88,7 +88,7 @@ template <class Flow, std::enable_if_t<std::is_integral_v<Flow>>* = nullptr> cla
         const auto dfs = rec_lambda([&](auto&& dfs, const int u, const Flow ub) -> Flow {
             if (u == src) return ub;
             Flow ret = 0;
-            for (int& i = iter[u]; i < graph[u].size(); i += 1) {
+            for (int& i = iter[u]; i < (int)graph[u].size(); i += 1) {
                 Edge& e = graph[u][i];
                 Edge& re = graph[e.dst][e.rev];
                 if (level[u] <= level[e.dst] or re.cap == 0) continue;

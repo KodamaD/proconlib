@@ -44,7 +44,7 @@ class RollbackUnionFind {
     }
 
     void rollback(const int steps) {
-        assert(0 <= steps and 2 * steps <= history.size());
+        assert(0 <= steps and 2 * steps <= (int)history.size());
         for (int i = 2 * steps; i > 0; --i) {
             const auto [k, x] = history.back();
             history.pop_back();

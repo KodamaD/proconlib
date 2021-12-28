@@ -3,7 +3,7 @@
 #include <vector>
 #include "../utility/rep.cpp"
 
-template <class S> void superset_zeta_transform(std::vector<typename S::type>& f) {
+template <class S> void superset_zeta_transform(std::vector<typename S::Type>& f) {
     const int n = f.size();
     assert((n & (n - 1)) == 0);
     for (int i = 1; i < n; i <<= 1)
