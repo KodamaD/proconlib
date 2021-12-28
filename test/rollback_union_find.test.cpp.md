@@ -55,8 +55,8 @@ data:
     \ same(const int u, const int v) const {\n        assert(0 <= u and u < size());\n\
     \        assert(0 <= v and v < size());\n        return leader(u) == leader(v);\n\
     \    }\n\n    void rollback(const int steps) {\n        assert(0 <= steps and\
-    \ 2 * steps <= history.size());\n        for (int i = 2 * steps; i > 0; --i) {\n\
-    \            const auto [k, x] = history.back();\n            history.pop_back();\n\
+    \ 2 * steps <= (int)history.size());\n        for (int i = 2 * steps; i > 0; --i)\
+    \ {\n            const auto [k, x] = history.back();\n            history.pop_back();\n\
     \            data[k] = x;\n        }\n    }\n};\n#line 5 \"test/rollback_union_find.test.cpp\"\
     \n#include <iostream>\n\nint main() {\n    int N, Q;\n    std::cin >> N >> Q;\n\
     \    std::vector<std::pair<int, int>> connect(Q + 1);\n    std::vector<std::vector<int>>\
@@ -98,7 +98,7 @@ data:
   isVerificationFile: true
   path: test/rollback_union_find.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 22:38:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rollback_union_find.test.cpp

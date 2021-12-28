@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: algorithm
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algorithm/and_convolution.cpp
       title: algorithm/and_convolution.cpp
     - icon: ':heavy_check_mark:'
@@ -36,10 +36,10 @@ data:
     - icon: ':warning:'
       path: algorithm/subset_zeta_transform.cpp
       title: algorithm/subset_zeta_transform.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algorithm/superset_mobius_transform.cpp
       title: algorithm/superset_mobius_transform.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algorithm/superset_zeta_transform.cpp
       title: algorithm/superset_zeta_transform.cpp
     - icon: ':heavy_check_mark:'
@@ -59,7 +59,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: container/lazy_segment_tree.cpp
       title: container/lazy_segment_tree.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: container/polynomial_hash.cpp
       title: container/polynomial_hash.cpp
     - icon: ':heavy_check_mark:'
@@ -128,6 +128,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/factorize.cpp
       title: math/factorize.cpp
+    - icon: ':heavy_check_mark:'
+      path: math/factorize_iter.cpp
+      title: math/factorize_iter.cpp
     - icon: ':warning:'
       path: math/floor_div.cpp
       title: math/floor_div.cpp
@@ -152,16 +155,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/primitive_root.cpp
       title: math/primitive_root.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/rem_euclid.cpp
       title: math/rem_euclid.cpp
     - icon: ':heavy_check_mark:'
       path: math/semiring_matrix.cpp
       title: math/semiring_matrix.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/static_modint.cpp
       title: math/static_modint.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/totient.cpp
       title: math/totient.cpp
   - name: random
@@ -169,7 +172,7 @@ data:
     - icon: ':warning:'
       path: random/rand_bool.cpp
       title: random/rand_bool.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: random/rand_int.cpp
       title: random/rand_int.cpp
     - icon: ':warning:'
@@ -181,7 +184,7 @@ data:
     - icon: ':warning:'
       path: random/shuffle_vec.cpp
       title: random/shuffle_vec.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/xorshift.cpp
       title: random/xorshift.cpp
   - name: traits
@@ -225,7 +228,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: traits/sum_affine_action.cpp
       title: traits/sum_affine_action.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: traits/sum_group.cpp
       title: traits/sum_group.cpp
   - name: utility
@@ -248,6 +251,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/ceil_log2.cpp
       title: utility/ceil_log2.cpp
+    - icon: ':heavy_check_mark:'
+      path: utility/collect.cpp
+      title: utility/collect.cpp
     - icon: ':heavy_check_mark:'
       path: utility/countl_zero.cpp
       title: utility/countl_zero.cpp
@@ -308,7 +314,7 @@ data:
   verificationCategories:
   - name: test
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/and_convolution.test.cpp
       title: test/and_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -359,7 +365,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lazy_segment_tree.test.cpp
       title: test/lazy_segment_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/polynomial_hash.test.cpp
       title: test/polynomial_hash.test.cpp
     - icon: ':heavy_check_mark:'

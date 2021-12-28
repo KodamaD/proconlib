@@ -9,15 +9,9 @@ data:
     title: utility/int_alias.cpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: container/polynomial_hash.cpp
-    title: container/polynomial_hash.cpp
-  - icon: ':heavy_check_mark:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/polynomial_hash.test.cpp
-    title: test/polynomial_hash.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/prime_sieve.test.cpp
     title: test/prime_sieve.test.cpp
@@ -58,11 +52,9 @@ data:
   path: utility/auto_realloc.cpp
   requiredBy:
   - math/prime_sieve.cpp
-  - container/polynomial_hash.cpp
   timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/polynomial_hash.test.cpp
   - test/prime_sieve.test.cpp
 documentation_of: utility/auto_realloc.cpp
 layout: document

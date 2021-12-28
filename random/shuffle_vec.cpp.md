@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
   - icon: ':question:'

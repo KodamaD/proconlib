@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/polynomial_hash.cpp
     title: container/polynomial_hash.cpp
   - icon: ':heavy_check_mark:'
@@ -48,9 +48,6 @@ data:
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
   - icon: ':heavy_check_mark:'
-    path: math/factorize.cpp
-    title: math/factorize.cpp
-  - icon: ':heavy_check_mark:'
     path: math/mod_pow.cpp
     title: math/mod_pow.cpp
   - icon: ':heavy_check_mark:'
@@ -65,13 +62,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/semiring_matrix.cpp
     title: math/semiring_matrix.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   - icon: ':warning:'
     path: random/rand_bool.cpp
     title: random/rand_bool.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/rand_int.cpp
     title: random/rand_int.cpp
   - icon: ':warning:'
@@ -83,7 +80,7 @@ data:
   - icon: ':warning:'
     path: random/shuffle_vec.cpp
     title: random/shuffle_vec.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
   - icon: ':heavy_check_mark:'
@@ -111,7 +108,7 @@ data:
     path: utility/subsets.cpp
     title: utility/subsets.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -159,7 +156,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/polynomial_hash.test.cpp
     title: test/polynomial_hash.test.cpp
   - icon: ':heavy_check_mark:'
@@ -239,7 +236,6 @@ data:
   - math/primitive_root.cpp
   - math/mod_pow.cpp
   - math/dynamic_modint.cpp
-  - math/factorize.cpp
   - math/static_modint.cpp
   - math/modulo_transform.cpp
   - math/semiring_matrix.cpp

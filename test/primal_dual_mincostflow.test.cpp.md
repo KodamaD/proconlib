@@ -83,7 +83,7 @@ data:
     \ Flow f) {\n        assert(0 <= u and u < size());\n        gap[u] += f;\n  \
     \  }\n    void add_demand(const int u, const Flow f) {\n        assert(0 <= u\
     \ and u < size());\n        gap[u] -= f;\n    }\n    void set_potential(const\
-    \ std::vector<Cost>& p) {\n        assert(p.size() == size());\n        potential\
+    \ std::vector<Cost>& p) {\n        assert((int)p.size() == size());\n        potential\
     \ = p;\n    }\n\n    template <class Result = Cost> std::pair<Result, bool> solve_bflow()\
     \ {\n        potential.resize(size(), 0);\n        for (const int u : rep(size()))\
     \ {\n            for (Edge& e : graph[u]) {\n                if (e.flow > e.cap\
@@ -111,16 +111,16 @@ data:
     \         while (!que_min.empty() or !heap.empty()) {\n                int u;\n\
     \                if (!que_min.empty()) {\n                    u = que_min.back();\n\
     \                    que_min.pop_back();\n                } else {\n         \
-    \           while (heap_size < heap.size()) {\n                        heap_size\
+    \           while (heap_size < (int)heap.size()) {\n                        heap_size\
     \ += 1;\n                        std::push_heap(heap.begin(), heap.begin() + heap_size);\n\
     \                    }\n                    u = heap.front().vertex;\n       \
     \             std::pop_heap(heap.begin(), heap.end());\n                    heap.pop_back();\n\
     \                    heap_size -= 1;\n                }\n                if (seen[u])\
     \ continue;\n                seen[u] = true;\n                farthest = dist[u];\n\
     \                if (gap[u] < 0) {\n                    lack_cnt += 1;\n     \
-    \               if (lack_cnt == lack.size()) break;\n                }\n     \
-    \           for (const int i : rep(graph[u].size())) {\n                    const\
-    \ Edge& e = graph[u][i];\n                    if (e.flow >= e.cap) continue;\n\
+    \               if (lack_cnt == (int)lack.size()) break;\n                }\n\
+    \                for (const int i : rep(graph[u].size())) {\n                \
+    \    const Edge& e = graph[u][i];\n                    if (e.flow >= e.cap) continue;\n\
     \                    const int v = e.dst;\n                    if (setmin(dist[v],\
     \ dist[u] + e.cost + potential[u] - potential[v])) {\n                       \
     \ parent[v] = &graph[e.dst][e.rev];\n                        if (dist[v] == dist[u])\
@@ -180,7 +180,7 @@ data:
   isVerificationFile: true
   path: test/primal_dual_mincostflow.test.cpp
   requiredBy: []
-  timestamp: '2021-12-28 21:38:32+09:00'
+  timestamp: '2021-12-28 22:38:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/primal_dual_mincostflow.test.cpp

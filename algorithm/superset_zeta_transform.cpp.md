@@ -5,16 +5,16 @@ data:
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algorithm/and_convolution.cpp
     title: algorithm/and_convolution.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algorithm/superset_zeta_transform.cpp\"\n#include <cassert>\n\
@@ -29,12 +29,12 @@ data:
     \ constexpr Iter end() const noexcept { return last; }\n};\n\nconstexpr Range\
     \ rep(const int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range\
     \ rep(const int n) noexcept { return Range(0, n); }\n#line 5 \"algorithm/superset_zeta_transform.cpp\"\
-    \n\ntemplate <class S> void superset_zeta_transform(std::vector<typename S::type>&\
+    \n\ntemplate <class S> void superset_zeta_transform(std::vector<typename S::Type>&\
     \ f) {\n    const int n = f.size();\n    assert((n & (n - 1)) == 0);\n    for\
     \ (int i = 1; i < n; i <<= 1)\n        for (const int j : rep(n))\n          \
     \  if (j & i) f[j & ~i] = S::operation(f[j & ~i], f[j]);\n}\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n#include \"../utility/rep.cpp\"\
-    \n\ntemplate <class S> void superset_zeta_transform(std::vector<typename S::type>&\
+    \n\ntemplate <class S> void superset_zeta_transform(std::vector<typename S::Type>&\
     \ f) {\n    const int n = f.size();\n    assert((n & (n - 1)) == 0);\n    for\
     \ (int i = 1; i < n; i <<= 1)\n        for (const int j : rep(n))\n          \
     \  if (j & i) f[j & ~i] = S::operation(f[j & ~i], f[j]);\n}\n"
@@ -44,8 +44,8 @@ data:
   path: algorithm/superset_zeta_transform.cpp
   requiredBy:
   - algorithm/and_convolution.cpp
-  timestamp: '2021-12-28 21:38:32+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-12-28 22:38:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/and_convolution.test.cpp
 documentation_of: algorithm/superset_zeta_transform.cpp

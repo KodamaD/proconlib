@@ -7,7 +7,7 @@ data:
   - icon: ':warning:'
     path: algorithm/subset_zeta_transform.cpp
     title: algorithm/subset_zeta_transform.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/sum_group.cpp
     title: traits/sum_group.cpp
   - icon: ':question:'

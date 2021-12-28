@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algorithm/and_convolution.cpp
     title: algorithm/and_convolution.cpp
   - icon: ':warning:'
@@ -18,7 +18,7 @@ data:
     path: traits/sum_affine_action.cpp
     title: traits/sum_affine_action.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,9 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"traits/sum_group.cpp\"\n\ntemplate <class T> struct SumGroup\
@@ -50,7 +50,7 @@ data:
   - algorithm/or_convolution.cpp
   - algorithm/and_convolution.cpp
   timestamp: '2021-12-28 21:38:32+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lazy_segment_tree.test.cpp
   - test/and_convolution.test.cpp

@@ -27,10 +27,10 @@ data:
     \ std::make_pair(u, true);\n    }\n\n    bool same(const int u, const int v) const\
     \ {\n        assert(0 <= u and u < size());\n        assert(0 <= v and v < size());\n\
     \        return leader(u) == leader(v);\n    }\n\n    void rollback(const int\
-    \ steps) {\n        assert(0 <= steps and 2 * steps <= history.size());\n    \
-    \    for (int i = 2 * steps; i > 0; --i) {\n            const auto [k, x] = history.back();\n\
-    \            history.pop_back();\n            data[k] = x;\n        }\n    }\n\
-    };\n"
+    \ steps) {\n        assert(0 <= steps and 2 * steps <= (int)history.size());\n\
+    \        for (int i = 2 * steps; i > 0; --i) {\n            const auto [k, x]\
+    \ = history.back();\n            history.pop_back();\n            data[k] = x;\n\
+    \        }\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <utility>\n#include <vector>\n\
     \nclass RollbackUnionFind {\n    std::vector<int> data;\n    std::vector<std::pair<int,\
     \ int>> history;\n\n  public:\n    explicit RollbackUnionFind(const int size =\
@@ -47,14 +47,14 @@ data:
     \ same(const int u, const int v) const {\n        assert(0 <= u and u < size());\n\
     \        assert(0 <= v and v < size());\n        return leader(u) == leader(v);\n\
     \    }\n\n    void rollback(const int steps) {\n        assert(0 <= steps and\
-    \ 2 * steps <= history.size());\n        for (int i = 2 * steps; i > 0; --i) {\n\
-    \            const auto [k, x] = history.back();\n            history.pop_back();\n\
+    \ 2 * steps <= (int)history.size());\n        for (int i = 2 * steps; i > 0; --i)\
+    \ {\n            const auto [k, x] = history.back();\n            history.pop_back();\n\
     \            data[k] = x;\n        }\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: graph/rollback_union_find.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 22:38:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/rollback_union_find.test.cpp

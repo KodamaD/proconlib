@@ -61,8 +61,8 @@ data:
     \ rec(n_, [&](int i, int j, int k) { return f(i, c[j], c[k]); }) {}\n\n      \
     \  void add_column() {\n            while (true) {\n                const int\
     \ i = c.size();\n                if (i <= x or !f(i - 1, c[i - 1], m)) break;\n\
-    \                c.pop_back();\n            }\n            if (c.size() != n)\
-    \ c.push_back(m);\n            m += 1;\n        }\n\n        int get_argmin()\
+    \                c.pop_back();\n            }\n            if ((int)c.size() !=\
+    \ n) c.push_back(m);\n            m += 1;\n        }\n\n        int get_argmin()\
     \ {\n            x += 1;\n            while (y < std::min(x, (int)c.size())) {\n\
     \                rec.add_column();\n                y += 1;\n            }\n \
     \           return c[rec.get_argmin()];\n        }\n    };\n\n    int row, col;\n\
@@ -186,7 +186,7 @@ data:
   isVerificationFile: true
   path: test/larsch.test.cpp
   requiredBy: []
-  timestamp: '2021-12-28 21:38:32+09:00'
+  timestamp: '2021-12-28 22:38:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/larsch.test.cpp

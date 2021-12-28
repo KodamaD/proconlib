@@ -86,7 +86,7 @@ data:
     \ + 1;\n                    if (e.dst == dst) return;\n                    que.push(e.dst);\n\
     \                }\n            }\n        };\n        const auto dfs = rec_lambda([&](auto&&\
     \ dfs, const int u, const Flow ub) -> Flow {\n            if (u == src) return\
-    \ ub;\n            Flow ret = 0;\n            for (int& i = iter[u]; i < graph[u].size();\
+    \ ub;\n            Flow ret = 0;\n            for (int& i = iter[u]; i < (int)graph[u].size();\
     \ i += 1) {\n                Edge& e = graph[u][i];\n                Edge& re\
     \ = graph[e.dst][e.rev];\n                if (level[u] <= level[e.dst] or re.cap\
     \ == 0) continue;\n                const Flow d = dfs(e.dst, std::min(ub - ret,\
@@ -139,7 +139,7 @@ data:
     \    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <limits>\n#include <vector>\n\
     #include \"../utility/index_offset.cpp\"\n#include \"../utility/rep.cpp\"\n#include\
-    \ \"graph/dinic.cpp\"\n\ntemplate <class T> class BinaryOptimization {\n    Dinic<T>\
+    \ \"dinic.cpp\"\n\ntemplate <class T> class BinaryOptimization {\n    Dinic<T>\
     \ graph;\n    T constant;\n    std::vector<int> var_id;\n    int src, dst;\n\n\
     \  public:\n    BinaryOptimization() : graph(), constant(), var_id(), src(graph.add_vertex()),\
     \ dst(graph.add_vertex()) {}\n    explicit BinaryOptimization(const int n) : BinaryOptimization()\
@@ -181,7 +181,7 @@ data:
   isVerificationFile: false
   path: graph/binary_optimization.cpp
   requiredBy: []
-  timestamp: '2021-12-28 21:38:32+09:00'
+  timestamp: '2021-12-28 22:38:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/binary_optimization.cpp

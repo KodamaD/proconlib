@@ -33,8 +33,8 @@ data:
     \ rec(n_, [&](int i, int j, int k) { return f(i, c[j], c[k]); }) {}\n\n      \
     \  void add_column() {\n            while (true) {\n                const int\
     \ i = c.size();\n                if (i <= x or !f(i - 1, c[i - 1], m)) break;\n\
-    \                c.pop_back();\n            }\n            if (c.size() != n)\
-    \ c.push_back(m);\n            m += 1;\n        }\n\n        int get_argmin()\
+    \                c.pop_back();\n            }\n            if ((int)c.size() !=\
+    \ n) c.push_back(m);\n            m += 1;\n        }\n\n        int get_argmin()\
     \ {\n            x += 1;\n            while (y < std::min(x, (int)c.size())) {\n\
     \                rec.add_column();\n                y += 1;\n            }\n \
     \           return c[rec.get_argmin()];\n        }\n    };\n\n    int row, col;\n\
@@ -71,26 +71,27 @@ data:
     \ c[j], c[k]); }) {}\n\n        void add_column() {\n            while (true)\
     \ {\n                const int i = c.size();\n                if (i <= x or !f(i\
     \ - 1, c[i - 1], m)) break;\n                c.pop_back();\n            }\n  \
-    \          if (c.size() != n) c.push_back(m);\n            m += 1;\n        }\n\
-    \n        int get_argmin() {\n            x += 1;\n            while (y < std::min(x,\
-    \ (int)c.size())) {\n                rec.add_column();\n                y += 1;\n\
-    \            }\n            return c[rec.get_argmin()];\n        }\n    };\n\n\
-    \    int row, col;\n    ReduceRow machine;\n\n  public:\n    explicit LARSCH(const\
-    \ int n, const Select& f) : row(n), col(0), machine(n, f) {}\n\n    void add_column()\
-    \ {\n        assert(row != 0);\n        col += 1;\n        machine.add_column();\n\
-    \    }\n\n    int get_argmin() {\n        assert(row != 0 and col != 0);\n   \
-    \     row -= 1;\n        return machine.get_argmin();\n    }\n};\n\ntemplate <class\
-    \ T, class Comp = std::less<T>> class CompLARSCH {\n    std::function<T(int, int)>\
-    \ func;\n    Comp comp;\n    LARSCH machine;\n\n  public:\n    explicit CompLARSCH(const\
-    \ int n, const std::function<T(int, int)>& f, const Comp& c = Comp())\n      \
-    \  : func(f), comp(c), machine(n, [&](int i, int j, int k) { return comp(func(i,\
-    \ k), func(i, j)); }) {}\n\n    void add_column() { machine.add_column(); }\n\n\
-    \    int get_argmin() { return machine.get_argmin(); }\n};"
+    \          if ((int)c.size() != n) c.push_back(m);\n            m += 1;\n    \
+    \    }\n\n        int get_argmin() {\n            x += 1;\n            while (y\
+    \ < std::min(x, (int)c.size())) {\n                rec.add_column();\n       \
+    \         y += 1;\n            }\n            return c[rec.get_argmin()];\n  \
+    \      }\n    };\n\n    int row, col;\n    ReduceRow machine;\n\n  public:\n \
+    \   explicit LARSCH(const int n, const Select& f) : row(n), col(0), machine(n,\
+    \ f) {}\n\n    void add_column() {\n        assert(row != 0);\n        col +=\
+    \ 1;\n        machine.add_column();\n    }\n\n    int get_argmin() {\n       \
+    \ assert(row != 0 and col != 0);\n        row -= 1;\n        return machine.get_argmin();\n\
+    \    }\n};\n\ntemplate <class T, class Comp = std::less<T>> class CompLARSCH {\n\
+    \    std::function<T(int, int)> func;\n    Comp comp;\n    LARSCH machine;\n\n\
+    \  public:\n    explicit CompLARSCH(const int n, const std::function<T(int, int)>&\
+    \ f, const Comp& c = Comp())\n        : func(f), comp(c), machine(n, [&](int i,\
+    \ int j, int k) { return comp(func(i, k), func(i, j)); }) {}\n\n    void add_column()\
+    \ { machine.add_column(); }\n\n    int get_argmin() { return machine.get_argmin();\
+    \ }\n};"
   dependsOn: []
   isVerificationFile: false
   path: algorithm/larsch.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 22:38:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/larsch.test.cpp

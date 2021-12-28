@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: traits/pair_monoid.cpp
     title: traits/pair_monoid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/sum_group.cpp
     title: traits/sum_group.cpp
   _extendedRequiredBy: []

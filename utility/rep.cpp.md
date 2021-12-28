@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algorithm/and_convolution.cpp
     title: algorithm/and_convolution.cpp
   - icon: ':heavy_check_mark:'
@@ -32,10 +32,10 @@ data:
   - icon: ':warning:'
     path: algorithm/subset_zeta_transform.cpp
     title: algorithm/subset_zeta_transform.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algorithm/superset_mobius_transform.cpp
     title: algorithm/superset_mobius_transform.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algorithm/superset_zeta_transform.cpp
     title: algorithm/superset_zeta_transform.cpp
   - icon: ':heavy_check_mark:'
@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/polynomial_hash.cpp
     title: container/polynomial_hash.cpp
   - icon: ':heavy_check_mark:'
@@ -87,7 +87,7 @@ data:
     path: utility/fast_io.cpp
     title: utility/fast_io.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -126,7 +126,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/polynomial_hash.test.cpp
     title: test/polynomial_hash.test.cpp
   - icon: ':heavy_check_mark:'

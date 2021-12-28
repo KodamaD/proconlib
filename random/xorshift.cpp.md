@@ -8,13 +8,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/integer_hash_table.cpp
     title: container/integer_hash_table.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/polynomial_hash.cpp
     title: container/polynomial_hash.cpp
   - icon: ':warning:'
     path: random/rand_bool.cpp
     title: random/rand_bool.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/rand_int.cpp
     title: random/rand_int.cpp
   - icon: ':warning:'
@@ -33,12 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/integer_hash_table_verbose.test.cpp
     title: test/integer_hash_table_verbose.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/polynomial_hash.test.cpp
     title: test/polynomial_hash.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/xorshift.cpp\"\n#include <chrono>\n#include <random>\n\
@@ -63,7 +63,7 @@ data:
   - container/polynomial_hash.cpp
   - container/integer_hash_table.cpp
   timestamp: '2021-12-17 09:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/integer_hash_table_verbose.test.cpp
   - test/polynomial_hash.test.cpp

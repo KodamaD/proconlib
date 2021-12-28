@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algorithm/superset_mobius_transform.cpp
     title: algorithm/superset_mobius_transform.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algorithm/superset_zeta_transform.cpp
     title: algorithm/superset_zeta_transform.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/sum_group.cpp
     title: traits/sum_group.cpp
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algorithm/and_convolution.cpp\"\n#include <cassert>\n#include\
@@ -43,7 +43,7 @@ data:
     \ f) {\n    const int n = f.size();\n    assert((n & (n - 1)) == 0);\n    for\
     \ (int i = n; i >>= 1;)\n        for (const int j : rep(n))\n            if (j\
     \ & i) f[j & ~i] = G::operation(f[j & ~i], G::inverse(f[j]));\n}\n#line 5 \"algorithm/superset_zeta_transform.cpp\"\
-    \n\ntemplate <class S> void superset_zeta_transform(std::vector<typename S::type>&\
+    \n\ntemplate <class S> void superset_zeta_transform(std::vector<typename S::Type>&\
     \ f) {\n    const int n = f.size();\n    assert((n & (n - 1)) == 0);\n    for\
     \ (int i = 1; i < n; i <<= 1)\n        for (const int j : rep(n))\n          \
     \  if (j & i) f[j & ~i] = S::operation(f[j & ~i], f[j]);\n}\n#line 8 \"algorithm/and_convolution.cpp\"\
@@ -67,8 +67,8 @@ data:
   isVerificationFile: false
   path: algorithm/and_convolution.cpp
   requiredBy: []
-  timestamp: '2021-12-28 21:38:32+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-12-28 22:38:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/and_convolution.test.cpp
 documentation_of: algorithm/and_convolution.cpp

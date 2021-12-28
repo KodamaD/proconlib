@@ -8,6 +8,9 @@ data:
     path: math/barret_reduction.cpp
     title: math/barret_reduction.cpp
   - icon: ':heavy_check_mark:'
+    path: math/factorize_iter.cpp
+    title: math/factorize_iter.cpp
+  - icon: ':heavy_check_mark:'
     path: math/inv_gcd.cpp
     title: math/inv_gcd.cpp
   - icon: ':heavy_check_mark:'
@@ -22,13 +25,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/primitive_root.cpp
     title: math/primitive_root.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/totient.cpp
     title: math/totient.cpp
   - icon: ':heavy_check_mark:'
@@ -173,42 +176,55 @@ data:
     \                    a[i + t + p * 3] = (a0 - a1 - ax) * rot3;\n             \
     \       }\n                    if (((s + 1) >> (len - 2)) == 0) rot *= irate3[countr_zero(~s)];\n\
     \                }\n                len -= 2;\n            }\n        }\n    }\n\
-    };\n#line 2 \"math/static_modint.cpp\"\n#include <ostream>\n#line 2 \"math/totient.cpp\"\
-    \n\ntemplate <class T> constexpr T totient(T x) {\n    T ret = x;\n    for (T\
-    \ i = 2; i * i <= x; ++i) {\n        if (x % i == 0) {\n            ret /= i;\n\
-    \            ret *= i - 1;\n            while (x % i == 0) x /= i;\n        }\n\
-    \    }\n    if (x > 1) {\n        ret /= x;\n        ret *= x - 1;\n    }\n  \
-    \  return ret;\n}\n#line 7 \"math/static_modint.cpp\"\n\ntemplate <u32 MOD, std::enable_if_t<((u32)1\
-    \ <= MOD and MOD <= ((u32)1 << 31))>* = nullptr> class StaticModint {\n    using\
-    \ Self = StaticModint;\n\n    static inline constexpr u32 PHI = totient(MOD);\n\
-    \    u32 v;\n\n  public:\n    static constexpr u32 mod() noexcept { return MOD;\
-    \ }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\n\
-    \    static constexpr T normalize(const T& x) noexcept {\n        return rem_euclid<std::common_type_t<T,\
-    \ i64>>(x, MOD);\n    }\n\n    constexpr StaticModint() noexcept : v(0) {}\n \
-    \   template <class T> constexpr StaticModint(const T& x) noexcept : v(normalize(x))\
-    \ {}\n    template <class T> static constexpr Self raw(const T& x) noexcept {\n\
-    \        Self ret;\n        ret.v = x;\n        return ret;\n    }\n\n    constexpr\
-    \ u32 val() const noexcept { return v; }\n    constexpr Self neg() const noexcept\
-    \ { return raw(v == 0 ? 0 : MOD - v); }\n    constexpr Self inv() const noexcept\
-    \ { return pow(PHI - 1); }\n    constexpr Self pow(u64 exp) const noexcept {\n\
-    \        Self ret(1), mult(*this);\n        for (; exp > 0; exp >>= 1) {\n   \
-    \         if (exp & 1) ret *= mult;\n            mult *= mult;\n        }\n  \
-    \      return ret;\n    }\n\n    constexpr Self operator-() const noexcept { return\
-    \ neg(); }\n    constexpr Self operator~() const noexcept { return inv(); }\n\n\
-    \    constexpr Self operator+(const Self& rhs) const noexcept { return Self(*this)\
-    \ += rhs; }\n    constexpr Self& operator+=(const Self& rhs) noexcept {\n    \
-    \    if ((v += rhs.v) >= MOD) v -= MOD;\n        return *this;\n    }\n\n    constexpr\
-    \ Self operator-(const Self& rhs) const noexcept { return Self(*this) -= rhs;\
-    \ }\n    constexpr Self& operator-=(const Self& rhs) noexcept {\n        if (v\
-    \ < rhs.v) v += MOD;\n        v -= rhs.v;\n        return *this;\n    }\n\n  \
-    \  constexpr Self operator*(const Self& rhs) const noexcept { return Self(*this)\
-    \ *= rhs; }\n    constexpr Self& operator*=(const Self& rhs) noexcept {\n    \
-    \    v = (u64)v * rhs.v % MOD;\n        return *this;\n    }\n\n    constexpr\
-    \ Self operator/(const Self& rhs) const noexcept { return Self(*this) /= rhs;\
-    \ }\n    constexpr Self& operator/=(const Self& rhs) noexcept { return *this *=\
-    \ rhs.inv(); }\n\n    constexpr bool operator==(const Self& rhs) const noexcept\
-    \ { return v == rhs.v; }\n    constexpr bool operator!=(const Self& rhs) const\
-    \ noexcept { return v != rhs.v; }\n    friend std::ostream& operator<<(std::ostream&\
+    };\n#line 2 \"math/static_modint.cpp\"\n#include <ostream>\n#line 4 \"math/factorize_iter.cpp\"\
+    \n#include <variant>\n\ntemplate <class T> class Factorizer {\n    struct Iter\
+    \ {\n        T s, t;\n        explicit constexpr Iter(const T& s, const T& t)\
+    \ noexcept : s(s), t(t) {}\n        constexpr bool operator!=(std::monostate)\
+    \ const noexcept { return s != 1; }\n        constexpr void operator++() noexcept\
+    \ { t += 1; }\n        constexpr std::pair<T, int> operator*() noexcept {\n  \
+    \          while (s % t != 0) {\n                if (t * t > s) {\n          \
+    \          const T u = s;\n                    s = 1;\n                    return\
+    \ {u, 1};\n                }\n                t += 1;\n            }\n       \
+    \     int e = 0;\n            while (s % t == 0) {\n                e += 1;\n\
+    \                s /= t;\n            }\n            return {t, e};\n        }\n\
+    \    };\n    T x;\n\n  public:\n    explicit constexpr Factorizer(const T& x)\
+    \ noexcept : x(x) { assert(x > 0); }\n    constexpr Iter begin() const noexcept\
+    \ { return Iter(x, 2); }\n    constexpr std::monostate end() noexcept { return\
+    \ {}; }\n};\n\ntemplate <class T> constexpr Factorizer<T> factorize_iter(const\
+    \ T& x) noexcept { return Factorizer<T>(x); }\n#line 3 \"math/totient.cpp\"\n\n\
+    template <class T> constexpr T totient(T x) {\n    T ret = x;\n    for (const\
+    \ auto& p : factorize_iter(x)) {\n        ret /= p.first;\n        ret *= p.first\
+    \ - 1;\n    }\n    return ret;\n}\n#line 7 \"math/static_modint.cpp\"\n\ntemplate\
+    \ <u32 MOD, std::enable_if_t<((u32)1 <= MOD and MOD <= ((u32)1 << 31))>* = nullptr>\
+    \ class StaticModint {\n    using Self = StaticModint;\n\n    static inline constexpr\
+    \ u32 PHI = totient(MOD);\n    u32 v;\n\n  public:\n    static constexpr u32 mod()\
+    \ noexcept { return MOD; }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>*\
+    \ = nullptr>\n    static constexpr T normalize(const T& x) noexcept {\n      \
+    \  return rem_euclid<std::common_type_t<T, i64>>(x, MOD);\n    }\n\n    constexpr\
+    \ StaticModint() noexcept : v(0) {}\n    template <class T> constexpr StaticModint(const\
+    \ T& x) noexcept : v(normalize(x)) {}\n    template <class T> static constexpr\
+    \ Self raw(const T& x) noexcept {\n        Self ret;\n        ret.v = x;\n   \
+    \     return ret;\n    }\n\n    constexpr u32 val() const noexcept { return v;\
+    \ }\n    constexpr Self neg() const noexcept { return raw(v == 0 ? 0 : MOD - v);\
+    \ }\n    constexpr Self inv() const noexcept { return pow(PHI - 1); }\n    constexpr\
+    \ Self pow(u64 exp) const noexcept {\n        Self ret(1), mult(*this);\n    \
+    \    for (; exp > 0; exp >>= 1) {\n            if (exp & 1) ret *= mult;\n   \
+    \         mult *= mult;\n        }\n        return ret;\n    }\n\n    constexpr\
+    \ Self operator-() const noexcept { return neg(); }\n    constexpr Self operator~()\
+    \ const noexcept { return inv(); }\n\n    constexpr Self operator+(const Self&\
+    \ rhs) const noexcept { return Self(*this) += rhs; }\n    constexpr Self& operator+=(const\
+    \ Self& rhs) noexcept {\n        if ((v += rhs.v) >= MOD) v -= MOD;\n        return\
+    \ *this;\n    }\n\n    constexpr Self operator-(const Self& rhs) const noexcept\
+    \ { return Self(*this) -= rhs; }\n    constexpr Self& operator-=(const Self& rhs)\
+    \ noexcept {\n        if (v < rhs.v) v += MOD;\n        v -= rhs.v;\n        return\
+    \ *this;\n    }\n\n    constexpr Self operator*(const Self& rhs) const noexcept\
+    \ { return Self(*this) *= rhs; }\n    constexpr Self& operator*=(const Self& rhs)\
+    \ noexcept {\n        v = (u64)v * rhs.v % MOD;\n        return *this;\n    }\n\
+    \n    constexpr Self operator/(const Self& rhs) const noexcept { return Self(*this)\
+    \ /= rhs; }\n    constexpr Self& operator/=(const Self& rhs) noexcept { return\
+    \ *this *= rhs.inv(); }\n\n    constexpr bool operator==(const Self& rhs) const\
+    \ noexcept { return v == rhs.v; }\n    constexpr bool operator!=(const Self& rhs)\
+    \ const noexcept { return v != rhs.v; }\n    friend std::ostream& operator<<(std::ostream&\
     \ stream, const Self& rhs) { return stream << rhs.v; }\n};\n\nusing Modint1000000007\
     \ = StaticModint<1000000007>;\nusing Modint998244353 = StaticModint<998244353>;\n\
     #line 9 \"algorithm/convolution_mod.cpp\"\n\ntemplate <class T> std::vector<T>\
@@ -294,10 +310,11 @@ data:
   - math/barret_reduction.cpp
   - math/static_modint.cpp
   - math/totient.cpp
+  - math/factorize_iter.cpp
   isVerificationFile: false
   path: algorithm/convolution_arbitrary_mod.cpp
   requiredBy: []
-  timestamp: '2021-12-28 21:38:32+09:00'
+  timestamp: '2021-12-28 22:38:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution_arbitrary_mod.test.cpp

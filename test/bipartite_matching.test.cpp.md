@@ -89,7 +89,7 @@ data:
     \ + 1;\n                    if (e.dst == dst) return;\n                    que.push(e.dst);\n\
     \                }\n            }\n        };\n        const auto dfs = rec_lambda([&](auto&&\
     \ dfs, const int u, const Flow ub) -> Flow {\n            if (u == src) return\
-    \ ub;\n            Flow ret = 0;\n            for (int& i = iter[u]; i < graph[u].size();\
+    \ ub;\n            Flow ret = 0;\n            for (int& i = iter[u]; i < (int)graph[u].size();\
     \ i += 1) {\n                Edge& e = graph[u][i];\n                Edge& re\
     \ = graph[e.dst][e.rev];\n                if (level[u] <= level[e.dst] or re.cap\
     \ == 0) continue;\n                const Flow d = dfs(e.dst, std::min(ub - ret,\
@@ -143,7 +143,7 @@ data:
   isVerificationFile: true
   path: test/bipartite_matching.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 22:38:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/bipartite_matching.test.cpp

@@ -27,9 +27,6 @@ data:
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
   - icon: ':heavy_check_mark:'
-    path: container/polynomial_hash.cpp
-    title: container/polynomial_hash.cpp
-  - icon: ':heavy_check_mark:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -70,9 +67,6 @@ data:
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/polynomial_hash.test.cpp
-    title: test/polynomial_hash.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/prime_sieve.test.cpp
     title: test/prime_sieve.test.cpp
   - icon: ':heavy_check_mark:'
@@ -105,7 +99,6 @@ data:
   - algorithm/convolution_int.cpp
   - utility/auto_realloc.cpp
   - container/fenwick_tree.cpp
-  - container/polynomial_hash.cpp
   - container/lazy_segment_tree.cpp
   - container/dual_segment_tree.cpp
   - container/segment_tree_beats.cpp
@@ -117,7 +110,6 @@ data:
   - test/convolution_arbitrary_mod.test.cpp
   - test/larsch.test.cpp
   - test/integer_hash_table_verbose.test.cpp
-  - test/polynomial_hash.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/heavy_light_decomposition.test.cpp
   - test/segment_tree.test.cpp

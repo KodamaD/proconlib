@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/fenwick_tree.cpp
     title: container/fenwick_tree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/sum_group.cpp
     title: traits/sum_group.cpp
   - icon: ':heavy_check_mark:'
