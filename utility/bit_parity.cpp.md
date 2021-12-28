@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []
@@ -31,8 +31,7 @@ data:
     #line 3 "utility/bit_parity.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr int bit_parity(const u64 x) { return
-    __builtin_parityll(x); }
+    constexpr int bit_parity(const u64 x) { return __builtin_parityll(x); }
 
     '
   code: '#pragma once
@@ -40,8 +39,7 @@ data:
     #include "int_alias.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr int bit_parity(const u64 x) { return
-    __builtin_parityll(x); }
+    constexpr int bit_parity(const u64 x) { return __builtin_parityll(x); }
 
     '
   dependsOn:
@@ -49,7 +47,7 @@ data:
   isVerificationFile: false
   path: utility/bit_parity.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: utility/bit_parity.cpp

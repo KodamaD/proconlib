@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/totient.cpp
     title: math/totient.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -21,7 +21,7 @@ data:
     path: algorithm/convolution_mod.cpp
     title: algorithm/convolution_mod.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,9 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/static_modint.cpp\"\n#include <ostream>\n#include <type_traits>\n\
@@ -144,7 +144,7 @@ data:
   - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_int.cpp
   timestamp: '2021-12-17 09:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/convolution_arbitrary_mod.test.cpp
   - test/queue_aggregation.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: algorithm/z_algorithm.cpp
     title: algorithm/z_algorithm.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []

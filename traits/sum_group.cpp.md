@@ -1,0 +1,64 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: algorithm/and_convolution.cpp
+    title: algorithm/and_convolution.cpp
+  - icon: ':warning:'
+    path: algorithm/or_convolution.cpp
+    title: algorithm/or_convolution.cpp
+  - icon: ':warning:'
+    path: traits/max_add_action.cpp
+    title: traits/max_add_action.cpp
+  - icon: ':warning:'
+    path: traits/min_add_action.cpp
+    title: traits/min_add_action.cpp
+  - icon: ':heavy_check_mark:'
+    path: traits/sum_affine_action.cpp
+    title: traits/sum_affine_action.cpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/and_convolution.test.cpp
+    title: test/and_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fenwick_tree.test.cpp
+    title: test/fenwick_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/lazy_segment_tree.test.cpp
+    title: test/lazy_segment_tree.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':question:'
+  attributes:
+    links: []
+  bundledCode: "#line 2 \"traits/sum_group.cpp\"\n\ntemplate <class T> struct SumGroup\
+    \ {\n    using Type = T;\n    static constexpr T identity() { return T(0); }\n\
+    \    static constexpr T operation(const T& l, const T& r) { return l + r; }\n\
+    \    static constexpr T inverse(const T& x) { return -x; }\n};\n"
+  code: "#pragma once\n\ntemplate <class T> struct SumGroup {\n    using Type = T;\n\
+    \    static constexpr T identity() { return T(0); }\n    static constexpr T operation(const\
+    \ T& l, const T& r) { return l + r; }\n    static constexpr T inverse(const T&\
+    \ x) { return -x; }\n};\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: traits/sum_group.cpp
+  requiredBy:
+  - traits/max_add_action.cpp
+  - traits/sum_affine_action.cpp
+  - traits/min_add_action.cpp
+  - algorithm/or_convolution.cpp
+  - algorithm/and_convolution.cpp
+  timestamp: '2021-12-28 21:38:32+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/lazy_segment_tree.test.cpp
+  - test/and_convolution.test.cpp
+  - test/fenwick_tree.test.cpp
+documentation_of: traits/sum_group.cpp
+layout: document
+redirect_from:
+- /library/traits/sum_group.cpp
+- /library/traits/sum_group.cpp.html
+title: traits/sum_group.cpp
+---

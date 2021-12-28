@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/countl_zero.cpp
     title: utility/countl_zero.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
@@ -37,11 +37,10 @@ data:
     #line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32 = std::int32_t;\n\
     using u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
     using i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 3 \"utility/countl_zero.cpp\"\
-    \n\n__attribute__((target(\"avx2\"))) constexpr int countl_zero(const u64 x) {\
-    \ return x == 0 ? 64 : __builtin_clzll(x); }\n#line 3 \"utility/bit_width.cpp\"\
-    \n\n__attribute__((target(\"avx2\"))) constexpr int bit_width(const u64 x) { return\
-    \ 64 - countl_zero(x); }\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\n\
-    class Range {\n    struct Iter {\n        int itr;\n        constexpr Iter(const\
+    \n\nconstexpr int countl_zero(const u64 x) { return x == 0 ? 64 : __builtin_clzll(x);\
+    \ }\n#line 3 \"utility/bit_width.cpp\"\n\nconstexpr int bit_width(const u64 x)\
+    \ { return 64 - countl_zero(x); }\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\
+    \nclass Range {\n    struct Iter {\n        int itr;\n        constexpr Iter(const\
     \ int pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept\
     \ { ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
     \ { return itr != other.itr; }\n        constexpr int operator*() const noexcept\
@@ -57,7 +56,7 @@ data:
     \ size = vec.size();\n        const int height = bit_width(size);\n        table.reserve(height);\n\
     \        table.push_back(vec);\n        for (const int d : rep(1, height)) {\n\
     \            table.push_back(std::vector<T>(size - (1 << d) + 1, M::identity()));\n\
-    \            for (const int i : rep(0, table[d].size())) {\n                table[d][i]\
+    \            for (const int i : rep(table[d].size())) {\n                table[d][i]\
     \ = M::operation(table[d - 1][i], table[d - 1][i + (1 << (d - 1))]);\n       \
     \     }\n        }\n    }\n\n    int size() const { return table[0].size(); }\n\
     \n    T fold(const int l, const int r) const {\n        assert(0 <= l and l <=\
@@ -110,7 +109,7 @@ data:
   isVerificationFile: true
   path: test/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 21:33:25+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sparse_table.test.cpp

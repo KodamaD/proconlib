@@ -22,13 +22,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/primitive_root.cpp
     title: math/primitive_root.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/totient.cpp
     title: math/totient.cpp
   - icon: ':heavy_check_mark:'
@@ -37,10 +37,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/countr_zero.cpp
     title: utility/countr_zero.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -80,12 +80,11 @@ data:
     \ Iter end() const noexcept { return last; }\n};\n\nconstexpr Range rep(const\
     \ int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range rep(const\
     \ int n) noexcept { return Range(0, n); }\n#line 3 \"utility/ceil_log2.cpp\"\n\
-    \n__attribute__((target(\"avx2\"))) constexpr int ceil_log2(const u64 x) {\n \
-    \   int e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n}\n#line 2\
-    \ \"math/modulo_transform.cpp\"\n#include <array>\n#line 3 \"utility/countr_zero.cpp\"\
-    \n\n__attribute__((target(\"avx2\"))) constexpr int countr_zero(const u64 x) {\
-    \ return x == 0 ? 64 : __builtin_ctzll(x); }\n#line 3 \"utility/revrep.cpp\"\n\
-    \nclass ReversedRange {\n    struct Iter {\n        int itr;\n        constexpr\
+    \nconstexpr int ceil_log2(const u64 x) {\n    int e = 0;\n    while (((u64)1 <<\
+    \ e) < x) ++e;\n    return e;\n}\n#line 2 \"math/modulo_transform.cpp\"\n#include\
+    \ <array>\n#line 3 \"utility/countr_zero.cpp\"\n\nconstexpr int countr_zero(const\
+    \ u64 x) { return x == 0 ? 64 : __builtin_ctzll(x); }\n#line 3 \"utility/revrep.cpp\"\
+    \n\nclass ReversedRange {\n    struct Iter {\n        int itr;\n        constexpr\
     \ Iter(const int pos) noexcept : itr(pos) {}\n        constexpr void operator++()\
     \ noexcept { --itr; }\n        constexpr bool operator!=(const Iter& other) const\
     \ noexcept { return itr != other.itr; }\n        constexpr int operator*() const\
@@ -212,16 +211,16 @@ data:
     #line 9 \"algorithm/convolution_mod.cpp\"\n\ntemplate <class T> std::vector<T>\
     \ convolution_naive(const std::vector<T>& a, const std::vector<T>& b) {\n    const\
     \ int n = a.size(), m = b.size();\n    std::vector<T> c(n + m - 1);\n    if (n\
-    \ < m) {\n        for (const int j : rep(0, m))\n            for (const int i\
-    \ : rep(0, n)) c[i + j] += a[i] * b[j];\n    } else {\n        for (const int\
-    \ i : rep(0, n))\n            for (const int j : rep(0, m)) c[i + j] += a[i] *\
-    \ b[j];\n    }\n    return c;\n}\n\ntemplate <class M> std::vector<M> convolution_ntt(std::vector<M>\
-    \ a, std::vector<M> b) {\n    static constexpr ModuloTransform<M> transform;\n\
-    \    const int n = a.size(), m = b.size();\n    const int k = 1 << ceil_log2(n\
-    \ + m - 1);\n    a.resize(k), b.resize(k);\n    transform.butterfly(a);\n    transform.butterfly(b);\n\
-    \    for (const int i : rep(0, k)) a[i] *= b[i];\n    transform.butterfly_inv(a);\n\
+    \ < m) {\n        for (const int j : rep(m))\n            for (const int i : rep(n))\
+    \ c[i + j] += a[i] * b[j];\n    } else {\n        for (const int i : rep(n))\n\
+    \            for (const int j : rep(m)) c[i + j] += a[i] * b[j];\n    }\n    return\
+    \ c;\n}\n\ntemplate <class M> std::vector<M> convolution_ntt(std::vector<M> a,\
+    \ std::vector<M> b) {\n    static constexpr ModuloTransform<M> transform;\n  \
+    \  const int n = a.size(), m = b.size();\n    const int k = 1 << ceil_log2(n +\
+    \ m - 1);\n    a.resize(k), b.resize(k);\n    transform.butterfly(a);\n    transform.butterfly(b);\n\
+    \    for (const int i : rep(k)) a[i] *= b[i];\n    transform.butterfly_inv(a);\n\
     \    a.resize(n + m - 1);\n    const M c = M(k).inv();\n    for (const int i :\
-    \ rep(0, n + m - 1)) a[i] *= c;\n    return a;\n}\n\ntemplate <class M> std::vector<M>\
+    \ rep(n + m - 1)) a[i] *= c;\n    return a;\n}\n\ntemplate <class M> std::vector<M>\
     \ convolution_mod(std::vector<M>&& a, std::vector<M>&& b) {\n    const int n =\
     \ a.size(), m = b.size();\n    if (n == 0 || m == 0) return {};\n    if (std::min(n,\
     \ m) <= 60) return convolution_naive(a, b);\n    return convolution_ntt(std::move(a),\
@@ -233,9 +232,9 @@ data:
     std::vector<T> convolution_mod(const std::vector<T>& a, const std::vector<T>&\
     \ b) {\n    const int n = a.size(), m = b.size();\n    if (n == 0 || m == 0) return\
     \ {};\n    using M = StaticModint<MOD>;\n    std::vector<M> a2(n), b2(m);\n  \
-    \  for (const int i : rep(0, n)) a2[i] = a[i];\n    for (const int i : rep(0,\
-    \ m)) b2[i] = b[i];\n    std::vector<M> c2 = convolution_mod(std::move(a2), std::move(b2));\n\
-    \    std::vector<T> c(n + m - 1);\n    for (const int i : rep(0, n + m - 1)) c[i]\
+    \  for (const int i : rep(n)) a2[i] = a[i];\n    for (const int i : rep(m)) b2[i]\
+    \ = b[i];\n    std::vector<M> c2 = convolution_mod(std::move(a2), std::move(b2));\n\
+    \    std::vector<T> c(n + m - 1);\n    for (const int i : rep(n + m - 1)) c[i]\
     \ = c2[i].val();\n    return c;\n}\n#line 10 \"algorithm/convolution_int.cpp\"\
     \n\ntemplate <class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\nstd::vector<T>\
     \ convolution_int(const std::vector<T>& a, const std::vector<T>& b) {\n    const\
@@ -248,8 +247,8 @@ data:
     \    static constexpr u64 OFFSET[5] = {0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\n\
     \    std::vector<T> c1 = convolution_mod<T, MOD1>(a, b);\n    std::vector<T> c2\
     \ = convolution_mod<T, MOD2>(a, b);\n    std::vector<T> c3 = convolution_mod<T,\
-    \ MOD3>(a, b);\n    std::vector<T> c(n + m - 1);\n    for (const int i : rep(0,\
-    \ n + m - 1)) {\n        u64 x = 0;\n        x += (c1[i] * I1) % MOD1 * M2M3;\n\
+    \ MOD3>(a, b);\n    std::vector<T> c(n + m - 1);\n    for (const int i : rep(n\
+    \ + m - 1)) {\n        u64 x = 0;\n        x += (c1[i] * I1) % MOD1 * M2M3;\n\
     \        x += (c2[i] * I2) % MOD2 * M1M3;\n        x += (c3[i] * I3) % MOD3 *\
     \ M1M2;\n        i64 diff = c1[i] - rem_euclid<i64>(x, MOD1);\n        if (diff\
     \ < 0) diff += MOD1;\n        c[i] = x - OFFSET[diff % 5];\n    }\n    return\
@@ -268,8 +267,8 @@ data:
     \    static constexpr u64 OFFSET[5] = {0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\n\
     \    std::vector<T> c1 = convolution_mod<T, MOD1>(a, b);\n    std::vector<T> c2\
     \ = convolution_mod<T, MOD2>(a, b);\n    std::vector<T> c3 = convolution_mod<T,\
-    \ MOD3>(a, b);\n    std::vector<T> c(n + m - 1);\n    for (const int i : rep(0,\
-    \ n + m - 1)) {\n        u64 x = 0;\n        x += (c1[i] * I1) % MOD1 * M2M3;\n\
+    \ MOD3>(a, b);\n    std::vector<T> c(n + m - 1);\n    for (const int i : rep(n\
+    \ + m - 1)) {\n        u64 x = 0;\n        x += (c1[i] * I1) % MOD1 * M2M3;\n\
     \        x += (c2[i] * I2) % MOD2 * M1M3;\n        x += (c3[i] * I3) % MOD3 *\
     \ M1M2;\n        i64 diff = c1[i] - rem_euclid<i64>(x, MOD1);\n        if (diff\
     \ < 0) diff += MOD1;\n        c[i] = x - OFFSET[diff % 5];\n    }\n    return\
@@ -293,7 +292,7 @@ data:
   isVerificationFile: false
   path: algorithm/convolution_int.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: algorithm/convolution_int.cpp

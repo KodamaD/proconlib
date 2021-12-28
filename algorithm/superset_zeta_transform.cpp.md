@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: algorithm/and_convolution.cpp
     title: algorithm/and_convolution.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algorithm/superset_zeta_transform.cpp\"\n#include <cassert>\n\
@@ -29,23 +29,23 @@ data:
     \ constexpr Iter end() const noexcept { return last; }\n};\n\nconstexpr Range\
     \ rep(const int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range\
     \ rep(const int n) noexcept { return Range(0, n); }\n#line 5 \"algorithm/superset_zeta_transform.cpp\"\
-    \n\ntemplate <class T> void superset_zeta_transform(std::vector<T>& f) {\n   \
-    \ const int n = f.size();\n    assert((n & (n - 1)) == 0);\n    for (int i = 1;\
-    \ i < n; i <<= 1) {\n        for (const int j : rep(0, n)) {\n            if (j\
-    \ & i) f[j & ~i] += f[j];\n        }\n    }\n}\n"
+    \n\ntemplate <class S> void superset_zeta_transform(std::vector<typename S::type>&\
+    \ f) {\n    const int n = f.size();\n    assert((n & (n - 1)) == 0);\n    for\
+    \ (int i = 1; i < n; i <<= 1)\n        for (const int j : rep(n))\n          \
+    \  if (j & i) f[j & ~i] = S::operation(f[j & ~i], f[j]);\n}\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n#include \"../utility/rep.cpp\"\
-    \n\ntemplate <class T> void superset_zeta_transform(std::vector<T>& f) {\n   \
-    \ const int n = f.size();\n    assert((n & (n - 1)) == 0);\n    for (int i = 1;\
-    \ i < n; i <<= 1) {\n        for (const int j : rep(0, n)) {\n            if (j\
-    \ & i) f[j & ~i] += f[j];\n        }\n    }\n}\n"
+    \n\ntemplate <class S> void superset_zeta_transform(std::vector<typename S::type>&\
+    \ f) {\n    const int n = f.size();\n    assert((n & (n - 1)) == 0);\n    for\
+    \ (int i = 1; i < n; i <<= 1)\n        for (const int j : rep(n))\n          \
+    \  if (j & i) f[j & ~i] = S::operation(f[j & ~i], f[j]);\n}\n"
   dependsOn:
   - utility/rep.cpp
   isVerificationFile: false
   path: algorithm/superset_zeta_transform.cpp
   requiredBy:
   - algorithm/and_convolution.cpp
-  timestamp: '2021-12-17 09:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-12-28 21:38:32+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/and_convolution.test.cpp
 documentation_of: algorithm/superset_zeta_transform.cpp

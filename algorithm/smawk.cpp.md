@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
@@ -30,11 +30,11 @@ data:
     \ c2.pop_back();\n        if (c2.size() < n) c2.push_back(i);\n    }\n    std::vector<T>\
     \ r2;\n    for (int i = 1; i < n; i += 2) r2.push_back(row[i]);\n    const std::vector<T>\
     \ a2 = smawk(r2, c2, select);\n    std::vector<T> ret(n);\n    for (const int\
-    \ i : rep(0, a2.size())) ret[2 * i + 1] = a2[i];\n    int j = 0;\n    for (int\
-    \ i = 0; i < n; i += 2) {\n        ret[i] = c2[j];\n        const T end = (i +\
-    \ 1 == n ? c2.back() : ret[i + 1]);\n        while (c2[j] != end) {\n        \
-    \    j += 1;\n            if (select(row[i], ret[i], c2[j])) ret[i] = c2[j];\n\
-    \        }\n    }\n    return ret;\n}\n\ntemplate <class Select> std::vector<int>\
+    \ i : rep(a2.size())) ret[2 * i + 1] = a2[i];\n    int j = 0;\n    for (int i\
+    \ = 0; i < n; i += 2) {\n        ret[i] = c2[j];\n        const T end = (i + 1\
+    \ == n ? c2.back() : ret[i + 1]);\n        while (c2[j] != end) {\n          \
+    \  j += 1;\n            if (select(row[i], ret[i], c2[j])) ret[i] = c2[j];\n \
+    \       }\n    }\n    return ret;\n}\n\ntemplate <class Select> std::vector<int>\
     \ smawk(const int row, const int column, const Select& select) {\n    std::vector<int>\
     \ r(row), c(column);\n    std::iota(r.begin(), r.end(), 0);\n    std::iota(c.begin(),\
     \ c.end(), 0);\n    return smawk(r, c, select);\n}\n"
@@ -46,21 +46,20 @@ data:
     \ i)) c2.pop_back();\n        if (c2.size() < n) c2.push_back(i);\n    }\n   \
     \ std::vector<T> r2;\n    for (int i = 1; i < n; i += 2) r2.push_back(row[i]);\n\
     \    const std::vector<T> a2 = smawk(r2, c2, select);\n    std::vector<T> ret(n);\n\
-    \    for (const int i : rep(0, a2.size())) ret[2 * i + 1] = a2[i];\n    int j\
-    \ = 0;\n    for (int i = 0; i < n; i += 2) {\n        ret[i] = c2[j];\n      \
-    \  const T end = (i + 1 == n ? c2.back() : ret[i + 1]);\n        while (c2[j]\
-    \ != end) {\n            j += 1;\n            if (select(row[i], ret[i], c2[j]))\
-    \ ret[i] = c2[j];\n        }\n    }\n    return ret;\n}\n\ntemplate <class Select>\
-    \ std::vector<int> smawk(const int row, const int column, const Select& select)\
-    \ {\n    std::vector<int> r(row), c(column);\n    std::iota(r.begin(), r.end(),\
-    \ 0);\n    std::iota(c.begin(), c.end(), 0);\n    return smawk(r, c, select);\n\
-    }\n"
+    \    for (const int i : rep(a2.size())) ret[2 * i + 1] = a2[i];\n    int j = 0;\n\
+    \    for (int i = 0; i < n; i += 2) {\n        ret[i] = c2[j];\n        const\
+    \ T end = (i + 1 == n ? c2.back() : ret[i + 1]);\n        while (c2[j] != end)\
+    \ {\n            j += 1;\n            if (select(row[i], ret[i], c2[j])) ret[i]\
+    \ = c2[j];\n        }\n    }\n    return ret;\n}\n\ntemplate <class Select> std::vector<int>\
+    \ smawk(const int row, const int column, const Select& select) {\n    std::vector<int>\
+    \ r(row), c(column);\n    std::iota(r.begin(), r.end(), 0);\n    std::iota(c.begin(),\
+    \ c.end(), 0);\n    return smawk(r, c, select);\n}\n"
   dependsOn:
   - utility/rep.cpp
   isVerificationFile: false
   path: algorithm/smawk.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: algorithm/smawk.cpp

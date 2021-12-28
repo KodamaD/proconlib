@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_manager.cpp
     title: graph/tree_manager.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/totient.cpp
     title: math/totient.cpp
   - icon: ':heavy_check_mark:'
@@ -31,13 +31,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -59,20 +59,19 @@ data:
     #line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32 = std::int32_t;\n\
     using u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
     using i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 3 \"utility/ceil_log2.cpp\"\
-    \n\n__attribute__((target(\"avx2\"))) constexpr int ceil_log2(const u64 x) {\n\
-    \    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n}\n#line 2\
-    \ \"utility/rep.cpp\"\n#include <algorithm>\n\nclass Range {\n    struct Iter\
-    \ {\n        int itr;\n        constexpr Iter(const int pos) noexcept : itr(pos)\
-    \ {}\n        constexpr void operator++() noexcept { ++itr; }\n        constexpr\
-    \ bool operator!=(const Iter& other) const noexcept { return itr != other.itr;\
-    \ }\n        constexpr int operator*() const noexcept { return itr; }\n    };\n\
-    \    const Iter first, last;\n\n  public:\n    explicit constexpr Range(const\
-    \ int first, const int last) noexcept : first(first), last(std::max(first, last))\
-    \ {}\n    constexpr Iter begin() const noexcept { return first; }\n    constexpr\
-    \ Iter end() const noexcept { return last; }\n};\n\nconstexpr Range rep(const\
-    \ int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range rep(const\
-    \ int n) noexcept { return Range(0, n); }\n#line 3 \"utility/revrep.cpp\"\n\n\
-    class ReversedRange {\n    struct Iter {\n        int itr;\n        constexpr\
+    \n\nconstexpr int ceil_log2(const u64 x) {\n    int e = 0;\n    while (((u64)1\
+    \ << e) < x) ++e;\n    return e;\n}\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\
+    \nclass Range {\n    struct Iter {\n        int itr;\n        constexpr Iter(const\
+    \ int pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept\
+    \ { ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
+    \ { return itr != other.itr; }\n        constexpr int operator*() const noexcept\
+    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
+    \ constexpr Range(const int first, const int last) noexcept : first(first), last(std::max(first,\
+    \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
+    \ constexpr Iter end() const noexcept { return last; }\n};\n\nconstexpr Range\
+    \ rep(const int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range\
+    \ rep(const int n) noexcept { return Range(0, n); }\n#line 3 \"utility/revrep.cpp\"\
+    \n\nclass ReversedRange {\n    struct Iter {\n        int itr;\n        constexpr\
     \ Iter(const int pos) noexcept : itr(pos) {}\n        constexpr void operator++()\
     \ noexcept { --itr; }\n        constexpr bool operator!=(const Iter& other) const\
     \ noexcept { return itr != other.itr; }\n        constexpr int operator*() const\
@@ -90,7 +89,7 @@ data:
     \        : SegmentTree(std::vector<T>(size, value)) {}\n    explicit SegmentTree(const\
     \ std::vector<T>& vec) : internal_size(vec.size()) {\n        seg_size = 1 <<\
     \ ceil_log2(internal_size);\n        data = std::vector<T>(2 * seg_size, M::identity());\n\
-    \        for (const int i : rep(0, internal_size)) data[seg_size + i] = vec[i];\n\
+    \        for (const int i : rep(internal_size)) data[seg_size + i] = vec[i];\n\
     \        for (const int i : revrep(1, seg_size)) fetch(i);\n    }\n\n    int size()\
     \ const { return internal_size; }\n\n    void assign(int i, const T& value) {\n\
     \        assert(0 <= i and i < internal_size);\n        i += seg_size;\n     \
@@ -137,14 +136,14 @@ data:
     \ u; }\n        E& operator*() const { return self->graph[u][e]; }\n        E*\
     \ operator->() const { return &self->graph[u][e]; }\n    };\n\n    int size()\
     \ const { return graph.size(); }\n    std::vector<E>& operator[](const int u)\
-    \ {\n        assert(0 <= u and u < (int)size());\n        return graph[u];\n \
-    \   }\n    const std::vector<E>& operator[](const int u) const {\n        assert(0\
-    \ <= u and u < (int)size());\n        return graph[u];\n    }\n\n    int add_vertex()\
+    \ {\n        assert(0 <= u and u < size());\n        return graph[u];\n    }\n\
+    \    const std::vector<E>& operator[](const int u) const {\n        assert(0 <=\
+    \ u and u < size());\n        return graph[u];\n    }\n\n    int add_vertex()\
     \ {\n        graph.emplace_back();\n        return size() - 1;\n    }\n    IndexOffset\
     \ add_vertices(int n) {\n        IndexOffset ret(size(), n);\n        while (n--)\
     \ graph.emplace_back();\n        return ret;\n    }\n\n    template <class...\
     \ Args> EdgePtr add_edge(const int u, Args&&... args) {\n        assert(0 <= u\
-    \ and u < (int)size());\n        const int e = graph[u].size();\n        graph[u].emplace_back(std::forward<Args>(args)...);\n\
+    \ and u < size());\n        const int e = graph[u].size();\n        graph[u].emplace_back(std::forward<Args>(args)...);\n\
     \        return EdgePtr(u, e, this);\n    }\n};\n#line 4 \"graph/tree_manager.cpp\"\
     \n#include <variant>\n#line 2 \"utility/rec_lambda.cpp\"\n#include <type_traits>\n\
     #line 4 \"utility/rec_lambda.cpp\"\n\ntemplate <class F> struct RecursiveLambda\
@@ -186,53 +185,54 @@ data:
     \     const int y = self->node[src].head;\n            const int z = self->node[dst].next;\n\
     \            src = (y != self->node[dst].head ? y : z);\n            return std::make_pair(x,\
     \ src);\n        }\n    };\n\n    int size() const { return node.size(); }\n \
-    \   const NodeInfo& operator[](const int u) const {\n        assert(u < size());\n\
-    \        return node[u];\n    }\n\n    int lca(int u, int v) const {\n       \
-    \ assert(u < size());\n        assert(v < size());\n        if (node[u].enter\
-    \ > node[v].enter) std::swap(u, v);\n        while (node[u].enter < node[v].enter)\
-    \ {\n            if (node[u].head == node[v].head) return u;\n            v =\
-    \ node[node[v].head].parent;\n        }\n        return v;\n    }\n\n    Path\
-    \ path(const int des, const int anc) const {\n        assert(des < size());\n\
-    \        assert(anc < size());\n        assert(node[anc].enter <= node[des].enter\
-    \ and node[des].exit <= node[anc].exit);\n        return Path(des, anc, this);\n\
-    \    }\n};\n#line 2 \"math/static_modint.cpp\"\n#include <ostream>\n#line 3 \"\
-    math/rem_euclid.cpp\"\n\ntemplate <class T> constexpr T rem_euclid(T value, const\
-    \ T& mod) {\n    assert(mod > 0);\n    return (value %= mod) >= 0 ? value : value\
-    \ + mod;\n}\n#line 2 \"math/totient.cpp\"\n\ntemplate <class T> constexpr T totient(T\
-    \ x) {\n    T ret = x;\n    for (T i = 2; i * i <= x; ++i) {\n        if (x %\
-    \ i == 0) {\n            ret /= i;\n            ret *= i - 1;\n            while\
-    \ (x % i == 0) x /= i;\n        }\n    }\n    if (x > 1) {\n        ret /= x;\n\
-    \        ret *= x - 1;\n    }\n    return ret;\n}\n#line 7 \"math/static_modint.cpp\"\
-    \n\ntemplate <u32 MOD, std::enable_if_t<((u32)1 <= MOD and MOD <= ((u32)1 << 31))>*\
-    \ = nullptr> class StaticModint {\n    using Self = StaticModint;\n\n    static\
-    \ inline constexpr u32 PHI = totient(MOD);\n    u32 v;\n\n  public:\n    static\
-    \ constexpr u32 mod() noexcept { return MOD; }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>*\
-    \ = nullptr>\n    static constexpr T normalize(const T& x) noexcept {\n      \
-    \  return rem_euclid<std::common_type_t<T, i64>>(x, MOD);\n    }\n\n    constexpr\
-    \ StaticModint() noexcept : v(0) {}\n    template <class T> constexpr StaticModint(const\
-    \ T& x) noexcept : v(normalize(x)) {}\n    template <class T> static constexpr\
-    \ Self raw(const T& x) noexcept {\n        Self ret;\n        ret.v = x;\n   \
-    \     return ret;\n    }\n\n    constexpr u32 val() const noexcept { return v;\
-    \ }\n    constexpr Self neg() const noexcept { return raw(v == 0 ? 0 : MOD - v);\
-    \ }\n    constexpr Self inv() const noexcept { return pow(PHI - 1); }\n    constexpr\
-    \ Self pow(u64 exp) const noexcept {\n        Self ret(1), mult(*this);\n    \
-    \    for (; exp > 0; exp >>= 1) {\n            if (exp & 1) ret *= mult;\n   \
-    \         mult *= mult;\n        }\n        return ret;\n    }\n\n    constexpr\
-    \ Self operator-() const noexcept { return neg(); }\n    constexpr Self operator~()\
-    \ const noexcept { return inv(); }\n\n    constexpr Self operator+(const Self&\
-    \ rhs) const noexcept { return Self(*this) += rhs; }\n    constexpr Self& operator+=(const\
-    \ Self& rhs) noexcept {\n        if ((v += rhs.v) >= MOD) v -= MOD;\n        return\
-    \ *this;\n    }\n\n    constexpr Self operator-(const Self& rhs) const noexcept\
-    \ { return Self(*this) -= rhs; }\n    constexpr Self& operator-=(const Self& rhs)\
-    \ noexcept {\n        if (v < rhs.v) v += MOD;\n        v -= rhs.v;\n        return\
-    \ *this;\n    }\n\n    constexpr Self operator*(const Self& rhs) const noexcept\
-    \ { return Self(*this) *= rhs; }\n    constexpr Self& operator*=(const Self& rhs)\
-    \ noexcept {\n        v = (u64)v * rhs.v % MOD;\n        return *this;\n    }\n\
-    \n    constexpr Self operator/(const Self& rhs) const noexcept { return Self(*this)\
-    \ /= rhs; }\n    constexpr Self& operator/=(const Self& rhs) noexcept { return\
-    \ *this *= rhs.inv(); }\n\n    constexpr bool operator==(const Self& rhs) const\
-    \ noexcept { return v == rhs.v; }\n    constexpr bool operator!=(const Self& rhs)\
-    \ const noexcept { return v != rhs.v; }\n    friend std::ostream& operator<<(std::ostream&\
+    \   const NodeInfo& operator[](const int u) const {\n        assert(0 <= u and\
+    \ u < size());\n        return node[u];\n    }\n\n    int lca(int u, int v) const\
+    \ {\n        assert(0 <= u and u < size());\n        assert(0 <= v and v < size());\n\
+    \        if (node[u].enter > node[v].enter) std::swap(u, v);\n        while (node[u].enter\
+    \ < node[v].enter) {\n            if (node[u].head == node[v].head) return u;\n\
+    \            v = node[node[v].head].parent;\n        }\n        return v;\n  \
+    \  }\n\n    Path path(const int des, const int anc) const {\n        assert(0\
+    \ <= des and des < size());\n        assert(0 <= anc and anc < size());\n    \
+    \    assert(node[anc].enter <= node[des].enter and node[des].exit <= node[anc].exit);\n\
+    \        return Path(des, anc, this);\n    }\n};\n#line 2 \"math/static_modint.cpp\"\
+    \n#include <ostream>\n#line 3 \"math/rem_euclid.cpp\"\n\ntemplate <class T> constexpr\
+    \ T rem_euclid(T value, const T& mod) {\n    assert(mod > 0);\n    return (value\
+    \ %= mod) >= 0 ? value : value + mod;\n}\n#line 2 \"math/totient.cpp\"\n\ntemplate\
+    \ <class T> constexpr T totient(T x) {\n    T ret = x;\n    for (T i = 2; i *\
+    \ i <= x; ++i) {\n        if (x % i == 0) {\n            ret /= i;\n         \
+    \   ret *= i - 1;\n            while (x % i == 0) x /= i;\n        }\n    }\n\
+    \    if (x > 1) {\n        ret /= x;\n        ret *= x - 1;\n    }\n    return\
+    \ ret;\n}\n#line 7 \"math/static_modint.cpp\"\n\ntemplate <u32 MOD, std::enable_if_t<((u32)1\
+    \ <= MOD and MOD <= ((u32)1 << 31))>* = nullptr> class StaticModint {\n    using\
+    \ Self = StaticModint;\n\n    static inline constexpr u32 PHI = totient(MOD);\n\
+    \    u32 v;\n\n  public:\n    static constexpr u32 mod() noexcept { return MOD;\
+    \ }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\n\
+    \    static constexpr T normalize(const T& x) noexcept {\n        return rem_euclid<std::common_type_t<T,\
+    \ i64>>(x, MOD);\n    }\n\n    constexpr StaticModint() noexcept : v(0) {}\n \
+    \   template <class T> constexpr StaticModint(const T& x) noexcept : v(normalize(x))\
+    \ {}\n    template <class T> static constexpr Self raw(const T& x) noexcept {\n\
+    \        Self ret;\n        ret.v = x;\n        return ret;\n    }\n\n    constexpr\
+    \ u32 val() const noexcept { return v; }\n    constexpr Self neg() const noexcept\
+    \ { return raw(v == 0 ? 0 : MOD - v); }\n    constexpr Self inv() const noexcept\
+    \ { return pow(PHI - 1); }\n    constexpr Self pow(u64 exp) const noexcept {\n\
+    \        Self ret(1), mult(*this);\n        for (; exp > 0; exp >>= 1) {\n   \
+    \         if (exp & 1) ret *= mult;\n            mult *= mult;\n        }\n  \
+    \      return ret;\n    }\n\n    constexpr Self operator-() const noexcept { return\
+    \ neg(); }\n    constexpr Self operator~() const noexcept { return inv(); }\n\n\
+    \    constexpr Self operator+(const Self& rhs) const noexcept { return Self(*this)\
+    \ += rhs; }\n    constexpr Self& operator+=(const Self& rhs) noexcept {\n    \
+    \    if ((v += rhs.v) >= MOD) v -= MOD;\n        return *this;\n    }\n\n    constexpr\
+    \ Self operator-(const Self& rhs) const noexcept { return Self(*this) -= rhs;\
+    \ }\n    constexpr Self& operator-=(const Self& rhs) noexcept {\n        if (v\
+    \ < rhs.v) v += MOD;\n        v -= rhs.v;\n        return *this;\n    }\n\n  \
+    \  constexpr Self operator*(const Self& rhs) const noexcept { return Self(*this)\
+    \ *= rhs; }\n    constexpr Self& operator*=(const Self& rhs) noexcept {\n    \
+    \    v = (u64)v * rhs.v % MOD;\n        return *this;\n    }\n\n    constexpr\
+    \ Self operator/(const Self& rhs) const noexcept { return Self(*this) /= rhs;\
+    \ }\n    constexpr Self& operator/=(const Self& rhs) noexcept { return *this *=\
+    \ rhs.inv(); }\n\n    constexpr bool operator==(const Self& rhs) const noexcept\
+    \ { return v == rhs.v; }\n    constexpr bool operator!=(const Self& rhs) const\
+    \ noexcept { return v != rhs.v; }\n    friend std::ostream& operator<<(std::ostream&\
     \ stream, const Self& rhs) { return stream << rhs.v; }\n};\n\nusing Modint1000000007\
     \ = StaticModint<1000000007>;\nusing Modint998244353 = StaticModint<998244353>;\n\
     #line 2 \"traits/affine_composite_monoid.cpp\"\n\ntemplate <class T> struct Affine\
@@ -315,7 +315,7 @@ data:
   isVerificationFile: true
   path: test/heavy_light_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:48:33+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/heavy_light_decomposition.test.cpp

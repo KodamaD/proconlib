@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
@@ -36,22 +36,22 @@ data:
     using i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 5 \"random/xorshift.cpp\"\
     \n\nu64 xorshift() {\n    static u64 state = std::chrono::system_clock::now().time_since_epoch().count();\n\
     \    state ^= state << 7;\n    state ^= state >> 9;\n    return state;\n}\n#line\
-    \ 3 \"utility/ceil_log2.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr int\
-    \ ceil_log2(const u64 x) {\n    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n\
-    \    return e;\n}\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\nclass\
-    \ Range {\n    struct Iter {\n        int itr;\n        constexpr Iter(const int\
-    \ pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept {\
-    \ ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
-    \ { return itr != other.itr; }\n        constexpr int operator*() const noexcept\
-    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
-    \ constexpr Range(const int first, const int last) noexcept : first(first), last(std::max(first,\
-    \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
-    \ constexpr Iter end() const noexcept { return last; }\n};\n\nconstexpr Range\
-    \ rep(const int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range\
-    \ rep(const int n) noexcept { return Range(0, n); }\n#line 9 \"container/integer_hash_table.cpp\"\
-    \n\ntemplate <class K, class V, std::enable_if_t<std::is_integral_v<K>>* = nullptr>\
-    \ class IntegerHashTable {\n    using Self = IntegerHashTable;\n\n    enum class\
-    \ Ctrl : char { Empty, Full, Deleted };\n\n    union Slot {\n        std::pair<const\
+    \ 3 \"utility/ceil_log2.cpp\"\n\nconstexpr int ceil_log2(const u64 x) {\n    int\
+    \ e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n}\n#line 2 \"utility/rep.cpp\"\
+    \n#include <algorithm>\n\nclass Range {\n    struct Iter {\n        int itr;\n\
+    \        constexpr Iter(const int pos) noexcept : itr(pos) {}\n        constexpr\
+    \ void operator++() noexcept { ++itr; }\n        constexpr bool operator!=(const\
+    \ Iter& other) const noexcept { return itr != other.itr; }\n        constexpr\
+    \ int operator*() const noexcept { return itr; }\n    };\n    const Iter first,\
+    \ last;\n\n  public:\n    explicit constexpr Range(const int first, const int\
+    \ last) noexcept : first(first), last(std::max(first, last)) {}\n    constexpr\
+    \ Iter begin() const noexcept { return first; }\n    constexpr Iter end() const\
+    \ noexcept { return last; }\n};\n\nconstexpr Range rep(const int l, const int\
+    \ r) noexcept { return Range(l, r); }\nconstexpr Range rep(const int n) noexcept\
+    \ { return Range(0, n); }\n#line 9 \"container/integer_hash_table.cpp\"\n\ntemplate\
+    \ <class K, class V, std::enable_if_t<std::is_integral_v<K>>* = nullptr> class\
+    \ IntegerHashTable {\n    using Self = IntegerHashTable;\n\n    enum class Ctrl\
+    \ : char { Empty, Full, Deleted };\n\n    union Slot {\n        std::pair<const\
     \ K, V> pair;\n        std::pair<K, V> mut_pair;\n        Slot() {}\n        ~Slot()\
     \ {}\n    };\n\n    struct Data {\n        Ctrl ctrl;\n        Slot slot;\n  \
     \      Data() : ctrl(Ctrl::Empty), slot() {}\n        ~Data() {\n            if\
@@ -75,8 +75,8 @@ data:
     \ std::pair<K, V>(std::forward<Args>(args)...);\n    }\n    void resize() {\n\
     \        Data* old_data = std::exchange(data, nullptr);\n        const int old_len\
     \ = info.size;\n        info.fix();\n        if (info.size) {\n            data\
-    \ = new Data[info.size];\n            for (const int i : rep(0, old_len)) {\n\
-    \                if (old_data[i].ctrl == Ctrl::Full) {\n                    const\
+    \ = new Data[info.size];\n            for (const int i : rep(old_len)) {\n   \
+    \             if (old_data[i].ctrl == Ctrl::Full) {\n                    const\
     \ int k = find_place(info.index(old_data[i].slot.pair.first));\n             \
     \       data[k].ctrl = Ctrl::Full;\n                    construct(k, std::move(old_data[i].slot.mut_pair));\n\
     \                }\n            }\n        }\n        if (old_data) delete[] old_data;\n\
@@ -101,7 +101,7 @@ data:
     \ { next(); }\n    };\n\n    Self& operator=(const Self& other) noexcept {\n \
     \       if (this != &other) {\n            clear();\n            info = other.info;\n\
     \            info.fix();\n            if (info.size) {\n                data =\
-    \ new Data[info.size];\n                for (const int i : rep(0, other.info.size))\
+    \ new Data[info.size];\n                for (const int i : rep(other.info.size))\
     \ {\n                    if (other.data[i].ctrl == Ctrl::Full) {\n           \
     \             const int k = find_place(info.index(other.data[i].slot.pair.first));\n\
     \                        data[k].ctrl = Ctrl::Full;\n                        construct(k,\
@@ -229,7 +229,7 @@ data:
   isVerificationFile: true
   path: test/integer_hash_table_verbose.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 20:09:20+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/integer_hash_table_verbose.test.cpp

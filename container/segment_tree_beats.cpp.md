@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/countr_zero.cpp
     title: utility/countr_zero.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -30,32 +30,32 @@ data:
     #include <optional>\n#include <utility>\n#include <vector>\n#line 2 \"utility/int_alias.cpp\"\
     \n#include <cstdint>\n\nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\n\
     using i64 = std::int64_t;\nusing u64 = std::uint64_t;\nusing i128 = __int128_t;\n\
-    using u128 = __uint128_t;\n#line 3 \"utility/ceil_log2.cpp\"\n\n__attribute__((target(\"\
-    avx2\"))) constexpr int ceil_log2(const u64 x) {\n    int e = 0;\n    while (((u64)1\
-    \ << e) < x) ++e;\n    return e;\n}\n#line 3 \"utility/countr_zero.cpp\"\n\n__attribute__((target(\"\
-    avx2\"))) constexpr int countr_zero(const u64 x) { return x == 0 ? 64 : __builtin_ctzll(x);\
-    \ }\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\nclass Range {\n    struct\
-    \ Iter {\n        int itr;\n        constexpr Iter(const int pos) noexcept : itr(pos)\
-    \ {}\n        constexpr void operator++() noexcept { ++itr; }\n        constexpr\
-    \ bool operator!=(const Iter& other) const noexcept { return itr != other.itr;\
-    \ }\n        constexpr int operator*() const noexcept { return itr; }\n    };\n\
-    \    const Iter first, last;\n\n  public:\n    explicit constexpr Range(const\
-    \ int first, const int last) noexcept : first(first), last(std::max(first, last))\
-    \ {}\n    constexpr Iter begin() const noexcept { return first; }\n    constexpr\
-    \ Iter end() const noexcept { return last; }\n};\n\nconstexpr Range rep(const\
-    \ int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range rep(const\
-    \ int n) noexcept { return Range(0, n); }\n#line 3 \"utility/revrep.cpp\"\n\n\
-    class ReversedRange {\n    struct Iter {\n        int itr;\n        constexpr\
-    \ Iter(const int pos) noexcept : itr(pos) {}\n        constexpr void operator++()\
-    \ noexcept { --itr; }\n        constexpr bool operator!=(const Iter& other) const\
-    \ noexcept { return itr != other.itr; }\n        constexpr int operator*() const\
-    \ noexcept { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n\
-    \    explicit constexpr ReversedRange(const int first, const int last) noexcept\n\
-    \        : first(last - 1), last(std::min(first, last) - 1) {}\n    constexpr\
+    using u128 = __uint128_t;\n#line 3 \"utility/ceil_log2.cpp\"\n\nconstexpr int\
+    \ ceil_log2(const u64 x) {\n    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n\
+    \    return e;\n}\n#line 3 \"utility/countr_zero.cpp\"\n\nconstexpr int countr_zero(const\
+    \ u64 x) { return x == 0 ? 64 : __builtin_ctzll(x); }\n#line 2 \"utility/rep.cpp\"\
+    \n#include <algorithm>\n\nclass Range {\n    struct Iter {\n        int itr;\n\
+    \        constexpr Iter(const int pos) noexcept : itr(pos) {}\n        constexpr\
+    \ void operator++() noexcept { ++itr; }\n        constexpr bool operator!=(const\
+    \ Iter& other) const noexcept { return itr != other.itr; }\n        constexpr\
+    \ int operator*() const noexcept { return itr; }\n    };\n    const Iter first,\
+    \ last;\n\n  public:\n    explicit constexpr Range(const int first, const int\
+    \ last) noexcept : first(first), last(std::max(first, last)) {}\n    constexpr\
     \ Iter begin() const noexcept { return first; }\n    constexpr Iter end() const\
-    \ noexcept { return last; }\n};\n\nconstexpr ReversedRange revrep(const int l,\
-    \ const int r) noexcept { return ReversedRange(l, r); }\nconstexpr ReversedRange\
-    \ revrep(const int n) noexcept { return ReversedRange(0, n); }\n#line 10 \"container/segment_tree_beats.cpp\"\
+    \ noexcept { return last; }\n};\n\nconstexpr Range rep(const int l, const int\
+    \ r) noexcept { return Range(l, r); }\nconstexpr Range rep(const int n) noexcept\
+    \ { return Range(0, n); }\n#line 3 \"utility/revrep.cpp\"\n\nclass ReversedRange\
+    \ {\n    struct Iter {\n        int itr;\n        constexpr Iter(const int pos)\
+    \ noexcept : itr(pos) {}\n        constexpr void operator++() noexcept { --itr;\
+    \ }\n        constexpr bool operator!=(const Iter& other) const noexcept { return\
+    \ itr != other.itr; }\n        constexpr int operator*() const noexcept { return\
+    \ itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit constexpr\
+    \ ReversedRange(const int first, const int last) noexcept\n        : first(last\
+    \ - 1), last(std::min(first, last) - 1) {}\n    constexpr Iter begin() const noexcept\
+    \ { return first; }\n    constexpr Iter end() const noexcept { return last; }\n\
+    };\n\nconstexpr ReversedRange revrep(const int l, const int r) noexcept { return\
+    \ ReversedRange(l, r); }\nconstexpr ReversedRange revrep(const int n) noexcept\
+    \ { return ReversedRange(0, n); }\n#line 10 \"container/segment_tree_beats.cpp\"\
     \n\ntemplate <class A> class SegmentTreeBeats {\n    using M = typename A::Monoid;\n\
     \    using E = typename A::Effector;\n    using T = typename M::Type;\n    using\
     \ U = typename E::Type;\n    int internal_size, logn, seg_size;\n    std::vector<T>\
@@ -75,7 +75,7 @@ data:
     \ value)) {}\n    explicit SegmentTreeBeats(const std::vector<T>& vec) : internal_size(vec.size())\
     \ {\n        logn = ceil_log2(internal_size);\n        seg_size = 1 << logn;\n\
     \        data = std::vector<T>(2 * seg_size, M::identity());\n        lazy = std::vector<U>(seg_size,\
-    \ E::identity());\n        for (const int i : rep(0, internal_size)) data[seg_size\
+    \ E::identity());\n        for (const int i : rep(internal_size)) data[seg_size\
     \ + i] = vec[i];\n        for (const int i : revrep(1, seg_size)) fetch(i);\n\
     \    }\n\n    int size() const { return internal_size; }\n\n    void assign(int\
     \ i, const T& value) {\n        assert(0 <= i and i < internal_size);\n      \
@@ -136,7 +136,7 @@ data:
     \ value)) {}\n    explicit SegmentTreeBeats(const std::vector<T>& vec) : internal_size(vec.size())\
     \ {\n        logn = ceil_log2(internal_size);\n        seg_size = 1 << logn;\n\
     \        data = std::vector<T>(2 * seg_size, M::identity());\n        lazy = std::vector<U>(seg_size,\
-    \ E::identity());\n        for (const int i : rep(0, internal_size)) data[seg_size\
+    \ E::identity());\n        for (const int i : rep(internal_size)) data[seg_size\
     \ + i] = vec[i];\n        for (const int i : revrep(1, seg_size)) fetch(i);\n\
     \    }\n\n    int size() const { return internal_size; }\n\n    void assign(int\
     \ i, const T& value) {\n        assert(0 <= i and i < internal_size);\n      \
@@ -184,7 +184,7 @@ data:
   isVerificationFile: false
   path: container/segment_tree_beats.cpp
   requiredBy: []
-  timestamp: '2021-12-17 20:09:20+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/segment_tree_beats.test.cpp

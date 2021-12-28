@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/countl_zero.cpp
     title: utility/countl_zero.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -40,14 +40,13 @@ data:
     #line 3 "utility/countl_zero.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr int countl_zero(const u64 x) { return
-    x == 0 ? 64 : __builtin_clzll(x); }
+    constexpr int countl_zero(const u64 x) { return x == 0 ? 64 : __builtin_clzll(x);
+    }
 
     #line 3 "utility/bit_width.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr int bit_width(const u64 x) { return
-    64 - countl_zero(x); }
+    constexpr int bit_width(const u64 x) { return 64 - countl_zero(x); }
 
     '
   code: '#pragma once
@@ -55,8 +54,7 @@ data:
     #include "countl_zero.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr int bit_width(const u64 x) { return
-    64 - countl_zero(x); }
+    constexpr int bit_width(const u64 x) { return 64 - countl_zero(x); }
 
     '
   dependsOn:
@@ -66,7 +64,7 @@ data:
   path: utility/bit_width.cpp
   requiredBy:
   - container/sparse_table.cpp
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sparse_table.test.cpp

@@ -11,11 +11,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: algorithm/convolution_mod.cpp
     title: algorithm/convolution_mod.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,9 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/totient.test.cpp
     title: test/totient.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/totient.cpp\"\n\ntemplate <class T> constexpr T totient(T\
@@ -72,7 +72,7 @@ data:
   - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_int.cpp
   timestamp: '2021-09-04 17:30:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/convolution_arbitrary_mod.test.cpp
   - test/totient.test.cpp

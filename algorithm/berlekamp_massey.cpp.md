@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
@@ -28,34 +28,34 @@ data:
     \ int n) noexcept { return Range(0, n); }\n#line 4 \"algorithm/berlekamp_massey.cpp\"\
     \n\ntemplate <class T> std::vector<T> berlekamp_massey(const std::vector<T>& a)\
     \ {\n    const int n = a.size();\n    std::vector<T> c = {T(-1)}, c2 = {T(0)};\n\
-    \    T r2 = 1;\n    int i2 = 0;\n    for (const int i : rep(0, n)) {\n       \
-    \ T r = 0;\n        const int d = c.size();\n        for (const int j : rep(0,\
-    \ d)) r += c[j] * a[i - j];\n        if (r == T(0)) continue;\n        T coeff\
-    \ = -r / r2;\n        const int d2 = c2.size(), shift = i - i2 + 1;\n        if\
-    \ (d2 + shift <= d) {\n            for (const int j : rep(0, d2)) c[j + shift]\
-    \ += c2[j] * coeff;\n        } else {\n            std::vector<T> tmp = c;\n \
-    \           c.resize(d2 + shift);\n            for (const int j : rep(0, d2))\
-    \ c[j + shift] += c2[j] * coeff;\n            c2 = std::move(tmp);\n         \
-    \   i2 = i + 1;\n            r2 = r;\n        }\n    }\n    c.erase(c.begin());\n\
-    \    return c;\n}\n"
+    \    T r2 = 1;\n    int i2 = 0;\n    for (const int i : rep(n)) {\n        T r\
+    \ = 0;\n        const int d = c.size();\n        for (const int j : rep(d)) r\
+    \ += c[j] * a[i - j];\n        if (r == T(0)) continue;\n        T coeff = -r\
+    \ / r2;\n        const int d2 = c2.size(), shift = i - i2 + 1;\n        if (d2\
+    \ + shift <= d) {\n            for (const int j : rep(d2)) c[j + shift] += c2[j]\
+    \ * coeff;\n        } else {\n            std::vector<T> tmp = c;\n          \
+    \  c.resize(d2 + shift);\n            for (const int j : rep(d2)) c[j + shift]\
+    \ += c2[j] * coeff;\n            c2 = std::move(tmp);\n            i2 = i + 1;\n\
+    \            r2 = r;\n        }\n    }\n    c.erase(c.begin());\n    return c;\n\
+    }\n"
   code: "#pragma once\n#include <vector>\n#include \"../utility/rep.cpp\"\n\ntemplate\
     \ <class T> std::vector<T> berlekamp_massey(const std::vector<T>& a) {\n    const\
     \ int n = a.size();\n    std::vector<T> c = {T(-1)}, c2 = {T(0)};\n    T r2 =\
-    \ 1;\n    int i2 = 0;\n    for (const int i : rep(0, n)) {\n        T r = 0;\n\
-    \        const int d = c.size();\n        for (const int j : rep(0, d)) r += c[j]\
-    \ * a[i - j];\n        if (r == T(0)) continue;\n        T coeff = -r / r2;\n\
-    \        const int d2 = c2.size(), shift = i - i2 + 1;\n        if (d2 + shift\
-    \ <= d) {\n            for (const int j : rep(0, d2)) c[j + shift] += c2[j] *\
-    \ coeff;\n        } else {\n            std::vector<T> tmp = c;\n            c.resize(d2\
-    \ + shift);\n            for (const int j : rep(0, d2)) c[j + shift] += c2[j]\
-    \ * coeff;\n            c2 = std::move(tmp);\n            i2 = i + 1;\n      \
-    \      r2 = r;\n        }\n    }\n    c.erase(c.begin());\n    return c;\n}"
+    \ 1;\n    int i2 = 0;\n    for (const int i : rep(n)) {\n        T r = 0;\n  \
+    \      const int d = c.size();\n        for (const int j : rep(d)) r += c[j] *\
+    \ a[i - j];\n        if (r == T(0)) continue;\n        T coeff = -r / r2;\n  \
+    \      const int d2 = c2.size(), shift = i - i2 + 1;\n        if (d2 + shift <=\
+    \ d) {\n            for (const int j : rep(d2)) c[j + shift] += c2[j] * coeff;\n\
+    \        } else {\n            std::vector<T> tmp = c;\n            c.resize(d2\
+    \ + shift);\n            for (const int j : rep(d2)) c[j + shift] += c2[j] * coeff;\n\
+    \            c2 = std::move(tmp);\n            i2 = i + 1;\n            r2 = r;\n\
+    \        }\n    }\n    c.erase(c.begin());\n    return c;\n}"
   dependsOn:
   - utility/rep.cpp
   isVerificationFile: false
   path: algorithm/berlekamp_massey.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/berlekamp_massey.test.cpp

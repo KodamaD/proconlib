@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/totient.cpp
     title: math/totient.cpp
   - icon: ':heavy_check_mark:'
@@ -19,10 +19,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -83,20 +83,19 @@ data:
     \ stream, const Self& rhs) { return stream << rhs.v; }\n};\n\nusing Modint1000000007\
     \ = StaticModint<1000000007>;\nusing Modint998244353 = StaticModint<998244353>;\n\
     #line 3 \"container/segment_tree.cpp\"\n#include <vector>\n#line 3 \"utility/ceil_log2.cpp\"\
-    \n\n__attribute__((target(\"avx2\"))) constexpr int ceil_log2(const u64 x) {\n\
-    \    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n}\n#line 2\
-    \ \"utility/rep.cpp\"\n#include <algorithm>\n\nclass Range {\n    struct Iter\
-    \ {\n        int itr;\n        constexpr Iter(const int pos) noexcept : itr(pos)\
-    \ {}\n        constexpr void operator++() noexcept { ++itr; }\n        constexpr\
-    \ bool operator!=(const Iter& other) const noexcept { return itr != other.itr;\
-    \ }\n        constexpr int operator*() const noexcept { return itr; }\n    };\n\
-    \    const Iter first, last;\n\n  public:\n    explicit constexpr Range(const\
-    \ int first, const int last) noexcept : first(first), last(std::max(first, last))\
-    \ {}\n    constexpr Iter begin() const noexcept { return first; }\n    constexpr\
-    \ Iter end() const noexcept { return last; }\n};\n\nconstexpr Range rep(const\
-    \ int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range rep(const\
-    \ int n) noexcept { return Range(0, n); }\n#line 3 \"utility/revrep.cpp\"\n\n\
-    class ReversedRange {\n    struct Iter {\n        int itr;\n        constexpr\
+    \n\nconstexpr int ceil_log2(const u64 x) {\n    int e = 0;\n    while (((u64)1\
+    \ << e) < x) ++e;\n    return e;\n}\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\
+    \nclass Range {\n    struct Iter {\n        int itr;\n        constexpr Iter(const\
+    \ int pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept\
+    \ { ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
+    \ { return itr != other.itr; }\n        constexpr int operator*() const noexcept\
+    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
+    \ constexpr Range(const int first, const int last) noexcept : first(first), last(std::max(first,\
+    \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
+    \ constexpr Iter end() const noexcept { return last; }\n};\n\nconstexpr Range\
+    \ rep(const int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range\
+    \ rep(const int n) noexcept { return Range(0, n); }\n#line 3 \"utility/revrep.cpp\"\
+    \n\nclass ReversedRange {\n    struct Iter {\n        int itr;\n        constexpr\
     \ Iter(const int pos) noexcept : itr(pos) {}\n        constexpr void operator++()\
     \ noexcept { --itr; }\n        constexpr bool operator!=(const Iter& other) const\
     \ noexcept { return itr != other.itr; }\n        constexpr int operator*() const\
@@ -114,7 +113,7 @@ data:
     \        : SegmentTree(std::vector<T>(size, value)) {}\n    explicit SegmentTree(const\
     \ std::vector<T>& vec) : internal_size(vec.size()) {\n        seg_size = 1 <<\
     \ ceil_log2(internal_size);\n        data = std::vector<T>(2 * seg_size, M::identity());\n\
-    \        for (const int i : rep(0, internal_size)) data[seg_size + i] = vec[i];\n\
+    \        for (const int i : rep(internal_size)) data[seg_size + i] = vec[i];\n\
     \        for (const int i : revrep(1, seg_size)) fetch(i);\n    }\n\n    int size()\
     \ const { return internal_size; }\n\n    void assign(int i, const T& value) {\n\
     \        assert(0 <= i and i < internal_size);\n        i += seg_size;\n     \
@@ -190,7 +189,7 @@ data:
   isVerificationFile: true
   path: test/segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:48:33+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/segment_tree.test.cpp

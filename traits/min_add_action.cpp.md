@@ -7,9 +7,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: traits/optional_monoid.cpp
     title: traits/optional_monoid.cpp
-  - icon: ':heavy_check_mark:'
-    path: traits/plus_monoid.cpp
-    title: traits/plus_monoid.cpp
+  - icon: ':question:'
+    path: traits/sum_group.cpp
+    title: traits/sum_group.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -26,27 +26,28 @@ data:
     \ *r));\n    }\n};\n#line 4 \"traits/min_monoid.cpp\"\n\ntemplate <class T> struct\
     \ MinSemiGroup {\n    using Type = T;\n    static constexpr T operation(const\
     \ T& l, const T& r) { return std::min(l, r); }\n};\n\ntemplate <class T> using\
-    \ MinMonoid = OptionalMonoid<MinSemiGroup<T>>;\n#line 2 \"traits/plus_monoid.cpp\"\
-    \n\ntemplate <class T> struct PlusMonoid {\n    using Type = T;\n    static constexpr\
+    \ MinMonoid = OptionalMonoid<MinSemiGroup<T>>;\n#line 2 \"traits/sum_group.cpp\"\
+    \n\ntemplate <class T> struct SumGroup {\n    using Type = T;\n    static constexpr\
     \ T identity() { return T(0); }\n    static constexpr T operation(const T& l,\
-    \ const T& r) { return l + r; }\n};\n#line 4 \"traits/min_add_action.cpp\"\n\n\
+    \ const T& r) { return l + r; }\n    static constexpr T inverse(const T& x) {\
+    \ return -x; }\n};\n#line 4 \"traits/min_add_action.cpp\"\n\ntemplate <class T>\
+    \ struct MinAddAction {\n    using Monoid = MinMonoid<T>;\n    using Effector\
+    \ = SumGroup<T>;\n    static constexpr std::optional<T> operation(const std::optional<T>&\
+    \ l, const T& r) {\n        if (!l) return std::nullopt;\n        return std::optional<T>(std::in_place,\
+    \ *l + r);\n    }\n};\n"
+  code: "#pragma once\n#include \"min_monoid.cpp\"\n#include \"sum_group.cpp\"\n\n\
     template <class T> struct MinAddAction {\n    using Monoid = MinMonoid<T>;\n \
-    \   using Effector = PlusMonoid<T>;\n    static constexpr std::optional<T> operation(const\
-    \ std::optional<T>& l, const T& r) {\n        if (!l) return std::nullopt;\n \
-    \       return std::optional<T>(std::in_place, *l + r);\n    }\n};\n"
-  code: "#pragma once\n#include \"min_monoid.cpp\"\n#include \"plus_monoid.cpp\"\n\
-    \ntemplate <class T> struct MinAddAction {\n    using Monoid = MinMonoid<T>;\n\
-    \    using Effector = PlusMonoid<T>;\n    static constexpr std::optional<T> operation(const\
+    \   using Effector = SumGroup<T>;\n    static constexpr std::optional<T> operation(const\
     \ std::optional<T>& l, const T& r) {\n        if (!l) return std::nullopt;\n \
     \       return std::optional<T>(std::in_place, *l + r);\n    }\n};"
   dependsOn:
   - traits/min_monoid.cpp
   - traits/optional_monoid.cpp
-  - traits/plus_monoid.cpp
+  - traits/sum_group.cpp
   isVerificationFile: false
   path: traits/min_add_action.cpp
   requiredBy: []
-  timestamp: '2021-11-10 20:31:05+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: traits/min_add_action.cpp

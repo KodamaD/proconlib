@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -66,12 +66,12 @@ data:
     \               visited.pop_back();\n                    ord[v] = n;\n       \
     \             index[v] = count;\n                    if (u == v) break;\n    \
     \            }\n                count += 1;\n            }\n        });\n    \
-    \    for (const int u : rep(0, n))\n            if (!ord[u]) dfs(u);\n       \
-    \ for (auto& x : index) x = count - x - 1;\n    }\n\n    int size() const { return\
+    \    for (const int u : rep(n))\n            if (!ord[u]) dfs(u);\n        for\
+    \ (auto& x : index) x = count - x - 1;\n    }\n\n    int size() const { return\
     \ index.size(); }\n    int group_count() const { return count; }\n    int group_id(const\
     \ int u) const {\n        assert(0 <= u and u < size());\n        return index[u];\n\
     \    }\n\n    std::vector<std::vector<int>> decopmose() const {\n        std::vector<std::vector<int>>\
-    \ ret(group_count());\n        for (const int u : rep(0, size())) ret[index[u]].push_back(u);\n\
+    \ ret(group_count());\n        for (const int u : rep(size())) ret[index[u]].push_back(u);\n\
     \        return ret;\n    }\n};\n#line 3 \"utility/index_offset.cpp\"\n\nclass\
     \ IndexOffset {\n    int offset, len;\n\n  public:\n    constexpr IndexOffset()\
     \ noexcept : offset(), len() {}\n    explicit constexpr IndexOffset(const int\
@@ -89,14 +89,14 @@ data:
     \ u; }\n        E& operator*() const { return self->graph[u][e]; }\n        E*\
     \ operator->() const { return &self->graph[u][e]; }\n    };\n\n    int size()\
     \ const { return graph.size(); }\n    std::vector<E>& operator[](const int u)\
-    \ {\n        assert(0 <= u and u < (int)size());\n        return graph[u];\n \
-    \   }\n    const std::vector<E>& operator[](const int u) const {\n        assert(0\
-    \ <= u and u < (int)size());\n        return graph[u];\n    }\n\n    int add_vertex()\
+    \ {\n        assert(0 <= u and u < size());\n        return graph[u];\n    }\n\
+    \    const std::vector<E>& operator[](const int u) const {\n        assert(0 <=\
+    \ u and u < size());\n        return graph[u];\n    }\n\n    int add_vertex()\
     \ {\n        graph.emplace_back();\n        return size() - 1;\n    }\n    IndexOffset\
     \ add_vertices(int n) {\n        IndexOffset ret(size(), n);\n        while (n--)\
     \ graph.emplace_back();\n        return ret;\n    }\n\n    template <class...\
     \ Args> EdgePtr add_edge(const int u, Args&&... args) {\n        assert(0 <= u\
-    \ and u < (int)size());\n        const int e = graph[u].size();\n        graph[u].emplace_back(std::forward<Args>(args)...);\n\
+    \ and u < size());\n        const int e = graph[u].size();\n        graph[u].emplace_back(std::forward<Args>(args)...);\n\
     \        return EdgePtr(u, e, this);\n    }\n};\n#line 4 \"test/strongly_connected_components.test.cpp\"\
     \n#include <iostream>\n\nint main() {\n    int N, M;\n    std::cin >> N >> M;\n\
     \    BasicGraph graph(N);\n    while (M--) {\n        int a, b;\n        std::cin\
@@ -122,7 +122,7 @@ data:
   isVerificationFile: true
   path: test/strongly_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/strongly_connected_components.test.cpp

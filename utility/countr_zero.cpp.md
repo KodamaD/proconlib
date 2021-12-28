@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -67,8 +67,8 @@ data:
     #line 3 "utility/countr_zero.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr int countr_zero(const u64 x) { return
-    x == 0 ? 64 : __builtin_ctzll(x); }
+    constexpr int countr_zero(const u64 x) { return x == 0 ? 64 : __builtin_ctzll(x);
+    }
 
     '
   code: '#pragma once
@@ -76,8 +76,8 @@ data:
     #include "int_alias.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr int countr_zero(const u64 x) { return
-    x == 0 ? 64 : __builtin_ctzll(x); }
+    constexpr int countr_zero(const u64 x) { return x == 0 ? 64 : __builtin_ctzll(x);
+    }
 
     '
   dependsOn:
@@ -92,7 +92,7 @@ data:
   - container/lazy_segment_tree.cpp
   - container/dual_segment_tree.cpp
   - container/segment_tree_beats.cpp
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution_arbitrary_mod.test.cpp

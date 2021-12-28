@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -40,8 +40,8 @@ data:
     #line 3 "utility/countl_zero.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr int countl_zero(const u64 x) { return
-    x == 0 ? 64 : __builtin_clzll(x); }
+    constexpr int countl_zero(const u64 x) { return x == 0 ? 64 : __builtin_clzll(x);
+    }
 
     '
   code: '#pragma once
@@ -49,8 +49,8 @@ data:
     #include "int_alias.cpp"
 
 
-    __attribute__((target("avx2"))) constexpr int countl_zero(const u64 x) { return
-    x == 0 ? 64 : __builtin_clzll(x); }
+    constexpr int countl_zero(const u64 x) { return x == 0 ? 64 : __builtin_clzll(x);
+    }
 
     '
   dependsOn:
@@ -60,7 +60,7 @@ data:
   requiredBy:
   - utility/bit_width.cpp
   - container/sparse_table.cpp
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sparse_table.test.cpp

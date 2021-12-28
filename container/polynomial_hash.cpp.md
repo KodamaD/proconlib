@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
@@ -40,11 +40,11 @@ data:
     \ 4 \"random/rand_int.cpp\"\n\ntemplate <class T> T rand_int(const T& min, const\
     \ T& max) {\n    static std::default_random_engine gen(xorshift());\n    return\
     \ std::uniform_int_distribution<T>(min, max)(gen);\n}\n#line 2 \"utility/auto_realloc.cpp\"\
-    \n#include <utility>\n#line 3 \"utility/ceil_log2.cpp\"\n\n__attribute__((target(\"\
-    avx2\"))) constexpr int ceil_log2(const u64 x) {\n    int e = 0;\n    while (((u64)1\
-    \ << e) < x) ++e;\n    return e;\n}\n#line 6 \"utility/auto_realloc.cpp\"\n\n\
-    template <class F> class AutoReallocation {\n    using R = typename decltype(std::declval<F>()(0))::value_type;\n\
-    \n    F func;\n    mutable std::vector<R> data;\n\n  public:\n    explicit AutoReallocation(F&&\
+    \n#include <utility>\n#line 3 \"utility/ceil_log2.cpp\"\n\nconstexpr int ceil_log2(const\
+    \ u64 x) {\n    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n\
+    }\n#line 6 \"utility/auto_realloc.cpp\"\n\ntemplate <class F> class AutoReallocation\
+    \ {\n    using R = typename decltype(std::declval<F>()(0))::value_type;\n\n  \
+    \  F func;\n    mutable std::vector<R> data;\n\n  public:\n    explicit AutoReallocation(F&&\
     \ f) : func(std::forward<F>(f)), data() {}\n\n    void reserve(const int size)\
     \ const {\n        if ((int)data.size() < size) data = func(((int)1 << ceil_log2(size)));\n\
     \    }\n    R operator[](const int i) const {\n        assert(i >= 0);\n     \
@@ -76,7 +76,7 @@ data:
     \n    std::vector<u64> hash;\n    std::vector<T> data;\n\n  public:\n    PolynomialHash()\
     \ : PolynomialHash(std::vector<T>()) {}\n    explicit PolynomialHash(const std::vector<T>&\
     \ vec) : data(vec) {\n        const int size = data.size();\n        hash = std::vector<u64>(size\
-    \ + 1);\n        for (const int i : rep(0, size)) {\n            assert(0 <= data[i]);\n\
+    \ + 1);\n        for (const int i : rep(size)) {\n            assert(0 <= data[i]);\n\
     \            assert((u64)data[i] < Helper::MOD);\n            hash[i + 1] = Helper::add(Helper::mul(Helper::BASE,\
     \ hash[i]), (u64)data[i]);\n        }\n    }\n\n    int size() const { return\
     \ data.size(); }\n    const std::vector<T>& get() const { return data; }\n\n \
@@ -85,9 +85,9 @@ data:
     \ return Helper::sub(hash[r], Helper::mul(hash[l], Helper::BASE_POW[r - l]));\n\
     \    }\n\n    void concat(const PolynomialHash& other) {\n        hash.reserve(hash.size()\
     \ + other.size());\n        u64 val = hash.back();\n        for (const int i :\
-    \ rep(0, other.size())) {\n            val = Helper::mul(val, Helper::BASE);\n\
-    \            hash.push_back(Helper::add(val, other.hash[i + 1]));\n        }\n\
-    \        data.reserve(data.size() + other.size());\n        std::copy(other.data.cbegin(),\
+    \ rep(other.size())) {\n            val = Helper::mul(val, Helper::BASE);\n  \
+    \          hash.push_back(Helper::add(val, other.hash[i + 1]));\n        }\n \
+    \       data.reserve(data.size() + other.size());\n        std::copy(other.data.cbegin(),\
     \ other.data.cend(), std::back_inserter(data));\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <string>\n#include <type_traits>\n\
     #include <vector>\n#include \"../random/rand_int.cpp\"\n#include \"../utility/auto_realloc.cpp\"\
@@ -107,7 +107,7 @@ data:
     \n    std::vector<u64> hash;\n    std::vector<T> data;\n\n  public:\n    PolynomialHash()\
     \ : PolynomialHash(std::vector<T>()) {}\n    explicit PolynomialHash(const std::vector<T>&\
     \ vec) : data(vec) {\n        const int size = data.size();\n        hash = std::vector<u64>(size\
-    \ + 1);\n        for (const int i : rep(0, size)) {\n            assert(0 <= data[i]);\n\
+    \ + 1);\n        for (const int i : rep(size)) {\n            assert(0 <= data[i]);\n\
     \            assert((u64)data[i] < Helper::MOD);\n            hash[i + 1] = Helper::add(Helper::mul(Helper::BASE,\
     \ hash[i]), (u64)data[i]);\n        }\n    }\n\n    int size() const { return\
     \ data.size(); }\n    const std::vector<T>& get() const { return data; }\n\n \
@@ -116,9 +116,9 @@ data:
     \ return Helper::sub(hash[r], Helper::mul(hash[l], Helper::BASE_POW[r - l]));\n\
     \    }\n\n    void concat(const PolynomialHash& other) {\n        hash.reserve(hash.size()\
     \ + other.size());\n        u64 val = hash.back();\n        for (const int i :\
-    \ rep(0, other.size())) {\n            val = Helper::mul(val, Helper::BASE);\n\
-    \            hash.push_back(Helper::add(val, other.hash[i + 1]));\n        }\n\
-    \        data.reserve(data.size() + other.size());\n        std::copy(other.data.cbegin(),\
+    \ rep(other.size())) {\n            val = Helper::mul(val, Helper::BASE);\n  \
+    \          hash.push_back(Helper::add(val, other.hash[i + 1]));\n        }\n \
+    \       data.reserve(data.size() + other.size());\n        std::copy(other.data.cbegin(),\
     \ other.data.cend(), std::back_inserter(data));\n    }\n};\n"
   dependsOn:
   - random/rand_int.cpp
@@ -130,7 +130,7 @@ data:
   isVerificationFile: false
   path: container/polynomial_hash.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:48:33+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/polynomial_hash.test.cpp

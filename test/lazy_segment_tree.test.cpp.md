@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/lazy_segment_tree.cpp
     title: container/lazy_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/totient.cpp
     title: math/totient.cpp
   - icon: ':heavy_check_mark:'
@@ -20,21 +20,21 @@ data:
     path: traits/pair_monoid.cpp
     title: traits/pair_monoid.cpp
   - icon: ':heavy_check_mark:'
-    path: traits/plus_monoid.cpp
-    title: traits/plus_monoid.cpp
-  - icon: ':heavy_check_mark:'
     path: traits/sum_affine_action.cpp
     title: traits/sum_affine_action.cpp
+  - icon: ':question:'
+    path: traits/sum_group.cpp
+    title: traits/sum_group.cpp
   - icon: ':heavy_check_mark:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
   - icon: ':heavy_check_mark:'
     path: utility/countr_zero.cpp
     title: utility/countr_zero.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -55,12 +55,11 @@ data:
     #line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32 = std::int32_t;\n\
     using u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
     using i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 3 \"utility/ceil_log2.cpp\"\
-    \n\n__attribute__((target(\"avx2\"))) constexpr int ceil_log2(const u64 x) {\n\
-    \    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n}\n#line 3\
-    \ \"utility/countr_zero.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr int\
-    \ countr_zero(const u64 x) { return x == 0 ? 64 : __builtin_ctzll(x); }\n#line\
-    \ 2 \"utility/rep.cpp\"\n#include <algorithm>\n\nclass Range {\n    struct Iter\
-    \ {\n        int itr;\n        constexpr Iter(const int pos) noexcept : itr(pos)\
+    \n\nconstexpr int ceil_log2(const u64 x) {\n    int e = 0;\n    while (((u64)1\
+    \ << e) < x) ++e;\n    return e;\n}\n#line 3 \"utility/countr_zero.cpp\"\n\nconstexpr\
+    \ int countr_zero(const u64 x) { return x == 0 ? 64 : __builtin_ctzll(x); }\n\
+    #line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\nclass Range {\n    struct\
+    \ Iter {\n        int itr;\n        constexpr Iter(const int pos) noexcept : itr(pos)\
     \ {}\n        constexpr void operator++() noexcept { ++itr; }\n        constexpr\
     \ bool operator!=(const Iter& other) const noexcept { return itr != other.itr;\
     \ }\n        constexpr int operator*() const noexcept { return itr; }\n    };\n\
@@ -97,14 +96,14 @@ data:
     \ std::vector<T>& vec) : internal_size(vec.size()) {\n        logn = ceil_log2(internal_size);\n\
     \        seg_size = 1 << logn;\n        data = std::vector<T>(2 * seg_size, M::identity());\n\
     \        lazy = std::vector<U>(seg_size, E::identity());\n        for (const int\
-    \ i : rep(0, internal_size)) data[seg_size + i] = vec[i];\n        for (const\
-    \ int i : revrep(1, seg_size)) fetch(i);\n    }\n\n    int size() const { return\
-    \ internal_size; }\n\n    void assign(int i, const T& value) {\n        assert(0\
-    \ <= i and i < internal_size);\n        i += seg_size;\n        for (const int\
-    \ d : revrep(1, logn + 1)) flush(i >> d);\n        data[i] = value;\n        for\
-    \ (const int d : rep(1, logn + 1)) fetch(i >> d);\n    }\n    void operate(int\
-    \ l, int r, const U& e) {\n        assert(0 <= l and l <= r and r <= internal_size);\n\
-    \        l += seg_size;\n        r += seg_size;\n        push(l);\n        push(r);\n\
+    \ i : rep(internal_size)) data[seg_size + i] = vec[i];\n        for (const int\
+    \ i : revrep(1, seg_size)) fetch(i);\n    }\n\n    int size() const { return internal_size;\
+    \ }\n\n    void assign(int i, const T& value) {\n        assert(0 <= i and i <\
+    \ internal_size);\n        i += seg_size;\n        for (const int d : revrep(1,\
+    \ logn + 1)) flush(i >> d);\n        data[i] = value;\n        for (const int\
+    \ d : rep(1, logn + 1)) fetch(i >> d);\n    }\n    void operate(int l, int r,\
+    \ const U& e) {\n        assert(0 <= l and l <= r and r <= internal_size);\n \
+    \       l += seg_size;\n        r += seg_size;\n        push(l);\n        push(r);\n\
     \        for (int l0 = l, r0 = r; l0 < r0; l0 >>= 1, r0 >>= 1) {\n           \
     \ if (l0 & 1) apply(l0++, e);\n            if (r0 & 1) apply(--r0, e);\n     \
     \   }\n        pull(l);\n        pull(r);\n    }\n\n    T fold() const { return\
@@ -189,25 +188,25 @@ data:
     \ Type = std::pair<typename M::Type, typename N::Type>;\n    static constexpr\
     \ Type identity() { return {M::identity(), N::identity()}; }\n    static constexpr\
     \ Type operation(const Type& l, const Type& r) {\n        return {M::operation(l.first,\
-    \ r.first), N::operation(l.second, r.second)};\n    }\n};\n#line 2 \"traits/plus_monoid.cpp\"\
-    \n\ntemplate <class T> struct PlusMonoid {\n    using Type = T;\n    static constexpr\
+    \ r.first), N::operation(l.second, r.second)};\n    }\n};\n#line 2 \"traits/sum_group.cpp\"\
+    \n\ntemplate <class T> struct SumGroup {\n    using Type = T;\n    static constexpr\
     \ T identity() { return T(0); }\n    static constexpr T operation(const T& l,\
-    \ const T& r) { return l + r; }\n};\n#line 5 \"traits/sum_affine_action.cpp\"\n\
-    \ntemplate <class T> struct SumAffineAction {\n    using Monoid = PairMonoid<PlusMonoid<T>,\
-    \ PlusMonoid<T>>;\n    using Effector = AffineCompositeMonoid<T>;\n    static\
-    \ constexpr std::pair<T, T> operation(const std::pair<T, T>& m, const Affine<T>&\
-    \ e) {\n        return {e.a * m.first + e.b * m.second, m.second};\n    }\n};\n\
-    #line 8 \"test/lazy_segment_tree.test.cpp\"\n\nusing Fp = Modint998244353;\nusing\
-    \ Action = SumAffineAction<Fp>;\n\nint main() {\n    int N, Q;\n    std::cin >>\
-    \ N >> Q;\n    std::vector<std::pair<Fp, Fp>> initial(N);\n    for (const int\
-    \ i : rep(0, N)) {\n        u32 a;\n        std::cin >> a;\n        initial[i]\
-    \ = {a, 1};\n    }\n    LazySegmentTree<Action> seg(initial);\n    while (Q--)\
-    \ {\n        int t;\n        std::cin >> t;\n        if (t == 0) {\n         \
-    \   int l, r;\n            std::cin >> l >> r;\n            u32 b, c;\n      \
-    \      std::cin >> b >> c;\n            seg.operate(l, r, {Fp(b), Fp(c)});\n \
-    \       } else {\n            int l, r;\n            std::cin >> l >> r;\n   \
-    \         std::cout << seg.fold(l, r).first << '\\n';\n        }\n    }\n    return\
-    \ 0;\n}\n"
+    \ const T& r) { return l + r; }\n    static constexpr T inverse(const T& x) {\
+    \ return -x; }\n};\n#line 5 \"traits/sum_affine_action.cpp\"\n\ntemplate <class\
+    \ T> struct SumAffineAction {\n    using Monoid = PairMonoid<SumGroup<T>, SumGroup<T>>;\n\
+    \    using Effector = AffineCompositeMonoid<T>;\n    static constexpr std::pair<T,\
+    \ T> operation(const std::pair<T, T>& m, const Affine<T>& e) {\n        return\
+    \ {e.a * m.first + e.b * m.second, m.second};\n    }\n};\n#line 8 \"test/lazy_segment_tree.test.cpp\"\
+    \n\nusing Fp = Modint998244353;\nusing Action = SumAffineAction<Fp>;\n\nint main()\
+    \ {\n    int N, Q;\n    std::cin >> N >> Q;\n    std::vector<std::pair<Fp, Fp>>\
+    \ initial(N);\n    for (const int i : rep(0, N)) {\n        u32 a;\n        std::cin\
+    \ >> a;\n        initial[i] = {a, 1};\n    }\n    LazySegmentTree<Action> seg(initial);\n\
+    \    while (Q--) {\n        int t;\n        std::cin >> t;\n        if (t == 0)\
+    \ {\n            int l, r;\n            std::cin >> l >> r;\n            u32 b,\
+    \ c;\n            std::cin >> b >> c;\n            seg.operate(l, r, {Fp(b), Fp(c)});\n\
+    \        } else {\n            int l, r;\n            std::cin >> l >> r;\n  \
+    \          std::cout << seg.fold(l, r).first << '\\n';\n        }\n    }\n   \
+    \ return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \n#include \"../container/lazy_segment_tree.cpp\"\n#include <iostream>\n#include\
     \ \"../math/static_modint.cpp\"\n#include \"../traits/sum_affine_action.cpp\"\n\
@@ -235,11 +234,11 @@ data:
   - traits/sum_affine_action.cpp
   - traits/affine_composite_monoid.cpp
   - traits/pair_monoid.cpp
-  - traits/plus_monoid.cpp
+  - traits/sum_group.cpp
   isVerificationFile: true
   path: test/lazy_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 20:09:20+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lazy_segment_tree.test.cpp

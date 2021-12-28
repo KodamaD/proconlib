@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: algorithm/and_convolution.cpp
     title: algorithm/and_convolution.cpp
   - icon: ':heavy_check_mark:'
@@ -32,10 +32,10 @@ data:
   - icon: ':warning:'
     path: algorithm/subset_zeta_transform.cpp
     title: algorithm/subset_zeta_transform.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: algorithm/superset_mobius_transform.cpp
     title: algorithm/superset_mobius_transform.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: algorithm/superset_zeta_transform.cpp
     title: algorithm/superset_zeta_transform.cpp
   - icon: ':heavy_check_mark:'
@@ -87,7 +87,7 @@ data:
     path: utility/fast_io.cpp
     title: utility/fast_io.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/and_convolution.test.cpp
     title: test/and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -162,9 +162,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/z_algorithm.test.cpp
     title: test/z_algorithm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\nclass Range {\n\
@@ -222,7 +222,7 @@ data:
   - container/segment_tree.cpp
   - container/sparse_table.cpp
   timestamp: '2021-12-17 09:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/convolution_arbitrary_mod.test.cpp
   - test/strongly_connected_components.test.cpp

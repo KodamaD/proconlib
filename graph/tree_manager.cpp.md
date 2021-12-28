@@ -55,16 +55,16 @@ data:
     \     const int y = self->node[src].head;\n            const int z = self->node[dst].next;\n\
     \            src = (y != self->node[dst].head ? y : z);\n            return std::make_pair(x,\
     \ src);\n        }\n    };\n\n    int size() const { return node.size(); }\n \
-    \   const NodeInfo& operator[](const int u) const {\n        assert(u < size());\n\
-    \        return node[u];\n    }\n\n    int lca(int u, int v) const {\n       \
-    \ assert(u < size());\n        assert(v < size());\n        if (node[u].enter\
-    \ > node[v].enter) std::swap(u, v);\n        while (node[u].enter < node[v].enter)\
-    \ {\n            if (node[u].head == node[v].head) return u;\n            v =\
-    \ node[node[v].head].parent;\n        }\n        return v;\n    }\n\n    Path\
-    \ path(const int des, const int anc) const {\n        assert(des < size());\n\
-    \        assert(anc < size());\n        assert(node[anc].enter <= node[des].enter\
-    \ and node[des].exit <= node[anc].exit);\n        return Path(des, anc, this);\n\
-    \    }\n};\n"
+    \   const NodeInfo& operator[](const int u) const {\n        assert(0 <= u and\
+    \ u < size());\n        return node[u];\n    }\n\n    int lca(int u, int v) const\
+    \ {\n        assert(0 <= u and u < size());\n        assert(0 <= v and v < size());\n\
+    \        if (node[u].enter > node[v].enter) std::swap(u, v);\n        while (node[u].enter\
+    \ < node[v].enter) {\n            if (node[u].head == node[v].head) return u;\n\
+    \            v = node[node[v].head].parent;\n        }\n        return v;\n  \
+    \  }\n\n    Path path(const int des, const int anc) const {\n        assert(0\
+    \ <= des and des < size());\n        assert(0 <= anc and anc < size());\n    \
+    \    assert(node[anc].enter <= node[des].enter and node[des].exit <= node[anc].exit);\n\
+    \        return Path(des, anc, this);\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <utility>\n#include <variant>\n\
     #include <vector>\n#include \"../utility/rec_lambda.cpp\"\n\ntemplate <class G>\
     \ class TreeManager {\n  public:\n    class NodeInfo {\n        friend class TreeManager;\n\
@@ -99,22 +99,22 @@ data:
     \            const int y = self->node[src].head;\n            const int z = self->node[dst].next;\n\
     \            src = (y != self->node[dst].head ? y : z);\n            return std::make_pair(x,\
     \ src);\n        }\n    };\n\n    int size() const { return node.size(); }\n \
-    \   const NodeInfo& operator[](const int u) const {\n        assert(u < size());\n\
-    \        return node[u];\n    }\n\n    int lca(int u, int v) const {\n       \
-    \ assert(u < size());\n        assert(v < size());\n        if (node[u].enter\
-    \ > node[v].enter) std::swap(u, v);\n        while (node[u].enter < node[v].enter)\
-    \ {\n            if (node[u].head == node[v].head) return u;\n            v =\
-    \ node[node[v].head].parent;\n        }\n        return v;\n    }\n\n    Path\
-    \ path(const int des, const int anc) const {\n        assert(des < size());\n\
-    \        assert(anc < size());\n        assert(node[anc].enter <= node[des].enter\
-    \ and node[des].exit <= node[anc].exit);\n        return Path(des, anc, this);\n\
-    \    }\n};"
+    \   const NodeInfo& operator[](const int u) const {\n        assert(0 <= u and\
+    \ u < size());\n        return node[u];\n    }\n\n    int lca(int u, int v) const\
+    \ {\n        assert(0 <= u and u < size());\n        assert(0 <= v and v < size());\n\
+    \        if (node[u].enter > node[v].enter) std::swap(u, v);\n        while (node[u].enter\
+    \ < node[v].enter) {\n            if (node[u].head == node[v].head) return u;\n\
+    \            v = node[node[v].head].parent;\n        }\n        return v;\n  \
+    \  }\n\n    Path path(const int des, const int anc) const {\n        assert(0\
+    \ <= des and des < size());\n        assert(0 <= anc and anc < size());\n    \
+    \    assert(node[anc].enter <= node[des].enter and node[des].exit <= node[anc].exit);\n\
+    \        return Path(des, anc, this);\n    }\n};"
   dependsOn:
   - utility/rec_lambda.cpp
   isVerificationFile: false
   path: graph/tree_manager.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/heavy_light_decomposition.test.cpp

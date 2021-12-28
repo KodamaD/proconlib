@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy:
@@ -89,12 +89,11 @@ data:
   bundledCode: "#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32\
     \ = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing\
     \ u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
-    #line 3 \"utility/ceil_log2.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr\
-    \ int ceil_log2(const u64 x) {\n    int e = 0;\n    while (((u64)1 << e) < x)\
-    \ ++e;\n    return e;\n}\n"
-  code: "#pragma once\n#include \"int_alias.cpp\"\n\n__attribute__((target(\"avx2\"\
-    ))) constexpr int ceil_log2(const u64 x) {\n    int e = 0;\n    while (((u64)1\
-    \ << e) < x) ++e;\n    return e;\n}"
+    #line 3 \"utility/ceil_log2.cpp\"\n\nconstexpr int ceil_log2(const u64 x) {\n\
+    \    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n}\n"
+  code: "#pragma once\n#include \"int_alias.cpp\"\n\nconstexpr int ceil_log2(const\
+    \ u64 x) {\n    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n\
+    }"
   dependsOn:
   - utility/int_alias.cpp
   isVerificationFile: false
@@ -112,7 +111,7 @@ data:
   - container/segment_tree_beats.cpp
   - container/integer_hash_table.cpp
   - container/segment_tree.cpp
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution_arbitrary_mod.test.cpp

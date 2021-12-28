@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
@@ -135,8 +135,8 @@ data:
     \    }\n\n    T solve() { return constant + graph.flow(src, dst); }\n    std::vector<char>\
     \ restore() {\n        const std::vector<char> cut = graph.min_cut(src);\n   \
     \     const int n = count_variables();\n        std::vector<char> ret(n);\n  \
-    \      for (const int i : rep(0, n)) ret[i] = !cut[var_id[i]];\n        return\
-    \ ret;\n    }\n};\n"
+    \      for (const int i : rep(n)) ret[i] = !cut[var_id[i]];\n        return ret;\n\
+    \    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <limits>\n#include <vector>\n\
     #include \"../utility/index_offset.cpp\"\n#include \"../utility/rep.cpp\"\n#include\
     \ \"graph/dinic.cpp\"\n\ntemplate <class T> class BinaryOptimization {\n    Dinic<T>\
@@ -170,8 +170,8 @@ data:
     \    }\n\n    T solve() { return constant + graph.flow(src, dst); }\n    std::vector<char>\
     \ restore() {\n        const std::vector<char> cut = graph.min_cut(src);\n   \
     \     const int n = count_variables();\n        std::vector<char> ret(n);\n  \
-    \      for (const int i : rep(0, n)) ret[i] = !cut[var_id[i]];\n        return\
-    \ ret;\n    }\n};"
+    \      for (const int i : rep(n)) ret[i] = !cut[var_id[i]];\n        return ret;\n\
+    \    }\n};"
   dependsOn:
   - utility/index_offset.cpp
   - utility/rep.cpp
@@ -181,7 +181,7 @@ data:
   isVerificationFile: false
   path: graph/binary_optimization.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/binary_optimization.cpp

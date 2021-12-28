@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: algorithm
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: algorithm/and_convolution.cpp
       title: algorithm/and_convolution.cpp
     - icon: ':heavy_check_mark:'
@@ -36,10 +36,10 @@ data:
     - icon: ':warning:'
       path: algorithm/subset_zeta_transform.cpp
       title: algorithm/subset_zeta_transform.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: algorithm/superset_mobius_transform.cpp
       title: algorithm/superset_mobius_transform.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: algorithm/superset_zeta_transform.cpp
       title: algorithm/superset_zeta_transform.cpp
     - icon: ':heavy_check_mark:'
@@ -103,6 +103,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/union_find.cpp
       title: graph/union_find.cpp
+  - name: internal
+    pages:
+    - icon: ':warning:'
+      path: internal/simple_queue.cpp
+      title: internal/simple_queue.cpp
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
@@ -147,16 +152,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/primitive_root.cpp
       title: math/primitive_root.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/rem_euclid.cpp
       title: math/rem_euclid.cpp
     - icon: ':heavy_check_mark:'
       path: math/semiring_matrix.cpp
       title: math/semiring_matrix.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/static_modint.cpp
       title: math/static_modint.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/totient.cpp
       title: math/totient.cpp
   - name: random
@@ -211,15 +216,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: traits/pair_monoid.cpp
       title: traits/pair_monoid.cpp
-    - icon: ':heavy_check_mark:'
-      path: traits/plus_monoid.cpp
-      title: traits/plus_monoid.cpp
+    - icon: ':warning:'
+      path: traits/product_monoid.cpp
+      title: traits/product_monoid.cpp
     - icon: ':heavy_check_mark:'
       path: traits/reversed_monoid.cpp
       title: traits/reversed_monoid.cpp
     - icon: ':heavy_check_mark:'
       path: traits/sum_affine_action.cpp
       title: traits/sum_affine_action.cpp
+    - icon: ':question:'
+      path: traits/sum_group.cpp
+      title: traits/sum_group.cpp
   - name: utility
     pages:
     - icon: ':heavy_check_mark:'
@@ -258,7 +266,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/infty.cpp
       title: utility/infty.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/int_alias.cpp
       title: utility/int_alias.cpp
     - icon: ':warning:'
@@ -276,7 +284,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/rep.cpp
       title: utility/rep.cpp
     - icon: ':heavy_check_mark:'
@@ -300,7 +308,7 @@ data:
   verificationCategories:
   - name: test
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/and_convolution.test.cpp
       title: test/and_convolution.test.cpp
     - icon: ':heavy_check_mark:'

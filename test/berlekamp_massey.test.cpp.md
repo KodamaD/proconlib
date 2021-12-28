@@ -4,19 +4,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: algorithm/berlekamp_massey.cpp
     title: algorithm/berlekamp_massey.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/totient.cpp
     title: math/totient.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
@@ -43,15 +43,15 @@ data:
     \ r); }\nconstexpr Range rep(const int n) noexcept { return Range(0, n); }\n#line\
     \ 4 \"algorithm/berlekamp_massey.cpp\"\n\ntemplate <class T> std::vector<T> berlekamp_massey(const\
     \ std::vector<T>& a) {\n    const int n = a.size();\n    std::vector<T> c = {T(-1)},\
-    \ c2 = {T(0)};\n    T r2 = 1;\n    int i2 = 0;\n    for (const int i : rep(0,\
-    \ n)) {\n        T r = 0;\n        const int d = c.size();\n        for (const\
-    \ int j : rep(0, d)) r += c[j] * a[i - j];\n        if (r == T(0)) continue;\n\
-    \        T coeff = -r / r2;\n        const int d2 = c2.size(), shift = i - i2\
-    \ + 1;\n        if (d2 + shift <= d) {\n            for (const int j : rep(0,\
-    \ d2)) c[j + shift] += c2[j] * coeff;\n        } else {\n            std::vector<T>\
-    \ tmp = c;\n            c.resize(d2 + shift);\n            for (const int j :\
-    \ rep(0, d2)) c[j + shift] += c2[j] * coeff;\n            c2 = std::move(tmp);\n\
-    \            i2 = i + 1;\n            r2 = r;\n        }\n    }\n    c.erase(c.begin());\n\
+    \ c2 = {T(0)};\n    T r2 = 1;\n    int i2 = 0;\n    for (const int i : rep(n))\
+    \ {\n        T r = 0;\n        const int d = c.size();\n        for (const int\
+    \ j : rep(d)) r += c[j] * a[i - j];\n        if (r == T(0)) continue;\n      \
+    \  T coeff = -r / r2;\n        const int d2 = c2.size(), shift = i - i2 + 1;\n\
+    \        if (d2 + shift <= d) {\n            for (const int j : rep(d2)) c[j +\
+    \ shift] += c2[j] * coeff;\n        } else {\n            std::vector<T> tmp =\
+    \ c;\n            c.resize(d2 + shift);\n            for (const int j : rep(d2))\
+    \ c[j + shift] += c2[j] * coeff;\n            c2 = std::move(tmp);\n         \
+    \   i2 = i + 1;\n            r2 = r;\n        }\n    }\n    c.erase(c.begin());\n\
     \    return c;\n}\n#line 2 \"math/static_modint.cpp\"\n#include <ostream>\n#include\
     \ <type_traits>\n#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing\
     \ i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
@@ -121,7 +121,7 @@ data:
   isVerificationFile: true
   path: test/berlekamp_massey.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/berlekamp_massey.test.cpp

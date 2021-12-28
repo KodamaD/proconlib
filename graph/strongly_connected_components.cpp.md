@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -56,12 +56,12 @@ data:
     \               visited.pop_back();\n                    ord[v] = n;\n       \
     \             index[v] = count;\n                    if (u == v) break;\n    \
     \            }\n                count += 1;\n            }\n        });\n    \
-    \    for (const int u : rep(0, n))\n            if (!ord[u]) dfs(u);\n       \
-    \ for (auto& x : index) x = count - x - 1;\n    }\n\n    int size() const { return\
+    \    for (const int u : rep(n))\n            if (!ord[u]) dfs(u);\n        for\
+    \ (auto& x : index) x = count - x - 1;\n    }\n\n    int size() const { return\
     \ index.size(); }\n    int group_count() const { return count; }\n    int group_id(const\
     \ int u) const {\n        assert(0 <= u and u < size());\n        return index[u];\n\
     \    }\n\n    std::vector<std::vector<int>> decopmose() const {\n        std::vector<std::vector<int>>\
-    \ ret(group_count());\n        for (const int u : rep(0, size())) ret[index[u]].push_back(u);\n\
+    \ ret(group_count());\n        for (const int u : rep(size())) ret[index[u]].push_back(u);\n\
     \        return ret;\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n#include \"../utility/rec_lambda.cpp\"\
     \n#include \"../utility/rep.cpp\"\n#include \"../utility/setmin.cpp\"\n\ntemplate\
@@ -79,14 +79,14 @@ data:
     \           const int v = visited.back();\n                    visited.pop_back();\n\
     \                    ord[v] = n;\n                    index[v] = count;\n    \
     \                if (u == v) break;\n                }\n                count\
-    \ += 1;\n            }\n        });\n        for (const int u : rep(0, n))\n \
-    \           if (!ord[u]) dfs(u);\n        for (auto& x : index) x = count - x\
-    \ - 1;\n    }\n\n    int size() const { return index.size(); }\n    int group_count()\
+    \ += 1;\n            }\n        });\n        for (const int u : rep(n))\n    \
+    \        if (!ord[u]) dfs(u);\n        for (auto& x : index) x = count - x - 1;\n\
+    \    }\n\n    int size() const { return index.size(); }\n    int group_count()\
     \ const { return count; }\n    int group_id(const int u) const {\n        assert(0\
     \ <= u and u < size());\n        return index[u];\n    }\n\n    std::vector<std::vector<int>>\
     \ decopmose() const {\n        std::vector<std::vector<int>> ret(group_count());\n\
-    \        for (const int u : rep(0, size())) ret[index[u]].push_back(u);\n    \
-    \    return ret;\n    }\n};\n"
+    \        for (const int u : rep(size())) ret[index[u]].push_back(u);\n       \
+    \ return ret;\n    }\n};\n"
   dependsOn:
   - utility/rec_lambda.cpp
   - utility/rep.cpp
@@ -94,7 +94,7 @@ data:
   isVerificationFile: false
   path: graph/strongly_connected_components.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/strongly_connected_components.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
@@ -41,10 +41,10 @@ data:
     \ int u, const int v) {\n        assert(0 <= u and u < size());\n        assert(0\
     \ <= v and v < size());\n        return leader(u) == leader(v);\n    }\n\n   \
     \ std::vector<std::vector<int>> decompose() {\n        std::vector<std::vector<int>>\
-    \ ret(size());\n        for (const int u : rep(0, size())) {\n            ret[leader(u)].push_back(u);\n\
-    \        }\n        ret.erase(std::remove_if(ret.begin(), ret.end(), [&](const\
-    \ std::vector<int>& v) { return v.empty(); }),\n                  ret.end());\n\
-    \        return ret;\n    }\n};\n"
+    \ ret(size());\n        for (const int u : rep(size())) ret[leader(u)].push_back(u);\n\
+    \        ret.erase(std::remove_if(ret.begin(), ret.end(), [&](const std::vector<int>&\
+    \ v) { return v.empty(); }),\n                  ret.end());\n        return ret;\n\
+    \    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\
     #include \"../utility/rep.cpp\"\n\nclass UnionFind {\n    int components;\n  \
     \  std::vector<int> data;\n\n  public:\n    explicit UnionFind(const int size\
@@ -62,16 +62,15 @@ data:
     \ <= u and u < size());\n        assert(0 <= v and v < size());\n        return\
     \ leader(u) == leader(v);\n    }\n\n    std::vector<std::vector<int>> decompose()\
     \ {\n        std::vector<std::vector<int>> ret(size());\n        for (const int\
-    \ u : rep(0, size())) {\n            ret[leader(u)].push_back(u);\n        }\n\
-    \        ret.erase(std::remove_if(ret.begin(), ret.end(), [&](const std::vector<int>&\
-    \ v) { return v.empty(); }),\n                  ret.end());\n        return ret;\n\
-    \    }\n};"
+    \ u : rep(size())) ret[leader(u)].push_back(u);\n        ret.erase(std::remove_if(ret.begin(),\
+    \ ret.end(), [&](const std::vector<int>& v) { return v.empty(); }),\n        \
+    \          ret.end());\n        return ret;\n    }\n};"
   dependsOn:
   - utility/rep.cpp
   isVerificationFile: false
   path: graph/union_find.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/union_find.test.cpp

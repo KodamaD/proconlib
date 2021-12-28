@@ -35,14 +35,14 @@ data:
     \    E& operator*() const { return self->graph[u][e]; }\n        E* operator->()\
     \ const { return &self->graph[u][e]; }\n    };\n\n    int size() const { return\
     \ graph.size(); }\n    std::vector<E>& operator[](const int u) {\n        assert(0\
-    \ <= u and u < (int)size());\n        return graph[u];\n    }\n    const std::vector<E>&\
-    \ operator[](const int u) const {\n        assert(0 <= u and u < (int)size());\n\
-    \        return graph[u];\n    }\n\n    int add_vertex() {\n        graph.emplace_back();\n\
+    \ <= u and u < size());\n        return graph[u];\n    }\n    const std::vector<E>&\
+    \ operator[](const int u) const {\n        assert(0 <= u and u < size());\n  \
+    \      return graph[u];\n    }\n\n    int add_vertex() {\n        graph.emplace_back();\n\
     \        return size() - 1;\n    }\n    IndexOffset add_vertices(int n) {\n  \
     \      IndexOffset ret(size(), n);\n        while (n--) graph.emplace_back();\n\
     \        return ret;\n    }\n\n    template <class... Args> EdgePtr add_edge(const\
-    \ int u, Args&&... args) {\n        assert(0 <= u and u < (int)size());\n    \
-    \    const int e = graph[u].size();\n        graph[u].emplace_back(std::forward<Args>(args)...);\n\
+    \ int u, Args&&... args) {\n        assert(0 <= u and u < size());\n        const\
+    \ int e = graph[u].size();\n        graph[u].emplace_back(std::forward<Args>(args)...);\n\
     \        return EdgePtr(u, e, this);\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <utility>\n#include <vector>\n\
     #include \"../utility/index_offset.cpp\"\n\ntemplate <class E = int> class BasicGraph\
@@ -54,22 +54,22 @@ data:
     \ {}\n        int src() const { return u; }\n        E& operator*() const { return\
     \ self->graph[u][e]; }\n        E* operator->() const { return &self->graph[u][e];\
     \ }\n    };\n\n    int size() const { return graph.size(); }\n    std::vector<E>&\
-    \ operator[](const int u) {\n        assert(0 <= u and u < (int)size());\n   \
-    \     return graph[u];\n    }\n    const std::vector<E>& operator[](const int\
-    \ u) const {\n        assert(0 <= u and u < (int)size());\n        return graph[u];\n\
-    \    }\n\n    int add_vertex() {\n        graph.emplace_back();\n        return\
-    \ size() - 1;\n    }\n    IndexOffset add_vertices(int n) {\n        IndexOffset\
-    \ ret(size(), n);\n        while (n--) graph.emplace_back();\n        return ret;\n\
-    \    }\n\n    template <class... Args> EdgePtr add_edge(const int u, Args&&...\
-    \ args) {\n        assert(0 <= u and u < (int)size());\n        const int e =\
-    \ graph[u].size();\n        graph[u].emplace_back(std::forward<Args>(args)...);\n\
-    \        return EdgePtr(u, e, this);\n    }\n};\n"
+    \ operator[](const int u) {\n        assert(0 <= u and u < size());\n        return\
+    \ graph[u];\n    }\n    const std::vector<E>& operator[](const int u) const {\n\
+    \        assert(0 <= u and u < size());\n        return graph[u];\n    }\n\n \
+    \   int add_vertex() {\n        graph.emplace_back();\n        return size() -\
+    \ 1;\n    }\n    IndexOffset add_vertices(int n) {\n        IndexOffset ret(size(),\
+    \ n);\n        while (n--) graph.emplace_back();\n        return ret;\n    }\n\
+    \n    template <class... Args> EdgePtr add_edge(const int u, Args&&... args) {\n\
+    \        assert(0 <= u and u < size());\n        const int e = graph[u].size();\n\
+    \        graph[u].emplace_back(std::forward<Args>(args)...);\n        return EdgePtr(u,\
+    \ e, this);\n    }\n};\n"
   dependsOn:
   - utility/index_offset.cpp
   isVerificationFile: false
   path: graph/basic_graph.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/strongly_connected_components.test.cpp

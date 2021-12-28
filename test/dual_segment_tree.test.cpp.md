@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/countr_zero.cpp
     title: utility/countr_zero.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   - icon: ':heavy_check_mark:'
@@ -37,12 +37,11 @@ data:
     #line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32 = std::int32_t;\n\
     using u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
     using i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 3 \"utility/ceil_log2.cpp\"\
-    \n\n__attribute__((target(\"avx2\"))) constexpr int ceil_log2(const u64 x) {\n\
-    \    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n}\n#line 3\
-    \ \"utility/countr_zero.cpp\"\n\n__attribute__((target(\"avx2\"))) constexpr int\
-    \ countr_zero(const u64 x) { return x == 0 ? 64 : __builtin_ctzll(x); }\n#line\
-    \ 2 \"utility/rep.cpp\"\n#include <algorithm>\n\nclass Range {\n    struct Iter\
-    \ {\n        int itr;\n        constexpr Iter(const int pos) noexcept : itr(pos)\
+    \n\nconstexpr int ceil_log2(const u64 x) {\n    int e = 0;\n    while (((u64)1\
+    \ << e) < x) ++e;\n    return e;\n}\n#line 3 \"utility/countr_zero.cpp\"\n\nconstexpr\
+    \ int countr_zero(const u64 x) { return x == 0 ? 64 : __builtin_ctzll(x); }\n\
+    #line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\nclass Range {\n    struct\
+    \ Iter {\n        int itr;\n        constexpr Iter(const int pos) noexcept : itr(pos)\
     \ {}\n        constexpr void operator++() noexcept { ++itr; }\n        constexpr\
     \ bool operator!=(const Iter& other) const noexcept { return itr != other.itr;\
     \ }\n        constexpr int operator*() const noexcept { return itr; }\n    };\n\
@@ -68,21 +67,21 @@ data:
     \ int k, const T& e) { lazy[k] = M::operation(lazy[k], e); }\n    void flush(const\
     \ int k) {\n        apply(2 * k, lazy[k]);\n        apply(2 * k + 1, lazy[k]);\n\
     \        lazy[k] = M::identity();\n    }\n    void push(const int k) {\n     \
-    \   for (const int d : revrep(countr_zero(k) + 1, logn + 1)) {\n            flush(k\
-    \ >> d);\n        }\n    }\n\n  public:\n    explicit DualSegmentTree(const int\
-    \ size = 0, const T& value = M::identity())\n        : DualSegmentTree(std::vector<T>(size,\
-    \ value)) {}\n    explicit DualSegmentTree(const std::vector<T>& vec) : internal_size(vec.size())\
+    \   for (const int d : revrep(countr_zero(k) + 1, logn + 1)) flush(k >> d);\n\
+    \    }\n\n  public:\n    explicit DualSegmentTree(const int size = 0, const T&\
+    \ value = M::identity())\n        : DualSegmentTree(std::vector<T>(size, value))\
+    \ {}\n    explicit DualSegmentTree(const std::vector<T>& vec) : internal_size(vec.size())\
     \ {\n        logn = ceil_log2(internal_size);\n        lazy = std::vector<T>(2\
-    \ * internal_size, M::identity());\n        for (const int i : rep(0, internal_size))\
+    \ * internal_size, M::identity());\n        for (const int i : rep(internal_size))\
     \ lazy[i] = vec[i];\n    }\n\n    int size() const { return internal_size; }\n\
-    \n    void operate(int l, int r, const T& e) {\n        assert(l <= r and r <=\
-    \ internal_size);\n        l += internal_size;\n        r += internal_size;\n\
+    \n    void operate(int l, int r, const T& e) {\n        assert(0 <= l and l <=\
+    \ r and r <= internal_size);\n        l += internal_size;\n        r += internal_size;\n\
     \        push(l);\n        push(r);\n        while (l < r) {\n            if (l\
     \ & 1) apply(l++, e);\n            if (r & 1) apply(--r, e);\n            l >>=\
     \ 1;\n            r >>= 1;\n        }\n    }\n    void assign(int i, const T&\
-    \ e) {\n        assert(i < internal_size);\n        i += internal_size;\n    \
-    \    for (const int d : revrep(1, logn + 1)) flush(i >> d);\n        lazy[i] =\
-    \ e;\n    }\n\n    T get(int i) const {\n        assert(i < internal_size);\n\
+    \ e) {\n        assert(0 <= i and i < internal_size);\n        i += internal_size;\n\
+    \        for (const int d : revrep(1, logn + 1)) flush(i >> d);\n        lazy[i]\
+    \ = e;\n    }\n\n    T get(int i) const {\n        assert(0 <= i and i < internal_size);\n\
     \        i += internal_size;\n        T ret = M::identity();\n        while (i\
     \ > 0) {\n            ret = M::operation(ret, lazy[i]);\n            i >>= 1;\n\
     \        }\n        return ret;\n    }\n};\n#line 3 \"test/dual_segment_tree.test.cpp\"\
@@ -121,7 +120,7 @@ data:
   isVerificationFile: true
   path: test/dual_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/dual_segment_tree.test.cpp
