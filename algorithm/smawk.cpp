@@ -16,7 +16,7 @@ std::vector<T> smawk(const std::vector<T>& row, const std::vector<T>& column, co
     for (int i = 1; i < n; i += 2) r2.push_back(row[i]);
     const std::vector<T> a2 = smawk(r2, c2, select);
     std::vector<T> ret(n);
-    for (const int i : rep(0, a2.size())) ret[2 * i + 1] = a2[i];
+    for (const int i : rep(a2.size())) ret[2 * i + 1] = a2[i];
     int j = 0;
     for (int i = 0; i < n; i += 2) {
         ret[i] = c2[j];

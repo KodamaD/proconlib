@@ -75,7 +75,7 @@ template <class K, class V, std::enable_if_t<std::is_integral_v<K>>* = nullptr> 
         info.fix();
         if (info.size) {
             data = new Data[info.size];
-            for (const int i : rep(0, old_len)) {
+            for (const int i : rep(old_len)) {
                 if (old_data[i].ctrl == Ctrl::Full) {
                     const int k = find_place(info.index(old_data[i].slot.pair.first));
                     data[k].ctrl = Ctrl::Full;
@@ -135,7 +135,7 @@ template <class K, class V, std::enable_if_t<std::is_integral_v<K>>* = nullptr> 
             info.fix();
             if (info.size) {
                 data = new Data[info.size];
-                for (const int i : rep(0, other.info.size)) {
+                for (const int i : rep(other.info.size)) {
                     if (other.data[i].ctrl == Ctrl::Full) {
                         const int k = find_place(info.index(other.data[i].slot.pair.first));
                         data[k].ctrl = Ctrl::Full;

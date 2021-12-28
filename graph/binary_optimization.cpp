@@ -76,7 +76,7 @@ template <class T> class BinaryOptimization {
         const std::vector<char> cut = graph.min_cut(src);
         const int n = count_variables();
         std::vector<char> ret(n);
-        for (const int i : rep(0, n)) ret[i] = !cut[var_id[i]];
+        for (const int i : rep(n)) ret[i] = !cut[var_id[i]];
         return ret;
     }
 };

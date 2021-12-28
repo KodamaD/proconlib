@@ -27,11 +27,11 @@ template <class E = int> class BasicGraph {
 
     int size() const { return graph.size(); }
     std::vector<E>& operator[](const int u) {
-        assert(0 <= u and u < (int)size());
+        assert(0 <= u and u < size());
         return graph[u];
     }
     const std::vector<E>& operator[](const int u) const {
-        assert(0 <= u and u < (int)size());
+        assert(0 <= u and u < size());
         return graph[u];
     }
 
@@ -46,7 +46,7 @@ template <class E = int> class BasicGraph {
     }
 
     template <class... Args> EdgePtr add_edge(const int u, Args&&... args) {
-        assert(0 <= u and u < (int)size());
+        assert(0 <= u and u < size());
         const int e = graph[u].size();
         graph[u].emplace_back(std::forward<Args>(args)...);
         return EdgePtr(u, e, this);

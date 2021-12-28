@@ -17,7 +17,7 @@ template <class M> class SparseTable {
         table.push_back(vec);
         for (const int d : rep(1, height)) {
             table.push_back(std::vector<T>(size - (1 << d) + 1, M::identity()));
-            for (const int i : rep(0, table[d].size())) {
+            for (const int i : rep(table[d].size())) {
                 table[d][i] = M::operation(table[d - 1][i], table[d - 1][i + (1 << (d - 1))]);
             }
         }

@@ -41,7 +41,7 @@ template <class T, int ID = 0, std::enable_if_t<std::is_integral_v<T>>* = nullpt
     explicit PolynomialHash(const std::vector<T>& vec) : data(vec) {
         const int size = data.size();
         hash = std::vector<u64>(size + 1);
-        for (const int i : rep(0, size)) {
+        for (const int i : rep(size)) {
             assert(0 <= data[i]);
             assert((u64)data[i] < Helper::MOD);
             hash[i + 1] = Helper::add(Helper::mul(Helper::BASE, hash[i]), (u64)data[i]);
@@ -60,7 +60,7 @@ template <class T, int ID = 0, std::enable_if_t<std::is_integral_v<T>>* = nullpt
     void concat(const PolynomialHash& other) {
         hash.reserve(hash.size() + other.size());
         u64 val = hash.back();
-        for (const int i : rep(0, other.size())) {
+        for (const int i : rep(other.size())) {
             val = Helper::mul(val, Helper::BASE);
             hash.push_back(Helper::add(val, other.hash[i + 1]));
         }

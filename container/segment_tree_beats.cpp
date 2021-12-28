@@ -53,7 +53,7 @@ template <class A> class SegmentTreeBeats {
         seg_size = 1 << logn;
         data = std::vector<T>(2 * seg_size, M::identity());
         lazy = std::vector<U>(seg_size, E::identity());
-        for (const int i : rep(0, internal_size)) data[seg_size + i] = vec[i];
+        for (const int i : rep(internal_size)) data[seg_size + i] = vec[i];
         for (const int i : revrep(1, seg_size)) fetch(i);
     }
 

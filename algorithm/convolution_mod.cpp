@@ -11,11 +11,11 @@ template <class T> std::vector<T> convolution_naive(const std::vector<T>& a, con
     const int n = a.size(), m = b.size();
     std::vector<T> c(n + m - 1);
     if (n < m) {
-        for (const int j : rep(0, m))
-            for (const int i : rep(0, n)) c[i + j] += a[i] * b[j];
+        for (const int j : rep(m))
+            for (const int i : rep(n)) c[i + j] += a[i] * b[j];
     } else {
-        for (const int i : rep(0, n))
-            for (const int j : rep(0, m)) c[i + j] += a[i] * b[j];
+        for (const int i : rep(n))
+            for (const int j : rep(m)) c[i + j] += a[i] * b[j];
     }
     return c;
 }
@@ -27,11 +27,11 @@ template <class M> std::vector<M> convolution_ntt(std::vector<M> a, std::vector<
     a.resize(k), b.resize(k);
     transform.butterfly(a);
     transform.butterfly(b);
-    for (const int i : rep(0, k)) a[i] *= b[i];
+    for (const int i : rep(k)) a[i] *= b[i];
     transform.butterfly_inv(a);
     a.resize(n + m - 1);
     const M c = M(k).inv();
-    for (const int i : rep(0, n + m - 1)) a[i] *= c;
+    for (const int i : rep(n + m - 1)) a[i] *= c;
     return a;
 }
 
@@ -55,10 +55,10 @@ std::vector<T> convolution_mod(const std::vector<T>& a, const std::vector<T>& b)
     if (n == 0 || m == 0) return {};
     using M = StaticModint<MOD>;
     std::vector<M> a2(n), b2(m);
-    for (const int i : rep(0, n)) a2[i] = a[i];
-    for (const int i : rep(0, m)) b2[i] = b[i];
+    for (const int i : rep(n)) a2[i] = a[i];
+    for (const int i : rep(m)) b2[i] = b[i];
     std::vector<M> c2 = convolution_mod(std::move(a2), std::move(b2));
     std::vector<T> c(n + m - 1);
-    for (const int i : rep(0, n + m - 1)) c[i] = c2[i].val();
+    for (const int i : rep(n + m - 1)) c[i] = c2[i].val();
     return c;
 }

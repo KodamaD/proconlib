@@ -18,7 +18,7 @@ template <class M> class SegmentTree {
     explicit SegmentTree(const std::vector<T>& vec) : internal_size(vec.size()) {
         seg_size = 1 << ceil_log2(internal_size);
         data = std::vector<T>(2 * seg_size, M::identity());
-        for (const int i : rep(0, internal_size)) data[seg_size + i] = vec[i];
+        for (const int i : rep(internal_size)) data[seg_size + i] = vec[i];
         for (const int i : revrep(1, seg_size)) fetch(i);
     }
 

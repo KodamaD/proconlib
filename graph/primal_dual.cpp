@@ -89,7 +89,7 @@ class PrimalDual {
 
     template <class Result = Cost> std::pair<Result, bool> solve_bflow() {
         potential.resize(size(), 0);
-        for (const int u : rep(0, size())) {
+        for (const int u : rep(size())) {
             for (Edge& e : graph[u]) {
                 if (e.flow > e.cap or e.cost + potential[u] - potential[e.dst] < 0) {
                     const Flow dif = e.cap - e.flow;
@@ -101,7 +101,7 @@ class PrimalDual {
             }
         }
         std::vector<int> over, lack;
-        for (const int u : rep(0, size())) {
+        for (const int u : rep(size())) {
             if (gap[u] > 0) over.push_back(u);
             if (gap[u] < 0) lack.push_back(u);
         }
@@ -155,7 +155,7 @@ class PrimalDual {
                     lack_cnt += 1;
                     if (lack_cnt == lack.size()) break;
                 }
-                for (const int i : rep(0, graph[u].size())) {
+                for (const int i : rep(graph[u].size())) {
                     const Edge& e = graph[u][i];
                     if (e.flow >= e.cap) continue;
                     const int v = e.dst;
@@ -170,7 +170,7 @@ class PrimalDual {
                 }
             }
             if (lack_cnt == 0) return false;
-            for (const int u : rep(0, size())) {
+            for (const int u : rep(size())) {
                 potential[u] += std::min(farthest, dist[u]);
             }
             return true;

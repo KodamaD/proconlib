@@ -38,7 +38,7 @@ template <class G> class StronglyConnectedComponents {
                 count += 1;
             }
         });
-        for (const int u : rep(0, n))
+        for (const int u : rep(n))
             if (!ord[u]) dfs(u);
         for (auto& x : index) x = count - x - 1;
     }
@@ -52,7 +52,7 @@ template <class G> class StronglyConnectedComponents {
 
     std::vector<std::vector<int>> decopmose() const {
         std::vector<std::vector<int>> ret(group_count());
-        for (const int u : rep(0, size())) ret[index[u]].push_back(u);
+        for (const int u : rep(size())) ret[index[u]].push_back(u);
         return ret;
     }
 };

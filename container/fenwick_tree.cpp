@@ -3,14 +3,16 @@
 #include <vector>
 #include "../utility/ceil_log2.cpp"
 
-template <class T> class FenwickTree {
+template <class G> class FenwickTree {
+    using T = typename G::Type;
+
     int logn;
     std::vector<T> data;
 
   public:
     explicit FenwickTree(const int size = 0) {
         logn = ceil_log2(size + 1) - 1;
-        data = std::vector<T>(size + 1, T(0));
+        data = std::vector<T>(size + 1, G::identity());
     }
 
     int size() const { return data.size() - 1; }
@@ -18,16 +20,8 @@ template <class T> class FenwickTree {
     void add(int i, const T& x) {
         assert(0 <= i and i < size());
         i += 1;
-        while (i < data.size()) {
-            data[i] += x;
-            i += i & -i;
-        }
-    }
-    void subtract(int i, const T& x) {
-        assert(0 <= i and i < size());
-        i += 1;
-        while (i < data.size()) {
-            data[i] -= x;
+        while (i <= size()) {
+            data[i] = G::operation(data[i], x);
             i += i & -i;
         }
     }
@@ -35,26 +29,25 @@ template <class T> class FenwickTree {
     T fold() const { return fold(0, size()); }
     T fold(int l, int r) const {
         assert(0 <= l and l <= r and r <= size());
-        T ret(0);
+        T ret = G::identity();
         while (l < r) {
-            ret += data[r];
+            ret = G::operation(ret, data[r]);
             r -= r & -r;
         }
         while (r < l) {
-            ret -= data[l];
+            ret = G::operation(ret, G::inverse(data[l]));
             l -= l & -l;
         }
         return ret;
     }
 
     template <class F> int max_right(const F& f) const {
-        assert(f(T(0)));
+        assert(f(G::identity()));
         int i = 0;
-        T sum(0);
+        T sum = G::identity();
         for (int k = (1 << logn); k > 0; k >>= 1) {
-            if (i + k <= size() && f(sum + data[i + k])) {
-                i += k;
-                sum += data[i];
+            if (i + k <= size() && f(G::operation(sum, data[i + k]))) {
+                sum = G::operation(sum, data[i += k]);
             }
         }
         return i;

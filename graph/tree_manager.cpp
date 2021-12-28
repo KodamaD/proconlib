@@ -80,13 +80,13 @@ template <class G> class TreeManager {
 
     int size() const { return node.size(); }
     const NodeInfo& operator[](const int u) const {
-        assert(u < size());
+        assert(0 <= u and u < size());
         return node[u];
     }
 
     int lca(int u, int v) const {
-        assert(u < size());
-        assert(v < size());
+        assert(0 <= u and u < size());
+        assert(0 <= v and v < size());
         if (node[u].enter > node[v].enter) std::swap(u, v);
         while (node[u].enter < node[v].enter) {
             if (node[u].head == node[v].head) return u;
@@ -96,8 +96,8 @@ template <class G> class TreeManager {
     }
 
     Path path(const int des, const int anc) const {
-        assert(des < size());
-        assert(anc < size());
+        assert(0 <= des and des < size());
+        assert(0 <= anc and anc < size());
         assert(node[anc].enter <= node[des].enter and node[des].exit <= node[anc].exit);
         return Path(des, anc, this);
     }
