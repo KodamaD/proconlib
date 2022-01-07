@@ -11,7 +11,7 @@ int main() {
         int u, v;
         i32 c;
         std::cin >> u >> v >> c;
-        graph.add_edge(u, v, 0, c, 0);
+        graph.add_edge(u, v, c, 0);
     }
     std::cout << graph.flow(0, N - 1).first << '\n';
 }

@@ -2,7 +2,7 @@
 #include <cassert>
 #include <type_traits>
 #include "../utility/int_alias.cpp"
-#include "barret_reduction.cpp"
+#include "../internal/barret_reduction.cpp"
 #include "rem_euclid.cpp"
 
 template <class T> constexpr u32 mod_pow(T x, u64 exp, const u32 mod) {

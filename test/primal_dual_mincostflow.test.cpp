@@ -13,10 +13,8 @@ int main() {
         int u, v;
         i32 c, d;
         std::cin >> u >> v >> c >> d;
-        graph.add_edge(u, v, 0, c, d);
+        graph.add_edge(u, v, c, d);
     }
-    graph.add_supply(0, F);
-    graph.add_demand(N - 1, F);
-    const auto [cost, feasible] = graph.solve_bflow();
-    std::cout << (feasible ? cost : -1) << '\n';
+    const auto [flow, cost] = graph.flow(0, N - 1, F);
+    std::cout << (flow == F ? cost : -1) << '\n';
 }

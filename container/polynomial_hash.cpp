@@ -52,7 +52,7 @@ template <class T, int ID = -1, std::enable_if_t<std::is_integral_v<T>>* = nullp
     u64 fold() const { return hash.back(); }
     u64 fold(const int l, const int r) const {
         assert(0 <= l and l <= r and r <= size());
-        return Oper::difference(hash[r], Oper::product(hash[l], Base::base_pow[r - l]));
+        return Oper::difference(hash[r], Oper::product(hash[l], Base::base_pow(r - l)));
     }
 
     void concat(const PolynomialHash& other) {

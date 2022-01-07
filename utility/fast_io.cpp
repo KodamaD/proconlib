@@ -3,6 +3,7 @@
 #include <cstring>
 #include <type_traits>
 #include <utility>
+#include "../internal/enable_avx2.cpp"
 #include "int_alias.cpp"
 #include "rep.cpp"
 #include "revrep.cpp"
@@ -14,7 +15,7 @@ template <> constexpr u64 TEN<0> = 1;
 
 constexpr int BUF_SIZE = 1 << 17;
 
-__attribute__((target("avx2"))) inline constexpr int integer_digits(const u64 n) {
+TARGET_AVX2 inline constexpr int integer_digits(const u64 n) {
     if (n >= TEN<10>) {
         if (n >= TEN<15>) {
             if (n >= TEN<19>) return 20;
@@ -63,14 +64,14 @@ class Scanner {
     char buf[BUF_SIZE];
     int left, right;
 
-    __attribute__((target("avx2"))) inline void load() {
+    TARGET_AVX2 inline void load() {
         const int len = right - left;
         std::memcpy(buf, buf + left, len);
         right = len + std::fread(buf + len, 1, BUF_SIZE - len, stdin);
         left = 0;
     }
 
-    __attribute__((target("avx2"))) inline void ignore_spaces() {
+    TARGET_AVX2 inline void ignore_spaces() {
         while (buf[left] <= ' ') {
             if (__builtin_expect(++left == right, 0)) load();
         }
@@ -79,13 +80,12 @@ class Scanner {
   public:
     Scanner() : buf(), left(0), right(0) { load(); }
 
-    __attribute__((target("avx2"))) void scan(char& c) {
+    TARGET_AVX2 void scan(char& c) {
         ignore_spaces();
         c = buf[left++];
     }
 
-    template <typename T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>
-    __attribute__((target("avx2"))) inline void scan(T& x) {
+    template <typename T, std::enable_if_t<std::is_integral_v<T>>* = nullptr> TARGET_AVX2 inline void scan(T& x) {
         ignore_spaces();
         if (__builtin_expect(left + 32 > right, 0)) load();
         char c = buf[left++];
@@ -106,7 +106,7 @@ class Scanner {
         }
     }
 
-    template <class T, class... Args> __attribute__((target("avx2"))) inline void scan(T& x, Args&... args) {
+    template <class T, class... Args> TARGET_AVX2 inline void scan(T& x, Args&... args) {
         scan(x);
         scan(args...);
     }
@@ -116,7 +116,7 @@ class Printer {
     char buf[BUF_SIZE];
     int pos;
 
-    __attribute__((target("avx2"))) inline void flush() {
+    TARGET_AVX2 inline void flush() {
         std::fwrite(buf, 1, pos, stdout);
         pos = 0;
     }
@@ -125,13 +125,12 @@ class Printer {
     Printer() : buf(), pos(0) {}
     ~Printer() { flush(); }
 
-    __attribute__((target("avx2"))) void print(const char c) {
+    TARGET_AVX2 void print(const char c) {
         buf[pos] = c;
         if (__builtin_expect(++pos == BUF_SIZE, 0)) flush();
     }
 
-    template <typename T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>
-    __attribute__((target("avx2"))) inline void print(T x) {
+    template <typename T, std::enable_if_t<std::is_integral_v<T>>* = nullptr> TARGET_AVX2 inline void print(T x) {
         if (__builtin_expect(pos + 32 > BUF_SIZE, 0)) flush();
         if (x == 0) {
             buf[pos++] = '0';
@@ -154,13 +153,13 @@ class Printer {
         pos += digit;
     }
 
-    template <class T, class... Args> __attribute__((target("avx2"))) inline void print(T x, Args&&... args) {
+    template <class T, class... Args> TARGET_AVX2 inline void print(T x, Args&&... args) {
         print(x);
         print(' ');
         print(std::forward<Args>(args)...);
     }
 
-    template <class... Args> __attribute__((target("avx2"))) void println(Args&&... args) {
+    template <class... Args> TARGET_AVX2 void println(Args&&... args) {
         print(std::forward<Args>(args)...);
         print('\n');
     }

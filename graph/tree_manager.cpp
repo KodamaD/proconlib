@@ -7,12 +7,29 @@
 
 template <class G> class TreeManager {
   public:
-    class NodeInfo {
+    struct NodeInfo {
+        int parent, subtree, head, next, enter, exit;
+    };
+
+    class Path {
         friend class TreeManager;
-        NodeInfo() : parent(0), subtree(0), head(0), enter(0), exit(0) {}
+        int src, dst;
+        const Self* self;
+
+        explicit Path(const int s, const int d, const Self* p) : src(s), dst(d), self(p) {}
 
       public:
-        int parent, subtree, head, next, enter, exit;
+        Path begin() const { return *this; }
+        std::monostate end() const { return {}; }
+        bool operator!=(std::monostate) const { return src != dst; }
+        void operator++() { src = self->node[src].parent; }
+        std::pair<int, int> operator*() {
+            const int x = src;
+            const int y = self->node[src].head;
+            const int z = self->node[dst].next;
+            src = (y != self->node[dst].head ? y : z);
+            return {x, src};
+        }
     };
 
   private:
@@ -22,7 +39,7 @@ template <class G> class TreeManager {
   public:
     TreeManager() : node() {}
     explicit TreeManager(const G& graph, const int root = 0) : Self(graph, std::vector<int>({root})) {}
-    explicit TreeManager(const G& graph, const std::vector<int>& root) : node(graph.size(), NodeInfo()) {
+    explicit TreeManager(const G& graph, const std::vector<int>& root) : node(graph.size(), NodeInfo{0, 0, 0, 0, 0}) {
         const int n = size();
         const auto build = rec_lambda([&](auto&& dfs, const int u, const int p) -> void {
             node[u].parent = p;
@@ -56,27 +73,6 @@ template <class G> class TreeManager {
             decompose(r, r);
         }
     }
-
-    class Path {
-        friend class TreeManager;
-        int src, dst;
-        const Self* self;
-
-        explicit Path(const int s, const int d, const Self* p) : src(s), dst(d), self(p) {}
-
-      public:
-        Path begin() const { return *this; }
-        std::monostate end() const { return {}; }
-        bool operator!=(std::monostate) const { return src != dst; }
-        void operator++() { src = self->node[src].parent; }
-        std::pair<int, int> operator*() {
-            const int x = src;
-            const int y = self->node[src].head;
-            const int z = self->node[dst].next;
-            src = (y != self->node[dst].head ? y : z);
-            return {x, src};
-        }
-    };
 
     int size() const { return node.size(); }
     const NodeInfo& operator[](const int u) const {

@@ -44,8 +44,11 @@ class UnionFind {
     }
 
     std::vector<std::vector<int>> decompose() {
+        std::vector<int> buf(size()), len(size());
+        for (const int i : rep(size())) len[buf[i] = leader(i)]++;
         std::vector<std::vector<int>> ret(size());
-        for (const int u : rep(size())) ret[leader(u)].push_back(u);
+        for (const int i : rep(size())) ret[i].reserve(len[i]);
+        for (const int i : rep(size())) ret[buf[i]].push_back(i);
         ret.erase(std::remove_if(ret.begin(), ret.end(), [&](const std::vector<int>& v) { return v.empty(); }),
                   ret.end());
         return ret;

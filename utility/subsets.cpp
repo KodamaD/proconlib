@@ -15,7 +15,7 @@ class SubsetScanner {
   public:
     explicit constexpr SubsetScanner(u64 s) noexcept : s(s) {}
     constexpr Iter begin() const noexcept { return Iter(s, s); }
-    constexpr std::monostate end() noexcept { return {}; }
+    constexpr std::monostate end() const noexcept { return {}; }
 };
 
 constexpr SubsetScanner subsets(const u64 set) noexcept { return SubsetScanner(set); }

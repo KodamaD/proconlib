@@ -12,7 +12,7 @@ int main() {
     const auto dst = dinic.add_vertex();
     const auto left = dinic.add_vertices(L);
     const auto right = dinic.add_vertices(R);
-    std::vector<Dinic<int>::EdgePtr> ptr(M);
+    std::vector<int> eidx(M);
     for (const auto i : rep(0, L)) {
         dinic.add_edge(src, left[i], 1);
     }
@@ -22,12 +22,13 @@ int main() {
     for (const auto i : rep(0, M)) {
         int a, b;
         std::cin >> a >> b;
-        ptr[i] = dinic.add_edge(left[a], right[b], 1);
+        eidx[i] = dinic.add_edge(left[a], right[b], 1);
     }
     std::cout << dinic.flow(src, dst) << '\n';
     for (const auto i : rep(0, M)) {
-        if (ptr[i].flow() == 1) {
-            std::cout << left.to_idx(ptr[i].src()) << ' ' << right.to_idx(ptr[i].dst()) << '\n';
+        const auto& [src, dst, flow, _] = dinic.get_edge(eidx[i]);
+        if (flow == 1) {
+            std::cout << left.to_idx(src) << ' ' << right.to_idx(dst) << '\n';
         }
     }
     return 0;

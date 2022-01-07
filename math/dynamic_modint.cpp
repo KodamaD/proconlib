@@ -3,7 +3,7 @@
 #include <ostream>
 #include <type_traits>
 #include "../utility/int_alias.cpp"
-#include "barret_reduction.cpp"
+#include "../internal/barret_reduction.cpp"
 #include "mod_inv.cpp"
 #include "rem_euclid.cpp"
 

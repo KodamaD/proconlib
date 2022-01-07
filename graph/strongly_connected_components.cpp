@@ -52,6 +52,9 @@ template <class G> class StronglyConnectedComponents {
 
     std::vector<std::vector<int>> decopmose() const {
         std::vector<std::vector<int>> ret(group_count());
+        std::vector<int> len(group_count());
+        for (const int i : index) len[i] += 1;
+        for (const int i : rep(0, group_count())) ret[i].reserve(len[i]);
         for (const int u : rep(size())) ret[index[u]].push_back(u);
         return ret;
     }

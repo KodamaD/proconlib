@@ -8,6 +8,44 @@
 #include "../utility/rep.cpp"
 
 template <class K, class V, std::enable_if_t<std::is_integral_v<K>>* = nullptr> class IntegerHashTable {
+  public:
+    class Iter {
+        friend class IntegerHashTable;
+        int idx;
+        Self* self;
+
+        explicit Iter(const int i, Self* s) : idx(i - 1), self(s) { next(); }
+
+        void next() {
+            while (++idx < self->info.size)
+                if (self->data[idx].ctrl == Ctrl::Full) return;
+        }
+
+      public:
+        bool operator!=(const Iter& other) const { return idx != other.idx or self != other.self; }
+        std::pair<const K, V>& operator*() const { return self->data[idx].slot.pair; }
+        void operator++() { next(); }
+    };
+
+    class ConstIter {
+        friend class IntegerHashTable;
+        int idx;
+        const Self* self;
+
+        explicit ConstIter(const int i, const Self* s) : idx(i - 1), self(s) { next(); }
+
+        void next() {
+            while (++idx < self->info.size)
+                if (self->data[idx].ctrl == Ctrl::Full) return;
+        }
+
+      public:
+        bool operator!=(const ConstIter& other) const { return idx != other.idx or self != other.self; }
+        const std::pair<const K, V>& operator*() const { return self->data[idx].slot.pair; }
+        void operator++() { next(); }
+    };
+
+  private:
     using Self = IntegerHashTable;
 
     enum class Ctrl : char { Empty, Full, Deleted };
@@ -91,42 +129,6 @@ template <class K, class V, std::enable_if_t<std::is_integral_v<K>>* = nullptr> 
     IntegerHashTable(const Self& other) noexcept : Self() { *this = other; }
     IntegerHashTable(Self&& other) noexcept : Self() { *this = std::move(other); }
     ~IntegerHashTable() { clear(); }
-
-    class Iter {
-        friend class IntegerHashTable;
-        int idx;
-        Self* self;
-
-        explicit Iter(const int i, Self* s) : idx(i - 1), self(s) { next(); }
-
-        void next() {
-            while (++idx < self->info.size)
-                if (self->data[idx].ctrl == Ctrl::Full) return;
-        }
-
-      public:
-        bool operator!=(const Iter& other) const { return idx != other.idx or self != other.self; }
-        std::pair<const K, V>& operator*() const { return self->data[idx].slot.pair; }
-        void operator++() { next(); }
-    };
-
-    class ConstIter {
-        friend class IntegerHashTable;
-        int idx;
-        const Self* self;
-
-        explicit ConstIter(const int i, const Self* s) : idx(i - 1), self(s) { next(); }
-
-        void next() {
-            while (++idx < self->info.size)
-                if (self->data[idx].ctrl == Ctrl::Full) return;
-        }
-
-      public:
-        bool operator!=(const ConstIter& other) const { return idx != other.idx or self != other.self; }
-        const std::pair<const K, V>& operator*() const { return self->data[idx].slot.pair; }
-        void operator++() { next(); }
-    };
 
     Self& operator=(const Self& other) noexcept {
         if (this != &other) {

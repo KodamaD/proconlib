@@ -1,231 +1,186 @@
 #pragma once
 #include <algorithm>
 #include <cassert>
+#include <limits>
 #include <type_traits>
-#include <utility>
 #include <vector>
 #include "../utility/index_offset.cpp"
 #include "../utility/rep.cpp"
-#include "../utility/setmin.cpp"
 
-template <class Flow,
-          class Cost,
-          std::enable_if_t<std::is_integral_v<Flow> and std::is_integral_v<Cost> and std::is_signed_v<Flow> and
-                           std::is_signed_v<Cost>>* = nullptr>
-class PrimalDual {
+template <class Flow, class Cost> class PrimalDual {
+  public:
     struct Edge {
-        int dst, rev;
+        int src, dst;
         Flow flow, cap;
         Cost cost;
     };
 
-    std::vector<std::vector<Edge>> graph;
-    std::vector<Flow> gap;
+  private:
+    int node_count;
+    std::vector<Edge> graph;
     std::vector<Cost> potential;
 
   public:
-    PrimalDual() : graph() {}
-    explicit PrimalDual(const int n) : graph(n), gap(n) {}
+    PrimalDual() : node_count(0), graph() {}
+    explicit PrimalDual(const int n) : node_count(n), graph() {}
 
-    class EdgePtr {
-        friend class PrimalDual;
-        PrimalDual* self;
-        int u, e;
+    int size() const { return node_count; }
+    int edge_count() const { return graph.size(); }
 
-        explicit EdgePtr(PrimalDual* p, const int u, const int e) : self(p), u(u), e(e) {}
-
-        const Edge& edge() const { return self->graph[u][e]; }
-        const Edge& rev_edge() const { return self->graph[edge().dst][edge().rev]; }
-
-      public:
-        EdgePtr() : self(nullptr), u(0), e(0) {}
-        int src() const { return u; }
-        int dst() const { return edge().dst; }
-        Flow flow() const { return edge().flow; }
-        Flow lower() const { return -rev_edge().cap; }
-        Flow upper() const { return edge().cap; }
-        Cost cost() const { return edge().cost; }
-    };
-
-    int size() const { return graph.size(); }
-
-    int add_vertex() {
-        graph.emplace_back();
-        gap.emplace_back();
-        return size() - 1;
-    }
-    IndexOffset add_vertices(int n) {
-        IndexOffset ret(size(), n);
-        while (n--) {
-            graph.emplace_back();
-            gap.emplace_back();
-        }
+    int add_vertex() { return node_count++; }
+    IndexOffset add_vertices(const int n) {
+        assert(n >= 0);
+        const IndexOffset ret(size(), n);
+        node_count += n;
         return ret;
     }
 
-    EdgePtr add_edge(const int src, const int dst, const Flow lower, const Flow upper, const Cost cost) {
+    const Edge& get_edge(const int i) const {
+        assert(0 <= i and i < edge_count());
+        return graph[i];
+    }
+    int add_edge(const int src, const int dst, const Flow& cap, const Cost& cost) {
         assert(0 <= src and src < size());
         assert(0 <= dst and dst < size());
-        assert(lower <= upper);
-        const int src_id = graph[src].size();
-        const int dst_id = graph[dst].size() + (src == dst);
-        graph[src].push_back(Edge{dst, dst_id, 0, upper, cost});
-        graph[dst].push_back(Edge{src, src_id, 0, -lower, -cost});
-        return EdgePtr(this, src, src_id);
+        assert(cap >= 0);
+        graph.push_back(Edge{src, dst, 0, cap, cost});
+        return edge_count() - 1;
     }
 
-    void add_supply(const int u, const Flow f) {
+    Cost get_potential(const int u) const {
+        assert(!potential.empty());
         assert(0 <= u and u < size());
-        gap[u] += f;
-    }
-    void add_demand(const int u, const Flow f) {
-        assert(0 <= u and u < size());
-        gap[u] -= f;
+        return potential[u];
     }
     void set_potential(const std::vector<Cost>& p) {
         assert((int)p.size() == size());
+        for (const auto& e : graph) {
+            if (e.cap == 0) continue;
+            assert(e.cost - p[e.dst] + p[e.src] >= 0);
+        }
         potential = p;
     }
 
-    template <class Result = Cost> std::pair<Result, bool> solve_bflow() {
-        potential.resize(size(), 0);
-        for (const int u : rep(size())) {
-            for (Edge& e : graph[u]) {
-                if (e.flow > e.cap or e.cost + potential[u] - potential[e.dst] < 0) {
-                    const Flow dif = e.cap - e.flow;
-                    e.flow += dif;
-                    graph[e.dst][e.rev].flow -= dif;
-                    gap[u] -= dif;
-                    gap[e.dst] += dif;
-                }
-            }
-        }
-        std::vector<int> over, lack;
-        for (const int u : rep(size())) {
-            if (gap[u] > 0) over.push_back(u);
-            if (gap[u] < 0) lack.push_back(u);
-        }
-        struct State {
+    std::pair<Flow, Cost> flow(const int src, const int dst) {
+        return flow(src, dst, std::numeric_limits<Flow>::max());
+    }
+    std::pair<Flow, Cost> flow(const int src, const int dst, const Flow& flow_limit) {
+        return slope(src, dst, flow_limit).back();
+    }
+    std::vector<std::pair<Flow, Cost>> slope(const int src, const int dst) {
+        return slope(src, dst, std::numeric_limits<Flow>::max());
+    }
+    std::vector<std::pair<Flow, Cost>> slope(const int src, const int dst, const Flow& flow_limit) {
+        assert(0 <= src and src < size());
+        assert(0 <= dst and dst < size());
+        assert(src != dst);
+        const int n = size();
+        const int m = edge_count();
+        struct E {
+            int dst, rev;
+            Flow cap;
             Cost cost;
-            int vertex;
-            bool operator<(const State& other) const { return cost > other.cost; }
         };
-        std::vector<State> heap;
-        std::vector<Edge*> parent;
-        std::vector<int> que_min;
-        std::vector<Cost> dist;
-        std::vector<char> seen;
-        Cost farthest;
-        const auto dual = [&] {
-            over.erase(std::remove_if(over.begin(), over.end(), [&](const int u) { return gap[u] <= 0; }),
-                       over.end());
-            lack.erase(std::remove_if(lack.begin(), lack.end(), [&](const int u) { return gap[u] >= 0; }),
-                       lack.end());
-            if (over.empty() or lack.empty()) return false;
-            dist.assign(size(), std::numeric_limits<Cost>::max());
-            parent.assign(size(), nullptr);
-            seen.assign(size(), false);
-            que_min.clear();
-            heap.clear();
-            int heap_size = 0, lack_cnt = 0;
-            farthest = 0;
-            for (const int src : over) {
-                dist[src] = 0;
-                que_min.push_back(src);
+        std::vector<E> edge(2 * m);
+        std::vector<int> start(n + 1), eidx(m);
+        {
+            std::vector<int> deg(n), reidx(m);
+            for (const int i : rep(m)) {
+                eidx[i] = deg[graph[i].src]++;
+                reidx[i] = deg[graph[i].dst]++;
             }
-            while (!que_min.empty() or !heap.empty()) {
+            for (const int i : rep(n)) start[i + 1] = start[i] + deg[i];
+            for (const int i : rep(m)) {
+                const auto& e = graph[i];
+                const int u = e.src, v = e.dst;
+                eidx[i] += start[u];
+                reidx[i] += start[v];
+                edge[eidx[i]] = {v, reidx[i], e.cap - e.flow, e.cost};
+                edge[reidx[i]] = {u, eidx[i], e.flow, -e.cost};
+            }
+        }
+        if (potential.empty()) set_potential(std::vector<Cost>(n));
+        std::vector<Cost> dist(n);
+        std::vector<int> prev_e(n);
+        std::vector<char> visited(n);
+        struct Q {
+            Cost key;
+            int to;
+            bool operator<(const Q& r) const { return key > r.key; }
+        };
+        std::vector<int> que_min;
+        std::vector<Q> que;
+        const auto dual = [&]() {
+            for (const int i : rep(n)) dist[i] = std::numeric_limits<Cost>::max();
+            std::fill(visited.begin(), visited.end(), false);
+            que_min.clear();
+            que.clear();
+            int heap_size = 0;
+            dist[src] = 0;
+            que_min.push_back(src);
+            while (!que_min.empty() || !que.empty()) {
                 int u;
                 if (!que_min.empty()) {
                     u = que_min.back();
                     que_min.pop_back();
                 } else {
-                    while (heap_size < (int)heap.size()) {
-                        heap_size += 1;
-                        std::push_heap(heap.begin(), heap.begin() + heap_size);
+                    while (heap_size < (int)que.size()) {
+                        heap_size++;
+                        std::push_heap(que.begin(), que.begin() + heap_size);
                     }
-                    u = heap.front().vertex;
-                    std::pop_heap(heap.begin(), heap.end());
-                    heap.pop_back();
-                    heap_size -= 1;
+                    u = que.front().to;
+                    std::pop_heap(que.begin(), que.end());
+                    que.pop_back();
+                    heap_size--;
                 }
-                if (seen[u]) continue;
-                seen[u] = true;
-                farthest = dist[u];
-                if (gap[u] < 0) {
-                    lack_cnt += 1;
-                    if (lack_cnt == (int)lack.size()) break;
-                }
-                for (const int i : rep(graph[u].size())) {
-                    const Edge& e = graph[u][i];
-                    if (e.flow >= e.cap) continue;
+                if (visited[u]) continue;
+                visited[u] = true;
+                if (u == dst) break;
+                for (const int i : rep(start[u], start[u + 1])) {
+                    const auto& e = edge[i];
+                    if (e.cap == 0) continue;
                     const int v = e.dst;
-                    if (setmin(dist[v], dist[u] + e.cost + potential[u] - potential[v])) {
-                        parent[v] = &graph[e.dst][e.rev];
-                        if (dist[v] == dist[u]) {
+                    const Cost cost = e.cost - potential[v] + potential[u];
+                    if (dist[v] - dist[u] > cost) {
+                        dist[v] = dist[u] + cost;
+                        prev_e[v] = e.rev;
+                        if (cost == 0) {
                             que_min.push_back(v);
                         } else {
-                            heap.push_back(State{dist[v], v});
+                            que.push_back(Q{dist[v], v});
                         }
                     }
                 }
             }
-            if (lack_cnt == 0) return false;
-            for (const int u : rep(size())) {
-                potential[u] += std::min(farthest, dist[u]);
+            if (!visited[dst]) return false;
+            for (const int u : rep(n)) {
+                if (!visited[u]) continue;
+                potential[u] -= dist[dst] - dist[u];
             }
             return true;
         };
-        while (dual()) {
-            for (const int dst : lack) {
-                if (dist[dst] > farthest) continue;
-                Flow f = -gap[dst];
-                int u = dst;
-                while (parent[u] and f > 0) {
-                    const Edge& e = graph[parent[u]->dst][parent[u]->rev];
-                    setmin(f, e.cap - e.flow);
-                    u = parent[u]->dst;
-                }
-                setmin(f, gap[u]);
-                if (f <= 0) continue;
-                u = dst;
-                while (parent[u]) {
-                    Edge& e = graph[parent[u]->dst][parent[u]->rev];
-                    e.flow += f;
-                    graph[e.dst][e.rev].flow -= f;
-                    u = parent[u]->dst;
-                }
-                gap[u] -= f;
-                gap[dst] += f;
+        Flow flow = 0;
+        Cost cost = 0, ratio = -1;
+        std::vector<std::pair<Flow, Cost>> result = {{Flow(0), Cost(0)}};
+        while (flow < flow_limit) {
+            if (!dual()) break;
+            Flow push = flow_limit - flow;
+            for (int u = dst; u != src; u = edge[prev_e[u]].dst) {
+                push = std::min(push, edge[edge[prev_e[u]].rev].cap);
             }
-        }
-        Result sum = 0;
-        for (const auto& v : graph) {
-            for (const Edge& e : v) {
-                if (e.flow > 0) sum += (Result)e.flow * (Result)e.cost;
+            for (int u = dst; u != src; u = edge[prev_e[u]].dst) {
+                auto& e = edge[prev_e[u]];
+                e.cap += push;
+                edge[e.rev].cap -= push;
             }
+            const Cost per_flow = potential[dst] - potential[src];
+            flow += push;
+            cost += push * per_flow;
+            if (ratio == per_flow) result.pop_back();
+            result.emplace_back(flow, cost);
+            ratio = per_flow;
         }
-        return std::make_pair(sum, over.empty() and lack.empty());
-    }
-
-    template <class Result = Cost> std::pair<Flow, Result> flow(const int src, const int dst) {
-        return flow<Result>(src, dst, std::numeric_limits<Flow>::max());
-    }
-    template <class Result = Cost>
-    std::pair<Flow, Result> flow(const int src, const int dst, const Flow flow_limit) {
-        assert(0 <= src and src < size());
-        assert(0 <= dst and dst < size());
-        assert(src != dst);
-        assert(std::all_of(gap.begin(), gap.end(), [&](const Flow f) { return f == 0; }));
-        Flow inf_flow = 0;
-        for (const Edge& e : graph[src]) inf_flow += std::max<Flow>(e.cap, 0);
-        add_edge(dst, src, 0, inf_flow, 0);
-        assert(solve_bflow<Result>().second);
-        gap[src] = flow_limit;
-        gap[dst] = -flow_limit;
-        const Result cost = solve_bflow<Result>().first;
-        const Flow flow = flow_limit - gap[src];
-        graph[src].pop_back();
-        graph[dst].pop_back();
-        return std::make_pair(flow, cost);
+        for (const int i : rep(m)) graph[i].flow = graph[i].cap - edge[eidx[i]].cap;
+        return result;
     }
 };

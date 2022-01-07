@@ -18,7 +18,7 @@ class PermutationScanner {
   public:
     explicit PermutationScanner(const int n, const int k = 0) noexcept : iter(n, k) {}
     Iter begin() const noexcept { return iter; }
-    std::monostate end() noexcept { return {}; }
+    std::monostate end() const noexcept { return {}; }
 };
 
 PermutationScanner permutations(const int n, const int k = 0) noexcept { return PermutationScanner(n, k); }

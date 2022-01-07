@@ -8,9 +8,7 @@ template <class T> std::vector<T> divisors(const T& x) {
     for (T i = 1; i * i <= x; ++i) {
         if (x % i == 0) {
             small.push_back(i);
-            if (i * i != x) {
-                big.push_back(x / i);
-            }
+            if (i * i != x) big.push_back(x / i);
         }
     }
     small.reserve(small.size() + big.size());
