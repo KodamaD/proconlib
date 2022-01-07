@@ -4,10 +4,10 @@ data:
   - icon: ':warning:'
     path: random/shuffle_vec.cpp
     title: random/shuffle_vec.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []

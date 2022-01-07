@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: container/integer_hash_table.cpp
     title: container/integer_hash_table.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: internal/enable_avx2.cpp
     title: internal/enable_avx2.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/bit_width.cpp
     title: utility/bit_width.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/countl_zero.cpp
     title: utility/countl_zero.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/associative_array
@@ -65,43 +65,43 @@ data:
     \ int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range rep(const\
     \ int n) noexcept { return Range(0, n); }\n#line 9 \"container/integer_hash_table.cpp\"\
     \n\ntemplate <class K, class V, std::enable_if_t<std::is_integral_v<K>>* = nullptr>\
-    \ class IntegerHashTable {\n  public:\n    class Iter {\n        friend class\
-    \ IntegerHashTable;\n        int idx;\n        Self* self;\n\n        explicit\
-    \ Iter(const int i, Self* s) : idx(i - 1), self(s) { next(); }\n\n        void\
-    \ next() {\n            while (++idx < self->info.size)\n                if (self->data[idx].ctrl\
-    \ == Ctrl::Full) return;\n        }\n\n      public:\n        bool operator!=(const\
-    \ Iter& other) const { return idx != other.idx or self != other.self; }\n    \
-    \    std::pair<const K, V>& operator*() const { return self->data[idx].slot.pair;\
-    \ }\n        void operator++() { next(); }\n    };\n\n    class ConstIter {\n\
-    \        friend class IntegerHashTable;\n        int idx;\n        const Self*\
-    \ self;\n\n        explicit ConstIter(const int i, const Self* s) : idx(i - 1),\
-    \ self(s) { next(); }\n\n        void next() {\n            while (++idx < self->info.size)\n\
-    \                if (self->data[idx].ctrl == Ctrl::Full) return;\n        }\n\n\
-    \      public:\n        bool operator!=(const ConstIter& other) const { return\
-    \ idx != other.idx or self != other.self; }\n        const std::pair<const K,\
-    \ V>& operator*() const { return self->data[idx].slot.pair; }\n        void operator++()\
-    \ { next(); }\n    };\n\n  private:\n    using Self = IntegerHashTable;\n\n  \
-    \  enum class Ctrl : char { Empty, Full, Deleted };\n\n    union Slot {\n    \
-    \    std::pair<const K, V> pair;\n        std::pair<K, V> mut_pair;\n        Slot()\
-    \ {}\n        ~Slot() {}\n    };\n\n    struct Data {\n        Ctrl ctrl;\n  \
-    \      Slot slot;\n        Data() : ctrl(Ctrl::Empty), slot() {}\n        ~Data()\
-    \ {\n            if (ctrl == Ctrl::Full) slot.mut_pair.~pair();\n        }\n \
-    \   };\n\n    struct Manager {\n        static inline constexpr u64 PHI = 11400714819323198485ull;\n\
-    \        static inline const u64 RND = xorshift();\n\n        int logn, size,\
-    \ full, deleted;\n        Manager() : logn(0), size(0), full(0), deleted(0) {}\n\
-    \n        void fix() {\n            logn = ceil_log2(3 * full);\n            size\
-    \ = (full == 0 ? 0 : (1 << logn));\n            deleted = 0;\n        }\n\n  \
-    \      bool balanced() const { return 2 * (full + deleted) <= size and 8 * full\
-    \ >= size; }\n        int mask() const { return size - 1; }\n\n        int index(const\
-    \ K& k) const {\n            u64 x = static_cast<u64>(k) ^ RND;\n            x\
-    \ ^= x >> (64 - logn);\n            return (x * PHI) >> (64 - logn);\n       \
-    \ }\n    };\n\n    Data* data;\n    Manager info;\n\n    int find_key(const K&\
-    \ k, int i) const {\n        while (data[i].ctrl != Ctrl::Empty) {\n         \
-    \   if (data[i].ctrl == Ctrl::Full and data[i].slot.pair.first == k) break;\n\
-    \            i = (i + 1) & info.mask();\n        }\n        return i;\n    }\n\
-    \    int find_place(int i) const {\n        while (data[i].ctrl == Ctrl::Full)\
-    \ i = (i + 1) & info.mask();\n        return i;\n    }\n\n    template <class...\
-    \ Args> void construct(const int i, Args&&... args) {\n        new (&data[i].slot.mut_pair)\
+    \ class IntegerHashTable {\n    using Self = IntegerHashTable;\n\n  public:\n\
+    \    class Iter {\n        friend class IntegerHashTable;\n        int idx;\n\
+    \        Self* self;\n\n        explicit Iter(const int i, Self* s) : idx(i -\
+    \ 1), self(s) { next(); }\n\n        void next() {\n            while (++idx <\
+    \ self->info.size)\n                if (self->data[idx].ctrl == Ctrl::Full) return;\n\
+    \        }\n\n      public:\n        bool operator!=(const Iter& other) const\
+    \ { return idx != other.idx or self != other.self; }\n        std::pair<const\
+    \ K, V>& operator*() const { return self->data[idx].slot.pair; }\n        void\
+    \ operator++() { next(); }\n    };\n\n    class ConstIter {\n        friend class\
+    \ IntegerHashTable;\n        int idx;\n        const Self* self;\n\n        explicit\
+    \ ConstIter(const int i, const Self* s) : idx(i - 1), self(s) { next(); }\n\n\
+    \        void next() {\n            while (++idx < self->info.size)\n        \
+    \        if (self->data[idx].ctrl == Ctrl::Full) return;\n        }\n\n      public:\n\
+    \        bool operator!=(const ConstIter& other) const { return idx != other.idx\
+    \ or self != other.self; }\n        const std::pair<const K, V>& operator*() const\
+    \ { return self->data[idx].slot.pair; }\n        void operator++() { next(); }\n\
+    \    };\n\n  private:\n    enum class Ctrl : char { Empty, Full, Deleted };\n\n\
+    \    union Slot {\n        std::pair<const K, V> pair;\n        std::pair<K, V>\
+    \ mut_pair;\n        Slot() {}\n        ~Slot() {}\n    };\n\n    struct Data\
+    \ {\n        Ctrl ctrl;\n        Slot slot;\n        Data() : ctrl(Ctrl::Empty),\
+    \ slot() {}\n        ~Data() {\n            if (ctrl == Ctrl::Full) slot.mut_pair.~pair();\n\
+    \        }\n    };\n\n    struct Manager {\n        static inline constexpr u64\
+    \ PHI = 11400714819323198485ull;\n        static inline const u64 RND = xorshift();\n\
+    \n        int logn, size, full, deleted;\n        Manager() : logn(0), size(0),\
+    \ full(0), deleted(0) {}\n\n        void fix() {\n            logn = ceil_log2(3\
+    \ * full);\n            size = (full == 0 ? 0 : (1 << logn));\n            deleted\
+    \ = 0;\n        }\n\n        bool balanced() const { return 2 * (full + deleted)\
+    \ <= size and 8 * full >= size; }\n        int mask() const { return size - 1;\
+    \ }\n\n        int index(const K& k) const {\n            u64 x = static_cast<u64>(k)\
+    \ ^ RND;\n            x ^= x >> (64 - logn);\n            return (x * PHI) >>\
+    \ (64 - logn);\n        }\n    };\n\n    Data* data;\n    Manager info;\n\n  \
+    \  int find_key(const K& k, int i) const {\n        while (data[i].ctrl != Ctrl::Empty)\
+    \ {\n            if (data[i].ctrl == Ctrl::Full and data[i].slot.pair.first ==\
+    \ k) break;\n            i = (i + 1) & info.mask();\n        }\n        return\
+    \ i;\n    }\n    int find_place(int i) const {\n        while (data[i].ctrl ==\
+    \ Ctrl::Full) i = (i + 1) & info.mask();\n        return i;\n    }\n\n    template\
+    \ <class... Args> void construct(const int i, Args&&... args) {\n        new (&data[i].slot.mut_pair)\
     \ std::pair<K, V>(std::forward<Args>(args)...);\n    }\n    void resize() {\n\
     \        Data* old_data = std::exchange(data, nullptr);\n        const int old_len\
     \ = info.size;\n        info.fix();\n        if (info.size) {\n            data\
@@ -176,8 +176,8 @@ data:
   isVerificationFile: true
   path: test/integer_hash_table.test.cpp
   requiredBy: []
-  timestamp: '2022-01-07 21:48:21+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-07 22:21:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/integer_hash_table.test.cpp
 layout: document

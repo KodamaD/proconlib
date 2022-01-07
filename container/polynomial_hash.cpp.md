@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/rand_int.cpp
     title: random/rand_int.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/polynomial_hash.test.cpp
     title: test/polynomial_hash.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"container/polynomial_hash.cpp\"\n#include <cassert>\n#include\
@@ -52,9 +52,9 @@ data:
     \ product(const u64 a, const u64 b) {\n        u128 ret = (u128)a * b;\n     \
     \   ret = (ret >> 61) + (ret & MOD);\n        return ret >= MOD ? ret - MOD :\
     \ ret;\n    }\n};\n\ntemplate <int ID> struct PolynomialHashBase {\n    static\
-    \ inline const u64 BASE = rand_int<u64>(0, MOD - 1);\n    static u64 base_pow(const\
-    \ int n) {\n        static std::vector<u64> vec;\n        if (vec.empty()) vec\
-    \ = {1};\n        while ((int)vec.size() <= n) vec.push_back(PolynomialHashOperations::product(vec.back(),\
+    \ inline const u64 BASE = rand_int<u64>(0, PolynomialHashOperations::MOD - 1);\n\
+    \    static u64 base_pow(const int n) {\n        static std::vector<u64> vec;\n\
+    \        if (vec.empty()) vec = {1};\n        while ((int)vec.size() <= n) vec.push_back(PolynomialHashOperations::product(vec.back(),\
     \ BASE));\n        return vec[n];\n    }\n};\n\ntemplate <class T, int ID = -1,\
     \ std::enable_if_t<std::is_integral_v<T>>* = nullptr> class PolynomialHash {\n\
     \    using Oper = PolynomialHashOperations;\n    using Base = PolynomialHashBase<ID>;\n\
@@ -62,7 +62,7 @@ data:
     \ : PolynomialHash(std::vector<T>()) {}\n    explicit PolynomialHash(const std::vector<T>&\
     \ vec) : data(vec) {\n        const int size = data.size();\n        hash = std::vector<u64>(size\
     \ + 1);\n        for (const int i : rep(size)) {\n            assert(0 <= data[i]\
-    \ and (u64) data[i] < Base::MOD);\n            hash[i + 1] = Oper::sum(Oper::product(Base::BASE,\
+    \ and (u64) data[i] < Oper::MOD);\n            hash[i + 1] = Oper::sum(Oper::product(Base::BASE,\
     \ hash[i]), (u64)data[i]);\n        }\n    }\n\n    int size() const { return\
     \ data.size(); }\n    const std::vector<T>& get() const { return data; }\n\n \
     \   u64 fold() const { return hash.back(); }\n    u64 fold(const int l, const\
@@ -83,7 +83,7 @@ data:
     \ : a; }\n    static constexpr u64 product(const u64 a, const u64 b) {\n     \
     \   u128 ret = (u128)a * b;\n        ret = (ret >> 61) + (ret & MOD);\n      \
     \  return ret >= MOD ? ret - MOD : ret;\n    }\n};\n\ntemplate <int ID> struct\
-    \ PolynomialHashBase {\n    static inline const u64 BASE = rand_int<u64>(0, MOD\
+    \ PolynomialHashBase {\n    static inline const u64 BASE = rand_int<u64>(0, PolynomialHashOperations::MOD\
     \ - 1);\n    static u64 base_pow(const int n) {\n        static std::vector<u64>\
     \ vec;\n        if (vec.empty()) vec = {1};\n        while ((int)vec.size() <=\
     \ n) vec.push_back(PolynomialHashOperations::product(vec.back(), BASE));\n   \
@@ -94,7 +94,7 @@ data:
     \ {}\n    explicit PolynomialHash(const std::vector<T>& vec) : data(vec) {\n \
     \       const int size = data.size();\n        hash = std::vector<u64>(size +\
     \ 1);\n        for (const int i : rep(size)) {\n            assert(0 <= data[i]\
-    \ and (u64) data[i] < Base::MOD);\n            hash[i + 1] = Oper::sum(Oper::product(Base::BASE,\
+    \ and (u64) data[i] < Oper::MOD);\n            hash[i + 1] = Oper::sum(Oper::product(Base::BASE,\
     \ hash[i]), (u64)data[i]);\n        }\n    }\n\n    int size() const { return\
     \ data.size(); }\n    const std::vector<T>& get() const { return data; }\n\n \
     \   u64 fold() const { return hash.back(); }\n    u64 fold(const int l, const\
@@ -114,8 +114,8 @@ data:
   isVerificationFile: false
   path: container/polynomial_hash.cpp
   requiredBy: []
-  timestamp: '2022-01-07 21:48:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-01-07 22:21:35+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/polynomial_hash.test.cpp
 documentation_of: container/polynomial_hash.cpp

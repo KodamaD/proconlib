@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/stack_aggregation.cpp
     title: container/stack_aggregation.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/reversed_monoid.cpp
     title: traits/reversed_monoid.cpp
   _extendedRequiredBy: []

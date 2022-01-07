@@ -7,22 +7,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/stack_aggregation.cpp
     title: container/stack_aggregation.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/totient.cpp
     title: math/totient.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/affine_composite_monoid.cpp
     title: traits/affine_composite_monoid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/reversed_monoid.cpp
     title: traits/reversed_monoid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
   _extendedRequiredBy: []

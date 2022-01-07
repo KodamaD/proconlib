@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/rollback_union_find.cpp
     title: graph/rollback_union_find.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
   _extendedRequiredBy: []

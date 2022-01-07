@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: algorithm/larsch.cpp
     title: algorithm/larsch.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: internal/enable_avx2.cpp
     title: internal/enable_avx2.cpp
   - icon: ':heavy_check_mark:'
@@ -16,25 +16,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: traits/optional_monoid.cpp
     title: traits/optional_monoid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/bit_width.cpp
     title: utility/bit_width.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/countl_zero.cpp
     title: utility/countl_zero.cpp
   - icon: ':heavy_check_mark:'
     path: utility/infty.cpp
     title: utility/infty.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedRequiredBy: []

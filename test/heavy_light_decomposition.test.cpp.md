@@ -1,62 +1,62 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/basic_graph.cpp
     title: graph/basic_graph.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_manager.cpp
     title: graph/tree_manager.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: internal/enable_avx2.cpp
     title: internal/enable_avx2.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/totient.cpp
     title: math/totient.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/affine_composite_monoid.cpp
     title: traits/affine_composite_monoid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: traits/reversed_monoid.cpp
     title: traits/reversed_monoid.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/bit_width.cpp
     title: utility/bit_width.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/countl_zero.cpp
     title: utility/countl_zero.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -172,53 +172,54 @@ data:
     \ return RecursiveLambda<F>(std::forward<F>(f)); }\n#line 7 \"graph/tree_manager.cpp\"\
     \n\ntemplate <class G> class TreeManager {\n  public:\n    struct NodeInfo {\n\
     \        int parent, subtree, head, next, enter, exit;\n    };\n\n    class Path\
-    \ {\n        friend class TreeManager;\n        int src, dst;\n        const Self*\
-    \ self;\n\n        explicit Path(const int s, const int d, const Self* p) : src(s),\
-    \ dst(d), self(p) {}\n\n      public:\n        Path begin() const { return *this;\
-    \ }\n        std::monostate end() const { return {}; }\n        bool operator!=(std::monostate)\
-    \ const { return src != dst; }\n        void operator++() { src = self->node[src].parent;\
-    \ }\n        std::pair<int, int> operator*() {\n            const int x = src;\n\
-    \            const int y = self->node[src].head;\n            const int z = self->node[dst].next;\n\
-    \            src = (y != self->node[dst].head ? y : z);\n            return {x,\
-    \ src};\n        }\n    };\n\n  private:\n    using Self = TreeManager;\n    std::vector<NodeInfo>\
-    \ node;\n\n  public:\n    TreeManager() : node() {}\n    explicit TreeManager(const\
-    \ G& graph, const int root = 0) : Self(graph, std::vector<int>({root})) {}\n \
-    \   explicit TreeManager(const G& graph, const std::vector<int>& root) : node(graph.size(),\
-    \ NodeInfo{0, 0, 0, 0, 0}) {\n        const int n = size();\n        const auto\
-    \ build = rec_lambda([&](auto&& dfs, const int u, const int p) -> void {\n   \
-    \         node[u].parent = p;\n            node[u].subtree = 1;\n            for\
-    \ (const int v : graph[u]) {\n                if (v != p) {\n                \
-    \    dfs(v, u);\n                    node[u].subtree += node[v].subtree;\n   \
-    \             }\n            }\n        });\n        int time_stamp = 0;\n   \
-    \     const auto decompose = rec_lambda([&](auto&& dfs, const int u, const int\
-    \ h) -> void {\n            node[u].head = h;\n            node[u].enter = time_stamp++;\n\
-    \            int& s = node[u].next;\n            s = u;\n            for (const\
-    \ int v : graph[u])\n                if (v != node[u].parent and (s == u or node[s].subtree\
-    \ < node[v].subtree)) s = v;\n            if (s != u) {\n                dfs(s,\
-    \ h);\n                for (const int v : graph[u])\n                    if (v\
-    \ != node[u].parent and v != s) dfs(v, v);\n            }\n            node[u].exit\
-    \ = time_stamp;\n        });\n        for (const int r : root) {\n           \
-    \ assert(0 <= r < n);\n            assert(node[r].subtree == 0);\n           \
-    \ build(r, r);\n            decompose(r, r);\n        }\n    }\n\n    int size()\
-    \ const { return node.size(); }\n    const NodeInfo& operator[](const int u) const\
-    \ {\n        assert(0 <= u and u < size());\n        return node[u];\n    }\n\n\
-    \    int lca(int u, int v) const {\n        assert(0 <= u and u < size());\n \
-    \       assert(0 <= v and v < size());\n        if (node[u].enter > node[v].enter)\
-    \ std::swap(u, v);\n        while (node[u].enter < node[v].enter) {\n        \
-    \    if (node[u].head == node[v].head) return u;\n            v = node[node[v].head].parent;\n\
-    \        }\n        return v;\n    }\n\n    Path path(const int des, const int\
-    \ anc) const {\n        assert(0 <= des and des < size());\n        assert(0 <=\
-    \ anc and anc < size());\n        assert(node[anc].enter <= node[des].enter and\
-    \ node[des].exit <= node[anc].exit);\n        return Path(des, anc, this);\n \
-    \   }\n};\n#line 2 \"math/static_modint.cpp\"\n#include <ostream>\n#line 3 \"\
-    math/rem_euclid.cpp\"\n\ntemplate <class T> constexpr T rem_euclid(T value, const\
-    \ T& mod) {\n    assert(mod > 0);\n    return (value %= mod) >= 0 ? value : value\
-    \ + mod;\n}\n#line 2 \"math/totient.cpp\"\n\ntemplate <class T> constexpr T totient(T\
-    \ x) {\n    T ret = x;\n    for (T i = 2; i * i <= x; ++i) {\n        if (x %\
-    \ i == 0) {\n            ret /= i;\n            ret *= i - 1;\n            while\
-    \ (x % i == 0) x /= i;\n        }\n    }\n    if (x > 1) {\n        ret /= x;\n\
-    \        ret *= x - 1;\n    }\n    return ret;\n}\n#line 7 \"math/static_modint.cpp\"\
-    \n\ntemplate <u32 MOD, std::enable_if_t<((u32)1 <= MOD and MOD <= ((u32)1 << 31))>*\
+    \ {\n        friend class TreeManager;\n        int src, dst;\n        const TreeManager*\
+    \ self;\n\n        explicit Path(const int s, const int d, const TreeManager*\
+    \ p) : src(s), dst(d), self(p) {}\n\n      public:\n        Path begin() const\
+    \ { return *this; }\n        std::monostate end() const { return {}; }\n     \
+    \   bool operator!=(std::monostate) const { return src != dst; }\n        void\
+    \ operator++() { src = self->node[src].parent; }\n        std::pair<int, int>\
+    \ operator*() {\n            const int x = src;\n            const int y = self->node[src].head;\n\
+    \            const int z = self->node[dst].next;\n            src = (y != self->node[dst].head\
+    \ ? y : z);\n            return {x, src};\n        }\n    };\n\n  private:\n \
+    \   std::vector<NodeInfo> node;\n\n  public:\n    TreeManager() : node() {}\n\
+    \    explicit TreeManager(const G& graph, const int root = 0) : TreeManager(graph,\
+    \ std::vector<int>({root})) {}\n    explicit TreeManager(const G& graph, const\
+    \ std::vector<int>& root) : node(graph.size(), NodeInfo{0, 0, 0, 0, 0, 0}) {\n\
+    \        const int n = size();\n        const auto build = rec_lambda([&](auto&&\
+    \ dfs, const int u, const int p) -> void {\n            node[u].parent = p;\n\
+    \            node[u].subtree = 1;\n            for (const int v : graph[u]) {\n\
+    \                if (v != p) {\n                    dfs(v, u);\n             \
+    \       node[u].subtree += node[v].subtree;\n                }\n            }\n\
+    \        });\n        int time_stamp = 0;\n        const auto decompose = rec_lambda([&](auto&&\
+    \ dfs, const int u, const int h) -> void {\n            node[u].head = h;\n  \
+    \          node[u].enter = time_stamp++;\n            int& s = node[u].next;\n\
+    \            s = u;\n            for (const int v : graph[u])\n              \
+    \  if (v != node[u].parent and (s == u or node[s].subtree < node[v].subtree))\
+    \ s = v;\n            if (s != u) {\n                dfs(s, h);\n            \
+    \    for (const int v : graph[u])\n                    if (v != node[u].parent\
+    \ and v != s) dfs(v, v);\n            }\n            node[u].exit = time_stamp;\n\
+    \        });\n        for (const int r : root) {\n            assert(0 <= r and\
+    \ r < n);\n            assert(node[r].subtree == 0);\n            build(r, r);\n\
+    \            decompose(r, r);\n        }\n    }\n\n    int size() const { return\
+    \ node.size(); }\n    const NodeInfo& operator[](const int u) const {\n      \
+    \  assert(0 <= u and u < size());\n        return node[u];\n    }\n\n    int lca(int\
+    \ u, int v) const {\n        assert(0 <= u and u < size());\n        assert(0\
+    \ <= v and v < size());\n        if (node[u].enter > node[v].enter) std::swap(u,\
+    \ v);\n        while (node[u].enter < node[v].enter) {\n            if (node[u].head\
+    \ == node[v].head) return u;\n            v = node[node[v].head].parent;\n   \
+    \     }\n        return v;\n    }\n\n    Path path(const int des, const int anc)\
+    \ const {\n        assert(0 <= des and des < size());\n        assert(0 <= anc\
+    \ and anc < size());\n        assert(node[anc].enter <= node[des].enter and node[des].exit\
+    \ <= node[anc].exit);\n        return Path(des, anc, this);\n    }\n};\n#line\
+    \ 2 \"math/static_modint.cpp\"\n#include <ostream>\n#line 3 \"math/rem_euclid.cpp\"\
+    \n\ntemplate <class T> constexpr T rem_euclid(T value, const T& mod) {\n    assert(mod\
+    \ > 0);\n    return (value %= mod) >= 0 ? value : value + mod;\n}\n#line 2 \"\
+    math/totient.cpp\"\n\ntemplate <class T> constexpr T totient(T x) {\n    T ret\
+    \ = x;\n    for (T i = 2; i * i <= x; ++i) {\n        if (x % i == 0) {\n    \
+    \        ret /= i;\n            ret *= i - 1;\n            while (x % i == 0)\
+    \ x /= i;\n        }\n    }\n    if (x > 1) {\n        ret /= x;\n        ret\
+    \ *= x - 1;\n    }\n    return ret;\n}\n#line 7 \"math/static_modint.cpp\"\n\n\
+    template <u32 MOD, std::enable_if_t<((u32)1 <= MOD and MOD <= ((u32)1 << 31))>*\
     \ = nullptr> class StaticModint {\n    using Self = StaticModint;\n\n    static\
     \ inline constexpr u32 PHI = totient(MOD);\n    u32 v;\n\n  public:\n    static\
     \ constexpr u32 mod() noexcept { return MOD; }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>*\
@@ -333,8 +334,8 @@ data:
   isVerificationFile: true
   path: test/heavy_light_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2022-01-07 21:48:21+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-07 22:21:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/heavy_light_decomposition.test.cpp
 layout: document

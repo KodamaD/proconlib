@@ -1,17 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: math/factorize.cpp
-    title: math/factorize.cpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/factorize.test.cpp
-    title: test/factorize.test.cpp
-  _isVerificationFailed: true
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/collect.cpp\"\n#include <vector>\n\ntemplate <class\
@@ -29,12 +23,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: utility/collect.cpp
-  requiredBy:
-  - math/factorize.cpp
+  requiredBy: []
   timestamp: '2021-12-28 22:38:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/factorize.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: utility/collect.cpp
 layout: document
 redirect_from:
