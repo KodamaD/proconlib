@@ -1,15 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: internal/enable_avx2.cpp
-    title: internal/enable_avx2.cpp
-  - icon: ':question:'
-    path: utility/countl_zero.cpp
-    title: utility/countl_zero.cpp
-  - icon: ':question:'
-    path: utility/int_alias.cpp
-    title: utility/int_alias.cpp
+  _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: algorithm/convolution_arbitrary_mod.cpp
@@ -42,14 +33,32 @@ data:
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
   - icon: ':heavy_check_mark:'
+    path: math/modulo_transform.cpp
+    title: math/modulo_transform.cpp
+  - icon: ':heavy_check_mark:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
   - icon: ':heavy_check_mark:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
   - icon: ':question:'
+    path: utility/bit_width.cpp
+    title: utility/bit_width.cpp
+  - icon: ':question:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
+  - icon: ':question:'
+    path: utility/countl_zero.cpp
+    title: utility/countl_zero.cpp
+  - icon: ':heavy_check_mark:'
+    path: utility/countr_zero.cpp
+    title: utility/countr_zero.cpp
+  - icon: ':heavy_check_mark:'
+    path: utility/fast_io.cpp
+    title: utility/fast_io.cpp
+  - icon: ':warning:'
+    path: utility/popcount.cpp
+    title: utility/popcount.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/convolution_arbitrary_mod.test.cpp
@@ -60,6 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/dual_segment_tree.test.cpp
     title: test/dual_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/fast_io.test.cpp
+    title: test/fast_io.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fenwick_tree.test.cpp
     title: test/fenwick_tree.test.cpp
@@ -95,41 +107,48 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"internal/enable_avx2.cpp\"\n\n#ifdef ENABLE_AVX2\n#define\
-    \ TARGET_AVX2 __attribute__((target(\"avx2\")))\n#else\n#define TARGET_AVX2\n\
-    #endif\n#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32 = std::int32_t;\n\
-    using u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
-    using i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 4 \"utility/countl_zero.cpp\"\
-    \n\nTARGET_AVX2 constexpr int countl_zero(u64 x) {\n#ifdef __GNUC__\n    return\
-    \ x == 0 ? 64 : __builtin_clzll(x);\n#else\n    x |= x >> 1;\n    x |= x >> 2;\n\
-    \    x |= x >> 4;\n    x |= x >> 8;\n    x |= x >> 16;\n    x |= x >> 32;\n  \
-    \  return 64 - countr_zero(~x);\n#endif\n}\n#line 4 \"utility/bit_width.cpp\"\n\
-    \nTARGET_AVX2 constexpr int bit_width(const u64 x) { return 64 - countl_zero(x);\
-    \ }\n"
-  code: '#pragma once
-
-    #include "../internal/enable_avx2.cpp"
-
-    #include "countl_zero.cpp"
+  bundledCode: '#line 2 "internal/enable_avx2.cpp"
 
 
-    TARGET_AVX2 constexpr int bit_width(const u64 x) { return 64 - countl_zero(x);
-    }
+    #ifdef ENABLE_AVX2
+
+    #define TARGET_AVX2 __attribute__((target("avx2")))
+
+    #else
+
+    #define TARGET_AVX2
+
+    #endif
 
     '
-  dependsOn:
-  - internal/enable_avx2.cpp
-  - utility/countl_zero.cpp
-  - utility/int_alias.cpp
+  code: '#pragma once
+
+
+    #ifdef ENABLE_AVX2
+
+    #define TARGET_AVX2 __attribute__((target("avx2")))
+
+    #else
+
+    #define TARGET_AVX2
+
+    #endif'
+  dependsOn: []
   isVerificationFile: false
-  path: utility/bit_width.cpp
+  path: internal/enable_avx2.cpp
   requiredBy:
+  - math/modulo_transform.cpp
   - math/prime_sieve.cpp
   - algorithm/convolution_mod.cpp
   - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_int.cpp
+  - utility/countl_zero.cpp
   - utility/auto_realloc.cpp
   - utility/ceil_log2.cpp
+  - utility/bit_width.cpp
+  - utility/countr_zero.cpp
+  - utility/popcount.cpp
+  - utility/fast_io.cpp
   - container/fenwick_tree.cpp
   - container/lazy_segment_tree.cpp
   - container/dual_segment_tree.cpp
@@ -142,6 +161,7 @@ data:
   verifiedWith:
   - test/convolution_arbitrary_mod.test.cpp
   - test/larsch.test.cpp
+  - test/fast_io.test.cpp
   - test/integer_hash_table_verbose.test.cpp
   - test/lazy_segment_tree.test.cpp
   - test/sparse_table.test.cpp
@@ -153,10 +173,10 @@ data:
   - test/fenwick_tree.test.cpp
   - test/integer_hash_table.test.cpp
   - test/convolution_mod.test.cpp
-documentation_of: utility/bit_width.cpp
+documentation_of: internal/enable_avx2.cpp
 layout: document
 redirect_from:
-- /library/utility/bit_width.cpp
-- /library/utility/bit_width.cpp.html
-title: utility/bit_width.cpp
+- /library/internal/enable_avx2.cpp
+- /library/internal/enable_avx2.cpp.html
+title: internal/enable_avx2.cpp
 ---

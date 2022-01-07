@@ -6,12 +6,12 @@ data:
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/union_find.cpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -40,11 +40,13 @@ data:
     \ = u;\n        return std::make_pair(u, true);\n    }\n\n    bool same(const\
     \ int u, const int v) {\n        assert(0 <= u and u < size());\n        assert(0\
     \ <= v and v < size());\n        return leader(u) == leader(v);\n    }\n\n   \
-    \ std::vector<std::vector<int>> decompose() {\n        std::vector<std::vector<int>>\
-    \ ret(size());\n        for (const int u : rep(size())) ret[leader(u)].push_back(u);\n\
-    \        ret.erase(std::remove_if(ret.begin(), ret.end(), [&](const std::vector<int>&\
-    \ v) { return v.empty(); }),\n                  ret.end());\n        return ret;\n\
-    \    }\n};\n"
+    \ std::vector<std::vector<int>> decompose() {\n        std::vector<int> buf(size()),\
+    \ len(size());\n        for (const int i : rep(size())) len[buf[i] = leader(i)]++;\n\
+    \        std::vector<std::vector<int>> ret(size());\n        for (const int i\
+    \ : rep(size())) ret[i].reserve(len[i]);\n        for (const int i : rep(size()))\
+    \ ret[buf[i]].push_back(i);\n        ret.erase(std::remove_if(ret.begin(), ret.end(),\
+    \ [&](const std::vector<int>& v) { return v.empty(); }),\n                  ret.end());\n\
+    \        return ret;\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\
     #include \"../utility/rep.cpp\"\n\nclass UnionFind {\n    int components;\n  \
     \  std::vector<int> data;\n\n  public:\n    explicit UnionFind(const int size\
@@ -61,8 +63,10 @@ data:
     \ true);\n    }\n\n    bool same(const int u, const int v) {\n        assert(0\
     \ <= u and u < size());\n        assert(0 <= v and v < size());\n        return\
     \ leader(u) == leader(v);\n    }\n\n    std::vector<std::vector<int>> decompose()\
-    \ {\n        std::vector<std::vector<int>> ret(size());\n        for (const int\
-    \ u : rep(size())) ret[leader(u)].push_back(u);\n        ret.erase(std::remove_if(ret.begin(),\
+    \ {\n        std::vector<int> buf(size()), len(size());\n        for (const int\
+    \ i : rep(size())) len[buf[i] = leader(i)]++;\n        std::vector<std::vector<int>>\
+    \ ret(size());\n        for (const int i : rep(size())) ret[i].reserve(len[i]);\n\
+    \        for (const int i : rep(size())) ret[buf[i]].push_back(i);\n        ret.erase(std::remove_if(ret.begin(),\
     \ ret.end(), [&](const std::vector<int>& v) { return v.empty(); }),\n        \
     \          ret.end());\n        return ret;\n    }\n};"
   dependsOn:
@@ -70,8 +74,8 @@ data:
   isVerificationFile: false
   path: graph/union_find.cpp
   requiredBy: []
-  timestamp: '2021-12-28 21:38:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-01-07 21:48:21+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/union_find.test.cpp
 documentation_of: graph/union_find.cpp

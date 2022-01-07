@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/barret_reduction.cpp
-    title: math/barret_reduction.cpp
-  - icon: ':heavy_check_mark:'
-    path: math/factorize_iter.cpp
-    title: math/factorize_iter.cpp
+    path: internal/barret_reduction.cpp
+    title: internal/barret_reduction.cpp
+  - icon: ':question:'
+    path: internal/enable_avx2.cpp
+    title: internal/enable_avx2.cpp
   - icon: ':heavy_check_mark:'
     path: math/mod_pow.cpp
     title: math/mod_pow.cpp
@@ -16,18 +16,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/primitive_root.cpp
     title: math/primitive_root.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/totient.cpp
     title: math/totient.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: utility/bit_width.cpp
+    title: utility/bit_width.cpp
+  - icon: ':question:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
+  - icon: ':question:'
+    path: utility/countl_zero.cpp
+    title: utility/countl_zero.cpp
   - icon: ':heavy_check_mark:'
     path: utility/countr_zero.cpp
     title: utility/countr_zero.cpp
@@ -37,7 +43,7 @@ data:
   - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedRequiredBy:
@@ -60,16 +66,31 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"algorithm/convolution_mod.cpp\"\n#include <algorithm>\n\
-    #include <vector>\n#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing\
-    \ i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
-    using u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
-    #line 3 \"utility/ceil_log2.cpp\"\n\nconstexpr int ceil_log2(const u64 x) {\n\
-    \    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n}\n#line 2\
-    \ \"math/modulo_transform.cpp\"\n#include <array>\n#line 3 \"utility/countr_zero.cpp\"\
-    \n\nconstexpr int countr_zero(const u64 x) { return x == 0 ? 64 : __builtin_ctzll(x);\
-    \ }\n#line 3 \"utility/rep.cpp\"\n\nclass Range {\n    struct Iter {\n       \
-    \ int itr;\n        constexpr Iter(const int pos) noexcept : itr(pos) {}\n   \
-    \     constexpr void operator++() noexcept { ++itr; }\n        constexpr bool\
+    #include <vector>\n#line 2 \"internal/enable_avx2.cpp\"\n\n#ifdef ENABLE_AVX2\n\
+    #define TARGET_AVX2 __attribute__((target(\"avx2\")))\n#else\n#define TARGET_AVX2\n\
+    #endif\n#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32 = std::int32_t;\n\
+    using u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
+    using i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 4 \"utility/countl_zero.cpp\"\
+    \n\nTARGET_AVX2 constexpr int countl_zero(u64 x) {\n#ifdef __GNUC__\n    return\
+    \ x == 0 ? 64 : __builtin_clzll(x);\n#else\n    x |= x >> 1;\n    x |= x >> 2;\n\
+    \    x |= x >> 4;\n    x |= x >> 8;\n    x |= x >> 16;\n    x |= x >> 32;\n  \
+    \  return 64 - countr_zero(~x);\n#endif\n}\n#line 4 \"utility/bit_width.cpp\"\n\
+    \nTARGET_AVX2 constexpr int bit_width(const u64 x) { return 64 - countl_zero(x);\
+    \ }\n#line 5 \"utility/ceil_log2.cpp\"\n\nTARGET_AVX2 constexpr int ceil_log2(const\
+    \ u64 x) {\n#ifdef __GNUC__\n    return x == 0 ? 0 : bit_width(x - 1);\n#else\n\
+    \    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n#endif\n}\n\
+    #line 2 \"math/modulo_transform.cpp\"\n#include <array>\n#line 5 \"utility/countr_zero.cpp\"\
+    \n\nconstexpr int countr_zero(u64 x) {\n    if (x == 0) return 64;\n#ifdef __GNUC__\n\
+    \    return __builtin_ctzll(x);\n#else\n    constexpr std::array<int, 64> table\
+    \ = {0,  1,  2,  7,  3,  13, 8,  27, 4,  33, 14, 36, 9,  49, 28, 19,\n       \
+    \                                      5,  25, 34, 17, 15, 53, 37, 55, 10, 46,\
+    \ 50, 39, 29, 42, 20, 57,\n                                             63, 6,\
+    \  12, 26, 32, 35, 48, 18, 24, 16, 52, 54, 45, 38, 41, 56,\n                 \
+    \                            62, 11, 31, 47, 23, 51, 44, 40, 61, 30, 22, 43, 60,\
+    \ 21, 59, 58};\n    return table[(x & (~x + 1)) * 0x218A7A392DD9ABF >> 58 & 0x3F];\n\
+    #endif\n}\n#line 3 \"utility/rep.cpp\"\n\nclass Range {\n    struct Iter {\n \
+    \       int itr;\n        constexpr Iter(const int pos) noexcept : itr(pos) {}\n\
+    \        constexpr void operator++() noexcept { ++itr; }\n        constexpr bool\
     \ operator!=(const Iter& other) const noexcept { return itr != other.itr; }\n\
     \        constexpr int operator*() const noexcept { return itr; }\n    };\n  \
     \  const Iter first, last;\n\n  public:\n    explicit constexpr Range(const int\
@@ -89,7 +110,7 @@ data:
     \ noexcept { return last; }\n};\n\nconstexpr ReversedRange revrep(const int l,\
     \ const int r) noexcept { return ReversedRange(l, r); }\nconstexpr ReversedRange\
     \ revrep(const int n) noexcept { return ReversedRange(0, n); }\n#line 2 \"math/mod_pow.cpp\"\
-    \n#include <cassert>\n#include <type_traits>\n#line 3 \"math/barret_reduction.cpp\"\
+    \n#include <cassert>\n#include <type_traits>\n#line 3 \"internal/barret_reduction.cpp\"\
     \n\nclass BarretReduction {\n    u32 mod;\n    u64 near_inv;\n\n  public:\n  \
     \  explicit constexpr BarretReduction(const u32 mod) noexcept : mod(mod), near_inv((u64)(-1)\
     \ / mod + 1) {}\n    constexpr u32 product(const u32 a, const u32 b) const noexcept\
@@ -168,29 +189,16 @@ data:
     \ = (a0 - a1 - ax) * rot3;\n                    }\n                    if (((s\
     \ + 1) >> (len - 2)) == 0) rot *= irate3[countr_zero(~s)];\n                }\n\
     \                len -= 2;\n            }\n        }\n    }\n};\n#line 2 \"math/static_modint.cpp\"\
-    \n#include <ostream>\n#line 3 \"math/factorize_iter.cpp\"\n#include <utility>\n\
-    #include <variant>\n\ntemplate <class T> class Factorizer {\n    struct Iter {\n\
-    \        T s, t;\n        explicit constexpr Iter(const T& s, const T& t) noexcept\
-    \ : s(s), t(t) {}\n        constexpr bool operator!=(std::monostate) const noexcept\
-    \ { return s != 1; }\n        constexpr void operator++() noexcept { t += 1; }\n\
-    \        constexpr std::pair<T, int> operator*() noexcept {\n            while\
-    \ (s % t != 0) {\n                if (t * t > s) {\n                    const\
-    \ T u = s;\n                    s = 1;\n                    return {u, 1};\n \
-    \               }\n                t += 1;\n            }\n            int e =\
-    \ 0;\n            while (s % t == 0) {\n                e += 1;\n            \
-    \    s /= t;\n            }\n            return {t, e};\n        }\n    };\n \
-    \   T x;\n\n  public:\n    explicit constexpr Factorizer(const T& x) noexcept\
-    \ : x(x) { assert(x > 0); }\n    constexpr Iter begin() const noexcept { return\
-    \ Iter(x, 2); }\n    constexpr std::monostate end() noexcept { return {}; }\n\
-    };\n\ntemplate <class T> constexpr Factorizer<T> factorize_iter(const T& x) noexcept\
-    \ { return Factorizer<T>(x); }\n#line 3 \"math/totient.cpp\"\n\ntemplate <class\
-    \ T> constexpr T totient(T x) {\n    T ret = x;\n    for (const auto& p : factorize_iter(x))\
-    \ {\n        ret /= p.first;\n        ret *= p.first - 1;\n    }\n    return ret;\n\
-    }\n#line 7 \"math/static_modint.cpp\"\n\ntemplate <u32 MOD, std::enable_if_t<((u32)1\
-    \ <= MOD and MOD <= ((u32)1 << 31))>* = nullptr> class StaticModint {\n    using\
-    \ Self = StaticModint;\n\n    static inline constexpr u32 PHI = totient(MOD);\n\
-    \    u32 v;\n\n  public:\n    static constexpr u32 mod() noexcept { return MOD;\
-    \ }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\n\
+    \n#include <ostream>\n#line 2 \"math/totient.cpp\"\n\ntemplate <class T> constexpr\
+    \ T totient(T x) {\n    T ret = x;\n    for (T i = 2; i * i <= x; ++i) {\n   \
+    \     if (x % i == 0) {\n            ret /= i;\n            ret *= i - 1;\n  \
+    \          while (x % i == 0) x /= i;\n        }\n    }\n    if (x > 1) {\n  \
+    \      ret /= x;\n        ret *= x - 1;\n    }\n    return ret;\n}\n#line 7 \"\
+    math/static_modint.cpp\"\n\ntemplate <u32 MOD, std::enable_if_t<((u32)1 <= MOD\
+    \ and MOD <= ((u32)1 << 31))>* = nullptr> class StaticModint {\n    using Self\
+    \ = StaticModint;\n\n    static inline constexpr u32 PHI = totient(MOD);\n   \
+    \ u32 v;\n\n  public:\n    static constexpr u32 mod() noexcept { return MOD; }\n\
+    \n    template <class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\n\
     \    static constexpr T normalize(const T& x) noexcept {\n        return rem_euclid<std::common_type_t<T,\
     \ i64>>(x, MOD);\n    }\n\n    constexpr StaticModint() noexcept : v(0) {}\n \
     \   template <class T> constexpr StaticModint(const T& x) noexcept : v(normalize(x))\
@@ -279,6 +287,9 @@ data:
     \ = c2[i].val();\n    return c;\n}"
   dependsOn:
   - utility/ceil_log2.cpp
+  - internal/enable_avx2.cpp
+  - utility/bit_width.cpp
+  - utility/countl_zero.cpp
   - utility/int_alias.cpp
   - math/modulo_transform.cpp
   - utility/countr_zero.cpp
@@ -286,17 +297,16 @@ data:
   - utility/revrep.cpp
   - math/primitive_root.cpp
   - math/mod_pow.cpp
-  - math/barret_reduction.cpp
+  - internal/barret_reduction.cpp
   - math/rem_euclid.cpp
   - math/static_modint.cpp
   - math/totient.cpp
-  - math/factorize_iter.cpp
   isVerificationFile: false
   path: algorithm/convolution_mod.cpp
   requiredBy:
   - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_int.cpp
-  timestamp: '2021-12-28 22:38:25+09:00'
+  timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution_arbitrary_mod.test.cpp

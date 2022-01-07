@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/integer_hash_table.cpp
     title: container/integer_hash_table.cpp
   - icon: ':heavy_check_mark:'
@@ -50,7 +50,7 @@ data:
   - icon: ':x:'
     path: container/polynomial_hash.cpp
     title: container/polynomial_hash.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -63,12 +63,15 @@ data:
     path: graph/binary_optimization.cpp
     title: graph/binary_optimization.cpp
   - icon: ':heavy_check_mark:'
+    path: graph/dinic.cpp
+    title: graph/dinic.cpp
+  - icon: ':heavy_check_mark:'
     path: graph/primal_dual.cpp
     title: graph/primal_dual.cpp
   - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_components.cpp
     title: graph/strongly_connected_components.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
   - icon: ':warning:'
@@ -111,13 +114,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fenwick_tree.test.cpp
     title: test/fenwick_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/integer_hash_table.test.cpp
     title: test/integer_hash_table.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/integer_hash_table_verbose.test.cpp
     title: test/integer_hash_table_verbose.test.cpp
   - icon: ':heavy_check_mark:'
@@ -156,7 +159,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
   - icon: ':heavy_check_mark:'
@@ -194,6 +197,7 @@ data:
   path: utility/rep.cpp
   requiredBy:
   - graph/strongly_connected_components.cpp
+  - graph/dinic.cpp
   - graph/union_find.cpp
   - graph/primal_dual.cpp
   - graph/binary_optimization.cpp

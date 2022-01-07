@@ -10,16 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: algorithm/superset_zeta_transform.cpp
     title: algorithm/superset_zeta_transform.cpp
-  - icon: ':heavy_check_mark:'
-    path: math/factorize_iter.cpp
-    title: math/factorize_iter.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/totient.cpp
     title: math/totient.cpp
   - icon: ':heavy_check_mark:'
@@ -75,29 +72,16 @@ data:
     using u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
     using i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 3 \"math/rem_euclid.cpp\"\
     \n\ntemplate <class T> constexpr T rem_euclid(T value, const T& mod) {\n    assert(mod\
-    \ > 0);\n    return (value %= mod) >= 0 ? value : value + mod;\n}\n#line 3 \"\
-    math/factorize_iter.cpp\"\n#include <utility>\n#include <variant>\n\ntemplate\
-    \ <class T> class Factorizer {\n    struct Iter {\n        T s, t;\n        explicit\
-    \ constexpr Iter(const T& s, const T& t) noexcept : s(s), t(t) {}\n        constexpr\
-    \ bool operator!=(std::monostate) const noexcept { return s != 1; }\n        constexpr\
-    \ void operator++() noexcept { t += 1; }\n        constexpr std::pair<T, int>\
-    \ operator*() noexcept {\n            while (s % t != 0) {\n                if\
-    \ (t * t > s) {\n                    const T u = s;\n                    s = 1;\n\
-    \                    return {u, 1};\n                }\n                t += 1;\n\
-    \            }\n            int e = 0;\n            while (s % t == 0) {\n   \
-    \             e += 1;\n                s /= t;\n            }\n            return\
-    \ {t, e};\n        }\n    };\n    T x;\n\n  public:\n    explicit constexpr Factorizer(const\
-    \ T& x) noexcept : x(x) { assert(x > 0); }\n    constexpr Iter begin() const noexcept\
-    \ { return Iter(x, 2); }\n    constexpr std::monostate end() noexcept { return\
-    \ {}; }\n};\n\ntemplate <class T> constexpr Factorizer<T> factorize_iter(const\
-    \ T& x) noexcept { return Factorizer<T>(x); }\n#line 3 \"math/totient.cpp\"\n\n\
-    template <class T> constexpr T totient(T x) {\n    T ret = x;\n    for (const\
-    \ auto& p : factorize_iter(x)) {\n        ret /= p.first;\n        ret *= p.first\
-    \ - 1;\n    }\n    return ret;\n}\n#line 7 \"math/static_modint.cpp\"\n\ntemplate\
-    \ <u32 MOD, std::enable_if_t<((u32)1 <= MOD and MOD <= ((u32)1 << 31))>* = nullptr>\
-    \ class StaticModint {\n    using Self = StaticModint;\n\n    static inline constexpr\
-    \ u32 PHI = totient(MOD);\n    u32 v;\n\n  public:\n    static constexpr u32 mod()\
-    \ noexcept { return MOD; }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>*\
+    \ > 0);\n    return (value %= mod) >= 0 ? value : value + mod;\n}\n#line 2 \"\
+    math/totient.cpp\"\n\ntemplate <class T> constexpr T totient(T x) {\n    T ret\
+    \ = x;\n    for (T i = 2; i * i <= x; ++i) {\n        if (x % i == 0) {\n    \
+    \        ret /= i;\n            ret *= i - 1;\n            while (x % i == 0)\
+    \ x /= i;\n        }\n    }\n    if (x > 1) {\n        ret /= x;\n        ret\
+    \ *= x - 1;\n    }\n    return ret;\n}\n#line 7 \"math/static_modint.cpp\"\n\n\
+    template <u32 MOD, std::enable_if_t<((u32)1 <= MOD and MOD <= ((u32)1 << 31))>*\
+    \ = nullptr> class StaticModint {\n    using Self = StaticModint;\n\n    static\
+    \ inline constexpr u32 PHI = totient(MOD);\n    u32 v;\n\n  public:\n    static\
+    \ constexpr u32 mod() noexcept { return MOD; }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>*\
     \ = nullptr>\n    static constexpr T normalize(const T& x) noexcept {\n      \
     \  return rem_euclid<std::common_type_t<T, i64>>(x, MOD);\n    }\n\n    constexpr\
     \ StaticModint() noexcept : v(0) {}\n    template <class T> constexpr StaticModint(const\
@@ -152,11 +136,10 @@ data:
   - utility/int_alias.cpp
   - math/rem_euclid.cpp
   - math/totient.cpp
-  - math/factorize_iter.cpp
   isVerificationFile: true
   path: test/and_convolution.test.cpp
   requiredBy: []
-  timestamp: '2021-12-28 22:38:25+09:00'
+  timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/and_convolution.test.cpp

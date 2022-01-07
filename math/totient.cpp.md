@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: math/factorize_iter.cpp
-    title: math/factorize_iter.cpp
+  _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: algorithm/convolution_arbitrary_mod.cpp
@@ -14,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: algorithm/convolution_mod.cpp
     title: algorithm/convolution_mod.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   _extendedVerifiedWith:
@@ -33,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fp_util.test.cpp
     title: test/fp_util.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,39 +45,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/totient.test.cpp
     title: test/totient.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/factorize_iter.cpp\"\n#include <cassert>\n#include\
-    \ <utility>\n#include <variant>\n\ntemplate <class T> class Factorizer {\n   \
-    \ struct Iter {\n        T s, t;\n        explicit constexpr Iter(const T& s,\
-    \ const T& t) noexcept : s(s), t(t) {}\n        constexpr bool operator!=(std::monostate)\
-    \ const noexcept { return s != 1; }\n        constexpr void operator++() noexcept\
-    \ { t += 1; }\n        constexpr std::pair<T, int> operator*() noexcept {\n  \
-    \          while (s % t != 0) {\n                if (t * t > s) {\n          \
-    \          const T u = s;\n                    s = 1;\n                    return\
-    \ {u, 1};\n                }\n                t += 1;\n            }\n       \
-    \     int e = 0;\n            while (s % t == 0) {\n                e += 1;\n\
-    \                s /= t;\n            }\n            return {t, e};\n        }\n\
-    \    };\n    T x;\n\n  public:\n    explicit constexpr Factorizer(const T& x)\
-    \ noexcept : x(x) { assert(x > 0); }\n    constexpr Iter begin() const noexcept\
-    \ { return Iter(x, 2); }\n    constexpr std::monostate end() noexcept { return\
-    \ {}; }\n};\n\ntemplate <class T> constexpr Factorizer<T> factorize_iter(const\
-    \ T& x) noexcept { return Factorizer<T>(x); }\n#line 3 \"math/totient.cpp\"\n\n\
-    template <class T> constexpr T totient(T x) {\n    T ret = x;\n    for (const\
-    \ auto& p : factorize_iter(x)) {\n        ret /= p.first;\n        ret *= p.first\
-    \ - 1;\n    }\n    return ret;\n}\n"
-  code: "#pragma once\n#include \"factorize_iter.cpp\"\n\ntemplate <class T> constexpr\
-    \ T totient(T x) {\n    T ret = x;\n    for (const auto& p : factorize_iter(x))\
-    \ {\n        ret /= p.first;\n        ret *= p.first - 1;\n    }\n    return ret;\n\
-    }"
-  dependsOn:
-  - math/factorize_iter.cpp
+  bundledCode: "#line 2 \"math/totient.cpp\"\n\ntemplate <class T> constexpr T totient(T\
+    \ x) {\n    T ret = x;\n    for (T i = 2; i * i <= x; ++i) {\n        if (x %\
+    \ i == 0) {\n            ret /= i;\n            ret *= i - 1;\n            while\
+    \ (x % i == 0) x /= i;\n        }\n    }\n    if (x > 1) {\n        ret /= x;\n\
+    \        ret *= x - 1;\n    }\n    return ret;\n}\n"
+  code: "#pragma once\n\ntemplate <class T> constexpr T totient(T x) {\n    T ret\
+    \ = x;\n    for (T i = 2; i * i <= x; ++i) {\n        if (x % i == 0) {\n    \
+    \        ret /= i;\n            ret *= i - 1;\n            while (x % i == 0)\
+    \ x /= i;\n        }\n    }\n    if (x > 1) {\n        ret /= x;\n        ret\
+    \ *= x - 1;\n    }\n    return ret;\n}"
+  dependsOn: []
   isVerificationFile: false
   path: math/totient.cpp
   requiredBy:
@@ -88,8 +71,8 @@ data:
   - algorithm/convolution_mod.cpp
   - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_int.cpp
-  timestamp: '2021-12-28 22:38:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-01-07 21:48:21+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/convolution_arbitrary_mod.test.cpp
   - test/totient.test.cpp

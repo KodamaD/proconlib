@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/basic_graph.cpp
     title: graph/basic_graph.cpp
   - icon: ':warning:'
@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/bipartite_matching.test.cpp
     title: test/bipartite_matching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,9 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/index_offset.cpp\"\n#include <cassert>\n\nclass\
@@ -60,7 +60,7 @@ data:
   - graph/primal_dual.cpp
   - graph/binary_optimization.cpp
   timestamp: '2021-12-17 09:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/strongly_connected_components.test.cpp
   - test/primal_dual_mincostflow.test.cpp

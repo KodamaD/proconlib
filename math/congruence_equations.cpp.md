@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/inv_gcd.cpp
     title: math/inv_gcd.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
   - icon: ':question:'

@@ -1,11 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/binary_optimization.cpp
+    title: graph/binary_optimization.cpp
+  - icon: ':heavy_check_mark:'
+    path: graph/dinic.cpp
+    title: graph/dinic.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/bipartite_matching.test.cpp
+    title: test/bipartite_matching.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"internal/simple_queue.cpp\"\n#include <vector>\n\nnamespace\
@@ -30,10 +39,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: internal/simple_queue.cpp
-  requiredBy: []
+  requiredBy:
+  - graph/dinic.cpp
+  - graph/binary_optimization.cpp
   timestamp: '2021-12-28 21:38:32+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/bipartite_matching.test.cpp
 documentation_of: internal/simple_queue.cpp
 layout: document
 redirect_from:

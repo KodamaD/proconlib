@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: traits/affine_composite_monoid.cpp
     title: traits/affine_composite_monoid.cpp
   - icon: ':heavy_check_mark:'

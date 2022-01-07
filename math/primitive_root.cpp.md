@@ -2,12 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/barret_reduction.cpp
-    title: math/barret_reduction.cpp
+    path: internal/barret_reduction.cpp
+    title: internal/barret_reduction.cpp
   - icon: ':heavy_check_mark:'
     path: math/mod_pow.cpp
     title: math/mod_pow.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
   - icon: ':question:'
@@ -42,7 +42,7 @@ data:
     utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32 = std::int32_t;\nusing\
     \ u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
     using i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 2 \"math/mod_pow.cpp\"\
-    \n#include <cassert>\n#include <type_traits>\n#line 3 \"math/barret_reduction.cpp\"\
+    \n#include <cassert>\n#include <type_traits>\n#line 3 \"internal/barret_reduction.cpp\"\
     \n\nclass BarretReduction {\n    u32 mod;\n    u64 near_inv;\n\n  public:\n  \
     \  explicit constexpr BarretReduction(const u32 mod) noexcept : mod(mod), near_inv((u64)(-1)\
     \ / mod + 1) {}\n    constexpr u32 product(const u32 a, const u32 b) const noexcept\
@@ -77,7 +77,7 @@ data:
   dependsOn:
   - utility/int_alias.cpp
   - math/mod_pow.cpp
-  - math/barret_reduction.cpp
+  - internal/barret_reduction.cpp
   - math/rem_euclid.cpp
   isVerificationFile: false
   path: math/primitive_root.cpp
@@ -86,7 +86,7 @@ data:
   - algorithm/convolution_mod.cpp
   - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_int.cpp
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution_arbitrary_mod.test.cpp

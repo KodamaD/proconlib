@@ -2,15 +2,15 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/barret_reduction.cpp
-    title: math/barret_reduction.cpp
+    path: internal/barret_reduction.cpp
+    title: internal/barret_reduction.cpp
   - icon: ':heavy_check_mark:'
     path: math/inv_gcd.cpp
     title: math/inv_gcd.cpp
   - icon: ':heavy_check_mark:'
     path: math/mod_inv.cpp
     title: math/mod_inv.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/rem_euclid.cpp
     title: math/rem_euclid.cpp
   - icon: ':question:'
@@ -27,7 +27,7 @@ data:
     \ <ostream>\n#include <type_traits>\n#line 2 \"utility/int_alias.cpp\"\n#include\
     \ <cstdint>\n\nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64\
     \ = std::int64_t;\nusing u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing\
-    \ u128 = __uint128_t;\n#line 3 \"math/barret_reduction.cpp\"\n\nclass BarretReduction\
+    \ u128 = __uint128_t;\n#line 3 \"internal/barret_reduction.cpp\"\n\nclass BarretReduction\
     \ {\n    u32 mod;\n    u64 near_inv;\n\n  public:\n    explicit constexpr BarretReduction(const\
     \ u32 mod) noexcept : mod(mod), near_inv((u64)(-1) / mod + 1) {}\n    constexpr\
     \ u32 product(const u32 a, const u32 b) const noexcept {\n        const u64 z\
@@ -77,13 +77,13 @@ data:
     \    friend std::ostream& operator<<(std::ostream& stream, const Self& rhs) {\
     \ return stream << rhs.v; }\n};\n\nusing Modint = DynamicModint<-1>;\n"
   code: "#pragma once\n#include <cassert>\n#include <ostream>\n#include <type_traits>\n\
-    #include \"../utility/int_alias.cpp\"\n#include \"barret_reduction.cpp\"\n#include\
-    \ \"mod_inv.cpp\"\n#include \"rem_euclid.cpp\"\n\ntemplate <int ID> class DynamicModint\
-    \ {\n    using Self = DynamicModint;\n\n    static inline auto bt = BarretReduction(1);\n\
-    \    u32 v;\n\n  public:\n    static u32 mod() noexcept { return bt.get_mod();\
-    \ }\n    static void set_mod(const u32 mod) noexcept {\n        assert((u32)1\
-    \ <= mod and mod <= ((u32)1 << 31));\n        bt = BarretReduction(mod);\n   \
-    \ }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\
+    #include \"../utility/int_alias.cpp\"\n#include \"../internal/barret_reduction.cpp\"\
+    \n#include \"mod_inv.cpp\"\n#include \"rem_euclid.cpp\"\n\ntemplate <int ID> class\
+    \ DynamicModint {\n    using Self = DynamicModint;\n\n    static inline auto bt\
+    \ = BarretReduction(1);\n    u32 v;\n\n  public:\n    static u32 mod() noexcept\
+    \ { return bt.get_mod(); }\n    static void set_mod(const u32 mod) noexcept {\n\
+    \        assert((u32)1 <= mod and mod <= ((u32)1 << 31));\n        bt = BarretReduction(mod);\n\
+    \    }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\
     \ static T normalize(const T& x) noexcept {\n        return rem_euclid<std::common_type_t<T,\
     \ i64>>(x, mod());\n    }\n\n    DynamicModint() noexcept : v(0) {}\n    template\
     \ <class T> DynamicModint(const T& x) noexcept : v(normalize(x)) {}\n    template\
@@ -111,14 +111,14 @@ data:
     \ return stream << rhs.v; }\n};\n\nusing Modint = DynamicModint<-1>;\n"
   dependsOn:
   - utility/int_alias.cpp
-  - math/barret_reduction.cpp
+  - internal/barret_reduction.cpp
   - math/mod_inv.cpp
   - math/inv_gcd.cpp
   - math/rem_euclid.cpp
   isVerificationFile: false
   path: math/dynamic_modint.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/dynamic_modint.cpp

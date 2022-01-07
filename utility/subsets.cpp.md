@@ -21,8 +21,9 @@ data:
     \ { t -= 1; }\n        constexpr u64 operator*() noexcept { return t &= s; }\n\
     \    };\n    u64 s;\n\n  public:\n    explicit constexpr SubsetScanner(u64 s)\
     \ noexcept : s(s) {}\n    constexpr Iter begin() const noexcept { return Iter(s,\
-    \ s); }\n    constexpr std::monostate end() noexcept { return {}; }\n};\n\nconstexpr\
-    \ SubsetScanner subsets(const u64 set) noexcept { return SubsetScanner(set); }\n"
+    \ s); }\n    constexpr std::monostate end() const noexcept { return {}; }\n};\n\
+    \nconstexpr SubsetScanner subsets(const u64 set) noexcept { return SubsetScanner(set);\
+    \ }\n"
   code: "#pragma once\n#include <variant>\n#include \"int_alias.cpp\"\n\nclass SubsetScanner\
     \ {\n    struct Iter {\n        u64 s, t;\n        explicit constexpr Iter(const\
     \ u64 s, const u64 t) noexcept : s(s), t(t) {}\n        constexpr bool operator!=(std::monostate)\
@@ -30,14 +31,15 @@ data:
     \ { t -= 1; }\n        constexpr u64 operator*() noexcept { return t &= s; }\n\
     \    };\n    u64 s;\n\n  public:\n    explicit constexpr SubsetScanner(u64 s)\
     \ noexcept : s(s) {}\n    constexpr Iter begin() const noexcept { return Iter(s,\
-    \ s); }\n    constexpr std::monostate end() noexcept { return {}; }\n};\n\nconstexpr\
-    \ SubsetScanner subsets(const u64 set) noexcept { return SubsetScanner(set); }"
+    \ s); }\n    constexpr std::monostate end() const noexcept { return {}; }\n};\n\
+    \nconstexpr SubsetScanner subsets(const u64 set) noexcept { return SubsetScanner(set);\
+    \ }"
   dependsOn:
   - utility/int_alias.cpp
   isVerificationFile: false
   path: utility/subsets.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: utility/subsets.cpp

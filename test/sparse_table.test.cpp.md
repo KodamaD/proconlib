@@ -4,16 +4,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
+  - icon: ':question:'
+    path: internal/enable_avx2.cpp
+    title: internal/enable_avx2.cpp
   - icon: ':heavy_check_mark:'
     path: traits/lambda_semigroup.cpp
     title: traits/lambda_semigroup.cpp
   - icon: ':heavy_check_mark:'
     path: traits/optional_monoid.cpp
     title: traits/optional_monoid.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/bit_width.cpp
     title: utility/bit_width.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/countl_zero.cpp
     title: utility/countl_zero.cpp
   - icon: ':question:'
@@ -34,22 +37,27 @@ data:
     - https://judge.yosupo.jp/problem/staticrmq
   bundledCode: "#line 1 \"test/sparse_table.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\
     \n#line 2 \"container/sparse_table.cpp\"\n#include <cassert>\n#include <vector>\n\
-    #line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32 = std::int32_t;\n\
+    #line 2 \"internal/enable_avx2.cpp\"\n\n#ifdef ENABLE_AVX2\n#define TARGET_AVX2\
+    \ __attribute__((target(\"avx2\")))\n#else\n#define TARGET_AVX2\n#endif\n#line\
+    \ 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32 = std::int32_t;\n\
     using u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
-    using i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 3 \"utility/countl_zero.cpp\"\
-    \n\nconstexpr int countl_zero(const u64 x) { return x == 0 ? 64 : __builtin_clzll(x);\
-    \ }\n#line 3 \"utility/bit_width.cpp\"\n\nconstexpr int bit_width(const u64 x)\
-    \ { return 64 - countl_zero(x); }\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\
-    \nclass Range {\n    struct Iter {\n        int itr;\n        constexpr Iter(const\
-    \ int pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept\
-    \ { ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
-    \ { return itr != other.itr; }\n        constexpr int operator*() const noexcept\
-    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
-    \ constexpr Range(const int first, const int last) noexcept : first(first), last(std::max(first,\
-    \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
-    \ constexpr Iter end() const noexcept { return last; }\n};\n\nconstexpr Range\
-    \ rep(const int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range\
-    \ rep(const int n) noexcept { return Range(0, n); }\n#line 6 \"container/sparse_table.cpp\"\
+    using i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 4 \"utility/countl_zero.cpp\"\
+    \n\nTARGET_AVX2 constexpr int countl_zero(u64 x) {\n#ifdef __GNUC__\n    return\
+    \ x == 0 ? 64 : __builtin_clzll(x);\n#else\n    x |= x >> 1;\n    x |= x >> 2;\n\
+    \    x |= x >> 4;\n    x |= x >> 8;\n    x |= x >> 16;\n    x |= x >> 32;\n  \
+    \  return 64 - countr_zero(~x);\n#endif\n}\n#line 4 \"utility/bit_width.cpp\"\n\
+    \nTARGET_AVX2 constexpr int bit_width(const u64 x) { return 64 - countl_zero(x);\
+    \ }\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\nclass Range {\n    struct\
+    \ Iter {\n        int itr;\n        constexpr Iter(const int pos) noexcept : itr(pos)\
+    \ {}\n        constexpr void operator++() noexcept { ++itr; }\n        constexpr\
+    \ bool operator!=(const Iter& other) const noexcept { return itr != other.itr;\
+    \ }\n        constexpr int operator*() const noexcept { return itr; }\n    };\n\
+    \    const Iter first, last;\n\n  public:\n    explicit constexpr Range(const\
+    \ int first, const int last) noexcept : first(first), last(std::max(first, last))\
+    \ {}\n    constexpr Iter begin() const noexcept { return first; }\n    constexpr\
+    \ Iter end() const noexcept { return last; }\n};\n\nconstexpr Range rep(const\
+    \ int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range rep(const\
+    \ int n) noexcept { return Range(0, n); }\n#line 6 \"container/sparse_table.cpp\"\
     \n\ntemplate <class M> class SparseTable {\n    using T = typename M::Type;\n\
     \    std::vector<std::vector<T>> table;\n\n  public:\n    SparseTable() : SparseTable(std::vector<T>())\
     \ {}\n    explicit SparseTable(const std::vector<T>& vec) {\n        const int\
@@ -101,6 +109,7 @@ data:
   dependsOn:
   - container/sparse_table.cpp
   - utility/bit_width.cpp
+  - internal/enable_avx2.cpp
   - utility/countl_zero.cpp
   - utility/int_alias.cpp
   - utility/rep.cpp
@@ -109,7 +118,7 @@ data:
   isVerificationFile: true
   path: test/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2021-12-28 21:38:32+09:00'
+  timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sparse_table.test.cpp

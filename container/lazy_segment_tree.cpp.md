@@ -1,9 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: internal/enable_avx2.cpp
+    title: internal/enable_avx2.cpp
+  - icon: ':question:'
+    path: utility/bit_width.cpp
+    title: utility/bit_width.cpp
+  - icon: ':question:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
+  - icon: ':question:'
+    path: utility/countl_zero.cpp
+    title: utility/countl_zero.cpp
   - icon: ':heavy_check_mark:'
     path: utility/countr_zero.cpp
     title: utility/countr_zero.cpp
@@ -13,7 +22,7 @@ data:
   - icon: ':question:'
     path: utility/rep.cpp
     title: utility/rep.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/revrep.cpp
     title: utility/revrep.cpp
   _extendedRequiredBy: []
@@ -27,19 +36,35 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"container/lazy_segment_tree.cpp\"\n#include <cassert>\n\
-    #include <vector>\n#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing\
-    \ i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64 = std::int64_t;\n\
-    using u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
-    #line 3 \"utility/ceil_log2.cpp\"\n\nconstexpr int ceil_log2(const u64 x) {\n\
-    \    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n}\n#line 3\
-    \ \"utility/countr_zero.cpp\"\n\nconstexpr int countr_zero(const u64 x) { return\
-    \ x == 0 ? 64 : __builtin_ctzll(x); }\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\
-    \nclass Range {\n    struct Iter {\n        int itr;\n        constexpr Iter(const\
-    \ int pos) noexcept : itr(pos) {}\n        constexpr void operator++() noexcept\
-    \ { ++itr; }\n        constexpr bool operator!=(const Iter& other) const noexcept\
-    \ { return itr != other.itr; }\n        constexpr int operator*() const noexcept\
-    \ { return itr; }\n    };\n    const Iter first, last;\n\n  public:\n    explicit\
-    \ constexpr Range(const int first, const int last) noexcept : first(first), last(std::max(first,\
+    #include <vector>\n#line 2 \"internal/enable_avx2.cpp\"\n\n#ifdef ENABLE_AVX2\n\
+    #define TARGET_AVX2 __attribute__((target(\"avx2\")))\n#else\n#define TARGET_AVX2\n\
+    #endif\n#line 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32 = std::int32_t;\n\
+    using u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
+    using i128 = __int128_t;\nusing u128 = __uint128_t;\n#line 4 \"utility/countl_zero.cpp\"\
+    \n\nTARGET_AVX2 constexpr int countl_zero(u64 x) {\n#ifdef __GNUC__\n    return\
+    \ x == 0 ? 64 : __builtin_clzll(x);\n#else\n    x |= x >> 1;\n    x |= x >> 2;\n\
+    \    x |= x >> 4;\n    x |= x >> 8;\n    x |= x >> 16;\n    x |= x >> 32;\n  \
+    \  return 64 - countr_zero(~x);\n#endif\n}\n#line 4 \"utility/bit_width.cpp\"\n\
+    \nTARGET_AVX2 constexpr int bit_width(const u64 x) { return 64 - countl_zero(x);\
+    \ }\n#line 5 \"utility/ceil_log2.cpp\"\n\nTARGET_AVX2 constexpr int ceil_log2(const\
+    \ u64 x) {\n#ifdef __GNUC__\n    return x == 0 ? 0 : bit_width(x - 1);\n#else\n\
+    \    int e = 0;\n    while (((u64)1 << e) < x) ++e;\n    return e;\n#endif\n}\n\
+    #line 2 \"utility/countr_zero.cpp\"\n#include <array>\n#line 5 \"utility/countr_zero.cpp\"\
+    \n\nconstexpr int countr_zero(u64 x) {\n    if (x == 0) return 64;\n#ifdef __GNUC__\n\
+    \    return __builtin_ctzll(x);\n#else\n    constexpr std::array<int, 64> table\
+    \ = {0,  1,  2,  7,  3,  13, 8,  27, 4,  33, 14, 36, 9,  49, 28, 19,\n       \
+    \                                      5,  25, 34, 17, 15, 53, 37, 55, 10, 46,\
+    \ 50, 39, 29, 42, 20, 57,\n                                             63, 6,\
+    \  12, 26, 32, 35, 48, 18, 24, 16, 52, 54, 45, 38, 41, 56,\n                 \
+    \                            62, 11, 31, 47, 23, 51, 44, 40, 61, 30, 22, 43, 60,\
+    \ 21, 59, 58};\n    return table[(x & (~x + 1)) * 0x218A7A392DD9ABF >> 58 & 0x3F];\n\
+    #endif\n}\n#line 2 \"utility/rep.cpp\"\n#include <algorithm>\n\nclass Range {\n\
+    \    struct Iter {\n        int itr;\n        constexpr Iter(const int pos) noexcept\
+    \ : itr(pos) {}\n        constexpr void operator++() noexcept { ++itr; }\n   \
+    \     constexpr bool operator!=(const Iter& other) const noexcept { return itr\
+    \ != other.itr; }\n        constexpr int operator*() const noexcept { return itr;\
+    \ }\n    };\n    const Iter first, last;\n\n  public:\n    explicit constexpr\
+    \ Range(const int first, const int last) noexcept : first(first), last(std::max(first,\
     \ last)) {}\n    constexpr Iter begin() const noexcept { return first; }\n   \
     \ constexpr Iter end() const noexcept { return last; }\n};\n\nconstexpr Range\
     \ rep(const int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range\
@@ -168,6 +193,9 @@ data:
     \ -r) != r);\n        return 0;\n    }\n};\n"
   dependsOn:
   - utility/ceil_log2.cpp
+  - internal/enable_avx2.cpp
+  - utility/bit_width.cpp
+  - utility/countl_zero.cpp
   - utility/int_alias.cpp
   - utility/countr_zero.cpp
   - utility/rep.cpp
@@ -175,7 +203,7 @@ data:
   isVerificationFile: false
   path: container/lazy_segment_tree.cpp
   requiredBy: []
-  timestamp: '2021-12-28 21:38:32+09:00'
+  timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lazy_segment_tree.test.cpp

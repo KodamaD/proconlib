@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: utility/rep.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind
@@ -44,16 +44,18 @@ data:
     \ = u;\n        return std::make_pair(u, true);\n    }\n\n    bool same(const\
     \ int u, const int v) {\n        assert(0 <= u and u < size());\n        assert(0\
     \ <= v and v < size());\n        return leader(u) == leader(v);\n    }\n\n   \
-    \ std::vector<std::vector<int>> decompose() {\n        std::vector<std::vector<int>>\
-    \ ret(size());\n        for (const int u : rep(size())) ret[leader(u)].push_back(u);\n\
-    \        ret.erase(std::remove_if(ret.begin(), ret.end(), [&](const std::vector<int>&\
-    \ v) { return v.empty(); }),\n                  ret.end());\n        return ret;\n\
-    \    }\n};\n#line 3 \"test/union_find.test.cpp\"\n#include <iostream>\n\nint main()\
-    \ {\n    int N, Q;\n    std::cin >> N >> Q;\n    UnionFind dsu(N);\n    while\
-    \ (Q--) {\n        int t, u, v;\n        std::cin >> t >> u >> v;\n        if\
-    \ (t == 0) {\n            dsu.merge(u, v);\n        }\n        else {\n      \
-    \      std::cout << dsu.same(u, v) << '\\n';\n        }\n    }\n    return 0;\n\
-    }\n"
+    \ std::vector<std::vector<int>> decompose() {\n        std::vector<int> buf(size()),\
+    \ len(size());\n        for (const int i : rep(size())) len[buf[i] = leader(i)]++;\n\
+    \        std::vector<std::vector<int>> ret(size());\n        for (const int i\
+    \ : rep(size())) ret[i].reserve(len[i]);\n        for (const int i : rep(size()))\
+    \ ret[buf[i]].push_back(i);\n        ret.erase(std::remove_if(ret.begin(), ret.end(),\
+    \ [&](const std::vector<int>& v) { return v.empty(); }),\n                  ret.end());\n\
+    \        return ret;\n    }\n};\n#line 3 \"test/union_find.test.cpp\"\n#include\
+    \ <iostream>\n\nint main() {\n    int N, Q;\n    std::cin >> N >> Q;\n    UnionFind\
+    \ dsu(N);\n    while (Q--) {\n        int t, u, v;\n        std::cin >> t >> u\
+    \ >> v;\n        if (t == 0) {\n            dsu.merge(u, v);\n        }\n    \
+    \    else {\n            std::cout << dsu.same(u, v) << '\\n';\n        }\n  \
+    \  }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#include \"\
     ../graph/union_find.cpp\"\n#include <iostream>\n\nint main() {\n    int N, Q;\n\
     \    std::cin >> N >> Q;\n    UnionFind dsu(N);\n    while (Q--) {\n        int\
@@ -66,8 +68,8 @@ data:
   isVerificationFile: true
   path: test/union_find.test.cpp
   requiredBy: []
-  timestamp: '2021-12-28 21:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-01-07 21:48:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/union_find.test.cpp
 layout: document

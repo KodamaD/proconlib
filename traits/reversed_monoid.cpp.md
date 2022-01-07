@@ -6,15 +6,15 @@ data:
     path: container/queue_aggregation.cpp
     title: container/queue_aggregation.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/queue_aggregation.test.cpp
     title: test/queue_aggregation.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"traits/reversed_monoid.cpp\"\n\ntemplate <class M> struct\
@@ -31,7 +31,7 @@ data:
   requiredBy:
   - container/queue_aggregation.cpp
   timestamp: '2021-09-27 22:23:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/queue_aggregation.test.cpp
   - test/heavy_light_decomposition.test.cpp

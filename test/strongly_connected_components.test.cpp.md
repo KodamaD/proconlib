@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/basic_graph.cpp
     title: graph/basic_graph.cpp
   - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_components.cpp
     title: graph/strongly_connected_components.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/index_offset.cpp
     title: utility/index_offset.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
   - icon: ':question:'
@@ -71,7 +71,9 @@ data:
     \ index.size(); }\n    int group_count() const { return count; }\n    int group_id(const\
     \ int u) const {\n        assert(0 <= u and u < size());\n        return index[u];\n\
     \    }\n\n    std::vector<std::vector<int>> decopmose() const {\n        std::vector<std::vector<int>>\
-    \ ret(group_count());\n        for (const int u : rep(size())) ret[index[u]].push_back(u);\n\
+    \ ret(group_count());\n        std::vector<int> len(group_count());\n        for\
+    \ (const int i : index) len[i] += 1;\n        for (const int i : rep(0, group_count()))\
+    \ ret[i].reserve(len[i]);\n        for (const int u : rep(size())) ret[index[u]].push_back(u);\n\
     \        return ret;\n    }\n};\n#line 3 \"utility/index_offset.cpp\"\n\nclass\
     \ IndexOffset {\n    int offset, len;\n\n  public:\n    constexpr IndexOffset()\
     \ noexcept : offset(), len() {}\n    explicit constexpr IndexOffset(const int\
@@ -122,7 +124,7 @@ data:
   isVerificationFile: true
   path: test/strongly_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2021-12-28 21:38:32+09:00'
+  timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/strongly_connected_components.test.cpp

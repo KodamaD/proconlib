@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/factorize.cpp
     title: math/factorize.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/collect.cpp\"\n#include <vector>\n\ntemplate <class\
@@ -32,7 +32,7 @@ data:
   requiredBy:
   - math/factorize.cpp
   timestamp: '2021-12-28 22:38:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/factorize.test.cpp
 documentation_of: utility/collect.cpp

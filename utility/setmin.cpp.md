@@ -3,18 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: graph/primal_dual.cpp
-    title: graph/primal_dual.cpp
-  - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_components.cpp
     title: graph/strongly_connected_components.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/primal_dual_maxflow.test.cpp
-    title: test/primal_dual_maxflow.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/primal_dual_mincostflow.test.cpp
-    title: test/primal_dual_mincostflow.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
@@ -34,13 +25,10 @@ data:
   path: utility/setmin.cpp
   requiredBy:
   - graph/strongly_connected_components.cpp
-  - graph/primal_dual.cpp
   timestamp: '2021-09-04 17:30:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/strongly_connected_components.test.cpp
-  - test/primal_dual_mincostflow.test.cpp
-  - test/primal_dual_maxflow.test.cpp
 documentation_of: utility/setmin.cpp
 layout: document
 redirect_from:

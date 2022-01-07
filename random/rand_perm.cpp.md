@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: random/shuffle_vec.cpp
     title: random/shuffle_vec.cpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
   - icon: ':question:'

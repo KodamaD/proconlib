@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: random/rand_int.cpp
     title: random/rand_int.cpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
   - icon: ':question:'
@@ -71,7 +71,7 @@ data:
     \ data.size(); }\n    const std::vector<T>& get() const { return data; }\n\n \
     \   u64 fold() const { return hash.back(); }\n    u64 fold(const int l, const\
     \ int r) const {\n        assert(0 <= l and l <= r and r <= size());\n       \
-    \ return Oper::difference(hash[r], Oper::product(hash[l], Base::base_pow[r - l]));\n\
+    \ return Oper::difference(hash[r], Oper::product(hash[l], Base::base_pow(r - l)));\n\
     \    }\n\n    void concat(const PolynomialHash& other) {\n        hash.reserve(hash.size()\
     \ + other.size());\n        u64 val = hash.back();\n        for (const int i :\
     \ rep(other.size())) {\n            val = Oper::product(val, Base::BASE);\n  \
@@ -102,7 +102,7 @@ data:
   isVerificationFile: true
   path: test/polynomial_hash.test.cpp
   requiredBy: []
-  timestamp: '2021-12-28 22:38:25+09:00'
+  timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/polynomial_hash.test.cpp

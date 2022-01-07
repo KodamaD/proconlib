@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/fenwick_tree.cpp
     title: container/fenwick_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: container/integer_hash_table.cpp
     title: container/integer_hash_table.cpp
   - icon: ':heavy_check_mark:'
@@ -26,7 +26,7 @@ data:
   - icon: ':x:'
     path: container/polynomial_hash.cpp
     title: container/polynomial_hash.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: container/segment_tree.cpp
     title: container/segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -35,15 +35,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/sparse_table.cpp
     title: container/sparse_table.cpp
-  - icon: ':warning:'
-    path: graph/binary_optimization.cpp
-    title: graph/binary_optimization.cpp
   - icon: ':heavy_check_mark:'
-    path: graph/dinic.cpp
-    title: graph/dinic.cpp
-  - icon: ':heavy_check_mark:'
-    path: math/barret_reduction.cpp
-    title: math/barret_reduction.cpp
+    path: internal/barret_reduction.cpp
+    title: internal/barret_reduction.cpp
   - icon: ':warning:'
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
@@ -62,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/semiring_matrix.cpp
     title: math/semiring_matrix.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/static_modint.cpp
     title: math/static_modint.cpp
   - icon: ':warning:'
@@ -80,22 +74,19 @@ data:
   - icon: ':warning:'
     path: random/shuffle_vec.cpp
     title: random/shuffle_vec.cpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/xorshift.cpp
     title: random/xorshift.cpp
   - icon: ':heavy_check_mark:'
     path: utility/auto_realloc.cpp
     title: utility/auto_realloc.cpp
-  - icon: ':warning:'
-    path: utility/bit_parity.cpp
-    title: utility/bit_parity.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/bit_width.cpp
     title: utility/bit_width.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/ceil_log2.cpp
     title: utility/ceil_log2.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/countl_zero.cpp
     title: utility/countl_zero.cpp
   - icon: ':heavy_check_mark:'
@@ -104,6 +95,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/fast_io.cpp
     title: utility/fast_io.cpp
+  - icon: ':warning:'
+    path: utility/popcount.cpp
+    title: utility/popcount.cpp
   - icon: ':warning:'
     path: utility/subsets.cpp
     title: utility/subsets.cpp
@@ -118,9 +112,6 @@ data:
     path: test/berlekamp_massey.test.cpp
     title: test/berlekamp_massey.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/bipartite_matching.test.cpp
-    title: test/bipartite_matching.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/convolution_arbitrary_mod.test.cpp
     title: test/convolution_arbitrary_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -129,7 +120,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/dual_segment_tree.test.cpp
     title: test/dual_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
   - icon: ':heavy_check_mark:'
@@ -141,13 +132,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fp_util.test.cpp
     title: test/fp_util.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/heavy_light_decomposition.test.cpp
     title: test/heavy_light_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/integer_hash_table.test.cpp
     title: test/integer_hash_table.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/integer_hash_table_verbose.test.cpp
     title: test/integer_hash_table_verbose.test.cpp
   - icon: ':heavy_check_mark:'
@@ -183,7 +174,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/totient.test.cpp
     title: test/totient.test.cpp
   _isVerificationFailed: true
@@ -231,8 +222,7 @@ data:
   isVerificationFile: false
   path: utility/int_alias.cpp
   requiredBy:
-  - graph/dinic.cpp
-  - graph/binary_optimization.cpp
+  - internal/barret_reduction.cpp
   - math/primitive_root.cpp
   - math/mod_pow.cpp
   - math/dynamic_modint.cpp
@@ -240,17 +230,16 @@ data:
   - math/modulo_transform.cpp
   - math/semiring_matrix.cpp
   - math/prime_sieve.cpp
-  - math/barret_reduction.cpp
   - algorithm/convolution_mod.cpp
   - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_int.cpp
   - utility/countl_zero.cpp
-  - utility/bit_parity.cpp
   - utility/auto_realloc.cpp
   - utility/ceil_log2.cpp
   - utility/subsets.cpp
   - utility/bit_width.cpp
   - utility/countr_zero.cpp
+  - utility/popcount.cpp
   - utility/fast_io.cpp
   - random/shuffle_vec.cpp
   - random/rand_bool.cpp
@@ -293,7 +282,6 @@ data:
   - test/convolution_mod.test.cpp
   - test/fp_util.test.cpp
   - test/primal_dual_maxflow.test.cpp
-  - test/bipartite_matching.test.cpp
   - test/factorize.test.cpp
 documentation_of: utility/int_alias.cpp
 layout: document

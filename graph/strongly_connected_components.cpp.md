@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/rec_lambda.cpp
     title: utility/rec_lambda.cpp
   - icon: ':question:'
@@ -61,7 +61,9 @@ data:
     \ index.size(); }\n    int group_count() const { return count; }\n    int group_id(const\
     \ int u) const {\n        assert(0 <= u and u < size());\n        return index[u];\n\
     \    }\n\n    std::vector<std::vector<int>> decopmose() const {\n        std::vector<std::vector<int>>\
-    \ ret(group_count());\n        for (const int u : rep(size())) ret[index[u]].push_back(u);\n\
+    \ ret(group_count());\n        std::vector<int> len(group_count());\n        for\
+    \ (const int i : index) len[i] += 1;\n        for (const int i : rep(0, group_count()))\
+    \ ret[i].reserve(len[i]);\n        for (const int u : rep(size())) ret[index[u]].push_back(u);\n\
     \        return ret;\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n#include \"../utility/rec_lambda.cpp\"\
     \n#include \"../utility/rep.cpp\"\n#include \"../utility/setmin.cpp\"\n\ntemplate\
@@ -85,6 +87,8 @@ data:
     \ const { return count; }\n    int group_id(const int u) const {\n        assert(0\
     \ <= u and u < size());\n        return index[u];\n    }\n\n    std::vector<std::vector<int>>\
     \ decopmose() const {\n        std::vector<std::vector<int>> ret(group_count());\n\
+    \        std::vector<int> len(group_count());\n        for (const int i : index)\
+    \ len[i] += 1;\n        for (const int i : rep(0, group_count())) ret[i].reserve(len[i]);\n\
     \        for (const int u : rep(size())) ret[index[u]].push_back(u);\n       \
     \ return ret;\n    }\n};\n"
   dependsOn:
@@ -94,7 +98,7 @@ data:
   isVerificationFile: false
   path: graph/strongly_connected_components.cpp
   requiredBy: []
-  timestamp: '2021-12-28 21:38:32+09:00'
+  timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/strongly_connected_components.test.cpp
