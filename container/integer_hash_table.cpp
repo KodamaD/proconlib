@@ -8,6 +8,8 @@
 #include "../utility/rep.cpp"
 
 template <class K, class V, std::enable_if_t<std::is_integral_v<K>>* = nullptr> class IntegerHashTable {
+    using Self = IntegerHashTable;
+
   public:
     class Iter {
         friend class IntegerHashTable;
@@ -46,8 +48,6 @@ template <class K, class V, std::enable_if_t<std::is_integral_v<K>>* = nullptr> 
     };
 
   private:
-    using Self = IntegerHashTable;
-
     enum class Ctrl : char { Empty, Full, Deleted };
 
     union Slot {

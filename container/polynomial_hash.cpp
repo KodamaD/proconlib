@@ -19,7 +19,7 @@ struct PolynomialHashOperations {
 };
 
 template <int ID> struct PolynomialHashBase {
-    static inline const u64 BASE = rand_int<u64>(0, MOD - 1);
+    static inline const u64 BASE = rand_int<u64>(0, PolynomialHashOperations::MOD - 1);
     static u64 base_pow(const int n) {
         static std::vector<u64> vec;
         if (vec.empty()) vec = {1};
@@ -41,7 +41,7 @@ template <class T, int ID = -1, std::enable_if_t<std::is_integral_v<T>>* = nullp
         const int size = data.size();
         hash = std::vector<u64>(size + 1);
         for (const int i : rep(size)) {
-            assert(0 <= data[i] and (u64) data[i] < Base::MOD);
+            assert(0 <= data[i] and (u64) data[i] < Oper::MOD);
             hash[i + 1] = Oper::sum(Oper::product(Base::BASE, hash[i]), (u64)data[i]);
         }
     }

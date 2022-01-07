@@ -14,9 +14,9 @@ template <class G> class TreeManager {
     class Path {
         friend class TreeManager;
         int src, dst;
-        const Self* self;
+        const TreeManager* self;
 
-        explicit Path(const int s, const int d, const Self* p) : src(s), dst(d), self(p) {}
+        explicit Path(const int s, const int d, const TreeManager* p) : src(s), dst(d), self(p) {}
 
       public:
         Path begin() const { return *this; }
@@ -33,13 +33,12 @@ template <class G> class TreeManager {
     };
 
   private:
-    using Self = TreeManager;
     std::vector<NodeInfo> node;
 
   public:
     TreeManager() : node() {}
-    explicit TreeManager(const G& graph, const int root = 0) : Self(graph, std::vector<int>({root})) {}
-    explicit TreeManager(const G& graph, const std::vector<int>& root) : node(graph.size(), NodeInfo{0, 0, 0, 0, 0}) {
+    explicit TreeManager(const G& graph, const int root = 0) : TreeManager(graph, std::vector<int>({root})) {}
+    explicit TreeManager(const G& graph, const std::vector<int>& root) : node(graph.size(), NodeInfo{0, 0, 0, 0, 0, 0}) {
         const int n = size();
         const auto build = rec_lambda([&](auto&& dfs, const int u, const int p) -> void {
             node[u].parent = p;
@@ -67,7 +66,7 @@ template <class G> class TreeManager {
             node[u].exit = time_stamp;
         });
         for (const int r : root) {
-            assert(0 <= r < n);
+            assert(0 <= r and r < n);
             assert(node[r].subtree == 0);
             build(r, r);
             decompose(r, r);

@@ -2,9 +2,8 @@
 #include <cassert>
 #include <utility>
 #include <vector>
-#include "../utility/collect.cpp"
 
-template <class T> std::vector<std::pair<T, int>> factorize(const T& x) {
+template <class T> std::vector<std::pair<T, int>> factorize(T x) {
     assert(x > 0);
     std::vector<std::pair<T, int>> ret;
     for (T p = 2; p * p <= x; ++p) {
