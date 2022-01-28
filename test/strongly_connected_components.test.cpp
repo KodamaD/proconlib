@@ -12,7 +12,7 @@ int main() {
         std::cin >> a >> b;
         graph.add_edge(a, b);
     }
-    const auto ans = StronglyConnectedComponents(graph).decopmose();
+    const auto ans = StronglyConnectedComponents(graph).decompose();
     std::cout << ans.size() << '\n';
     for (const auto& v : ans) {
         std::cout << v.size();

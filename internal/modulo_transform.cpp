@@ -1,22 +1,25 @@
 #pragma once
 #include <array>
 #include <vector>
+#include "../math/primitive_root.cpp"
 #include "../utility/countr_zero.cpp"
 #include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
 #include "../utility/revrep.cpp"
-#include "primitive_root.cpp"
+
+namespace proconlib {
 
 template <class M> struct ModuloTransform {
-    static constexpr u32 ROOT = primitive_root(M::mod());
-    static constexpr int RANK = countr_zero(M::mod() - 1);
+    static constexpr u32 MOD = M::mod();
+    static constexpr u32 ROOT = primitive_root(MOD);
+    static constexpr int RANK = countr_zero(MOD - 1);
 
     std::array<M, RANK + 1> root, iroot;
     std::array<M, (RANK >= 2 ? RANK - 2 + 1 : 0)> rate2, irate2;
     std::array<M, (RANK >= 3 ? RANK - 3 + 1 : 0)> rate3, irate3;
 
     constexpr ModuloTransform() : root(), iroot(), rate2(), irate2(), rate3(), irate3() {
-        root[RANK] = M(ROOT).pow((M::mod() - 1) >> RANK);
+        root[RANK] = M(ROOT).pow((MOD - 1) >> RANK);
         iroot[RANK] = root[RANK].inv();
         for (const int i : revrep(0, RANK)) {
             root[i] = root[i + 1] * root[i + 1];
@@ -114,3 +117,5 @@ template <class M> struct ModuloTransform {
         }
     }
 };
+
+}  // namespace proconlib

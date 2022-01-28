@@ -3,12 +3,12 @@
 #include <vector>
 #include "../math/semiring_matrix.cpp"
 #include "../math/static_modint.cpp"
-#include "../traits/num_semiring.cpp"
+#include "../traits/num_ring.cpp"
 #include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
 
 using Fp = Modint998244353;
-using Matrix = SemiRingMatrix<NumSemiRing<Fp>>;
+using Matrix = SemiRingMatrix<NumRing<Fp>>;
 
 int main() {
     int N, M, K;

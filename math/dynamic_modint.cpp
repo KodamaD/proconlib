@@ -2,22 +2,22 @@
 #include <cassert>
 #include <ostream>
 #include <type_traits>
-#include "../utility/int_alias.cpp"
 #include "../internal/barret_reduction.cpp"
+#include "../utility/int_alias.cpp"
 #include "mod_inv.cpp"
 #include "rem_euclid.cpp"
 
 template <int ID> class DynamicModint {
     using Self = DynamicModint;
 
-    static inline auto bt = BarretReduction(1);
+    static inline auto bt = proconlib::BarretReduction(1);
     u32 v;
 
   public:
     static u32 mod() noexcept { return bt.get_mod(); }
     static void set_mod(const u32 mod) noexcept {
         assert((u32)1 <= mod and mod <= ((u32)1 << 31));
-        bt = BarretReduction(mod);
+        bt = proconlib::BarretReduction(mod);
     }
 
     template <class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr> static T normalize(const T& x) noexcept {

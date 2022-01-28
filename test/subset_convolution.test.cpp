@@ -1,5 +1,5 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/bitwise_and_convolution"
-#include "../algorithm/and_convolution.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/subset_convolution"
+#include "../algorithm/subset_convolution.cpp"
 #include "../math/static_modint.cpp"
 #include "../traits/num_ring.cpp"
 #include <iostream>
@@ -22,7 +22,7 @@ int main() {
         std::cin >> t;
         x = t;
     }
-    const auto C = and_convolution<NumRing<Fp>>(A, B);
+    const auto C = subset_convolution<NumRing<Fp>>(A, B);
     for (const int i : rep(N)) {
         std::cout << C[i] << " \n"[i + 1 == N];
     }

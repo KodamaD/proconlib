@@ -50,7 +50,7 @@ template <class G> class StronglyConnectedComponents {
         return index[u];
     }
 
-    std::vector<std::vector<int>> decopmose() const {
+    std::vector<std::vector<int>> decompose() const {
         std::vector<std::vector<int>> ret(group_count());
         std::vector<int> len(group_count());
         for (const int i : index) len[i] += 1;

@@ -1,11 +1,13 @@
 #pragma once
 #include <algorithm>
 #include <vector>
-#include "../utility/ceil_log2.cpp"
-#include "../math/modulo_transform.cpp"
+#include "../internal/modulo_transform.cpp"
 #include "../math/static_modint.cpp"
+#include "../utility/ceil_log2.cpp"
 #include "../utility/int_alias.cpp"
 #include "../utility/rep.cpp"
+
+namespace proconlib {
 
 template <class T> std::vector<T> convolution_naive(const std::vector<T>& a, const std::vector<T>& b) {
     const int n = a.size(), m = b.size();
@@ -21,7 +23,7 @@ template <class T> std::vector<T> convolution_naive(const std::vector<T>& a, con
 }
 
 template <class M> std::vector<M> convolution_ntt(std::vector<M> a, std::vector<M> b) {
-    static constexpr ModuloTransform<M> transform;
+    constexpr ModuloTransform<M> transform;
     const int n = a.size(), m = b.size();
     const int k = 1 << ceil_log2(n + m - 1);
     a.resize(k), b.resize(k);
@@ -35,18 +37,20 @@ template <class M> std::vector<M> convolution_ntt(std::vector<M> a, std::vector<
     return a;
 }
 
+}  // namespace proconlib
+
 template <class M> std::vector<M> convolution_mod(std::vector<M>&& a, std::vector<M>&& b) {
     const int n = a.size(), m = b.size();
     if (n == 0 || m == 0) return {};
-    if (std::min(n, m) <= 60) return convolution_naive(a, b);
-    return convolution_ntt(std::move(a), std::move(b));
+    if (std::min(n, m) <= 60) return proconlib::convolution_naive(a, b);
+    return proconlib::convolution_ntt(std::move(a), std::move(b));
 }
 
 template <class M> std::vector<M> convolution_mod(const std::vector<M>& a, const std::vector<M>& b) {
     const int n = a.size(), m = b.size();
     if (n == 0 || m == 0) return {};
-    if (std::min(n, m) <= 60) return convolution_naive(a, b);
-    return convolution_ntt(a, b);
+    if (std::min(n, m) <= 60) return proconlib::convolution_naive(a, b);
+    return proconlib::convolution_ntt(a, b);
 }
 
 template <class T, u32 MOD, std::enable_if_t<std::is_integral_v<T>>* = nullptr>

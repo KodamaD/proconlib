@@ -142,7 +142,7 @@ class Printer {
                 x = -x;
             }
         }
-        const auto digit = integer_digits(x);
+        const int digit = integer_digits(x);
         int len = digit;
         while (len >= 4) {
             len -= 4;

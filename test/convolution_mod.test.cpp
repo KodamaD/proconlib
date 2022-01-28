@@ -9,6 +9,8 @@
 using Fp = Modint998244353;
 
 int main() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
     int n, m;
     std::cin >> n >> m;
     std::vector<Fp> a(n), b(m);
@@ -22,7 +24,7 @@ int main() {
         std::cin >> t;
         x = t;
     }
-    const auto c = convolution_mod(std::move(a), std::move(b));
+    const auto c = convolution_mod(a, b);
     for (const auto i : rep(0, c.size())) {
         std::cout << c[i] << " \n"[i + 1 == c.size()];
     }

@@ -1,6 +1,8 @@
 #pragma once
 #include "../utility/int_alias.cpp"
 
+namespace proconlib {
+
 class BarretReduction {
     u32 mod;
     u64 near_inv;
@@ -15,3 +17,5 @@ class BarretReduction {
     }
     constexpr u32 get_mod() const noexcept { return mod; }
 };
+
+}  // namespace proconlib

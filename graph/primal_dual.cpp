@@ -7,7 +7,10 @@
 #include "../utility/index_offset.cpp"
 #include "../utility/rep.cpp"
 
-template <class Flow, class Cost> class PrimalDual {
+template <class Flow,
+          class Cost,
+          std::enable_if_t<std::is_integral_v<Flow> and std::is_integral_v<Cost> and std::is_signed_v<Cost>>* = nullptr>
+class PrimalDual {
   public:
     struct Edge {
         int src, dst;
@@ -160,7 +163,7 @@ template <class Flow, class Cost> class PrimalDual {
             return true;
         };
         Flow flow = 0;
-        Cost cost = 0, ratio = -1;
+        Cost cost = 0, ratio = 0;
         std::vector<std::pair<Flow, Cost>> result = {{Flow(0), Cost(0)}};
         while (flow < flow_limit) {
             if (!dual()) break;
@@ -176,7 +179,7 @@ template <class Flow, class Cost> class PrimalDual {
             const Cost per_flow = potential[dst] - potential[src];
             flow += push;
             cost += push * per_flow;
-            if (ratio == per_flow) result.pop_back();
+            if (flow != 0 and ratio == per_flow) result.pop_back();
             result.emplace_back(flow, cost);
             ratio = per_flow;
         }
