@@ -46,6 +46,9 @@ data:
     path: test/semiring_matrix.test.cpp
     title: test/semiring_matrix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/subset_convolution.test.cpp
+    title: test/subset_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/totient.test.cpp
     title: test/totient.test.cpp
   _isVerificationFailed: false
@@ -67,24 +70,25 @@ data:
   isVerificationFile: false
   path: math/totient.cpp
   requiredBy:
-  - math/static_modint.cpp
   - algorithm/convolution_mod.cpp
   - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_int.cpp
+  - math/static_modint.cpp
   timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/convolution_arbitrary_mod.test.cpp
-  - test/totient.test.cpp
-  - test/queue_aggregation.test.cpp
-  - test/semiring_matrix.test.cpp
-  - test/lazy_segment_tree.test.cpp
-  - test/berlekamp_massey.test.cpp
-  - test/heavy_light_decomposition.test.cpp
-  - test/segment_tree.test.cpp
-  - test/and_convolution.test.cpp
   - test/convolution_mod.test.cpp
   - test/fp_util.test.cpp
+  - test/heavy_light_decomposition.test.cpp
+  - test/segment_tree.test.cpp
+  - test/totient.test.cpp
+  - test/and_convolution.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/subset_convolution.test.cpp
+  - test/semiring_matrix.test.cpp
+  - test/queue_aggregation.test.cpp
+  - test/lazy_segment_tree.test.cpp
+  - test/berlekamp_massey.test.cpp
 documentation_of: math/totient.cpp
 layout: document
 redirect_from:

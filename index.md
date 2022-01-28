@@ -27,9 +27,18 @@ data:
     - icon: ':warning:'
       path: algorithm/or_convolution.cpp
       title: algorithm/or_convolution.cpp
+    - icon: ':heavy_check_mark:'
+      path: algorithm/ranked_subset_mobius_transform.cpp
+      title: algorithm/ranked_subset_mobius_transform.cpp
+    - icon: ':heavy_check_mark:'
+      path: algorithm/ranked_subset_zeta_transform.cpp
+      title: algorithm/ranked_subset_zeta_transform.cpp
     - icon: ':warning:'
       path: algorithm/smawk.cpp
       title: algorithm/smawk.cpp
+    - icon: ':heavy_check_mark:'
+      path: algorithm/subset_convolution.cpp
+      title: algorithm/subset_convolution.cpp
     - icon: ':warning:'
       path: algorithm/subset_mobius_transform.cpp
       title: algorithm/subset_mobius_transform.cpp
@@ -112,6 +121,9 @@ data:
       path: internal/enable_avx2.cpp
       title: internal/enable_avx2.cpp
     - icon: ':heavy_check_mark:'
+      path: internal/modulo_transform.cpp
+      title: internal/modulo_transform.cpp
+    - icon: ':heavy_check_mark:'
       path: internal/simple_queue.cpp
       title: internal/simple_queue.cpp
   - name: math
@@ -146,9 +158,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/mod_pow.cpp
       title: math/mod_pow.cpp
-    - icon: ':heavy_check_mark:'
-      path: math/modulo_transform.cpp
-      title: math/modulo_transform.cpp
     - icon: ':heavy_check_mark:'
       path: math/prime_sieve.cpp
       title: math/prime_sieve.cpp
@@ -211,15 +220,15 @@ data:
       path: traits/min_monoid.cpp
       title: traits/min_monoid.cpp
     - icon: ':heavy_check_mark:'
-      path: traits/num_semiring.cpp
-      title: traits/num_semiring.cpp
+      path: traits/num_ring.cpp
+      title: traits/num_ring.cpp
     - icon: ':heavy_check_mark:'
       path: traits/optional_monoid.cpp
       title: traits/optional_monoid.cpp
     - icon: ':heavy_check_mark:'
       path: traits/pair_monoid.cpp
       title: traits/pair_monoid.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: traits/product_monoid.cpp
       title: traits/product_monoid.cpp
     - icon: ':heavy_check_mark:'
@@ -248,9 +257,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/ceil_log2.cpp
       title: utility/ceil_log2.cpp
-    - icon: ':warning:'
-      path: utility/collect.cpp
-      title: utility/collect.cpp
     - icon: ':heavy_check_mark:'
       path: utility/countl_zero.cpp
       title: utility/countl_zero.cpp
@@ -284,7 +290,7 @@ data:
     - icon: ':warning:'
       path: utility/permutations.cpp
       title: utility/permutations.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: utility/popcount.cpp
       title: utility/popcount.cpp
     - icon: ':heavy_check_mark:'
@@ -398,6 +404,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/strongly_connected_components.test.cpp
       title: test/strongly_connected_components.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/subset_convolution.test.cpp
+      title: test/subset_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/totient.test.cpp
       title: test/totient.test.cpp

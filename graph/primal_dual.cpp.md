@@ -40,11 +40,13 @@ data:
     \ noexcept { return last; }\n};\n\nconstexpr Range rep(const int l, const int\
     \ r) noexcept { return Range(l, r); }\nconstexpr Range rep(const int n) noexcept\
     \ { return Range(0, n); }\n#line 9 \"graph/primal_dual.cpp\"\n\ntemplate <class\
-    \ Flow, class Cost> class PrimalDual {\n  public:\n    struct Edge {\n       \
-    \ int src, dst;\n        Flow flow, cap;\n        Cost cost;\n    };\n\n  private:\n\
-    \    int node_count;\n    std::vector<Edge> graph;\n    std::vector<Cost> potential;\n\
-    \n  public:\n    PrimalDual() : node_count(0), graph() {}\n    explicit PrimalDual(const\
-    \ int n) : node_count(n), graph() {}\n\n    int size() const { return node_count;\
+    \ Flow,\n          class Cost,\n          std::enable_if_t<std::is_integral_v<Flow>\
+    \ and std::is_integral_v<Cost> and std::is_signed_v<Cost>>* = nullptr>\nclass\
+    \ PrimalDual {\n  public:\n    struct Edge {\n        int src, dst;\n        Flow\
+    \ flow, cap;\n        Cost cost;\n    };\n\n  private:\n    int node_count;\n\
+    \    std::vector<Edge> graph;\n    std::vector<Cost> potential;\n\n  public:\n\
+    \    PrimalDual() : node_count(0), graph() {}\n    explicit PrimalDual(const int\
+    \ n) : node_count(n), graph() {}\n\n    int size() const { return node_count;\
     \ }\n    int edge_count() const { return graph.size(); }\n\n    int add_vertex()\
     \ { return node_count++; }\n    IndexOffset add_vertices(const int n) {\n    \
     \    assert(n >= 0);\n        const IndexOffset ret(size(), n);\n        node_count\
@@ -109,7 +111,7 @@ data:
     \            }\n            if (!visited[dst]) return false;\n            for\
     \ (const int u : rep(n)) {\n                if (!visited[u]) continue;\n     \
     \           potential[u] -= dist[dst] - dist[u];\n            }\n            return\
-    \ true;\n        };\n        Flow flow = 0;\n        Cost cost = 0, ratio = -1;\n\
+    \ true;\n        };\n        Flow flow = 0;\n        Cost cost = 0, ratio = 0;\n\
     \        std::vector<std::pair<Flow, Cost>> result = {{Flow(0), Cost(0)}};\n \
     \       while (flow < flow_limit) {\n            if (!dual()) break;\n       \
     \     Flow push = flow_limit - flow;\n            for (int u = dst; u != src;\
@@ -118,16 +120,18 @@ data:
     \ {\n                auto& e = edge[prev_e[u]];\n                e.cap += push;\n\
     \                edge[e.rev].cap -= push;\n            }\n            const Cost\
     \ per_flow = potential[dst] - potential[src];\n            flow += push;\n   \
-    \         cost += push * per_flow;\n            if (ratio == per_flow) result.pop_back();\n\
-    \            result.emplace_back(flow, cost);\n            ratio = per_flow;\n\
-    \        }\n        for (const int i : rep(m)) graph[i].flow = graph[i].cap -\
-    \ edge[eidx[i]].cap;\n        return result;\n    }\n};\n"
+    \         cost += push * per_flow;\n            if (flow != 0 and ratio == per_flow)\
+    \ result.pop_back();\n            result.emplace_back(flow, cost);\n         \
+    \   ratio = per_flow;\n        }\n        for (const int i : rep(m)) graph[i].flow\
+    \ = graph[i].cap - edge[eidx[i]].cap;\n        return result;\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <limits>\n\
     #include <type_traits>\n#include <vector>\n#include \"../utility/index_offset.cpp\"\
-    \n#include \"../utility/rep.cpp\"\n\ntemplate <class Flow, class Cost> class PrimalDual\
-    \ {\n  public:\n    struct Edge {\n        int src, dst;\n        Flow flow, cap;\n\
-    \        Cost cost;\n    };\n\n  private:\n    int node_count;\n    std::vector<Edge>\
-    \ graph;\n    std::vector<Cost> potential;\n\n  public:\n    PrimalDual() : node_count(0),\
+    \n#include \"../utility/rep.cpp\"\n\ntemplate <class Flow,\n          class Cost,\n\
+    \          std::enable_if_t<std::is_integral_v<Flow> and std::is_integral_v<Cost>\
+    \ and std::is_signed_v<Cost>>* = nullptr>\nclass PrimalDual {\n  public:\n   \
+    \ struct Edge {\n        int src, dst;\n        Flow flow, cap;\n        Cost\
+    \ cost;\n    };\n\n  private:\n    int node_count;\n    std::vector<Edge> graph;\n\
+    \    std::vector<Cost> potential;\n\n  public:\n    PrimalDual() : node_count(0),\
     \ graph() {}\n    explicit PrimalDual(const int n) : node_count(n), graph() {}\n\
     \n    int size() const { return node_count; }\n    int edge_count() const { return\
     \ graph.size(); }\n\n    int add_vertex() { return node_count++; }\n    IndexOffset\
@@ -193,7 +197,7 @@ data:
     \            }\n            if (!visited[dst]) return false;\n            for\
     \ (const int u : rep(n)) {\n                if (!visited[u]) continue;\n     \
     \           potential[u] -= dist[dst] - dist[u];\n            }\n            return\
-    \ true;\n        };\n        Flow flow = 0;\n        Cost cost = 0, ratio = -1;\n\
+    \ true;\n        };\n        Flow flow = 0;\n        Cost cost = 0, ratio = 0;\n\
     \        std::vector<std::pair<Flow, Cost>> result = {{Flow(0), Cost(0)}};\n \
     \       while (flow < flow_limit) {\n            if (!dual()) break;\n       \
     \     Flow push = flow_limit - flow;\n            for (int u = dst; u != src;\
@@ -202,21 +206,21 @@ data:
     \ {\n                auto& e = edge[prev_e[u]];\n                e.cap += push;\n\
     \                edge[e.rev].cap -= push;\n            }\n            const Cost\
     \ per_flow = potential[dst] - potential[src];\n            flow += push;\n   \
-    \         cost += push * per_flow;\n            if (ratio == per_flow) result.pop_back();\n\
-    \            result.emplace_back(flow, cost);\n            ratio = per_flow;\n\
-    \        }\n        for (const int i : rep(m)) graph[i].flow = graph[i].cap -\
-    \ edge[eidx[i]].cap;\n        return result;\n    }\n};"
+    \         cost += push * per_flow;\n            if (flow != 0 and ratio == per_flow)\
+    \ result.pop_back();\n            result.emplace_back(flow, cost);\n         \
+    \   ratio = per_flow;\n        }\n        for (const int i : rep(m)) graph[i].flow\
+    \ = graph[i].cap - edge[eidx[i]].cap;\n        return result;\n    }\n};"
   dependsOn:
   - utility/index_offset.cpp
   - utility/rep.cpp
   isVerificationFile: false
   path: graph/primal_dual.cpp
   requiredBy: []
-  timestamp: '2022-01-07 21:48:21+09:00'
+  timestamp: '2022-01-28 13:07:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/primal_dual_mincostflow.test.cpp
   - test/primal_dual_maxflow.test.cpp
+  - test/primal_dual_mincostflow.test.cpp
 documentation_of: graph/primal_dual.cpp
 layout: document
 redirect_from:

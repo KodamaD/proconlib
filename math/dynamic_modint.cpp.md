@@ -27,13 +27,14 @@ data:
     \ <ostream>\n#include <type_traits>\n#line 2 \"utility/int_alias.cpp\"\n#include\
     \ <cstdint>\n\nusing i32 = std::int32_t;\nusing u32 = std::uint32_t;\nusing i64\
     \ = std::int64_t;\nusing u64 = std::uint64_t;\nusing i128 = __int128_t;\nusing\
-    \ u128 = __uint128_t;\n#line 3 \"internal/barret_reduction.cpp\"\n\nclass BarretReduction\
-    \ {\n    u32 mod;\n    u64 near_inv;\n\n  public:\n    explicit constexpr BarretReduction(const\
-    \ u32 mod) noexcept : mod(mod), near_inv((u64)(-1) / mod + 1) {}\n    constexpr\
-    \ u32 product(const u32 a, const u32 b) const noexcept {\n        const u64 z\
-    \ = (u64)a * b;\n        const u64 x = ((u128)z * near_inv) >> 64;\n        const\
-    \ u32 v = z - x * mod;\n        return v < mod ? v : v + mod;\n    }\n    constexpr\
-    \ u32 get_mod() const noexcept { return mod; }\n};\n#line 3 \"math/inv_gcd.cpp\"\
+    \ u128 = __uint128_t;\n#line 3 \"internal/barret_reduction.cpp\"\n\nnamespace\
+    \ proconlib {\n\nclass BarretReduction {\n    u32 mod;\n    u64 near_inv;\n\n\
+    \  public:\n    explicit constexpr BarretReduction(const u32 mod) noexcept : mod(mod),\
+    \ near_inv((u64)(-1) / mod + 1) {}\n    constexpr u32 product(const u32 a, const\
+    \ u32 b) const noexcept {\n        const u64 z = (u64)a * b;\n        const u64\
+    \ x = ((u128)z * near_inv) >> 64;\n        const u32 v = z - x * mod;\n      \
+    \  return v < mod ? v : v + mod;\n    }\n    constexpr u32 get_mod() const noexcept\
+    \ { return mod; }\n};\n\n}  // namespace proconlib\n#line 3 \"math/inv_gcd.cpp\"\
     \n#include <utility>\n#line 3 \"math/rem_euclid.cpp\"\n\ntemplate <class T> constexpr\
     \ T rem_euclid(T value, const T& mod) {\n    assert(mod > 0);\n    return (value\
     \ %= mod) >= 0 ? value : value + mod;\n}\n#line 5 \"math/inv_gcd.cpp\"\n\ntemplate\
@@ -47,42 +48,42 @@ data:
     \ T& a, const T& mod) {\n    const auto [g, x] = inv_gcd(a, mod);\n    assert(g\
     \ == 1);\n    return x;\n}\n#line 9 \"math/dynamic_modint.cpp\"\n\ntemplate <int\
     \ ID> class DynamicModint {\n    using Self = DynamicModint;\n\n    static inline\
-    \ auto bt = BarretReduction(1);\n    u32 v;\n\n  public:\n    static u32 mod()\
-    \ noexcept { return bt.get_mod(); }\n    static void set_mod(const u32 mod) noexcept\
-    \ {\n        assert((u32)1 <= mod and mod <= ((u32)1 << 31));\n        bt = BarretReduction(mod);\n\
-    \    }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\
-    \ static T normalize(const T& x) noexcept {\n        return rem_euclid<std::common_type_t<T,\
-    \ i64>>(x, mod());\n    }\n\n    DynamicModint() noexcept : v(0) {}\n    template\
-    \ <class T> DynamicModint(const T& x) noexcept : v(normalize(x)) {}\n    template\
-    \ <class T> static Self raw(const T& x) noexcept {\n        Self ret;\n      \
-    \  ret.v = x;\n        return ret;\n    }\n\n    u32 val() const noexcept { return\
-    \ v; }\n    Self neg() const noexcept { return raw(v == 0 ? 0 : mod() - v); }\n\
-    \    Self inv() const noexcept { return raw(mod_inv(v, mod())); }\n    Self pow(u64\
-    \ exp) const noexcept {\n        Self ret(1), mult(*this);\n        for (; exp\
-    \ > 0; exp >>= 1) {\n            if (exp & 1) ret *= mult;\n            mult *=\
-    \ mult;\n        }\n        return ret;\n    }\n\n    Self operator-() const noexcept\
-    \ { return neg(); }\n    Self operator~() const noexcept { return inv(); }\n\n\
-    \    Self operator+(const Self& rhs) const noexcept { return Self(*this) += rhs;\
-    \ }\n    Self& operator+=(const Self& rhs) noexcept {\n        if ((v += rhs.v)\
-    \ >= mod()) v -= mod();\n        return *this;\n    }\n\n    Self operator-(const\
-    \ Self& rhs) const noexcept { return Self(*this) -= rhs; }\n    Self& operator-=(const\
-    \ Self& rhs) noexcept {\n        if (v < rhs.v) v += mod();\n        v -= rhs.v;\n\
-    \        return *this;\n    }\n\n    Self operator*(const Self& rhs) const noexcept\
-    \ { return Self(*this) *= rhs; }\n    Self& operator*=(const Self& rhs) noexcept\
-    \ {\n        v = bt.product(v, rhs.v);\n        return *this;\n    }\n\n    Self\
-    \ operator/(const Self& rhs) const noexcept { return Self(*this) /= rhs; }\n \
-    \   Self& operator/=(const Self& rhs) noexcept { return *this *= rhs.inv(); }\n\
-    \n    bool operator==(const Self& rhs) const noexcept { return v == rhs.v; }\n\
-    \    bool operator!=(const Self& rhs) const noexcept { return v != rhs.v; }\n\
-    \    friend std::ostream& operator<<(std::ostream& stream, const Self& rhs) {\
-    \ return stream << rhs.v; }\n};\n\nusing Modint = DynamicModint<-1>;\n"
+    \ auto bt = proconlib::BarretReduction(1);\n    u32 v;\n\n  public:\n    static\
+    \ u32 mod() noexcept { return bt.get_mod(); }\n    static void set_mod(const u32\
+    \ mod) noexcept {\n        assert((u32)1 <= mod and mod <= ((u32)1 << 31));\n\
+    \        bt = proconlib::BarretReduction(mod);\n    }\n\n    template <class T,\
+    \ std::enable_if_t<std::is_integral_v<T>>* = nullptr> static T normalize(const\
+    \ T& x) noexcept {\n        return rem_euclid<std::common_type_t<T, i64>>(x, mod());\n\
+    \    }\n\n    DynamicModint() noexcept : v(0) {}\n    template <class T> DynamicModint(const\
+    \ T& x) noexcept : v(normalize(x)) {}\n    template <class T> static Self raw(const\
+    \ T& x) noexcept {\n        Self ret;\n        ret.v = x;\n        return ret;\n\
+    \    }\n\n    u32 val() const noexcept { return v; }\n    Self neg() const noexcept\
+    \ { return raw(v == 0 ? 0 : mod() - v); }\n    Self inv() const noexcept { return\
+    \ raw(mod_inv(v, mod())); }\n    Self pow(u64 exp) const noexcept {\n        Self\
+    \ ret(1), mult(*this);\n        for (; exp > 0; exp >>= 1) {\n            if (exp\
+    \ & 1) ret *= mult;\n            mult *= mult;\n        }\n        return ret;\n\
+    \    }\n\n    Self operator-() const noexcept { return neg(); }\n    Self operator~()\
+    \ const noexcept { return inv(); }\n\n    Self operator+(const Self& rhs) const\
+    \ noexcept { return Self(*this) += rhs; }\n    Self& operator+=(const Self& rhs)\
+    \ noexcept {\n        if ((v += rhs.v) >= mod()) v -= mod();\n        return *this;\n\
+    \    }\n\n    Self operator-(const Self& rhs) const noexcept { return Self(*this)\
+    \ -= rhs; }\n    Self& operator-=(const Self& rhs) noexcept {\n        if (v <\
+    \ rhs.v) v += mod();\n        v -= rhs.v;\n        return *this;\n    }\n\n  \
+    \  Self operator*(const Self& rhs) const noexcept { return Self(*this) *= rhs;\
+    \ }\n    Self& operator*=(const Self& rhs) noexcept {\n        v = bt.product(v,\
+    \ rhs.v);\n        return *this;\n    }\n\n    Self operator/(const Self& rhs)\
+    \ const noexcept { return Self(*this) /= rhs; }\n    Self& operator/=(const Self&\
+    \ rhs) noexcept { return *this *= rhs.inv(); }\n\n    bool operator==(const Self&\
+    \ rhs) const noexcept { return v == rhs.v; }\n    bool operator!=(const Self&\
+    \ rhs) const noexcept { return v != rhs.v; }\n    friend std::ostream& operator<<(std::ostream&\
+    \ stream, const Self& rhs) { return stream << rhs.v; }\n};\n\nusing Modint = DynamicModint<-1>;\n"
   code: "#pragma once\n#include <cassert>\n#include <ostream>\n#include <type_traits>\n\
-    #include \"../utility/int_alias.cpp\"\n#include \"../internal/barret_reduction.cpp\"\
+    #include \"../internal/barret_reduction.cpp\"\n#include \"../utility/int_alias.cpp\"\
     \n#include \"mod_inv.cpp\"\n#include \"rem_euclid.cpp\"\n\ntemplate <int ID> class\
     \ DynamicModint {\n    using Self = DynamicModint;\n\n    static inline auto bt\
-    \ = BarretReduction(1);\n    u32 v;\n\n  public:\n    static u32 mod() noexcept\
-    \ { return bt.get_mod(); }\n    static void set_mod(const u32 mod) noexcept {\n\
-    \        assert((u32)1 <= mod and mod <= ((u32)1 << 31));\n        bt = BarretReduction(mod);\n\
+    \ = proconlib::BarretReduction(1);\n    u32 v;\n\n  public:\n    static u32 mod()\
+    \ noexcept { return bt.get_mod(); }\n    static void set_mod(const u32 mod) noexcept\
+    \ {\n        assert((u32)1 <= mod and mod <= ((u32)1 << 31));\n        bt = proconlib::BarretReduction(mod);\n\
     \    }\n\n    template <class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\
     \ static T normalize(const T& x) noexcept {\n        return rem_euclid<std::common_type_t<T,\
     \ i64>>(x, mod());\n    }\n\n    DynamicModint() noexcept : v(0) {}\n    template\
@@ -110,15 +111,15 @@ data:
     \    friend std::ostream& operator<<(std::ostream& stream, const Self& rhs) {\
     \ return stream << rhs.v; }\n};\n\nusing Modint = DynamicModint<-1>;\n"
   dependsOn:
-  - utility/int_alias.cpp
   - internal/barret_reduction.cpp
+  - utility/int_alias.cpp
   - math/mod_inv.cpp
   - math/inv_gcd.cpp
   - math/rem_euclid.cpp
   isVerificationFile: false
   path: math/dynamic_modint.cpp
   requiredBy: []
-  timestamp: '2022-01-07 21:48:21+09:00'
+  timestamp: '2022-01-28 13:07:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/dynamic_modint.cpp

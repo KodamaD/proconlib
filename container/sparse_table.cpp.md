@@ -59,7 +59,7 @@ data:
     \     }\n        }\n    }\n\n    int size() const { return table[0].size(); }\n\
     \n    T fold(const int l, const int r) const {\n        assert(0 <= l and l <=\
     \ r and r <= size());\n        if (l == r) return M::identity();\n        const\
-    \ auto d = bit_width(r - l) - 1;\n        return M::operation(table[d][l], table[d][r\
+    \ int d = bit_width(r - l) - 1;\n        return M::operation(table[d][l], table[d][r\
     \ - (1 << d)]);\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n#include \"../utility/bit_width.cpp\"\
     \n#include \"../utility/rep.cpp\"\n\ntemplate <class M> class SparseTable {\n\
@@ -74,7 +74,7 @@ data:
     \     }\n        }\n    }\n\n    int size() const { return table[0].size(); }\n\
     \n    T fold(const int l, const int r) const {\n        assert(0 <= l and l <=\
     \ r and r <= size());\n        if (l == r) return M::identity();\n        const\
-    \ auto d = bit_width(r - l) - 1;\n        return M::operation(table[d][l], table[d][r\
+    \ int d = bit_width(r - l) - 1;\n        return M::operation(table[d][l], table[d][r\
     \ - (1 << d)]);\n    }\n};\n"
   dependsOn:
   - utility/bit_width.cpp
@@ -85,7 +85,7 @@ data:
   isVerificationFile: false
   path: container/sparse_table.cpp
   requiredBy: []
-  timestamp: '2022-01-07 21:48:21+09:00'
+  timestamp: '2022-01-28 13:07:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sparse_table.test.cpp

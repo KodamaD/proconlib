@@ -12,6 +12,15 @@ data:
     path: algorithm/convolution_mod.cpp
     title: algorithm/convolution_mod.cpp
   - icon: ':heavy_check_mark:'
+    path: algorithm/ranked_subset_mobius_transform.cpp
+    title: algorithm/ranked_subset_mobius_transform.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/ranked_subset_zeta_transform.cpp
+    title: algorithm/ranked_subset_zeta_transform.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/subset_convolution.cpp
+    title: algorithm/subset_convolution.cpp
+  - icon: ':heavy_check_mark:'
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -38,15 +47,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: internal/barret_reduction.cpp
     title: internal/barret_reduction.cpp
+  - icon: ':heavy_check_mark:'
+    path: internal/modulo_transform.cpp
+    title: internal/modulo_transform.cpp
   - icon: ':warning:'
     path: math/dynamic_modint.cpp
     title: math/dynamic_modint.cpp
   - icon: ':heavy_check_mark:'
     path: math/mod_pow.cpp
     title: math/mod_pow.cpp
-  - icon: ':heavy_check_mark:'
-    path: math/modulo_transform.cpp
-    title: math/modulo_transform.cpp
   - icon: ':heavy_check_mark:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
@@ -95,7 +104,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/fast_io.cpp
     title: utility/fast_io.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: utility/popcount.cpp
     title: utility/popcount.cpp
   - icon: ':warning:'
@@ -175,6 +184,9 @@ data:
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/subset_convolution.test.cpp
+    title: test/subset_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/totient.test.cpp
     title: test/totient.test.cpp
   _isVerificationFailed: false
@@ -222,67 +234,71 @@ data:
   isVerificationFile: false
   path: utility/int_alias.cpp
   requiredBy:
-  - internal/barret_reduction.cpp
-  - math/primitive_root.cpp
-  - math/mod_pow.cpp
-  - math/dynamic_modint.cpp
-  - math/static_modint.cpp
-  - math/modulo_transform.cpp
-  - math/semiring_matrix.cpp
-  - math/prime_sieve.cpp
-  - algorithm/convolution_mod.cpp
-  - algorithm/convolution_arbitrary_mod.cpp
-  - algorithm/convolution_int.cpp
-  - utility/countl_zero.cpp
-  - utility/auto_realloc.cpp
-  - utility/ceil_log2.cpp
-  - utility/subsets.cpp
-  - utility/bit_width.cpp
-  - utility/countr_zero.cpp
-  - utility/popcount.cpp
-  - utility/fast_io.cpp
-  - random/shuffle_vec.cpp
+  - random/xorshift.cpp
   - random/rand_bool.cpp
   - random/rand_real.cpp
   - random/rand_int.cpp
+  - random/shuffle_vec.cpp
   - random/rand_perm.cpp
-  - random/xorshift.cpp
-  - container/fenwick_tree.cpp
-  - container/polynomial_hash.cpp
+  - utility/countl_zero.cpp
+  - utility/countr_zero.cpp
+  - utility/fast_io.cpp
+  - utility/subsets.cpp
+  - utility/ceil_log2.cpp
+  - utility/auto_realloc.cpp
+  - utility/popcount.cpp
+  - utility/bit_width.cpp
+  - algorithm/ranked_subset_zeta_transform.cpp
+  - algorithm/convolution_mod.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
+  - algorithm/convolution_int.cpp
+  - algorithm/subset_convolution.cpp
+  - algorithm/ranked_subset_mobius_transform.cpp
+  - container/sparse_table.cpp
+  - container/integer_hash_table.cpp
+  - container/segment_tree_beats.cpp
   - container/lazy_segment_tree.cpp
   - container/dual_segment_tree.cpp
-  - container/segment_tree_beats.cpp
-  - container/integer_hash_table.cpp
+  - container/fenwick_tree.cpp
+  - container/polynomial_hash.cpp
   - container/segment_tree.cpp
-  - container/sparse_table.cpp
+  - math/semiring_matrix.cpp
+  - math/dynamic_modint.cpp
+  - math/primitive_root.cpp
+  - math/static_modint.cpp
+  - math/mod_pow.cpp
+  - math/prime_sieve.cpp
+  - internal/barret_reduction.cpp
+  - internal/modulo_transform.cpp
   timestamp: '2021-12-17 09:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/convolution_arbitrary_mod.test.cpp
-  - test/totient.test.cpp
-  - test/larsch.test.cpp
+  - test/convolution_mod.test.cpp
   - test/fast_io.test.cpp
-  - test/queue_aggregation.test.cpp
-  - test/integer_hash_table_verbose.test.cpp
-  - test/semiring_matrix.test.cpp
-  - test/polynomial_hash.test.cpp
-  - test/lazy_segment_tree.test.cpp
-  - test/primal_dual_mincostflow.test.cpp
-  - test/sparse_table.test.cpp
-  - test/berlekamp_massey.test.cpp
+  - test/fp_util.test.cpp
   - test/heavy_light_decomposition.test.cpp
   - test/segment_tree.test.cpp
   - test/auto_memoize.test.cpp
-  - test/segment_tree_beats.test.cpp
-  - test/dual_segment_tree.test.cpp
-  - test/prime_sieve.test.cpp
+  - test/integer_hash_table_verbose.test.cpp
+  - test/totient.test.cpp
   - test/and_convolution.test.cpp
-  - test/fenwick_tree.test.cpp
-  - test/integer_hash_table.test.cpp
-  - test/convolution_mod.test.cpp
-  - test/fp_util.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/segment_tree_beats.test.cpp
   - test/primal_dual_maxflow.test.cpp
+  - test/larsch.test.cpp
+  - test/integer_hash_table.test.cpp
+  - test/subset_convolution.test.cpp
+  - test/fenwick_tree.test.cpp
+  - test/semiring_matrix.test.cpp
   - test/factorize.test.cpp
+  - test/polynomial_hash.test.cpp
+  - test/queue_aggregation.test.cpp
+  - test/dual_segment_tree.test.cpp
+  - test/lazy_segment_tree.test.cpp
+  - test/berlekamp_massey.test.cpp
+  - test/prime_sieve.test.cpp
+  - test/primal_dual_mincostflow.test.cpp
+  - test/sparse_table.test.cpp
 documentation_of: utility/int_alias.cpp
 layout: document
 redirect_from:

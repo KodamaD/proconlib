@@ -27,8 +27,8 @@ data:
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
   - icon: ':heavy_check_mark:'
-    path: math/modulo_transform.cpp
-    title: math/modulo_transform.cpp
+    path: internal/modulo_transform.cpp
+    title: internal/modulo_transform.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/convolution_arbitrary_mod.test.cpp
@@ -81,21 +81,21 @@ data:
   isVerificationFile: false
   path: utility/countr_zero.cpp
   requiredBy:
-  - math/modulo_transform.cpp
   - algorithm/convolution_mod.cpp
   - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_int.cpp
+  - container/segment_tree_beats.cpp
   - container/lazy_segment_tree.cpp
   - container/dual_segment_tree.cpp
-  - container/segment_tree_beats.cpp
+  - internal/modulo_transform.cpp
   timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/convolution_mod.test.cpp
   - test/convolution_arbitrary_mod.test.cpp
-  - test/lazy_segment_tree.test.cpp
   - test/segment_tree_beats.test.cpp
   - test/dual_segment_tree.test.cpp
-  - test/convolution_mod.test.cpp
+  - test/lazy_segment_tree.test.cpp
 documentation_of: utility/countr_zero.cpp
 layout: document
 redirect_from:

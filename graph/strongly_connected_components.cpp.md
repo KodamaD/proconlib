@@ -60,7 +60,7 @@ data:
     \ (auto& x : index) x = count - x - 1;\n    }\n\n    int size() const { return\
     \ index.size(); }\n    int group_count() const { return count; }\n    int group_id(const\
     \ int u) const {\n        assert(0 <= u and u < size());\n        return index[u];\n\
-    \    }\n\n    std::vector<std::vector<int>> decopmose() const {\n        std::vector<std::vector<int>>\
+    \    }\n\n    std::vector<std::vector<int>> decompose() const {\n        std::vector<std::vector<int>>\
     \ ret(group_count());\n        std::vector<int> len(group_count());\n        for\
     \ (const int i : index) len[i] += 1;\n        for (const int i : rep(0, group_count()))\
     \ ret[i].reserve(len[i]);\n        for (const int u : rep(size())) ret[index[u]].push_back(u);\n\
@@ -86,7 +86,7 @@ data:
     \    }\n\n    int size() const { return index.size(); }\n    int group_count()\
     \ const { return count; }\n    int group_id(const int u) const {\n        assert(0\
     \ <= u and u < size());\n        return index[u];\n    }\n\n    std::vector<std::vector<int>>\
-    \ decopmose() const {\n        std::vector<std::vector<int>> ret(group_count());\n\
+    \ decompose() const {\n        std::vector<std::vector<int>> ret(group_count());\n\
     \        std::vector<int> len(group_count());\n        for (const int i : index)\
     \ len[i] += 1;\n        for (const int i : rep(0, group_count())) ret[i].reserve(len[i]);\n\
     \        for (const int u : rep(size())) ret[index[u]].push_back(u);\n       \
@@ -98,7 +98,7 @@ data:
   isVerificationFile: false
   path: graph/strongly_connected_components.cpp
   requiredBy: []
-  timestamp: '2022-01-07 21:48:21+09:00'
+  timestamp: '2022-01-28 13:07:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/strongly_connected_components.test.cpp

@@ -2,18 +2,15 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: algorithm/and_convolution.cpp
-    title: algorithm/and_convolution.cpp
-  - icon: ':warning:'
-    path: algorithm/or_convolution.cpp
-    title: algorithm/or_convolution.cpp
   - icon: ':warning:'
     path: traits/max_add_action.cpp
     title: traits/max_add_action.cpp
   - icon: ':warning:'
     path: traits/min_add_action.cpp
     title: traits/min_add_action.cpp
+  - icon: ':heavy_check_mark:'
+    path: traits/num_ring.cpp
+    title: traits/num_ring.cpp
   - icon: ':heavy_check_mark:'
     path: traits/sum_affine_action.cpp
     title: traits/sum_affine_action.cpp
@@ -27,6 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lazy_segment_tree.test.cpp
     title: test/lazy_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/semiring_matrix.test.cpp
+    title: test/semiring_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/subset_convolution.test.cpp
+    title: test/subset_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -45,16 +48,17 @@ data:
   path: traits/sum_group.cpp
   requiredBy:
   - traits/max_add_action.cpp
-  - traits/sum_affine_action.cpp
   - traits/min_add_action.cpp
-  - algorithm/or_convolution.cpp
-  - algorithm/and_convolution.cpp
+  - traits/sum_affine_action.cpp
+  - traits/num_ring.cpp
   timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/lazy_segment_tree.test.cpp
   - test/and_convolution.test.cpp
+  - test/subset_convolution.test.cpp
   - test/fenwick_tree.test.cpp
+  - test/semiring_matrix.test.cpp
+  - test/lazy_segment_tree.test.cpp
 documentation_of: traits/sum_group.cpp
 layout: document
 redirect_from:

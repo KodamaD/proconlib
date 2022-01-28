@@ -101,7 +101,7 @@ data:
     \ > BUF_SIZE, 0)) flush();\n        if (x == 0) {\n            buf[pos++] = '0';\n\
     \            return;\n        }\n        if constexpr (std::is_signed_v<T>) {\n\
     \            if (x < 0) {\n                buf[pos++] = '-';\n               \
-    \ x = -x;\n            }\n        }\n        const auto digit = integer_digits(x);\n\
+    \ x = -x;\n            }\n        }\n        const int digit = integer_digits(x);\n\
     \        int len = digit;\n        while (len >= 4) {\n            len -= 4;\n\
     \            std::memcpy(buf + pos + len, num_block.NUM + (x % 10000) * 4, 4);\n\
     \            x /= 10000;\n        }\n        std::memcpy(buf + pos, num_block.NUM\
@@ -128,7 +128,7 @@ data:
   isVerificationFile: true
   path: test/fast_io.test.cpp
   requiredBy: []
-  timestamp: '2022-01-07 21:48:21+09:00'
+  timestamp: '2022-01-28 13:07:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fast_io.test.cpp

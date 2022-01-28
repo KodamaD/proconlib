@@ -7,11 +7,23 @@ data:
   - icon: ':heavy_check_mark:'
     path: utility/int_alias.cpp
     title: utility/int_alias.cpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: algorithm/ranked_subset_mobius_transform.cpp
+    title: algorithm/ranked_subset_mobius_transform.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/ranked_subset_zeta_transform.cpp
+    title: algorithm/ranked_subset_zeta_transform.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/subset_convolution.cpp
+    title: algorithm/subset_convolution.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/subset_convolution.test.cpp
+    title: test/subset_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"internal/enable_avx2.cpp\"\n\n#ifdef ENABLE_AVX2\n#define\
@@ -33,10 +45,14 @@ data:
   - utility/int_alias.cpp
   isVerificationFile: false
   path: utility/popcount.cpp
-  requiredBy: []
+  requiredBy:
+  - algorithm/ranked_subset_zeta_transform.cpp
+  - algorithm/subset_convolution.cpp
+  - algorithm/ranked_subset_mobius_transform.cpp
   timestamp: '2022-01-07 21:48:21+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/subset_convolution.test.cpp
 documentation_of: utility/popcount.cpp
 layout: document
 redirect_from:

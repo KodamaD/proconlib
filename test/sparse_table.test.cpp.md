@@ -69,7 +69,7 @@ data:
     \     }\n        }\n    }\n\n    int size() const { return table[0].size(); }\n\
     \n    T fold(const int l, const int r) const {\n        assert(0 <= l and l <=\
     \ r and r <= size());\n        if (l == r) return M::identity();\n        const\
-    \ auto d = bit_width(r - l) - 1;\n        return M::operation(table[d][l], table[d][r\
+    \ int d = bit_width(r - l) - 1;\n        return M::operation(table[d][l], table[d][r\
     \ - (1 << d)]);\n    }\n};\n#line 3 \"test/sparse_table.test.cpp\"\n#include <iostream>\n\
     #include <numeric>\n#line 2 \"traits/lambda_semigroup.cpp\"\n#include <memory>\n\
     #include <utility>\n\ntemplate <class F> class LambdaSemiGroup {\n    template\
@@ -118,7 +118,7 @@ data:
   isVerificationFile: true
   path: test/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2022-01-07 21:48:21+09:00'
+  timestamp: '2022-01-28 13:07:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sparse_table.test.cpp

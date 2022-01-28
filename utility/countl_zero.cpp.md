@@ -18,6 +18,15 @@ data:
     path: algorithm/convolution_mod.cpp
     title: algorithm/convolution_mod.cpp
   - icon: ':heavy_check_mark:'
+    path: algorithm/ranked_subset_mobius_transform.cpp
+    title: algorithm/ranked_subset_mobius_transform.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/ranked_subset_zeta_transform.cpp
+    title: algorithm/ranked_subset_zeta_transform.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/subset_convolution.cpp
+    title: algorithm/subset_convolution.cpp
+  - icon: ':heavy_check_mark:'
     path: container/dual_segment_tree.cpp
     title: container/dual_segment_tree.cpp
   - icon: ':heavy_check_mark:'
@@ -90,6 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/sparse_table.test.cpp
     title: test/sparse_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/subset_convolution.test.cpp
+    title: test/subset_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -115,36 +127,40 @@ data:
   isVerificationFile: false
   path: utility/countl_zero.cpp
   requiredBy:
-  - math/prime_sieve.cpp
+  - utility/ceil_log2.cpp
+  - utility/auto_realloc.cpp
+  - utility/bit_width.cpp
+  - algorithm/ranked_subset_zeta_transform.cpp
   - algorithm/convolution_mod.cpp
   - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_int.cpp
-  - utility/auto_realloc.cpp
-  - utility/ceil_log2.cpp
-  - utility/bit_width.cpp
-  - container/fenwick_tree.cpp
+  - algorithm/subset_convolution.cpp
+  - algorithm/ranked_subset_mobius_transform.cpp
+  - container/sparse_table.cpp
+  - container/integer_hash_table.cpp
+  - container/segment_tree_beats.cpp
   - container/lazy_segment_tree.cpp
   - container/dual_segment_tree.cpp
-  - container/segment_tree_beats.cpp
-  - container/integer_hash_table.cpp
+  - container/fenwick_tree.cpp
   - container/segment_tree.cpp
-  - container/sparse_table.cpp
+  - math/prime_sieve.cpp
   timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/convolution_arbitrary_mod.test.cpp
-  - test/larsch.test.cpp
-  - test/integer_hash_table_verbose.test.cpp
-  - test/lazy_segment_tree.test.cpp
-  - test/sparse_table.test.cpp
+  - test/convolution_mod.test.cpp
   - test/heavy_light_decomposition.test.cpp
   - test/segment_tree.test.cpp
+  - test/integer_hash_table_verbose.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
   - test/segment_tree_beats.test.cpp
-  - test/dual_segment_tree.test.cpp
-  - test/prime_sieve.test.cpp
-  - test/fenwick_tree.test.cpp
+  - test/larsch.test.cpp
   - test/integer_hash_table.test.cpp
-  - test/convolution_mod.test.cpp
+  - test/subset_convolution.test.cpp
+  - test/fenwick_tree.test.cpp
+  - test/dual_segment_tree.test.cpp
+  - test/lazy_segment_tree.test.cpp
+  - test/prime_sieve.test.cpp
+  - test/sparse_table.test.cpp
 documentation_of: utility/countl_zero.cpp
 layout: document
 redirect_from:

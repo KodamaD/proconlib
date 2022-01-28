@@ -48,9 +48,9 @@ data:
   isVerificationFile: false
   path: math/mod_inv.cpp
   requiredBy:
-  - math/dynamic_modint.cpp
   - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_int.cpp
+  - math/dynamic_modint.cpp
   timestamp: '2021-11-10 20:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

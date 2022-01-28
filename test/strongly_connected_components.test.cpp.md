@@ -70,7 +70,7 @@ data:
     \ (auto& x : index) x = count - x - 1;\n    }\n\n    int size() const { return\
     \ index.size(); }\n    int group_count() const { return count; }\n    int group_id(const\
     \ int u) const {\n        assert(0 <= u and u < size());\n        return index[u];\n\
-    \    }\n\n    std::vector<std::vector<int>> decopmose() const {\n        std::vector<std::vector<int>>\
+    \    }\n\n    std::vector<std::vector<int>> decompose() const {\n        std::vector<std::vector<int>>\
     \ ret(group_count());\n        std::vector<int> len(group_count());\n        for\
     \ (const int i : index) len[i] += 1;\n        for (const int i : rep(0, group_count()))\
     \ ret[i].reserve(len[i]);\n        for (const int u : rep(size())) ret[index[u]].push_back(u);\n\
@@ -102,7 +102,7 @@ data:
     \        return EdgePtr(u, e, this);\n    }\n};\n#line 4 \"test/strongly_connected_components.test.cpp\"\
     \n#include <iostream>\n\nint main() {\n    int N, M;\n    std::cin >> N >> M;\n\
     \    BasicGraph graph(N);\n    while (M--) {\n        int a, b;\n        std::cin\
-    \ >> a >> b;\n        graph.add_edge(a, b);\n    }\n    const auto ans = StronglyConnectedComponents(graph).decopmose();\n\
+    \ >> a >> b;\n        graph.add_edge(a, b);\n    }\n    const auto ans = StronglyConnectedComponents(graph).decompose();\n\
     \    std::cout << ans.size() << '\\n';\n    for (const auto& v : ans) {\n    \
     \    std::cout << v.size();\n        for (const auto x : v) {\n            std::cout\
     \ << ' ' << x;\n        }\n        std::cout << '\\n';\n    }\n}\n"
@@ -110,7 +110,7 @@ data:
     \n#include \"../graph/basic_graph.cpp\"\n#include <iostream>\n\nint main() {\n\
     \    int N, M;\n    std::cin >> N >> M;\n    BasicGraph graph(N);\n    while (M--)\
     \ {\n        int a, b;\n        std::cin >> a >> b;\n        graph.add_edge(a,\
-    \ b);\n    }\n    const auto ans = StronglyConnectedComponents(graph).decopmose();\n\
+    \ b);\n    }\n    const auto ans = StronglyConnectedComponents(graph).decompose();\n\
     \    std::cout << ans.size() << '\\n';\n    for (const auto& v : ans) {\n    \
     \    std::cout << v.size();\n        for (const auto x : v) {\n            std::cout\
     \ << ' ' << x;\n        }\n        std::cout << '\\n';\n    }\n}"
@@ -124,7 +124,7 @@ data:
   isVerificationFile: true
   path: test/strongly_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2022-01-07 21:48:21+09:00'
+  timestamp: '2022-01-28 13:07:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/strongly_connected_components.test.cpp

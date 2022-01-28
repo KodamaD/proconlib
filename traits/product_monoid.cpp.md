@@ -1,11 +1,23 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: traits/num_ring.cpp
+    title: traits/num_ring.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/and_convolution.test.cpp
+    title: test/and_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/semiring_matrix.test.cpp
+    title: test/semiring_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/subset_convolution.test.cpp
+    title: test/subset_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"traits/product_monoid.cpp\"\n\ntemplate <class T> struct\
@@ -18,10 +30,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: traits/product_monoid.cpp
-  requiredBy: []
+  requiredBy:
+  - traits/num_ring.cpp
   timestamp: '2021-12-28 21:38:32+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/and_convolution.test.cpp
+  - test/subset_convolution.test.cpp
+  - test/semiring_matrix.test.cpp
 documentation_of: traits/product_monoid.cpp
 layout: document
 redirect_from:

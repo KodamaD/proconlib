@@ -49,17 +49,17 @@ data:
   isVerificationFile: false
   path: utility/rec_lambda.cpp
   requiredBy:
-  - graph/strongly_connected_components.cpp
-  - graph/tree_manager.cpp
   - graph/dinic.cpp
+  - graph/tree_manager.cpp
+  - graph/strongly_connected_components.cpp
   - graph/binary_optimization.cpp
   timestamp: '2021-11-03 19:13:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/strongly_connected_components.test.cpp
   - test/heavy_light_decomposition.test.cpp
-  - test/rollback_union_find.test.cpp
+  - test/strongly_connected_components.test.cpp
   - test/bipartite_matching.test.cpp
+  - test/rollback_union_find.test.cpp
 documentation_of: utility/rec_lambda.cpp
 layout: document
 redirect_from:

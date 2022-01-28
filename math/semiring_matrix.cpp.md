@@ -33,84 +33,82 @@ data:
     \ rep(const int l, const int r) noexcept { return Range(l, r); }\nconstexpr Range\
     \ rep(const int n) noexcept { return Range(0, n); }\n#line 8 \"math/semiring_matrix.cpp\"\
     \n\ntemplate <class S> class SemiRingMatrix {\n    using T = typename S::Type;\n\
-    \    using Self = SemiRingMatrix;\n    std::vector<std::vector<T>> data;\n\n \
-    \ public:\n    SemiRingMatrix() = default;\n    explicit SemiRingMatrix(const\
-    \ int h, const int w, const T& val = S::zero()) : data(h, std::vector<T>(w, val))\
-    \ {}\n\n    SemiRingMatrix(const std::vector<std::vector<T>>& vec) : data(vec)\
-    \ {\n        for (const auto& v : data) assert(v.size() == width());\n    }\n\
-    \    SemiRingMatrix(const std::initializer_list<std::initializer_list<T>>& list)\
-    \ {\n        data.reserve(list.size());\n        for (const auto& v : list) data.emplace_back(v.begin(),\
-    \ v.end());\n        for (const auto& v : data) assert(v.size() == width());\n\
-    \    }\n\n    int height() const { return data.size(); }\n    int width() const\
-    \ { return data.empty() ? 0 : data[0].size(); }\n\n    T& operator()(const int\
-    \ i, const int j) {\n        assert(i < height());\n        assert(j < width());\n\
+    \    using A = typename S::Sum;\n    using M = typename S::Product;\n    using\
+    \ Self = SemiRingMatrix;\n    std::vector<std::vector<T>> data;\n\n  public:\n\
+    \    SemiRingMatrix() = default;\n    explicit SemiRingMatrix(const int h, const\
+    \ int w, const T& val = A::zero()) : data(h, std::vector<T>(w, val)) {}\n\n  \
+    \  SemiRingMatrix(const std::vector<std::vector<T>>& vec) : data(vec) {\n    \
+    \    for (const auto& v : data) assert(v.size() == width());\n    }\n    SemiRingMatrix(const\
+    \ std::initializer_list<std::initializer_list<T>>& list) {\n        data.reserve(list.size());\n\
+    \        for (const auto& v : list) data.emplace_back(v.begin(), v.end());\n \
+    \       for (const auto& v : data) assert(v.size() == width());\n    }\n\n   \
+    \ int height() const { return data.size(); }\n    int width() const { return data.empty()\
+    \ ? 0 : data[0].size(); }\n\n    T& operator()(const int i, const int j) {\n \
+    \       assert(0 <= i and i < height());\n        assert(0 <= j and j < width());\n\
     \        return data[i][j];\n    }\n    const T& operator()(const int i, const\
-    \ int j) const {\n        assert(i < height());\n        assert(j < width());\n\
-    \        return data[i][j];\n    }\n\n    Self operator+(const Self& other) const\
-    \ { return Self(*this) += other; }\n    Self& operator+=(const Self& other) {\n\
-    \        assert(height() == other.height());\n        assert(width() == other.width());\n\
-    \        for (const int i : rep(0, height())) {\n            for (const int j\
-    \ : rep(0, width())) {\n                data[i][j] = S::sum(data[i][j], other.data[i][j]);\n\
-    \            }\n        }\n        return *this;\n    }\n\n    Self operator*(const\
-    \ Self& other) const {\n        assert(width() == other.height());\n        Self\
-    \ ret(height(), other.width(), S::zero());\n        for (const int i : rep(0,\
-    \ height())) {\n            for (const int k : rep(0, width())) {\n          \
-    \      for (const int j : rep(0, other.width())) {\n                    ret.data[i][j]\
-    \ = S::sum(ret.data[i][j], S::product(data[i][k], other.data[k][j]));\n      \
-    \          }\n            }\n        }\n        return ret;\n    }\n\n    Self\
-    \ operator*(const T& other) const { return Self(*this) *= other; }\n    Self&\
-    \ operator*=(const T& other) {\n        for (const int i : rep(0, height())) {\n\
-    \            for (const int j : rep(0, width())) {\n                data[i][j]\
-    \ = S::product(data[i][j], other);\n            }\n        }\n    }\n\n    Self\
-    \ pow(u64 exp) const {\n        assert(height() == width());\n        Self ret(height(),\
-    \ width(), S::zero()), mult(*this);\n        for (const int i : rep(0, height()))\
-    \ {\n            ret.data[i][i] = S::one();\n        }\n        for (; exp > 0;\
-    \ exp >>= 1) {\n            if (exp & 1) ret = ret * mult;\n            mult =\
-    \ mult * mult;\n        }\n        return ret;\n    }\n};\n"
+    \ int j) const {\n        assert(0 <= i and i < height());\n        assert(0 <=\
+    \ j and j < width());\n        return data[i][j];\n    }\n\n    Self operator+(const\
+    \ Self& other) const { return Self(*this) += other; }\n    Self& operator+=(const\
+    \ Self& other) {\n        assert(height() == other.height());\n        assert(width()\
+    \ == other.width());\n        for (const int i : rep(height()))\n            for\
+    \ (const int j : rep(width())) data[i][j] = A::operation(data[i][j], other.data[i][j]);\n\
+    \        return *this;\n    }\n\n    Self operator*(const Self& other) const {\n\
+    \        assert(width() == other.height());\n        Self ret(height(), other.width(),\
+    \ A::identity());\n        for (const int i : rep(height()))\n            for\
+    \ (const int k : rep(width()))\n                for (const int j : rep(other.width()))\n\
+    \                    ret.data[i][j] = A::operation(ret.data[i][j], M::operation(data[i][k],\
+    \ other.data[k][j]));\n        return ret;\n    }\n\n    Self operator*(const\
+    \ T& other) const { return Self(*this) *= other; }\n    Self& operator*=(const\
+    \ T& other) {\n        for (const int i : rep(height()))\n            for (const\
+    \ int j : rep(width())) data[i][j] = M::operation(data[i][j], other);\n    }\n\
+    \n    Self pow(u64 exp) const {\n        assert(height() == width());\n      \
+    \  Self ret(height(), width(), A::identity()), mult(*this);\n        for (const\
+    \ int i : rep(height())) ret.data[i][i] = M::identity();\n        for (; exp >\
+    \ 0; exp >>= 1) {\n            if (exp & 1) ret = ret * mult;\n            mult\
+    \ = mult * mult;\n        }\n        return ret;\n    }\n};\n"
   code: "#pragma once\n#include <array>\n#include <cassert>\n#include <initializer_list>\n\
     #include <vector>\n#include \"../utility/int_alias.cpp\"\n#include \"../utility/rep.cpp\"\
     \n\ntemplate <class S> class SemiRingMatrix {\n    using T = typename S::Type;\n\
-    \    using Self = SemiRingMatrix;\n    std::vector<std::vector<T>> data;\n\n \
-    \ public:\n    SemiRingMatrix() = default;\n    explicit SemiRingMatrix(const\
-    \ int h, const int w, const T& val = S::zero()) : data(h, std::vector<T>(w, val))\
-    \ {}\n\n    SemiRingMatrix(const std::vector<std::vector<T>>& vec) : data(vec)\
-    \ {\n        for (const auto& v : data) assert(v.size() == width());\n    }\n\
-    \    SemiRingMatrix(const std::initializer_list<std::initializer_list<T>>& list)\
-    \ {\n        data.reserve(list.size());\n        for (const auto& v : list) data.emplace_back(v.begin(),\
-    \ v.end());\n        for (const auto& v : data) assert(v.size() == width());\n\
-    \    }\n\n    int height() const { return data.size(); }\n    int width() const\
-    \ { return data.empty() ? 0 : data[0].size(); }\n\n    T& operator()(const int\
-    \ i, const int j) {\n        assert(i < height());\n        assert(j < width());\n\
+    \    using A = typename S::Sum;\n    using M = typename S::Product;\n    using\
+    \ Self = SemiRingMatrix;\n    std::vector<std::vector<T>> data;\n\n  public:\n\
+    \    SemiRingMatrix() = default;\n    explicit SemiRingMatrix(const int h, const\
+    \ int w, const T& val = A::zero()) : data(h, std::vector<T>(w, val)) {}\n\n  \
+    \  SemiRingMatrix(const std::vector<std::vector<T>>& vec) : data(vec) {\n    \
+    \    for (const auto& v : data) assert(v.size() == width());\n    }\n    SemiRingMatrix(const\
+    \ std::initializer_list<std::initializer_list<T>>& list) {\n        data.reserve(list.size());\n\
+    \        for (const auto& v : list) data.emplace_back(v.begin(), v.end());\n \
+    \       for (const auto& v : data) assert(v.size() == width());\n    }\n\n   \
+    \ int height() const { return data.size(); }\n    int width() const { return data.empty()\
+    \ ? 0 : data[0].size(); }\n\n    T& operator()(const int i, const int j) {\n \
+    \       assert(0 <= i and i < height());\n        assert(0 <= j and j < width());\n\
     \        return data[i][j];\n    }\n    const T& operator()(const int i, const\
-    \ int j) const {\n        assert(i < height());\n        assert(j < width());\n\
-    \        return data[i][j];\n    }\n\n    Self operator+(const Self& other) const\
-    \ { return Self(*this) += other; }\n    Self& operator+=(const Self& other) {\n\
-    \        assert(height() == other.height());\n        assert(width() == other.width());\n\
-    \        for (const int i : rep(0, height())) {\n            for (const int j\
-    \ : rep(0, width())) {\n                data[i][j] = S::sum(data[i][j], other.data[i][j]);\n\
-    \            }\n        }\n        return *this;\n    }\n\n    Self operator*(const\
-    \ Self& other) const {\n        assert(width() == other.height());\n        Self\
-    \ ret(height(), other.width(), S::zero());\n        for (const int i : rep(0,\
-    \ height())) {\n            for (const int k : rep(0, width())) {\n          \
-    \      for (const int j : rep(0, other.width())) {\n                    ret.data[i][j]\
-    \ = S::sum(ret.data[i][j], S::product(data[i][k], other.data[k][j]));\n      \
-    \          }\n            }\n        }\n        return ret;\n    }\n\n    Self\
-    \ operator*(const T& other) const { return Self(*this) *= other; }\n    Self&\
-    \ operator*=(const T& other) {\n        for (const int i : rep(0, height())) {\n\
-    \            for (const int j : rep(0, width())) {\n                data[i][j]\
-    \ = S::product(data[i][j], other);\n            }\n        }\n    }\n\n    Self\
-    \ pow(u64 exp) const {\n        assert(height() == width());\n        Self ret(height(),\
-    \ width(), S::zero()), mult(*this);\n        for (const int i : rep(0, height()))\
-    \ {\n            ret.data[i][i] = S::one();\n        }\n        for (; exp > 0;\
-    \ exp >>= 1) {\n            if (exp & 1) ret = ret * mult;\n            mult =\
-    \ mult * mult;\n        }\n        return ret;\n    }\n};\n"
+    \ int j) const {\n        assert(0 <= i and i < height());\n        assert(0 <=\
+    \ j and j < width());\n        return data[i][j];\n    }\n\n    Self operator+(const\
+    \ Self& other) const { return Self(*this) += other; }\n    Self& operator+=(const\
+    \ Self& other) {\n        assert(height() == other.height());\n        assert(width()\
+    \ == other.width());\n        for (const int i : rep(height()))\n            for\
+    \ (const int j : rep(width())) data[i][j] = A::operation(data[i][j], other.data[i][j]);\n\
+    \        return *this;\n    }\n\n    Self operator*(const Self& other) const {\n\
+    \        assert(width() == other.height());\n        Self ret(height(), other.width(),\
+    \ A::identity());\n        for (const int i : rep(height()))\n            for\
+    \ (const int k : rep(width()))\n                for (const int j : rep(other.width()))\n\
+    \                    ret.data[i][j] = A::operation(ret.data[i][j], M::operation(data[i][k],\
+    \ other.data[k][j]));\n        return ret;\n    }\n\n    Self operator*(const\
+    \ T& other) const { return Self(*this) *= other; }\n    Self& operator*=(const\
+    \ T& other) {\n        for (const int i : rep(height()))\n            for (const\
+    \ int j : rep(width())) data[i][j] = M::operation(data[i][j], other);\n    }\n\
+    \n    Self pow(u64 exp) const {\n        assert(height() == width());\n      \
+    \  Self ret(height(), width(), A::identity()), mult(*this);\n        for (const\
+    \ int i : rep(height())) ret.data[i][i] = M::identity();\n        for (; exp >\
+    \ 0; exp >>= 1) {\n            if (exp & 1) ret = ret * mult;\n            mult\
+    \ = mult * mult;\n        }\n        return ret;\n    }\n};\n"
   dependsOn:
   - utility/int_alias.cpp
   - utility/rep.cpp
   isVerificationFile: false
   path: math/semiring_matrix.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2022-01-28 13:07:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/semiring_matrix.test.cpp

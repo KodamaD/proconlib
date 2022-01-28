@@ -23,9 +23,18 @@ data:
   - icon: ':warning:'
     path: algorithm/or_convolution.cpp
     title: algorithm/or_convolution.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/ranked_subset_mobius_transform.cpp
+    title: algorithm/ranked_subset_mobius_transform.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/ranked_subset_zeta_transform.cpp
+    title: algorithm/ranked_subset_zeta_transform.cpp
   - icon: ':warning:'
     path: algorithm/smawk.cpp
     title: algorithm/smawk.cpp
+  - icon: ':heavy_check_mark:'
+    path: algorithm/subset_convolution.cpp
+    title: algorithm/subset_convolution.cpp
   - icon: ':warning:'
     path: algorithm/subset_mobius_transform.cpp
     title: algorithm/subset_mobius_transform.cpp
@@ -74,12 +83,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/union_find.cpp
     title: graph/union_find.cpp
+  - icon: ':heavy_check_mark:'
+    path: internal/modulo_transform.cpp
+    title: internal/modulo_transform.cpp
   - icon: ':warning:'
     path: math/congruence_equations.cpp
     title: math/congruence_equations.cpp
-  - icon: ':heavy_check_mark:'
-    path: math/modulo_transform.cpp
-    title: math/modulo_transform.cpp
   - icon: ':heavy_check_mark:'
     path: math/prime_sieve.cpp
     title: math/prime_sieve.cpp
@@ -160,6 +169,9 @@ data:
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/subset_convolution.test.cpp
+    title: test/subset_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/union_find.test.cpp
     title: test/union_find.test.cpp
   - icon: ':heavy_check_mark:'
@@ -196,63 +208,67 @@ data:
   isVerificationFile: false
   path: utility/rep.cpp
   requiredBy:
-  - graph/strongly_connected_components.cpp
+  - utility/fast_io.cpp
+  - algorithm/ranked_subset_zeta_transform.cpp
+  - algorithm/and_convolution.cpp
+  - algorithm/subset_mobius_transform.cpp
+  - algorithm/berlekamp_massey.cpp
+  - algorithm/convolution_mod.cpp
+  - algorithm/subset_zeta_transform.cpp
+  - algorithm/monotone_minima.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
+  - algorithm/convolution_int.cpp
+  - algorithm/or_convolution.cpp
+  - algorithm/smawk.cpp
+  - algorithm/superset_mobius_transform.cpp
+  - algorithm/subset_convolution.cpp
+  - algorithm/superset_zeta_transform.cpp
+  - algorithm/ranked_subset_mobius_transform.cpp
+  - container/sparse_table.cpp
+  - container/integer_hash_table.cpp
+  - container/segment_tree_beats.cpp
+  - container/lazy_segment_tree.cpp
+  - container/dual_segment_tree.cpp
+  - container/polynomial_hash.cpp
+  - container/segment_tree.cpp
   - graph/dinic.cpp
   - graph/union_find.cpp
   - graph/primal_dual.cpp
+  - graph/strongly_connected_components.cpp
   - graph/binary_optimization.cpp
-  - math/modulo_transform.cpp
   - math/semiring_matrix.cpp
-  - math/congruence_equations.cpp
   - math/prime_sieve.cpp
-  - algorithm/convolution_mod.cpp
-  - algorithm/superset_mobius_transform.cpp
-  - algorithm/superset_zeta_transform.cpp
-  - algorithm/monotone_minima.cpp
-  - algorithm/or_convolution.cpp
-  - algorithm/convolution_arbitrary_mod.cpp
-  - algorithm/and_convolution.cpp
-  - algorithm/subset_mobius_transform.cpp
-  - algorithm/smawk.cpp
-  - algorithm/berlekamp_massey.cpp
-  - algorithm/subset_zeta_transform.cpp
-  - algorithm/convolution_int.cpp
-  - utility/fast_io.cpp
-  - container/polynomial_hash.cpp
-  - container/lazy_segment_tree.cpp
-  - container/dual_segment_tree.cpp
-  - container/segment_tree_beats.cpp
-  - container/integer_hash_table.cpp
-  - container/segment_tree.cpp
-  - container/sparse_table.cpp
+  - math/congruence_equations.cpp
+  - internal/modulo_transform.cpp
   timestamp: '2021-12-17 09:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/convolution_arbitrary_mod.test.cpp
-  - test/strongly_connected_components.test.cpp
-  - test/larsch.test.cpp
-  - test/z_algorithm.test.cpp
+  - test/convolution_mod.test.cpp
   - test/fast_io.test.cpp
+  - test/heavy_light_decomposition.test.cpp
+  - test/segment_tree.test.cpp
   - test/integer_hash_table_verbose.test.cpp
+  - test/strongly_connected_components.test.cpp
+  - test/bipartite_matching.test.cpp
+  - test/and_convolution.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
+  - test/segment_tree_beats.test.cpp
+  - test/primal_dual_maxflow.test.cpp
+  - test/larsch.test.cpp
+  - test/integer_hash_table.test.cpp
+  - test/subset_convolution.test.cpp
+  - test/fenwick_tree.test.cpp
   - test/semiring_matrix.test.cpp
+  - test/rollback_union_find.test.cpp
   - test/polynomial_hash.test.cpp
+  - test/dual_segment_tree.test.cpp
+  - test/z_algorithm.test.cpp
+  - test/union_find.test.cpp
   - test/lazy_segment_tree.test.cpp
+  - test/berlekamp_massey.test.cpp
+  - test/prime_sieve.test.cpp
   - test/primal_dual_mincostflow.test.cpp
   - test/sparse_table.test.cpp
-  - test/berlekamp_massey.test.cpp
-  - test/heavy_light_decomposition.test.cpp
-  - test/rollback_union_find.test.cpp
-  - test/segment_tree.test.cpp
-  - test/segment_tree_beats.test.cpp
-  - test/dual_segment_tree.test.cpp
-  - test/prime_sieve.test.cpp
-  - test/and_convolution.test.cpp
-  - test/fenwick_tree.test.cpp
-  - test/integer_hash_table.test.cpp
-  - test/convolution_mod.test.cpp
-  - test/union_find.test.cpp
-  - test/primal_dual_maxflow.test.cpp
-  - test/bipartite_matching.test.cpp
 documentation_of: utility/rep.cpp
 layout: document
 redirect_from:
