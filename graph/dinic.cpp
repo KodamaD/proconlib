@@ -35,9 +35,9 @@ template <class Flow, std::enable_if_t<std::is_integral_v<Flow>>* = nullptr> cla
         return ret;
     }
 
-    const Edge& get_edge(const int i) const { 
+    const Edge& get_edge(const int i) const {
         assert(0 <= i and i < edge_count());
-        return graph[i]; 
+        return graph[i];
     }
     int add_edge(const int src, const int dst, const Flow& cap) {
         assert(0 <= src and src < size());
@@ -122,6 +122,31 @@ template <class Flow, std::enable_if_t<std::is_integral_v<Flow>>* = nullptr> cla
             ret += f;
         }
         for (const int i : rep(m)) graph[i].flow = graph[i].cap - edge[eidx[i]].cap;
+        return ret;
+    }
+
+    std::vector<char> min_cut(const int src) const {
+        assert(0 <= src and src < size());
+        const int n = size();
+        std::vector<std::vector<int>> adj(n);
+        for (const auto& e : graph) {
+            if (e.flow < e.cap) adj[e.src].push_back(e.dst);
+            if (e.flow > 0) adj[e.dst].push_back(e.src);
+        }
+        std::vector<char> ret(n);
+        proconlib::SimpleQueue<int> que;
+        que.push(src);
+        ret[src] = true;
+        while (!que.empty()) {
+            const int u = que.front();
+            que.pop();
+            for (const int v : adj[u]) {
+                if (!ret[v]) {
+                    ret[v] = true;
+                    que.push(v);
+                }
+            }
+        }
         return ret;
     }
 };
