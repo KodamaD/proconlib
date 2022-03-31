@@ -3,4 +3,5 @@ plugins:
 - jemoji
 - jekyll-redirect-from
 remote_theme: ngzhio/jekyll-theme-hamilton
+theme: jekyll-theme-minimal
 title: KoD's Library for Competitive Programming
