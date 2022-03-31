@@ -69,7 +69,7 @@ data:
     \ { return node_count++; }\n    IndexOffset add_vertices(const int n) {\n    \
     \    assert(n >= 0);\n        const IndexOffset ret(size(), n);\n        node_count\
     \ += n;\n        return ret;\n    }\n\n    const Edge& get_edge(const int i) const\
-    \ { \n        assert(0 <= i and i < edge_count());\n        return graph[i]; \n\
+    \ {\n        assert(0 <= i and i < edge_count());\n        return graph[i];\n\
     \    }\n    int add_edge(const int src, const int dst, const Flow& cap) {\n  \
     \      assert(0 <= src and src < size());\n        assert(0 <= dst and dst < size());\n\
     \        assert(cap >= 0);\n        graph.push_back(Edge{src, dst, 0, cap});\n\
@@ -112,7 +112,17 @@ data:
     \ start.begin() + n, iter.begin());\n            const Flow f = dfs(dst, flow_limit\
     \ - ret);\n            if (f == 0) break;\n            ret += f;\n        }\n\
     \        for (const int i : rep(m)) graph[i].flow = graph[i].cap - edge[eidx[i]].cap;\n\
-    \        return ret;\n    }\n};\n"
+    \        return ret;\n    }\n\n    std::vector<char> min_cut(const int src) const\
+    \ {\n        assert(0 <= src and src < size());\n        const int n = size();\n\
+    \        std::vector<std::vector<int>> adj(n);\n        for (const auto& e : graph)\
+    \ {\n            if (e.flow < e.cap) adj[e.src].push_back(e.dst);\n          \
+    \  if (e.flow > 0) adj[e.dst].push_back(e.src);\n        }\n        std::vector<char>\
+    \ ret(n);\n        proconlib::SimpleQueue<int> que;\n        que.push(src);\n\
+    \        ret[src] = true;\n        while (!que.empty()) {\n            const int\
+    \ u = que.front();\n            que.pop();\n            for (const int v : adj[u])\
+    \ {\n                if (!ret[v]) {\n                    ret[v] = true;\n    \
+    \                que.push(v);\n                }\n            }\n        }\n \
+    \       return ret;\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <limits>\n\
     #include <type_traits>\n#include <vector>\n#include \"../internal/simple_queue.cpp\"\
     \n#include \"../utility/index_offset.cpp\"\n#include \"../utility/rec_lambda.cpp\"\
@@ -125,7 +135,7 @@ data:
     \ { return node_count++; }\n    IndexOffset add_vertices(const int n) {\n    \
     \    assert(n >= 0);\n        const IndexOffset ret(size(), n);\n        node_count\
     \ += n;\n        return ret;\n    }\n\n    const Edge& get_edge(const int i) const\
-    \ { \n        assert(0 <= i and i < edge_count());\n        return graph[i]; \n\
+    \ {\n        assert(0 <= i and i < edge_count());\n        return graph[i];\n\
     \    }\n    int add_edge(const int src, const int dst, const Flow& cap) {\n  \
     \      assert(0 <= src and src < size());\n        assert(0 <= dst and dst < size());\n\
     \        assert(cap >= 0);\n        graph.push_back(Edge{src, dst, 0, cap});\n\
@@ -168,7 +178,17 @@ data:
     \ start.begin() + n, iter.begin());\n            const Flow f = dfs(dst, flow_limit\
     \ - ret);\n            if (f == 0) break;\n            ret += f;\n        }\n\
     \        for (const int i : rep(m)) graph[i].flow = graph[i].cap - edge[eidx[i]].cap;\n\
-    \        return ret;\n    }\n};"
+    \        return ret;\n    }\n\n    std::vector<char> min_cut(const int src) const\
+    \ {\n        assert(0 <= src and src < size());\n        const int n = size();\n\
+    \        std::vector<std::vector<int>> adj(n);\n        for (const auto& e : graph)\
+    \ {\n            if (e.flow < e.cap) adj[e.src].push_back(e.dst);\n          \
+    \  if (e.flow > 0) adj[e.dst].push_back(e.src);\n        }\n        std::vector<char>\
+    \ ret(n);\n        proconlib::SimpleQueue<int> que;\n        que.push(src);\n\
+    \        ret[src] = true;\n        while (!que.empty()) {\n            const int\
+    \ u = que.front();\n            que.pop();\n            for (const int v : adj[u])\
+    \ {\n                if (!ret[v]) {\n                    ret[v] = true;\n    \
+    \                que.push(v);\n                }\n            }\n        }\n \
+    \       return ret;\n    }\n};"
   dependsOn:
   - internal/simple_queue.cpp
   - utility/index_offset.cpp
@@ -178,7 +198,7 @@ data:
   path: graph/dinic.cpp
   requiredBy:
   - graph/binary_optimization.cpp
-  timestamp: '2022-01-07 21:48:21+09:00'
+  timestamp: '2022-03-31 10:32:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/bipartite_matching.test.cpp

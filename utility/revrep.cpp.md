@@ -23,6 +23,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: container/segment_tree_beats.cpp
     title: container/segment_tree_beats.cpp
+  - icon: ':warning:'
+    path: graph/re_rooting.cpp
+    title: graph/re_rooting.cpp
   - icon: ':heavy_check_mark:'
     path: internal/modulo_transform.cpp
     title: internal/modulo_transform.cpp
@@ -90,27 +93,28 @@ data:
   isVerificationFile: false
   path: utility/revrep.cpp
   requiredBy:
-  - utility/fast_io.cpp
-  - algorithm/convolution_mod.cpp
+  - internal/modulo_transform.cpp
   - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_int.cpp
+  - algorithm/convolution_mod.cpp
+  - graph/re_rooting.cpp
+  - container/dual_segment_tree.cpp
   - container/segment_tree_beats.cpp
   - container/lazy_segment_tree.cpp
-  - container/dual_segment_tree.cpp
   - container/segment_tree.cpp
-  - internal/modulo_transform.cpp
+  - utility/fast_io.cpp
   timestamp: '2021-12-17 09:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/convolution_mod.test.cpp
-  - test/fast_io.test.cpp
-  - test/heavy_light_decomposition.test.cpp
-  - test/segment_tree.test.cpp
-  - test/convolution_arbitrary_mod.test.cpp
-  - test/segment_tree_beats.test.cpp
   - test/larsch.test.cpp
+  - test/convolution_mod.test.cpp
+  - test/segment_tree.test.cpp
+  - test/segment_tree_beats.test.cpp
+  - test/heavy_light_decomposition.test.cpp
   - test/dual_segment_tree.test.cpp
   - test/lazy_segment_tree.test.cpp
+  - test/fast_io.test.cpp
+  - test/convolution_arbitrary_mod.test.cpp
 documentation_of: utility/revrep.cpp
 layout: document
 redirect_from:

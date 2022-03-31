@@ -100,6 +100,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/primal_dual.cpp
       title: graph/primal_dual.cpp
+    - icon: ':warning:'
+      path: graph/re_rooting.cpp
+      title: graph/re_rooting.cpp
     - icon: ':heavy_check_mark:'
       path: graph/rollback_union_find.cpp
       title: graph/rollback_union_find.cpp

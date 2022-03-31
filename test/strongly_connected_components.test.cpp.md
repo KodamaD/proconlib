@@ -49,8 +49,8 @@ data:
     \ noexcept { return last; }\n};\n\nconstexpr Range rep(const int l, const int\
     \ r) noexcept { return Range(l, r); }\nconstexpr Range rep(const int n) noexcept\
     \ { return Range(0, n); }\n#line 2 \"utility/setmin.cpp\"\n\ntemplate <class T>\
-    \ bool setmin(T& lhs, const T& rhs) {\n    if (lhs > rhs) {\n        lhs = rhs;\n\
-    \        return true;\n    }\n    return false;\n}\n#line 7 \"graph/strongly_connected_components.cpp\"\
+    \ constexpr bool setmin(T& lhs, const T& rhs) {\n    if (lhs > rhs) {\n      \
+    \  lhs = rhs;\n        return true;\n    }\n    return false;\n}\n#line 7 \"graph/strongly_connected_components.cpp\"\
     \n\ntemplate <class G> class StronglyConnectedComponents {\n    int count;\n \
     \   std::vector<int> index;\n\n  public:\n    StronglyConnectedComponents() :\
     \ count(0), index() {}\n    explicit StronglyConnectedComponents(const G& graph)\
@@ -124,7 +124,7 @@ data:
   isVerificationFile: true
   path: test/strongly_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2022-01-28 13:07:07+09:00'
+  timestamp: '2022-03-31 10:32:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/strongly_connected_components.test.cpp

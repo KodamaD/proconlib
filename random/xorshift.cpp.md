@@ -55,19 +55,19 @@ data:
   isVerificationFile: false
   path: random/xorshift.cpp
   requiredBy:
+  - random/rand_perm.cpp
   - random/rand_bool.cpp
   - random/rand_real.cpp
   - random/rand_int.cpp
   - random/shuffle_vec.cpp
-  - random/rand_perm.cpp
-  - container/integer_hash_table.cpp
   - container/polynomial_hash.cpp
+  - container/integer_hash_table.cpp
   timestamp: '2021-12-17 09:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/polynomial_hash.test.cpp
   - test/integer_hash_table_verbose.test.cpp
   - test/integer_hash_table.test.cpp
-  - test/polynomial_hash.test.cpp
 documentation_of: random/xorshift.cpp
 layout: document
 redirect_from:

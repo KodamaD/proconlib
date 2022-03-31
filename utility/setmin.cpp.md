@@ -14,18 +14,18 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"utility/setmin.cpp\"\n\ntemplate <class T> bool setmin(T&\
-    \ lhs, const T& rhs) {\n    if (lhs > rhs) {\n        lhs = rhs;\n        return\
-    \ true;\n    }\n    return false;\n}\n"
-  code: "#pragma once\n\ntemplate <class T> bool setmin(T& lhs, const T& rhs) {\n\
-    \    if (lhs > rhs) {\n        lhs = rhs;\n        return true;\n    }\n    return\
-    \ false;\n}\n"
+  bundledCode: "#line 2 \"utility/setmin.cpp\"\n\ntemplate <class T> constexpr bool\
+    \ setmin(T& lhs, const T& rhs) {\n    if (lhs > rhs) {\n        lhs = rhs;\n \
+    \       return true;\n    }\n    return false;\n}\n"
+  code: "#pragma once\n\ntemplate <class T> constexpr bool setmin(T& lhs, const T&\
+    \ rhs) {\n    if (lhs > rhs) {\n        lhs = rhs;\n        return true;\n   \
+    \ }\n    return false;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: utility/setmin.cpp
   requiredBy:
   - graph/strongly_connected_components.cpp
-  timestamp: '2021-09-04 17:30:23+09:00'
+  timestamp: '2022-03-31 10:32:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/strongly_connected_components.test.cpp

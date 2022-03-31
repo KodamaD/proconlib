@@ -83,10 +83,10 @@ data:
   isVerificationFile: false
   path: math/primitive_root.cpp
   requiredBy:
-  - algorithm/convolution_mod.cpp
+  - internal/modulo_transform.cpp
   - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_int.cpp
-  - internal/modulo_transform.cpp
+  - algorithm/convolution_mod.cpp
   timestamp: '2022-01-28 13:07:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -35,8 +35,8 @@ data:
   timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/and_convolution.test.cpp
   - test/subset_convolution.test.cpp
+  - test/and_convolution.test.cpp
   - test/semiring_matrix.test.cpp
 documentation_of: traits/product_monoid.cpp
 layout: document

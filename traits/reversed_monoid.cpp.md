@@ -33,8 +33,8 @@ data:
   timestamp: '2021-09-27 22:23:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/heavy_light_decomposition.test.cpp
   - test/queue_aggregation.test.cpp
+  - test/heavy_light_decomposition.test.cpp
 documentation_of: traits/reversed_monoid.cpp
 layout: document
 redirect_from:

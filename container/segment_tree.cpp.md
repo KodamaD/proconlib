@@ -164,9 +164,9 @@ data:
   timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/heavy_light_decomposition.test.cpp
-  - test/segment_tree.test.cpp
   - test/larsch.test.cpp
+  - test/segment_tree.test.cpp
+  - test/heavy_light_decomposition.test.cpp
 documentation_of: container/segment_tree.cpp
 layout: document
 redirect_from:

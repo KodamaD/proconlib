@@ -47,18 +47,18 @@ data:
   isVerificationFile: false
   path: traits/sum_group.cpp
   requiredBy:
-  - traits/max_add_action.cpp
   - traits/min_add_action.cpp
   - traits/sum_affine_action.cpp
+  - traits/max_add_action.cpp
   - traits/num_ring.cpp
   timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/and_convolution.test.cpp
-  - test/subset_convolution.test.cpp
-  - test/fenwick_tree.test.cpp
-  - test/semiring_matrix.test.cpp
   - test/lazy_segment_tree.test.cpp
+  - test/fenwick_tree.test.cpp
+  - test/subset_convolution.test.cpp
+  - test/and_convolution.test.cpp
+  - test/semiring_matrix.test.cpp
 documentation_of: traits/sum_group.cpp
 layout: document
 redirect_from:
