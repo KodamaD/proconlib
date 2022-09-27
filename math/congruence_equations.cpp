@@ -11,9 +11,9 @@ template <class T, class Result = T>
 std::optional<std::pair<Result, Result>> congruence_equations(const std::vector<T>& m, const std::vector<T>& r) {
     using U = std::make_signed_t<Result>;
     assert(m.size() == r.size());
-    const usize n = m.size();
+    const int n = m.size();
     U r0 = 0, m0 = 1;
-    for (const usize i : rep(0, n)) {
+    for (const int i : rep(0, n)) {
         assert(m[i] > 0);
         U r1 = rem_euclid(r[i], m[i]), m1 = m[i];
         if (m0 < m1) {

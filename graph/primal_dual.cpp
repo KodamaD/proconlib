@@ -177,9 +177,9 @@ class PrimalDual {
                 edge[e.rev].cap -= push;
             }
             const Cost per_flow = potential[dst] - potential[src];
+            if (flow != 0 and ratio == per_flow) result.pop_back();
             flow += push;
             cost += push * per_flow;
-            if (flow != 0 and ratio == per_flow) result.pop_back();
             result.emplace_back(flow, cost);
             ratio = per_flow;
         }

@@ -8,7 +8,7 @@ template <class F> class AutoMemoization {
     template <class> struct GetSig;
     template <class T, class R, class S, class... Args> struct GetSig<R (T::*)(S, Args...) const> {
         using Ret = R;
-        using Tuple = std::tuple<Args...>;
+        using Tuple = std::tuple<std::decay_t<Args>...>;
     };
 
     using Sig = GetSig<decltype(&F::template operator()<AutoMemoization<F>&>)>;
