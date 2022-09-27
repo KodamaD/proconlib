@@ -41,11 +41,11 @@ data:
     \  return {(T)s, (T)m0};\n}\n#line 9 \"math/congruence_equations.cpp\"\n\ntemplate\
     \ <class T, class Result = T>\nstd::optional<std::pair<Result, Result>> congruence_equations(const\
     \ std::vector<T>& m, const std::vector<T>& r) {\n    using U = std::make_signed_t<Result>;\n\
-    \    assert(m.size() == r.size());\n    const usize n = m.size();\n    U r0 =\
-    \ 0, m0 = 1;\n    for (const usize i : rep(0, n)) {\n        assert(m[i] > 0);\n\
-    \        U r1 = rem_euclid(r[i], m[i]), m1 = m[i];\n        if (m0 < m1) {\n \
-    \           std::swap(r0, r1);\n            std::swap(m0, m1);\n        }\n  \
-    \      if (m0 % m1 == 0) {\n            if (r0 % m1 != r1) return std::nullopt;\n\
+    \    assert(m.size() == r.size());\n    const int n = m.size();\n    U r0 = 0,\
+    \ m0 = 1;\n    for (const int i : rep(0, n)) {\n        assert(m[i] > 0);\n  \
+    \      U r1 = rem_euclid(r[i], m[i]), m1 = m[i];\n        if (m0 < m1) {\n   \
+    \         std::swap(r0, r1);\n            std::swap(m0, m1);\n        }\n    \
+    \    if (m0 % m1 == 0) {\n            if (r0 % m1 != r1) return std::nullopt;\n\
     \            continue;\n        }\n        const auto [g, inv_m] = inv_gcd(m0,\
     \ m1);\n        if ((r1 - r0) % g != 0) return std::nullopt;\n        const U\
     \ u1 = m1 / g;\n        const U x = (r1 - r0) / g % u1 * inv_m % u1;\n       \
@@ -56,13 +56,13 @@ data:
     #include \"rem_euclid.cpp\"\n\ntemplate <class T, class Result = T>\nstd::optional<std::pair<Result,\
     \ Result>> congruence_equations(const std::vector<T>& m, const std::vector<T>&\
     \ r) {\n    using U = std::make_signed_t<Result>;\n    assert(m.size() == r.size());\n\
-    \    const usize n = m.size();\n    U r0 = 0, m0 = 1;\n    for (const usize i\
-    \ : rep(0, n)) {\n        assert(m[i] > 0);\n        U r1 = rem_euclid(r[i], m[i]),\
-    \ m1 = m[i];\n        if (m0 < m1) {\n            std::swap(r0, r1);\n       \
-    \     std::swap(m0, m1);\n        }\n        if (m0 % m1 == 0) {\n           \
-    \ if (r0 % m1 != r1) return std::nullopt;\n            continue;\n        }\n\
-    \        const auto [g, inv_m] = inv_gcd(m0, m1);\n        if ((r1 - r0) % g !=\
-    \ 0) return std::nullopt;\n        const U u1 = m1 / g;\n        const U x = (r1\
+    \    const int n = m.size();\n    U r0 = 0, m0 = 1;\n    for (const int i : rep(0,\
+    \ n)) {\n        assert(m[i] > 0);\n        U r1 = rem_euclid(r[i], m[i]), m1\
+    \ = m[i];\n        if (m0 < m1) {\n            std::swap(r0, r1);\n          \
+    \  std::swap(m0, m1);\n        }\n        if (m0 % m1 == 0) {\n            if\
+    \ (r0 % m1 != r1) return std::nullopt;\n            continue;\n        }\n   \
+    \     const auto [g, inv_m] = inv_gcd(m0, m1);\n        if ((r1 - r0) % g != 0)\
+    \ return std::nullopt;\n        const U u1 = m1 / g;\n        const U x = (r1\
     \ - r0) / g % u1 * inv_m % u1;\n        r0 += x * m0;\n        m0 *= u1;\n   \
     \     if (r0 < 0) r0 += m0;\n    }\n    return std::pair<Result, Result>(r0, m0);\n\
     }\n"
@@ -73,7 +73,7 @@ data:
   isVerificationFile: false
   path: math/congruence_equations.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2022-09-27 19:53:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/congruence_equations.cpp

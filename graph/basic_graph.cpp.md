@@ -72,8 +72,8 @@ data:
   timestamp: '2021-12-28 21:38:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/heavy_light_decomposition.test.cpp
   - test/strongly_connected_components.test.cpp
+  - test/heavy_light_decomposition.test.cpp
 documentation_of: graph/basic_graph.cpp
 layout: document
 redirect_from:

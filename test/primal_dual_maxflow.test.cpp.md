@@ -123,10 +123,10 @@ data:
     \            }\n            for (int u = dst; u != src; u = edge[prev_e[u]].dst)\
     \ {\n                auto& e = edge[prev_e[u]];\n                e.cap += push;\n\
     \                edge[e.rev].cap -= push;\n            }\n            const Cost\
-    \ per_flow = potential[dst] - potential[src];\n            flow += push;\n   \
-    \         cost += push * per_flow;\n            if (flow != 0 and ratio == per_flow)\
-    \ result.pop_back();\n            result.emplace_back(flow, cost);\n         \
-    \   ratio = per_flow;\n        }\n        for (const int i : rep(m)) graph[i].flow\
+    \ per_flow = potential[dst] - potential[src];\n            if (flow != 0 and ratio\
+    \ == per_flow) result.pop_back();\n            flow += push;\n            cost\
+    \ += push * per_flow;\n            result.emplace_back(flow, cost);\n        \
+    \    ratio = per_flow;\n        }\n        for (const int i : rep(m)) graph[i].flow\
     \ = graph[i].cap - edge[eidx[i]].cap;\n        return result;\n    }\n};\n#line\
     \ 2 \"utility/int_alias.cpp\"\n#include <cstdint>\n\nusing i32 = std::int32_t;\n\
     using u32 = std::uint32_t;\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n\
@@ -149,7 +149,7 @@ data:
   isVerificationFile: true
   path: test/primal_dual_maxflow.test.cpp
   requiredBy: []
-  timestamp: '2022-01-28 13:07:07+09:00'
+  timestamp: '2022-09-27 19:53:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/primal_dual_maxflow.test.cpp

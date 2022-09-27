@@ -24,7 +24,7 @@ data:
     \n#include <map>\n#include <tuple>\n#include <type_traits>\n#include <utility>\n\
     \ntemplate <class F> class AutoMemoization {\n    template <class> struct GetSig;\n\
     \    template <class T, class R, class S, class... Args> struct GetSig<R (T::*)(S,\
-    \ Args...) const> {\n        using Ret = R;\n        using Tuple = std::tuple<Args...>;\n\
+    \ Args...) const> {\n        using Ret = R;\n        using Tuple = std::tuple<std::decay_t<Args>...>;\n\
     \    };\n\n    using Sig = GetSig<decltype(&F::template operator()<AutoMemoization<F>&>)>;\n\
     \    using R = typename Sig::Ret;\n    using Tuple = typename Sig::Tuple;\n\n\
     \    F func;\n    mutable std::map<Tuple, R> data;\n\n    template <std::size_t...\
@@ -52,7 +52,7 @@ data:
   isVerificationFile: true
   path: test/auto_memoize.test.cpp
   requiredBy: []
-  timestamp: '2021-12-17 09:20:39+09:00'
+  timestamp: '2022-09-27 19:53:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/auto_memoize.test.cpp

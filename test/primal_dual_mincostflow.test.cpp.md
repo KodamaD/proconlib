@@ -126,10 +126,10 @@ data:
     \            }\n            for (int u = dst; u != src; u = edge[prev_e[u]].dst)\
     \ {\n                auto& e = edge[prev_e[u]];\n                e.cap += push;\n\
     \                edge[e.rev].cap -= push;\n            }\n            const Cost\
-    \ per_flow = potential[dst] - potential[src];\n            flow += push;\n   \
-    \         cost += push * per_flow;\n            if (flow != 0 and ratio == per_flow)\
-    \ result.pop_back();\n            result.emplace_back(flow, cost);\n         \
-    \   ratio = per_flow;\n        }\n        for (const int i : rep(m)) graph[i].flow\
+    \ per_flow = potential[dst] - potential[src];\n            if (flow != 0 and ratio\
+    \ == per_flow) result.pop_back();\n            flow += push;\n            cost\
+    \ += push * per_flow;\n            result.emplace_back(flow, cost);\n        \
+    \    ratio = per_flow;\n        }\n        for (const int i : rep(m)) graph[i].flow\
     \ = graph[i].cap - edge[eidx[i]].cap;\n        return result;\n    }\n};\n#line\
     \ 4 \"test/primal_dual_mincostflow.test.cpp\"\n#include <iostream>\n\nint main()\
     \ {\n    int N, M;\n    std::cin >> N >> M;\n    i32 F;\n    std::cin >> F;\n\
@@ -153,7 +153,7 @@ data:
   isVerificationFile: true
   path: test/primal_dual_mincostflow.test.cpp
   requiredBy: []
-  timestamp: '2022-01-28 13:07:07+09:00'
+  timestamp: '2022-09-27 19:53:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/primal_dual_mincostflow.test.cpp

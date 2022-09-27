@@ -49,8 +49,8 @@ data:
   timestamp: '2021-09-27 22:23:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/larsch.test.cpp
   - test/sparse_table.test.cpp
+  - test/larsch.test.cpp
 documentation_of: traits/optional_monoid.cpp
 layout: document
 redirect_from:

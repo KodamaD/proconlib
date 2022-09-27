@@ -47,8 +47,8 @@ data:
   path: utility/popcount.cpp
   requiredBy:
   - algorithm/ranked_subset_mobius_transform.cpp
-  - algorithm/subset_convolution.cpp
   - algorithm/ranked_subset_zeta_transform.cpp
+  - algorithm/subset_convolution.cpp
   timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

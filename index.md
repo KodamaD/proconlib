@@ -296,6 +296,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: utility/popcount.cpp
       title: utility/popcount.cpp
+    - icon: ':warning:'
+      path: utility/print.cpp
+      title: utility/print.cpp
     - icon: ':heavy_check_mark:'
       path: utility/rec_lambda.cpp
       title: utility/rec_lambda.cpp

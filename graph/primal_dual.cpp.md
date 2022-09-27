@@ -119,10 +119,10 @@ data:
     \            }\n            for (int u = dst; u != src; u = edge[prev_e[u]].dst)\
     \ {\n                auto& e = edge[prev_e[u]];\n                e.cap += push;\n\
     \                edge[e.rev].cap -= push;\n            }\n            const Cost\
-    \ per_flow = potential[dst] - potential[src];\n            flow += push;\n   \
-    \         cost += push * per_flow;\n            if (flow != 0 and ratio == per_flow)\
-    \ result.pop_back();\n            result.emplace_back(flow, cost);\n         \
-    \   ratio = per_flow;\n        }\n        for (const int i : rep(m)) graph[i].flow\
+    \ per_flow = potential[dst] - potential[src];\n            if (flow != 0 and ratio\
+    \ == per_flow) result.pop_back();\n            flow += push;\n            cost\
+    \ += push * per_flow;\n            result.emplace_back(flow, cost);\n        \
+    \    ratio = per_flow;\n        }\n        for (const int i : rep(m)) graph[i].flow\
     \ = graph[i].cap - edge[eidx[i]].cap;\n        return result;\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <limits>\n\
     #include <type_traits>\n#include <vector>\n#include \"../utility/index_offset.cpp\"\
@@ -205,10 +205,10 @@ data:
     \            }\n            for (int u = dst; u != src; u = edge[prev_e[u]].dst)\
     \ {\n                auto& e = edge[prev_e[u]];\n                e.cap += push;\n\
     \                edge[e.rev].cap -= push;\n            }\n            const Cost\
-    \ per_flow = potential[dst] - potential[src];\n            flow += push;\n   \
-    \         cost += push * per_flow;\n            if (flow != 0 and ratio == per_flow)\
-    \ result.pop_back();\n            result.emplace_back(flow, cost);\n         \
-    \   ratio = per_flow;\n        }\n        for (const int i : rep(m)) graph[i].flow\
+    \ per_flow = potential[dst] - potential[src];\n            if (flow != 0 and ratio\
+    \ == per_flow) result.pop_back();\n            flow += push;\n            cost\
+    \ += push * per_flow;\n            result.emplace_back(flow, cost);\n        \
+    \    ratio = per_flow;\n        }\n        for (const int i : rep(m)) graph[i].flow\
     \ = graph[i].cap - edge[eidx[i]].cap;\n        return result;\n    }\n};"
   dependsOn:
   - utility/index_offset.cpp
@@ -216,11 +216,11 @@ data:
   isVerificationFile: false
   path: graph/primal_dual.cpp
   requiredBy: []
-  timestamp: '2022-01-28 13:07:07+09:00'
+  timestamp: '2022-09-27 19:53:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/primal_dual_maxflow.test.cpp
   - test/primal_dual_mincostflow.test.cpp
+  - test/primal_dual_maxflow.test.cpp
 documentation_of: graph/primal_dual.cpp
 layout: document
 redirect_from:

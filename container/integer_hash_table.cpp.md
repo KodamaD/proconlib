@@ -256,8 +256,8 @@ data:
   timestamp: '2022-01-07 22:21:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/integer_hash_table_verbose.test.cpp
   - test/integer_hash_table.test.cpp
+  - test/integer_hash_table_verbose.test.cpp
 documentation_of: container/integer_hash_table.cpp
 layout: document
 redirect_from:

@@ -55,18 +55,18 @@ data:
   isVerificationFile: false
   path: utility/index_offset.cpp
   requiredBy:
-  - graph/basic_graph.cpp
-  - graph/dinic.cpp
   - graph/primal_dual.cpp
+  - graph/dinic.cpp
+  - graph/basic_graph.cpp
   - graph/binary_optimization.cpp
   timestamp: '2021-12-17 09:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/primal_dual_maxflow.test.cpp
+  - test/strongly_connected_components.test.cpp
   - test/primal_dual_mincostflow.test.cpp
+  - test/primal_dual_maxflow.test.cpp
   - test/heavy_light_decomposition.test.cpp
   - test/bipartite_matching.test.cpp
-  - test/strongly_connected_components.test.cpp
 documentation_of: utility/index_offset.cpp
 layout: document
 redirect_from:

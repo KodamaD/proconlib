@@ -44,9 +44,9 @@ data:
   timestamp: '2022-01-28 13:07:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/semiring_matrix.test.cpp
   - test/subset_convolution.test.cpp
   - test/and_convolution.test.cpp
-  - test/semiring_matrix.test.cpp
 documentation_of: traits/num_ring.cpp
 layout: document
 redirect_from:

@@ -149,46 +149,46 @@ data:
   isVerificationFile: false
   path: internal/enable_avx2.cpp
   requiredBy:
-  - internal/modulo_transform.cpp
-  - algorithm/convolution_arbitrary_mod.cpp
-  - algorithm/ranked_subset_mobius_transform.cpp
-  - algorithm/subset_convolution.cpp
   - algorithm/convolution_int.cpp
+  - algorithm/ranked_subset_mobius_transform.cpp
+  - algorithm/convolution_arbitrary_mod.cpp
   - algorithm/convolution_mod.cpp
   - algorithm/ranked_subset_zeta_transform.cpp
-  - container/dual_segment_tree.cpp
-  - container/segment_tree_beats.cpp
-  - container/fenwick_tree.cpp
-  - container/lazy_segment_tree.cpp
-  - container/sparse_table.cpp
-  - container/integer_hash_table.cpp
-  - container/segment_tree.cpp
-  - math/prime_sieve.cpp
-  - utility/auto_realloc.cpp
-  - utility/bit_width.cpp
-  - utility/ceil_log2.cpp
+  - algorithm/subset_convolution.cpp
   - utility/fast_io.cpp
-  - utility/countr_zero.cpp
+  - utility/bit_width.cpp
   - utility/countl_zero.cpp
   - utility/popcount.cpp
+  - utility/countr_zero.cpp
+  - utility/ceil_log2.cpp
+  - utility/auto_realloc.cpp
+  - math/prime_sieve.cpp
+  - container/integer_hash_table.cpp
+  - container/lazy_segment_tree.cpp
+  - container/fenwick_tree.cpp
+  - container/segment_tree_beats.cpp
+  - container/sparse_table.cpp
+  - container/segment_tree.cpp
+  - container/dual_segment_tree.cpp
+  - internal/modulo_transform.cpp
   timestamp: '2022-01-07 21:48:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/larsch.test.cpp
-  - test/convolution_mod.test.cpp
   - test/segment_tree.test.cpp
-  - test/segment_tree_beats.test.cpp
-  - test/integer_hash_table_verbose.test.cpp
-  - test/sparse_table.test.cpp
   - test/integer_hash_table.test.cpp
-  - test/heavy_light_decomposition.test.cpp
+  - test/sparse_table.test.cpp
   - test/dual_segment_tree.test.cpp
-  - test/lazy_segment_tree.test.cpp
-  - test/fenwick_tree.test.cpp
   - test/subset_convolution.test.cpp
+  - test/larsch.test.cpp
+  - test/segment_tree_beats.test.cpp
   - test/fast_io.test.cpp
   - test/convolution_arbitrary_mod.test.cpp
+  - test/convolution_mod.test.cpp
+  - test/fenwick_tree.test.cpp
   - test/prime_sieve.test.cpp
+  - test/integer_hash_table_verbose.test.cpp
+  - test/lazy_segment_tree.test.cpp
+  - test/heavy_light_decomposition.test.cpp
 documentation_of: internal/enable_avx2.cpp
 layout: document
 redirect_from:
